@@ -21,6 +21,9 @@ rdkafka = { version = "=0.39.0", default-features = false, features = ["tokio", 
 tokio = { version = "=1.53.1", features = ["time", "sync"] }
 
 [dev-dependencies]
+rom = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false, features = ["derive"] }
+rom-sqlite = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+rom-redb = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
 tokio = { version = "=1.53.1", features = ["rt", "macros"] }
 
 [[test]]
@@ -29,4 +32,8 @@ required-features = ["broker-conformance"]
 
 [[test]]
 name = "ack_loss"
+required-features = ["broker-conformance"]
+
+[[test]]
+name = "runtime"
 required-features = ["broker-conformance"]

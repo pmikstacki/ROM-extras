@@ -48,6 +48,14 @@ A native one-entry queue test verifies immediate QueueFull refusal without retir
 A bounded protocol proxy drops an actual successful ProduceResponse after broker append.
 A direct consumer reads the exact record while delivery remains pending; the outcome then becomes Unknown.
 Explicit replacement and same-ID retry create a second record. This does not establish a deduplicated consumer effect.
-Runtime recovery, TLS/SASL, and release packaging remain pending.
+Native SQLite/redb Runtime tests preserve committed Pending and Unknown work across store reopen.
+Explicit host producer replacement retries the same ID and persists Accepted/Done on attempt two.
+Current source/service denial prevents additional records. Two Unknown attempts stop durably at the configured budget.
+A receiver commits an ordinary ROM action with the delivery ID as its receipt key.
+Manual Kafka replay after consumer closure and native receiver-store reopen preserves one Resource effect across both records.
+This is explicit assignment from Beginning, not automatic consumer-group checkpoint recovery.
+Reopen occurs within one process; process-crash and power-loss behavior are not established.
+Set the adapter deadline below Runtime delivery_timeout, and set that timeout below the lease.
+TLS/SASL and release packaging remain pending.
 The initial live run returned Unknown unexpectedly; its log and topic data are preserved.
 Later runs passed, but the initial cause remains undetermined. Do not treat the repeat as a root-cause fix.

@@ -1,0 +1,33 @@
+   Compiling libsqlite3-sys v0.38.2
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rdkafka v0.39.0
+   Compiling url v2.5.8
+   Compiling rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+   Compiling rom-redb v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rusqlite v0.40.2
+   Compiling rom-sqlite v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.30s
+     Running tests/runtime.rs (target/debug/deps/runtime-14a5789767362fe3)
+
+running 1 test
+test reopened_runtime_retries_same_identity_and_receiver_replays_durable_receipt ... FAILED
+
+failures:
+
+---- reopened_runtime_retries_same_identity_and_receiver_replays_durable_receipt stdout ----
+
+thread 'reopened_runtime_retries_same_identity_and_receiver_replays_durable_receipt' (2769582) panicked at crates/rom-kafka/tests/runtime.rs:165:9:
+assertion `left == right` failed
+  left: Some(TimedOut)
+ right: Some(Unknown)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    reopened_runtime_retries_same_identity_and_receiver_replays_durable_receipt
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 8.19s
+
+error: test failed, to rerun pass `-p rom-kafka --test runtime`

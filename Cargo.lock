@@ -2119,6 +2119,8 @@ dependencies = [
  "rdkafka",
  "rom",
  "rom-delivery-core",
+ "rom-redb",
+ "rom-sqlite",
  "tokio",
 ]
 

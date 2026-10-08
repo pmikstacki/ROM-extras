@@ -1,0 +1,9 @@
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.65s
+     Running tests/runtime.rs (target/debug/deps/runtime-14a5789767362fe3)
+
+running 1 test
+test native_unknown_attempt_budget_stops_durably_without_creating_topic ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 2.12s
+

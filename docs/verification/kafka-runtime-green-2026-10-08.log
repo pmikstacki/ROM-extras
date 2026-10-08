@@ -1,0 +1,9 @@
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.71s
+     Running tests/runtime.rs (target/debug/deps/runtime-14a5789767362fe3)
+
+running 1 test
+test reopened_runtime_retries_same_identity_and_receiver_replays_durable_receipt ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 30.61s
+
