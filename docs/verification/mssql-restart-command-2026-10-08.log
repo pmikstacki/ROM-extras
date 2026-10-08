@@ -1,0 +1,2 @@
+time="2026-10-08T15:23:33Z" level=warning msg="StopSignal SIGTERM failed to stop container rom-extras-mssql-20261008 in 10 seconds, resorting to SIGKILL"
+rom-extras-mssql-20261008

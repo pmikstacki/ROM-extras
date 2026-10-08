@@ -1,0 +1,41 @@
+   Compiling tokio v1.53.1
+   Compiling tokio-rustls v0.26.6
+   Compiling tokio-util v0.7.19
+   Compiling tiberius v0.13.0
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 14.32s
+     Running tests/mssql_executor.rs (tests/public-consumer/target/debug/deps/mssql_executor-45379fb7ad66e698)
+
+running 3 tests
+test caller_timeout_does_not_cancel_a_later_sql_server_commit ... FAILED
+test panic_retires_tds_connection_and_open_transaction_rolls_back ... FAILED
+test async_tds_connection_runs_on_its_worker_inside_a_tokio_host ... FAILED
+
+failures:
+
+---- caller_timeout_does_not_cancel_a_later_sql_server_commit stdout ----
+
+thread 'caller_timeout_does_not_cancel_a_later_sql_server_commit' (1886771) panicked at tests/mssql_executor.rs:51:10:
+Set the required local SQL Server fixture password; never skip this test: NotPresent
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- panic_retires_tds_connection_and_open_transaction_rolls_back stdout ----
+
+thread 'panic_retires_tds_connection_and_open_transaction_rolls_back' (1886774) panicked at tests/mssql_executor.rs:51:10:
+Set the required local SQL Server fixture password; never skip this test: NotPresent
+
+---- async_tds_connection_runs_on_its_worker_inside_a_tokio_host stdout ----
+
+thread 'async_tds_connection_runs_on_its_worker_inside_a_tokio_host' (1886770) panicked at tests/mssql_executor.rs:51:10:
+Set the required local SQL Server fixture password; never skip this test: NotPresent
+
+
+failures:
+    async_tds_connection_runs_on_its_worker_inside_a_tokio_host
+    caller_timeout_does_not_cancel_a_later_sql_server_commit
+    panic_retires_tds_connection_and_open_transaction_rolls_back
+
+test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test mssql_executor`

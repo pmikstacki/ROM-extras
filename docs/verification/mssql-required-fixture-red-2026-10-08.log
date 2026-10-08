@@ -1,0 +1,264 @@
+    Updating crates.io index
+     Locking 42 packages to highest Rust 1.99 compatible versions
+      Adding asynchronous-codec v0.7.0
+      Adding connection-string v0.2.0
+      Adding core-foundation v0.10.1
+      Adding core-foundation-sys v0.8.7
+      Adding core_detect v1.0.0
+      Adding encoding_rs v0.8.42
+      Adding enumflags2 v0.7.12
+      Adding enumflags2_derive v0.7.12
+      Adding futures-io v0.3.34
+      Adding futures-macro v0.3.34
+      Adding futures-timer v3.0.4
+      Adding multiversion_no_op v1.0.0
+      Adding openssl-probe v0.2.1
+      Adding pretty-hex v0.4.2
+      Adding ring v0.17.14
+      Adding rustls v0.23.45
+      Adding rustls-native-certs v0.8.4
+      Adding rustls-pki-types v1.15.1
+      Adding rustls-webpki v0.103.15
+      Adding schannel v0.1.29
+      Adding secrecy v0.10.3
+      Adding security-framework v3.7.0
+      Adding security-framework-sys v2.17.0
+      Adding simdutf8 v0.1.5
+      Adding tiberius v0.13.0
+      Adding tiberius-macros v0.1.0
+      Adding tokio-rustls v0.26.6
+      Adding tracing v0.1.44
+      Adding tracing-attributes v0.1.31
+      Adding tracing-core v0.1.36
+      Adding untrusted v0.9.0
+      Adding uuid v1.27.0
+      Adding windows-sys v0.52.0
+      Adding windows-targets v0.52.6
+      Adding windows_aarch64_gnullvm v0.52.6
+      Adding windows_aarch64_msvc v0.52.6
+      Adding windows_i686_gnu v0.52.6
+      Adding windows_i686_gnullvm v0.52.6
+      Adding windows_i686_msvc v0.52.6
+      Adding windows_x86_64_gnu v0.52.6
+      Adding windows_x86_64_gnullvm v0.52.6
+      Adding windows_x86_64_msvc v0.52.6
+ Downloading crates ...
+  Downloaded pretty-hex v0.4.2
+  Downloaded multiversion_no_op v1.0.0
+  Downloaded enumflags2 v0.7.12
+  Downloaded tiberius-macros v0.1.0
+  Downloaded asynchronous-codec v0.7.0
+  Downloaded enumflags2_derive v0.7.12
+  Downloaded futures-timer v3.0.4
+  Downloaded connection-string v0.2.0
+  Downloaded core_detect v1.0.0
+  Downloaded tiberius v0.13.0
+  Downloaded encoding_rs v0.8.42
+   Compiling syn v2.0.119
+   Compiling aws-lc-sys v0.45.0
+   Compiling zeroize_derive v1.5.0
+   Compiling zeroize v1.9.1
+   Compiling aws-lc-rs v1.18.1
+   Compiling num-traits v0.2.19
+   Compiling thiserror v2.0.21
+   Compiling rustversion v1.0.23
+   Compiling num-integer v0.1.47
+   Compiling rustls-pki-types v1.15.1
+   Compiling once_cell v1.21.4
+   Compiling tokio v1.53.1
+   Compiling num-bigint v0.4.8
+   Compiling rustls v0.23.45
+   Compiling futures-io v0.3.34
+   Compiling untrusted v0.9.0
+   Compiling encoding_rs v0.8.42
+   Compiling simple_asn1 v0.6.4
+   Compiling futures-macro v0.3.34
+   Compiling slab v0.4.12
+   Compiling futures-task v0.3.34
+   Compiling futures-util v0.3.34
+   Compiling tracing-core v0.1.36
+   Compiling enumflags2_derive v0.7.12
+   Compiling tracing-attributes v0.1.31
+   Compiling core_detect v1.0.0
+   Compiling openssl-probe v0.2.1
+   Compiling multiversion_no_op v1.0.0
+   Compiling simdutf8 v0.1.5
+   Compiling rustls-native-certs v0.8.4
+   Compiling tracing v0.1.44
+   Compiling enumflags2 v0.7.12
+   Compiling url v2.5.8
+   Compiling asynchronous-codec v0.7.0
+   Compiling tokio-util v0.7.19
+   Compiling secrecy v0.10.3
+   Compiling tiberius-macros v0.1.0
+   Compiling pretty-hex v0.4.2
+   Compiling futures-timer v3.0.4
+   Compiling connection-string v0.2.0
+   Compiling uuid v1.27.0
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rustls-webpki v0.103.15
+   Compiling jsonwebtoken v11.1.0
+   Compiling rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+   Compiling tokio-rustls v0.26.6
+   Compiling tiberius v0.13.0
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+error[E0432]: unresolved import `tokio::net::TcpStream`
+   --> tests/mssql_executor.rs:9:5
+    |
+  9 |     net::TcpStream,
+    |     ^^^^^---------
+    |          |
+    |          no `TcpStream` in `net`
+    |
+    = help: consider importing this struct instead:
+            std::net::TcpStream
+note: found an item that was configured out
+   --> /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.53.1/src/net/mod.rs:44:26
+    |
+ 44 |     pub use tcp::stream::TcpStream;
+    |                          ^^^^^^^^^
+    |
+   ::: /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.53.1/src/macros/cfg.rs:336:19
+    |
+336 |             #[cfg(feature = "net")]
+    |                   --------------- the item is gated behind the `net` feature
+
+warning: method call on a diverging inference variable
+  --> tests/mssql_executor.rs:27:49
+   |
+27 |                 client.simple_query(sql).await?.into_results().await
+   |                                                 ^^^^^^^^^^^^
+   |
+   = help: consider providing a type annotation
+   = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+   = note: for more information, see issue #156047 <https://github.com/rust-lang/rust/issues/156047>
+   = note: `#[warn(method_call_on_diverging_infer_var)]` (part of `#[warn(future_incompatible)]`) on by default
+
+error[E0599]: no method named `into_results` found for type `_` in the current scope
+  --> tests/mssql_executor.rs:27:49
+   |
+27 |                 client.simple_query(sql).await?.into_results().await
+   |                                                 ^^^^^^^^^^^^
+   |
+help: there is a method `into_kvs` with a similar name
+   |
+27 -                 client.simple_query(sql).await?.into_results().await
+27 +                 client.simple_query(sql).await?.into_kvs().await
+   |
+
+warning: method call on a diverging inference variable
+  --> tests/mssql_executor.rs:38:49
+   |
+38 |                 client.simple_query(sql).await?.into_row().await
+   |                                                 ^^^^^^^^
+   |
+   = help: consider providing a type annotation
+   = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+   = note: for more information, see issue #156047 <https://github.com/rust-lang/rust/issues/156047>
+
+error[E0599]: no method named `into_row` found for type `_` in the current scope
+  --> tests/mssql_executor.rs:38:49
+   |
+38 |                 client.simple_query(sql).await?.into_row().await
+   |                                                 ^^^^^^^^
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `IntoRow` which provides `into_row` is implemented but not in scope; perhaps you want to import it
+   |
+ 2 + use tiberius::IntoRow;
+   |
+help: there is a method `into` with a similar name
+   |
+38 -                 client.simple_query(sql).await?.into_row().await
+38 +                 client.simple_query(sql).await?.into().await
+   |
+
+warning: method call on a diverging inference variable
+  --> tests/mssql_executor.rs:68:21
+   |
+68 |                 tcp.set_nodelay(true)?;
+   |                     ^^^^^^^^^^^
+   |
+   = help: consider providing a type annotation
+   = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+   = note: for more information, see issue #156047 <https://github.com/rust-lang/rust/issues/156047>
+
+error[E0599]: no method named `set_nodelay` found for type `!` in the current scope
+  --> tests/mssql_executor.rs:68:21
+   |
+68 |                 tcp.set_nodelay(true)?;
+   |                     ^^^^^^^^^^^ method not found in `!`
+
+error[E0599]: the method `compat_write` exists for type `!`, but its trait bounds were not satisfied
+  --> tests/mssql_executor.rs:69:45
+   |
+69 |                 Client::connect(config, tcp.compat_write()).await
+   |                                             ^^^^^^^^^^^^ method cannot be called on `!` due to unsatisfied trait bounds
+   |
+   = note: the following trait bounds were not satisfied:
+           `!: AsyncWrite`
+           which is required by `!: TokioAsyncWriteCompatExt`
+           `&!: AsyncWrite`
+           which is required by `&!: TokioAsyncWriteCompatExt`
+           `&mut !: AsyncWrite`
+           which is required by `&mut !: TokioAsyncWriteCompatExt`
+
+warning: unreachable call
+  --> tests/mssql_executor.rs:69:45
+   |
+69 |                 Client::connect(config, tcp.compat_write()).await
+   |                                         --- ^^^^^^^^^^^^ unreachable call
+   |                                         |
+   |                                         any code following this expression is unreachable
+   |
+   = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: method call on a diverging inference variable
+  --> tests/mssql_executor.rs:73:14
+   |
+73 |             .map_err(|_| ExecutorError::Initialization)
+   |              ^^^^^^^
+   |
+   = help: consider providing a type annotation
+   = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+   = note: for more information, see issue #156047 <https://github.com/rust-lang/rust/issues/156047>
+
+error[E0599]: no method named `map_err` found for type `_` in the current scope
+  --> tests/mssql_executor.rs:73:14
+   |
+58 | /             timeout(IO, async {
+59 | |                 let mut config = Config::new();
+60 | |                 config.host("127.0.0.1");
+61 | |                 config.port(55440);
+...  |
+72 | |             .map_err(|_| ExecutorError::Initialization)?
+73 | |             .map_err(|_| ExecutorError::Initialization)
+   | |_____________-^^^^^^^
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: the following traits which provide `map_err` are implemented but not in scope; perhaps you want to import one of them
+   |
+ 2 + use futures_util::future::try_future::TryFutureExt;
+   |
+ 2 + use futures_util::stream::try_stream::TryStreamExt;
+   |
+help: there is a method `sink_map_err` with a similar name
+   |
+73 |             .sink_map_err(|_| ExecutorError::Initialization)
+   |              +++++
+
+error[E0277]: the `?` operator can only be used in an async block that returns `Result` or `Option` (or another type that implements `FromResidual`)
+  --> tests/mssql_executor.rs:67:70
+   |
+58 |             timeout(IO, async {
+   |                         ----- this function should return `Result` or `Option` to accept `?`
+...
+67 |                 let tcp = TcpStream::connect(config.get_addr()).await?;
+   |                                                                      ^ cannot use the `?` operator in an async block that returns `!`
+
+Some errors have detailed explanations: E0277, E0432, E0599.
+For more information about an error, try `rustc --explain E0277`.
+warning: `rom-extras-public-consumer` (test "mssql_executor") generated 5 warnings
+error: could not compile `rom-extras-public-consumer` (test "mssql_executor") due to 7 previous errors; 9 warnings emitted
+warning: build failed, waiting for other jobs to finish...

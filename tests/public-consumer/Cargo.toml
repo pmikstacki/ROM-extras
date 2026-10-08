@@ -10,14 +10,21 @@ license = "MIT"
 
 [features]
 postgres-conformance = ["dep:postgres", "dep:tokio"]
+mssql-conformance = ["dep:tiberius", "dep:tokio", "dep:tokio-util"]
 
 [[test]]
 name = "postgres_executor"
 required-features = ["postgres-conformance"]
+
+[[test]]
+name = "mssql_executor"
+required-features = ["mssql-conformance"]
 
 [dependencies]
 rom = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false }
 rom-sql-core = { path = "../../crates/rom-sql-core" }
 rom-oidc-presets = { path = "../../crates/rom-oidc-presets" }
 postgres = { version = "=0.19.14", optional = true }
-tokio = { version = "=1.53.1", features = ["rt", "macros"], optional = true }
+tokio = { version = "=1.53.1", features = ["rt", "macros", "net", "time"], optional = true }
+tiberius = { version = "=0.13.0", default-features = false, features = ["tds73", "rustls"], optional = true }
+tokio-util = { version = "=0.7.19", features = ["compat"], optional = true }

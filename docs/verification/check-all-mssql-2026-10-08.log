@@ -1,0 +1,171 @@
+rustc 1.99.0 (b940084d7 2026-09-28)
+binary: rustc
+commit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4
+commit-date: 2026-09-28
+host: x86_64-unknown-linux-gnu
+release: 1.99.0
+LLVM version: 23.1.1
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.19s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s
+     Running unittests src/lib.rs (target/debug/deps/rom_oidc_presets-5c25354f40ab376f)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/configuration.rs (target/debug/deps/configuration-888e5b75f5669c4f)
+
+running 6 tests
+test unicode_whitespace_and_controls_are_rejected_before_url_parsing ... ok
+test invalid_issuer_forms_are_rejected ... ok
+test configuration_delegates_names_and_does_not_fetch_keys ... ok
+test keycloak_keeps_the_deployment_context_path ... ok
+test exact_issuer_preserves_the_original_binding ... ok
+test entra_binds_one_concrete_tenant ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/verification.rs (target/debug/deps/verification-8ecc390dbe18f0a6)
+
+running 3 tests
+test rotation_replaces_keys_without_changing_the_issuer_or_profile ... ok
+test every_preset_preserves_rom_human_evidence_and_expiry ... ok
+test binding_expiry_and_signature_failures_cannot_create_evidence ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.25s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_sql_core-3b3abcab3f618c41)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/executor.rs (target/debug/deps/executor-d25b2c9f4e290f13)
+
+running 13 tests
+test invalid_capacity_rejects_before_connection_initialization ... ok
+test dropping_last_handle_allows_admitted_work_to_finish ... ok
+test close_stops_admission_but_drains_accepted_operations ... ok
+test discarding_a_ticket_does_not_discard_an_admitted_operation ... ok
+test recursive_use_rejects_instead_of_deadlocking_the_connection ... ok
+test terminal_responses_are_consumed_once_even_after_failure ... ok
+test waiting_deadline_preserves_ticket_and_does_not_cancel_admitted_work ... ok
+test panicking_operation_has_unknown_outcome_and_retires_connection ... ok
+test connection_is_created_and_used_on_its_worker_even_when_not_send ... ok
+test shutdown_joins_connection_destruction_and_reports_destructor_panics ... ok
+test initialization_errors_and_panics_are_reported_before_admission ... ok
+test full_queue_rejects_before_running_the_operation ... ok
+test cloned_handles_serialize_connection_operations ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+   Doc-tests rom_oidc_presets
+
+running 1 test
+test crates/rom-oidc-presets/src/lib.rs - (line 6) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.55s; merged doctests compilation took 0.54s
+   Doc-tests rom_sql_core
+
+running 1 test
+test crates/rom-sql-core/src/lib.rs - (line 7) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+all doctests ran in 0.47s; merged doctests compilation took 0.46s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.06s
+   Doc-tests rom_oidc_presets
+
+running 1 test
+test crates/rom-oidc-presets/src/lib.rs - (line 6) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.43s; merged doctests compilation took 0.42s
+   Doc-tests rom_sql_core
+
+running 1 test
+test crates/rom-sql-core/src/lib.rs - (line 7) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.47s; merged doctests compilation took 0.47s
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.09s
+   Generated /root/ROM-extras/target/doc/rom_oidc_presets/index.html and 1 other file
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.06s
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.04s
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.20s
+     Running `tests/public-consumer/target/debug/rom-extras-public-consumer`
+Public custom field, isolated connection execution, and issuer preset verified.
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.83s
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.06s
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.77s
+     Running tests/postgres_executor.rs (tests/public-consumer/target/debug/deps/postgres_executor-7a0ba2a0b1ec0c8f)
+
+running 3 tests
+test postgres_client_runs_on_its_worker_inside_a_tokio_caller ... ok
+test a_driver_job_panic_retires_its_connection_and_rolls_back_uncommitted_sql ... ok
+test waiting_deadline_does_not_cancel_the_real_database_commit ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.22s
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.60s
+     Running tests/mssql_executor.rs (tests/public-consumer/target/debug/deps/mssql_executor-45379fb7ad66e698)
+
+running 3 tests
+test panic_retires_tds_connection_and_open_transaction_rolls_back ... ok
+test async_tds_connection_runs_on_its_worker_inside_a_tokio_host ... ok
+test caller_timeout_does_not_cancel_a_later_sql_server_commit ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s
+
+   Compiling aws-lc-sys v0.45.0
+    Checking zeroize v1.9.1
+    Checking num-traits v0.2.19
+    Checking thiserror v2.0.21
+    Checking num-integer v0.1.47
+    Checking rustls-pki-types v1.15.1
+    Checking once_cell v1.21.4
+    Checking tokio v1.53.1
+    Checking num-bigint v0.4.8
+    Checking untrusted v0.9.0
+    Checking futures-io v0.3.34
+    Checking simple_asn1 v0.6.4
+    Checking slab v0.4.12
+    Checking futures-task v0.3.34
+    Checking futures-util v0.3.34
+    Checking tracing-core v0.1.36
+    Checking simdutf8 v0.1.5
+    Checking openssl-probe v0.2.1
+    Checking core_detect v1.0.0
+    Checking encoding_rs v0.8.42
+    Checking rustls-native-certs v0.8.4
+    Checking enumflags2 v0.7.12
+    Checking tracing v0.1.44
+    Checking url v2.5.8
+    Checking asynchronous-codec v0.7.0
+    Checking tokio-util v0.7.19
+    Checking secrecy v0.10.3
+    Checking pretty-hex v0.4.2
+    Checking futures-timer v3.0.4
+    Checking connection-string v0.2.0
+    Checking uuid v1.27.0
+    Checking rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling aws-lc-rs v1.18.1
+   Compiling rustls v0.23.45
+    Checking rustls-webpki v0.103.15
+    Checking jsonwebtoken v11.1.0
+    Checking rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+    Checking tokio-rustls v0.26.6
+    Checking tiberius v0.13.0
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 43.78s

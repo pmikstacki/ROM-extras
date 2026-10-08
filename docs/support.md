@@ -31,13 +31,24 @@ Both scans used RustSec commit `550efd3d587a29b2e2c2b21b17a440da4fede999` on 202
 Manifest license inventories contain no absent declarations. Native cryptographic dependency notices still require release redistribution review.
 No live provider login or discovery profile is supported yet. See [usage and limits](oidc-presets.md).
 
+## SQL Server execution increment
+
+Three real executor tests passed against SQL Server 2025 RTM-CU9, build 17.0.5005.3.
+They cover a Tokio host, commit after caller timeout, and rollback after connection retirement.
+The fixture also checks server-side encryption and disabled delayed durability.
+A separately acknowledged control row survived server restart on its preserved named volume.
+The Tiberius 0.13.0 published archive checksum is `e07324791de2bdaed058af4aa433a0b5ec5c0beac407a9797419c19805df2415`.
+Cargo-audit 0.22.2 reported zero vulnerabilities or warnings in 207 consumer packages with RustSec commit `550efd3d587a29b2e2c2b21b17a440da4fede999`.
+No MSSQL Storage provider or production TLS profile is supported yet. See [the fixture](mssql-fixture.md).
+
 ## Whole-goal tracking
 
 | Family | Implementation and remaining acceptance |
 | --- | --- |
 | Shared SQL | Connection executor verified; Storage protocol awaits public incremental Work APIs. |
 | PostgreSQL | Three live executor tests and control-row restart evidence; full Storage provider remains pending. |
-| MSSQL, MySQL, MariaDB, CockroachDB, Oracle | Driver research exists; provider implementation and real-backend conformance remain pending. |
+| MSSQL | Three live executor tests, encryption, and restart control evidence; full Storage provider remains pending. |
+| MySQL, MariaDB, CockroachDB, Oracle | Driver research exists; provider implementation and real-backend conformance remain pending. |
 | OIDC | Preset configuration and signed synthetic-token integration verified; live provider login remains pending. |
 | OpenTelemetry | Public diagnostic interface publication and OTLP implementation remain pending. |
 | Webhooks, Kafka, NATS, RabbitMQ, notifications | Delivery-family contracts, provider implementation, and real acceptance/recovery fixtures remain pending. |

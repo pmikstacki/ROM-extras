@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_MSSQL_PASSWORD:?Set the isolated SQL Server fixture password; this gate never skips missing backends.}"
+cargo test --manifest-path tests/public-consumer/Cargo.toml --locked \
+    --features mssql-conformance --test mssql_executor
+cargo clippy --manifest-path tests/public-consumer/Cargo.toml --locked \
+    --features mssql-conformance --all-targets -- -D warnings

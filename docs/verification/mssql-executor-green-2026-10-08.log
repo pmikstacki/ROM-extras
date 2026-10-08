@@ -1,0 +1,10 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running tests/mssql_executor.rs (tests/public-consumer/target/debug/deps/mssql_executor-45379fb7ad66e698)
+
+running 3 tests
+test async_tds_connection_runs_on_its_worker_inside_a_tokio_host ... ok
+test caller_timeout_does_not_cancel_a_later_sql_server_commit ... ok
+test panic_retires_tds_connection_and_open_transaction_rolls_back ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.51s
+

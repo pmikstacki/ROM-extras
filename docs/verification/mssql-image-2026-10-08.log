@@ -1,0 +1,8 @@
+Trying to pull mcr.microsoft.com/mssql/server:2025-latest...
+Getting image source signatures
+Copying blob sha256:204f87d7ef879ae1fb348903f293e46dbfb099b2021018acdb7cc2d84cf142e8
+Copying blob sha256:901cdc4e17f138ba0a37f601f17d1b39cd76521be8f1f12604c9ade132f4ce2e
+Copying blob sha256:c4e3167f4e173ed8248803e88d4b7fc627a2f2696d37af4d358b8e80dcefffb7
+Copying config sha256:78eb6a93ef20501bd754282cc216188a0acee1cfa6119c33eef0b21599c1f726
+Writing manifest to image destination
+78eb6a93ef20501bd754282cc216188a0acee1cfa6119c33eef0b21599c1f726
