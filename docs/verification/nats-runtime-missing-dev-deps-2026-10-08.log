@@ -1,0 +1,205 @@
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+error: cannot find derive macro `Resource` in this scope
+  --> crates/rom-nats/tests/runtime.rs:9:17
+   |
+ 9 | #[derive(Clone, Resource)]
+   |                 ^^^^^^^^
+   |
+note: `Resource` is a trait, not a derive macro
+  --> /root/.cargo/git/checkouts/rom-93d40b828d518890/d7ef529/crates/rom/src/resource/schema.rs:47:1
+   |
+47 | pub trait Resource: Clone + Send + Sync + 'static {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   = help: consider implementing `Resource` for your type manually
+help: the derive macro `Error` accepts the similarly named `source` attribute
+   |
+ 9 - #[derive(Clone, Resource)]
+ 9 + #[derive(Clone, source)]
+   |
+
+error: cannot find attribute `resource` in this scope
+  --> crates/rom-nats/tests/runtime.rs:10:3
+   |
+10 | #[resource(name = "nats-notices")]
+   |   ^^^^^^^^
+   |
+help: the derive macro `Error` accepts the similarly named `source` attribute
+   |
+10 - #[resource(name = "nats-notices")]
+10 + #[source(name = "nats-notices")]
+   |
+
+error[E0433]: cannot find module or crate `rom_redb` in this scope
+  --> crates/rom-nats/tests/runtime.rs:22:24
+   |
+22 |     if redb { Arc::new(rom_redb::Redb::open(path).unwrap()) } else { Arc::new(rom_sqlite::Sqlite::open(path).unwrap()) }
+   |                        ^^^^^^^^ use of unresolved module or unlinked crate `rom_redb`
+   |
+   = help: if you wanted to use a crate named `rom_redb`, use `cargo add rom_redb` to add it to your `Cargo.toml`
+
+error[E0433]: cannot find module or crate `rom_sqlite` in this scope
+  --> crates/rom-nats/tests/runtime.rs:22:79
+   |
+22 |     if redb { Arc::new(rom_redb::Redb::open(path).unwrap()) } else { Arc::new(rom_sqlite::Sqlite::open(path).unwrap()) }
+   |                                                                               ^^^^^^^^^^ use of unresolved module or unlinked crate `rom_sqlite`
+   |
+   = help: if you wanted to use a crate named `rom_sqlite`, use `cargo add rom_sqlite` to add it to your `Cargo.toml`
+
+error[E0277]: the trait bound `Notice: rom::Resource` is not satisfied
+  --> crates/rom-nats/tests/runtime.rs:33:46
+   |
+33 |     rt.execute(&owner(), Command::create(id, Notice { count: 0 }).idempotency(&format!("seed-{id}"))).await.unwrap();
+   |                          ---------------     ^^^^^^^^^^^^^^^^^^^ unsatisfied trait bound
+   |                          |
+   |                          required by a bound introduced by this call
+   |
+help: the trait `rom::Resource` is not implemented for `Notice`
+  --> crates/rom-nats/tests/runtime.rs:11:1
+   |
+11 | struct Notice { count: u64 }
+   | ^^^^^^^^^^^^^
+note: required by a bound in `rom::Command::<R>::create`
+  --> /root/.cargo/git/checkouts/rom-93d40b828d518890/d7ef529/crates/rom/src/resource/command.rs:22:9
+   |
+22 | impl<R: Resource> Command<R> {
+   |         ^^^^^^^^ required by this bound in `Command::<R>::create`
+...
+33 |     pub fn create(id: &str, value: R) -> Self {
+   |            ------ required by a bound in this associated function
+
+error[E0599]: the method `idempotency` exists for struct `rom::Command<Notice>`, but its trait bounds were not satisfied
+  --> crates/rom-nats/tests/runtime.rs:33:67
+   |
+11 | struct Notice { count: u64 }
+   | ------------- doesn't satisfy `Notice: rom::Resource`
+...
+33 |     rt.execute(&owner(), Command::create(id, Notice { count: 0 }).idempotency(&format!("seed-{id}"))).await.unwrap();
+   |                                                                   ^^^^^^^^^^^ method cannot be called on `rom::Command<Notice>` due to unsatisfied trait bounds
+   |
+   = note: the following trait bounds were not satisfied:
+           `Notice: rom::Resource`
+note: the trait `rom::Resource` must be implemented
+  --> /root/.cargo/git/checkouts/rom-93d40b828d518890/d7ef529/crates/rom/src/resource/schema.rs:47:1
+   |
+47 | pub trait Resource: Clone + Send + Sync + 'static {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: the trait bound `Notice: rom::Resource` is not satisfied
+  --> crates/rom-nats/tests/runtime.rs:34:46
+   |
+34 |     rt.execute(&owner(), Command::action(id, NOTIFY, ()).at_revision(1).idempotency(&format!("notify-{id}"))).await.unwrap();
+   |                          ---------------     ^^^^^^ unsatisfied trait bound
+   |                          |
+   |                          required by a bound introduced by this call
+   |
+help: the trait `rom::Resource` is not implemented for `Notice`
+  --> crates/rom-nats/tests/runtime.rs:11:1
+   |
+11 | struct Notice { count: u64 }
+   | ^^^^^^^^^^^^^
+note: required by a bound in `rom::Command::<R>::action`
+  --> /root/.cargo/git/checkouts/rom-93d40b828d518890/d7ef529/crates/rom/src/resource/command.rs:22:9
+   |
+22 | impl<R: Resource> Command<R> {
+   |         ^^^^^^^^ required by this bound in `Command::<R>::action`
+...
+45 |     pub fn action<I: Input>(id: &str, action: Action<R, I>, input: I) -> Self {
+   |            ------ required by a bound in this associated function
+
+error[E0599]: the method `at_revision` exists for struct `rom::Command<Notice>`, but its trait bounds were not satisfied
+  --> crates/rom-nats/tests/runtime.rs:34:58
+   |
+11 | struct Notice { count: u64 }
+   | ------------- doesn't satisfy `Notice: rom::Resource`
+...
+34 |     rt.execute(&owner(), Command::action(id, NOTIFY, ()).at_revision(1).idempotency(&format!("notify-{id}"))).await.unwrap();
+   |                                                          ^^^^^^^^^^^ method cannot be called on `rom::Command<Notice>` due to unsatisfied trait bounds
+   |
+   = note: the following trait bounds were not satisfied:
+           `Notice: rom::Resource`
+note: the trait `rom::Resource` must be implemented
+  --> /root/.cargo/git/checkouts/rom-93d40b828d518890/d7ef529/crates/rom/src/resource/schema.rs:47:1
+   |
+47 | pub trait Resource: Clone + Send + Sync + 'static {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: the trait bound `Notice: rom::Resource` is not satisfied
+  --> crates/rom-nats/tests/runtime.rs:13:58
+   |
+13 |   const NOTIFY: Action<Notice, ()> = Action::new("notify", |state, ()| {
+   |  ____________________________________-----------___________^
+   | |                                    |
+   | |                                    required by a bound introduced by this call
+14 | |     state.count += 1;
+15 | |     Ok(vec![CHANNEL.intent(false)])
+16 | | });
+   | |_^ unsatisfied trait bound
+   |
+help: the trait `rom::Resource` is not implemented for `Notice`
+  --> crates/rom-nats/tests/runtime.rs:11:1
+   |
+11 | struct Notice { count: u64 }
+   | ^^^^^^^^^^^^^
+note: required by a bound in `rom::Action::<R, I>::new`
+  --> /root/.cargo/git/checkouts/rom-93d40b828d518890/d7ef529/crates/rom/src/resource/definition.rs:40:9
+   |
+40 | impl<R: Resource, I: Input> Action<R, I> {
+   |         ^^^^^^^^ required by this bound in `Action::<R, I>::new`
+41 |     pub const fn new(name: &'static str, function: fn(&mut R, I) -> Result<Vec<Intent>>) -> Self {
+   |                  --- required by a bound in this associated function
+
+error[E0599]: no associated function or constant named `definition` found for struct `Notice` in the current scope
+  --> crates/rom-nats/tests/runtime.rs:26:27
+   |
+11 | struct Notice { count: u64 }
+   | ------------- associated function or constant `definition` not found for this struct
+...
+26 |         .resource(Notice::definition().allow_all_fields().policy(|_,_,_| true)
+   |                           ^^^^^^^^^^ associated function or constant not found in `Notice`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `definition`, perhaps you need to implement it:
+           candidate #1: `rom::Resource`
+
+error[E0277]: the trait bound `Notice: rom::Resource` is not satisfied
+  --> crates/rom-nats/tests/runtime.rs:94:64
+   |
+94 | ...   rt.execute(&owner(), Command::replace("source-denied", Notice { count: 2 }).at_revision(2).idempotency("revoke-source")).await...
+   |                            ----------------                  ^^^^^^^^^^^^^^^^^^^ unsatisfied trait bound
+   |                            |
+   |                            required by a bound introduced by this call
+   |
+help: the trait `rom::Resource` is not implemented for `Notice`
+  --> crates/rom-nats/tests/runtime.rs:11:1
+   |
+11 | struct Notice { count: u64 }
+   | ^^^^^^^^^^^^^
+note: required by a bound in `rom::Command::<R>::replace`
+  --> /root/.cargo/git/checkouts/rom-93d40b828d518890/d7ef529/crates/rom/src/resource/command.rs:22:9
+   |
+22 | impl<R: Resource> Command<R> {
+   |         ^^^^^^^^ required by this bound in `Command::<R>::replace`
+...
+36 |     pub fn replace(id: &str, value: R) -> Self {
+   |            ------- required by a bound in this associated function
+
+error[E0599]: the method `at_revision` exists for struct `rom::Command<Notice>`, but its trait bounds were not satisfied
+  --> crates/rom-nats/tests/runtime.rs:94:85
+   |
+11 | struct Notice { count: u64 }
+   | ------------- doesn't satisfy `Notice: rom::Resource`
+...
+94 |         rt.execute(&owner(), Command::replace("source-denied", Notice { count: 2 }).at_revision(2).idempotency("revoke-source")).awa...
+   |                                                                                     ^^^^^^^^^^^ method cannot be called on `rom::Command<Notice>` due to unsatisfied trait bounds
+   |
+   = note: the following trait bounds were not satisfied:
+           `Notice: rom::Resource`
+note: the trait `rom::Resource` must be implemented
+  --> /root/.cargo/git/checkouts/rom-93d40b828d518890/d7ef529/crates/rom/src/resource/schema.rs:47:1
+   |
+47 | pub trait Resource: Clone + Send + Sync + 'static {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Some errors have detailed explanations: E0277, E0433, E0599.
+For more information about an error, try `rustc --explain E0277`.
+error: could not compile `rom-nats` (test "runtime") due to 12 previous errors

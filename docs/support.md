@@ -78,7 +78,7 @@ The Node 22.16 fixture SQLite API is experimental; this is not a production rece
 | OIDC | Preset configuration and signed synthetic-token integration verified; live provider login remains pending. |
 | OpenTelemetry | Public diagnostic interface publication and OTLP implementation remain pending. |
 | Webhooks | HTTPS/signing/destination policy and native Runtime recovery/authorization tests implemented; production receiver and release acceptance remain pending. |
-| NATS | Acknowledged JetStream publication and broker recovery/redelivery verified; native Runtime and production TLS profile remain pending. |
+| NATS | Acknowledged JetStream publication, broker recovery/redelivery, and native Runtime retry/revocation verified; production TLS profile remains pending. |
 | Kafka, RabbitMQ, notifications | Shared delivery preparation/signing implemented; provider implementations and real acknowledgement/recovery remain pending. |
 | S3-compatible, Azure Blob | Existing ROM adapter review and missing-operation implementation/real fixtures remain pending. |
 | Secrets and KMS | Bounded family contract, provider implementation, and service verification remain pending. |
@@ -99,5 +99,15 @@ The full local verifier passed across HTTPS, PostgreSQL, MSSQL, and NATS fixture
 Cargo-audit 0.22.2 found zero vulnerabilities/warnings in 237 workspace and 273 consumer packages.
 Both scans used RustSec commit `550efd3d587a29b2e2c2b21b17a440da4fede999` on 2026-10-08.
 Manifest license inventories have no absent declarations; redistribution review remains required.
-Native Runtime integration, direct acknowledgement-loss injection after persistence, and production TLS/reconnect remain pending.
+At this publication increment, Runtime integration and direct post-commit acknowledgement loss were still pending.
+The following increment supplies that evidence. Production TLS/reconnect remains pending.
 See [configuration, fixture, and limits](nats.md). No full NATS provider support is claimed.
+
+## NATS post-commit acknowledgement loss increment
+
+A test-only loopback proxy discards an actual publish acknowledgement for a positive stream sequence.
+A direct broker connection verifies the stored ID and false JSON while the original delivery still awaits its deadline.
+Retry preserves the ID and receives Accepted without a second stored message within the configured duplicate window.
+Native SQLite/redb Runtime tests preserve intent, Unknown, attempts, and final Accepted across reopening.
+Current source disclosure denial and service revocation produce persisted Denied records without further broker publication.
+Production TLS/reconnect and release conformance remain open. This does not establish indefinite exactly-once delivery.

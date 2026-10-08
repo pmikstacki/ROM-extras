@@ -1,0 +1,69 @@
+{
+  "base": "e01a2190a08f8ebb01eb6b794987e3cdb3dad5b0",
+  "scope": "post-command source witness; not a complete pre/post source fence",
+  "command": "./scripts/check-all",
+  "terminal_exit": 0,
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1\n",
+  "source": [
+    {
+      "path": "Cargo.lock",
+      "sha256": "7570c4574fec678949793cb23986b5fbf8c47e9d284fd9adc057d29f9bd68877"
+    },
+    {
+      "path": "crates/rom-nats/Cargo.toml",
+      "sha256": "5b39a92ec51bade71afe1bb0c54361a7b9621dc142556f86efc4c998b0420b17"
+    },
+    {
+      "path": "crates/rom-nats/src/delivery.rs",
+      "sha256": "174093580ae0fd17ed641a9568b27b5f7c2bbbf2cd8fb26d32a8eb17ec559ba2"
+    },
+    {
+      "path": "crates/rom-nats/src/error.rs",
+      "sha256": "8057cb585fc19c0b41117cf75ccb880685cc1bd68633d59d76f2481110a537c5"
+    },
+    {
+      "path": "crates/rom-nats/src/lib.rs",
+      "sha256": "1dad95e71fd5045ae735f140f681b70a536237b3da4b4065c4d555e54b0a651f"
+    },
+    {
+      "path": "crates/rom-nats/tests/ack_loss.rs",
+      "sha256": "eacae50359df18179836093a10c005a57020590e86fdddd0026e6fffafd60ef9"
+    },
+    {
+      "path": "crates/rom-nats/tests/broker.rs",
+      "sha256": "eb7b61e1097db509188c7add23646588fa299e79c185199923ff7109b08bfd67"
+    },
+    {
+      "path": "crates/rom-nats/tests/common/ack-proxy.cjs",
+      "sha256": "78ea2f8801fcd647f77f107323e928e3b3d5fc56bd914c701af0495b0dfbf1ea"
+    },
+    {
+      "path": "crates/rom-nats/tests/common/ack_proxy.rs",
+      "sha256": "3c9e765f4a00c1c72eadeb57dae317a9adfd558d1894f68ad1c6a69d055bc810"
+    },
+    {
+      "path": "crates/rom-nats/tests/common/mod.rs",
+      "sha256": "9932cece56f426efb4a3b081050714b995bbc7b9dfaca84e4be9feae96ebd0ad"
+    },
+    {
+      "path": "crates/rom-nats/tests/runtime.rs",
+      "sha256": "21b6b658778866edaf10cf94aaf1d194a600c61f70fa649f5fdea7402e1d6139"
+    },
+    {
+      "path": "docs/verification/check-all-nats-runtime-final-2026-10-08.log",
+      "sha256": "43b07d2a028faea777bee964652aab8d9ec71f22609665b37cd0108014f938c5"
+    },
+    {
+      "path": "scripts/check-all",
+      "sha256": "a098e8548831ce52cad8925ef0c8d68b23f3804334984ff4d31399b4f71e3c5e"
+    },
+    {
+      "path": "scripts/check-nats",
+      "sha256": "68cc4289476839b94b26ec6068b73c36b84f4bb9b7edeac87b42fa6024a3bf06"
+    },
+    {
+      "path": "tests/public-consumer/Cargo.lock",
+      "sha256": "3217b44df5568138d384f4c292126530e6dc8411839ed2699b893808708e470a"
+    }
+  ]
+}

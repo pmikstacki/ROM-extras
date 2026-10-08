@@ -1251,6 +1251,8 @@ dependencies = [
  "futures-util",
  "rom",
  "rom-delivery-core",
+ "rom-redb",
+ "rom-sqlite",
  "tokio",
 ]
 

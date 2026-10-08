@@ -1,0 +1,9 @@
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+error[E0599]: no method named `unwrap` found for struct `HeaderMap` in the current scope
+  --> crates/rom-nats/tests/ack_loss.rs:32:32
+   |
+32 |         assert_eq!(raw.headers.unwrap().get("Nats-Msg-Id").unwrap().as_str(), "committed-lost-ack");
+   |                                ^^^^^^ method not found in `HeaderMap`
+
+For more information about this error, try `rustc --explain E0599`.
+error: could not compile `rom-nats` (test "ack_loss") due to 1 previous error

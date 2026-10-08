@@ -21,9 +21,20 @@ async-nats = { version = "=0.50.0", default-features = false, features = ["jetst
 tokio = { version = "=1.53.1", features = ["time", "sync"] }
 
 [dev-dependencies]
+rom = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false, features = ["derive"] }
+rom-sqlite = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+rom-redb = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
 futures-util = "=0.3.34"
 tokio = { version = "=1.53.1", features = ["rt", "macros", "net"] }
 
 [[test]]
 name = "broker"
+required-features = ["broker-conformance"]
+
+[[test]]
+name = "ack_loss"
+required-features = ["broker-conformance"]
+
+[[test]]
+name = "runtime"
 required-features = ["broker-conformance"]

@@ -1,0 +1,9 @@
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.56s
+     Running tests/ack_loss.rs (target/debug/deps/ack_loss-4a7b9a7f841bb591)
+
+running 1 test
+test dropped_publish_ack_preserves_message_and_retry_identity ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.22s
+

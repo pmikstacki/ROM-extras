@@ -4,6 +4,7 @@ cd -- "$(dirname -- "$0")/.."
 : "${ROM_EXTRAS_NATS_URL:?Required dedicated NATS fixture configuration}"
 : "${ROM_EXTRAS_NATS_TOKEN:?Required NATS fixture token}"
 cargo test -p rom-nats --features broker-conformance --test broker --locked
+cargo test -p rom-nats --features broker-conformance --test ack_loss --test runtime --locked
 cargo clippy -p rom-nats --features broker-conformance --all-targets --locked -- -D warnings
 cargo test --manifest-path tests/public-consumer/Cargo.toml --features nats-conformance --test nats_delivery --locked
 cargo clippy --manifest-path tests/public-consumer/Cargo.toml --features nats-conformance --all-targets --locked -- -D warnings

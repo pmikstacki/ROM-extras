@@ -56,5 +56,16 @@ This is timeout-before-persistence evidence, not direct acknowledgement loss aft
 It also checks overload, oversized preparation, invalid configuration, and memory-stream rejection.
 An independent public consumer compiles and obtains an actual JetStream acknowledgement.
 
-Native ROM channel reopening/authorization/retry integration, acknowledgement loss after broker commit, and production TLS/reconnect checks remain open.
+Separate proxy tests discard the first actual JetStream publish acknowledgement after its positive stream sequence arrives.
+An independent direct broker connection reads the committed message before the adapter deadline expires.
+The adapter returns Unknown; the same-ID retry receives Accepted, with one stored message within the duplicate window.
+The proxy forwards client bytes unchanged and never logs authentication credentials. It parses server MSG/HMSG framing only.
+
+Native SQLite and redb tests persist an intent before external delivery, then close and reopen ROM.
+They persist Unknown after the dropped acknowledgement, reopen again, and retry the unchanged ID and false payload.
+Accepted and attempt count two survive a further reopen. Current source-field denial and service revocation prevent publication.
+The fixture proxy does not restart the broker; broker restart evidence comes from the separate broker test.
+Tests run sequentially with the restart/pause test to avoid interfering with the same dedicated broker.
+
+Production TLS/reconnect checks, a public packaged-consumer release, and the production topology profile remain open.
 No complete production NATS provider profile is supported yet. Kafka, RabbitMQ, and notification connectors remain pending.
