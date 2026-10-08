@@ -1,0 +1,10 @@
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.03s
+     Running tests/nats_delivery.rs (tests/public-consumer/target/debug/deps/nats_delivery-1a5d1d2428e757d9)
+
+running 2 tests
+test public_adapter_gets_real_jetstream_acknowledgement ... ok
+test public_adapter_gets_ca_verified_tls_acknowledgement ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+

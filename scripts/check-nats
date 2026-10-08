@@ -3,8 +3,12 @@ set -euo pipefail
 cd -- "$(dirname -- "$0")/.."
 : "${ROM_EXTRAS_NATS_URL:?Required dedicated NATS fixture configuration}"
 : "${ROM_EXTRAS_NATS_TOKEN:?Required NATS fixture token}"
+: "${ROM_EXTRAS_NATS_TLS_URL:?Required dedicated TLS NATS fixture}"
+: "${ROM_EXTRAS_NATS_TLS_TOKEN:?Required TLS NATS fixture token}"
+: "${ROM_EXTRAS_NATS_TLS_CA:?Required TLS NATS fixture CA}"
+: "${ROM_EXTRAS_NATS_TLS_WRONG_CA:?Required unrelated TLS fixture CA}"
 cargo test -p rom-nats --features broker-conformance --test broker --locked
-cargo test -p rom-nats --features broker-conformance --test ack_loss --test runtime --locked
+cargo test -p rom-nats --features broker-conformance --test ack_loss --test runtime --test tls --locked
 cargo clippy -p rom-nats --features broker-conformance --all-targets --locked -- -D warnings
 cargo test --manifest-path tests/public-consumer/Cargo.toml --features nats-conformance --test nats_delivery --locked
 cargo clippy --manifest-path tests/public-consumer/Cargo.toml --features nats-conformance --all-targets --locked -- -D warnings

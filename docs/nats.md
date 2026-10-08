@@ -67,5 +67,57 @@ Accepted and attempt count two survive a further reopen. Current source-field de
 The fixture proxy does not restart the broker; broker restart evidence comes from the separate broker test.
 Tests run sequentially with the restart/pause test to avoid interfering with the same dedicated broker.
 
-Production TLS/reconnect checks, a public packaged-consumer release, and the production topology profile remain open.
+The following section records the verified TLS-first/reconnect profile.
+A public packaged-consumer release and production topology acceptance remain open.
 No complete production NATS provider profile is supported yet. Kafka, RabbitMQ, and notification connectors remain pending.
+
+## Verified TLS-first host profile
+
+A second required fixture uses the same pinned NATS image and a separate preserved volume, `rom-extras-nats-tls-20261008`.
+The container has label `rom-extras.fixture=nats-tls`, one CPU, and 256 MiB memory.
+Client and monitor ports bind to loopback, 55443 and 55444. JetStream uses file storage and `sync_interval=always`.
+The synthetic server certificate has a separate CA, CA:FALSE, serverAuth, and SAN IP 127.0.0.1.
+Synthetic certificates expire after 30 days. This fixture does not establish a production certificate renewal procedure.
+The server requires token authentication and `tls.handshake_first=true`. No plaintext INFO or credentials precede the TLS handshake.
+Private keys, tokens, and access configuration remain under ignored `.superpowers/nats-tls` and `.superpowers/nats-tls-access.sh`.
+
+Before `check-nats` or `check-all`, also source the private TLS fixture access file:
+
+```sh
+source .superpowers/nats-tls-access.sh
+```
+
+The host can configure the public client before binding `JetStreamDelivery`:
+
+```rust,ignore
+let client = async_nats::ConnectOptions::with_token(token)
+    .require_tls(true)
+    .tls_first()
+    .add_root_certificates(ca_path)
+    .connection_timeout(std::time::Duration::from_secs(2))
+    .request_timeout(Some(std::time::Duration::from_secs(2)))
+    .client_capacity(64)
+    .subscription_capacity(64)
+    .max_reconnects(20)
+    .ignore_discovered_servers()
+    .connect(server_url)
+    .await?;
+let context = async_nats::jetstream::new(client);
+```
+
+`token`, `ca_path`, and `server_url` come from host configuration, never from delivery payloads.
+The independent public consumer compiles and executes these options against the TLS-first fixture.
+The test uses an explicit reconnect delay of 100 milliseconds per attempt, capped at one second.
+The host selects reconnect timing for its deployment. Successful connection resets the consecutive reconnect attempt count.
+Ignoring discovered servers is the fixture's fixed-endpoint policy; production clusters need an explicit host server-discovery policy.
+The command and subscription capacities count entries, not bytes. They are not a process-wide memory or pending-acknowledgement limit.
+Adapter admission and body/deadline limits remain distinct from client buffering. Reconnect does not transfer retry ownership from Runtime.
+
+The required TLS test rejects an unrelated CA and verifies the hostname-mismatch certificate diagnostic.
+It rejects the incorrect token with AuthorizationViolation and rejects TLS-first connection to the plaintext fixture.
+After restarting the labelled TLS broker, Connected/Disconnected callbacks establish reconnection of the same client.
+The same adapter then acknowledges duplicate and new publications; file messages remain intact without an extra duplicate.
+Runtime and acknowledgement-loss tests use the separate plaintext loopback fixture; they do not claim fault injection over TLS.
+
+This verifies a single-node TLS-first token profile. It does not verify clustered failover, mTLS/JWT profiles,
+certificate rotation, power-loss durability, production deployment configuration, or packaged release acceptance.

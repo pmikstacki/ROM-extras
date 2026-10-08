@@ -1,0 +1,22 @@
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.51s
+     Running tests/tls.rs (target/debug/deps/tls-ece5b3646b8b39f3)
+
+running 1 test
+test tls_first_verifies_identity_and_reconnects_same_client_after_restart ... FAILED
+
+failures:
+
+---- tls_first_verifies_identity_and_reconnects_same_client_after_restart stdout ----
+
+thread 'tls_first_verifies_identity_and_reconnects_same_client_after_restart' (2103282) panicked at crates/rom-nats/tests/tls.rs:15:56:
+required dedicated TLS fixture URL: NotPresent
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tls_first_verifies_identity_and_reconnects_same_client_after_restart
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p rom-nats --test tls`

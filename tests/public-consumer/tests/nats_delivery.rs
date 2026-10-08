@@ -13,6 +13,32 @@ async fn public_adapter_gets_real_jetstream_acknowledgement() {
         .connect(url)
         .await
         .unwrap_or_else(|_| panic!("NATS fixture connection failed"));
+    publish_and_verify(client).await;
+}
+
+#[tokio::test]
+async fn public_adapter_gets_ca_verified_tls_acknowledgement() {
+    let url = std::env::var("ROM_EXTRAS_NATS_TLS_URL").expect("required TLS fixture");
+    assert_eq!(url, "tls://127.0.0.1:55443");
+    let token = std::env::var("ROM_EXTRAS_NATS_TLS_TOKEN").expect("required TLS fixture token");
+    let ca = std::env::var("ROM_EXTRAS_NATS_TLS_CA").expect("required TLS fixture CA");
+    let client = async_nats::ConnectOptions::with_token(token)
+        .require_tls(true)
+        .tls_first()
+        .add_root_certificates(ca.into())
+        .connection_timeout(Duration::from_secs(2))
+        .request_timeout(Some(Duration::from_secs(2)))
+        .client_capacity(64)
+        .subscription_capacity(64)
+        .max_reconnects(20)
+        .ignore_discovered_servers()
+        .connect(url)
+        .await
+        .unwrap_or_else(|_| panic!("CA-verified TLS fixture connection failed"));
+    publish_and_verify(client).await;
+}
+
+async fn publish_and_verify(client: async_nats::Client) {
     let context = async_nats::jetstream::new(client);
     let name = format!(
         "CONSUMER_{}_{}",

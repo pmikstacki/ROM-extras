@@ -1,0 +1,22 @@
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.60s
+     Running tests/tls.rs (target/debug/deps/tls-ece5b3646b8b39f3)
+
+running 1 test
+negative profile untrusted CA: IO error
+negative profile hostname mismatch: IO error
+hostname-only TLS diagnostic: IO error: invalid peer certificate: certificate not valid for name "localhost"; certificate is only valid for IpAddress(127.0.0.1)
+
+thread 'tls_first_verifies_identity_and_reconnects_same_client_after_restart' (2124409) panicked at crates/rom-nats/tests/tls.rs:83:36:
+hostname rejection must identify name mismatch
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tls_first_verifies_identity_and_reconnects_same_client_after_restart ... FAILED
+
+failures:
+
+failures:
+    tls_first_verifies_identity_and_reconnects_same_client_after_restart
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.43s
+
+error: test failed, to rerun pass `-p rom-nats --test tls`

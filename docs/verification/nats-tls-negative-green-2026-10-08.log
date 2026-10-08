@@ -1,0 +1,14 @@
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.55s
+     Running tests/tls.rs (target/debug/deps/tls-ece5b3646b8b39f3)
+
+running 1 test
+negative profile untrusted CA: IO error
+negative profile hostname mismatch: IO error
+hostname-only TLS diagnostic: IO error: invalid peer certificate: certificate not valid for name "localhost"; certificate is only valid for IpAddress(127.0.0.1)
+negative profile wrong token: authorization violation
+negative profile plaintext fallback: IO error
+test tls_first_verifies_identity_and_reconnects_same_client_after_restart ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.18s
+

@@ -78,7 +78,7 @@ The Node 22.16 fixture SQLite API is experimental; this is not a production rece
 | OIDC | Preset configuration and signed synthetic-token integration verified; live provider login remains pending. |
 | OpenTelemetry | Public diagnostic interface publication and OTLP implementation remain pending. |
 | Webhooks | HTTPS/signing/destination policy and native Runtime recovery/authorization tests implemented; production receiver and release acceptance remain pending. |
-| NATS | Acknowledged JetStream publication, broker recovery/redelivery, and native Runtime retry/revocation verified; production TLS profile remains pending. |
+| NATS | Acknowledged JetStream publication, broker recovery/redelivery, and native Runtime retry/revocation verified; single-node TLS-first token/reconnect profile verified; production topology and release remain pending. |
 | Kafka, RabbitMQ, notifications | Shared delivery preparation/signing implemented; provider implementations and real acknowledgement/recovery remain pending. |
 | S3-compatible, Azure Blob | Existing ROM adapter review and missing-operation implementation/real fixtures remain pending. |
 | Secrets and KMS | Bounded family contract, provider implementation, and service verification remain pending. |
@@ -100,7 +100,7 @@ Cargo-audit 0.22.2 found zero vulnerabilities/warnings in 237 workspace and 273 
 Both scans used RustSec commit `550efd3d587a29b2e2c2b21b17a440da4fede999` on 2026-10-08.
 Manifest license inventories have no absent declarations; redistribution review remains required.
 At this publication increment, Runtime integration and direct post-commit acknowledgement loss were still pending.
-The following increment supplies that evidence. Production TLS/reconnect remains pending.
+The following increments supply Runtime, acknowledgement-loss, and single-node TLS/reconnect evidence.
 See [configuration, fixture, and limits](nats.md). No full NATS provider support is claimed.
 
 ## NATS post-commit acknowledgement loss increment
@@ -110,4 +110,13 @@ A direct broker connection verifies the stored ID and false JSON while the origi
 Retry preserves the ID and receives Accepted without a second stored message within the configured duplicate window.
 Native SQLite/redb Runtime tests preserve intent, Unknown, attempts, and final Accepted across reopening.
 Current source disclosure denial and service revocation produce persisted Denied records without further broker publication.
-Production TLS/reconnect and release conformance remain open. This does not establish indefinite exactly-once delivery.
+At this acknowledgement-loss increment, TLS/reconnect and release conformance remained open.
+The following TLS increment supplies single-node evidence. This does not establish indefinite exactly-once delivery.
+
+## NATS TLS-first and reconnect increment
+
+The real TLS-first broker requires a CA-verified server certificate and token authentication.
+Tests reject unrelated CA, hostname mismatch, incorrect token, and TLS-first connection to a plaintext port.
+The same client emits disconnect/connect events across broker restart. The unchanged adapter then acknowledges duplicate and new publications.
+An independent consumer executes the public TLS options and reads the exact stored false JSON.
+This single-node profile does not establish clustered failover, certificate rotation, mTLS/JWT, or packaged release support.
