@@ -1,0 +1,20 @@
+[package]
+name = "rom-oidc-presets"
+description = "Explicit issuer presets for ROM's existing OIDC verifier"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+rom-auth = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false, features = ["oidc"] }
+url = "=2.5.8"
+
+[dev-dependencies]
+jsonwebtoken = { version = "=11.1.0", default-features = false, features = ["aws_lc_rs", "use_pem"] }
+serde_json = "=1.0.151"

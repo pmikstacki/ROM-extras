@@ -7,6 +7,11 @@ if ! command -v cargo >/dev/null || ! command -v rustc >/dev/null; then
     exit 2
 fi
 
+if ! command -v openssl >/dev/null; then
+    echo 'OpenSSL is required to generate synthetic OIDC signing keys.' >&2
+    exit 2
+fi
+
 rustc -Vv
 cargo fmt --all -- --check
 cargo fmt --manifest-path tests/public-consumer/Cargo.toml -- --check
@@ -15,6 +20,7 @@ cargo test --workspace --locked
 cargo test --workspace --doc --locked
 RUSTDOCFLAGS='-D warnings' cargo doc --workspace --no-deps --locked
 cargo check --workspace --no-default-features --locked
+cargo check -p rom-sql-core --no-default-features --locked
 cargo run --manifest-path tests/public-consumer/Cargo.toml --locked
 cargo clippy --manifest-path tests/public-consumer/Cargo.toml --all-targets --locked -- -D warnings
 if [[ "$(rustc -V | awk '{print $2}')" == 1.99.* ]]; then

@@ -1,0 +1,106 @@
+{
+  "date": "2026-10-08T15:16:54.636Z",
+  "head": "f8e087a0d9fba7d876c71a42f95d0d5504a54ee2",
+  "scope": "Post-command source snapshot of uncommitted OIDC increment; not live provider or release admission.",
+  "command": "CARGO_BUILD_JOBS=2 ./scripts/check-all",
+  "exit": 0,
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1\n",
+  "openssl": "3.5.8",
+  "rom_revision": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "source": [
+    {
+      "path": "Cargo.lock",
+      "sha256": "61ad32c3401077fac762e5f96dd05b481072caa758788ffe69adc6893c5ee157"
+    },
+    {
+      "path": "Cargo.toml",
+      "sha256": "824a7da65852000b64c85f2c856554ddb212fb9a8ba994610e4cae47d317fd53"
+    },
+    {
+      "path": "crates/rom-oidc-presets/Cargo.toml",
+      "sha256": "d29521c23653a4664fb7d0d7182a0db78d9928031639239a2daf03a430f4565c"
+    },
+    {
+      "path": "crates/rom-oidc-presets/src/issuer.rs",
+      "sha256": "b06c011789e31bd9e167042d0680cee4274f4ea3e3fa3ce1b87b2c519b9e7b30"
+    },
+    {
+      "path": "crates/rom-oidc-presets/src/lib.rs",
+      "sha256": "9282e10faa973e4478e65a0655966c3a597587b0735632e6a2f3fd8b979d891b"
+    },
+    {
+      "path": "crates/rom-oidc-presets/tests/configuration.rs",
+      "sha256": "85f9422d8945593b5a2822591109db7ed1d7461fd6716197ded48ebd884424c3"
+    },
+    {
+      "path": "crates/rom-oidc-presets/tests/verification.rs",
+      "sha256": "0fefd8134c5d187f0b186f3549fd183743bb3573a38fdfefb2aee4a9d51d6732"
+    },
+    {
+      "path": "crates/rom-sql-core/Cargo.toml",
+      "sha256": "dd742e29d9dbcc77fcfbbf82460c37a4166f962ce9b62ad27624b2afc8e3982b"
+    },
+    {
+      "path": "crates/rom-sql-core/src/error.rs",
+      "sha256": "794c3b33983f4a74fdd7edfefeb1db6e6c50376c3c39a1e92034fbfbac343d07"
+    },
+    {
+      "path": "crates/rom-sql-core/src/executor.rs",
+      "sha256": "b969dba2859253e83aedbb6fd36d662d20985fcb8083c350dcd8f3d0dae8aa5e"
+    },
+    {
+      "path": "crates/rom-sql-core/src/lib.rs",
+      "sha256": "76f17c6bf390730e0138b714c532ce5213382b4888b115f6aa9e933c4b67d7c8"
+    },
+    {
+      "path": "crates/rom-sql-core/src/ticket.rs",
+      "sha256": "2cfb1af015d064284a0778454bd91f05a653450cd907137c645dceb4fe3d5e99"
+    },
+    {
+      "path": "crates/rom-sql-core/tests/executor.rs",
+      "sha256": "e2ef0b65dd24a80edcca7927edccd1ff8423c24911bfe92fe94b05b9348dda88"
+    },
+    {
+      "path": "scripts/check",
+      "sha256": "7c334f0e62867488c81c5f14f273959300b4b3bc0bd7722ef80d0a32473f54a1"
+    },
+    {
+      "path": "scripts/check-all",
+      "sha256": "3450ea700172cf7a165708ee37824ff451e8044fecc62881287d5b176de6261f"
+    },
+    {
+      "path": "scripts/check-postgres",
+      "sha256": "11a623ce0de200ecbf92a0b821176df2503e3b58221b8471b999b8e7d056c7cc"
+    },
+    {
+      "path": "tests/public-consumer/Cargo.lock",
+      "sha256": "d3e643f7f08fc23ed29733a1c4bed3abe103749c6d1a92a41a296b02091defce"
+    },
+    {
+      "path": "tests/public-consumer/Cargo.toml",
+      "sha256": "5239161b5e9477ada855c1765d67f5dea65a67251fe86d9c86a64c520bc23fa5"
+    },
+    {
+      "path": "tests/public-consumer/src/main.rs",
+      "sha256": "ce1a9ceefab12a04b7b14347f33172ef862e97ee6b55b34de7544bcc5ebed4a8"
+    },
+    {
+      "path": "tests/public-consumer/tests/postgres_executor.rs",
+      "sha256": "ea65495dbdcd3aa39af990897972df6fedb9793eef3907461b597d4db6a693ec"
+    }
+  ],
+  "logs": [
+    {
+      "path": "docs/verification/check-all-oidc-2026-10-08.log",
+      "sha256": "9f1537c5d81ae4d08f1d054ee59e8ff9b2031ede45fd0207d6ea5a87480acff4"
+    },
+    {
+      "path": "docs/verification/oidc-workspace-audit-2026-10-08.json",
+      "sha256": "9e5c8938ad9ed174be9207655362b60e0c9f382615f665c7d4eebdf7828ba296"
+    },
+    {
+      "path": "docs/verification/oidc-consumer-audit-2026-10-08.json",
+      "sha256": "a0043e00a7ba020ef8d6dec67cbf45ca649966ff78343acf19bd117589f143cc"
+    }
+  ]
+}

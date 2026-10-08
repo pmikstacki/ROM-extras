@@ -18,5 +18,6 @@ required-features = ["postgres-conformance"]
 [dependencies]
 rom = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false }
 rom-sql-core = { path = "../../crates/rom-sql-core" }
+rom-oidc-presets = { path = "../../crates/rom-oidc-presets" }
 postgres = { version = "=0.19.14", optional = true }
 tokio = { version = "=1.53.1", features = ["rt", "macros"], optional = true }

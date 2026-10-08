@@ -1,0 +1,13 @@
+   Compiling rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.31s
+     Running tests/configuration.rs (target/debug/deps/configuration-6ea5531dc82a10e6)
+
+running 5 tests
+test entra_binds_one_concrete_tenant ... ok
+test exact_issuer_preserves_the_original_binding ... ok
+test configuration_delegates_names_and_does_not_fetch_keys ... ok
+test invalid_issuer_forms_are_rejected ... ok
+test keycloak_keeps_the_deployment_context_path ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

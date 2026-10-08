@@ -18,3 +18,33 @@ Cargo-audit 0.22.2 found no advisories or warnings across its 104 locked package
 This result uses RustSec commit `550efd3d587a29b2e2c2b21b17a440da4fede999` and does not establish future advisory status.
 The dependency manifest license inventory is preserved with verification evidence; redistribution review remains required before release.
 Oracle requires a separate native-client and redistribution review.
+
+## OIDC configuration increment
+
+`rom-oidc-presets` implements explicit HTTPS, Keycloak realm, and concrete Entra tenant issuer configuration.
+It delegates verification to the pinned public ROM `OidcIdTokenAdapter`.
+Six configuration tests and three signed synthetic-token tests passed, including rotation and exact issuer rejection.
+A regression test covers Unicode whitespace and controls found during independent review.
+The independent public consumer now imports the preset package.
+After this increment, cargo-audit 0.22.2 found no advisories or warnings in 102 workspace and 165 consumer packages.
+Both scans used RustSec commit `550efd3d587a29b2e2c2b21b17a440da4fede999` on 2026-10-08.
+Manifest license inventories contain no absent declarations. Native cryptographic dependency notices still require release redistribution review.
+No live provider login or discovery profile is supported yet. See [usage and limits](oidc-presets.md).
+
+## Whole-goal tracking
+
+| Family | Implementation and remaining acceptance |
+| --- | --- |
+| Shared SQL | Connection executor verified; Storage protocol awaits public incremental Work APIs. |
+| PostgreSQL | Three live executor tests and control-row restart evidence; full Storage provider remains pending. |
+| MSSQL, MySQL, MariaDB, CockroachDB, Oracle | Driver research exists; provider implementation and real-backend conformance remain pending. |
+| OIDC | Preset configuration and signed synthetic-token integration verified; live provider login remains pending. |
+| OpenTelemetry | Public diagnostic interface publication and OTLP implementation remain pending. |
+| Webhooks, Kafka, NATS, RabbitMQ, notifications | Delivery-family contracts, provider implementation, and real acceptance/recovery fixtures remain pending. |
+| S3-compatible, Azure Blob | Existing ROM adapter review and missing-operation implementation/real fixtures remain pending. |
+| Secrets and KMS | Bounded family contract, provider implementation, and service verification remain pending. |
+| OpenSearch and vectors | Projection contract, implementation, authorization checks, and real fixtures remain pending. |
+| Backup, migration, import | SQL archive contract and provenance-preserving tools remain pending. |
+| Release | Packaged-consumer checks, compatibility, redistribution review, and whole-goal acceptance remain pending. |
+
+The full goal stays active. A verified increment does not complete its extension family or the whole repository scope.
