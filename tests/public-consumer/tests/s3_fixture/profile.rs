@@ -23,6 +23,15 @@ fn fixture() -> Fixture {
 }
 
 pub(crate) fn adapter(max_bytes: usize, wrong_secret: bool) -> Adapter {
+    configured_adapter(max_bytes, wrong_secret, None)
+}
+
+#[cfg(feature = "s3-lifecycle")]
+pub(crate) fn proxy_adapter(endpoint: &str) -> Adapter {
+    configured_adapter(1024, false, Some(endpoint))
+}
+
+fn configured_adapter(max_bytes: usize, wrong_secret: bool, proxy: Option<&str>) -> Adapter {
     let selected = fixture();
     let endpoint = std::env::var("ROM_EXTRAS_S3_ENDPOINT").expect("required S3 fixture endpoint");
     let bucket = std::env::var("ROM_EXTRAS_S3_BUCKET").expect("required S3 fixture bucket");
@@ -34,7 +43,7 @@ pub(crate) fn adapter(max_bytes: usize, wrong_secret: bool) -> Adapter {
     assert_eq!(region, "us-east-1");
     Adapter::s3(
         S3Config {
-            endpoint: &endpoint,
+            endpoint: proxy.unwrap_or(&endpoint),
             region: &region,
             bucket: &bucket,
             access_key: &access,

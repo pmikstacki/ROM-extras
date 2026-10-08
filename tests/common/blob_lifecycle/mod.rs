@@ -1,7 +1,7 @@
 //! Shared public BlobService acceptance against real provider and native store ports.
 mod attached;
-mod helpers;
-mod observed;
+pub(crate) mod helpers;
+pub(crate) mod observed;
 mod unattached;
 
 pub(crate) use attached::staged_content_authorization_and_detachment;

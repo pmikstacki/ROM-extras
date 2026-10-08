@@ -1,0 +1,10 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s
+     Running tests/s3_blob.rs (tests/public-consumer/target/debug/deps/s3_blob-326b9d1261ffae3f)
+
+running 1 test
+wire_ack_loss native=sqlite puts=2 backend_success=1 conflicts=1 suppressed=1 verified_gets=2; Unknown/Pending -> explicit retry/Ready -> reopen; object retained
+wire_ack_loss native=redb puts=2 backend_success=1 conflicts=1 suppressed=1 verified_gets=2; Unknown/Pending -> explicit retry/Ready -> reopen; object retained
+test lost_s3_success_response_recovers_pending_on_explicit_upload ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.43s
+

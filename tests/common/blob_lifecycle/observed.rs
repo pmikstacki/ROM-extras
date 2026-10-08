@@ -6,7 +6,7 @@ use std::sync::{
 };
 use tokio::sync::Notify;
 
-pub(super) struct Observed<B> {
+pub(crate) struct Observed<B> {
     pub inner: B,
     pub creates: AtomicUsize,
     pub reads: AtomicUsize,

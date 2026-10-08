@@ -18,7 +18,8 @@ Both use the dedicated unversioned `rom-extras` bucket and region `us-east-1`.
 SeaweedFS admin UI and WebDAV are disabled. RustFS console is disabled.
 These single-node fixtures have no disk quota, redundancy, or production topology claim.
 
-The adapter fixes path-style addressing, conditional create, zero retries, and a three-second request timeout.
+The adapter fixes path-style addressing, conditional create, zero SDK retries, and a three-second request timeout.
+This does not disable every lower transport retry; the fault scenario counts actual forwarded PUT requests.
 Its connect timeout is one second. The configured object limit is 16 bytes for port conformance and 1024 bytes for lifecycle tests.
 See [the pinned public configuration](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom-blob-object-store/src/configuration.rs).
 
@@ -33,6 +34,7 @@ See [the pinned public configuration](https://github.com/pmikstacki/ROM/blob/d7e
 | Sixteen fresh keys with eight simultaneous creates each; one acknowledged winner and seven conflicts | Failed with Unknown | Passed |
 | BlobService staging, private reads, detachment, and native SQLite/redb reopen | Passed | Passed |
 | Deleted reservation after physical publication, retained Unattached receipt, and native reopen | Passed | Passed |
+| Lost HTTP success response, unchanged Pending, explicit verified retry, and SQLite/redb Ready reopen | Not executed | Passed |
 
 The strict test reads each winner's bytes, verifies subsequent Conflict without overwrite, and deletes only after all outcomes are confirmed.
 The separate reconciliation test permits Unknown and retains bytes without cleanup.
@@ -56,7 +58,7 @@ ROM_EXTRAS_S3_PROFILE=rustfs ./scripts/check-s3
 Use `seaweedfs` to reproduce the retained SeaweedFS profile.
 An unset profile preserves the previous SeaweedFS selection. Unknown profiles and mismatched endpoints fail before provider access.
 Restart tests verify the selected container's fixture label before issuing restart.
-The required s3-lifecycle feature runs all four port cases and two shared native BlobService cases, plus Clippy.
+The required s3-lifecycle feature runs all four port cases, two shared native BlobService cases, and actual HTTP response-loss recovery, plus Clippy.
 The public constructor and strict scenario remain identical.
 
 `check-all` runs S3 qualification for the configured profile. Selecting RustFS does not establish SeaweedFS qualification.
@@ -65,9 +67,11 @@ See [SeaweedFS evidence](verification/s3-qualification-2026-10-08.md) and [RustF
 ## Remaining work
 
 [Garage 2.4.1 source review](research/garage-conditional-create-assessment.md) finds no conditional-create enforcement in its inspected PUT path.
-RustFS passes local public-port qualification only. SeaweedFS remains unqualified for the strict operational profile.
+RustFS passes local public-port qualification, basic native lifecycle, and one injected HTTP response-loss profile. SeaweedFS remains unqualified for the strict operational profile.
 Basic native BlobService lifecycle now passes through the same scenario functions used for Azure.
 See [shared lifecycle evidence](verification/blob-lifecycle-shared-2026-10-08.md).
-Actual post-write acknowledgement loss, corrupt provider reads, current revocation during I/O, cancellation/drain faults, verified TLS, cloud authorization, and packaged release remain pending.
+RustFS response-loss evidence is recorded in [the wire-fault report](verification/s3-wire-ack-loss-2026-10-08.md).
+The proxy observes backend success before dropping the client response; explicit retry verifies existing bytes before attachment.
+Corrupt provider reads, current revocation during I/O, cancellation/drain faults, verified TLS, cloud authorization, and packaged release remain pending.
 Use the public BlobService for lifecycle work. Preserve trusted cleanup requirements for detachment, grace, and quiescence.
 Other S3-compatible services require their own versioned conformance; these fixtures do not certify them.

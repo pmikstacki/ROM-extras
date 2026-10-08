@@ -1,0 +1,20 @@
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.07s
+     Running tests/s3_blob.rs (tests/public-consumer/target/debug/deps/s3_blob-326b9d1261ffae3f)
+
+running 1 test
+recovery diagnostic puts=2 successes=1 conflicts=1 gets=0 dropped=1
+
+thread 'lost_s3_success_response_recovers_pending_on_explicit_upload' (3301847) panicked at tests/s3_fixture/ack_loss.rs:44:9:
+explicit recovery must attach
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test lost_s3_success_response_recovers_pending_on_explicit_upload ... FAILED
+
+failures:
+
+failures:
+    lost_s3_success_response_recovers_pending_on_explicit_upload
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.16s
+
+error: test failed, to rerun pass `--test s3_blob`

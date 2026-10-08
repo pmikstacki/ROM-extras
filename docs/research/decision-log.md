@@ -226,3 +226,19 @@ Retain post-provider-success pause as an attachment race, not a wire acknowledge
 A mutation that omits real provider creation must fail during verified reading; restored source must pass again.
 Keep detached and unattached objects because [public trusted-delete requirements](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom-blob/src/storage.rs) require grace and quiescence.
 Use shared acceptance only for these common guarantees; retain separate provider TLS, credential, retention, and wire fault tests.
+
+## S3 actual HTTP response loss and native recovery
+
+Date: 2026-10-08. Source: [primary-source assessment](s3-wire-ack-loss-assessment.md).
+Select a bounded test-only loopback HTTP/1 proxy to observe backend success, then suppress the response.
+A post-SDK pause cannot establish a lost wire acknowledgement; retain that earlier scenario separately.
+Preserve signed request bytes and the production public adapter. Count forwarded PUT requests instead of assuming every transport layer disables retries.
+Use the existing RustFS profile and both public native stores. No dependency or production API changes are needed.
+The proxy accepts bounded Content-Length framing; unsupported framing fails rather than guessing message length.
+[HTTP/1 message length](https://www.rfc-editor.org/rfc/rfc9112.html#section-6.3) governs the parser.
+A finite standard-library worker with [socket timeouts](https://doc.rust-lang.org/std/net/struct.TcpStream.html) isolates test-only blocking I/O.
+The proxy closes client connections after framed responses, so set response-only Connection: close and remove nominated hop-by-hop fields.
+This follows [RFC 9110 section 7.6.1](https://www.rfc-editor.org/rfc/rfc9110.html#section-7.6.1) and [RFC 9112 section 9.6](https://www.rfc-editor.org/rfc/rfc9112.html#section-9.6).
+An initial fixture preserved the backend keepalive response header while closing; recovery failed before GET reached the backend.
+After correcting that hop's connection semantics, real recovery GET and both native reopen cases passed.
+Do not broaden the result to cloud TLS, process crash, other S3 services, or cleanup authorization.

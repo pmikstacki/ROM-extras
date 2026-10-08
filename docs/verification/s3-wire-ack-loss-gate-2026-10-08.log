@@ -1,0 +1,79 @@
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.91s
+     Running tests/s3_blob.rs (tests/public-consumer/target/debug/deps/s3_blob-326b9d1261ffae3f)
+
+running 7 tests
+test blob_service_attachment_authorization_and_detachment_survive_native_reopen ... ok
+test blob_service_deleted_reservation_retains_real_unattached_object ... ok
+test confirmed_denial_and_restart_retention_pass_on_configured_s3_fixture ... ok
+test eight_way_create_has_one_winner_and_seven_confirmed_conflicts ... ok
+test lost_s3_success_response_recovers_pending_on_explicit_upload ... ok
+test published_port_passes_on_configured_s3_fixture ... ok
+test uncertain_concurrent_creates_reconcile_without_overwrite_or_cleanup ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.23s
+
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+error: this `if` statement can be collapsed
+   --> tests/s3_fixture/framing.rs:115:9
+    |
+115 | /         if let Some((name, value)) = line.split_once(':') {
+116 | |             if name.eq_ignore_ascii_case("connection") {
+117 | |                 nominated.extend(value.split(',').map(str::trim));
+118 | |             }
+119 | |         }
+    | |_________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#collapsible_if
+    = note: `-D clippy::collapsible-if` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::collapsible_if)]`
+help: collapse nested if block
+    |
+115 ~         if let Some((name, value)) = line.split_once(':')
+116 ~             && name.eq_ignore_ascii_case("connection") {
+117 |                 nominated.extend(value.split(',').map(str::trim));
+118 ~             }
+    |
+
+error: this `if` statement can be collapsed
+   --> tests/s3_fixture/framing.rs:129:9
+    |
+129 | /         if let Some((name, _)) = line.split_once(':') {
+130 | |             if nominated
+131 | |                 .iter()
+132 | |                 .any(|candidate| name.eq_ignore_ascii_case(candidate))
+...   |
+136 | |         }
+    | |_________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#collapsible_if
+help: collapse nested if block
+    |
+129 ~         if let Some((name, _)) = line.split_once(':')
+130 ~             && nominated
+131 |                 .iter()
+...
+134 |                 continue;
+135 ~             }
+    |
+
+error: this `if` statement can be collapsed
+   --> tests/s3_fixture/wire.rs:98:9
+    |
+ 98 | /         if let Some(worker) = self.worker.take() {
+ 99 | |             if let Ok(Err(category)) = worker.join() {
+100 | |                 eprintln!("proxy fixture failure category: {category}");
+101 | |             }
+102 | |         }
+    | |_________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#collapsible_if
+help: collapse nested if block
+    |
+ 98 ~         if let Some(worker) = self.worker.take()
+ 99 ~             && let Ok(Err(category)) = worker.join() {
+100 |                 eprintln!("proxy fixture failure category: {category}");
+101 ~             }
+    |
+
+error: could not compile `rom-extras-public-consumer` (test "s3_blob") due to 3 previous errors

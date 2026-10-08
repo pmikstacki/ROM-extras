@@ -204,3 +204,13 @@ async fn blob_service_deleted_reservation_retains_real_unattached_object() {
     })
     .await;
 }
+
+#[cfg(feature = "s3-lifecycle")]
+#[tokio::test]
+async fn lost_s3_success_response_recovers_pending_on_explicit_upload() {
+    let _exclusive = FIXTURE.lock().await;
+    let artifacts = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../.superpowers");
+    tokio::time::timeout(Duration::from_secs(45), s3_fixture::recover(&artifacts))
+        .await
+        .expect("bounded S3 acknowledgement recovery");
+}
