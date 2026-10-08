@@ -28,7 +28,9 @@ unacknowledged consumer redelivery, overload/uncertain retirement, independent p
 Extend with actual post-commit confirmation loss, native Runtime reopen/authority/retry, and verified TLS host profiles.
 The Runtime increment now verifies actual confirm loss and native SQLite/redb reopen, authority, and retry.
 Its fixture receiver commits one durable action receipt, closes without consumer ACK, and deduplicates real redelivery across reopening.
-The receiver is a test application. Process-crash, power-loss, verified TLS, and packaged release remain open.
+The receiver is a test application. Process-crash, power-loss, and packaged release remain open.
+The native TLS increment verifies CA/name/password, cause-specific negatives, persistence across restart, and explicit host reconnect/rebind.
+An independent consumer requires the exact AMQPS fixture profile. Exclusive trust pinning, mTLS, and automatic recovery are not claimed.
 No production provider or complete delivery family is claimed by initial publication tests.
 
 Sources: [RabbitMQ confirms](https://www.rabbitmq.com/docs/confirms),

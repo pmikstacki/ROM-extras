@@ -145,3 +145,14 @@ Its connection closes without consumer ACK after commit. Actual broker redeliver
 Another receiver reopening retains one effect. Current source/service denial prevents further publication.
 This verifies the fixture application pattern, not a production receiver library or unrestricted exactly-once effects.
 TLS, replicated failover, and packaged release remain open.
+
+## RabbitMQ native TLS and explicit host reconnect increment
+
+The separate real broker disables plaintext AMQP and terminates TLS directly.
+Tests verify the server CA and hostname, then authenticate with a fixture password.
+Unrelated CA, incorrect name, incorrect password, and TLS on the plaintext listener fail for their expected causes.
+After broker restart, a fresh verified host connection reads the retained persistent message.
+An explicitly rebound adapter confirms a new publication. This does not claim automatic client recovery.
+The independent consumer exercises public lapin TLS configuration and the unchanged adapter.
+The profile adds a fixture CA alongside native roots; it is not exclusive certificate pinning or mTLS.
+Clustered failover, certificate rotation, client-certificate authentication, and packaged release remain open.

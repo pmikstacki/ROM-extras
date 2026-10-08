@@ -1,0 +1,9 @@
+   Compiling rom-rabbitmq v0.1.0-dev (/root/ROM-extras/crates/rom-rabbitmq)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.05s
+     Running tests/tls.rs (target/debug/deps/tls-c7c259ec8174afd9)
+
+running 1 test
+test tls_verifies_ca_hostname_password_and_confirms_persistent_payload ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 21.24s
+

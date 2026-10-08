@@ -1,4 +1,6 @@
 //! Required real RabbitMQ publisher-confirm and routing fixture.
+#[path = "common/fixture.rs"]
+mod fixture;
 use lapin::{
     Connection, ConnectionProperties,
     options::*,
@@ -98,55 +100,7 @@ async fn confirms_persistence_return_and_redelivery_after_restart() {
         "application/json"
     );
     drop(first); // Deliberately withhold consumer ack.
-    let label = std::process::Command::new("docker")
-        .args([
-            "inspect",
-            "rom-extras-rabbitmq-20261008",
-            "--format",
-            "{{index .Config.Labels \"rom-extras.fixture\"}}",
-        ])
-        .output()
-        .unwrap();
-    assert!(label.status.success());
-    assert_eq!(String::from_utf8(label.stdout).unwrap().trim(), "rabbitmq");
-    assert!(
-        tokio::task::spawn_blocking(|| std::process::Command::new("docker")
-            .args(["restart", "--time", "10", "rom-extras-rabbitmq-20261008"])
-            .stdout(std::process::Stdio::null())
-            .status()
-            .unwrap()
-            .success())
-        .await
-        .unwrap()
-    );
-    // RabbitMQ starts asynchronously after the container process starts.
-    tokio::time::timeout(Duration::from_secs(20), async {
-        loop {
-            let ready = tokio::task::spawn_blocking(|| {
-                std::process::Command::new("docker")
-                    .args([
-                        "exec",
-                        "rom-extras-rabbitmq-20261008",
-                        "rabbitmq-diagnostics",
-                        "-q",
-                        "check_running",
-                    ])
-                    .stdout(std::process::Stdio::null())
-                    .stderr(std::process::Stdio::null())
-                    .status()
-                    .unwrap()
-                    .success()
-            })
-            .await
-            .unwrap();
-            if ready {
-                break;
-            }
-            tokio::time::sleep(Duration::from_millis(100)).await;
-        }
-    })
-    .await
-    .unwrap();
+    fixture::restart("rom-extras-rabbitmq-20261008", "rabbitmq").await;
     let reconnected = connect().await;
     let reader = reconnected.create_channel().await.unwrap();
     let info = reader

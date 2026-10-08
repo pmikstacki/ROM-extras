@@ -33,3 +33,7 @@ required-features = ["broker-conformance"]
 [[test]]
 name = "runtime"
 required-features = ["broker-conformance"]
+
+[[test]]
+name = "tls"
+required-features = ["broker-conformance"]

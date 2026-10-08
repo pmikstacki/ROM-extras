@@ -65,5 +65,35 @@ After the first effect commits, its consumer connection closes without ACK. Rabb
 The reopened receiver replays its receipt before acknowledging duplicates. A further reopening verifies exactly one retained counter increment.
 Current source disclosure denial and service revocation stop work without further publication.
 This receiver is a test application, not a universal production receiver or distributed exactly-once guarantee.
-Verified TLS host profiles and packaged release remain open.
+The following native TLS profile supplies CA/hostname/password and host-reconnection evidence. Packaged release remains open.
 No complete production RabbitMQ provider support is claimed by this increment.
+
+## Native TLS fixture and host connection
+
+The separate container and volume are `rom-extras-rabbitmq-tls-20261008`, with label `rom-extras.fixture=rabbitmq-tls`.
+It uses the same pinned official image, one CPU,512 MiB, and a fixed hostname `rom-extras-rabbitmq-tls`.
+AMQPS binds only to loopback55447; management binds to loopback55448. Regular AMQP listeners are disabled.
+The broker terminates TLS directly. Its leaf certificate has CA:FALSE, serverAuth, and IP SAN127.0.0.1.
+Separate fixture CAs sign the leaf and supply the unrelated trust negative case. Synthetic certificates expire after30 days.
+The broker runs as UID100/GID101 in the Alpine image. Mounted configuration and leaf key are readable only by that owner.
+Private CA signing keys are not mounted. Keys and access files remain ignored; never print connection URIs.
+The broker does not request a client certificate. Password authentication follows verified server TLS; this is not mTLS.
+
+Hosts can use lapin's public `Connection::connect_with_config`, `tcp::OwnedTLSConfig`, and `runtime::default_runtime`.
+Supply the CA PEM through cert_chain and retain an amqps URI. Native trust roots remain enabled alongside the added CA.
+This configuration adds trust; it does not pin trust exclusively to that fixture CA. Do not log TLS identity configuration.
+The extras adapter accepts the established Connection and does not bypass its certificate verification.
+
+```sh
+source .superpowers/rabbitmq-access.sh
+source .superpowers/rabbitmq-tls-access.sh
+./scripts/check-rabbitmq
+```
+
+Required negatives verify UnknownIssuer, name mismatch, ACCESS_REFUSED, and TLS InvalidContentType on the plaintext fixture port.
+The TLS broker test obtains an actual publisher confirmation, restarts the labelled fixture, and establishes a fresh verified connection.
+It reads the retained persistent false JSON and ID. An explicitly rebound adapter then confirms a new publication.
+This is host-managed reconnect; automatic client recovery is not enabled or claimed.
+The independent consumer executes public TLS configuration and reads confirmed persistent false JSON.
+Both TLS and plaintext fixture configuration are required by check-all. Missing values fail instead of skipping.
+Clustered failover, certificate rotation, client-certificate authentication, and packaged release remain open.
