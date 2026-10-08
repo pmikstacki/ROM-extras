@@ -56,6 +56,14 @@ Manual Kafka replay after consumer closure and native receiver-store reopen pres
 This is explicit assignment from Beginning, not automatic consumer-group checkpoint recovery.
 Reopen occurs within one process; process-crash and power-loss behavior are not established.
 Set the adapter deadline below Runtime delivery_timeout, and set that timeout below the lease.
-TLS/SASL and release packaging remain pending.
+Native SASL/PLAIN over TLS now has verified CA/name, wrong-password rejection, retained records after restart, and fresh host producer reconnection.
+An independent native client captures only typed failure categories; the adapter does not expose those diagnostics.
+A separate all-TLS fixture binds broker/controller to loopback with a localhost DNS certificate.
+Set all required `ROM_EXTRAS_KAFKA_TLS_*` variables before `./scripts/check-kafka`.
+The required variables are BROKERS, CA, WRONG_CA, USERNAME, and PASSWORD; keep credentials in private host configuration.
+The tested broker endpoint is `localhost:55450`, with explicit IPv4 resolution and hostname checks enabled.
+See [TLS research](research/kafka-tls-assessment.md) and [executed evidence](verification/kafka-tls-2026-10-08.md).
+This is server-authenticated password TLS, not mTLS or certificate pinning.
+Cluster failover, rotation, automatic client recovery, combined TLS Runtime interruption tests, and release packaging remain pending.
 The initial live run returned Unknown unexpectedly; its log and topic data are preserved.
 Later runs passed, but the initial cause remains undetermined. Do not treat the repeat as a root-cause fix.

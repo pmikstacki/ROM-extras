@@ -1,0 +1,24 @@
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+error[E0432]: unresolved import `rdkafka::types::RDKafkaLogLevel`
+  --> crates/rom-kafka/tests/tls.rs:12:31
+   |
+12 |     types::{RDKafkaErrorCode, RDKafkaLogLevel},
+   |                               ^^^^^^^^^^^^^^^ no `RDKafkaLogLevel` in `types`
+
+error[E0618]: expected function, found `BaseConsumer`
+   --> crates/rom-kafka/tests/tls.rs:203:18
+    |
+ 80 | fn reader(topic: &str) -> BaseConsumer {
+    | -------------------------------------- this function of the same name is available here, but it's shadowed by the local binding
+...
+149 |     let reader = reader(&topic);
+    |         ------ `reader` has type `BaseConsumer`
+...
+203 |     let reader = reader(&topic);
+    |                  ^^^^^^--------
+    |                  |
+    |                  call expression requires function
+
+Some errors have detailed explanations: E0432, E0618.
+For more information about an error, try `rustc --explain E0432`.
+error: could not compile `rom-kafka` (test "tls") due to 2 previous errors

@@ -1,0 +1,24 @@
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.85s
+     Running tests/tls.rs (target/debug/deps/tls-c4910e585151b008)
+
+running 1 test
+test verified_sasl_tls_rejects_bad_peers_and_reconnects_after_restart ... FAILED
+
+failures:
+
+---- verified_sasl_tls_rejects_bad_peers_and_reconnects_after_restart stdout ----
+
+thread 'verified_sasl_tls_rejects_bad_peers_and_reconnects_after_restart' (2839661) panicked at crates/rom-kafka/tests/tls.rs:76:5:
+assertion `left != right` failed: allowlisted cause for tls-on-plain
+  left: 0
+ right: 0
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    verified_sasl_tls_rejects_bad_peers_and_reconnects_after_restart
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 17.75s
+
+error: test failed, to rerun pass `-p rom-kafka --test tls`

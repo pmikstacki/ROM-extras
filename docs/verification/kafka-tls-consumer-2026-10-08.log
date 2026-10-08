@@ -1,0 +1,10 @@
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.04s
+     Running tests/kafka_delivery.rs (tests/public-consumer/target/debug/deps/kafka_delivery-c906ef51100dae98)
+
+running 2 tests
+test external_consumer_receives_verified_sasl_tls_publication ... ok
+test external_consumer_receives_acknowledged_false_json_with_stable_key ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.93s
+

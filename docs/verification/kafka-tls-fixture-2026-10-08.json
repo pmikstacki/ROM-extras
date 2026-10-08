@@ -1,0 +1,32 @@
+{
+  "container": "rom-extras-kafka-tls-20261008",
+  "label": "rom-extras.fixture=kafka-tls",
+  "image_reference": "apache/kafka@sha256:77e3df9054047a88b520d0cc46e16696d3b22022e1d580aeccd2632df6532837",
+  "executed_image_id": "47dccc76b32761bc57462b8753144cdbb73a16b123b1d13d3eedb92bb7952b11",
+  "native_client": "librdkafka2.12.1 / externalstaticOpenSSL3.5.9",
+  "java": "openjdk version \"21.0.11\" 2026-04-21 LTS\nOpenJDK Runtime Environment Temurin-21.0.11+10 (build 21.0.11+10-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.11+10 (build 21.0.11+10-LTS, mixed mode, sharing)\n",
+  "network": "host; both listeners bound only127.0.0.1",
+  "limits": "1CPU;768MiB;Javaheap256MiB",
+  "persistent_volume": "rom-extras-kafka-tls-20261008",
+  "selected_server_properties": {
+    "listeners": "SASL_SSL://127.0.0.1:55450,CONTROLLER://127.0.0.1:55451",
+    "advertised.listeners": "SASL_SSL://localhost:55450",
+    "listener.security.protocol.map": "SASL_SSL:SASL_SSL,CONTROLLER:SSL",
+    "inter.broker.listener.name": "SASL_SSL",
+    "controller.listener.names": "CONTROLLER",
+    "controller.quorum.voters": "1@localhost:55451",
+    "ssl.client.auth": "none",
+    "ssl.keystore.type": "PKCS12",
+    "ssl.truststore.type": "PKCS12",
+    "ssl.endpoint.identification.algorithm": "https",
+    "sasl.enabled.mechanisms": "PLAIN",
+    "sasl.mechanism.inter.broker.protocol": "PLAIN",
+    "log.dirs": "/var/lib/kafka/data",
+    "auto.create.topics.enable": "false",
+    "min.insync.replicas": "1",
+    "log.flush.interval.messages": "1",
+    "log.flush.interval.ms": "1"
+  },
+  "certificate": "notBefore=Oct  8 18:04:53 2026 GMT\nnotAfter=Nov  7 18:04:53 2026 GMT\nX509v3 Basic Constraints: critical\n    CA:FALSE\nX509v3 Extended Key Usage: \n    TLS Web Server Authentication\nX509v3 Subject Alternative Name: \n    DNS:localhost\n",
+  "key_permissions": "mounted serverdir UID1000/GID1000 mode0700; files0600; signerkeys/unwrappedleafkey outside mount"
+}

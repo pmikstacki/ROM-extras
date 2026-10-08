@@ -1,0 +1,12 @@
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 14.92s
+     Running tests/tls.rs (target/debug/deps/tls-c4910e585151b008)
+
+running 1 test
+address_family=any accepted_offset=Some(1) cause_bits=0
+address_family=v4 accepted_offset=Some(2) cause_bits=0
+address_family=v6 accepted_offset=None cause_bits=4
+test diagnose_native_loopback_address_family ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 5.60s
+

@@ -2,10 +2,16 @@
 set -euo pipefail
 cd -- "$(dirname -- "$0")/.."
 : "${ROM_EXTRAS_KAFKA_BROKERS:?Required dedicated Kafka fixture}"
+: "${ROM_EXTRAS_KAFKA_TLS_BROKERS:?Required dedicated Kafka TLS/SASL fixture}"
+: "${ROM_EXTRAS_KAFKA_TLS_CA:?Required Kafka TLS CA}"
+: "${ROM_EXTRAS_KAFKA_TLS_WRONG_CA:?Required Kafka unrelated CA}"
+: "${ROM_EXTRAS_KAFKA_TLS_USERNAME:?Required Kafka SASL username}"
+: "${ROM_EXTRAS_KAFKA_TLS_PASSWORD:?Required Kafka SASL password}"
 node --test crates/rom-kafka/tests/common/protocol.test.cjs
 cargo test -p rom-kafka --features broker-conformance --test broker --locked
 cargo test -p rom-kafka --features broker-conformance --test ack_loss --locked
 cargo test -p rom-kafka --features broker-conformance --test runtime --locked
+cargo test -p rom-kafka --features broker-conformance --test tls --locked
 cargo clippy -p rom-kafka --features broker-conformance --all-targets --locked -- -D warnings
 cargo test --manifest-path tests/public-consumer/Cargo.toml --features kafka-conformance --test kafka_delivery --locked
 cargo clippy --manifest-path tests/public-consumer/Cargo.toml --features kafka-conformance --all-targets --locked -- -D warnings

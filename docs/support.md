@@ -6,6 +6,7 @@ No database or external-service provider is supported yet.
 Kafka now has an initial native publication increment. See [its contract and remaining gates](kafka.md).
 Kafka also has actual post-append acknowledgement-loss evidence and native QueueFull refusal.
 SQLite/redb Runtime recovery, current-authority denial, finite retry stops, and manual replay with durable receiver receipts are verified.
+A native Kafka SASL_SSL single-node profile verifies CA/name/password failures, restart retention, explicit host reconnect, and an independent TLS consumer.
 This does not complete the Kafka provider or the delivery family.
 
 The SQL connection executor is implemented and has no external dependencies. It does not implement ROM Storage yet.
