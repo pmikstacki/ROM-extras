@@ -1,0 +1,27 @@
+{
+  "image_id": "7b5ca1f11aa4c91593612d2d4a9e253ec9152a4bd13a19e551290a042a4c52f5",
+  "repo_digests": [
+    "docker.io/chrislusf/seaweedfs@sha256:4e61d15fd35994cb1e43e1e553dff106794841fd9a99ade2fc8c8bfce4d7872d",
+    "docker.io/chrislusf/seaweedfs@sha256:aba492e2a4e4c90bff795745e8e660affa1f09e7650f5981bd7bccd1a06cd931"
+  ],
+  "entrypoint": [
+    "/entrypoint.sh"
+  ],
+  "scope": "image downloaded; isolated version command only; no S3 service or conformance",
+  "version_output": "version 30GB 4.48 530be3e37 linux amd64\n\nFor enterprise users, please visit https://seaweedfs.com for the SeaweedFS Enterprise Edition,\nwhich has advanced features, including data recovery, self-healing storage, customizable erasure coding, EC vacuum and repair, etc.\n",
+  "version_command_exit": 0,
+  "version_command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "--memory",
+    "128m",
+    "--cpus",
+    "1",
+    "docker.io/chrislusf/seaweedfs:4.48",
+    "version"
+  ],
+  "selected_digest": "sha256:aba492e2a4e4c90bff795745e8e660affa1f09e7650f5981bd7bccd1a06cd931"
+}

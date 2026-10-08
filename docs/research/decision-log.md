@@ -151,3 +151,14 @@ The assessment [documents lifecycle ownership and trusted cleanup](azure-blob-li
 Drain BlobService, drain Runtime, then drop Runtime owners before native reopen.
 Retain unattached and detached bytes because neither a receipt nor a missing Resource proves grace and quiescence.
 No automatic deletion is added; reconciliation and actual wire failure evidence remain separate work.
+
+
+## 2026-10-08: Maintained S3 fixture candidate
+
+Qualify SeaweedFS 4.48 first through the existing public ROM S3 adapter.
+The [candidate assessment](s3-compatible-fixture-assessment.md) compares current official source, distribution, license, and conditional-write behavior.
+MinIO community now states it is no longer maintained; preserve ROM's historical profile without selecting it as a maintained fixture.
+[Current MinIO README](https://github.com/minio/minio/blob/master/README.md) establishes that change.
+[SeaweedFS quickstart](https://github.com/seaweedfs/seaweedfs/blob/master/README.md) identifies the project image and authenticated mini launch.
+Garage remains an alternative needing its own conditional-create qualification.
+The actual 4.48 artifact download and isolated version check are recorded separately; neither establishes S3 conformance.
