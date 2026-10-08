@@ -1,0 +1,17 @@
+[workspace]
+members = ["crates/rom-sql-core"]
+exclude = ["tests/public-consumer"]
+resolver = "3"
+
+[workspace.package]
+version = "0.1.0-dev"
+edition = "2024"
+rust-version = "1.99"
+license = "MIT"
+repository = "https://github.com/pmikstacki/ROM-extras"
+publish = false
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+unused_must_use = "deny"
+missing_docs = "deny"

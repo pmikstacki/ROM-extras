@@ -1,0 +1,5 @@
+/target/
+/tests/public-consumer/target/
+/.superpowers/
+/.worktrees/
+.env
