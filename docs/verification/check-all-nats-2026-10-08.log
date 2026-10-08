@@ -1,0 +1,488 @@
+rustc 1.99.0 (b940084d7 2026-09-28)
+binary: rustc
+commit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4
+commit-date: 2026-09-28
+host: x86_64-unknown-linux-gnu
+release: 1.99.0
+LLVM version: 23.1.1
+   Compiling syn v2.0.119
+    Checking rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking http v1.5.0
+   Compiling time-macros v0.2.32
+   Compiling zeroize_derive v1.5.0
+   Compiling tracing-attributes v0.1.31
+    Checking zeroize v1.9.1
+    Checking aws-lc-rs v1.18.1
+    Checking rustls-pki-types v1.15.1
+    Checking tracing v0.1.44
+    Checking http-body v1.1.0
+    Checking rustls-webpki v0.103.15
+    Checking time v0.3.55
+    Checking rustls v0.23.45
+    Checking rustls-native-certs v0.8.4
+    Checking rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+    Checking hyper v1.12.0
+    Checking hyper-util v0.1.21
+    Checking tokio-rustls v0.26.6
+    Checking tower v0.5.3
+    Checking rustls-platform-verifier v0.7.1
+    Checking tower-http v0.6.11
+    Checking simple_asn1 v0.6.4
+    Checking hyper-rustls v0.27.10
+    Checking http-body-util v0.1.5
+    Checking rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking jsonwebtoken v11.1.0
+    Checking reqwest v0.13.5
+    Checking rom-redb v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-sqlite v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling pin-project-internal v1.1.13
+    Checking rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Checking rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+    Checking rom-sql-core v0.1.0-dev (/root/ROM-extras/crates/rom-sql-core)
+    Checking pin-project v1.1.13
+    Checking async-nats v0.50.0
+    Checking rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 6.54s
+   Compiling zeroize v1.9.1
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling aws-lc-rs v1.18.1
+   Compiling rustls-pki-types v1.15.1
+   Compiling rustls-webpki v0.103.15
+   Compiling rustls v0.23.45
+   Compiling time-macros v0.2.32
+   Compiling tracing v0.1.44
+   Compiling http v1.5.0
+   Compiling time v0.3.55
+   Compiling http-body v1.1.0
+   Compiling rustls-native-certs v0.8.4
+   Compiling rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+   Compiling tokio-rustls v0.26.6
+   Compiling hyper v1.12.0
+   Compiling tower v0.5.3
+   Compiling hyper-util v0.1.21
+   Compiling rustls-platform-verifier v0.7.1
+   Compiling simple_asn1 v0.6.4
+   Compiling hyper-rustls v0.27.10
+   Compiling tower-http v0.6.11
+   Compiling http-body-util v0.1.5
+   Compiling rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling jsonwebtoken v11.1.0
+   Compiling reqwest v0.13.5
+   Compiling rom-redb v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-sqlite v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling pin-project v1.1.13
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+   Compiling async-nats v0.50.0
+   Compiling rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 11.81s
+     Running unittests src/lib.rs (target/debug/deps/rom_delivery_core-29c077dc880b17d4)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/preparation.rs (target/debug/deps/preparation-c5889179108c7e05)
+
+running 5 tests
+test encoded_byte_limit_includes_json_quotes_escaping_and_utf8 ... ok
+test invalid_identity_rejects_before_payload_encoding ... ok
+test retry_keeps_identity_and_payload_but_exposes_the_runtime_attempt ... ok
+test prepared_debug_output_does_not_disclose_payload_values ... ok
+test scalar_payloads_keep_null_false_zero_and_empty_distinct ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/signing.rs (target/debug/deps/signing-9fae795378bf2b0e)
+
+running 2 tests
+test signature_matches_independent_node_crypto_vector ... ok
+test rotation_signs_with_current_and_previous_keys_without_changing_the_message ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_nats-65162bacc7980ce0)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_oidc_presets-9c4f12d0a5c0136e)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/configuration.rs (target/debug/deps/configuration-cfa005d457e96ae3)
+
+running 6 tests
+test entra_binds_one_concrete_tenant ... ok
+test configuration_delegates_names_and_does_not_fetch_keys ... ok
+test exact_issuer_preserves_the_original_binding ... ok
+test unicode_whitespace_and_controls_are_rejected_before_url_parsing ... ok
+test invalid_issuer_forms_are_rejected ... ok
+test keycloak_keeps_the_deployment_context_path ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/verification.rs (target/debug/deps/verification-e85ffaaff99f9c15)
+
+running 3 tests
+test rotation_replaces_keys_without_changing_the_issuer_or_profile ... ok
+test every_preset_preserves_rom_human_evidence_and_expiry ... ok
+test binding_expiry_and_signature_failures_cannot_create_evidence ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_sql_core-3b3abcab3f618c41)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/executor.rs (target/debug/deps/executor-d25b2c9f4e290f13)
+
+running 13 tests
+test invalid_capacity_rejects_before_connection_initialization ... ok
+test full_queue_rejects_before_running_the_operation ... ok
+test initialization_errors_and_panics_are_reported_before_admission ... ok
+test terminal_responses_are_consumed_once_even_after_failure ... ok
+test recursive_use_rejects_instead_of_deadlocking_the_connection ... ok
+test panicking_operation_has_unknown_outcome_and_retires_connection ... ok
+test dropping_last_handle_allows_admitted_work_to_finish ... ok
+test connection_is_created_and_used_on_its_worker_even_when_not_send ... ok
+test waiting_deadline_preserves_ticket_and_does_not_cancel_admitted_work ... ok
+test discarding_a_ticket_does_not_discard_an_admitted_operation ... ok
+test close_stops_admission_but_drains_accepted_operations ... ok
+test shutdown_joins_connection_destruction_and_reports_destructor_panics ... ok
+test cloned_handles_serialize_connection_operations ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_webhook-2fda3ce3c59e4d03)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/https.rs (target/debug/deps/https-3d053c53116c1285)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/policy.rs (target/debug/deps/policy-9c0cc79ddda75465)
+
+running 2 tests
+test refuses_unbounded_or_inconsistent_transport_limits ... ok
+test refuses_non_public_resolutions_and_ambiguous_urls ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/runtime.rs (target/debug/deps/runtime-5d4abbdefa43a6e6)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_delivery_core
+
+running 1 test
+test crates/rom-delivery-core/src/lib.rs - (line 7) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.19s; merged doctests compilation took 0.18s
+   Doc-tests rom_nats
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_oidc_presets
+
+running 1 test
+test crates/rom-oidc-presets/src/lib.rs - (line 6) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.18s; merged doctests compilation took 0.18s
+   Doc-tests rom_sql_core
+
+running 1 test
+test crates/rom-sql-core/src/lib.rs - (line 7) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.22s; merged doctests compilation took 0.22s
+   Doc-tests rom_webhook
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.06s
+     Running unittests src/lib.rs (target/debug/deps/rom_webhook-ea45fc455bcf889a)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/https.rs (target/debug/deps/https-03edca90e99b0a5b)
+
+running 1 test
+(node:2030642) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+test delivers_signed_exact_bytes_and_preserves_uncertainty ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.50s
+
+     Running tests/policy.rs (target/debug/deps/policy-2cc1dc3a1f69ac2d)
+
+running 2 tests
+test refuses_unbounded_or_inconsistent_transport_limits ... ok
+test refuses_non_public_resolutions_and_ambiguous_urls ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/runtime.rs (target/debug/deps/runtime-baad6e5ce1c53eba)
+
+running 3 tests
+(node:2030848) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2030863) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2030874) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2030895) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2030917) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2030929) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+test source_disclosure_revocation_stops_pending_payload_before_transport ... ok
+(node:2030946) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+test durable_intent_reopen_delivery_and_revocation ... ok
+(node:2031050) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+test lost_ack_retry_survives_receiver_restart_and_attempt_budget_is_finite ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.10s
+
+   Doc-tests rom_webhook
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+    Checking rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+    Checking rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.27s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s
+   Doc-tests rom_delivery_core
+
+running 1 test
+test crates/rom-delivery-core/src/lib.rs - (line 7) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.19s; merged doctests compilation took 0.18s
+   Doc-tests rom_nats
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_oidc_presets
+
+running 1 test
+test crates/rom-oidc-presets/src/lib.rs - (line 6) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.18s; merged doctests compilation took 0.18s
+   Doc-tests rom_sql_core
+
+running 1 test
+test crates/rom-sql-core/src/lib.rs - (line 7) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.22s; merged doctests compilation took 0.22s
+   Doc-tests rom_webhook
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+    Checking futures-util v0.3.34
+    Checking rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking hyper-util v0.1.21
+    Checking tower v0.5.3
+    Checking rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+    Checking hyper-rustls v0.27.10
+    Checking tower-http v0.6.11
+    Checking async-nats v0.50.0
+    Checking reqwest v0.13.5
+ Documenting rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+ Documenting rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+ Documenting rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+ Documenting rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.95s
+   Generated /root/ROM-extras/target/doc/rom_delivery_core/index.html and 4 other files
+    Checking rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Checking rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+    Checking rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.16s
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.47s
+     Running `tests/public-consumer/target/debug/rom-extras-public-consumer`
+Public custom field, connection execution, issuer preset, and bounded delivery verified.
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.14s
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.06s
+   Compiling serde v1.0.229
+   Compiling simple_asn1 v0.6.4
+   Compiling bytes v1.12.1
+   Compiling jsonwebtoken v11.1.0
+   Compiling tokio v1.53.1
+   Compiling http v1.5.0
+   Compiling http-body v1.1.0
+   Compiling postgres-protocol v0.6.12
+   Compiling postgres-types v0.2.14
+   Compiling tokio-rustls v0.26.6
+   Compiling hyper v1.12.0
+   Compiling tokio-util v0.7.19
+   Compiling hyper-util v0.1.21
+   Compiling tower v0.5.3
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling hyper-rustls v0.27.10
+   Compiling tower-http v0.6.11
+   Compiling tryhard v0.5.2
+   Compiling tokio-stream v0.1.19
+   Compiling http-body-util v0.1.5
+   Compiling serde_nanos v0.1.4
+   Compiling serde_repr v0.1.21
+   Compiling tokio-postgres v0.7.18
+   Compiling rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+   Compiling async-nats v0.50.0
+   Compiling reqwest v0.13.5
+   Compiling rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+   Compiling postgres v0.19.14
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 13.68s
+     Running tests/postgres_executor.rs (tests/public-consumer/target/debug/deps/postgres_executor-c844a0714991c496)
+
+running 3 tests
+test postgres_client_runs_on_its_worker_inside_a_tokio_caller ... ok
+test a_driver_job_panic_retires_its_connection_and_rolls_back_uncommitted_sql ... ok
+test waiting_deadline_does_not_cancel_the_real_database_commit ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+    Checking serde v1.0.229
+    Checking simple_asn1 v0.6.4
+    Checking bytes v1.12.1
+    Checking jsonwebtoken v11.1.0
+    Checking tokio v1.53.1
+    Checking http v1.5.0
+    Checking http-body v1.1.0
+    Checking postgres-protocol v0.6.12
+    Checking postgres-types v0.2.14
+    Checking http-body-util v0.1.5
+    Checking serde_nanos v0.1.4
+    Checking rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+    Checking tokio-rustls v0.26.6
+    Checking hyper v1.12.0
+    Checking tokio-util v0.7.19
+    Checking rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking hyper-util v0.1.21
+    Checking tower v0.5.3
+    Checking tower-http v0.6.11
+    Checking hyper-rustls v0.27.10
+    Checking tokio-stream v0.1.19
+    Checking tryhard v0.5.2
+    Checking async-nats v0.50.0
+    Checking rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+    Checking reqwest v0.13.5
+    Checking tokio-postgres v0.7.18
+    Checking postgres v0.19.14
+    Checking rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Checking rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.50s
+   Compiling tokio-rustls v0.26.6
+   Compiling hyper-util v0.1.21
+   Compiling tower v0.5.3
+   Compiling simple_asn1 v0.6.4
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling tokio-util v0.7.19
+   Compiling tower-http v0.6.11
+   Compiling jsonwebtoken v11.1.0
+   Compiling hyper-rustls v0.27.10
+   Compiling async-nats v0.50.0
+   Compiling rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+   Compiling reqwest v0.13.5
+   Compiling rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling asynchronous-codec v0.7.0
+   Compiling tiberius v0.13.0
+   Compiling rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 8.65s
+     Running tests/mssql_executor.rs (tests/public-consumer/target/debug/deps/mssql_executor-cfd71e00796198f0)
+
+running 3 tests
+test async_tds_connection_runs_on_its_worker_inside_a_tokio_host ... ok
+test caller_timeout_does_not_cancel_a_later_sql_server_commit ... ok
+test panic_retires_tds_connection_and_open_transaction_rolls_back ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.18s
+
+    Checking tokio-rustls v0.26.6
+    Checking tower v0.5.3
+    Checking hyper-util v0.1.21
+    Checking simple_asn1 v0.6.4
+    Checking rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking tokio-util v0.7.19
+    Checking tower-http v0.6.11
+    Checking jsonwebtoken v11.1.0
+    Checking hyper-rustls v0.27.10
+    Checking async-nats v0.50.0
+    Checking rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+    Checking reqwest v0.13.5
+    Checking rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking asynchronous-codec v0.7.0
+    Checking tiberius v0.13.0
+    Checking rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Checking rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+    Checking rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.28s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.06s
+     Running tests/broker.rs (target/debug/deps/broker-a993094a8d58c0f1)
+
+running 1 test
+test acknowledges_exact_payload_and_deduplicates_after_broker_restart ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.20s
+
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.10s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s
+     Running tests/nats_delivery.rs (tests/public-consumer/target/debug/deps/nats_delivery-1a5d1d2428e757d9)
+
+running 1 test
+test public_adapter_gets_real_jetstream_acknowledgement ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.10s

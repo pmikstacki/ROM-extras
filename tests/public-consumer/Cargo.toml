@@ -9,6 +9,7 @@ license = "MIT"
 [workspace]
 
 [features]
+nats-conformance = ["dep:async-nats", "dep:tokio"]
 postgres-conformance = ["dep:postgres", "dep:tokio"]
 mssql-conformance = ["dep:tiberius", "dep:tokio", "dep:tokio-util"]
 
@@ -20,7 +21,13 @@ required-features = ["postgres-conformance"]
 name = "mssql_executor"
 required-features = ["mssql-conformance"]
 
+[[test]]
+name = "nats_delivery"
+required-features = ["nats-conformance"]
+
 [dependencies]
+rom-nats = { path = "../../crates/rom-nats" }
+async-nats = { version = "=0.50.0", default-features = false, features = ["jetstream", "aws-lc-rs", "nuid"], optional = true }
 rom = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false }
 rom-sql-core = { path = "../../crates/rom-sql-core" }
 rom-oidc-presets = { path = "../../crates/rom-oidc-presets" }

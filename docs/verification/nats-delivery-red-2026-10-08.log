@@ -1,0 +1,97 @@
+    Updating crates.io index
+     Locking 24 packages to highest Rust 1.99 compatible versions
+      Adding aho-corasick v1.1.5
+      Adding async-nats v0.50.0
+      Adding futures-sink v0.3.34
+      Adding nuid v0.5.0
+      Adding pin-project v1.1.13
+      Adding pin-project-internal v1.1.13
+      Adding portable-atomic v1.15.0
+      Adding ppv-lite86 v0.2.21
+      Adding rand v0.8.8
+      Adding rand_chacha v0.3.1
+      Adding regex v1.13.1
+      Adding regex-automata v0.4.18
+      Adding regex-syntax v0.8.11
+      Adding serde_nanos v0.1.4
+      Adding serde_repr v0.1.21
+      Adding tokio-stream v0.1.19
+      Adding tokio-util v0.7.19
+      Adding tokio-websockets v0.10.1
+      Adding tracing-attributes v0.1.31
+      Adding tryhard v0.5.2
+      Adding webpki-roots v0.26.11
+      Adding webpki-roots v1.0.9
+      Adding zerocopy v0.8.62
+      Adding zerocopy-derive v0.8.62
+ Downloading crates ...
+  Downloaded nuid v0.5.0
+  Downloaded rand_chacha v0.3.1
+  Downloaded webpki-roots v0.26.11
+  Downloaded serde_nanos v0.1.4
+  Downloaded serde_repr v0.1.21
+  Downloaded pin-project-internal v1.1.13
+  Downloaded tryhard v0.5.2
+  Downloaded tokio-stream v0.1.19
+  Downloaded pin-project v1.1.13
+  Downloaded rand v0.8.8
+  Downloaded tokio-websockets v0.10.1
+  Downloaded portable-atomic v1.15.0
+   Compiling serde_core v1.0.229
+   Compiling serde v1.0.229
+   Compiling memchr v2.8.3
+   Compiling zerocopy v0.8.62
+   Compiling syn v2.0.119
+   Compiling getrandom v0.2.17
+   Compiling rand_core v0.10.1
+   Compiling rustls v0.23.45
+   Compiling getrandom v0.4.3
+   Compiling cpufeatures v0.3.1
+   Compiling thiserror v2.0.21
+   Compiling portable-atomic v1.15.0
+   Compiling aws-lc-rs v1.18.1
+   Compiling futures-sink v0.3.34
+   Compiling regex-syntax v0.8.11
+   Compiling slab v0.4.12
+   Compiling futures-task v0.3.34
+   Compiling chacha20 v0.10.2
+   Compiling serde_repr v0.1.21
+   Compiling rand_core v0.6.4
+   Compiling futures-util v0.3.34
+   Compiling rand v0.10.3
+   Compiling aho-corasick v1.1.5
+   Compiling rustls-webpki v0.103.15
+   Compiling regex-automata v0.4.18
+   Compiling serde_json v1.0.151
+   Compiling deranged v0.5.8
+   Compiling bytes v1.12.1
+   Compiling serde_nanos v0.1.4
+   Compiling tokio v1.53.1
+   Compiling tracing-attributes v0.1.31
+   Compiling pin-project-internal v1.1.13
+   Compiling time v0.3.55
+   Compiling regex v1.13.1
+   Compiling ppv-lite86 v0.2.21
+   Compiling rand_chacha v0.3.1
+   Compiling pin-project v1.1.13
+   Compiling tracing v0.1.44
+   Compiling rand v0.8.8
+   Compiling nuid v0.5.0
+   Compiling tokio-rustls v0.26.6
+   Compiling tokio-stream v0.1.19
+   Compiling tryhard v0.5.2
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling tokio-util v0.7.19
+   Compiling async-nats v0.50.0
+   Compiling rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+error[E0432]: unresolved import `rom_nats::JetStreamDelivery`
+ --> crates/rom-nats/tests/broker.rs:4:5
+  |
+4 | use rom_nats::JetStreamDelivery;
+  |     ^^^^^^^^^^-----------------
+  |               |
+  |               no `JetStreamDelivery` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rom-nats` (test "broker") due to 1 previous error

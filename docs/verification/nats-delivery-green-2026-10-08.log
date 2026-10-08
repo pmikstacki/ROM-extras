@@ -1,0 +1,22 @@
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.98s
+     Running tests/broker.rs (target/debug/deps/broker-ebd1d3ff4b95720d)
+
+running 1 test
+test acknowledges_exact_payload_and_deduplicates_after_broker_restart ... FAILED
+
+failures:
+
+---- acknowledges_exact_payload_and_deduplicates_after_broker_restart stdout ----
+
+thread 'acknowledges_exact_payload_and_deduplicates_after_broker_restart' (2022619) panicked at crates/rom-nats/tests/broker.rs:17:29:
+fixture connection failed
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    acknowledges_exact_payload_and_deduplicates_after_broker_restart
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p rom-nats --test broker`

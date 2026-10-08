@@ -1,0 +1,114 @@
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.57s
+     Running tests/broker.rs (target/debug/deps/broker-a993094a8d58c0f1)
+
+running 1 test
+test acknowledges_exact_payload_and_deduplicates_after_broker_restart ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.82s
+
+    Checking serde_core v1.0.229
+    Checking memchr v2.8.3
+    Checking getrandom v0.2.17
+    Checking zerocopy v0.8.62
+    Checking rand_core v0.10.1
+    Checking cpufeatures v0.3.1
+    Checking regex-syntax v0.8.11
+    Checking futures-sink v0.3.34
+    Checking aws-lc-rs v1.18.1
+   Compiling rustls v0.23.45
+    Checking futures-task v0.3.34
+    Checking slab v0.4.12
+    Checking tracing v0.1.44
+    Checking pin-project v1.1.13
+    Checking thiserror v2.0.21
+    Checking portable-atomic v1.15.0
+    Checking rand_core v0.6.4
+    Checking chacha20 v0.10.2
+    Checking getrandom v0.4.3
+    Checking futures-util v0.3.34
+    Checking rand v0.10.3
+    Checking aho-corasick v1.1.5
+    Checking rustls-webpki v0.103.15
+    Checking regex-automata v0.4.18
+    Checking serde v1.0.229
+    Checking serde_json v1.0.151
+    Checking deranged v0.5.8
+    Checking bytes v1.12.1
+    Checking serde_nanos v0.1.4
+    Checking tokio v1.53.1
+    Checking time v0.3.55
+    Checking regex v1.13.1
+    Checking ppv-lite86 v0.2.21
+    Checking rand_chacha v0.3.1
+    Checking rand v0.8.8
+    Checking nuid v0.5.0
+    Checking rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking tokio-rustls v0.26.6
+    Checking tokio-stream v0.1.19
+    Checking tryhard v0.5.2
+    Checking tokio-util v0.7.19
+    Checking async-nats v0.50.0
+    Checking rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+    Checking rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.39s
+   Compiling serde_core v1.0.229
+   Compiling futures-util v0.3.34
+   Compiling time-macros v0.2.32
+   Compiling tracing v0.1.44
+   Compiling zerocopy v0.8.62
+   Compiling thiserror v2.0.21
+   Compiling getrandom v0.2.17
+   Compiling aho-corasick v1.1.5
+   Compiling rustls v0.23.45
+   Compiling regex-syntax v0.8.11
+   Compiling pin-project v1.1.13
+   Compiling portable-atomic v1.15.0
+   Compiling rand_core v0.6.4
+   Compiling regex-automata v0.4.18
+   Compiling serde v1.0.229
+   Compiling serde_json v1.0.151
+   Compiling deranged v0.5.8
+   Compiling bytes v1.12.1
+   Compiling serde_nanos v0.1.4
+   Compiling tokio v1.53.1
+   Compiling http v1.5.0
+   Compiling time v0.3.55
+   Compiling http-body v1.1.0
+   Compiling rustls-platform-verifier v0.7.1
+   Compiling http-body-util v0.1.5
+   Compiling ppv-lite86 v0.2.21
+   Compiling regex v1.13.1
+   Compiling rand_chacha v0.3.1
+   Compiling rand v0.8.8
+   Compiling nuid v0.5.0
+   Compiling simple_asn1 v0.6.4
+   Compiling jsonwebtoken v11.1.0
+   Compiling rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+   Compiling tokio-rustls v0.26.6
+   Compiling hyper v1.12.0
+   Compiling tower v0.5.3
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling tokio-stream v0.1.19
+   Compiling tokio-util v0.7.19
+   Compiling tryhard v0.5.2
+   Compiling async-nats v0.50.0
+   Compiling tower-http v0.6.11
+   Compiling hyper-util v0.1.21
+   Compiling hyper-rustls v0.27.10
+   Compiling reqwest v0.13.5
+   Compiling rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.27s
+     Running tests/nats_delivery.rs (tests/public-consumer/target/debug/deps/nats_delivery-1a5d1d2428e757d9)
+
+running 1 test
+test public_adapter_gets_real_jetstream_acknowledgement ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.16s

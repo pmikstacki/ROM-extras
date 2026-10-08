@@ -1,0 +1,29 @@
+[package]
+name = "rom-nats"
+description = "Acknowledged JetStream delivery for ROM channels"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[features]
+broker-conformance = []
+
+[dependencies]
+rom = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false }
+rom-delivery-core = { path = "../rom-delivery-core" }
+async-nats = { version = "=0.50.0", default-features = false, features = ["jetstream", "aws-lc-rs", "nuid"] }
+tokio = { version = "=1.53.1", features = ["time", "sync"] }
+
+[dev-dependencies]
+futures-util = "=0.3.34"
+tokio = { version = "=1.53.1", features = ["rt", "macros", "net"] }
+
+[[test]]
+name = "broker"
+required-features = ["broker-conformance"]

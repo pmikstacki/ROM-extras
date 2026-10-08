@@ -1,0 +1,77 @@
+    Updating crates.io index
+     Locking 22 packages to highest Rust 1.99 compatible versions
+      Adding aho-corasick v1.1.5
+      Adding async-nats v0.50.0
+      Adding nuid v0.5.0
+      Adding pin-project v1.1.13
+      Adding pin-project-internal v1.1.13
+      Adding portable-atomic v1.15.0
+      Adding ppv-lite86 v0.2.21
+      Adding rand v0.8.8
+      Adding rand_chacha v0.3.1
+      Adding regex v1.13.1
+      Adding regex-automata v0.4.18
+      Adding regex-syntax v0.8.11
+      Adding rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+      Adding serde_nanos v0.1.4
+      Adding serde_repr v0.1.21
+      Adding tokio-stream v0.1.19
+      Adding tokio-websockets v0.10.1
+      Adding tryhard v0.5.2
+      Adding webpki-roots v0.26.11
+      Adding webpki-roots v1.0.9
+      Adding zerocopy v0.8.62
+      Adding zerocopy-derive v0.8.62
+   Compiling serde_core v1.0.229
+   Compiling serde v1.0.229
+    Checking futures-util v0.3.34
+   Compiling zerocopy v0.8.62
+   Compiling time-macros v0.2.32
+    Checking thiserror v2.0.21
+    Checking tracing v0.1.44
+    Checking getrandom v0.2.17
+    Checking rustls v0.23.45
+    Checking aho-corasick v1.1.5
+    Checking regex-syntax v0.8.11
+   Compiling portable-atomic v1.15.0
+   Compiling pin-project-internal v1.1.13
+   Compiling serde_repr v0.1.21
+    Checking rand_core v0.6.4
+    Checking pin-project v1.1.13
+    Checking regex-automata v0.4.18
+    Checking serde_json v1.0.151
+    Checking deranged v0.5.8
+    Checking bytes v1.12.1
+    Checking serde_nanos v0.1.4
+    Checking rustls-platform-verifier v0.7.1
+    Checking tokio v1.53.1
+    Checking http v1.5.0
+    Checking time v0.3.55
+    Checking regex v1.13.1
+    Checking http-body v1.1.0
+    Checking http-body-util v0.1.5
+    Checking ppv-lite86 v0.2.21
+    Checking rand_chacha v0.3.1
+    Checking rand v0.8.8
+    Checking nuid v0.5.0
+    Checking simple_asn1 v0.6.4
+    Checking jsonwebtoken v11.1.0
+    Checking rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+    Checking tokio-rustls v0.26.6
+    Checking hyper v1.12.0
+    Checking tower v0.5.3
+    Checking rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking tokio-stream v0.1.19
+    Checking tokio-util v0.7.19
+    Checking tryhard v0.5.2
+    Checking async-nats v0.50.0
+    Checking tower-http v0.6.11
+    Checking hyper-util v0.1.21
+    Checking hyper-rustls v0.27.10
+    Checking reqwest v0.13.5
+    Checking rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+    Checking rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Checking rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 9.22s

@@ -1,0 +1,33 @@
+    Updating crates.io index
+ Downloading crates ...
+  Downloaded async-nats v0.50.0
+async-nats #nats #client #messaging #api
+A async Rust NATS client
+version: 0.50.0
+license: Apache-2.0
+rust-version: 1.88.0
+documentation: https://docs.rs/async-nats
+homepage: https://github.com/nats-io/nats.rs
+repository: https://github.com/nats-io/nats.rs
+crates.io: https://crates.io/crates/async-nats/0.50.0
+features:
+ +default             = [server_2_10, server_2_11, server_2_12, server_2_14, service, ring, jetstream, nkeys, crypto, object-store, kv, websockets, nuid]
+  crypto              = []
+  jetstream           = [dep:time, dep:serde_nanos, dep:tryhard, dep:base64]
+  kv                  = [jetstream]
+  nkeys               = [dep:nkeys, dep:base64]
+  nuid                = [dep:nuid]
+  object-store        = [jetstream, crypto]
+  ring                = [dep:ring, tokio-rustls/ring, tokio-websockets?/ring]
+  server_2_10         = []
+  server_2_11         = []
+  server_2_12         = []
+  server_2_14         = []
+  service             = [dep:time, dep:serde_nanos]
+  websockets          = [dep:tokio-websockets]
+  aws-lc-rs           = [dep:aws-lc-rs, tokio-rustls/aws-lc-rs, tokio-websockets?/aws-lc-rs, rustls-webpki/aws-lc-rs]
+  chrono              = [dep:chrono]
+  compatibility_tests = []
+  experimental        = []
+  fips                = [aws-lc-rs, tokio-rustls/fips]
+  slow_tests          = []

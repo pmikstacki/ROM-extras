@@ -1,0 +1,7 @@
+Trying to pull docker.io/library/nats:latest...
+Getting image source signatures
+Copying blob sha256:d72159414f397dc199b0844a9b02f0fb62a21203a02430e169dd23d266513aa9
+Copying blob sha256:ea378396b0e495c1970376f95eb91ccdfc8ae09ef50b8a032095c896c7ad7a05
+Copying config sha256:2e42b765f589c73e6c915cfa6ab39199eafe8198627cb996e22e216991e8006a
+Writing manifest to image destination
+2e42b765f589c73e6c915cfa6ab39199eafe8198627cb996e22e216991e8006a

@@ -1,0 +1,231 @@
+{
+  "base": "77a54e513ad687cbd73ed7a2361e046280a52586",
+  "scope": "post-command source witness; not a complete pre/post source fence",
+  "command": "CARGO_BUILD_JOBS=2 ./scripts/check-all",
+  "terminal_exit": 0,
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1\n",
+  "source": [
+    {
+      "path": "crates/rom-nats/Cargo.toml",
+      "sha256": "bb5498f4db76bb3a457a0091557ec0873c0cee07b5848b76dd8089941ba66742"
+    },
+    {
+      "path": "crates/rom-nats/src/delivery.rs",
+      "sha256": "174093580ae0fd17ed641a9568b27b5f7c2bbbf2cd8fb26d32a8eb17ec559ba2"
+    },
+    {
+      "path": "crates/rom-nats/src/error.rs",
+      "sha256": "8057cb585fc19c0b41117cf75ccb880685cc1bd68633d59d76f2481110a537c5"
+    },
+    {
+      "path": "crates/rom-nats/src/lib.rs",
+      "sha256": "1dad95e71fd5045ae735f140f681b70a536237b3da4b4065c4d555e54b0a651f"
+    },
+    {
+      "path": "crates/rom-nats/tests/broker.rs",
+      "sha256": "eb7b61e1097db509188c7add23646588fa299e79c185199923ff7109b08bfd67"
+    },
+    {
+      "path": "scripts/check-nats",
+      "sha256": "034cc0ba134aafc7d0056a06401d51852422148e0f2869c51377a9cbb4a1c117"
+    },
+    {
+      "path": "tests/public-consumer/tests/nats_delivery.rs",
+      "sha256": "d2d90a3d2558fc3ff7e1c79ecc7376d60ed34ce3ad426bb9b0a2ace626c906dc"
+    },
+    {
+      "path": "Cargo.lock",
+      "sha256": "0b3ad63f44bad7176f5df96b432bc9ab784a297f0b2e0ddc0bd75e755d09d5c2"
+    },
+    {
+      "path": "Cargo.toml",
+      "sha256": "b43f6ccc27dd9287b25eef29a51af07fab4457bf022a635bd49e189a4625b321"
+    },
+    {
+      "path": "crates/rom-delivery-core/Cargo.toml",
+      "sha256": "9eeb960043716e81d2872dd93beb1ca13a1e843de4a8fa818c4bd6cae3120021"
+    },
+    {
+      "path": "crates/rom-delivery-core/src/error.rs",
+      "sha256": "3876d5ed3db088d3c5332a4732ab6dfb16ff844a88114918aaf20eff26f5ce4b"
+    },
+    {
+      "path": "crates/rom-delivery-core/src/lib.rs",
+      "sha256": "d6f25cff9c6892a5f90fcced6ec7a738906f676d1289da1d77e0aaebc92540c2"
+    },
+    {
+      "path": "crates/rom-delivery-core/src/limits.rs",
+      "sha256": "68cbfd6b8f62f8cd554f8fc57eedbad3cf63470c87b7dd487e93d5569238c900"
+    },
+    {
+      "path": "crates/rom-delivery-core/src/message.rs",
+      "sha256": "35e1d7458ce61883040f4a73774ebf51cc342c630fe40f1526bfd5a0824a915a"
+    },
+    {
+      "path": "crates/rom-delivery-core/src/signature.rs",
+      "sha256": "b26f956d5f725f6328a964e83434f2612dc62cfdded8b24c3a9e448635ab8527"
+    },
+    {
+      "path": "crates/rom-delivery-core/tests/preparation.rs",
+      "sha256": "db0f5562ad9db047d65be12a4377532a2f104d17aa3b9331a87971122b1c89d7"
+    },
+    {
+      "path": "crates/rom-delivery-core/tests/signing.rs",
+      "sha256": "9d7364ad759654c36f0b35718de76967c06954e27caddf10218add3f17c060d8"
+    },
+    {
+      "path": "crates/rom-oidc-presets/Cargo.toml",
+      "sha256": "d29521c23653a4664fb7d0d7182a0db78d9928031639239a2daf03a430f4565c"
+    },
+    {
+      "path": "crates/rom-oidc-presets/src/issuer.rs",
+      "sha256": "b06c011789e31bd9e167042d0680cee4274f4ea3e3fa3ce1b87b2c519b9e7b30"
+    },
+    {
+      "path": "crates/rom-oidc-presets/src/lib.rs",
+      "sha256": "9282e10faa973e4478e65a0655966c3a597587b0735632e6a2f3fd8b979d891b"
+    },
+    {
+      "path": "crates/rom-oidc-presets/tests/configuration.rs",
+      "sha256": "85f9422d8945593b5a2822591109db7ed1d7461fd6716197ded48ebd884424c3"
+    },
+    {
+      "path": "crates/rom-oidc-presets/tests/verification.rs",
+      "sha256": "0fefd8134c5d187f0b186f3549fd183743bb3573a38fdfefb2aee4a9d51d6732"
+    },
+    {
+      "path": "crates/rom-sql-core/Cargo.toml",
+      "sha256": "dd742e29d9dbcc77fcfbbf82460c37a4166f962ce9b62ad27624b2afc8e3982b"
+    },
+    {
+      "path": "crates/rom-sql-core/src/error.rs",
+      "sha256": "794c3b33983f4a74fdd7edfefeb1db6e6c50376c3c39a1e92034fbfbac343d07"
+    },
+    {
+      "path": "crates/rom-sql-core/src/executor.rs",
+      "sha256": "b969dba2859253e83aedbb6fd36d662d20985fcb8083c350dcd8f3d0dae8aa5e"
+    },
+    {
+      "path": "crates/rom-sql-core/src/lib.rs",
+      "sha256": "76f17c6bf390730e0138b714c532ce5213382b4888b115f6aa9e933c4b67d7c8"
+    },
+    {
+      "path": "crates/rom-sql-core/src/ticket.rs",
+      "sha256": "2cfb1af015d064284a0778454bd91f05a653450cd907137c645dceb4fe3d5e99"
+    },
+    {
+      "path": "crates/rom-sql-core/tests/executor.rs",
+      "sha256": "e2ef0b65dd24a80edcca7927edccd1ff8423c24911bfe92fe94b05b9348dda88"
+    },
+    {
+      "path": "crates/rom-webhook/Cargo.toml",
+      "sha256": "753ede94a6015149520392e68fe0464618be4fbbf998859ae880e686fe55f9d8"
+    },
+    {
+      "path": "crates/rom-webhook/src/destination.rs",
+      "sha256": "38b425b58a0f1cbac2d31f03f8eb89e852d351cb75ddebcf3066195465db7da6"
+    },
+    {
+      "path": "crates/rom-webhook/src/error.rs",
+      "sha256": "c19d666e8b375a0952870590e4adb14597eef60575098889aa7ec99a3bcd5efa"
+    },
+    {
+      "path": "crates/rom-webhook/src/lib.rs",
+      "sha256": "0e5bb57f9b1e1b5862ba2c72c4b54510b1023d002b03f389213888b709d890a5"
+    },
+    {
+      "path": "crates/rom-webhook/src/limits.rs",
+      "sha256": "283e90380403c498bdd73910343f835ed8e906fed15bbef6348725a8c0ae97a2"
+    },
+    {
+      "path": "crates/rom-webhook/src/transport.rs",
+      "sha256": "bee0566f26c13b4496f096ce600c8e02b9d84dd246a6cd66d6b62518a0897eac"
+    },
+    {
+      "path": "crates/rom-webhook/tests/common/mod.rs",
+      "sha256": "3204b0d24ce3a69a97c26fc75281f6e4320d2b96abee4b46ae0d47c6afabdafe"
+    },
+    {
+      "path": "crates/rom-webhook/tests/common/receiver.rs",
+      "sha256": "f1eebdc8475c103761d67b3c8b1dbff40ff708c7a7c5e01f270f37f58480b66a"
+    },
+    {
+      "path": "crates/rom-webhook/tests/https.rs",
+      "sha256": "aac0db09a871eff6e66d5f0520d1df2f8e085c0927369605e01258b6aa5f66b1"
+    },
+    {
+      "path": "crates/rom-webhook/tests/policy.rs",
+      "sha256": "42b6f03d7a56db7d495ad770ce873ba10c4b45edb840c52ee3d6814ab9df87bc"
+    },
+    {
+      "path": "crates/rom-webhook/tests/receiver.cjs",
+      "sha256": "d2b3cecdfcb86411f8f4664007a710f9d6e6d7a1c2c0478cf042c6810312082d"
+    },
+    {
+      "path": "crates/rom-webhook/tests/runtime.rs",
+      "sha256": "aeb0e556d6ff5c5d8f0872b0d9e77bffe7dc646d2ce3385fe00de07f2feb777d"
+    },
+    {
+      "path": "scripts/check",
+      "sha256": "784b64e7eba5779497d29be7df046d020c558223cfa859e3e84e688ffd8c87ec"
+    },
+    {
+      "path": "scripts/check-all",
+      "sha256": "a098e8548831ce52cad8925ef0c8d68b23f3804334984ff4d31399b4f71e3c5e"
+    },
+    {
+      "path": "scripts/check-mssql",
+      "sha256": "cb3fd579f74fa67190cf66ca4576e8daa15c71035cd23fec3adf713c3d150801"
+    },
+    {
+      "path": "scripts/check-postgres",
+      "sha256": "11a623ce0de200ecbf92a0b821176df2503e3b58221b8471b999b8e7d056c7cc"
+    },
+    {
+      "path": "tests/public-consumer/Cargo.lock",
+      "sha256": "3217b44df5568138d384f4c292126530e6dc8411839ed2699b893808708e470a"
+    },
+    {
+      "path": "tests/public-consumer/Cargo.toml",
+      "sha256": "7ef59cf1ee873e742876638740276326b8661f46b1479ea589678ecc6c7ffc73"
+    },
+    {
+      "path": "tests/public-consumer/src/main.rs",
+      "sha256": "310ed685629a620f14259afc359870f41ca0331960edabf1a656c2889152c549"
+    },
+    {
+      "path": "tests/public-consumer/tests/mssql_executor.rs",
+      "sha256": "8e56711fa81b9e1585dfcb3b30647c7a5fe75155d8c880ef0c4d63399a3648e2"
+    },
+    {
+      "path": "tests/public-consumer/tests/postgres_executor.rs",
+      "sha256": "ea65495dbdcd3aa39af990897972df6fedb9793eef3907461b597d4db6a693ec"
+    }
+  ],
+  "driver": {
+    "name": "async-nats",
+    "version": "0.50.0",
+    "license": "Apache-2.0",
+    "rust_version": "1.88.0",
+    "vcs_commit": "9b382a2a01b5404cd66bee6c2b4f0c82c9943063"
+  },
+  "evidence": [
+    {
+      "path": "docs/verification/check-all-nats-2026-10-08.log",
+      "sha256": "c1c038d3131ddf912474668a18b61d449fa4a4897e65e09dfecfd4a7513b271c"
+    },
+    {
+      "path": "docs/verification/nats-runtime-profile-2026-10-08.json",
+      "sha256": "6785e96e52053e39992c92948d1a0cca64df329cfc4f2ce8cab6621e3bdd9cff"
+    },
+    {
+      "path": "docs/verification/nats-workspace-audit-2026-10-08.json",
+      "sha256": "bc73cf30c62eaa5feadd619b8af7563b7416ce70f442a0268565cecab1544f1d"
+    },
+    {
+      "path": "docs/verification/nats-consumer-audit-2026-10-08.json",
+      "sha256": "7c205d33f9df2841132f22bfaa93b9461465e55b97f529d3139e8fd87c613c1c"
+    }
+  ],
+  "release_admission": false
+}

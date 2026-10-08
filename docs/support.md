@@ -78,7 +78,8 @@ The Node 22.16 fixture SQLite API is experimental; this is not a production rece
 | OIDC | Preset configuration and signed synthetic-token integration verified; live provider login remains pending. |
 | OpenTelemetry | Public diagnostic interface publication and OTLP implementation remain pending. |
 | Webhooks | HTTPS/signing/destination policy and native Runtime recovery/authorization tests implemented; production receiver and release acceptance remain pending. |
-| Kafka, NATS, RabbitMQ, notifications | Shared delivery preparation/signing implemented; provider implementations and real acknowledgement/recovery remain pending. |
+| NATS | Acknowledged JetStream publication and broker recovery/redelivery verified; native Runtime and production TLS profile remain pending. |
+| Kafka, RabbitMQ, notifications | Shared delivery preparation/signing implemented; provider implementations and real acknowledgement/recovery remain pending. |
 | S3-compatible, Azure Blob | Existing ROM adapter review and missing-operation implementation/real fixtures remain pending. |
 | Secrets and KMS | Bounded family contract, provider implementation, and service verification remain pending. |
 | OpenSearch and vectors | Projection contract, implementation, authorization checks, and real fixtures remain pending. |
@@ -86,3 +87,17 @@ The Node 22.16 fixture SQLite API is experimental; this is not a production rece
 | Release | Packaged-consumer checks, compatibility, redistribution review, and whole-goal acceptance remain pending. |
 
 The full goal stays active. A verified increment does not complete its extension family or the whole repository scope.
+
+## NATS JetStream publication increment
+
+`rom-nats` implements bounded prepared JSON publication to an existing file-backed stream and exact configured subject.
+It waits for actual JetStream acknowledgement and preserves unknown outcomes and Runtime IDs.
+One comprehensive live broker test and an independent public-consumer test passed against NATS 2.15.0.
+The broker test verifies retained messages and deduplication across restart, consumer redelivery, and buffered publication after timeout.
+Source review found no actionable defects and identified the timeout-before-persistence evidence limit.
+The full local verifier passed across HTTPS, PostgreSQL, MSSQL, and NATS fixtures.
+Cargo-audit 0.22.2 found zero vulnerabilities/warnings in 237 workspace and 273 consumer packages.
+Both scans used RustSec commit `550efd3d587a29b2e2c2b21b17a440da4fede999` on 2026-10-08.
+Manifest license inventories have no absent declarations; redistribution review remains required.
+Native Runtime integration, direct acknowledgement-loss injection after persistence, and production TLS/reconnect remain pending.
+See [configuration, fixture, and limits](nats.md). No full NATS provider support is claimed.

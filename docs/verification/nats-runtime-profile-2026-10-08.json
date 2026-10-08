@@ -1,0 +1,1 @@
+{"version":"2.15.0","jetstream":{"max_memory":67108864,"max_storage":268435456,"store_dir":"/data/jetstream","sync_interval":120000000000,"sync_always":true,"compress_ok":true,"strict":true}}
