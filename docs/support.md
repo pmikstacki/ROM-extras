@@ -4,6 +4,7 @@ Date: 2026-10-08.
 No database or external-service provider is supported yet.
 
 Kafka now has an initial native publication increment. See [its contract and remaining gates](kafka.md).
+Kafka also has actual post-append acknowledgement-loss evidence and native QueueFull refusal.
 This does not complete the Kafka provider or the delivery family.
 
 The SQL connection executor is implemented and has no external dependencies. It does not implement ROM Storage yet.

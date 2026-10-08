@@ -26,3 +26,7 @@ tokio = { version = "=1.53.1", features = ["rt", "macros"] }
 [[test]]
 name = "broker"
 required-features = ["broker-conformance"]
+
+[[test]]
+name = "ack_loss"
+required-features = ["broker-conformance"]

@@ -1,0 +1,30 @@
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+warning: unused import: `Message`
+ --> crates/rom-kafka/tests/common/fixture.rs:3:19
+  |
+3 |     ClientConfig, Message, Offset, TopicPartitionList,
+  |                   ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `control`
+ --> crates/rom-kafka/tests/common/mod.rs:2:37
+  |
+2 | pub use fixture::{config, consumer, control, provision, read};
+  |                                     ^^^^^^^
+
+warning: unused import: `consumer::Consumer`
+ --> crates/rom-kafka/tests/ack_loss.rs:7:24
+  |
+7 | use rdkafka::{Message, consumer::Consumer, message::Headers};
+  |                        ^^^^^^^^^^^^^^^^^^
+
+warning: `rom-kafka` (test "ack_loss") generated 3 warnings (run `cargo fix --test "ack_loss" -p rom-kafka` to apply 3 suggestions)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.70s
+     Running tests/ack_loss.rs (target/debug/deps/ack_loss-cba2fb4ee4dd25ea)
+
+running 1 test
+test successful_broker_write_precedes_unknown_and_same_identity_retry ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 13.47s
+

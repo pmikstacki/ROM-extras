@@ -1,0 +1,10 @@
+{
+  "original_path": "/tmp/rom-kafka-ack-2762082-ROMEXTRAS_ACK_2762082_1791481789849265436.json",
+  "response": {
+    "api": 0,
+    "version": 10,
+    "correlation": 2,
+    "partition": 0,
+    "offset": "0"
+  }
+}

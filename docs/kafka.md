@@ -44,6 +44,10 @@ They restart the broker and read retained records. A paused broker demonstrates 
 Queued publication can complete after cancellation. A missing topic remains absent; no automatic topic creation is inferred.
 An independent public consumer provisions and reads its own topic through public APIs.
 
-Native QueueFull execution, actual post-commit acknowledgement loss, Runtime recovery, TLS/SASL, and release packaging remain pending.
+A native one-entry queue test verifies immediate QueueFull refusal without retirement.
+A bounded protocol proxy drops an actual successful ProduceResponse after broker append.
+A direct consumer reads the exact record while delivery remains pending; the outcome then becomes Unknown.
+Explicit replacement and same-ID retry create a second record. This does not establish a deduplicated consumer effect.
+Runtime recovery, TLS/SASL, and release packaging remain pending.
 The initial live run returned Unknown unexpectedly; its log and topic data are preserved.
 Later runs passed, but the initial cause remains undetermined. Do not treat the repeat as a root-cause fix.

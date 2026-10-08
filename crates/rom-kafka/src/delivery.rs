@@ -115,3 +115,6 @@ impl Drop for Attempt<'_> {
         }
     }
 }
+#[cfg(test)]
+#[path = "delivery_tests.rs"]
+mod tests;

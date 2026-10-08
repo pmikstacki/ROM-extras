@@ -1,0 +1,18 @@
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.39s
+     Running unittests src/lib.rs (target/debug/deps/rom_kafka-45c6ef61b9a808ee)
+
+running 4 tests
+test config_tests::transactional_configuration_is_refused_without_reinterpreting_it ... ok
+test config_tests::minimum_deadline_remains_finite_and_native_socket_timeout_is_valid ... ok
+test config_tests::native_aliases_cannot_weaken_acknowledgement_or_retry_bounds ... ok
+test delivery::tests::real_native_queue_full_refuses_before_enqueue_without_retiring ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.20s
+
+   Doc-tests rom_kafka
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
