@@ -91,7 +91,7 @@ The Node 22.16 fixture SQLite API is experimental; this is not a production rece
 | MSSQL | Three live executor tests, encryption, and restart control evidence; full Storage provider remains pending. |
 | MySQL, MariaDB | Five live executor tests each, binary identity and restart evidence; full Storage providers and verified TLS remain pending. |
 | CockroachDB | Seven real executor cases on v26.3.2, including actual 40001 retry and graceful restart; full Storage remains pending. |
-| Oracle | Driver research exists; native-client adoption and real-backend provider conformance remain pending. |
+| Oracle | Seven real OCI executor cases on 23.26.3, including RAW identity, full rollback and orderly restart; full Storage remains pending. |
 | OIDC | Preset configuration and signed synthetic-token integration verified; live provider login remains pending. |
 | OpenTelemetry | Public diagnostic interface publication and OTLP implementation remain pending. |
 | Webhooks | HTTPS/signing/destination policy and native Runtime recovery/authorization tests implemented; production receiver and release acceptance remain pending. |
@@ -223,3 +223,16 @@ byte identity and acknowledged false-row retention after confirmed graceful rest
 The required check-cockroach gate is part of check-all. It rejects missing configuration, wrong fixed endpoints and hostaddr overrides.
 See [fixture](cockroach-fixture.md) and [verification](verification/cockroach-executor-2026-10-08.md).
 This development-only NoTls profile is not a complete Storage provider, replicated ownership fence, quorum test or production licensing determination.
+
+
+## Oracle OCI shared executor increment
+
+Seven cases passed on Oracle Free 23.26.3.0.0 using rust-oracle 0.6.3 and verified pristine Instant Client Basic 23.26.3.0.0.
+They cover worker execution, later commit after caller timeout, panic retirement, ORA-00001 full rollback,
+RAW identity and NUMBER zero, bounded queue rejection, and acknowledged row retention after orderly restart.
+The fixture uses a fixed loopback endpoint and a user with bounded tablespace privileges.
+The required check-oracle gate is part of check-all; missing configuration fails.
+The consumer dependency graph adds ten packages, preserves all previous identities and checksums, and has zero reported RustSec vulnerabilities.
+This Rust audit does not assess native OCI security. Native libraries remain unmodified outside Git.
+See [fixture scope](oracle-fixture.md), [fixture facts](verification/oracle-fixture-2026-10-08.json), and [dependency inventory](verification/oracle-dependencies-2026-10-08.json).
+Full Storage, TLS, ambiguous commit fault injection, Transaction Guard, replicated durability and packaged release acceptance remain pending.

@@ -1,0 +1,19 @@
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.80s
+     Running tests/oracle_executor.rs (tests/public-consumer/target/debug/deps/oracle_executor-31e5288debc1bd67)
+
+running 1 test
+
+thread 'oracle_client_runs_on_its_worker_inside_a_tokio_caller' (3502530) panicked at tests/oracle_executor.rs:20:6:
+Oracle worker initialization: Initialization
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test oracle_client_runs_on_its_worker_inside_a_tokio_caller ... FAILED
+
+failures:
+
+failures:
+    oracle_client_runs_on_its_worker_inside_a_tokio_caller
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test oracle_executor`

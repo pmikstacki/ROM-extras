@@ -1,0 +1,18 @@
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.99s
+     Running tests/oracle_executor.rs (tests/public-consumer/target/debug/deps/oracle_executor-31e5288debc1bd67)
+
+running 6 tests
+test oracle_client_runs_on_its_worker_inside_a_tokio_caller ... ok
+test bounded_admission_rejects_a_job_without_running_it ... ok
+
+thread 'rom-sql-connection' (3508621) panicked at tests/oracle_executor.rs:109:13:
+synthetic panic before OCI commit
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test a_driver_job_panic_retires_its_connection_and_rolls_back_uncommitted_sql ... ok
+test waiting_deadline_does_not_cancel_the_real_database_commit ... ok
+test unique_violation_keeps_prior_write_pending_until_full_rollback ... ok
+test raw_identifiers_preserve_binary_identity_and_number_zero ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+

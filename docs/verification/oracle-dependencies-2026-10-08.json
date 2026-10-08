@@ -1,0 +1,139 @@
+{
+  "consumer_packages_before": 440,
+  "consumer_packages_after": 450,
+  "previous_identities_and_checksums_preserved": true,
+  "root_lockfile_unchanged": true,
+  "added_packages": [
+    {
+      "name": "darling",
+      "version": "0.13.4",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "a01d95850c592940db9b8194bc39f4bc0e89dee5c4265e4b1807c34a9aba453c",
+      "dependencies": [
+        "darling_core",
+        "darling_macro"
+      ],
+      "license_declaration": "MIT",
+      "rust_version": null,
+      "manifest_sha256": "a569493c65bc480a358d787e544ca1a126828fb0eaec65118ae66f5322d4df5b"
+    },
+    {
+      "name": "darling_core",
+      "version": "0.13.4",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "859d65a907b6852c9361e3185c862aae7fafd2887876799fa55f5f99dc40d610",
+      "dependencies": [
+        "fnv",
+        "ident_case",
+        "proc-macro2",
+        "quote",
+        "strsim",
+        "syn 1.0.109"
+      ],
+      "license_declaration": "MIT",
+      "rust_version": null,
+      "manifest_sha256": "9dbc7cc00de302eeec02ff590bf332a320d4a9a230c7046e31c5db6dededb9e4"
+    },
+    {
+      "name": "darling_macro",
+      "version": "0.13.4",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "9c972679f83bdf9c42bd905396b6c3588a843a17f0f16dfcfa3e2c5d57441835",
+      "dependencies": [
+        "darling_core",
+        "quote",
+        "syn 1.0.109"
+      ],
+      "license_declaration": "MIT",
+      "rust_version": null,
+      "manifest_sha256": "2e70daddd3decd5dcc700aa44715120e3a8d9addaee1d158d91c801c6bc85a82"
+    },
+    {
+      "name": "ident_case",
+      "version": "1.0.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "b9e0384b61958566e926dc50660321d12159025e767c18e043daf26b70104c39",
+      "license_declaration": "MIT/Apache-2.0",
+      "rust_version": null,
+      "manifest_sha256": "560eba8d5cf4f2c71cc06ef9145eb8f4c163a616cd6d08b031b1eae3448d8203"
+    },
+    {
+      "name": "odpic-sys",
+      "version": "0.1.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "920b5474a5128a9f0232df5a0ffc50aaa5b077b29b8b06ab0131985ac82793ed",
+      "dependencies": [
+        "cc"
+      ],
+      "license_declaration": "UPL-1.0/Apache-2.0",
+      "rust_version": null,
+      "manifest_sha256": "ee88bae60b6a87f3faa8f46e56d1f79cce57f2bc6b41fcd250f3a56f62cd4bef"
+    },
+    {
+      "name": "oracle",
+      "version": "0.6.3",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "3db40fe6e4df881b683691ade5ef1f7b1afd52aefa115581f7b92855524d7ec0",
+      "dependencies": [
+        "cc",
+        "odpic-sys",
+        "once_cell",
+        "oracle_procmacro",
+        "paste",
+        "rustversion"
+      ],
+      "license_declaration": "UPL-1.0/Apache-2.0",
+      "rust_version": "1.60.0",
+      "manifest_sha256": "f4c7f4727fe9af2ed40d777cf65ec1e57aa9cbbdf20582e805c5a8ad1eb54980"
+    },
+    {
+      "name": "oracle_procmacro",
+      "version": "0.1.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "ad247f3421d57de56a0d0408d3249d4b1048a522be2013656d92f022c3d8af27",
+      "dependencies": [
+        "darling",
+        "proc-macro2",
+        "quote",
+        "syn 1.0.109"
+      ],
+      "license_declaration": "UPL-1.0/Apache-2.0",
+      "rust_version": null,
+      "manifest_sha256": "0007d1dc5ff6fe232b040d8bb165a087c8a7bb5ef7956490887dc59c937238ac"
+    },
+    {
+      "name": "paste",
+      "version": "1.0.15",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "57c0d7b74b563b49d38dae00a0c37d4d6de9b432382b2892f0574ddcae73fd0a",
+      "license_declaration": "MIT OR Apache-2.0",
+      "rust_version": "1.31",
+      "manifest_sha256": "b639e399e32159609ed573ffdb1a4edf06fba8aee208d9259e9dba031834aaaa"
+    },
+    {
+      "name": "strsim",
+      "version": "0.10.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "73473c0e59e6d5812c5dfe2a064a6444949f089e20eec9a2e5506596494e4623",
+      "license_declaration": "MIT",
+      "rust_version": null,
+      "manifest_sha256": "3f0f1737ecbf9c7595b52585d54507f217e66b2b8dfa337934ca427022d810c8"
+    },
+    {
+      "name": "syn",
+      "version": "1.0.109",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "72b64191b275b66ffe2469e8af2c1cfe3bafa67b529ead792a6d0160888b4237",
+      "dependencies": [
+        "proc-macro2",
+        "quote",
+        "unicode-ident"
+      ],
+      "license_declaration": "MIT OR Apache-2.0",
+      "rust_version": "1.31",
+      "manifest_sha256": "139a7e42e4c95f9730d4dfe05dd5e09ee59f713eacc310921a61d9fdfc0bdce0"
+    }
+  ],
+  "audit_vulnerabilities": 0,
+  "native_OCI_security_review": "not established by RustSec audit"
+}

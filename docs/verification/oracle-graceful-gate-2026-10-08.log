@@ -1,0 +1,17 @@
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.95s
+     Running tests/oracle_executor.rs (tests/public-consumer/target/debug/deps/oracle_executor-31e5288debc1bd67)
+
+running 7 tests
+test a_driver_job_panic_retires_its_connection_and_rolls_back_uncommitted_sql ... ok
+test acknowledged_row_survives_restart_of_the_same_disk_store ... ok
+test bounded_admission_rejects_a_job_without_running_it ... ok
+test raw_identifiers_preserve_binary_identity_and_number_zero ... ok
+test oracle_client_runs_on_its_worker_inside_a_tokio_caller ... ok
+test unique_violation_keeps_prior_write_pending_until_full_rollback ... ok
+test waiting_deadline_does_not_cancel_the_real_database_commit ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 12.34s
+
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.43s

@@ -264,3 +264,25 @@ Require stopped exit0 before restarting the same persistent container, with boun
 Review identified fixed-endpoint and hostaddr hazards; reject them before driver connection to bind restart evidence to the actual fixture.
 [postgres configuration](https://docs.rs/postgres/0.19.14/postgres/config/struct.Config.html#method.hostaddr) explains the alternative network-address field.
 No dependency version changes or production retry-policy implementation were adopted; full Storage and ownership-fence gates remain pending.
+
+## Oracle OCI executor qualification, 2026-10-08
+
+Use rust-oracle 0.6.3 through the existing dedicated-worker executor, with optional independent-consumer dependencies.
+[The tagged driver](https://github.com/kubo/rust-oracle/tree/v0.6.3) supports synchronous OCI and external runtime client libraries.
+Keep statement, row, and native handles within the worker. Do not introduce a second executor or serialize the ROM ledger.
+Use actual explicit commit and rollback. Distinguish ORA-00001 statement rejection from complete transaction rollback.
+The [source assessment](oracle-executor-assessment.md) records Oracle's transaction and empty-string semantics.
+
+Select official full Oracle Free and Basic Instant Client artifacts; pin the executed image digest and verify the client SHA-256.
+[Official downloads](https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html) publish the selected archive's size and digest.
+The inspected BASIC_LICENSE controls this archive; do not substitute older webpage terms for the artifact's own notice.
+Restore original ZIP symlink metadata and permissions, without changing ELF bytes. Retain all native notices outside Git.
+Use protected fixture credentials and fixed loopback connection configuration under [official Podman instructions](https://github.com/oracle/docker-images/blob/main/OracleDatabase/SingleInstance/README.md).
+Use separate connection and round-trip budgets according to [Oracle Net parameters](https://docs.oracle.com/en/database/oracle/oracle-database/26/haovw/oracle-net-tns-string-parameters.html).
+These are experimental test budgets, not total operation deadlines.
+
+The initial restart assertion required exit 0, but the pinned image returned 143 after its shutdown handler completed.
+Inspect the pinned image's actual scripts and retain fresh shutdown logs; do not infer SIGKILL from SIGTERM status.
+Require exited 143 plus fresh `ORACLE instance shut down.` confirmation for this exact fixture.
+[Oracle's shutdown source](https://github.com/oracle/docker-images/blob/main/OracleDatabase/SingleInstance/dockerfiles/23.26.0/shutDown.sh) uses shutdown immediate.
+This is graceful retained-store restart evidence, not a power-loss or replicated durability qualification.

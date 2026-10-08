@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-08",
+  "evidence_category": "locally executed fixture setup; driver qualification pending",
+  "image": "container-registry.oracle.com/database/free@sha256:c4d9b15a1b2240ce90730c23ce298fcdd34f6793792c1b3849181a080009c322",
+  "image_config_id": "cdf2f86bedfa41904dfd7dbf27defe90d46a2fb8b34d85ad1c279f2bda839420",
+  "actual_database_version": "23.26.3.0.0",
+  "image_label_version": "23.26.0",
+  "client_version": "23.26.3.0.0",
+  "client_size": 136114689,
+  "client_sha256": "fce485361332927f8328ea4b68d98968c6b0ea124e62470de8c9d0cef880130e",
+  "client_license": "BASIC_LICENSE: Oracle Free Distribution, Hosting, and Use Terms and Conditions; version 1.0, 2022-06-28",
+  "fixture_name": "rom-extras-oracle-20261008",
+  "host_binding": "127.0.0.1:55458:1521",
+  "volume": "rom-extras-oracle-20261008",
+  "cpu_allowance": 2,
+  "memory_allowance_gib": 4,
+  "shared_memory_gib": 1,
+  "application_user": "ROM_EXTRAS",
+  "grants": [
+    "CREATE SESSION",
+    "CREATE TABLE"
+  ],
+  "users_tablespace_quota_mib": 128,
+  "claim_limits": [
+    "not ROM Storage conformance",
+    "no TLS qualification",
+    "no native library redistribution",
+    "image label is not actual server version"
+  ]
+}

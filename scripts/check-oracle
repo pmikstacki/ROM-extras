@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_ORACLE_USER:?Set the least-privilege Oracle fixture user.}"
+: "${ROM_EXTRAS_ORACLE_PASSWORD:?Set the protected Oracle fixture password.}"
+: "${ROM_EXTRAS_ORACLE_CONNECT:?Set the isolated loopback Oracle endpoint; missing backend never skips this gate.}"
+cargo test --manifest-path tests/public-consumer/Cargo.toml --locked \
+    --features oracle-conformance --test oracle_executor
+cargo clippy --manifest-path tests/public-consumer/Cargo.toml --locked \
+    --features oracle-conformance --all-targets -- -D warnings

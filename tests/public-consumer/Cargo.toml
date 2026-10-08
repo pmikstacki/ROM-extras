@@ -9,6 +9,7 @@ license = "MIT"
 [workspace]
 
 [features]
+oracle-conformance = ["dep:oracle", "dep:tokio"]
 s3-lifecycle = ["s3-conformance", "dep:rom-sqlite", "dep:rom-redb", "dep:futures-util"]
 s3-conformance = ["dep:tokio", "dep:rom-blob-object-store", "dep:rom-conformance"]
 azure-conformance = ["dep:tokio"]
@@ -56,7 +57,12 @@ required-features = ["rabbitmq-conformance"]
 name = "s3_blob"
 required-features = ["s3-conformance"]
 
+[[test]]
+name = "oracle_executor"
+required-features = ["oracle-conformance"]
+
 [dependencies]
+oracle = { version = "=0.6.3", default-features = false, optional = true }
 rom-sqlite = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", optional = true }
 rom-redb = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", optional = true }
 futures-util = { version = "=0.3.34", default-features = false, features = ["std"], optional = true }

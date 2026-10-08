@@ -1,0 +1,50 @@
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.58s
+     Running tests/oracle_executor.rs (tests/public-consumer/target/debug/deps/oracle_executor-31e5288debc1bd67)
+
+running 7 tests
+
+thread 'rom-sql-connection' (3512972) panicked at tests/oracle_executor.rs:114:13:
+synthetic panic before OCI commit
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test a_driver_job_panic_retires_its_connection_and_rolls_back_uncommitted_sql ... ok
+
+thread 'acknowledged_row_survives_restart_of_the_same_disk_store' (3512968) panicked at tests/oracle_fixture/mod.rs:39:5:
+assertion `left == right` failed: graceful shutdown required
+  left: "exited 143"
+ right: "exited 0"
+
+thread 'bounded_admission_rejects_a_job_without_running_it' (3512969) panicked at tests/oracle_executor.rs:231:35:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+test acknowledged_row_survives_restart_of_the_same_disk_store ... FAILED
+
+thread 'raw_identifiers_preserve_binary_identity_and_number_zero' (3512971) panicked at tests/oracle_executor.rs:167:35:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+test bounded_admission_rejects_a_job_without_running_it ... FAILED
+
+thread 'unique_violation_keeps_prior_write_pending_until_full_rollback' (3512973) panicked at tests/oracle_executor.rs:127:35:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+test raw_identifiers_preserve_binary_identity_and_number_zero ... FAILED
+
+thread 'oracle_client_runs_on_its_worker_inside_a_tokio_caller' (3512970) panicked at tests/oracle_executor.rs:30:35:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+test unique_violation_keeps_prior_write_pending_until_full_rollback ... FAILED
+
+thread 'waiting_deadline_does_not_cancel_the_real_database_commit' (3512974) panicked at tests/oracle_executor.rs:73:35:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+test waiting_deadline_does_not_cancel_the_real_database_commit ... FAILED
+test oracle_client_runs_on_its_worker_inside_a_tokio_caller ... FAILED
+
+failures:
+
+failures:
+    acknowledged_row_survives_restart_of_the_same_disk_store
+    bounded_admission_rejects_a_job_without_running_it
+    oracle_client_runs_on_its_worker_inside_a_tokio_caller
+    raw_identifiers_preserve_binary_identity_and_number_zero
+    unique_violation_keeps_prior_write_pending_until_full_rollback
+    waiting_deadline_does_not_cancel_the_real_database_commit
+
+test result: FAILED. 1 passed; 6 failed; 0 ignored; 0 measured; 0 filtered out; finished in 9.05s
+
+error: test failed, to rerun pass `--test oracle_executor`
