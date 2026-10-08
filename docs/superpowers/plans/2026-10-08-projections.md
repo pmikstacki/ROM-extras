@@ -167,3 +167,11 @@ No Task 2 checkbox is complete merely because the checkpoint store exists.
 The store now accepts a shared monotonic cancellation token for open/reopen.
 Checks occur at admission, 256-record scan boundaries, and 64-KiB copy boundaries. Native repair has cooperative abort callbacks.
 This supplies startup lifecycle support; it does not complete worker admission, shutdown/join, or retained authorized-history reconstruction.
+
+## Task 2 bounded storage-owner increment
+
+`StorageWorker` owns dedicated native execution with one queued operation, typed checkpoint methods, asynchronous responses, and shutdown/drop join.
+It reuses the existing executor with fixed private captures. A dropped response retains durable accepted work.
+Actual files cover durable intent, atomic publication, queue overload, dropped response, job panic, and ownership after join.
+Initialization and destruction still require the host's bounded blocking context. The asynchronous host lifecycle bridge is not yet implemented.
+The storage thread is not the full page worker; history reconstruction, immutable approved documents and actual provider orchestration remain pending.

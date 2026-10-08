@@ -20,3 +20,6 @@ extern crate self as rom_projection_core;
 #[cfg(test)]
 #[path = "../tests/support/mod.rs"]
 mod test_support;
+
+mod storage_worker;
+pub use storage_worker::{StorageFailure, StorageResponse, StorageWorker};

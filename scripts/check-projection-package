@@ -4,7 +4,8 @@ cd -- "$(dirname -- "$0")/.."
 rustfmt --edition 2024 --check tests/packaged-projections/main.rs tests/packaged-projections/checkpoint_case.rs
 node --check scripts/lib/package-consumer.mjs
 node --check scripts/prepare-projection-package.mjs
-cargo package --allow-dirty --locked --no-verify -p rom-projection-core \
+cargo package --allow-dirty --locked --no-verify -p rom-sql-core -p rom-projection-core \
+    --config 'patch.crates-io.rom-sql-core.path="crates/rom-sql-core"' \
     --config 'patch.crates-io.rom.git="https://github.com/pmikstacki/ROM"' \
     --config 'patch.crates-io.rom.rev="d7ef529040eec60dc869034c2d33130219db85fe"' \
     --config 'patch.crates-io.rom-backup.git="https://github.com/pmikstacki/ROM"' \

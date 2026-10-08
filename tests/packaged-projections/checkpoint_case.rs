@@ -1,7 +1,7 @@
 use rom::{JournalCursor, Key};
 use rom_projection_core::{
     Cancellation, Checkpoint, CheckpointStore, CommitStatus, Error, OperationMetadata, PageIntent,
-    ProjectionProfile, RemoteObservation, TransactionId,
+    ProjectionProfile, RemoteObservation, StorageWorker, TransactionId,
 };
 use std::os::unix::fs::DirBuilderExt;
 
@@ -98,4 +98,15 @@ pub fn run() {
         7
     );
     drop(store);
+    let worker = StorageWorker::open(path.clone(), profile.clone(), Cancellation::new()).unwrap();
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .build()
+        .unwrap();
+    let snapshot = runtime.block_on(worker.load().unwrap().receive()).unwrap();
+    assert_eq!(
+        snapshot.checkpoint().cursor("document").unwrap().position,
+        3
+    );
+    worker.shutdown().unwrap();
+    drop(CheckpointStore::open(&path, &profile).unwrap());
 }

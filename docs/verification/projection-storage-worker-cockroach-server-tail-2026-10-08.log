@@ -1,0 +1,90 @@
+I261008 23:41:23.049475 15511 1@jobs/update.go:214 ⋮ [T1,Vsystem,n1] 200 ={"Timestamp":1791502883049473531,"EventType":"status_change","JobID":1217109959712178177,"JobType":"AUTO CREATE STATS","Description":"state changed to: succeeded","PreviousStatus":"running","NewStatus":"succeeded","RunNum":0}
+I261008 23:41:23.178719 15631 1@jobs/update.go:214 ⋮ [T1,Vsystem,n1] 201 ={"Timestamp":1791502883178717013,"EventType":"status_change","JobID":1217109960589672449,"JobType":"AUTO CREATE STATS","Description":"state changed to: running","PreviousStatus":"running","NewStatus":"running","RunNum":0}
+I261008 23:41:23.178941 15631 sql/distsql_plan_stats.go:200 ⋮ [T1,Vsystem,n1,job=AUTO CREATE STATS id=1217109960589672449,create-stats-distsql] 202  using computed sample size of 10000 for histogram construction
+I261008 23:41:23.374619 15631 1@jobs/update.go:214 ⋮ [T1,Vsystem,n1] 203 ={"Timestamp":1791502883374617727,"EventType":"status_change","JobID":1217109960589672449,"JobType":"AUTO CREATE STATS","Description":"state changed to: succeeded","PreviousStatus":"running","NewStatus":"succeeded","RunNum":0}
+I261008 23:41:23.460858 15755 1@jobs/update.go:214 ⋮ [T1,Vsystem,n1] 204 ={"Timestamp":1791502883460856099,"EventType":"status_change","JobID":1217109961632448513,"JobType":"AUTO CREATE STATS","Description":"state changed to: running","PreviousStatus":"running","NewStatus":"running","RunNum":0}
+I261008 23:41:23.461096 15755 sql/distsql_plan_stats.go:200 ⋮ [T1,Vsystem,n1,job=AUTO CREATE STATS id=1217109961632448513,create-stats-distsql] 205  using computed sample size of 10000 for histogram construction
+I261008 23:41:23.770716 15755 1@jobs/update.go:214 ⋮ [T1,Vsystem,n1] 206 ={"Timestamp":1791502883770714479,"EventType":"status_change","JobID":1217109961632448513,"JobType":"AUTO CREATE STATS","Description":"state changed to: succeeded","PreviousStatus":"running","NewStatus":"succeeded","RunNum":0}
+I261008 23:41:23.872730 15922 1@jobs/update.go:214 ⋮ [T1,Vsystem,n1] 207 ={"Timestamp":1791502883872728262,"EventType":"status_change","JobID":1217109962934976513,"JobType":"AUTO CREATE PARTIAL STATS","Description":"state changed to: running","PreviousStatus":"running","NewStatus":"running","RunNum":0}
+I261008 23:41:23.872953 15922 sql/distsql_plan_stats.go:200 ⋮ [T1,Vsystem,n1,job=AUTO CREATE PARTIAL STATS id=1217109962934976513,create-stats-distsql] 208  using computed sample size of 10000 for histogram construction
+I261008 23:41:23.987993 15922 1@jobs/update.go:214 ⋮ [T1,Vsystem,n1] 209 ={"Timestamp":1791502883987991118,"EventType":"status_change","JobID":1217109962934976513,"JobType":"AUTO CREATE PARTIAL STATS","Description":"state changed to: succeeded","PreviousStatus":"running","NewStatus":"succeeded","RunNum":0}
+W261008 23:43:18.012446 619 15@kv/kvserver/liveness/liveness.go:781 ⋮ [T1,Vsystem,n1,liveness-hb] 210  slow heartbeat took 1.272445306s; err=<nil>
+I261008 23:43:26.434713 18123 1@jobs/update.go:214 ⋮ [T1,Vsystem,n1] 211 ={"Timestamp":1791503006434710881,"EventType":"status_change","JobID":1217110356965261313,"JobType":"AUTO CREATE PARTIAL STATS","Description":"state changed to: running","PreviousStatus":"running","NewStatus":"running","RunNum":0}
+I261008 23:43:26.435060 18123 sql/distsql_plan_stats.go:200 ⋮ [T1,Vsystem,n1,job=AUTO CREATE PARTIAL STATS id=1217110356965261313,create-stats-distsql] 212  using computed sample size of 10000 for histogram construction
+I261008 23:43:26.882403 18123 1@jobs/update.go:214 ⋮ [T1,Vsystem,n1] 213 ={"Timestamp":1791503006882400667,"EventType":"status_change","JobID":1217110356965261313,"JobType":"AUTO CREATE PARTIAL STATS","Description":"state changed to: succeeded","PreviousStatus":"running","NewStatus":"succeeded","RunNum":0}
+W261008 23:43:49.526585 619 15@kv/kvserver/liveness/liveness.go:781 ⋮ [T1,Vsystem,n1,liveness-hb] 214  slow heartbeat took 2.776036541s; err=<nil>
+W261008 23:43:53.363042 619 15@kv/kvserver/liveness/liveness.go:781 ⋮ [T1,Vsystem,n1,liveness-hb] 215  slow heartbeat took 1.92046883s; err=<nil>
+W261008 23:43:55.169262 619 15@kv/kvserver/liveness/liveness.go:781 ⋮ [T1,Vsystem,n1,liveness-hb] 216  slow heartbeat took 1.035363232s; err=<nil>
+I261008 23:43:57.050742 616 server/profiler/cpuprofiler.go:128 ⋮ [T1,Vsystem,n1] 217  taking CPU profile for 10.00s
+W261008 23:43:57.542793 619 15@kv/kvserver/liveness/liveness.go:781 ⋮ [T1,Vsystem,n1,liveness-hb] 218  slow heartbeat took 1.800081035s; err=<nil>
+W261008 23:44:00.305692 619 15@kv/kvserver/liveness/liveness.go:781 ⋮ [T1,Vsystem,n1,liveness-hb] 219  slow heartbeat took 1.426507301s; err=<nil>
+W261008 23:44:03.962885 619 15@kv/kvserver/liveness/liveness.go:781 ⋮ [T1,Vsystem,n1,liveness-hb] 220  slow heartbeat took 2.221284263s; err=<nil>
+I261008 23:44:08.072996 1 1@cli/start.go:1014 ⋮ [T1,Vsystem,n1] 221  received signal 'terminated'
+I261008 23:44:08.442430 1 1@cli/start.go:1055 ⋮ [T1,Vsystem,n1] 222  initiating graceful shutdown of server
+I261008 23:44:09.038767 19586 server/drain.go:378 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 223  all tenant servers stopped
+I261008 23:44:09.039834 19586 1@server/drain.go:437 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 224  waiting for health probes to notice that the node is not ready for new sql connections
+W261008 23:44:09.044336 980 jobs/registry.go:1077 ⋮ [T1,Vsystem,n1] 225  canceling all adopted jobs due to graceful drain request
+I261008 23:44:09.044440 2396 jobs/registry.go:1651 ⋮ [T1,Vsystem,n1,job=100] 226  KEY VISUALIZER job 100: stepping through state succeeded
+I261008 23:44:09.047217 1207 sql/stats/automatic_stats.go:779 ⋮ [T1,Vsystem,n1] 227  draining auto stats refresher
+I261008 23:44:09.047247 1208 sql/stats/automatic_stats.go:817 ⋮ [T1,Vsystem,n1] 228  draining auto stats misestimates refresher
+I261008 23:44:09.047262 1209 sql/stats/automatic_stats.go:871 ⋮ [T1,Vsystem,n1] 229  draining stats garbage collector
+I261008 23:44:09.051510 2418 jobs/registry.go:1651 ⋮ [T1,Vsystem,n1,job=103] 230  AUTO UPDATE SQL ACTIVITY job 103: stepping through state succeeded
+W261008 23:44:09.055772 2597 15@kv/kvclient/kvcoord/dist_sender_mux_rangefeed.go:417 ⋮ [T1,Vsystem,n1,job=POLL JOBS STATS id=101,rangefeed=‹cluster-metrics-watcher›,mux_n=1,gen=2] 231  error closing mux rangefeed client: context canceled
+W261008 23:44:09.058761 2756 15@kv/kvclient/kvcoord/dist_sender_mux_rangefeed.go:417 ⋮ [T1,Vsystem,n1,job=AUTO SPAN CONFIG RECONCILIATION id=1217072455498563585,rangefeed=‹sql-watcher-descriptor-rangefeed›,mux_n=1,gen=2] 232  error closing mux rangefeed client: context canceled
+W261008 23:44:09.060263 2759 15@kv/kvclient/kvcoord/dist_sender_mux_rangefeed.go:417 ⋮ [T1,Vsystem,n1,job=AUTO SPAN CONFIG RECONCILIATION id=1217072455498563585,rangefeed=‹sql-watcher-zones-rangefeed›,mux_n=1,gen=2] 233  error closing mux rangefeed client: context canceled
+W261008 23:44:09.060384 2781 15@kv/kvclient/kvcoord/dist_sender_mux_rangefeed.go:417 ⋮ [T1,Vsystem,n1,job=AUTO SPAN CONFIG RECONCILIATION id=1217072455498563585,rangefeed=‹sql-watcher-protected-ts-records-rangefeed›,mux_n=1,gen=2] 234  error closing mux rangefeed client: context canceled
+W261008 23:44:11.977291 619 15@kv/kvserver/liveness/liveness.go:781 ⋮ [T1,Vsystem,n1,liveness-hb] 235  slow heartbeat took 1.233435015s; err=<nil>
+I261008 23:44:12.054822 19578 1@server/drain.go:564 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 236  number of open connections: 0
+I261008 23:44:12.439240 19586 sql/sqlstats/persistedsqlstats/provider.go:125 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 237  stopping persisted SQL stats tasks
+I261008 23:44:12.439769 19586 sql/sqlstats/persistedsqlstats/provider.go:131 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 238  persisted SQL stats tasks successfully shut down
+I261008 23:44:12.934282 19586 sql/stats/automatic_stats.go:580 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 239  starting to wait for auto-stats tasks to shut down
+I261008 23:44:12.934331 19586 sql/stats/automatic_stats.go:583 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 240  auto-stats tasks successfully shut down
+I261008 23:44:12.934340 19586 jobs/registry.go:2026 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 241  starting to wait for job registry to shut down
+I261008 23:44:12.934563 19586 jobs/registry.go:2029 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 242  job registry tasks successfully shut down
+I261008 23:44:13.448967 19587 1@cli/start.go:1067 ⋮ [T1,Vsystem,n1] 243  191 running tasks
+W261008 23:44:15.963245 619 15@kv/kvserver/liveness/liveness.go:781 ⋮ [T1,Vsystem,n1,liveness-hb] 244  slow heartbeat took 2.216828537s; err=<nil>
+W261008 23:44:18.173981 1205 1@sql/stmtdiagnostics/statement_diagnostics.go:906 ⋮ [T1,Vsystem,n1] 245  error polling for transaction diagnostics requests: txn-diag-poll: cannot acquire lease when draining
+W261008 23:44:18.198933 1205 1@sql/stmtdiagnostics/statement_diagnostics.go:912 ⋮ [T1,Vsystem,n1] 246  error polling for statement diagnostics requests: stmt-diag-poll: cannot acquire lease when draining
+I261008 23:44:18.448522 19587 1@cli/start.go:1067 ⋮ [T1,Vsystem,n1] 247  191 running tasks
+E261008 23:44:18.800995 614 13@kv/kvserver/reports/reporter.go:154 ⋮ [T1,Vsystem,n1,replication-reporter] 248  failed to generate replication reports: failed to save constraint report: get-previous-timestamp: cannot acquire lease when draining
+I261008 23:44:23.455780 19587 1@cli/start.go:1067 ⋮ [T1,Vsystem,n1] 249  191 running tasks
+W261008 23:44:26.903104 619 15@kv/kvserver/liveness/liveness.go:781 ⋮ [T1,Vsystem,n1,liveness-hb] 250  slow heartbeat took 1.16090792s; err=<nil>
+W261008 23:44:28.200346 1205 1@sql/stmtdiagnostics/statement_diagnostics.go:906 ⋮ [T1,Vsystem,n1] 251  error polling for transaction diagnostics requests: txn-diag-poll: cannot acquire lease when draining
+W261008 23:44:28.200647 1205 1@sql/stmtdiagnostics/statement_diagnostics.go:912 ⋮ [T1,Vsystem,n1] 252  error polling for statement diagnostics requests: stmt-diag-poll: cannot acquire lease when draining
+I261008 23:44:28.449052 19587 1@cli/start.go:1067 ⋮ [T1,Vsystem,n1] 253  192 running tasks
+I261008 23:44:33.449510 19587 1@cli/start.go:1067 ⋮ [T1,Vsystem,n1] 254  191 running tasks
+E261008 23:44:35.025873 1217 jobs/job_scheduler.go:430 ⋮ [T1,Vsystem,n1] 255  error executing schedules: find-scheduled-jobs: cannot acquire lease when draining
+W261008 23:44:38.209631 1205 1@sql/stmtdiagnostics/statement_diagnostics.go:906 ⋮ [T1,Vsystem,n1] 256  error polling for transaction diagnostics requests: txn-diag-poll: cannot acquire lease when draining
+W261008 23:44:38.210028 1205 1@sql/stmtdiagnostics/statement_diagnostics.go:912 ⋮ [T1,Vsystem,n1] 257  error polling for statement diagnostics requests: stmt-diag-poll: cannot acquire lease when draining
+I261008 23:44:38.456380 19587 1@cli/start.go:1067 ⋮ [T1,Vsystem,n1] 258  194 running tasks
+I261008 23:44:43.449043 19587 1@cli/start.go:1067 ⋮ [T1,Vsystem,n1] 259  191 running tasks
+W261008 23:44:44.926003 619 15@kv/kvserver/liveness/liveness.go:781 ⋮ [T1,Vsystem,n1,liveness-hb] 260  slow heartbeat took 1.172889061s; err=<nil>
+W261008 23:44:47.854088 619 15@kv/kvserver/liveness/liveness.go:781 ⋮ [T1,Vsystem,n1,liveness-hb] 261  slow heartbeat took 1.115932427s; err=<nil>
+W261008 23:44:48.213502 1205 1@sql/stmtdiagnostics/statement_diagnostics.go:906 ⋮ [T1,Vsystem,n1] 262  error polling for transaction diagnostics requests: txn-diag-poll: cannot acquire lease when draining
+W261008 23:44:48.215632 1205 1@sql/stmtdiagnostics/statement_diagnostics.go:912 ⋮ [T1,Vsystem,n1] 263  error polling for statement diagnostics requests: stmt-diag-poll: cannot acquire lease when draining
+I261008 23:44:48.448679 19587 1@cli/start.go:1067 ⋮ [T1,Vsystem,n1] 264  191 running tasks
+I261008 23:44:53.459432 19587 1@cli/start.go:1067 ⋮ [T1,Vsystem,n1] 265  193 running tasks
+W261008 23:44:58.223582 1205 1@sql/stmtdiagnostics/statement_diagnostics.go:906 ⋮ [T1,Vsystem,n1] 266  error polling for transaction diagnostics requests: txn-diag-poll: cannot acquire lease when draining
+W261008 23:44:58.224374 1205 1@sql/stmtdiagnostics/statement_diagnostics.go:912 ⋮ [T1,Vsystem,n1] 267  error polling for statement diagnostics requests: stmt-diag-poll: cannot acquire lease when draining
+I261008 23:44:58.448941 19587 1@cli/start.go:1067 ⋮ [T1,Vsystem,n1] 268  194 running tasks
+W261008 23:45:01.325292 619 15@kv/kvserver/liveness/liveness.go:781 ⋮ [T1,Vsystem,n1,liveness-hb] 269  slow heartbeat took 2.577197983s; err=<nil>
+W261008 23:45:03.427409 619 15@kv/kvserver/liveness/liveness.go:781 ⋮ [T1,Vsystem,n1,liveness-hb] 270  slow heartbeat took 1.607380052s; err=<nil>
+I261008 23:45:03.448753 19587 1@cli/start.go:1067 ⋮ [T1,Vsystem,n1] 271  195 running tasks
+W261008 23:45:04.993627 702 sql/sqlliveness/slinstance/slinstance.go:337 ⋮ [T1,Vsystem,n1] 272  exiting heartbeat loop
+I261008 23:45:04.994341 702 sql/sqlliveness/slinstance/slinstance.go:322 ⋮ [T1,Vsystem,n1] 273  draining heartbeat loop
+I261008 23:45:05.725708 19586 server/drain.go:533 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 274  SQL server drained successfully; SQL queries cannot execute any more
+I261008 23:45:05.725754 19586 server/drain.go:386 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 275  done draining clients
+I261008 23:45:06.126802 19586 1@server/drain.go:337 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 276  drain remaining: 145
+I261008 23:45:06.126837 19586 1@server/drain.go:339 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 277  drain details: descriptor leases: 144, liveness record: 1
+I261008 23:45:06.462306 19586 server/drain.go:378 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 278  all tenant servers stopped
+W261008 23:45:06.488719 21120 sql/sqlstats/persistedsqlstats/flush.go:225 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 279  failed to flush transaction statistics: upsert-txn-stats: cannot acquire lease when draining
+W261008 23:45:06.489593 21119 sql/sqlstats/persistedsqlstats/flush.go:244 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 280  failed to flush statement statistics: upsert-stmt-stats: cannot acquire lease when draining
+I261008 23:45:06.490192 19586 sql/sqlstats/persistedsqlstats/provider.go:125 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 281  stopping persisted SQL stats tasks
+I261008 23:45:06.490201 19586 sql/sqlstats/persistedsqlstats/provider.go:131 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 282  persisted SQL stats tasks successfully shut down
+W261008 23:45:06.502617 19586 1@server/drain.go:499 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 283  final ASH flush on drain failed, samples may be lost: flushing ASH samples: flush-ash-samples: cannot acquire lease when draining
+I261008 23:45:06.502681 19586 sql/stats/automatic_stats.go:580 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 284  starting to wait for auto-stats tasks to shut down
+I261008 23:45:06.503195 19586 sql/stats/automatic_stats.go:583 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 285  auto-stats tasks successfully shut down
+I261008 23:45:06.503201 19586 jobs/registry.go:2026 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 286  starting to wait for job registry to shut down
+I261008 23:45:06.503459 19586 jobs/registry.go:2029 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 287  job registry tasks successfully shut down
+I261008 23:45:06.696581 19586 server/drain.go:533 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 288  SQL server drained successfully; SQL queries cannot execute any more
+I261008 23:45:06.770945 19586 server/drain.go:386 ⋮ [T1,Vsystem,n1,server drain process,call-graceful-drain] 289  done draining clients

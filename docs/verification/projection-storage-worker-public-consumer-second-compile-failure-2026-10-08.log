@@ -1,0 +1,15 @@
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+error[E0382]: use of moved value: `store`
+   --> tests/../../packaged-projections/checkpoint_case.rs:101:10
+    |
+ 80 |     let store = CheckpointStore::open(&path, &profile).unwrap();
+    |         ----- move occurs because `store` has type `CheckpointStore`, which does not implement the `Copy` trait
+...
+100 |     drop(store);
+    |          ----- value moved here
+101 |     drop(store);
+    |          ^^^^^ value used here after move
+
+For more information about this error, try `rustc --explain E0382`.
+error: could not compile `rom-extras-public-consumer` (test "projection_checkpoints") due to 1 previous error
+warning: build failed, waiting for other jobs to finish...

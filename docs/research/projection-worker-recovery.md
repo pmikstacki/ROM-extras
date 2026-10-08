@@ -53,3 +53,9 @@ Keep native protocol, core orchestration, public ROM authorization, and package 
 The existing extras `rom-sql-core::Executor` has explicit shutdown/join, but its last-handle drop detaches admitted work.
 Do not claim that executor alone establishes projection-owner shutdown. A wrapper must enforce the projection lifecycle and bounded payloads.
 Source inspection of this existing component is separate from web contract research and native worker qualification.
+
+## Storage-owner execution checkpoint
+
+The typed storage owner now reuses the executor and overrides detach-on-drop with shutdown/join.
+Native file tests and normalized archive consumers qualify this limited execution layer.
+The bounded asynchronous host lifecycle bridge, page orchestration and retained-history reconstruction are still required.

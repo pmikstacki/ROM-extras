@@ -3022,7 +3022,9 @@ dependencies = [
  "redb",
  "rom",
  "rom-backup",
+ "rom-sql-core",
  "sha2 0.10.9",
+ "tokio",
 ]
 
 [[package]]

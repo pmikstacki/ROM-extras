@@ -553,3 +553,39 @@ These choices prepare the next implementation. No compiled worker or native hist
 The cancellation increment passed the full local verifier, both archive consumers, and real service restart probes.
 The [execution record](../verification/projection-cancellation-full-verifier-2026-10-08.json) retains the 192-file source fence, failures, unchanged-lock audit references, and limits.
 Independent source review reported no actionable findings; it did not run tests.
+
+## 2026-10-08: typed bounded storage-owner execution
+
+Sources: [nonblocking bounded admission](https://doc.rust-lang.org/std/sync/mpsc/struct.SyncSender.html), [join versus detach](https://doc.rust-lang.org/std/thread/struct.JoinHandle.html), [Tokio 1.53.1 oneshot across synchronous threads](https://docs.rs/tokio/1.53.1/tokio/sync/oneshot/index.html), [pinned Tokio license/features/MSRV](https://raw.githubusercontent.com/tokio-rs/tokio/tokio-1.53.1/tokio/Cargo.toml), [Cargo archive patches](https://doc.rust-lang.org/cargo/reference/overriding-dependencies.html).
+
+Reuse the existing shared executor behind a non-cloneable storage owner, rather than duplicating its queue/health/exception handling.
+Restrict public submissions to bounded typed checkpoint operations. The generic closure helper remains private.
+Select one queued operation plus active work; zero capacity would make try-send admission depend on the receiver's rendezvous timing.
+Larger queues increase retained payloads without helping the current single-intent protocol.
+Join on explicit shutdown and owner drop; do not inherit the generic executor's detach-on-drop behavior.
+Use oneshot responses for asynchronous waits. A dropped response never implies cancellation of an accepted command.
+Initialization, shutdown and drop remain blocking and require the host's bounded blocking context; no hard deadline is asserted.
+Preserve checkpoint failures/tokens; treat lost admitted responses and unexpected job panics as unclassified, not rolled back.
+Tokio remains pinned to the existing 1.53.1 lockfile version: MIT, declared Rust 1.71, default features disabled, direct production feature sync.
+Tests and archive consumers explicitly request rt. Public consumer's named feature is required by the executable gate, without backend absence skips.
+Root and independent-consumer registry package versions/checksums remain unchanged; only local projection dependency edges changed.
+The normalized package gate now extracts the executor archive as well. This is archive acceptance, not registry publication.
+Initial independent-consumer compilation exposed a missing feature/import, then a duplicate drop. Preserve both failures; corrected compilation passed.
+Worker history and provider orchestration remain incomplete; this increment qualifies the native storage owner only.
+
+## 2026-10-08: CockroachDB fixture graceful-stop budget
+
+Source: [CockroachDB 26.3 node shutdown and termination grace](https://www.cockroachlabs.com/docs/v26.3/node-shutdown#termination-grace-period-on-kubernetes).
+The first storage-worker full verifier failed the unchanged Cockroach restart gate: stop exceeded its outer limit, and the remaining fixture tests saw a poisoned mutex.
+The stopped container had exit 137, not OOM. Native logs still showed SQL draining and descriptor leases near the 60-second grace limit.
+Current shutdown settings were inspected: initial/connections wait 0s, transactions timeout 10s, lease-transfer iteration timeout 5s.
+Select the vendor's five-minute grace recommendation for this persistent fixture; retain a finite 315-second outer command budget.
+Keep the exact exited-0 assertion and same-disk persistence checks. Do not accept SIGKILL or skip the restart test.
+This changes fixture termination admission, not driver operation deadlines or projection shutdown guarantees.
+The selected budget does not explain every source of drain delay; resource pressure and native lease cleanup remain possible contributors.
+Preserve the original failed verifier, source fence, stopped state, and native drain tail. No persistent store or historical table is deleted.
+
+The revised full verifier passed with all 195 frozen runtime hashes unchanged, including seven actual Cockroach cases and backend restart probes.
+The [storage-owner execution record](../verification/projection-storage-worker-full-verifier-2026-10-08.json) preserves both attempts, normalized archives, source fences and audit results.
+Independent source review found no actionable storage-owner issues; it executed no tests.
+All audited graphs contain zero known vulnerabilities at inspection time; the public consumer retains its unsuppressed informational paste warning.

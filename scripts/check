@@ -34,8 +34,8 @@ RUSTDOCFLAGS='-D warnings' cargo doc --workspace --no-deps --locked
 cargo check --workspace --no-default-features --locked
 cargo check -p rom-sql-core --no-default-features --locked
 cargo run --manifest-path tests/public-consumer/Cargo.toml --locked
-cargo test --manifest-path tests/public-consumer/Cargo.toml --locked --test projection_checkpoints
-cargo clippy --manifest-path tests/public-consumer/Cargo.toml --all-targets --locked -- -D warnings
+cargo test --manifest-path tests/public-consumer/Cargo.toml --locked --features projection-checkpoints --test projection_checkpoints
+cargo clippy --manifest-path tests/public-consumer/Cargo.toml --features projection-checkpoints --all-targets --locked -- -D warnings
 if [[ "$(rustc -V | awk '{print $2}')" == 1.99.* ]]; then
     cargo check --workspace --locked
 else

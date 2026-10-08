@@ -1,0 +1,58 @@
+{
+  "created_utc": "2026-10-08T23:56:12.691Z",
+  "baseline_commit": "9b1c0bffde4a603881439f554c089947585ba9c4",
+  "executed_source": "Dirty increment over baseline; exact 195-file retry source fence in projection-storage-worker-runtime-freeze-retry-2026-10-08.json",
+  "command": "./scripts/check-all",
+  "attempts": [
+    {
+      "log": "projection-storage-worker-full-verifier-2026-10-08.log",
+      "exit_code": 101,
+      "source_fence": "projection-storage-worker-runtime-freeze-2026-10-08.json",
+      "failure": "Cockroach fixture stop exceeded budget; container exit137 without OOM; six remaining cases poisoned by fixture mutex"
+    },
+    {
+      "log": "projection-storage-worker-full-verifier-retry-2026-10-08.log",
+      "exit_code": 0,
+      "source_fence": "projection-storage-worker-runtime-freeze-retry-2026-10-08.json",
+      "changes": [
+        "Cockroach grace300/outer315 seconds, still requires exited0 and same disk persistence",
+        "Required consumer Clippy enables projection-checkpoints feature"
+      ]
+    }
+  ],
+  "compiler": "Rust 1.99.0 b940084d7; configured native compiler and service environment; Python 3.12.8 for native probes",
+  "focused": {
+    "tests_passed": 36,
+    "compile_fail_doctests_passed": 1,
+    "ignored_child_entry": "Invoked by bounded process-parent tests"
+  },
+  "archive": {
+    "sha256": {
+      "rom-sql-core": "d44ec140915b801b8759913b824c278c4aa75745cd9c4b0bb916658b2f9419d5",
+      "rom-projection-core": "14e6a0e6be6bb5fa8319cb660769147b7dd685e9a04118bd5a8066edd1bd8a44"
+    },
+    "consumer_packages": 37,
+    "qualification": "Extracted normalized archives, actual native file/async response/shutdown/reopen and denied-warning Clippy passed",
+    "audited_graph": "Retry archive hashes and package lock are byte-identical to audited first-attempt artifacts"
+  },
+  "dependencies": {
+    "root_registry_packages": 344,
+    "consumer_registry_packages": 432,
+    "registry_blocks_unchanged": true,
+    "local_projection_edges_added": [
+      "rom-sql-core",
+      "tokio"
+    ],
+    "tokio": "Pinned existing1.53.1, MIT, declared Rust1.71, direct production sync feature; rt enabled by test/consumer hosts",
+    "audits": "Zero known vulnerabilities in root, independent consumer and archive consumer; no root/archive warnings; independent consumer retains informational RUSTSEC-2024-0436 paste via oracle"
+  },
+  "review": "Independent source-only review reported no actionable findings; no tests or fixtures executed by reviewer",
+  "limitations": [
+    "Storage-owner layer only; full projection page worker, provider orchestration and retained authorized-history recovery remain missing",
+    "Host bounded asynchronous lifecycle bridge remains pending; initialization/shutdown/drop block on native I/O",
+    "No hard I/O or shutdown latency is qualified; queue bounds exclude caller-held responses and native engine allocations",
+    "Cockroach observed drain delay remains not fully explained; both failed and successful actual attempts retained",
+    "No registry publication or complete SQL Storage/provider support claim"
+  ],
+  "full_goal": "Active and incomplete"
+}

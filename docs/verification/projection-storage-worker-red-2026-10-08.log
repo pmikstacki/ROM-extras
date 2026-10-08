@@ -1,0 +1,41 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+warning: field `store` is never read
+  --> crates/rom-projection-core/src/storage_worker.rs:27:28
+   |
+27 | pub struct StorageWorker { store: CheckpointStore }
+   |            -------------   ^^^^^
+   |            |
+   |            field in this struct
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `rom-projection-core` (lib) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.37s
+     Running tests/storage_worker.rs (target/debug/deps/storage_worker-907bea7c4bc7e737)
+
+running 3 tests
+test accepted_intent_survives_dropped_response_and_join_releases_ownership ... FAILED
+test typed_commands_publish_and_shutdown_precedes_another_owner ... FAILED
+test cancelled_initialization_returns_the_checkpoint_category ... ok
+
+failures:
+
+---- accepted_intent_survives_dropped_response_and_join_releases_ownership stdout ----
+
+thread 'accepted_intent_survives_dropped_response_and_join_releases_ownership' (4067868) panicked at crates/rom-projection-core/tests/storage_worker.rs:11:44:
+called `Result::unwrap()` on an `Err` value: Unclassified
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- typed_commands_publish_and_shutdown_precedes_another_owner stdout ----
+
+thread 'typed_commands_publish_and_shutdown_precedes_another_owner' (4067870) panicked at crates/rom-projection-core/tests/storage_worker.rs:25:51:
+called `Result::unwrap()` on an `Err` value: Unclassified
+
+
+failures:
+    accepted_intent_survives_dropped_response_and_join_releases_ownership
+    typed_commands_publish_and_shutdown_precedes_another_owner
+
+test result: FAILED. 1 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+
+error: test failed, to rerun pass `-p rom-projection-core --test storage_worker`

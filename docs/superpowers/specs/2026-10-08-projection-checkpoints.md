@@ -274,3 +274,16 @@ Native repair callbacks request abort, without a fixed latency bound for native 
 Cancellation never interrupts a checkpoint commit or establishes an absent transaction.
 A failed open releases ownership after native handles close. Permitted original-file recovery can change bytes before a later cancellation.
 The dedicated thread, bounded worker command admission, shutdown/join, and authorized-history reconstruction remain pending.
+
+## Implemented bounded storage owner
+
+`StorageWorker::create` and `open` initialize one checkpoint on a dedicated native thread. Both require a blocking host context.
+The owner exposes typed `load`, `key_state`, `prepare_page`, `complete_page`, `reconcile`, and `reopen` submissions.
+The queue admits one waiting operation in addition to active work. Full admission rejects without execution.
+Each accepted submission returns `StorageResponse`; its asynchronous `receive` preserves the exact checkpoint result and uncertain token.
+`StorageFailure::Unclassified` covers an admitted response that cannot be established. It does not grant rollback or retry permission.
+Dropping a response does not cancel its admitted operation. No transaction or native guard escapes into a response.
+The non-cloneable owner closes admission, drains accepted work and joins on shutdown or drop, before ownership release is acknowledged.
+Shutdown/drop can block on native I/O and require a bounded blocking host context; no hard termination deadline is qualified.
+Only fixed bounded captures are public. The generic executor remains behind the owner and no arbitrary caller closure is admitted.
+The asynchronous lifecycle bridge, full page orchestration, approved documents, retained history and actual providers remain pending.

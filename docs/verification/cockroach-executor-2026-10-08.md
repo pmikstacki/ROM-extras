@@ -63,3 +63,11 @@ The insecure single-node development profile has no authentication, TLS, replica
 Actual 40003 response loss, cancellation race, crash/power-loss durability and replicated ownership fencing remain unverified.
 Complete ROM Storage state/event/receipt atomicity, incremental work integration, end-to-end I/O bounds, migrations and packaged release remain pending.
 The complete ROM-extras goal remains active.
+
+## Later storage-worker verification adjustment
+
+The storage-worker full verifier exposed a graceful-stop failure at the existing 60-second grace limit.
+The stopped container had exit 137 without OOM; native logs still showed SQL and descriptor-lease draining.
+The current restart fixture permits 300 seconds of grace and 315 seconds for the command, following vendor termination guidance.
+It still requires exited 0 and verifies the same persistent disk store. This is not a driver request deadline change.
+The storage-worker verification record retains both attempts and the exact revised source fence.

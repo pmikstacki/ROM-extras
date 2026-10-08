@@ -1,0 +1,9 @@
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.43s
+     Running tests/cockroach_executor.rs (tests/public-consumer/target/debug/deps/cockroach_executor-d3995cbd9182f1eb)
+
+running 1 test
+test acknowledged_row_survives_restart_of_the_same_disk_store ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 6 filtered out; finished in 9.82s
+

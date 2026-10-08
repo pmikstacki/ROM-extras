@@ -232,11 +232,11 @@ fn acknowledged_row_survives_restart_of_the_same_disk_store() {
     assert!(
         std::process::Command::new("timeout")
             .args([
-                "70",
+                "315",
                 "docker",
                 "stop",
                 "--time",
-                "60",
+                "300",
                 "rom-extras-cockroach-20261008"
             ])
             .stdout(std::process::Stdio::null())

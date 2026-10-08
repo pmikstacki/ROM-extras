@@ -1,0 +1,28 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+error[E0433]: cannot find module or crate `tokio` in this scope
+   --> tests/../../packaged-projections/checkpoint_case.rs:103:19
+    |
+103 |     let runtime = tokio::runtime::Builder::new_current_thread()
+    |                   ^^^^^ use of unresolved module or unlinked crate `tokio`
+    |
+    = help: if you wanted to use a crate named `tokio`, use `cargo add tokio` to add it to your `Cargo.toml`
+help: consider importing this struct
+    |
+  1 + use std::thread::Builder;
+    |
+help: if you import `Builder`, refer to it directly
+    |
+103 -     let runtime = tokio::runtime::Builder::new_current_thread()
+103 +     let runtime = Builder::new_current_thread()
+    |
+
+error[E0433]: cannot find type `StorageWorker` in this scope
+   --> tests/../../packaged-projections/checkpoint_case.rs:102:18
+    |
+102 |     let worker = StorageWorker::open(path.clone(), profile.clone(), Cancellation::new()).unwrap();
+    |                  ^^^^^^^^^^^^^ use of undeclared type `StorageWorker`
+
+For more information about this error, try `rustc --explain E0433`.
+error: could not compile `rom-extras-public-consumer` (test "projection_checkpoints") due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...

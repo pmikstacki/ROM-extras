@@ -1,0 +1,9 @@
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.49s
+     Running tests/projection_checkpoints.rs (tests/public-consumer/target/debug/deps/projection_checkpoints-9efd712cfda7fc05)
+
+running 1 test
+test public_checkpoint_consumer_closes_reopens_and_reconciles_both_phases ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s
+

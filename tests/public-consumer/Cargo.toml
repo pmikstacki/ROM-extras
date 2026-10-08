@@ -9,6 +9,7 @@ license = "MIT"
 [workspace]
 
 [features]
+projection-checkpoints = ["dep:tokio"]
 secrets-host = ["dep:tokio", "dep:rom-identity", "dep:rom-sqlite", "dep:rom-redb", "dep:serde_json"]
 oracle-conformance = ["dep:oracle", "dep:tokio"]
 s3-lifecycle = ["s3-conformance", "dep:rom-sqlite", "dep:rom-redb", "dep:futures-util"]
@@ -97,3 +98,7 @@ postgres = { version = "=0.19.14", optional = true }
 tokio = { version = "=1.53.1", features = ["rt", "macros", "net", "time", "sync"], optional = true }
 tiberius = { version = "=0.13.0", default-features = false, features = ["tds73", "rustls"], optional = true }
 tokio-util = { version = "=0.7.19", features = ["compat"], optional = true }
+
+[[test]]
+name = "projection_checkpoints"
+required-features = ["projection-checkpoints"]

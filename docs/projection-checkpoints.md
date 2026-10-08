@@ -44,7 +44,7 @@ This does not establish arbitrary hardware power-loss behavior; the selected fil
 
 Run `cargo test -p rom-projection-core --locked` for real files, controlled native I/O faults, and bounded child-process interruption.
 The child-only test entry point is invoked by parent tests; its harness ignore marker is not an absent-backend skip.
-Run the independent consumer with `cargo test --manifest-path tests/public-consumer/Cargo.toml --locked --test projection_checkpoints`.
+Run the independent consumer with `cargo test --manifest-path tests/public-consumer/Cargo.toml --locked --features projection-checkpoints --test projection_checkpoints`.
 Run `./scripts/check-projection-package` for a consumer of the normalized Cargo archive.
 The archive uses explicit patches to immutable public ROM `d7ef529040eec60dc869034c2d33130219db85fe`; it does not claim registry publication.
 Both consumer gates are required by the repository verifier.
@@ -72,3 +72,20 @@ Original repair is permitted only after private-copy acceptance. Cancellation du
 The dedicated worker thread, bounded command admission, shutdown/join, and retained-history reconstruction are still required.
 
 The [cancellation verification record](verification/projection-cancellation-full-verifier-2026-10-08.json) identifies actual tests, unchanged dependency graphs, and missing worker acceptance.
+
+## Bounded storage owner
+
+`StorageWorker` creates or opens its checkpoint on one dedicated native thread. Its queue admits one waiting command plus active work.
+Only fixed typed methods submit checkpoint work; callers cannot submit arbitrary native transaction closures.
+Await `StorageResponse::receive` for the classified operation result. Queue admission is not a commit acknowledgement.
+A full queue returns `StorageFailure::Overloaded` before admitting that command. Closed admission returns `Closed`.
+A classified checkpoint failure preserves its exact error and uncertain transaction token. A lost admitted response returns `Unclassified`, without rollback permission.
+Dropping a response or its awaiting future does not cancel admitted work. Inspect durable state after later ordered load or reopening.
+`shutdown` closes admission, drains accepted work and joins through native engine destruction. Dropping the owner also joins.
+Creation, opening, shutdown and drop can block on native I/O. Call them from a bounded blocking host context.
+No hard I/O or shutdown deadline is qualified. Queue bounds exclude caller-held responses and native engine allocations.
+The storage owner reuses `rom-sql-core::Executor`; it enforces join instead of the generic executor's detach-on-drop behavior.
+The normalized archive consumer extracts both crates and exercises an asynchronous storage response before shutdown and independent reopen.
+Page orchestration, actual provider writes, retained authorized-history reconstruction, and the host's asynchronous lifecycle bridge remain required.
+
+The [storage-owner verification record](verification/projection-storage-worker-full-verifier-2026-10-08.json) preserves the failed fixture stop and successful full retry with exact source identity.
