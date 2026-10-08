@@ -1,0 +1,20 @@
+[package]
+name = "rom-delivery-core"
+description = "Bounded delivery payloads and Standard Webhooks signing for ROM adapters"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+rom = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false }
+serde_json = "=1.0.151"
+hmac = "=0.12.1"
+sha2 = "=0.10.9"
+base64 = "=0.22.1"
+zeroize = "=1.9.1"

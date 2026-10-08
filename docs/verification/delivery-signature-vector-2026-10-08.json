@@ -1,0 +1,8 @@
+{
+  "engine": "node:crypto",
+  "node": "v22.16.0",
+  "algorithm": "HMAC-SHA256",
+  "key": "synthetic fixture: 32 bytes each equal to 7",
+  "signed_bytes_utf8": "work-17.1800000000.false",
+  "signature_base64": "WX/AeAi6pFK/OhodbgM1JIIUf65h5KltwhuSDyu/vKg="
+}

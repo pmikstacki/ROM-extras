@@ -1,0 +1,15 @@
+    Updating crates.io index
+     Locking 2 packages to highest Rust 1.99 compatible versions
+      Adding hmac v0.12.1
+      Adding rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+   Compiling digest v0.10.7
+   Compiling sha2 v0.10.9
+   Compiling hmac v0.12.1
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+   Compiling rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 6.30s
+     Running `tests/public-consumer/target/debug/rom-extras-public-consumer`
+Public custom field, connection execution, issuer preset, and bounded delivery verified.

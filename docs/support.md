@@ -41,6 +41,16 @@ The Tiberius 0.13.0 published archive checksum is `e07324791de2bdaed058af4aa433a
 Cargo-audit 0.22.2 reported zero vulnerabilities or warnings in 207 consumer packages with RustSec commit `550efd3d587a29b2e2c2b21b17a440da4fede999`.
 No MSSQL Storage provider or production TLS profile is supported yet. See [the fixture](mssql-fixture.md).
 
+## Delivery preparation increment
+
+`rom-delivery-core` prepares bounded JSON bytes from typed ROM deliveries, preserving stable identity and attempt.
+It includes Standard Webhooks HMAC-SHA256 signing with current and previous host keys.
+Five preparation tests, two signing tests, and one doctest passed. The signature vector was independently generated with Node.js crypto.
+Independent source review found no actionable defect; the full local verifier passed with both SQL fixtures.
+Cargo-audit 0.22.2 reported no vulnerabilities or warnings for 113 workspace and 209 consumer packages.
+Both scans used RustSec commit `550efd3d587a29b2e2c2b21b17a440da4fede999` on 2026-10-08.
+No webhook network transport, durable channel reopen scenario, receiver acknowledgement, or broker integration is supported yet.
+
 ## Whole-goal tracking
 
 | Family | Implementation and remaining acceptance |
@@ -51,7 +61,7 @@ No MSSQL Storage provider or production TLS profile is supported yet. See [the f
 | MySQL, MariaDB, CockroachDB, Oracle | Driver research exists; provider implementation and real-backend conformance remain pending. |
 | OIDC | Preset configuration and signed synthetic-token integration verified; live provider login remains pending. |
 | OpenTelemetry | Public diagnostic interface publication and OTLP implementation remain pending. |
-| Webhooks, Kafka, NATS, RabbitMQ, notifications | Delivery-family contracts, provider implementation, and real acceptance/recovery fixtures remain pending. |
+| Webhooks, Kafka, NATS, RabbitMQ, notifications | Delivery-family contract and bounded preparation/signing implemented; network providers and real acceptance/recovery fixtures remain pending. |
 | S3-compatible, Azure Blob | Existing ROM adapter review and missing-operation implementation/real fixtures remain pending. |
 | Secrets and KMS | Bounded family contract, provider implementation, and service verification remain pending. |
 | OpenSearch and vectors | Projection contract, implementation, authorization checks, and real fixtures remain pending. |

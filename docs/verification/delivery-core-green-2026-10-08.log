@@ -1,0 +1,35 @@
+   Compiling rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.39s
+     Running unittests src/lib.rs (target/debug/deps/rom_delivery_core-753bcf0ace53d478)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/preparation.rs (target/debug/deps/preparation-47118efb13305d22)
+
+running 5 tests
+test encoded_byte_limit_includes_json_quotes_escaping_and_utf8 ... ok
+test invalid_identity_rejects_before_payload_encoding ... ok
+test prepared_debug_output_does_not_disclose_payload_values ... ok
+test retry_keeps_identity_and_payload_but_exposes_the_runtime_attempt ... ok
+test scalar_payloads_keep_null_false_zero_and_empty_distinct ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/signing.rs (target/debug/deps/signing-2fe43a5549e996a8)
+
+running 2 tests
+test signature_matches_independent_node_crypto_vector ... ok
+test rotation_signs_with_current_and_previous_keys_without_changing_the_message ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_delivery_core
+
+running 1 test
+test crates/rom-delivery-core/src/lib.rs - (line 7) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.17s; merged doctests compilation took 0.17s

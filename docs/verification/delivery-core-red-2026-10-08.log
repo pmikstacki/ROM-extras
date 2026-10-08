@@ -1,0 +1,54 @@
+    Updating git repository `https://github.com/pmikstacki/ROM`
+    Updating crates.io index
+     Locking 10 packages to highest Rust 1.99 compatible versions
+      Adding crossbeam-deque v0.8.8
+      Adding crossbeam-epoch v0.9.21
+      Adding crossbeam-utils v0.8.23
+      Adding either v1.19.0
+      Adding hmac v0.12.1 (available: v0.13.0)
+      Adding rayon v1.12.0
+      Adding rayon-core v1.13.0
+      Adding rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+      Adding tokio v1.53.1 (available: v1.53.2)
+      Adding tokio-macros v2.7.2
+   Compiling crossbeam-utils v0.8.23
+   Compiling crossbeam-epoch v0.9.21
+   Compiling syn v3.0.6
+   Compiling crossbeam-deque v0.8.8
+   Compiling subtle v2.6.1
+   Compiling rayon-core v1.13.0
+   Compiling digest v0.10.7
+   Compiling pin-project-lite v0.2.17
+   Compiling either v1.19.0
+   Compiling sha2 v0.10.9
+   Compiling rayon v1.12.0
+   Compiling tokio-macros v2.7.2
+   Compiling serde_derive v1.0.229
+   Compiling tokio v1.53.1
+   Compiling serde v1.0.229
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling hmac v0.12.1
+   Compiling zeroize v1.9.1
+   Compiling rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+error[E0432]: unresolved imports `rom_delivery_core::PayloadLimit`, `rom_delivery_core::PreparedDelivery`, `rom_delivery_core::WebhookSigner`
+ --> crates/rom-delivery-core/tests/signing.rs:3:25
+  |
+3 | use rom_delivery_core::{PayloadLimit, PreparedDelivery, WebhookSigner};
+  |                         ^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^ no `WebhookSigner` in the root
+  |                         |             |
+  |                         |             no `PreparedDelivery` in the root
+  |                         no `PayloadLimit` in the root
+
+error[E0432]: unresolved imports `rom_delivery_core::DeliveryError`, `rom_delivery_core::PayloadLimit`, `rom_delivery_core::PreparedDelivery`
+ --> crates/rom-delivery-core/tests/preparation.rs:3:25
+  |
+3 | use rom_delivery_core::{DeliveryError, PayloadLimit, PreparedDelivery};
+  |                         ^^^^^^^^^^^^^  ^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^ no `PreparedDelivery` in the root
+  |                         |              |
+  |                         |              no `PayloadLimit` in the root
+  |                         no `DeliveryError` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rom-delivery-core` (test "signing") due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `rom-delivery-core` (test "preparation") due to 1 previous error

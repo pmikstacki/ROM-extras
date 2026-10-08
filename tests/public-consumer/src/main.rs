@@ -1,4 +1,4 @@
-//! Independent consumer of public fields, SQL execution, and issuer presets.
+//! Independent consumer of public fields, SQL execution, identity, and delivery.
 use rom::{Error, Field, Result, Shape, Value};
 use rom_sql_core::Executor;
 
@@ -41,6 +41,18 @@ fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     worker.shutdown()?;
     let issuer = rom_oidc_presets::IssuerPreset::keycloak("https://login.example/auth", "staff")?;
     assert_eq!(issuer.issuer(), "https://login.example/auth/realms/staff");
-    println!("Public custom field, isolated connection execution, and issuer preset verified.");
+    let message = rom_delivery_core::PreparedDelivery::prepare(
+        rom::Delivery {
+            id: "work-17".into(),
+            attempt: 1,
+            payload: false,
+        },
+        rom_delivery_core::PayloadLimit::default(),
+    )?;
+    assert_eq!(message.id(), "work-17");
+    assert_eq!(message.body(), b"false");
+    println!(
+        "Public custom field, connection execution, issuer preset, and bounded delivery verified."
+    );
     Ok(())
 }
