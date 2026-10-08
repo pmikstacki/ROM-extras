@@ -463,3 +463,34 @@ The full verifier, including the new required native probe gate, exited successf
 The [execution record](../verification/projection-probes-full-verifier-2026-10-08.json) retains exact source hashes, service profiles, raw output, and incomplete requirements.
 Public ROM HEAD was independently rechecked and remains `d7ef529040eec60dc869034c2d33130219db85fe`.
 The referenced architecture chat remains active on release qualification; its private changes are not dependencies of this increment.
+
+## 2026-10-08: projection checkpoint transactions and format
+
+Sources: [checkpoint-store assessment](projection-checkpoint-store.md), [redb 4.3.0 commit contract](https://github.com/cberner/redb/blob/v4.3.0/src/transactions.rs#L1746), [native builder and read-only open](https://github.com/cberner/redb/blob/v4.3.0/src/db.rs), [public ROM ownership](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom-backup/src/native_ownership.rs), [deterministic CBOR alternative](https://www.rfc-editor.org/rfc/rfc8949.html#section-4.2), [SHA-256 standard](https://csrc.nist.gov/pubs/fips/180-4/upd1/final).
+
+Select extras-owned redb 4.3.0 with explicit Immediate commits, a bounded cache, and public ROM native ownership.
+Direct rusqlite is a viable later checkpoint implementation; private ROM engine handles and Resource actions are unsuitable substitutes.
+Select read-only application preflight and bounded private-copy repair before recovering an unclean original.
+Writable-open-then-marker-check can modify a future-format source before rejection. Reject that ordering.
+Fail-closed repair-required behavior is useful during implementation, but does not complete required accepted-format crash recovery.
+
+Select intent-before-dispatch and exact remote metadata reconciliation before atomic cursor/key publication.
+Reject unexpected higher remote revisions as divergence instead of manufacturing an exact acknowledgement.
+Reserve generation switching for Task 6; local checkpoint and remote alias commits cannot be one atomic operation.
+Retain the last page's preparation/completion tokens for immediate unknown-commit reconciliation, not unbounded historical receipts.
+An uncertain native commit retires its engine while retaining ownership. Its error carries the exact token needed after reopen.
+
+Select a versioned fixed-field binary schema with length-delimited UTF-8 keys and preallocation bounds.
+General JSON/CBOR codecs are alternatives; they still need exact canonicalization and bounded schema validation.
+The fixed record set does not need their additional extensibility. This is a private extras format, not a claim of CBOR conformance.
+Select domain-separated SHA-256 using the existing resolved dependency; exact original-key checks remain mandatory for collisions.
+The [concrete contract](../superpowers/specs/2026-10-08-projection-checkpoints.md) states signatures, format, two-phase sequences, and acceptance requirements.
+Admission values are initial application policy and need measured tests; research does not establish those tests passed.
+
+Independent source-only review found no actionable recovery issue in the initial contract.
+Concrete encoding and result categories were subsequently added. Runtime tests, dirty recovery, native I/O faults, and full verifier acceptance remain pending.
+Further independent review found that a sequence and intent digest cannot prove an absent preparation after process restart.
+Add the previous control-state digest to the token and bind it to the profile; require caller retention across restart.
+A fresh handle uses durable state plus that token, not lost in-memory attempt bookkeeping.
+If both token and uncommitted intent are lost, no absent-attempt classification is available.
+The architecture reference was read again. Its active private release work is not an extras dependency.

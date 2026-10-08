@@ -1,0 +1,34 @@
+{
+  "inspection_date": "2026-10-08",
+  "increment": "checkpoint research and transaction contract only",
+  "baseline_commit": "8b6f3279626a89dd60d7e91a273ab3078f8132ab",
+  "evidence_category": "source-only design review and local documentation validation",
+  "source_sha256": {
+    "docs/research/projection-checkpoint-store.md": "9f469ded15425925d2b2d34d0f8a09018c7d333bd58921c11478ecbd95727eb8",
+    "docs/research/decision-log.md": "e99a22bc38a0f978e8a5ed65e8838cdeedc9d15f60a468643f65a2d2c9848821",
+    "docs/superpowers/specs/2026-10-08-projection-checkpoints.md": "c581fc52f45b9ffaf387fbda66610e98210fa81c9b8ae02b5dbac9c025f32e9c",
+    "docs/superpowers/plans/2026-10-08-projections.md": "fd7363e16bed135b8fa642e649657c34ca19e63f7d7bc25f53e5f5bea5a17b39"
+  },
+  "checks": {
+    "local_links": {
+      "result": "passed",
+      "files": 4,
+      "count": 27
+    },
+    "diff_whitespace": "checked separately before commit"
+  },
+  "review": {
+    "initial": "no actionable recovery findings; concrete encoding still pending",
+    "concrete_contract": "P2: absent preparation cannot be proven from intent fingerprint alone",
+    "correction": "previous control-state digest in caller-retained token; exact durable comparison after reopen",
+    "targeted_recheck": "P2 resolved; no additional actionable findings"
+  },
+  "runtime_changes": false,
+  "runtime_checks_run": false,
+  "limits": [
+    "No checkpoint runtime or recovery implementation exists in this increment.",
+    "Source review and link validation do not qualify the planned bounds or native durability.",
+    "Accepted dirty recovery, actual commit faults, process interruption, native ROM, provider integration, packages and full verifier remain required."
+  ],
+  "next_required_step": "Task 2 TDD: meaningful real-store boundary and recovery cases, then bounded checkpoint implementation"
+}

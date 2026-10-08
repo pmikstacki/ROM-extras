@@ -62,6 +62,9 @@ Do not add empty crates as completed deliverables.
 
 **Interfaces:** Consumes the Task 1 fenced provider operation. Produces `Worker::apply_page` with durable intents and a committed cursor; `Worker::recover` resolves pending operations before accepting later same-key work.
 Define the concrete checkpoint transaction interface from the qualified recovery protocol, before writing its callers.
+The [checkpoint transaction contract](../specs/2026-10-08-projection-checkpoints.md) now specifies target signatures, result categories, bounds, and format.
+Implement page transactions first. Reserved switch tags reject unsupported work until Task 6 format qualification.
+Accepted dirty-file recovery is required in Task 2; temporary fail-closed behavior is not its final acceptance.
 
 - [ ] Write boundary and recovery tests first: oversize input, overflow, zero revision, key collision, stale revision, equal-revision mismatch, filtered empty page, and interrupted checkpoint commit.
 - [ ] Run the tests and preserve their intended initial failure.
@@ -146,5 +149,5 @@ Both immutable service images run with persistent verified TLS fixtures. OpenSea
 The [probe guide](../../projection-probes.md) states the exact tested scope and preserved failures.
 The required `scripts/check-projection-probes` gate is included in `scripts/check-all`.
 This completes fixture preparation and the Qdrant protocol experiments, not Task 2 or the whole family.
-Before Task 2 code, specify the concrete checkpoint transaction interface and finalize both adapters' reconciliation result types.
+The [checkpoint contract](../specs/2026-10-08-projection-checkpoints.md) specifies the concrete transaction and exact-observation seam before Task 2 callers.
 OpenSearch response-loss injection remains an adapter qualification requirement in Task 3.
