@@ -1,0 +1,673 @@
+workspace: 341 locked packages; removed=[]
+name	version	license	rust-version
+aes	0.8.4	MIT OR Apache-2.0	1.56
+aho-corasick	1.1.5	Unlicense OR MIT	1.60.0
+amq-protocol	10.6.3	BSD-2-Clause	1.88.0
+amq-protocol-tcp	10.6.3	BSD-2-Clause	1.88.0
+amq-protocol-types	10.6.3	BSD-2-Clause	1.88.0
+amq-protocol-uri	10.6.3	BSD-2-Clause	1.88.0
+asn1-rs	0.7.2	MIT OR Apache-2.0	1.68
+asn1-rs-derive	0.6.0	MIT OR Apache-2.0	UNDECLARED
+asn1-rs-impl	0.2.0	MIT/Apache-2.0	UNDECLARED
+async-channel	2.5.0	Apache-2.0 OR MIT	1.60
+async-compat	0.2.6	Apache-2.0 OR MIT	1.71
+async-executor	1.14.0	Apache-2.0 OR MIT	1.65
+async-global-executor	3.1.0	Apache-2.0 OR MIT	1.80
+async-lock	3.4.2	Apache-2.0 OR MIT	1.85
+async-nats	0.50.0	Apache-2.0	1.88.0
+async-rs	0.8.13	BSD-2-Clause	1.88.0
+async-task	4.7.1	Apache-2.0 OR MIT	1.57
+async-trait	0.1.92	MIT OR Apache-2.0	1.71
+atomic-waker	1.1.2	Apache-2.0 OR MIT	1.36
+autocfg	1.5.1	Apache-2.0 OR MIT	1.0
+aws-lc-rs	1.18.1	ISC AND (Apache-2.0 OR ISC)	1.71.0
+aws-lc-sys	0.45.0	ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0)	1.71.0
+backon	1.6.0	Apache-2.0	1.85
+base64	0.22.1	MIT OR Apache-2.0	1.48.0
+base64	0.23.1	MIT OR Apache-2.0	1.71.0
+base64ct	1.8.3	Apache-2.0 OR MIT	1.85
+bitflags	2.13.2	MIT OR Apache-2.0	1.56.0
+block-buffer	0.10.4	MIT OR Apache-2.0	UNDECLARED
+block-padding	0.3.3	MIT OR Apache-2.0	1.56
+blocking	1.7.0	Apache-2.0 OR MIT	1.68
+bumpalo	3.20.3	MIT OR Apache-2.0	1.71.1
+bytes	1.12.1	MIT	1.57
+cbc	0.1.2	MIT OR Apache-2.0	1.56
+cc	1.6.0	MIT OR Apache-2.0	1.65.0
+cfg-if	1.0.5	MIT OR Apache-2.0	1.32
+cfg_aliases	0.2.2	MIT	UNDECLARED
+chacha20	0.10.2	MIT OR Apache-2.0	1.85
+cipher	0.4.4	MIT OR Apache-2.0	1.56
+cmake	0.1.58	MIT OR Apache-2.0	1.65
+cms	0.2.3	Apache-2.0 OR MIT	1.65
+combine	4.6.8	MIT	UNDECLARED
+concurrent-queue	2.5.0	Apache-2.0 OR MIT	1.60
+const-oid	0.9.6	Apache-2.0 OR MIT	1.57
+cookie-factory	0.3.3	MIT	UNDECLARED
+core-foundation	0.10.1	MIT OR Apache-2.0	1.65
+core-foundation	0.9.4	MIT OR Apache-2.0	UNDECLARED
+core-foundation-sys	0.8.7	MIT OR Apache-2.0	UNDECLARED
+cpufeatures	0.2.17	MIT OR Apache-2.0	UNDECLARED
+cpufeatures	0.3.1	MIT OR Apache-2.0	1.85
+critical-section	1.2.0	MIT OR Apache-2.0	UNDECLARED
+crossbeam-channel	0.5.17	MIT OR Apache-2.0	1.60
+crossbeam-deque	0.8.8	MIT OR Apache-2.0	1.61
+crossbeam-epoch	0.9.21	MIT OR Apache-2.0	1.61
+crossbeam-utils	0.8.23	MIT OR Apache-2.0	1.60
+crypto-common	0.1.7	MIT OR Apache-2.0	UNDECLARED
+data-encoding	2.11.1	MIT	1.48
+der	0.7.10	Apache-2.0 OR MIT	1.65
+der-parser	10.0.0	MIT OR Apache-2.0	1.63
+der_derive	0.7.3	Apache-2.0 OR MIT	1.65
+deranged	0.5.8	MIT OR Apache-2.0	1.85.0
+des	0.8.1	MIT OR Apache-2.0	1.56
+digest	0.10.7	MIT OR Apache-2.0	UNDECLARED
+displaydoc	0.2.7	MIT OR Apache-2.0	1.71.0
+dunce	1.0.5	CC0-1.0 OR MIT-0 OR Apache-2.0	UNDECLARED
+either	1.19.0	MIT OR Apache-2.0	1.63.0
+equivalent	1.0.2	Apache-2.0 OR MIT	1.6
+event-listener	5.4.2	Apache-2.0 OR MIT	1.60
+event-listener-strategy	0.5.4	Apache-2.0 OR MIT	1.60
+fallible-iterator	0.3.0	MIT/Apache-2.0	UNDECLARED
+fallible-streaming-iterator	0.1.9	MIT/Apache-2.0	UNDECLARED
+fastrand	2.5.0	Apache-2.0 OR MIT	1.63
+find-msvc-tools	0.1.14	MIT OR Apache-2.0	1.65.0
+flagset	0.4.7	Apache-2.0	1.65
+flume	0.12.0	Apache-2.0/MIT	UNDECLARED
+foldhash	0.2.0	Zlib	1.60
+form_urlencoded	1.2.2	MIT OR Apache-2.0	1.51
+fs_extra	1.3.0	MIT	UNDECLARED
+futures-channel	0.3.34	MIT OR Apache-2.0	1.71
+futures-core	0.3.34	MIT OR Apache-2.0	1.36
+futures-io	0.3.34	MIT OR Apache-2.0	1.36
+futures-lite	2.6.1	Apache-2.0 OR MIT	1.60
+futures-macro	0.3.34	MIT OR Apache-2.0	1.71
+futures-rustls	0.26.0	MIT/Apache-2.0	UNDECLARED
+futures-sink	0.3.34	MIT OR Apache-2.0	1.36
+futures-task	0.3.34	MIT OR Apache-2.0	1.71
+futures-util	0.3.34	MIT OR Apache-2.0	1.71
+generic-array	0.14.7	MIT	UNDECLARED
+getrandom	0.2.17	MIT OR Apache-2.0	UNDECLARED
+getrandom	0.4.3	MIT OR Apache-2.0	1.85
+hashbrown	0.16.1	MIT OR Apache-2.0	1.65.0
+hashbrown	0.17.1	MIT OR Apache-2.0	1.85.0
+hashlink	0.12.2	MIT OR Apache-2.0	1.85
+hex	0.4.3	MIT OR Apache-2.0	UNDECLARED
+hickory-net	0.26.3	MIT OR Apache-2.0	1.88
+hickory-proto	0.26.3	MIT OR Apache-2.0	1.88
+hickory-resolver	0.26.3	MIT OR Apache-2.0	1.88
+hmac	0.12.1	MIT OR Apache-2.0	UNDECLARED
+http	1.5.0	MIT OR Apache-2.0	1.57.0
+http-body	1.1.0	MIT	1.61
+http-body-util	0.1.5	MIT	1.61
+httparse	1.10.1	MIT OR Apache-2.0	UNDECLARED
+hyper	1.12.0	MIT	1.63
+hyper-rustls	0.27.10	Apache-2.0 OR ISC OR MIT	1.85
+hyper-util	0.1.21	MIT	1.85
+icu_collections	2.3.0	Unicode-3.0	1.88
+icu_locale_core	2.3.0	Unicode-3.0	1.88
+icu_normalizer	2.3.0	Unicode-3.0	1.88
+icu_normalizer_data	2.3.0	Unicode-3.0	1.88
+icu_properties	2.3.0	Unicode-3.0	1.88
+icu_properties_data	2.3.0	Unicode-3.0	1.88
+icu_provider	2.3.1	Unicode-3.0	1.88
+idna	1.1.0	MIT OR Apache-2.0	1.57
+idna_adapter	1.2.2	Apache-2.0 OR MIT	1.86
+indexmap	2.14.2	Apache-2.0 OR MIT	1.85
+inout	0.1.4	MIT OR Apache-2.0	1.56
+ipconfig	0.3.4	MIT/Apache-2.0	1.71
+ipnet	2.12.2	MIT OR Apache-2.0	UNDECLARED
+itoa	1.0.18	MIT OR Apache-2.0	1.68
+jni	0.22.4	MIT OR Apache-2.0	1.85.0
+jni-macros	0.22.4	MIT OR Apache-2.0	UNDECLARED
+jni-sys	0.4.1	MIT OR Apache-2.0	1.76.0
+jni-sys-macros	0.4.1	MIT OR Apache-2.0	UNDECLARED
+jobserver	0.1.35	MIT OR Apache-2.0	1.85
+js-sys	0.3.106	MIT OR Apache-2.0	1.81
+jsonwebtoken	11.1.0	MIT	1.88.0
+lapin	4.12.0	MIT	1.88.0
+lazy_static	1.5.1	MIT OR Apache-2.0	UNDECLARED
+libc	0.2.190	MIT OR Apache-2.0	1.65
+libsqlite3-sys	0.38.2	MIT	UNDECLARED
+litemap	0.8.3	Unicode-3.0	1.82
+lock_api	0.4.14	MIT OR Apache-2.0	1.71.0
+log	0.4.34	MIT OR Apache-2.0	1.71.0
+lru-slab	0.1.3	MIT OR Apache-2.0 OR Zlib	UNDECLARED
+memchr	2.8.3	Unlicense OR MIT	1.61
+minimal-lexical	0.2.1	MIT/Apache-2.0	UNDECLARED
+mio	1.2.4	MIT	1.71
+moka	0.12.16	(MIT OR Apache-2.0) AND Apache-2.0	1.71.1
+ndk-context	0.1.1	MIT OR Apache-2.0	UNDECLARED
+nom	7.1.3	MIT	1.48
+nom	8.0.0	MIT	1.65.0
+nuid	0.5.0	Apache-2.0	1.63
+num-bigint	0.4.8	MIT OR Apache-2.0	1.60
+num-conv	0.2.2	MIT OR Apache-2.0	1.57.0
+num-integer	0.1.47	MIT OR Apache-2.0	1.31
+num-traits	0.2.19	MIT OR Apache-2.0	1.60
+num_enum	0.7.6	BSD-3-Clause OR MIT OR Apache-2.0	1.70.0
+num_enum_derive	0.7.6	BSD-3-Clause OR MIT OR Apache-2.0	1.70.0
+oid-registry	0.8.1	MIT OR Apache-2.0	1.63
+once_cell	1.21.4	MIT OR Apache-2.0	1.65
+openssl-probe	0.2.1	MIT OR Apache-2.0	1.60.0
+openssl-sys	0.9.117	MIT	1.80.0
+p12-keystore	0.2.1	MIT/Apache-2.0	UNDECLARED
+parking	2.2.1	Apache-2.0 OR MIT	1.51
+parking_lot	0.12.5	MIT OR Apache-2.0	1.71
+parking_lot_core	0.9.12	MIT OR Apache-2.0	1.71.0
+pbkdf2	0.12.2	MIT OR Apache-2.0	1.60
+pem	3.0.6	MIT	1.60.0
+pem-rfc7468	0.7.0	Apache-2.0 OR MIT	1.60
+percent-encoding	2.3.2	MIT OR Apache-2.0	1.51
+pin-project	1.1.13	Apache-2.0 OR MIT	1.71
+pin-project-internal	1.1.13	Apache-2.0 OR MIT	1.71
+pin-project-lite	0.2.17	Apache-2.0 OR MIT	1.37
+piper	0.2.5	MIT OR Apache-2.0	1.36
+pkcs12	0.1.0	Apache-2.0 OR MIT	1.65
+pkcs5	0.7.1	Apache-2.0 OR MIT	1.65
+pkg-config	0.3.34	MIT OR Apache-2.0	1.63
+portable-atomic	1.15.0	Apache-2.0 OR MIT	1.34
+potential_utf	0.1.6	Unicode-3.0	1.82
+powerfmt	0.2.1	MIT OR Apache-2.0	1.79.0
+ppv-lite86	0.2.21	MIT OR Apache-2.0	1.61
+prefix-trie	0.8.4	MIT OR Apache-2.0	1.71.1
+proc-macro-crate	3.5.0	MIT OR Apache-2.0	1.82.0
+proc-macro2	1.0.107	MIT OR Apache-2.0	1.71
+quinn	0.11.12	MIT OR Apache-2.0	1.85
+quinn-proto	0.11.19	MIT OR Apache-2.0	1.85
+quinn-udp	0.5.16	MIT OR Apache-2.0	1.85
+quote	1.0.47	MIT OR Apache-2.0	1.71
+r-efi	6.0.0	MIT OR Apache-2.0 OR LGPL-2.1-or-later	1.68
+rand	0.10.3	MIT OR Apache-2.0	1.85
+rand	0.8.8	MIT OR Apache-2.0	UNDECLARED
+rand_chacha	0.3.1	MIT OR Apache-2.0	UNDECLARED
+rand_core	0.10.1	MIT OR Apache-2.0	1.85
+rand_core	0.6.4	MIT OR Apache-2.0	UNDECLARED
+rand_pcg	0.10.2	MIT OR Apache-2.0	1.85
+rayon	1.12.0	MIT OR Apache-2.0	1.80
+rayon-core	1.13.0	MIT OR Apache-2.0	1.80
+rc2	0.8.1	MIT OR Apache-2.0	1.56
+rdkafka	0.39.0	MIT	1.74
+rdkafka-sys	4.10.0+2.12.1	MIT	1.74
+redb	4.3.0	MIT OR Apache-2.0	1.90
+redox_syscall	0.5.18	MIT	UNDECLARED
+regex	1.13.1	MIT OR Apache-2.0	1.65
+regex-automata	0.4.18	MIT OR Apache-2.0	1.65
+regex-syntax	0.8.11	MIT OR Apache-2.0	1.65
+reqwest	0.13.5	MIT OR Apache-2.0	1.85.0
+resolv-conf	0.7.6	MIT OR Apache-2.0	1.61
+ring	0.17.14	Apache-2.0 AND ISC	1.66.0
+rom	0.0.3	MIT	1.99
+rom-auth	0.0.3	MIT	1.99
+rom-backup	0.0.3	MIT	1.99
+rom-delivery-core	0.1.0-dev	MIT	1.99
+rom-derive	0.0.3	MIT	1.99
+rom-kafka	0.1.0-dev	MIT	1.99
+rom-nats	0.1.0-dev	MIT	1.99
+rom-oidc-presets	0.1.0-dev	MIT	1.99
+rom-rabbitmq	0.1.0-dev	MIT	1.99
+rom-redb	0.0.3	MIT	1.99
+rom-sql-core	0.1.0-dev	MIT	1.99
+rom-sqlite	0.0.3	MIT	1.99
+rom-webhook	0.1.0-dev	MIT	1.99
+rsqlite-vfs	0.1.1	MIT	1.81.0
+rusqlite	0.40.2	MIT	UNDECLARED
+rustc-hash	2.1.3	Apache-2.0 OR MIT	1.77
+rustc_version	0.4.1	MIT OR Apache-2.0	1.32
+rusticata-macros	4.1.0	MIT/Apache-2.0	UNDECLARED
+rustls	0.23.45	Apache-2.0 OR ISC OR MIT	1.71
+rustls-connector	0.23.9	BSD-2-Clause	1.87.0
+rustls-native-certs	0.8.4	Apache-2.0 OR ISC OR MIT	1.71
+rustls-pki-types	1.15.1	MIT OR Apache-2.0	1.60
+rustls-platform-verifier	0.7.1	MIT OR Apache-2.0	1.85
+rustls-platform-verifier-android	0.2.0	MIT OR Apache-2.0	UNDECLARED
+rustls-webpki	0.103.15	ISC	1.71
+rustversion	1.0.23	MIT OR Apache-2.0	1.31
+salsa20	0.10.2	MIT OR Apache-2.0	1.56
+same-file	1.0.6	Unlicense/MIT	UNDECLARED
+schannel	0.1.29	MIT	1.71.0
+scopeguard	1.2.0	MIT OR Apache-2.0	UNDECLARED
+scrypt	0.11.0	MIT OR Apache-2.0	1.60
+security-framework	3.7.0	MIT OR Apache-2.0	1.85
+security-framework-sys	2.17.0	MIT OR Apache-2.0	1.70
+semver	1.0.28	MIT OR Apache-2.0	1.68
+serde	1.0.229	MIT OR Apache-2.0	1.56
+serde_core	1.0.229	MIT OR Apache-2.0	1.56
+serde_derive	1.0.229	MIT OR Apache-2.0	1.71
+serde_json	1.0.151	MIT OR Apache-2.0	1.71
+serde_nanos	0.1.4	MIT OR Apache-2.0	UNDECLARED
+serde_repr	0.1.21	MIT OR Apache-2.0	1.71
+sha1	0.10.7	MIT OR Apache-2.0	UNDECLARED
+sha2	0.10.9	MIT OR Apache-2.0	UNDECLARED
+shlex	2.0.1	MIT OR Apache-2.0	1.46.0
+signature	2.2.0	Apache-2.0 OR MIT	1.60
+simd_cesu8	1.2.0	Apache-2.0 OR MIT	1.85.0
+simdutf8	0.1.5	MIT OR Apache-2.0	UNDECLARED
+simple_asn1	0.6.4	ISC	UNDECLARED
+slab	0.4.12	MIT	1.51
+smallvec	1.16.2	MIT OR Apache-2.0	UNDECLARED
+socket2	0.6.5	MIT OR Apache-2.0	1.70
+spin	0.9.9	MIT	1.38
+spki	0.7.3	Apache-2.0 OR MIT	1.65
+sqlite-wasm-rs	0.5.5	MIT	1.81.0
+stable_deref_trait	1.2.1	MIT OR Apache-2.0	UNDECLARED
+subtle	2.6.1	BSD-3-Clause	UNDECLARED
+syn	2.0.119	MIT OR Apache-2.0	1.71
+syn	3.0.6	MIT OR Apache-2.0	1.71
+sync_wrapper	1.0.2	Apache-2.0	UNDECLARED
+synstructure	0.13.2	MIT	UNDECLARED
+synstructure	0.14.0	MIT	1.71
+system-configuration	0.7.0	MIT OR Apache-2.0	1.64.0
+system-configuration-sys	0.6.0	MIT OR Apache-2.0	UNDECLARED
+tagptr	0.2.0	MIT/Apache-2.0	UNDECLARED
+tcp-stream	0.34.14	BSD-2-Clause	1.88.0
+thiserror	2.0.21	MIT OR Apache-2.0	1.77
+thiserror-impl	2.0.21	MIT OR Apache-2.0	1.77
+time	0.3.55	MIT OR Apache-2.0	1.88.0
+time-core	0.1.9	MIT OR Apache-2.0	1.88.0
+time-macros	0.2.32	MIT OR Apache-2.0	1.88.0
+tinystr	0.8.4	Unicode-3.0	1.82
+tinyvec	1.13.3	Zlib OR Apache-2.0 OR MIT	UNDECLARED
+tokio	1.53.1	MIT	1.71
+tokio-macros	2.7.2	MIT	1.71
+tokio-rustls	0.26.6	MIT OR Apache-2.0	1.71
+tokio-stream	0.1.19	MIT	1.71
+tokio-util	0.7.19	MIT	1.71
+tokio-websockets	0.10.1	MIT	1.79
+toml_datetime	1.1.2+spec-1.1.0	MIT OR Apache-2.0	1.85
+toml_edit	0.25.16+spec-1.1.0	MIT OR Apache-2.0	1.85
+toml_parser	1.1.4+spec-1.1.0	MIT OR Apache-2.0	1.85
+tower	0.5.3	MIT	1.64.0
+tower-http	0.6.11	MIT	1.64
+tower-layer	0.3.3	MIT	UNDECLARED
+tower-service	0.3.3	MIT	UNDECLARED
+tracing	0.1.44	MIT	1.65.0
+tracing-attributes	0.1.31	MIT	1.65.0
+tracing-core	0.1.36	MIT	1.65.0
+try-lock	0.2.5	MIT	UNDECLARED
+tryhard	0.5.2	MIT OR Apache-2.0	UNDECLARED
+typenum	1.20.1	MIT OR Apache-2.0	1.41.0
+unicode-ident	1.0.26	(MIT OR Apache-2.0) AND Unicode-3.0	1.71
+untrusted	0.7.1	ISC	UNDECLARED
+untrusted	0.9.0	ISC	UNDECLARED
+url	2.5.8	MIT OR Apache-2.0	1.63
+utf8_iter	1.0.4	Apache-2.0 OR MIT	UNDECLARED
+uuid	1.27.0	Apache-2.0 OR MIT	1.89.0
+vcpkg	0.2.15	MIT/Apache-2.0	UNDECLARED
+version_check	0.9.5	MIT/Apache-2.0	UNDECLARED
+walkdir	2.5.0	Unlicense/MIT	UNDECLARED
+want	0.3.2	MIT	UNDECLARED
+wasi	0.11.1+wasi-snapshot-preview1	Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT	UNDECLARED
+wasm-bindgen	0.2.129	MIT OR Apache-2.0	1.81
+wasm-bindgen-futures	0.4.79	MIT OR Apache-2.0	1.81
+wasm-bindgen-macro	0.2.129	MIT OR Apache-2.0	1.81
+wasm-bindgen-macro-support	0.2.129	MIT OR Apache-2.0	1.81
+wasm-bindgen-shared	0.2.129	MIT OR Apache-2.0	1.81
+web-sys	0.3.106	MIT OR Apache-2.0	1.81
+web-time	1.1.0	MIT OR Apache-2.0	1.60
+webpki-root-certs	1.0.9	CDLA-Permissive-2.0	1.70
+webpki-roots	0.26.11	CDLA-Permissive-2.0	UNDECLARED
+webpki-roots	1.0.9	CDLA-Permissive-2.0	1.70
+widestring	1.2.1	MIT OR Apache-2.0	1.58
+winapi-util	0.1.11	Unlicense OR MIT	UNDECLARED
+windows-link	0.2.1	MIT OR Apache-2.0	1.71
+windows-registry	0.6.1	MIT OR Apache-2.0	1.82
+windows-result	0.4.1	MIT OR Apache-2.0	1.82
+windows-strings	0.5.1	MIT OR Apache-2.0	1.82
+windows-sys	0.52.0	MIT OR Apache-2.0	1.56
+windows-sys	0.61.2	MIT OR Apache-2.0	1.71
+windows-targets	0.52.6	MIT OR Apache-2.0	1.56
+windows_aarch64_gnullvm	0.52.6	MIT OR Apache-2.0	1.56
+windows_aarch64_msvc	0.52.6	MIT OR Apache-2.0	1.56
+windows_i686_gnu	0.52.6	MIT OR Apache-2.0	1.56
+windows_i686_gnullvm	0.52.6	MIT OR Apache-2.0	1.56
+windows_i686_msvc	0.52.6	MIT OR Apache-2.0	1.56
+windows_x86_64_gnu	0.52.6	MIT OR Apache-2.0	1.56
+windows_x86_64_gnullvm	0.52.6	MIT OR Apache-2.0	1.56
+windows_x86_64_msvc	0.52.6	MIT OR Apache-2.0	1.56
+winnow	1.0.4	MIT	1.65.0
+writeable	0.6.4	Unicode-3.0	1.82
+x509-cert	0.2.5	Apache-2.0 OR MIT	1.65
+x509-parser	0.18.1	MIT OR Apache-2.0	1.67.1
+yoke	0.8.3	Unicode-3.0	1.82
+yoke-derive	0.8.4	Unicode-3.0	1.82
+zerocopy	0.8.62	BSD-2-Clause OR Apache-2.0 OR MIT	1.56.0
+zerocopy-derive	0.8.62	BSD-2-Clause OR Apache-2.0 OR MIT	UNDECLARED
+zerofrom	0.1.8	Unicode-3.0	1.71.1
+zerofrom-derive	0.1.8	Unicode-3.0	1.71.1
+zeroize	1.9.1	Apache-2.0 OR MIT	1.85
+zeroize_derive	1.5.0	Apache-2.0 OR MIT	1.85
+zerotrie	0.2.5	Unicode-3.0	1.82
+zerovec	0.11.8	Unicode-3.0	1.83
+zerovec-derive	0.11.6	Unicode-3.0	UNDECLARED
+zmij	1.0.23	MIT	1.71
+consumer: 371 locked packages; removed=[]
+name	version	license	rust-version
+aes	0.8.4	MIT OR Apache-2.0	1.56
+aho-corasick	1.1.5	Unlicense OR MIT	1.60.0
+amq-protocol	10.6.3	BSD-2-Clause	1.88.0
+amq-protocol-tcp	10.6.3	BSD-2-Clause	1.88.0
+amq-protocol-types	10.6.3	BSD-2-Clause	1.88.0
+amq-protocol-uri	10.6.3	BSD-2-Clause	1.88.0
+asn1-rs	0.7.2	MIT OR Apache-2.0	1.68
+asn1-rs-derive	0.6.0	MIT OR Apache-2.0	UNDECLARED
+asn1-rs-impl	0.2.0	MIT/Apache-2.0	UNDECLARED
+async-channel	2.5.0	Apache-2.0 OR MIT	1.60
+async-compat	0.2.6	Apache-2.0 OR MIT	1.71
+async-executor	1.14.0	Apache-2.0 OR MIT	1.65
+async-global-executor	3.1.0	Apache-2.0 OR MIT	1.80
+async-lock	3.4.2	Apache-2.0 OR MIT	1.85
+async-nats	0.50.0	Apache-2.0	1.88.0
+async-rs	0.8.13	BSD-2-Clause	1.88.0
+async-task	4.7.1	Apache-2.0 OR MIT	1.57
+async-trait	0.1.92	MIT OR Apache-2.0	1.71
+atomic-waker	1.1.2	Apache-2.0 OR MIT	1.36
+autocfg	1.5.1	Apache-2.0 OR MIT	1.0
+aws-lc-rs	1.18.1	ISC AND (Apache-2.0 OR ISC)	1.71.0
+aws-lc-sys	0.45.0	ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0)	1.71.0
+backon	1.6.0	Apache-2.0	1.85
+base64	0.22.1	MIT OR Apache-2.0	1.48.0
+base64	0.23.1	MIT OR Apache-2.0	1.71.0
+base64ct	1.8.3	Apache-2.0 OR MIT	1.85
+bitflags	2.13.2	MIT OR Apache-2.0	1.56.0
+block-buffer	0.10.4	MIT OR Apache-2.0	UNDECLARED
+block-padding	0.3.3	MIT OR Apache-2.0	1.56
+blocking	1.7.0	Apache-2.0 OR MIT	1.68
+bumpalo	3.20.3	MIT OR Apache-2.0	1.71.1
+bytes	1.12.1	MIT	1.57
+cbc	0.1.2	MIT OR Apache-2.0	1.56
+cc	1.6.0	MIT OR Apache-2.0	1.65.0
+cfg-if	1.0.5	MIT OR Apache-2.0	1.32
+cfg_aliases	0.2.2	MIT	UNDECLARED
+chacha20	0.10.2	MIT OR Apache-2.0	1.85
+cipher	0.4.4	MIT OR Apache-2.0	1.56
+cmake	0.1.58	MIT OR Apache-2.0	1.65
+cms	0.2.3	Apache-2.0 OR MIT	1.65
+combine	4.6.8	MIT	UNDECLARED
+concurrent-queue	2.5.0	Apache-2.0 OR MIT	1.60
+const-oid	0.9.6	Apache-2.0 OR MIT	1.57
+cookie-factory	0.3.3	MIT	UNDECLARED
+core-foundation	0.10.1	MIT OR Apache-2.0	1.65
+core-foundation	0.9.4	MIT OR Apache-2.0	UNDECLARED
+core-foundation-sys	0.8.7	MIT OR Apache-2.0	UNDECLARED
+cpufeatures	0.2.17	MIT OR Apache-2.0	UNDECLARED
+cpufeatures	0.3.1	MIT OR Apache-2.0	1.85
+critical-section	1.2.0	MIT OR Apache-2.0	UNDECLARED
+crossbeam-channel	0.5.17	MIT OR Apache-2.0	1.60
+crossbeam-deque	0.8.8	MIT OR Apache-2.0	1.61
+crossbeam-epoch	0.9.21	MIT OR Apache-2.0	1.61
+crossbeam-utils	0.8.23	MIT OR Apache-2.0	1.60
+crypto-common	0.1.7	MIT OR Apache-2.0	UNDECLARED
+data-encoding	2.11.1	MIT	1.48
+der	0.7.10	Apache-2.0 OR MIT	1.65
+der-parser	10.0.0	MIT OR Apache-2.0	1.63
+der_derive	0.7.3	Apache-2.0 OR MIT	1.65
+deranged	0.5.8	MIT OR Apache-2.0	1.85.0
+des	0.8.1	MIT OR Apache-2.0	1.56
+digest	0.10.7	MIT OR Apache-2.0	UNDECLARED
+displaydoc	0.2.7	MIT OR Apache-2.0	1.71.0
+dunce	1.0.5	CC0-1.0 OR MIT-0 OR Apache-2.0	UNDECLARED
+either	1.19.0	MIT OR Apache-2.0	1.63.0
+equivalent	1.0.2	Apache-2.0 OR MIT	1.6
+event-listener	5.4.2	Apache-2.0 OR MIT	1.60
+event-listener-strategy	0.5.4	Apache-2.0 OR MIT	1.60
+fastrand	2.5.0	Apache-2.0 OR MIT	1.63
+find-msvc-tools	0.1.14	MIT OR Apache-2.0	1.65.0
+flagset	0.4.7	Apache-2.0	1.65
+flume	0.12.0	Apache-2.0/MIT	UNDECLARED
+form_urlencoded	1.2.2	MIT OR Apache-2.0	1.51
+fs_extra	1.3.0	MIT	UNDECLARED
+futures-channel	0.3.34	MIT OR Apache-2.0	1.71
+futures-core	0.3.34	MIT OR Apache-2.0	1.36
+futures-io	0.3.34	MIT OR Apache-2.0	1.36
+futures-lite	2.6.1	Apache-2.0 OR MIT	1.60
+futures-macro	0.3.34	MIT OR Apache-2.0	1.71
+futures-rustls	0.26.0	MIT/Apache-2.0	UNDECLARED
+futures-sink	0.3.34	MIT OR Apache-2.0	1.36
+futures-task	0.3.34	MIT OR Apache-2.0	1.71
+futures-util	0.3.34	MIT OR Apache-2.0	1.71
+generic-array	0.14.7	MIT	UNDECLARED
+getrandom	0.2.17	MIT OR Apache-2.0	UNDECLARED
+getrandom	0.4.3	MIT OR Apache-2.0	1.85
+hashbrown	0.17.1	MIT OR Apache-2.0	1.85.0
+hex	0.4.3	MIT OR Apache-2.0	UNDECLARED
+hickory-net	0.26.3	MIT OR Apache-2.0	1.88
+hickory-proto	0.26.3	MIT OR Apache-2.0	1.88
+hickory-resolver	0.26.3	MIT OR Apache-2.0	1.88
+hmac	0.12.1	MIT OR Apache-2.0	UNDECLARED
+http	1.5.0	MIT OR Apache-2.0	1.57.0
+http-body	1.1.0	MIT	1.61
+http-body-util	0.1.5	MIT	1.61
+httparse	1.10.1	MIT OR Apache-2.0	UNDECLARED
+hyper	1.12.0	MIT	1.63
+hyper-rustls	0.27.10	Apache-2.0 OR ISC OR MIT	1.85
+hyper-util	0.1.21	MIT	1.85
+icu_collections	2.3.0	Unicode-3.0	1.88
+icu_locale_core	2.3.0	Unicode-3.0	1.88
+icu_normalizer	2.3.0	Unicode-3.0	1.88
+icu_normalizer_data	2.3.0	Unicode-3.0	1.88
+icu_properties	2.3.0	Unicode-3.0	1.88
+icu_properties_data	2.3.0	Unicode-3.0	1.88
+icu_provider	2.3.1	Unicode-3.0	1.88
+idna	1.1.0	MIT OR Apache-2.0	1.57
+idna_adapter	1.2.2	Apache-2.0 OR MIT	1.86
+indexmap	2.14.2	Apache-2.0 OR MIT	1.85
+inout	0.1.4	MIT OR Apache-2.0	1.56
+ipconfig	0.3.4	MIT/Apache-2.0	1.71
+ipnet	2.12.2	MIT OR Apache-2.0	UNDECLARED
+itoa	1.0.18	MIT OR Apache-2.0	1.68
+jni	0.22.4	MIT OR Apache-2.0	1.85.0
+jni-macros	0.22.4	MIT OR Apache-2.0	UNDECLARED
+jni-sys	0.4.1	MIT OR Apache-2.0	1.76.0
+jni-sys-macros	0.4.1	MIT OR Apache-2.0	UNDECLARED
+jobserver	0.1.35	MIT OR Apache-2.0	1.85
+js-sys	0.3.106	MIT OR Apache-2.0	1.81
+jsonwebtoken	11.1.0	MIT	1.88.0
+lapin	4.12.0	MIT	1.88.0
+lazy_static	1.5.1	MIT OR Apache-2.0	UNDECLARED
+libc	0.2.190	MIT OR Apache-2.0	1.65
+litemap	0.8.3	Unicode-3.0	1.82
+lock_api	0.4.14	MIT OR Apache-2.0	1.71.0
+log	0.4.34	MIT OR Apache-2.0	1.71.0
+lru-slab	0.1.3	MIT OR Apache-2.0 OR Zlib	UNDECLARED
+memchr	2.8.3	Unlicense OR MIT	1.61
+minimal-lexical	0.2.1	MIT/Apache-2.0	UNDECLARED
+mio	1.2.4	MIT	1.71
+moka	0.12.16	(MIT OR Apache-2.0) AND Apache-2.0	1.71.1
+ndk-context	0.1.1	MIT OR Apache-2.0	UNDECLARED
+nom	7.1.3	MIT	1.48
+nom	8.0.0	MIT	1.65.0
+nuid	0.5.0	Apache-2.0	1.63
+num-bigint	0.4.8	MIT OR Apache-2.0	1.60
+num-conv	0.2.2	MIT OR Apache-2.0	1.57.0
+num-integer	0.1.47	MIT OR Apache-2.0	1.31
+num-traits	0.2.19	MIT OR Apache-2.0	1.60
+num_enum	0.7.6	BSD-3-Clause OR MIT OR Apache-2.0	1.70.0
+num_enum_derive	0.7.6	BSD-3-Clause OR MIT OR Apache-2.0	1.70.0
+oid-registry	0.8.1	MIT OR Apache-2.0	1.63
+once_cell	1.21.4	MIT OR Apache-2.0	1.65
+openssl-probe	0.2.1	MIT OR Apache-2.0	1.60.0
+openssl-sys	0.9.117	MIT	1.80.0
+p12-keystore	0.2.1	MIT/Apache-2.0	UNDECLARED
+parking	2.2.1	Apache-2.0 OR MIT	1.51
+parking_lot	0.12.5	MIT OR Apache-2.0	1.71
+parking_lot_core	0.9.12	MIT OR Apache-2.0	1.71.0
+pbkdf2	0.12.2	MIT OR Apache-2.0	1.60
+pem	3.0.6	MIT	1.60.0
+pem-rfc7468	0.7.0	Apache-2.0 OR MIT	1.60
+percent-encoding	2.3.2	MIT OR Apache-2.0	1.51
+pin-project	1.1.13	Apache-2.0 OR MIT	1.71
+pin-project-internal	1.1.13	Apache-2.0 OR MIT	1.71
+pin-project-lite	0.2.17	Apache-2.0 OR MIT	1.37
+piper	0.2.5	MIT OR Apache-2.0	1.36
+pkcs12	0.1.0	Apache-2.0 OR MIT	1.65
+pkcs5	0.7.1	Apache-2.0 OR MIT	1.65
+pkg-config	0.3.34	MIT OR Apache-2.0	1.63
+portable-atomic	1.15.0	Apache-2.0 OR MIT	1.34
+potential_utf	0.1.6	Unicode-3.0	1.82
+powerfmt	0.2.1	MIT OR Apache-2.0	1.79.0
+ppv-lite86	0.2.21	MIT OR Apache-2.0	1.61
+prefix-trie	0.8.4	MIT OR Apache-2.0	1.71.1
+proc-macro-crate	3.5.0	MIT OR Apache-2.0	1.82.0
+proc-macro2	1.0.107	MIT OR Apache-2.0	1.71
+quinn	0.11.12	MIT OR Apache-2.0	1.85
+quinn-proto	0.11.19	MIT OR Apache-2.0	1.85
+quinn-udp	0.5.16	MIT OR Apache-2.0	1.85
+quote	1.0.47	MIT OR Apache-2.0	1.71
+r-efi	6.0.0	MIT OR Apache-2.0 OR LGPL-2.1-or-later	1.68
+rand	0.10.3	MIT OR Apache-2.0	1.85
+rand	0.8.8	MIT OR Apache-2.0	UNDECLARED
+rand_chacha	0.3.1	MIT OR Apache-2.0	UNDECLARED
+rand_core	0.10.1	MIT OR Apache-2.0	1.85
+rand_core	0.6.4	MIT OR Apache-2.0	UNDECLARED
+rand_pcg	0.10.2	MIT OR Apache-2.0	1.85
+rayon	1.12.0	MIT OR Apache-2.0	1.80
+rayon-core	1.13.0	MIT OR Apache-2.0	1.80
+rc2	0.8.1	MIT OR Apache-2.0	1.56
+rdkafka	0.39.0	MIT	1.74
+rdkafka-sys	4.10.0+2.12.1	MIT	1.74
+redox_syscall	0.5.18	MIT	UNDECLARED
+regex	1.13.1	MIT OR Apache-2.0	1.65
+regex-automata	0.4.18	MIT OR Apache-2.0	1.65
+regex-syntax	0.8.11	MIT OR Apache-2.0	1.65
+reqwest	0.13.5	MIT OR Apache-2.0	1.85.0
+resolv-conf	0.7.6	MIT OR Apache-2.0	1.61
+ring	0.17.14	Apache-2.0 AND ISC	1.66.0
+rom	0.0.3	MIT	1.99
+rom-auth	0.0.3	MIT	1.99
+rom-delivery-core	0.1.0-dev	MIT	1.99
+rom-extras-public-consumer	0.0.0	MIT	1.99
+rom-kafka	0.1.0-dev	MIT	1.99
+rom-nats	0.1.0-dev	MIT	1.99
+rom-oidc-presets	0.1.0-dev	MIT	1.99
+rom-rabbitmq	0.1.0-dev	MIT	1.99
+rom-sql-core	0.1.0-dev	MIT	1.99
+rom-webhook	0.1.0-dev	MIT	1.99
+rustc-hash	2.1.3	Apache-2.0 OR MIT	1.77
+rustc_version	0.4.1	MIT OR Apache-2.0	1.32
+rusticata-macros	4.1.0	MIT/Apache-2.0	UNDECLARED
+rustls	0.23.45	Apache-2.0 OR ISC OR MIT	1.71
+rustls-connector	0.23.9	BSD-2-Clause	1.87.0
+rustls-native-certs	0.8.4	Apache-2.0 OR ISC OR MIT	1.71
+rustls-pki-types	1.15.1	MIT OR Apache-2.0	1.60
+rustls-platform-verifier	0.7.1	MIT OR Apache-2.0	1.85
+rustls-platform-verifier-android	0.2.0	MIT OR Apache-2.0	UNDECLARED
+rustls-webpki	0.103.15	ISC	1.71
+rustversion	1.0.23	MIT OR Apache-2.0	1.31
+salsa20	0.10.2	MIT OR Apache-2.0	1.56
+same-file	1.0.6	Unlicense/MIT	UNDECLARED
+schannel	0.1.29	MIT	1.71.0
+scopeguard	1.2.0	MIT OR Apache-2.0	UNDECLARED
+scrypt	0.11.0	MIT OR Apache-2.0	1.60
+security-framework	3.7.0	MIT OR Apache-2.0	1.85
+security-framework-sys	2.17.0	MIT OR Apache-2.0	1.70
+semver	1.0.28	MIT OR Apache-2.0	1.68
+serde	1.0.229	MIT OR Apache-2.0	1.56
+serde_core	1.0.229	MIT OR Apache-2.0	1.56
+serde_derive	1.0.229	MIT OR Apache-2.0	1.71
+serde_json	1.0.151	MIT OR Apache-2.0	1.71
+serde_nanos	0.1.4	MIT OR Apache-2.0	UNDECLARED
+serde_repr	0.1.21	MIT OR Apache-2.0	1.71
+sha1	0.10.7	MIT OR Apache-2.0	UNDECLARED
+sha2	0.10.9	MIT OR Apache-2.0	UNDECLARED
+shlex	2.0.1	MIT OR Apache-2.0	1.46.0
+signature	2.2.0	Apache-2.0 OR MIT	1.60
+simd_cesu8	1.2.0	Apache-2.0 OR MIT	1.85.0
+simdutf8	0.1.5	MIT OR Apache-2.0	UNDECLARED
+simple_asn1	0.6.4	ISC	UNDECLARED
+slab	0.4.12	MIT	1.51
+smallvec	1.16.2	MIT OR Apache-2.0	UNDECLARED
+socket2	0.6.5	MIT OR Apache-2.0	1.70
+spin	0.9.9	MIT	1.38
+spki	0.7.3	Apache-2.0 OR MIT	1.65
+stable_deref_trait	1.2.1	MIT OR Apache-2.0	UNDECLARED
+subtle	2.6.1	BSD-3-Clause	UNDECLARED
+syn	2.0.119	MIT OR Apache-2.0	1.71
+syn	3.0.6	MIT OR Apache-2.0	1.71
+sync_wrapper	1.0.2	Apache-2.0	UNDECLARED
+synstructure	0.13.2	MIT	UNDECLARED
+synstructure	0.14.0	MIT	1.71
+system-configuration	0.7.0	MIT OR Apache-2.0	1.64.0
+system-configuration-sys	0.6.0	MIT OR Apache-2.0	UNDECLARED
+tagptr	0.2.0	MIT/Apache-2.0	UNDECLARED
+tcp-stream	0.34.14	BSD-2-Clause	1.88.0
+thiserror	2.0.21	MIT OR Apache-2.0	1.77
+thiserror-impl	2.0.21	MIT OR Apache-2.0	1.77
+time	0.3.55	MIT OR Apache-2.0	1.88.0
+time-core	0.1.9	MIT OR Apache-2.0	1.88.0
+time-macros	0.2.32	MIT OR Apache-2.0	1.88.0
+tinystr	0.8.4	Unicode-3.0	1.82
+tinyvec	1.13.3	Zlib OR Apache-2.0 OR MIT	UNDECLARED
+tokio	1.53.1	MIT	1.71
+tokio-macros	2.7.2	MIT	1.71
+tokio-rustls	0.26.6	MIT OR Apache-2.0	1.71
+tokio-stream	0.1.19	MIT	1.71
+tokio-util	0.7.19	MIT	1.71
+tokio-websockets	0.10.1	MIT	1.79
+toml_datetime	1.1.2+spec-1.1.0	MIT OR Apache-2.0	1.85
+toml_edit	0.25.16+spec-1.1.0	MIT OR Apache-2.0	1.85
+toml_parser	1.1.4+spec-1.1.0	MIT OR Apache-2.0	1.85
+tower	0.5.3	MIT	1.64.0
+tower-http	0.6.11	MIT	1.64
+tower-layer	0.3.3	MIT	UNDECLARED
+tower-service	0.3.3	MIT	UNDECLARED
+tracing	0.1.44	MIT	1.65.0
+tracing-attributes	0.1.31	MIT	1.65.0
+tracing-core	0.1.36	MIT	1.65.0
+try-lock	0.2.5	MIT	UNDECLARED
+tryhard	0.5.2	MIT OR Apache-2.0	UNDECLARED
+typenum	1.20.1	MIT OR Apache-2.0	1.41.0
+unicode-ident	1.0.26	(MIT OR Apache-2.0) AND Unicode-3.0	1.71
+untrusted	0.7.1	ISC	UNDECLARED
+untrusted	0.9.0	ISC	UNDECLARED
+url	2.5.8	MIT OR Apache-2.0	1.63
+utf8_iter	1.0.4	Apache-2.0 OR MIT	UNDECLARED
+uuid	1.27.0	Apache-2.0 OR MIT	1.89.0
+vcpkg	0.2.15	MIT/Apache-2.0	UNDECLARED
+version_check	0.9.5	MIT/Apache-2.0	UNDECLARED
+walkdir	2.5.0	Unlicense/MIT	UNDECLARED
+want	0.3.2	MIT	UNDECLARED
+wasi	0.11.1+wasi-snapshot-preview1	Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT	UNDECLARED
+wasm-bindgen	0.2.129	MIT OR Apache-2.0	1.81
+wasm-bindgen-futures	0.4.79	MIT OR Apache-2.0	1.81
+wasm-bindgen-macro	0.2.129	MIT OR Apache-2.0	1.81
+wasm-bindgen-macro-support	0.2.129	MIT OR Apache-2.0	1.81
+wasm-bindgen-shared	0.2.129	MIT OR Apache-2.0	1.81
+web-sys	0.3.106	MIT OR Apache-2.0	1.81
+web-time	1.1.0	MIT OR Apache-2.0	1.60
+webpki-root-certs	1.0.9	CDLA-Permissive-2.0	1.70
+webpki-roots	0.26.11	CDLA-Permissive-2.0	UNDECLARED
+webpki-roots	1.0.9	CDLA-Permissive-2.0	1.70
+widestring	1.2.1	MIT OR Apache-2.0	1.58
+winapi-util	0.1.11	Unlicense OR MIT	UNDECLARED
+windows-link	0.2.1	MIT OR Apache-2.0	1.71
+windows-registry	0.6.1	MIT OR Apache-2.0	1.82
+windows-result	0.4.1	MIT OR Apache-2.0	1.82
+windows-strings	0.5.1	MIT OR Apache-2.0	1.82
+windows-sys	0.52.0	MIT OR Apache-2.0	1.56
+windows-sys	0.61.2	MIT OR Apache-2.0	1.71
+windows-targets	0.52.6	MIT OR Apache-2.0	1.56
+windows_aarch64_gnullvm	0.52.6	MIT OR Apache-2.0	1.56
+windows_aarch64_msvc	0.52.6	MIT OR Apache-2.0	1.56
+windows_i686_gnu	0.52.6	MIT OR Apache-2.0	1.56
+windows_i686_gnullvm	0.52.6	MIT OR Apache-2.0	1.56
+windows_i686_msvc	0.52.6	MIT OR Apache-2.0	1.56
+windows_x86_64_gnu	0.52.6	MIT OR Apache-2.0	1.56
+windows_x86_64_gnullvm	0.52.6	MIT OR Apache-2.0	1.56
+windows_x86_64_msvc	0.52.6	MIT OR Apache-2.0	1.56
+winnow	1.0.4	MIT	1.65.0
+writeable	0.6.4	Unicode-3.0	1.82
+x509-cert	0.2.5	Apache-2.0 OR MIT	1.65
+x509-parser	0.18.1	MIT OR Apache-2.0	1.67.1
+yoke	0.8.3	Unicode-3.0	1.82
+yoke-derive	0.8.4	Unicode-3.0	1.82
+zerocopy	0.8.62	BSD-2-Clause OR Apache-2.0 OR MIT	1.56.0
+zerocopy-derive	0.8.62	BSD-2-Clause OR Apache-2.0 OR MIT	UNDECLARED
+zerofrom	0.1.8	Unicode-3.0	1.71.1
+zerofrom-derive	0.1.8	Unicode-3.0	1.71.1
+zeroize	1.9.1	Apache-2.0 OR MIT	1.85
+zeroize_derive	1.5.0	Apache-2.0 OR MIT	1.85
+zerotrie	0.2.5	Unicode-3.0	1.82
+zerovec	0.11.8	Unicode-3.0	1.83
+zerovec-derive	0.11.6	Unicode-3.0	UNDECLARED
+zmij	1.0.23	MIT	1.71

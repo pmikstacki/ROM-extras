@@ -1,0 +1,24 @@
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.39s
+     Running tests/broker.rs (target/debug/deps/broker-fc35c6d178365edd)
+
+running 1 test
+test real_offsets_keys_duplicates_restart_and_cancelled_publication ... FAILED
+
+failures:
+
+---- real_offsets_keys_duplicates_restart_and_cancelled_publication stdout ----
+
+thread 'real_offsets_keys_duplicates_restart_and_cancelled_publication' (2614280) panicked at crates/rom-kafka/tests/broker.rs:120:9:
+assertion `left == right` failed
+  left: Unknown
+ right: Accepted
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    real_offsets_keys_duplicates_restart_and_cancelled_publication
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 39.68s
+
+error: test failed, to rerun pass `-p rom-kafka --test broker`

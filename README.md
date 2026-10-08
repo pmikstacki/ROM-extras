@@ -9,11 +9,13 @@ The delivery core prepares bounded JSON and Standard Webhooks signatures.
 [HTTPS transport](docs/webhooks.md) has real receiver tests and durable Runtime integration on SQLite and redb.
 [NATS JetStream publication](docs/nats.md) has live acknowledgement, deduplication, Runtime recovery, and TLS-first/reconnect tests.
 [RabbitMQ publication](docs/rabbitmq.md) has mandatory confirmation, persistence/restart, redelivery, and uncertainty/cancellation tests.
+[Kafka publication](docs/kafka.md) has live offset, duplicate, restart, cancellation, and independent consumer tests.
 See [the complete goal](docs/goal.md), [the implementation plan](docs/superpowers/plans/2026-10-08-rom-extras.md), and [support status](docs/support.md).
 
 ## Verify locally
 
-Use Rust 1.99, a native linker, CMake, OpenSSL, and Node.js. OpenSSL generates ephemeral synthetic test signing keys.
+Use Rust 1.99, a native linker, CMake, Make, pkg-config, maintained OpenSSL development files, and Node.js.
+OpenSSL also generates ephemeral synthetic test signing keys. See [Kafka build requirements](docs/kafka.md).
 Run:
 
 ```sh

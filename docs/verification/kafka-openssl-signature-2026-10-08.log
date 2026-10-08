@@ -1,0 +1,28 @@
+gpg: keybox '/root/ROM-extras/.superpowers/openssl-gpg/pubring.kbx' created
+gpg: key 2A2C87D161692D40: 1 signature not checked due to a missing key
+gpg: /root/ROM-extras/.superpowers/openssl-gpg/trustdb.gpg: trustdb created
+gpg: key 2A2C87D161692D40: public key "OpenSSL <openssl@openssl.org>" imported
+gpg: key 216094DFD0CB81EF: 2 signatures not checked due to missing keys
+gpg: key 216094DFD0CB81EF: public key "OpenSSL <openssl@openssl.org>" imported
+gpg: key D894E2CE8B3D79F5: 13 signatures not checked due to missing keys
+gpg: key D894E2CE8B3D79F5: public key "OpenSSL OMC <openssl-omc@openssl.org>" imported
+gpg: Total number processed: 3
+gpg:               imported: 3
+gpg: no ultimately trusted keys found
+[GNUPG:] NEWSIG
+gpg: Signature made Tue Sep 29 14:05:24 2026 UTC
+gpg:                using RSA key C46ED3F2CBEFDA1FDAADA44264ED7B1DCCE71CB2
+[GNUPG:] KEY_CONSIDERED B146647E45A7B33947AB226B2A2C87D161692D40 0
+[GNUPG:] SIG_ID ePCIVxH3D4HZxlcR0UHxjxZUaZQ 2026-09-29 1790690724
+[GNUPG:] KEY_CONSIDERED B146647E45A7B33947AB226B2A2C87D161692D40 0
+[GNUPG:] GOODSIG 64ED7B1DCCE71CB2 OpenSSL <openssl@openssl.org>
+gpg: Good signature from "OpenSSL <openssl@openssl.org>" [unknown]
+[GNUPG:] NOTATION_NAME salt@notations.sequoia-pgp.org
+[GNUPG:] NOTATION_DATA ªÚn%1DqË#aV¬ál%13Òê¶Ö%19€%04ÊŸ~8Ør©t(%13X"
+[GNUPG:] VALIDSIG C46ED3F2CBEFDA1FDAADA44264ED7B1DCCE71CB2 2026-09-29 1790690724 0 4 0 1 10 00 B146647E45A7B33947AB226B2A2C87D161692D40
+[GNUPG:] KEY_CONSIDERED B146647E45A7B33947AB226B2A2C87D161692D40 0
+[GNUPG:] TRUST_UNDEFINED 0 pgp
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: B146 647E 45A7 B339 47AB  226B 2A2C 87D1 6169 2D40
+     Subkey fingerprint: C46E D3F2 CBEF DA1F DAAD  A442 64ED 7B1D CCE7 1CB2

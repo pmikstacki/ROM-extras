@@ -1,0 +1,209 @@
+    Updating crates.io index
+     Locking 12 packages to highest Rust 1.99 compatible versions
+      Adding indexmap v2.14.2
+      Adding num_enum v0.7.6
+      Adding num_enum_derive v0.7.6
+      Adding openssl-src v300.6.1+3.6.3
+      Adding openssl-sys v0.9.117
+      Adding proc-macro-crate v3.5.0
+      Adding rdkafka v0.39.0
+      Adding rdkafka-sys v4.10.0+2.12.1
+      Adding toml_datetime v1.1.2+spec-1.1.0
+      Adding toml_edit v0.25.16+spec-1.1.0
+      Adding toml_parser v1.1.4+spec-1.1.0
+      Adding winnow v1.0.4
+ Downloading crates ...
+  Downloaded proc-macro-crate v3.5.0
+  Downloaded num_enum_derive v0.7.6
+  Downloaded toml_parser v1.1.4+spec-1.1.0
+  Downloaded num_enum v0.7.6
+  Downloaded toml_datetime v1.1.2+spec-1.1.0
+  Downloaded toml_edit v0.25.16+spec-1.1.0
+  Downloaded openssl-sys v0.9.117
+  Downloaded rdkafka-sys v4.10.0+2.12.1
+  Downloaded openssl-src v300.6.1+3.6.3
+   Compiling winnow v1.0.4
+   Compiling equivalent v1.0.2
+   Compiling hashbrown v0.17.1
+   Compiling cc v1.6.0
+   Compiling toml_datetime v1.1.2+spec-1.1.0
+   Compiling rustversion v1.0.23
+   Compiling syn v2.0.119
+   Compiling futures-core v0.3.34
+   Compiling futures-task v0.3.34
+   Compiling slab v0.4.12
+   Compiling futures-util v0.3.34
+   Compiling futures-channel v0.3.34
+   Compiling indexmap v2.14.2
+   Compiling openssl-src v300.6.1+3.6.3
+   Compiling cmake v0.1.58
+   Compiling toml_parser v1.1.4+spec-1.1.0
+   Compiling openssl-sys v0.9.117
+   Compiling rdkafka-sys v4.10.0+2.12.1
+   Compiling toml_edit v0.25.16+spec-1.1.0
+   Compiling proc-macro-crate v3.5.0
+   Compiling num_enum_derive v0.7.6
+   Compiling num_enum v0.7.6
+warning: openssl-sys@0.9.117: building OpenSSL dependencies: Command 'make' not found. Is make installed?
+warning: openssl-sys@0.9.117: openssl-src: failed to build OpenSSL from source
+error: failed to run custom build command for `openssl-sys v0.9.117`
+
+Caused by:
+  process didn't exit successfully: `/root/ROM-extras/target/debug/build/openssl-sys-223d26a9d4cd1723/build-script-main` (exit status: 1)
+  --- stdout
+  cargo:rustc-check-cfg=cfg(osslconf, values("OPENSSL_NO_OCB", "OPENSSL_NO_SM4", "OPENSSL_NO_SEED", "OPENSSL_NO_CHACHA", "OPENSSL_NO_CAST", "OPENSSL_NO_IDEA", "OPENSSL_NO_CAMELLIA", "OPENSSL_NO_RC4", "OPENSSL_NO_BF", "OPENSSL_NO_PSK", "OPENSSL_NO_DEPRECATED_3_0", "OPENSSL_NO_SCRYPT", "OPENSSL_NO_SM3", "OPENSSL_NO_RMD160", "OPENSSL_NO_EC2M", "OPENSSL_NO_OCSP", "OPENSSL_NO_CMS", "OPENSSL_NO_COMP", "OPENSSL_NO_SOCK", "OPENSSL_NO_STDIO", "OPENSSL_NO_EC", "OPENSSL_NO_SSL3_METHOD", "OPENSSL_NO_KRB5", "OPENSSL_NO_TLSEXT", "OPENSSL_NO_SRP", "OPENSSL_NO_SRTP", "OPENSSL_NO_RFC3779", "OPENSSL_NO_SHA", "OPENSSL_NO_NEXTPROTONEG", "OPENSSL_NO_ENGINE", "OPENSSL_NO_BUF_FREELISTS", "OPENSSL_NO_RC2"))
+  cargo:rustc-check-cfg=cfg(openssl)
+  cargo:rustc-check-cfg=cfg(libressl)
+  cargo:rustc-check-cfg=cfg(boringssl)
+  cargo:rustc-check-cfg=cfg(awslc)
+  cargo:rustc-check-cfg=cfg(awslc_pregenerated)
+  cargo:rustc-check-cfg=cfg(libressl250)
+  cargo:rustc-check-cfg=cfg(libressl251)
+  cargo:rustc-check-cfg=cfg(libressl252)
+  cargo:rustc-check-cfg=cfg(libressl261)
+  cargo:rustc-check-cfg=cfg(libressl270)
+  cargo:rustc-check-cfg=cfg(libressl271)
+  cargo:rustc-check-cfg=cfg(libressl273)
+  cargo:rustc-check-cfg=cfg(libressl280)
+  cargo:rustc-check-cfg=cfg(libressl281)
+  cargo:rustc-check-cfg=cfg(libressl291)
+  cargo:rustc-check-cfg=cfg(libressl310)
+  cargo:rustc-check-cfg=cfg(libressl321)
+  cargo:rustc-check-cfg=cfg(libressl332)
+  cargo:rustc-check-cfg=cfg(libressl340)
+  cargo:rustc-check-cfg=cfg(libressl350)
+  cargo:rustc-check-cfg=cfg(libressl360)
+  cargo:rustc-check-cfg=cfg(libressl361)
+  cargo:rustc-check-cfg=cfg(libressl370)
+  cargo:rustc-check-cfg=cfg(libressl380)
+  cargo:rustc-check-cfg=cfg(libressl381)
+  cargo:rustc-check-cfg=cfg(libressl382)
+  cargo:rustc-check-cfg=cfg(libressl390)
+  cargo:rustc-check-cfg=cfg(libressl400)
+  cargo:rustc-check-cfg=cfg(libressl410)
+  cargo:rustc-check-cfg=cfg(libressl420)
+  cargo:rustc-check-cfg=cfg(libressl430)
+  cargo:rustc-check-cfg=cfg(ossl101)
+  cargo:rustc-check-cfg=cfg(ossl102)
+  cargo:rustc-check-cfg=cfg(ossl102f)
+  cargo:rustc-check-cfg=cfg(ossl102h)
+  cargo:rustc-check-cfg=cfg(ossl110)
+  cargo:rustc-check-cfg=cfg(ossl110f)
+  cargo:rustc-check-cfg=cfg(ossl110g)
+  cargo:rustc-check-cfg=cfg(ossl110h)
+  cargo:rustc-check-cfg=cfg(ossl111)
+  cargo:rustc-check-cfg=cfg(ossl111b)
+  cargo:rustc-check-cfg=cfg(ossl111c)
+  cargo:rustc-check-cfg=cfg(ossl111d)
+  cargo:rustc-check-cfg=cfg(ossl300)
+  cargo:rustc-check-cfg=cfg(ossl310)
+  cargo:rustc-check-cfg=cfg(ossl320)
+  cargo:rustc-check-cfg=cfg(ossl330)
+  cargo:rustc-check-cfg=cfg(ossl340)
+  cargo:rustc-check-cfg=cfg(ossl400)
+  cargo:rerun-if-env-changed=X86_64_UNKNOWN_LINUX_GNU_OPENSSL_NO_VENDOR
+  X86_64_UNKNOWN_LINUX_GNU_OPENSSL_NO_VENDOR unset
+  cargo:rerun-if-env-changed=OPENSSL_NO_VENDOR
+  OPENSSL_NO_VENDOR unset
+  cargo:rerun-if-env-changed=X86_64_UNKNOWN_LINUX_GNU_OPENSSL_CONFIG_DIR
+  X86_64_UNKNOWN_LINUX_GNU_OPENSSL_CONFIG_DIR unset
+  cargo:rerun-if-env-changed=OPENSSL_CONFIG_DIR
+  OPENSSL_CONFIG_DIR unset
+  cargo:rerun-if-env-changed=CC_x86_64-unknown-linux-gnu
+  CC_x86_64-unknown-linux-gnu = None
+  cargo:rerun-if-env-changed=CC_x86_64_unknown_linux_gnu
+  CC_x86_64_unknown_linux_gnu = None
+  cargo:rerun-if-env-changed=HOST_CC
+  HOST_CC = None
+  cargo:rerun-if-env-changed=CC
+  CC = None
+  cargo:rerun-if-env-changed=CC_ENABLE_DEBUG_OUTPUT
+  cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+  CRATE_CC_NO_DEFAULTS = None
+  cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+  CRATE_CC_NO_DEFAULTS = None
+  cargo:rerun-if-env-changed=CFLAGS
+  CFLAGS = None
+  cargo:rerun-if-env-changed=HOST_CFLAGS
+  HOST_CFLAGS = None
+  cargo:rerun-if-env-changed=CFLAGS_x86_64_unknown_linux_gnu
+  CFLAGS_x86_64_unknown_linux_gnu = None
+  cargo:rerun-if-env-changed=CFLAGS_x86_64-unknown-linux-gnu
+  CFLAGS_x86_64-unknown-linux-gnu = None
+  cargo:rerun-if-env-changed=CFLAGS
+  CFLAGS = None
+  cargo:rerun-if-env-changed=HOST_CFLAGS
+  HOST_CFLAGS = None
+  cargo:rerun-if-env-changed=CFLAGS_x86_64_unknown_linux_gnu
+  CFLAGS_x86_64_unknown_linux_gnu = None
+  cargo:rerun-if-env-changed=CFLAGS_x86_64-unknown-linux-gnu
+  CFLAGS_x86_64-unknown-linux-gnu = None
+  cargo:rerun-if-env-changed=AR_x86_64-unknown-linux-gnu
+  AR_x86_64-unknown-linux-gnu = None
+  cargo:rerun-if-env-changed=AR_x86_64_unknown_linux_gnu
+  AR_x86_64_unknown_linux_gnu = None
+  cargo:rerun-if-env-changed=HOST_AR
+  HOST_AR = None
+  cargo:rerun-if-env-changed=AR
+  AR = None
+  cargo:rerun-if-env-changed=ARFLAGS
+  ARFLAGS = None
+  cargo:rerun-if-env-changed=HOST_ARFLAGS
+  HOST_ARFLAGS = None
+  cargo:rerun-if-env-changed=ARFLAGS_x86_64_unknown_linux_gnu
+  ARFLAGS_x86_64_unknown_linux_gnu = None
+  cargo:rerun-if-env-changed=ARFLAGS_x86_64-unknown-linux-gnu
+  ARFLAGS_x86_64-unknown-linux-gnu = None
+  cargo:rerun-if-env-changed=RANLIB_x86_64-unknown-linux-gnu
+  RANLIB_x86_64-unknown-linux-gnu = None
+  cargo:rerun-if-env-changed=RANLIB_x86_64_unknown_linux_gnu
+  RANLIB_x86_64_unknown_linux_gnu = None
+  cargo:rerun-if-env-changed=HOST_RANLIB
+  HOST_RANLIB = None
+  cargo:rerun-if-env-changed=RANLIB
+  RANLIB = None
+  cargo:rerun-if-env-changed=RANLIBFLAGS
+  RANLIBFLAGS = None
+  cargo:rerun-if-env-changed=HOST_RANLIBFLAGS
+  HOST_RANLIBFLAGS = None
+  cargo:rerun-if-env-changed=RANLIBFLAGS_x86_64_unknown_linux_gnu
+  RANLIBFLAGS_x86_64_unknown_linux_gnu = None
+  cargo:rerun-if-env-changed=RANLIBFLAGS_x86_64-unknown-linux-gnu
+  RANLIBFLAGS_x86_64-unknown-linux-gnu = None
+  running cd "/root/ROM-extras/target/debug/build/openssl-sys-7d62292d94d91236/out/openssl-build/build/src" && env -u CROSS_COMPILE AR="ar" CC="cc" RANLIB="ranlib" "perl" "./Configure" "--prefix=/root/ROM-extras/target/debug/build/openssl-sys-7d62292d94d91236/out/openssl-build/install" "--openssldir=/usr/local/ssl" "no-shared" "no-module" "no-tests" "no-comp" "no-zlib" "no-zlib-dynamic" "--libdir=lib" "no-ssl3" "no-md2" "no-rc5" "no-weak-ssl-ciphers" "no-camellia" "no-idea" "no-seed" "linux-x86_64" "-O2" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-gdwarf-4" "-fno-omit-frame-pointer" "-mno-omit-leaf-frame-pointer" "-m64" "-w"
+  Configuring OpenSSL version 3.6.3 for target linux-x86_64
+  Using os-specific seed configuration
+  Created configdata.pm
+  Running configdata.pm
+  Created Makefile.in
+  Created Makefile
+  Created include/openssl/configuration.h
+
+  **********************************************************************
+  ***                                                                ***
+  ***   OpenSSL has been successfully configured                     ***
+  ***                                                                ***
+  ***   If you encounter a problem while building, please open an    ***
+  ***   issue on GitHub <https://github.com/openssl/openssl/issues>  ***
+  ***   and include the output from the following command:           ***
+  ***                                                                ***
+  ***       perl configdata.pm --dump                                ***
+  ***                                                                ***
+  ***   (If you are new to OpenSSL, you might want to consult the    ***
+  ***   'Troubleshooting' section in the INSTALL.md file first)      ***
+  ***                                                                ***
+  **********************************************************************
+  running cd "/root/ROM-extras/target/debug/build/openssl-sys-7d62292d94d91236/out/openssl-build/build/src" && "make" "depend"
+  cargo:warning=building OpenSSL dependencies: Command 'make' not found. Is make installed?
+  cargo:warning=openssl-src: failed to build OpenSSL from source
+
+  --- stderr
+
+
+
+  Error building OpenSSL dependencies:
+      Command 'make' not found. Is make installed?
+      Command failed: cd "/root/ROM-extras/target/debug/build/openssl-sys-7d62292d94d91236/out/openssl-build/build/src" && "make" "depend"
+
+
+

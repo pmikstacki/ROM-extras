@@ -3,6 +3,9 @@
 Date: 2026-10-08.
 No database or external-service provider is supported yet.
 
+Kafka now has an initial native publication increment. See [its contract and remaining gates](kafka.md).
+This does not complete the Kafka provider or the delivery family.
+
 The SQL connection executor is implemented and has no external dependencies. It does not implement ROM Storage yet.
 Its 13 tests cover bounded admission, connection affinity, timeout uncertainty, panic retirement, shutdown, and handle lifecycle.
 Three executor integration tests passed against PostgreSQL 18.6. These are not ROM Storage conformance tests.

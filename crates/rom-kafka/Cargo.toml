@@ -1,0 +1,28 @@
+[package]
+name = "rom-kafka"
+description = "Bounded acknowledged Kafka publication for ROM channels"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[features]
+broker-conformance = []
+
+[dependencies]
+rom = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false }
+rom-delivery-core = { path = "../rom-delivery-core" }
+rdkafka = { version = "=0.39.0", default-features = false, features = ["tokio", "ssl"] }
+tokio = { version = "=1.53.1", features = ["time", "sync"] }
+
+[dev-dependencies]
+tokio = { version = "=1.53.1", features = ["rt", "macros"] }
+
+[[test]]
+name = "broker"
+required-features = ["broker-conformance"]

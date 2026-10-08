@@ -6,3 +6,4 @@ cd -- "$(dirname -- "$0")/.."
 ./scripts/check-mssql
 ./scripts/check-nats
 ./scripts/check-rabbitmq
+./scripts/check-kafka

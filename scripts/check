@@ -17,6 +17,11 @@ if ! command -v node >/dev/null; then
     exit 2
 fi
 
+if ! command -v make >/dev/null || ! command -v pkg-config >/dev/null; then
+    echo 'Make, pkg-config and maintained OpenSSL development files are required for Kafka native dependencies.' >&2
+    exit 2
+fi
+
 rustc -Vv
 cargo fmt --all -- --check
 cargo fmt --manifest-path tests/public-consumer/Cargo.toml -- --check

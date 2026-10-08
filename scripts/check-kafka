@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_KAFKA_BROKERS:?Required dedicated Kafka fixture}"
+cargo test -p rom-kafka --features broker-conformance --test broker --locked
+cargo clippy -p rom-kafka --features broker-conformance --all-targets --locked -- -D warnings
+cargo test --manifest-path tests/public-consumer/Cargo.toml --features kafka-conformance --test kafka_delivery --locked
+cargo clippy --manifest-path tests/public-consumer/Cargo.toml --features kafka-conformance --all-targets --locked -- -D warnings

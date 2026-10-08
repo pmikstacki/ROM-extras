@@ -1,0 +1,22 @@
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s
+     Running unittests src/lib.rs (target/debug/deps/rom_kafka-45c6ef61b9a808ee)
+
+running 1 test
+test config_tests::minimum_deadline_remains_finite_and_native_socket_timeout_is_valid ... FAILED
+
+failures:
+
+---- config_tests::minimum_deadline_remains_finite_and_native_socket_timeout_is_valid stdout ----
+
+thread 'config_tests::minimum_deadline_remains_finite_and_native_socket_timeout_is_valid' (2704162) panicked at crates/rom-kafka/src/config_tests.rs:31:70:
+called `Result::unwrap()` on an `Err` value: InvalidConfiguration
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    config_tests::minimum_deadline_remains_finite_and_native_socket_timeout_is_valid
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 2 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p rom-kafka --lib`

@@ -1,0 +1,95 @@
+   Compiling openssl-sys v0.9.117
+   Compiling rdkafka-sys v4.10.0+2.12.1
+error: failed to run custom build command for `rdkafka-sys v4.10.0+2.12.1`
+
+Caused by:
+  process didn't exit successfully: `/root/ROM-extras/target/debug/build/rdkafka-sys-0acbc7c40cb462db/build-script-build` (exit status: 101)
+  --- stdout
+  Configuring and compiling librdkafka
+  CMAKE_TOOLCHAIN_FILE_x86_64-unknown-linux-gnu = None
+  CMAKE_TOOLCHAIN_FILE_x86_64_unknown_linux_gnu = None
+  HOST_CMAKE_TOOLCHAIN_FILE = None
+  CMAKE_TOOLCHAIN_FILE = None
+  CMAKE_GENERATOR_x86_64-unknown-linux-gnu = None
+  CMAKE_GENERATOR_x86_64_unknown_linux_gnu = None
+  HOST_CMAKE_GENERATOR = None
+  CMAKE_GENERATOR = None
+  CMAKE_PREFIX_PATH_x86_64-unknown-linux-gnu = None
+  CMAKE_PREFIX_PATH_x86_64_unknown_linux_gnu = None
+  HOST_CMAKE_PREFIX_PATH = None
+  CMAKE_PREFIX_PATH = None
+  CMAKE_x86_64-unknown-linux-gnu = None
+  CMAKE_x86_64_unknown_linux_gnu = None
+  HOST_CMAKE = None
+  CMAKE = None
+  -- The C compiler identification is GNU 13.3.0
+  -- The CXX compiler identification is GNU 13.3.0
+  -- Detecting C compiler ABI info
+  -- Detecting C compiler ABI info - done
+  -- Check for working C compiler: /nix/store/zx71vq7s1v840wqsrw2m2ckmxn413a2b-gcc-wrapper-13.3.0/bin/cc - skipped
+  -- Detecting C compile features
+  -- Detecting C compile features - done
+  -- Detecting CXX compiler ABI info
+  -- Detecting CXX compiler ABI info - done
+  -- Check for working CXX compiler: /nix/store/zx71vq7s1v840wqsrw2m2ckmxn413a2b-gcc-wrapper-13.3.0/bin/c++ - skipped
+  -- Detecting CXX compile features
+  -- Detecting CXX compile features - done
+  -- Looking for pow in m
+  -- Looking for pow in m - found
+  -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+  -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+  -- Found Threads: TRUE
+  -- Found OpenSSL: /root/ROM-extras/target/debug/build/openssl-sys-7d62292d94d91236/out/openssl-build/install/lib/libcrypto.a (found version "3.6.3")
+  -- Configuring done (7.2s)
+  -- Generating done (0.0s)
+  -- Build files have been written to: /root/ROM-extras/target/debug/build/rdkafka-sys-cff94650d105f07c/out/build
+  [  3%] Building C object src/CMakeFiles/rdkafka.dir/rdkafka_broker.c.o
+  [  5%] Building C object src/CMakeFiles/rdkafka.dir/rdkafka_assignor.c.o
+  [  5%] Building C object src/CMakeFiles/rdkafka.dir/rdbuf.c.o
+  [  2%] Building C object src/CMakeFiles/rdkafka.dir/rdavl.c.o
+  [  5%] Building C object src/CMakeFiles/rdkafka.dir/rdbase64.c.o
+  [  6%] Building C object src/CMakeFiles/rdkafka.dir/rdkafka_buf.c.o
+  [  7%] Building C object src/CMakeFiles/rdkafka.dir/rdaddr.c.o
+  [  8%] Building C object src/CMakeFiles/rdkafka.dir/rdfnv1a.c.o
+  [ 10%] Building C object src/CMakeFiles/rdkafka.dir/crc32c.c.o
+  [ 10%] Building C object src/CMakeFiles/rdkafka.dir/rdcrc32.c.o
+  [ 11%] Building C object src/CMakeFiles/rdkafka.dir/rdkafka_cgrp.c.o
+  [ 12%] Building C object src/CMakeFiles/rdkafka.dir/rdkafka.c.o
+  [ 13%] Building C object src/CMakeFiles/rdkafka.dir/rdkafka_conf.c.o
+  [ 14%] Building C object src/CMakeFiles/rdkafka.dir/rdkafka_event.c.o
+  [ 15%] Building C object src/CMakeFiles/rdkafka.dir/rdkafka_feature.c.o
+  [ 16%] Building C object src/CMakeFiles/rdkafka.dir/rdkafka_lz4.c.o
+  [ 17%] Building C object src/CMakeFiles/rdkafka.dir/rdkafka_metadata.c.o
+  [ 19%] Building C object src/CMakeFiles/rdkafka.dir/rdkafka_msg.c.o
+  [ 19%] Building C object src/CMakeFiles/rdkafka.dir/rdkafka_metadata_cache.c.o
+  [ 20%] Building C object src/CMakeFiles/rdkafka.dir/rdkafka_msgset_reader.c.o
+  [ 21%] Building C object src/CMakeFiles/rdkafka.dir/rdkafka_msgset_writer.c.o
+  [ 22%] Building C object src/CMakeFiles/rdkafka.dir/rdkafka_offset.c.o
+
+  --- stderr
+  Building and linking librdkafka statically
+  running: cd "/root/ROM-extras/target/debug/build/rdkafka-sys-cff94650d105f07c/out/build" && CMAKE_PREFIX_PATH="/root/ROM-extras/target/debug/build/openssl-sys-7d62292d94d91236/out/openssl-build/install:" LC_ALL="C" "cmake" "/root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rdkafka-sys-4.10.0+2.12.1/librdkafka" "-B" "/root/ROM-extras/target/debug/build/rdkafka-sys-cff94650d105f07c/out/build" "-DRDKAFKA_BUILD_STATIC=1" "-DRDKAFKA_BUILD_TESTS=0" "-DRDKAFKA_BUILD_EXAMPLES=0" "-DCMAKE_INSTALL_LIBDIR=lib" "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" "-DWITH_ZLIB=0" "-DWITH_CURL=0" "-DWITH_SSL=1" "-DWITH_SASL_SCRAM=1" "-DWITH_SASL_OAUTHBEARER=1" "-DWITH_SASL=0" "-DWITH_ZSTD=0" "-DENABLE_LZ4_EXT=0" "-DCMAKE_INSTALL_PREFIX=/root/ROM-extras/target/debug/build/rdkafka-sys-cff94650d105f07c/out" "-DCMAKE_C_FLAGS= -ffunction-sections -fdata-sections -fPIC -m64 -w" "-DCMAKE_C_COMPILER=/nix/store/zx71vq7s1v840wqsrw2m2ckmxn413a2b-gcc-wrapper-13.3.0/bin/cc" "-DCMAKE_CXX_FLAGS= -ffunction-sections -fdata-sections -fPIC -m64 -w" "-DCMAKE_CXX_COMPILER=/nix/store/zx71vq7s1v840wqsrw2m2ckmxn413a2b-gcc-wrapper-13.3.0/bin/c++" "-DCMAKE_ASM_FLAGS= -ffunction-sections -fdata-sections -fPIC -m64 -w" "-DCMAKE_ASM_COMPILER=/nix/store/zx71vq7s1v840wqsrw2m2ckmxn413a2b-gcc-wrapper-13.3.0/bin/cc" "-DCMAKE_BUILD_TYPE=Debug"
+  CMake Warning:
+    Manually-specified variables were not used by the project:
+
+      CMAKE_ASM_COMPILER
+      CMAKE_ASM_FLAGS
+      CMAKE_POLICY_VERSION_MINIMUM
+
+
+  running: cd "/root/ROM-extras/target/debug/build/rdkafka-sys-cff94650d105f07c/out/build" && LC_ALL="C" MAKEFLAGS="-j --jobserver-fds=3,5 --jobserver-auth=3,5" "cmake" "--build" "/root/ROM-extras/target/debug/build/rdkafka-sys-cff94650d105f07c/out/build" "--target" "install" "--config" "Debug"
+  /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rdkafka-sys-4.10.0+2.12.1/librdkafka/src/rdkafka_conf.c:60:10: fatal error: curl/curl.h: No such file or directory
+     60 | #include <curl/curl.h>
+        |          ^~~~~~~~~~~~~
+  compilation terminated.
+  make[2]: *** [src/CMakeFiles/rdkafka.dir/build.make:244: src/CMakeFiles/rdkafka.dir/rdkafka_conf.c.o] Error 1
+  make[2]: *** Waiting for unfinished jobs....
+  make[1]: *** [CMakeFiles/Makefile2:116: src/CMakeFiles/rdkafka.dir/all] Error 2
+  make: *** [Makefile:136: all] Error 2
+
+  thread 'main' (2517896) panicked at /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cmake-0.1.58/src/lib.rs:1132:5:
+
+  command did not execute successfully, got: exit status: 2
+
+  build script failed, must exit now
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

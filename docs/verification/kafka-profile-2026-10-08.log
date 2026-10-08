@@ -1,0 +1,107 @@
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.45s
+     Running tests/broker.rs (target/debug/deps/broker-fc35c6d178365edd)
+
+running 1 test
+test real_offsets_keys_duplicates_restart_and_cancelled_publication ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 14.69s
+
+    Checking futures-core v0.3.34
+    Checking futures-task v0.3.34
+    Checking slab v0.4.12
+    Checking tokio v1.53.1
+    Checking serde v1.0.229
+    Checking openssl-sys v0.9.117
+    Checking num_enum v0.7.6
+    Checking futures-channel v0.3.34
+    Checking futures-util v0.3.34
+    Checking rdkafka-sys v4.10.0+2.12.1
+    Checking rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rdkafka v0.39.0
+    Checking rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+    Checking rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.23s
+   Compiling aws-lc-sys v0.45.0
+   Compiling slab v0.4.12
+   Compiling hashbrown v0.17.1
+   Compiling winnow v1.0.4
+   Compiling equivalent v1.0.2
+   Compiling vcpkg v0.2.15
+   Compiling toml_datetime v1.1.2+spec-1.1.0
+   Compiling rdkafka-sys v4.10.0+2.12.1
+   Compiling futures-util v0.3.34
+   Compiling openssl-sys v0.9.117
+   Compiling indexmap v2.14.2
+   Compiling toml_parser v1.1.4+spec-1.1.0
+   Compiling toml_edit v0.25.16+spec-1.1.0
+   Compiling proc-macro-crate v3.5.0
+   Compiling tower v0.5.3
+   Compiling hyper-util v0.1.21
+   Compiling num_enum_derive v0.7.6
+   Compiling tower-http v0.6.11
+   Compiling num_enum v0.7.6
+   Compiling aws-lc-rs v1.18.1
+   Compiling rustls v0.23.45
+   Compiling rustls-webpki v0.103.15
+   Compiling jsonwebtoken v11.1.0
+   Compiling rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+   Compiling rustls-platform-verifier v0.7.1
+   Compiling futures-rustls v0.26.0
+   Compiling tokio-rustls v0.26.6
+   Compiling rustls-connector v0.23.9
+   Compiling hyper-rustls v0.27.10
+   Compiling async-nats v0.50.0
+   Compiling tcp-stream v0.34.14
+   Compiling reqwest v0.13.5
+   Compiling amq-protocol-tcp v10.6.3
+   Compiling amq-protocol v10.6.3
+   Compiling rdkafka v0.39.0
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+   Compiling lapin v4.12.0
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+   Compiling rom-rabbitmq v0.1.0-dev (/root/ROM-extras/crates/rom-rabbitmq)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 22.45s
+     Running tests/kafka_delivery.rs (tests/public-consumer/target/debug/deps/kafka_delivery-c906ef51100dae98)
+
+running 1 test
+test external_consumer_receives_acknowledged_false_json_with_stable_key ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.87s
+
+   Compiling aws-lc-sys v0.45.0
+    Checking slab v0.4.12
+   Compiling openssl-sys v0.9.117
+    Checking num_enum v0.7.6
+    Checking futures-util v0.3.34
+   Compiling rdkafka-sys v4.10.0+2.12.1
+    Checking tower v0.5.3
+    Checking hyper-util v0.1.21
+    Checking tower-http v0.6.11
+   Compiling aws-lc-rs v1.18.1
+   Compiling rustls v0.23.45
+    Checking rustls-webpki v0.103.15
+    Checking jsonwebtoken v11.1.0
+    Checking rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+    Checking rustls-platform-verifier v0.7.1
+    Checking futures-rustls v0.26.0
+    Checking tokio-rustls v0.26.6
+    Checking rustls-connector v0.23.9
+    Checking hyper-rustls v0.27.10
+    Checking async-nats v0.50.0
+    Checking tcp-stream v0.34.14
+    Checking reqwest v0.13.5
+    Checking amq-protocol-tcp v10.6.3
+    Checking amq-protocol v10.6.3
+    Checking rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Checking lapin v4.12.0
+    Checking rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Checking rom-rabbitmq v0.1.0-dev (/root/ROM-extras/crates/rom-rabbitmq)
+    Checking rdkafka v0.39.0
+    Checking rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 19.90s

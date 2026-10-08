@@ -1,0 +1,86 @@
+   Compiling openssl-sys v0.9.117
+   Compiling rdkafka-sys v4.10.0+2.12.1
+error: failed to run custom build command for `rdkafka-sys v4.10.0+2.12.1`
+
+Caused by:
+  process didn't exit successfully: `/root/ROM-extras/target/debug/build/rdkafka-sys-3e23bedd15dd7fcb/build-script-build` (exit status: 101)
+  --- stdout
+  Cloning librdkafka
+  Configuring librdkafka
+  checking for OS or distribution... ok (nixos)
+  checking for C compiler from CC env... failed
+  checking for gcc (by command)... ok
+  checking for C++ compiler from CXX env... failed
+  checking for C++ compiler (g++)... ok
+  checking executable ld... ok
+  checking executable nm... ok
+  checking executable objdump... ok
+  checking executable strip... ok
+  checking executable libtool... failed (disable)
+  checking executable ranlib... ok
+  checking for pkgconfig (by command)... failed
+  checking for install (by command)... ok
+  checking for GNU ar... ok
+  checking for PIC (by compile)... ok
+  checking for GNU-compatible linker options... ok
+  checking for GNU linker-script ld flag... ok
+  checking for __atomic_32 (by compile)... ok
+  checking for __atomic_64 (by compile)... ok
+  checking for socket (by compile)... ok
+  parsing version '0x020c01ff'... ok (2.12.1)
+  checking for librt (by compile)... ok
+  checking for libpthread (by compile)... ok
+  checking for c11threads (by compile)... ok
+  checking for libdl (by compile)... ok
+  checking for libcrypto (by compile)... failed (fail)
+  checking for libm (by compile)... ok
+  checking for syslog (by compile)... ok
+  checking for rapidjson (by compile)... failed (disable)
+  checking for crc32chw (by compile)... ok
+  checking for regex (by compile)... ok
+  checking for rand_r (by compile)... ok
+  checking for strndup (by compile)... ok
+  checking for strlcpy (by compile)... ok
+  checking for strerror_r (by compile)... ok
+  checking for strcasestr (by compile)... ok
+  checking for pthread_setname_gnu (by compile)... ok
+  checking for nm (by env NM)... ok (cached)
+  checking for python3 (by command)... failed (disable)
+  checking for getrusage (by compile)... ok
+
+
+
+
+  --- stderr
+  Building and linking librdkafka statically
+  Running command: "cp -a librdkafka/. /root/ROM-extras/target/debug/build/rdkafka-sys-8819acdf155b4d9e/out" in dir: .
+  Running command: "/root/ROM-extras/target/debug/build/rdkafka-sys-8819acdf155b4d9e/out/configure --enable-ssl --disable-gssapi --disable-zlib --disable-curl --disable-zstd --disable-lz4-ext" in dir: /root/ROM-extras/target/debug/build/rdkafka-sys-8819acdf155b4d9e/out
+  disabling linker-script since python3 is not available
+  ###########################################################
+  ###                  Configure failed                   ###
+  ###########################################################
+  ### Accumulated failures:                               ###
+  ###########################################################
+   libcrypto () 
+      module: self
+      action: fail
+      reason:
+  compile check failed:
+  CC: CC
+  flags: -lcrypto
+  gcc  -g -O2 -fPIC -Wall -Wsign-compare -Wfloat-equal -Wpointer-arith -Wcast-align -Wall -Werror _mkltmpY2UOSA.c -o _mkltmpY2UOSA.c.o   -lcrypto -ldl -lpthread -lrt -lpthread -lrt:
+  _mkltmpY2UOSA.c:2:10: fatal error: openssl/ssl.h: No such file or directory
+      2 | #include <openssl/ssl.h>
+        |          ^~~~~~~~~~~~~~~
+  compilation terminated.
+  source: 
+  #include <openssl/ssl.h>
+  #include <openssl/evp.h>
+  #if OPENSSL_VERSION_NUMBER < 0x1000100fL
+  #error "Requires OpenSSL version >= v1.0.1"
+  #endif
+
+
+  thread 'main' (2578524) panicked at /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rdkafka-sys-4.10.0+2.12.1/build.rs:36:33:
+  Command failed with error code 1
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
