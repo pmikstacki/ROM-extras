@@ -49,5 +49,9 @@ Tests cover acceptance, permanent rejection, redirects, server error, lost ackno
 Receiver counters check one network attempt and no redirect follow-up. An untrusted CA fails.
 Oversized payload preparation produces no receiver request.
 
-Full webhook support still requires durable ROM intent reopening, persisted outcomes, authorization revocation, and bounded Runtime retry tests.
+Three Runtime tests cover native SQLite and redb intent reopening, persisted outcomes, authorization revocation, and bounded retries.
+The independent receiver commits dedup IDs and body bytes in SQLite WAL/FULL before acknowledgement.
+A killed/restarted receiver accepts the retried stable ID without a second stored effect.
+Its test-only Node 22.16 SQLite API is experimental; its warnings are retained.
+This establishes process-restart recovery, not power-loss behavior or a production receiver profile.
 No supported production receiver or broker profile is claimed yet.

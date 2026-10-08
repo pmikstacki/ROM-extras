@@ -1,0 +1,3 @@
+{"node":"v22.16.0","sqlite":"3.49.1"}
+(node:2017419) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)

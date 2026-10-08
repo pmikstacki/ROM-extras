@@ -1,0 +1,25 @@
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+warning: method `stats` is never used
+   --> crates/rom-webhook/tests/common/receiver.rs:122:18
+    |
+ 14 | impl Receiver {
+    | ------------- method in this implementation
+...
+122 |     pub async fn stats(&self) -> String {
+    |                  ^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `rom-webhook` (test "runtime") generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.56s
+     Running tests/runtime.rs (target/debug/deps/runtime-baad6e5ce1c53eba)
+
+running 1 test
+(node:2004654) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2004680) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+test durable_intent_reopen_delivery_and_revocation ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.57s
+

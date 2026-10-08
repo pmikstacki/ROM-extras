@@ -50,7 +50,7 @@ Independent source review found no actionable defect; the full local verifier pa
 Cargo-audit 0.22.2 reported no vulnerabilities or warnings for 113 workspace and 209 consumer packages.
 Both scans used RustSec commit `550efd3d587a29b2e2c2b21b17a440da4fede999` on 2026-10-08.
 The HTTPS transport increment is implemented; see [its boundaries and verification](webhooks.md).
-Durable channel reopening, persisted outcomes, current authorization revocation, and full Runtime retry acceptance remain open.
+Native SQLite/redb channel reopening, persisted outcomes, authorization revocation, and bounded Runtime retries are verified.
 No production webhook or broker provider is supported yet.
 
 ## HTTPS transport increment
@@ -61,7 +61,11 @@ The full local verifier passed, including both real database fixtures. Source re
 Cargo-audit 0.22.2 found zero vulnerabilities or warnings in 195 workspace and 251 consumer locked packages.
 Both scans used RustSec commit `550efd3d587a29b2e2c2b21b17a440da4fede999` on 2026-10-08.
 License manifest inventories have no absent declarations; redistribution review remains open.
-Durable receiver deduplication and ROM authorization/reopen integration remain pending.
+Three Runtime integration tests now verify durable receiver deduplication and ROM authorization/reopening.
+They run on both native SQLite and redb, with a killed/restarted Node receiver using SQLite WAL/FULL.
+Cargo-audit 0.22.2 found no vulnerabilities or warnings in the updated 211-package workspace graph.
+The unchanged independent-consumer graph remains 251 packages.
+The Node 22.16 fixture SQLite API is experimental; this is not a production receiver recommendation.
 
 ## Whole-goal tracking
 
@@ -73,7 +77,8 @@ Durable receiver deduplication and ROM authorization/reopen integration remain p
 | MySQL, MariaDB, CockroachDB, Oracle | Driver research exists; provider implementation and real-backend conformance remain pending. |
 | OIDC | Preset configuration and signed synthetic-token integration verified; live provider login remains pending. |
 | OpenTelemetry | Public diagnostic interface publication and OTLP implementation remain pending. |
-| Webhooks, Kafka, NATS, RabbitMQ, notifications | Delivery-family contract and bounded preparation/signing implemented; network providers and real acceptance/recovery fixtures remain pending. |
+| Webhooks | HTTPS/signing/destination policy and native Runtime recovery/authorization tests implemented; production receiver and release acceptance remain pending. |
+| Kafka, NATS, RabbitMQ, notifications | Shared delivery preparation/signing implemented; provider implementations and real acknowledgement/recovery remain pending. |
 | S3-compatible, Azure Blob | Existing ROM adapter review and missing-operation implementation/real fixtures remain pending. |
 | Secrets and KMS | Bounded family contract, provider implementation, and service verification remain pending. |
 | OpenSearch and vectors | Projection contract, implementation, authorization checks, and real fixtures remain pending. |

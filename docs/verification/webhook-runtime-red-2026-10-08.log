@@ -1,0 +1,58 @@
+    Updating git repository `https://github.com/pmikstacki/ROM`
+    Updating crates.io index
+     Locking 16 packages to highest Rust 1.99 compatible versions
+      Adding fallible-iterator v0.3.0
+      Adding fallible-streaming-iterator v0.1.9
+      Adding foldhash v0.2.0
+      Adding hashbrown v0.16.1
+      Adding hashbrown v0.17.1
+      Adding hashlink v0.12.2
+      Adding libsqlite3-sys v0.38.2
+      Adding redb v4.3.0
+      Adding rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+      Adding rom-derive v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+      Adding rom-redb v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+      Adding rom-sqlite v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+      Adding rsqlite-vfs v0.1.1
+      Adding rusqlite v0.40.2
+      Adding sqlite-wasm-rs v0.5.5
+      Adding vcpkg v0.2.15
+   Compiling rom-derive v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling vcpkg v0.2.15
+   Compiling libsqlite3-sys v0.38.2
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling foldhash v0.2.0
+   Compiling hashbrown v0.17.1
+   Compiling redb v4.3.0
+   Compiling rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling hashlink v0.12.2
+   Compiling fallible-streaming-iterator v0.1.9
+   Compiling fallible-iterator v0.3.0
+   Compiling rusqlite v0.40.2
+   Compiling rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+   Compiling rom-sqlite v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-redb v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+warning: unused import: `time::Duration`
+ --> crates/rom-webhook/tests/common/receiver.rs:6:5
+  |
+6 |     time::Duration,
+  |     ^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0308]: mismatched types
+  --> crates/rom-webhook/tests/runtime.rs:30:83
+   |
+30 |     runtime.execute(&owner(), Command::create(id, Notice { count:0 }).idempotency(format!("seed-{id}"))).await.unwrap();
+   |                                                                                   ^^^^^^^^^^^^^^^^^^^^ expected `&str`, found `String`
+
+error[E0308]: mismatched types
+  --> crates/rom-webhook/tests/runtime.rs:31:90
+   |
+31 |     runtime.execute(&owner(), Command::action(id, NOTIFY, ()).at_revision(1).idempotency(format!("notify-{id}"))).await.unwrap();
+   |                                                                                          ^^^^^^^^^^^^^^^^^^^^^^ expected `&str`, found `String`
+
+For more information about this error, try `rustc --explain E0308`.
+warning: `rom-webhook` (test "runtime") generated 1 warning
+error: could not compile `rom-webhook` (test "runtime") due to 2 previous errors; 1 warning emitted

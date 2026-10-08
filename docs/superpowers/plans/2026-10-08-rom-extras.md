@@ -121,10 +121,10 @@ Do not replace incremental storage with complete-ledger serialization to bypass 
 
 **Interfaces:** Consume ROM `Delivery<P>`, `DeliveryOutcome`, and channel registration. Use the stable `Delivery.id` as a provider idempotency key where supported.
 
-- [ ] Write the delivery-family spec against the committed channel registration API before adding provider code.
+- [x] Write the delivery-family spec against the committed channel registration API before adding provider code.
 - [ ] Test committed intents survive storage reopen and invoke each real provider.
 - [ ] Test bounded retry, duplicate attempts, permanent rejection, and lost external acknowledgement.
-- [ ] Implement webhook signatures and explicit destination policy. Test redirects, resolved private addresses, payload limits, and non-success responses.
+- [x] Implement webhook signatures and explicit destination policy. Test redirects, resolved private addresses, payload limits, and non-success responses.
 - [ ] Implement Kafka, NATS, and RabbitMQ independently. Require real broker acknowledgement and restart/redelivery tests.
 - [ ] Implement SMTP/email, an SMS provider, and a collaboration notification provider with configurable destinations and secret references.
 - [ ] Preserve unknown outcomes when the receiver cannot establish acceptance. Do not advertise external exactly-once effects.

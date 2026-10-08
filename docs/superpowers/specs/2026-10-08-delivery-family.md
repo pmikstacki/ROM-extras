@@ -40,10 +40,10 @@ Retries belong to Runtime. A lost acknowledgement remains unknown; it does not p
 
 ## Required acceptance still open
 
-HTTPS transport, destination policy, and status/outcome mapping are implemented. Full Runtime integration remains open.
+HTTPS transport, destination policy, and status/outcome mapping are implemented. Runtime integration tests now cover native SQLite and redb.
 An independent Node HTTPS receiver verifies signed raw requests.
 Tests cover redirects, private address sets, body limits, permanent rejection, overload, duplicates, missing acknowledgement, and deadline.
-Create committed channel intents in a durable ROM backend, reopen, deliver, and inspect persisted outcomes.
-Exercise source authorization revocation before send. Test bounded Runtime retry and receiver deduplication.
+Three Runtime tests create committed intents, reopen both native backends, and inspect persisted outcomes.
+They exercise service/source revocation, two-attempt budgets, and deduplication across receiver process restart.
 Kafka, NATS, RabbitMQ, and notifications each require real provider acknowledgement and restart/redelivery tests.
 Shared preparation and synthetic signing tests alone do not establish webhook or broker support.

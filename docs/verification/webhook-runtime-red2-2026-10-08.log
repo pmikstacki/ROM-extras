@@ -1,0 +1,24 @@
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.79s
+     Running tests/runtime.rs (target/debug/deps/runtime-baad6e5ce1c53eba)
+
+running 1 test
+test durable_intent_reopen_delivery_and_revocation ... FAILED
+
+failures:
+
+---- durable_intent_reopen_delivery_and_revocation stdout ----
+
+thread 'durable_intent_reopen_delivery_and_revocation' (1998718) panicked at crates/rom-webhook/tests/runtime.rs:54:9:
+assertion `left == right` failed
+  left: Some(Permanent)
+ right: Some(Accepted)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    durable_intent_reopen_delivery_and_revocation
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.33s
+
+error: test failed, to rerun pass `-p rom-webhook --test runtime`

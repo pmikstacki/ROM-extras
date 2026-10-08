@@ -3,126 +3,9 @@
 use rom::{Delivery, DeliveryOutcome};
 use rom_delivery_core::{PayloadLimit, WebhookSigner};
 use rom_webhook::{Destination, TransportLimits, Webhook};
-use std::{
-    io::{BufRead, BufReader},
-    process::{Child, Command, Stdio},
-    time::Duration,
-};
-
-struct Receiver {
-    child: Child,
-    port: u16,
-    certificate: Vec<u8>,
-}
-impl Receiver {
-    fn start() -> Self {
-        let directory =
-            std::env::temp_dir().join(format!("rom-extras-https-{}", std::process::id()));
-        std::fs::create_dir_all(&directory).unwrap();
-        #[cfg(unix)]
-        {
-            use std::os::unix::fs::PermissionsExt;
-            std::fs::set_permissions(&directory, std::fs::Permissions::from_mode(0o700)).unwrap();
-        }
-        let certificate = directory.join("certificate.pem");
-        let key = directory.join("key.pem");
-        let ca = directory.join("root.pem");
-        let ca_key = directory.join("root-key.pem");
-        let csr = directory.join("server.csr");
-        let extensions = directory.join("server.ext");
-        std::fs::write(&extensions, "basicConstraints=critical,CA:FALSE\nkeyUsage=critical,digitalSignature,keyEncipherment\nextendedKeyUsage=serverAuth\nsubjectAltName=DNS:receiver.example\n").unwrap();
-        let result = Command::new("openssl")
-            .args([
-                "req",
-                "-x509",
-                "-newkey",
-                "rsa:2048",
-                "-nodes",
-                "-days",
-                "1",
-                "-subj",
-                "/CN=ROM Extras fixture root",
-                "-addext",
-                "basicConstraints=critical,CA:TRUE",
-                "-keyout",
-            ])
-            .arg(&ca_key)
-            .arg("-out")
-            .arg(&ca)
-            .output()
-            .unwrap();
-        assert!(result.status.success(), "fixture root generation failed");
-        let result = Command::new("openssl")
-            .args([
-                "req",
-                "-new",
-                "-newkey",
-                "rsa:2048",
-                "-nodes",
-                "-subj",
-                "/CN=receiver.example",
-                "-keyout",
-            ])
-            .arg(&key)
-            .arg("-out")
-            .arg(&csr)
-            .output()
-            .unwrap();
-        assert!(result.status.success(), "fixture CSR generation failed");
-        let result = Command::new("openssl")
-            .args(["x509", "-req", "-days", "1", "-in"])
-            .arg(&csr)
-            .arg("-CA")
-            .arg(&ca)
-            .arg("-CAkey")
-            .arg(&ca_key)
-            .arg("-CAcreateserial")
-            .arg("-extfile")
-            .arg(&extensions)
-            .arg("-out")
-            .arg(&certificate)
-            .output()
-            .unwrap();
-        assert!(result.status.success(), "fixture leaf signing failed");
-        let mut child = Command::new("node")
-            .arg(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/receiver.cjs"))
-            .arg(&key)
-            .arg(&certificate)
-            .stdout(Stdio::piped())
-            .spawn()
-            .unwrap();
-        let mut line = String::new();
-        BufReader::new(child.stdout.take().unwrap())
-            .read_line(&mut line)
-            .unwrap();
-        Self {
-            child,
-            port: line.trim().parse().unwrap(),
-            certificate: std::fs::read(ca).unwrap(),
-        }
-    }
-    fn client(&self, path: &str, limits: TransportLimits) -> Webhook {
-        let endpoint = Destination::loopback_fixture(
-            &format!("https://receiver.example:{}{path}", self.port),
-            &["127.0.0.1".parse().unwrap()],
-        )
-        .unwrap();
-        Webhook::with_fixture_root(
-            endpoint,
-            WebhookSigner::new([7; 32]),
-            PayloadLimit::default(),
-            limits,
-            &self.certificate,
-        )
-        .unwrap()
-    }
-}
-impl Drop for Receiver {
-    fn drop(&mut self) {
-        let _ = self.child.kill();
-        let _ = self.child.wait();
-    }
-}
+use std::time::Duration;
+mod common;
+use common::Receiver;
 fn delivery(attempt: u32) -> Delivery<bool> {
     Delivery {
         id: "work-17".into(),
@@ -210,25 +93,7 @@ async fn delivers_signed_exact_bytes_and_preserves_uncertainty() {
             .await,
         DeliveryOutcome::Unknown
     );
-    let stats_client = reqwest::Client::builder()
-        .no_proxy()
-        .https_only(true)
-        .tls_certs_only([reqwest::Certificate::from_pem(&receiver.certificate).unwrap()])
-        .resolve(
-            "receiver.example",
-            format!("127.0.0.1:{}", receiver.port).parse().unwrap(),
-        )
-        .timeout(Duration::from_secs(2))
-        .build()
-        .unwrap();
-    let stats = stats_client
-        .get(format!("https://receiver.example:{}/stats", receiver.port))
-        .send()
-        .await
-        .unwrap()
-        .text()
-        .await
-        .unwrap();
+    let stats = receiver.stats().await;
     for line in [
         "/accept=1",
         "/redirect=1",
