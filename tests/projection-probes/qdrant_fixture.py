@@ -36,4 +36,3 @@ def point(name, identity):
 def revision(point):
     payload = point['payload']
     return (payload['rom_revision_hi'] << 32) | payload['rom_revision_lo']
-

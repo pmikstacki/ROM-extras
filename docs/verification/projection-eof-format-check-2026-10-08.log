@@ -1,0 +1,1 @@
+PASS only extra EOF blank line removed; Python AST unchanged

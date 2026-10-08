@@ -293,5 +293,16 @@
     "The fixed /root/ROM-extras fixture probes are not portable provisioning.",
     "No new Cargo archive consumer for projections or Rust projection-adapter dependency audit exists.",
     "Rust dependency graphs unchanged; container/Python advisories were not audited by Cargo."
-  ]
+  ],
+  "executed_source_commit": "19ca2e3",
+  "post_verifier_format_check": {
+    "path": "tests/projection-probes/qdrant_fixture.py",
+    "change": "Remove one extra blank line at EOF caught by staged diff check after the full run. The original frozen source remains preserved in commit19ca2e3.",
+    "before_sha256": "30b15bbbd453ca2f989114f687db8bbcf5f0c98b153857384d8ad54e4e8cf8e1",
+    "after_sha256": "b1d7c36843ff929061685de426a998449d0af4c6dcf9a8cb3950cbf29245b0fd",
+    "ast_unchanged": true,
+    "verification": "Exact whitespace-only comparison and parsed Python AST equality; git diff --check passed. No behavior or graph change.",
+    "output": "docs/verification/projection-eof-format-check-2026-10-08.log",
+    "scope": "Full backend output and original freeze remain unchanged; this is a separate post-verifier formatting check."
+  }
 }
