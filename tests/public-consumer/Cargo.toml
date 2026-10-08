@@ -9,6 +9,7 @@ license = "MIT"
 [workspace]
 
 [features]
+rabbitmq-conformance = ["dep:lapin", "dep:tokio"]
 nats-conformance = ["dep:async-nats", "dep:tokio"]
 postgres-conformance = ["dep:postgres", "dep:tokio"]
 mssql-conformance = ["dep:tiberius", "dep:tokio", "dep:tokio-util"]
@@ -25,7 +26,13 @@ required-features = ["mssql-conformance"]
 name = "nats_delivery"
 required-features = ["nats-conformance"]
 
+[[test]]
+name = "rabbitmq_delivery"
+required-features = ["rabbitmq-conformance"]
+
 [dependencies]
+rom-rabbitmq = { path = "../../crates/rom-rabbitmq" }
+lapin = { version = "=4.12.0", default-features = false, features = ["tokio", "rustls", "rustls--aws_lc_rs", "rustls-native-certs"], optional = true }
 rom-nats = { path = "../../crates/rom-nats" }
 async-nats = { version = "=0.50.0", default-features = false, features = ["jetstream", "aws-lc-rs", "nuid"], optional = true }
 rom = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false }

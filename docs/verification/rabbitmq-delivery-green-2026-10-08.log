@@ -1,0 +1,22 @@
+   Compiling rom-rabbitmq v0.1.0-dev (/root/ROM-extras/crates/rom-rabbitmq)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 8.50s
+     Running tests/broker.rs (target/debug/deps/broker-e4407a2534e6c819)
+
+running 1 test
+test confirms_persistence_return_and_redelivery_after_restart ... FAILED
+
+failures:
+
+---- confirms_persistence_return_and_redelivery_after_restart stdout ----
+
+thread 'confirms_persistence_return_and_redelivery_after_restart' (2227920) panicked at crates/rom-rabbitmq/tests/broker.rs:23:25:
+fixture AMQP connection failed
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    confirms_persistence_return_and_redelivery_after_restart
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p rom-rabbitmq --test broker`

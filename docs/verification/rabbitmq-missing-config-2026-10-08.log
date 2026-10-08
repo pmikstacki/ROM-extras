@@ -1,0 +1,1 @@
+./scripts/check-rabbitmq: line 4: ROM_EXTRAS_RABBITMQ_URI: Required dedicated RabbitMQ fixture configuration

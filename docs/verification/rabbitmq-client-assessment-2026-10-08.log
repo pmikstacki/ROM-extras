@@ -1,0 +1,29 @@
+    Updating crates.io index
+ Downloading crates ...
+  Downloaded lapin v4.12.0
+lapin #amqp #rabbitmq #messaging #async #client
+AMQP client library
+version: 4.12.0
+license: MIT
+rust-version: 1.88.0
+documentation: https://docs.rs/lapin
+repository: https://github.com/amqp-rs/lapin
+crates.io: https://crates.io/crates/lapin/4.12.0
+features:
+ +default                   = [rustls, default-runtime]
+  default-runtime           = [tokio]
+  rustls                    = [amq-protocol/rustls]
+  tokio                     = [amq-protocol/tokio, async-rs/tokio]
+  async-global-executor     = [amq-protocol/async-global-executor, async-rs/async-global-executor, async-rs/async-io]
+  codegen                   = [codegen-internal, amq-protocol/codegen]
+  codegen-internal          = [dep:amq-protocol-codegen, dep:serde_json]
+  hickory-dns               = [amq-protocol/hickory-dns, async-rs/hickory-dns]
+  native-tls                = [amq-protocol/native-tls]
+  openssl                   = [amq-protocol/openssl]
+  rustls--aws_lc_rs         = [amq-protocol/rustls--aws_lc_rs]
+  rustls--ring              = [amq-protocol/rustls--ring]
+  rustls-native-certs       = [amq-protocol/rustls-native-certs]
+  rustls-platform-verifier  = [amq-protocol/rustls-platform-verifier]
+  rustls-webpki-roots-certs = [amq-protocol/rustls-webpki-roots-certs]
+  smol                      = [amq-protocol/smol, async-rs/smol]
+  vendored-openssl          = [amq-protocol/vendored-openssl]

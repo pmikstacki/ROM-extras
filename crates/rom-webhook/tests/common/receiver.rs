@@ -13,20 +13,12 @@ pub struct Receiver {
 }
 impl Receiver {
     pub fn start() -> Self {
-        let directory = std::env::temp_dir().join(format!(
-            "rom-extras-https-{}-{}",
-            std::process::id(),
+        let directory = super::directory::reserve(
             std::time::SystemTime::now()
                 .duration_since(std::time::UNIX_EPOCH)
                 .unwrap()
-                .as_nanos()
-        ));
-        std::fs::create_dir_all(&directory).unwrap();
-        #[cfg(unix)]
-        {
-            use std::os::unix::fs::PermissionsExt;
-            std::fs::set_permissions(&directory, std::fs::Permissions::from_mode(0o700)).unwrap();
-        }
+                .as_nanos(),
+        );
         let certificate = directory.join("certificate.pem");
         let key = directory.join("key.pem");
         let ca = directory.join("root.pem");

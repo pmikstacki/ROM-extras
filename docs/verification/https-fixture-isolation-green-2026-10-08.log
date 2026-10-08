@@ -1,0 +1,28 @@
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.63s
+     Running tests/runtime.rs (target/debug/deps/runtime-baad6e5ce1c53eba)
+
+running 4 tests
+test common::directory::tests::simultaneous_receivers_with_equal_clock_stamps_have_private_databases ... ok
+(node:2293014) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2293015) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2293036) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2293106) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2293173) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2293250) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+test source_disclosure_revocation_stops_pending_payload_before_transport ... ok
+(node:2293293) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+test durable_intent_reopen_delivery_and_revocation ... ok
+(node:2293313) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+test lost_ack_retry_survives_receiver_restart_and_attempt_budget_is_finite ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.43s
+

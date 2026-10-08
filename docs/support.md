@@ -79,7 +79,8 @@ The Node 22.16 fixture SQLite API is experimental; this is not a production rece
 | OpenTelemetry | Public diagnostic interface publication and OTLP implementation remain pending. |
 | Webhooks | HTTPS/signing/destination policy and native Runtime recovery/authorization tests implemented; production receiver and release acceptance remain pending. |
 | NATS | Acknowledged JetStream publication, broker recovery/redelivery, and native Runtime retry/revocation verified; single-node TLS-first token/reconnect profile verified; production topology and release remain pending. |
-| Kafka, RabbitMQ, notifications | Shared delivery preparation/signing implemented; provider implementations and real acknowledgement/recovery remain pending. |
+| RabbitMQ | Mandatory confirmed publication, persistence/restart/redelivery, and uncertainty/cancellation retirement verified; Runtime, post-commit confirm loss, and TLS remain pending. |
+| Kafka, notifications | Shared delivery preparation/signing implemented; provider implementations and real acknowledgement/recovery remain pending. |
 | S3-compatible, Azure Blob | Existing ROM adapter review and missing-operation implementation/real fixtures remain pending. |
 | Secrets and KMS | Bounded family contract, provider implementation, and service verification remain pending. |
 | OpenSearch and vectors | Projection contract, implementation, authorization checks, and real fixtures remain pending. |
@@ -120,3 +121,15 @@ Tests reject unrelated CA, hostname mismatch, incorrect token, and TLS-first con
 The same client emits disconnect/connect events across broker restart. The unchanged adapter then acknowledges duplicate and new publications.
 An independent consumer executes the public TLS options and reads the exact stored false JSON.
 This single-node profile does not establish clustered failover, certificate rotation, mTLS/JWT, or packaged release support.
+
+## RabbitMQ confirmed publication increment
+
+rom-rabbitmq prepares exact bounded JSON and publishes mandatory persistent messages through a dedicated private confirm channel.
+Accepted requires Ack without return. Confirmed NO_ROUTE is Retryable; uncertainty retires the adapter until explicit host rebinding.
+AMQP message_id preserves identity but does not deduplicate; IDs over255 bytes are refused without truncation or payload encoding.
+Real RabbitMQ4.3.2 tests verify false payload/properties, two same-ID messages, restart persistence, unacknowledged redelivery,
+NO_ROUTE/reprovision, preparation refusal, overload, timeout/cancellation, eventual buffered writes, and no later publication from retired adapters.
+An independent consumer obtains a real confirmation and reads persistent false JSON with the unchanged ID.
+Queue durability is a host invariant; passive binding checks existence only. The fixture CLI records durable quorum queues.
+Native Runtime, post-commit confirm-loss injection, verified TLS, and production release acceptance remain open.
+The selected client can trace returned payloads; hosts must filter dependency logs. See [configuration and limits](rabbitmq.md).
