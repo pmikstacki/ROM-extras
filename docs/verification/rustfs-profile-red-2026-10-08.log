@@ -1,0 +1,23 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.50s
+     Running tests/s3_blob.rs (tests/public-consumer/target/debug/deps/s3_blob-52c7ffc65e05471b)
+
+running 1 test
+test published_port_passes_on_seaweedfs ... FAILED
+
+failures:
+
+---- published_port_passes_on_seaweedfs stdout ----
+
+thread 'published_port_passes_on_seaweedfs' (3214128) panicked at tests/s3_blob.rs:15:5:
+assertion `left == right` failed
+  left: "http://127.0.0.1:55456"
+ right: "http://127.0.0.1:55455"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    published_port_passes_on_seaweedfs
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test s3_blob`

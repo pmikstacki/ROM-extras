@@ -1,0 +1,50 @@
+{
+  "container": "rom-extras-rustfs-20261008",
+  "fixture_label": "rustfs",
+  "image_id": "f6b22807f10db2aee80b8a9ed1e36bd12c2fba25ac2d98dc3b0332a23f1a5c4d",
+  "selected_digest": "sha256:7465b31993156ca5cc0eb4b3c59a01ff69651961be62bcfeb6ce569f22034a56",
+  "entrypoint": [
+    "/usr/bin/rustfs"
+  ],
+  "command": [
+    "server",
+    "--address",
+    "0.0.0.0:9000",
+    "--region",
+    "us-east-1",
+    "/data"
+  ],
+  "running": true,
+  "memory_bytes": 1073741824,
+  "cpu_quota": 100000,
+  "cpu_period": 100000,
+  "port_bindings": {
+    "9000/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "55456"
+      }
+    ]
+  },
+  "mounts": [
+    {
+      "source": "/root/ROM-extras/.superpowers/rustfs-data",
+      "destination": "/data",
+      "type": "bind"
+    },
+    {
+      "source": "/root/ROM-extras/.superpowers/rustfs-logs",
+      "destination": "/logs",
+      "type": "bind"
+    }
+  ],
+  "console_enabled": false,
+  "bucket": "rom-extras",
+  "region": "us-east-1",
+  "versioning_status": null,
+  "scope": "isolated candidate bootstrap and native SDK probe only; no ROM qualification or redundancy claim",
+  "public_adapter_modified": false,
+  "probe_source_sha256": "db653db540631bc6bd9048bebbcb3c421f07efdd75c25753cb736dcb96f759dd",
+  "probe_manifest_sha256": "383cda3945f2704e4812aa0a4ed441bd3381b1b2e6818d35cc2d8245e96bc3f3",
+  "probe_lockfile_sha256": "d96aebea05d52f082c73ff48e46903eb38035b6a22afc7e95222a9fb84700dc7"
+}

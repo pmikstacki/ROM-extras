@@ -1,0 +1,22 @@
+{
+  "image": "docker.io/dxflrs/garage:v2.4.1",
+  "image_id": "c7746d213b6809acdd57ab4b7c48f9e2636e4382a3a63e3ee845a1e82df40209",
+  "repo_digests": [
+    "docker.io/dxflrs/garage@sha256:0d7c74fc8ca6fef68a5a941c0e7558c8b1e92ba3588fa7505400e1350456c796",
+    "docker.io/dxflrs/garage@sha256:9c96caa2612d3411acc5b0e6701fb238dbfba33e533a6d7d3d811a4b12d0d020"
+  ],
+  "selected_digest": "sha256:0d7c74fc8ca6fef68a5a941c0e7558c8b1e92ba3588fa7505400e1350456c796",
+  "version_command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "docker.io/dxflrs/garage:v2.4.1",
+    "/garage",
+    "--version"
+  ],
+  "version_exit_code": 0,
+  "reported_version": "garage v2.4.1 [features: bundled-libs, consul-discovery, fjall, journald, k2v, kubernetes-discovery, lmdb, metrics, sqlite, syslog, telemetry-otlp]",
+  "scope": "artifact check only; no server, bucket, or ROM conformance executed"
+}

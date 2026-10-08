@@ -12,7 +12,7 @@ The delivery core prepares bounded JSON and Standard Webhooks signatures.
 [RabbitMQ publication](docs/rabbitmq.md) has mandatory confirmation, persistence/restart, redelivery, and uncertainty/cancellation tests.
 [Kafka publication](docs/kafka.md) has live offset, duplicate, Runtime recovery, TLS/SASL, restart, and independent consumer tests.
 [Azure Blob](docs/azure-blob.md) now implements the public blob port with persistent Azurite conformance and independent-consumer evidence.
-The [S3 candidate profile](docs/s3-compatible.md) has real conformance and uncertainty evidence; its strict burst qualification currently fails.
+The [S3 profiles](docs/s3-compatible.md) retain SeaweedFS’s failed strict burst evidence and add passing RustFS local public-port qualification.
 See [the complete goal](docs/goal.md), [the implementation plan](docs/superpowers/plans/2026-10-08-rom-extras.md), and [support status](docs/support.md).
 
 ## Verify locally

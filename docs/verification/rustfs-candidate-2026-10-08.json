@@ -1,0 +1,27 @@
+{
+  "image": "docker.io/rustfs/rustfs:1.0.1",
+  "image_id": "f6b22807f10db2aee80b8a9ed1e36bd12c2fba25ac2d98dc3b0332a23f1a5c4d",
+  "repo_digests": [
+    "docker.io/rustfs/rustfs@sha256:1803faef57627e2d9c2e7d89d655d712ddded5389040054987163043fecb6a3c",
+    "docker.io/rustfs/rustfs@sha256:7465b31993156ca5cc0eb4b3c59a01ff69651961be62bcfeb6ce569f22034a56"
+  ],
+  "selected_digest": "sha256:7465b31993156ca5cc0eb4b3c59a01ff69651961be62bcfeb6ce569f22034a56",
+  "entrypoint": [
+    "/entrypoint.sh"
+  ],
+  "configured_user": "rustfs",
+  "version_command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "--entrypoint",
+    "/usr/bin/rustfs",
+    "docker.io/rustfs/rustfs:1.0.1",
+    "--version"
+  ],
+  "version_exit_code": 0,
+  "reported_version": "rustfs 1.0.1\nbuild time   : 2026-10-03 02:33:36 +00:00\nbuild profile: release\nbuild os     : linux-x86_64\nrust version : rustc 1.99.0 (b940084d7 2026-09-28)\nrust channel : stable-x86_64-unknown-linux-gnu\ngit branch   : \ngit commit   : 6de965ae3c965a78ff819fbcd7acd4aa44177d92\ngit tag      : 1.0.1\ngit status   :",
+  "scope": "artifact check only; no server, bucket, or ROM conformance executed"
+}

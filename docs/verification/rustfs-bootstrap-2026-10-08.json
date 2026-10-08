@@ -1,0 +1,8 @@
+{
+  "create_bucket_http_status": 200,
+  "get_bucket_versioning_http_status": 200,
+  "versioning_status": null,
+  "request_timeout_seconds": 3,
+  "ambient_proxy_disabled": true,
+  "scope": "candidate bucket bootstrap; not public ROM conformance"
+}

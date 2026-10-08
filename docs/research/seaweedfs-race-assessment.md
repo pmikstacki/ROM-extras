@@ -71,3 +71,29 @@ The trace container required SIGKILL after its ten-second stop allowance and exi
 This is not graceful drain evidence. The stopped trace container and original volume remain preserved.
 The original fixture was restored and public conformance passed again.
 The strict eight-way qualification remains failed; no client deadline, retries, or concurrency requirement changed.
+
+## Recovery locks after routed rejection
+
+Further exact-commit inspection identifies another lock path; lock activity alone does not prove owner routing failed.
+[PUT finalization](https://github.com/seaweedfs/seaweedfs/blob/530be3e37/weed/s3api/s3api_object_handlers_put.go#L967) sets routed=true for PRECONDITION_FAILED, but leaves entryCreated=false.
+The common error branch then invokes confirmCreateLanded before returning the rejection.
+[Recovery verification](https://github.com/seaweedfs/seaweedfs/blob/530be3e37/weed/s3api/s3api_object_handlers_put.go#L1062) obtains the distributed object write lock before inspecting uploaded chunks.
+Thus routed precondition losers can contend on recovery locks even when the owner route works.
+
+The existing trace contains one nonempty S3 ring update before the first diagnostic PUT.
+All eight diagnostic requests completed chunk upload and reached metadata finalization.
+One metadata save succeeded; none logged Calling CreateEntry or a routed-PUT fallback warning.
+Seven lock acquisitions correspond in count to seven losing writes.
+These aggregates support recovery-lock contention as the mechanism; they do not attribute each lock to an individual request.
+See [stage evidence](../verification/s3-recovery-path-2026-10-08.json).
+
+The recovery lookup timeout is ten seconds and uses context.Background().
+Lock acquisition is not bounded by the original HTTP request context.
+Ordinary contention waits one second before retrying, independently of ROM's three-second request deadline.
+The source and trace therefore explain why confirmed provider rejection can arrive after the caller has already timed out.
+The caller must retain Unknown because it did not receive that rejection.
+
+No third-party server patch, deadline increase, retry, or reduced-concurrency qualification is introduced.
+Keep SeaweedFS 4.48 unqualified for the strict eight-way profile.
+Assess another maintained backend against the same public constructor and acceptance suite.
+A replacement candidate must establish conditional-create enforcement before broader lifecycle tests.

@@ -1,0 +1,11 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.28s
+     Running `tests/public-consumer/target/debug/s3-native-diagnostic`
+kind=accepted elapsed_ms=20 reqwest_seen=false typed_timeout=false typed_connect=false typed_http_status=None
+kind=already_exists elapsed_ms=20 reqwest_seen=false typed_timeout=false typed_connect=false typed_http_status=None
+kind=already_exists elapsed_ms=21 reqwest_seen=false typed_timeout=false typed_connect=false typed_http_status=None
+kind=already_exists elapsed_ms=21 reqwest_seen=false typed_timeout=false typed_connect=false typed_http_status=None
+kind=already_exists elapsed_ms=22 reqwest_seen=false typed_timeout=false typed_connect=false typed_http_status=None
+kind=already_exists elapsed_ms=22 reqwest_seen=false typed_timeout=false typed_connect=false typed_http_status=None
+kind=already_exists elapsed_ms=22 reqwest_seen=false typed_timeout=false typed_connect=false typed_http_status=None
+kind=already_exists elapsed_ms=23 reqwest_seen=false typed_timeout=false typed_connect=false typed_http_status=None
+head_exists=true

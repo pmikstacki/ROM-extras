@@ -1,0 +1,8 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s
+     Running tests/s3_blob.rs (tests/public-consumer/target/debug/deps/s3_blob-52c7ffc65e05471b)
+
+running 1 test
+test published_port_passes_on_configured_s3_fixture ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.06s
+

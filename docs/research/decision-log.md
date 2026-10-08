@@ -192,3 +192,23 @@ The [executed assessment](seaweedfs-race-assessment.md#executed-lock-path-reprod
 [AWS GetBucketVersioning](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html) supports the read-only check that excludes enabled versioning.
 Preserve timeout and uncertain outcomes; investigate ring initialization without weakening eight-way qualification.
 Record forced trace termination separately from orderly lifecycle evidence.
+
+
+## 2026-10-08: Distinguish finalization from recovery locking
+
+Do not infer missing routing from distributed locks alone.
+[Exact SeaweedFS PUT source](https://github.com/seaweedfs/seaweedfs/blob/530be3e37/weed/s3api/s3api_object_handlers_put.go#L967) also locks recovery after routed precondition rejection.
+[Executed stage evidence](../verification/s3-recovery-path-2026-10-08.json) confirms S3 ring delivery before the traced burst and no routed-failure warnings.
+Preserve the failed profile and investigate maintained alternatives without altering the public client's fixed policy.
+Conditional-create source enforcement is a prerequisite for selecting an alternative; generic S3 compatibility is insufficient.
+
+
+## 2026-10-08: Select independent S3 fixture profiles
+
+Keep one public-port acceptance suite and bind each explicit profile to a fixed loopback endpoint and restart target.
+[Garage exact source review](garage-conditional-create-assessment.md) excludes that candidate's inspected PUT behavior.
+[RustFS exact source review](rustfs-conditional-create-assessment.md) establishes precondition checking under its commit guard.
+Select RustFS 1.0.1 for an additional local qualification, with one CPU and 1 GiB per official testing guidance.
+Preserve SeaweedFS, its volume, and the strict failed evidence as a separate profile.
+No scenario, public deadline, retry limit, constructor, or dependency changes.
+The configured fixture controls the existing verifier gate; passing RustFS does not qualify SeaweedFS or cloud S3.

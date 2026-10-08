@@ -74,3 +74,12 @@ After restoring the original fixture, the filtered public conformance test exite
 See [restored conformance](s3-restored-conformance-2026-10-08.log).
 No production code, dependency graph, or verifier requirement changed in this diagnostic increment.
 The complete verifier's latest recorded result remains exit 101 at strict S3 qualification.
+
+## Recovery-path source correlation
+
+Further inspection of the same retained trace found a nonempty S3 ring update before the first diagnostic PUT.
+All eight writes reached metadata finalization; seven distributed locks need not indicate unavailable routing.
+Exact server source also acquires locks during recovery verification after routed PRECONDITION_FAILED.
+[The assessment](../research/seaweedfs-race-assessment.md#recovery-locks-after-routed-rejection) distinguishes that source path from per-request execution proof.
+[Sanitized stage counts](s3-recovery-path-2026-10-08.json) preserve the additional observation without exposing identities or credentials.
+No new race was executed for these counts, and the failed strict qualification remains unchanged.

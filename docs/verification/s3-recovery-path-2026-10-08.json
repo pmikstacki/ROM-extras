@@ -1,0 +1,23 @@
+{
+  "scope": "aggregate inspection of the existing traced native reproduction; no new race",
+  "gateway_discovery_enabled": 1,
+  "s3_ring_updates": 3,
+  "s3_nonempty_ring_updates_before_first_put": 1,
+  "diagnostic_key_count": 1,
+  "object_stage_counts": {
+    "About to create entry": 8,
+    "Calling CreateEntry": 0,
+    "CreateEntry SUCCESS": 1,
+    "Chunked upload SUCCESS": 8,
+    "Metadata saved SUCCESS": 1,
+    "routed PUT": 0,
+    "falling back to lock": 0,
+    "versioningState=": 8,
+    "PutObjectHandler bucket=": 8
+  },
+  "put_source_url": "https://github.com/seaweedfs/seaweedfs/blob/530be3e37/weed/s3api/s3api_object_handlers_put.go",
+  "put_source_sha256": "3ea183a531d036d6c5b70483f7ddf5ae8d572d77e876909c1ca09af1f5d683e1",
+  "raw_private_log_sha256": "355d8cc03644d19e9f9419d2fd9a498413087eff9d25eb6a04132bf0ce10f695",
+  "interpretation": "source-established recovery lock for routed precondition losers; stage counts support this mechanism without per-request lock attribution",
+  "omitted": "object key, ring addresses, credentials, request signatures, lock ownership and renewal tokens"
+}
