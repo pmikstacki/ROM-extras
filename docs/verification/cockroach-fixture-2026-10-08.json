@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-08",
+  "evidence_category": "Executed local development fixture, not production or full Storage qualification",
+  "image_tag": "docker.io/cockroachdb/cockroach:v26.3.2",
+  "image_digest": "sha256:84f0c929fdd4284b40a0c4afb1f284573fb281abc0323f8329e4e5f1650a3e00",
+  "image_id": "d4c035b52cdc87fb2a7ac9b710b36661a6fea890fdb7f371c20de6b3ae696bbd",
+  "binary_build_metadata": [
+    "Build Tag:        v26.3.2",
+    "Build Time:       2026/09/16 12:26:01",
+    "Distribution:     CCL",
+    "Platform:         linux amd64 (x86_64-pc-linux-gnu)",
+    "Go Version:       go1.26.6",
+    "C Compiler:       gcc 8.5.0",
+    "Build Commit ID:  8db696c79524f16c5fd046165e52a2e8c7eff326",
+    "Build Type:       release",
+    "Enabled Assertions: false"
+  ],
+  "build_commit_source_inspected": false,
+  "container_name": "rom-extras-cockroach-20261008",
+  "label": "cockroach",
+  "arguments": [
+    "start-single-node",
+    "--insecure",
+    "--listen-addr=127.0.0.1:26257",
+    "--sql-addr=0.0.0.0:26259",
+    "--http-addr=127.0.0.1:8080",
+    "--store=/cockroach/cockroach-data",
+    "--cache=256MiB",
+    "--max-sql-memory=128MiB"
+  ],
+  "port_bindings": {
+    "26259/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "55457"
+      }
+    ]
+  },
+  "cpu_count_experimental": 2,
+  "memory_limit_bytes": 2147483648,
+  "persistent_volume": "rom-extras-cockroach-20261008",
+  "hard_disk_quota": false,
+  "replicated": false,
+  "TLS": false,
+  "authentication": false,
+  "license_scope": "Internal nonproduction start-single-node development fixture; not a production licensing determination",
+  "failed_initial_configurations_preserved": [
+    "rom-extras-cockroach-rejected-listen-20261008",
+    "rom-extras-cockroach-rejected-rpc-port-20261008"
+  ]
+}

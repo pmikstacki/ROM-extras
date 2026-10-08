@@ -1,0 +1,59 @@
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.69s
+     Running tests/cockroach_executor.rs (tests/public-consumer/target/debug/deps/cockroach_executor-33f1c1c3e84820da)
+
+running 7 tests
+time="2026-10-08T20:33:12Z" level=warning msg="StopSignal SIGTERM failed to stop container rom-extras-cockroach-20261008 in 20 seconds, resorting to SIGKILL"
+test acknowledged_row_survives_restart_of_the_same_disk_store ... ok
+test byte_keys_preserve_case_unicode_and_zero_bytes ... FAILED
+test duplicate_rejection_rolls_back_preceding_insert_and_fresh_transaction_works ... FAILED
+test panicking_job_retires_connection_and_uncommitted_row_is_absent ... FAILED
+test stale_serializable_read_returns_40001_then_complete_transaction_rereads ... FAILED
+test waiting_deadline_does_not_cancel_database_commit ... FAILED
+test typed_worker_inside_tokio_uses_cockroach_serializable_session ... FAILED
+
+failures:
+
+---- byte_keys_preserve_case_unicode_and_zero_bytes stdout ----
+
+thread 'byte_keys_preserve_case_unicode_and_zero_bytes' (3337169) panicked at tests/cockroach_executor.rs:191:10:
+called `Result::unwrap()` on an `Err` value: Error { kind: Db, cause: Some(DbError { severity: "ERROR", parsed_severity: Some(Error), code: SqlState(E57014), message: "query execution canceled due to statement timeout", detail: None, hint: None, position: None, where_: None, schema: None, table: None, column: None, datatype: None, constraint: None, file: Some("errors.go"), line: Some(580), routine: Some("init") }) }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- duplicate_rejection_rolls_back_preceding_insert_and_fresh_transaction_works stdout ----
+
+thread 'duplicate_rejection_rolls_back_preceding_insert_and_fresh_transaction_works' (3337170) panicked at tests/cockroach_executor.rs:53:37:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+---- panicking_job_retires_connection_and_uncommitted_row_is_absent stdout ----
+
+thread 'panicking_job_retires_connection_and_uncommitted_row_is_absent' (3337171) panicked at tests/cockroach_executor.rs:48:37:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+---- stale_serializable_read_returns_40001_then_complete_transaction_rereads stdout ----
+
+thread 'stale_serializable_read_returns_40001_then_complete_transaction_rereads' (3337172) panicked at tests/cockroach_executor.rs:74:37:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+---- waiting_deadline_does_not_cancel_database_commit stdout ----
+
+thread 'waiting_deadline_does_not_cancel_database_commit' (3337174) panicked at tests/cockroach_executor.rs:43:37:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+---- typed_worker_inside_tokio_uses_cockroach_serializable_session stdout ----
+
+thread 'typed_worker_inside_tokio_uses_cockroach_serializable_session' (3337173) panicked at tests/cockroach_executor.rs:18:37:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+
+failures:
+    byte_keys_preserve_case_unicode_and_zero_bytes
+    duplicate_rejection_rolls_back_preceding_insert_and_fresh_transaction_works
+    panicking_job_retires_connection_and_uncommitted_row_is_absent
+    stale_serializable_read_returns_40001_then_complete_transaction_rereads
+    typed_worker_inside_tokio_uses_cockroach_serializable_session
+    waiting_deadline_does_not_cancel_database_commit
+
+test result: FAILED. 1 passed; 6 failed; 0 ignored; 0 measured; 0 filtered out; finished in 29.19s
+
+error: test failed, to rerun pass `--test cockroach_executor`

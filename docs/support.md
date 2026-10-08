@@ -90,7 +90,8 @@ The Node 22.16 fixture SQLite API is experimental; this is not a production rece
 | PostgreSQL | Three live executor tests and control-row restart evidence; full Storage provider remains pending. |
 | MSSQL | Three live executor tests, encryption, and restart control evidence; full Storage provider remains pending. |
 | MySQL, MariaDB | Five live executor tests each, binary identity and restart evidence; full Storage providers and verified TLS remain pending. |
-| CockroachDB, Oracle | Driver research exists; provider implementation and real-backend conformance remain pending. |
+| CockroachDB | Seven real executor cases on v26.3.2, including actual 40001 retry and graceful restart; full Storage remains pending. |
+| Oracle | Driver research exists; native-client adoption and real-backend provider conformance remain pending. |
 | OIDC | Preset configuration and signed synthetic-token integration verified; live provider login remains pending. |
 | OpenTelemetry | Public diagnostic interface publication and OTLP implementation remain pending. |
 | Webhooks | HTTPS/signing/destination policy and native Runtime recovery/authorization tests implemented; production receiver and release acceptance remain pending. |
@@ -213,3 +214,12 @@ Explicit upload retry receives a create conflict, verifies existing bytes, and a
 Repeated Ready upload makes no additional PUT; Ready bytes survive orderly reopen on SQLite and redb.
 See [wire-fault evidence](verification/s3-wire-ack-loss-2026-10-08.md).
 This local HTTP/1 profile does not establish cloud TLS, backend crash durability, universal transport retry behavior, or safe orphan deletion.
+
+## CockroachDB shared executor increment
+
+The official v26.3.2 single-node fixture reuses the same executor and PostgreSQL wire driver.
+Seven cases verify typed execution, post-wait-timeout commit, panic rollback, duplicate 23505 rollback, actual 40001 complete-transaction reread,
+byte identity and acknowledged false-row retention after confirmed graceful restart.
+The required check-cockroach gate is part of check-all. It rejects missing configuration, wrong fixed endpoints and hostaddr overrides.
+See [fixture](cockroach-fixture.md) and [verification](verification/cockroach-executor-2026-10-08.md).
+This development-only NoTls profile is not a complete Storage provider, replicated ownership fence, quorum test or production licensing determination.

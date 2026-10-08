@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_COCKROACH_DSN:?Set the loopback CockroachDB fixture DSN; missing backend never skips this gate.}"
+cargo test --manifest-path tests/public-consumer/Cargo.toml --locked \
+    --features cockroach-conformance --test cockroach_executor
+cargo clippy --manifest-path tests/public-consumer/Cargo.toml --locked \
+    --features cockroach-conformance --all-targets -- -D warnings

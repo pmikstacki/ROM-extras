@@ -1,0 +1,17 @@
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.55s
+     Running tests/cockroach_executor.rs (tests/public-consumer/target/debug/deps/cockroach_executor-33f1c1c3e84820da)
+
+running 7 tests
+test acknowledged_row_survives_restart_of_the_same_disk_store ... ok
+test byte_keys_preserve_case_unicode_and_zero_bytes ... ok
+test duplicate_rejection_rolls_back_preceding_insert_and_fresh_transaction_works ... ok
+test panicking_job_retires_connection_and_uncommitted_row_is_absent ... ok
+test stale_serializable_read_returns_40001_then_complete_transaction_rereads ... ok
+test waiting_deadline_does_not_cancel_database_commit ... ok
+test typed_worker_inside_tokio_uses_cockroach_serializable_session ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 8.73s
+
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.47s

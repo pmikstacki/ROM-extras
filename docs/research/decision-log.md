@@ -242,3 +242,25 @@ This follows [RFC 9110 section 7.6.1](https://www.rfc-editor.org/rfc/rfc9110.htm
 An initial fixture preserved the backend keepalive response header while closing; recovery failed before GET reached the backend.
 After correcting that hop's connection semantics, real recovery GET and both native reopen cases passed.
 Do not broaden the result to cloud TLS, process crash, other S3 services, or cleanup authorization.
+
+## CockroachDB shared PGwire executor qualification
+
+Date: 2026-10-08. Source: [primary-source assessment](cockroachdb-executor-assessment.md).
+Select official v26.3.2 and reuse pinned postgres 0.19.14 with the existing connection-owning Executor.
+Extract unchanged PostgreSQL deadline and panic assertions into shared PGwire acceptance helpers; keep server-specific settings separate.
+The existing immutable public ROM revision lacks required full incremental Storage exports, so no private implementation is copied.
+Require actual 40001 from controlled concurrent transactions, followed by explicit rollback and one complete fresh transaction reread.
+Keep 23505 application rejection and ambiguous 40003 separate; do not retry an unknown non-idempotent commit.
+Use BYTEA primary-key checks rather than assuming text collation preserves Resource identity.
+[Compatibility](https://www.cockroachlabs.com/docs/v26.3/postgresql-compatibility) and [retry semantics](https://www.cockroachlabs.com/docs/v26.3/transaction-retry-error-reference) support these choices.
+The exact executable restricts single-node RPC to localhost 26257; use its advertised separate SQL listener on 26259 with only host loopback 55457 published.
+Exact binary help and rejected startup attempts remain local evidence; networking behavior was confirmed on the executed artifact.
+Select experimental two-CPU/2GiB limits and disk storage under the documented development-only single-node licensing scope.
+An initial abrupt restart caused a cold DDL 57014 under three seconds; keep the failure and select a ten-second statement budget for Cockroach only.
+[Session-variable documentation](https://www.cockroachlabs.com/docs/v26.3/set-vars) supports configuring it at connection initialization.
+A statement timeout does not establish rollback. PostgreSQL's existing three-second statement budget remains unchanged.
+Require stopped exit0 before restarting the same persistent container, with bounded 60 second grace rather than accepting SIGKILL as graceful.
+[Docker stop semantics](https://docs.docker.com/reference/cli/docker/container/stop/) define that distinction.
+Review identified fixed-endpoint and hostaddr hazards; reject them before driver connection to bind restart evidence to the actual fixture.
+[postgres configuration](https://docs.rs/postgres/0.19.14/postgres/config/struct.Config.html#method.hostaddr) explains the alternative network-address field.
+No dependency version changes or production retry-policy implementation were adopted; full Storage and ownership-fence gates remain pending.

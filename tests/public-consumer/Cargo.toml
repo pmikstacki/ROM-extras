@@ -16,8 +16,13 @@ mysql-conformance = ["dep:mysql", "dep:tokio"]
 kafka-conformance = ["dep:rdkafka", "dep:tokio"]
 rabbitmq-conformance = ["dep:lapin", "dep:tokio"]
 nats-conformance = ["dep:async-nats", "dep:tokio"]
+cockroach-conformance = ["dep:postgres", "dep:tokio"]
 postgres-conformance = ["dep:postgres", "dep:tokio"]
 mssql-conformance = ["dep:tiberius", "dep:tokio", "dep:tokio-util"]
+
+[[test]]
+name = "cockroach_executor"
+required-features = ["cockroach-conformance"]
 
 [[test]]
 name = "azure_blob"

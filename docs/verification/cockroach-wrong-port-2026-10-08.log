@@ -1,0 +1,20 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.77s
+     Running tests/cockroach_executor.rs (tests/public-consumer/target/debug/deps/cockroach_executor-33f1c1c3e84820da)
+
+running 1 test
+
+thread 'typed_worker_inside_tokio_uses_cockroach_serializable_session' (3355323) panicked at tests/cockroach_executor.rs:19:5:
+assertion `left == right` failed: fixed Cockroach fixture port required
+  left: [55458]
+ right: [55457]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test typed_worker_inside_tokio_uses_cockroach_serializable_session ... FAILED
+
+failures:
+
+failures:
+    typed_worker_inside_tokio_uses_cockroach_serializable_session
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test cockroach_executor`

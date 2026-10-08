@@ -3,6 +3,7 @@ set -euo pipefail
 cd -- "$(dirname -- "$0")/.."
 ./scripts/check
 ./scripts/check-postgres
+./scripts/check-cockroach
 ./scripts/check-mssql
 ./scripts/check-mysql
 ./scripts/check-nats
