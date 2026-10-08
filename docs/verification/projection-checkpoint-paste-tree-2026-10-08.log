@@ -1,0 +1,3 @@
+paste v1.0.15 (proc-macro)
+└── oracle v0.6.3
+    └── rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)

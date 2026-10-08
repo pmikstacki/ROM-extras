@@ -67,6 +67,7 @@ name = "oracle_executor"
 required-features = ["oracle-conformance"]
 
 [dependencies]
+rom-projection-core = { path = "../../crates/rom-projection-core" }
 rom-identity = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", optional = true }
 serde_json = { version = "=1.0.151", optional = true }
 rom-secrets = { path = "../../crates/rom-secrets" }

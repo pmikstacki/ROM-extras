@@ -151,3 +151,13 @@ The required `scripts/check-projection-probes` gate is included in `scripts/chec
 This completes fixture preparation and the Qdrant protocol experiments, not Task 2 or the whole family.
 The [checkpoint contract](../specs/2026-10-08-projection-checkpoints.md) specifies the concrete transaction and exact-observation seam before Task 2 callers.
 OpenSearch response-loss injection remains an adapter qualification requirement in Task 3.
+
+## Task 2 checkpoint-store increment
+
+`rom-projection-core` implements bounded validated metadata and actual redb page intent/completion transactions.
+Controlled native faults distinguish absent commits from already synchronized commits, retire the handle, and reconcile exact tokens after reopen.
+Actual child-process exit exercises dirty accepted-format recovery. Future dirty formats retain unchanged original bytes.
+Independent review required retained completion metadata to validate resulting cursors and affected keys; actual malformed-state regressions cover the correction.
+The [guide](../../projection-checkpoints.md) keeps the exact limited scope and missing runtime work explicit.
+The bounded worker, cancellable startup lifecycle, retained authorized-history reconstruction, provider integration, and full Task 2 acceptance remain pending.
+No Task 2 checkbox is complete merely because the checkpoint store exists.

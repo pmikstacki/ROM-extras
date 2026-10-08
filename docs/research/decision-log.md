@@ -494,3 +494,34 @@ Add the previous control-state digest to the token and bind it to the profile; r
 A fresh handle uses durable state plus that token, not lost in-memory attempt bookkeeping.
 If both token and uncommitted intent are lost, no absent-attempt classification is available.
 The architecture reference was read again. Its active private release work is not an extras dependency.
+
+## 2026-10-08: implemented checkpoint-store increment and archive consumers
+
+Sources: [redb tagged native commit and flush](https://github.com/cberner/redb/blob/v4.3.0/src/tree_store/page_store/page_manager.rs#L1783), [native StorageBackend contract](https://github.com/cberner/redb/blob/v4.3.0/src/db.rs), [Cargo archive normalization](https://doc.rust-lang.org/cargo/commands/cargo-package.html), [multiple dependency locations](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#multiple-locations), [consumer patches](https://doc.rust-lang.org/cargo/reference/overriding-dependencies.html#the-patch-section).
+
+Implement fixed-schema local metadata and page transactions in a separate crate behind existing public ROM ownership.
+Keep actual delivery and authorized source reconstruction out of the store; they remain required worker/adapter tasks.
+Native write faults and faults after real file synchronization exercise the same production commit path through a controlled test-only file backend.
+These distinguish absent versus applied transitions after reopen; they are not simulated HTTP or arbitrary hardware power-loss claims.
+An unwinding native commit panic also retires the handle and retains the reconciled durable intent in the executed case.
+
+Independent review found that token equality alone did not establish completed cursor/key state.
+Retain one bounded completed page, validate its resulting checkpoint and each affected key, and include it in control-state hashing and CAS.
+Actual redb regressions changed the completed cursor and deleted an acknowledged key; both failed before the correction and passed afterward.
+The targeted independent source recheck resolved the finding.
+
+Declare ROM dependency versions alongside immutable git revisions so Cargo can normalize the archive manifest.
+Use an archive consumer with explicit patches back to immutable public ROM, rather than private source copies or a registry-publication claim.
+Share archive extraction and consumer setup with the existing secrets gate; both families consume generated normalized Cargo archives.
+The new package consumer exercises actual local checkpoint close/reopen and token reconciliation independently of workspace feature unification.
+The first public-consumer attempt lacked the documented native OpenSSL environment. Preserve that failure; the configured native environment passed.
+The root and public-consumer lockfile changes add only the new local crate; registry versions and checksums remain unchanged.
+Dependency inspection and complete verification remain separate acceptance evidence, not conclusions from those lockfile diffs.
+
+Full local verification passed for the frozen 189-file runtime set, including both archive-consumer gates and real backend restart probes.
+The [execution record](../verification/projection-checkpoint-full-verifier-2026-10-08.json) identifies source hashes, command, results, and limits.
+All three audited graphs contain zero known vulnerabilities at inspection time.
+The independent public consumer reports informational [RUSTSEC-2024-0436](https://rustsec.org/advisories/RUSTSEC-2024-0436.html) for unmaintained paste 1.0.15 through oracle 0.6.3.
+Preserve the warning; do not change an existing transitive driver dependency solely to suppress it.
+The new archive-consumer graph has no advisory warnings. A maintained-fork substitution requires separate driver qualification.
+This completes the checkpoint-store increment, not Task 2 or the full ROM-extras goal.

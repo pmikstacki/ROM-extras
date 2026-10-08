@@ -1,0 +1,29 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.54s
+     Running unittests src/lib.rs (target/debug/deps/rom_projection_core-3e4d3f9ebf90fc40)
+
+running 2 tests
+test checkpoint::faults::error_before_native_write_reconciles_absent_after_handle_retirement ... FAILED
+test checkpoint::faults::error_after_actual_native_sync_reconciles_applied_after_handle_retirement ... FAILED
+
+failures:
+
+---- checkpoint::faults::error_before_native_write_reconciles_absent_after_handle_retirement stdout ----
+
+thread 'checkpoint::faults::error_before_native_write_reconciles_absent_after_handle_retirement' (3975026) panicked at crates/rom-projection-core/src/checkpoint_faults.rs:55:73:
+expected unknown native commit, received Err(Storage)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- checkpoint::faults::error_after_actual_native_sync_reconciles_applied_after_handle_retirement stdout ----
+
+thread 'checkpoint::faults::error_after_actual_native_sync_reconciles_applied_after_handle_retirement' (3975025) panicked at crates/rom-projection-core/src/checkpoint_faults.rs:55:73:
+expected unknown native commit, received Err(Storage)
+
+
+failures:
+    checkpoint::faults::error_after_actual_native_sync_reconciles_applied_after_handle_retirement
+    checkpoint::faults::error_before_native_write_reconciles_absent_after_handle_retirement
+
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+
+error: test failed, to rerun pass `-p rom-projection-core --lib`

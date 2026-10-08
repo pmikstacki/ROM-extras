@@ -1,0 +1,29 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.28s
+     Running tests/process_recovery.rs (target/debug/deps/process_recovery-d8b1734c29750768)
+
+running 2 tests
+test retained_receipt_cannot_hide_a_changed_completed_cursor ... FAILED
+test retained_receipt_cannot_hide_a_missing_acknowledged_key ... FAILED
+
+failures:
+
+---- retained_receipt_cannot_hide_a_changed_completed_cursor stdout ----
+
+thread 'retained_receipt_cannot_hide_a_changed_completed_cursor' (3979828) panicked at crates/rom-projection-core/tests/process_recovery.rs:188:5:
+assertion failed: matches!(CheckpointStore::open(&directory.file(),&profile()),Err(Error::Corrupt))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- retained_receipt_cannot_hide_a_missing_acknowledged_key stdout ----
+
+thread 'retained_receipt_cannot_hide_a_missing_acknowledged_key' (3979829) panicked at crates/rom-projection-core/tests/process_recovery.rs:205:5:
+assertion failed: matches!(CheckpointStore::open(&directory.file(),&profile()),Err(Error::Corrupt))
+
+
+failures:
+    retained_receipt_cannot_hide_a_changed_completed_cursor
+    retained_receipt_cannot_hide_a_missing_acknowledged_key
+
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.10s
+
+error: test failed, to rerun pass `-p rom-projection-core --test process_recovery`

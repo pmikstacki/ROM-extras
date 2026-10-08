@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+rustfmt --edition 2024 --check tests/packaged-projections/main.rs tests/packaged-projections/checkpoint_case.rs
+node --check scripts/lib/package-consumer.mjs
+node --check scripts/prepare-projection-package.mjs
+cargo package --allow-dirty --locked --no-verify -p rom-projection-core \
+    --config 'patch.crates-io.rom.git="https://github.com/pmikstacki/ROM"' \
+    --config 'patch.crates-io.rom.rev="d7ef529040eec60dc869034c2d33130219db85fe"' \
+    --config 'patch.crates-io.rom-backup.git="https://github.com/pmikstacki/ROM"' \
+    --config 'patch.crates-io.rom-backup.rev="d7ef529040eec60dc869034c2d33130219db85fe"'
+package_consumer=$(node scripts/prepare-projection-package.mjs)
+cargo run --manifest-path "$package_consumer/Cargo.toml" --offline \
+    --target-dir target/projection-packaged-consumer
+cargo clippy --manifest-path "$package_consumer/Cargo.toml" --locked --offline \
+    --target-dir target/projection-packaged-consumer --all-targets -- -D warnings

@@ -2941,6 +2941,7 @@ dependencies = [
  "rom-nats",
  "rom-oidc-presets",
  "rom-openbao",
+ "rom-projection-core",
  "rom-rabbitmq",
  "rom-redb",
  "rom-secrets",
@@ -3012,6 +3013,16 @@ dependencies = [
  "tokio",
  "url",
  "zeroize",
+]
+
+[[package]]
+name = "rom-projection-core"
+version = "0.1.0-dev"
+dependencies = [
+ "redb",
+ "rom",
+ "rom-backup",
+ "sha2 0.10.9",
 ]
 
 [[package]]

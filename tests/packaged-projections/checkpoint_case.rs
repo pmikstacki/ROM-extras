@@ -1,0 +1,94 @@
+use rom::{JournalCursor, Key};
+use rom_projection_core::{
+    Checkpoint, CheckpointStore, CommitStatus, OperationMetadata, PageIntent, ProjectionProfile,
+    RemoteObservation, TransactionId,
+};
+use std::os::unix::fs::DirBuilderExt;
+
+struct Directory(std::path::PathBuf);
+impl Drop for Directory {
+    fn drop(&mut self) {
+        std::fs::remove_dir_all(&self.0).unwrap();
+    }
+}
+
+pub fn run() {
+    let directory = Directory(std::env::temp_dir().join(format!(
+        "rom-extras-consumer-checkpoint-{}",
+        std::process::id()
+    )));
+    std::fs::DirBuilder::new()
+        .mode(0o700)
+        .create(&directory.0)
+        .unwrap();
+    let path = directory.0.join("projection.redb");
+    let profile =
+        ProjectionProfile::new("consumer-deployment", "qdrant", "mapping-v1", None).unwrap();
+    let cursor = JournalCursor {
+        generation: "consumer-journal".into(),
+        kind: "document".into(),
+        position: 0,
+    };
+    let initial = Checkpoint::new("consumer-target", vec![cursor.clone()]).unwrap();
+    let mut store = CheckpointStore::create(&path, &profile, &initial).unwrap();
+    let operation = OperationMetadata::new(
+        Key {
+            kind: "document".into(),
+            id: "consumer-a".into(),
+        },
+        3,
+        7,
+        false,
+        [9; 32],
+    )
+    .unwrap();
+    let page = PageIntent::new(
+        &initial,
+        JournalCursor {
+            position: 3,
+            ..cursor
+        },
+        vec![operation.clone()],
+    )
+    .unwrap();
+    let prepared = store.prepare_page(&page).unwrap();
+    drop(store);
+    let mut store = CheckpointStore::open(&path, &profile).unwrap();
+    let prepared = TransactionId::decode(&prepared.encode()).unwrap();
+    assert_eq!(store.reconcile(&prepared).unwrap(), CommitStatus::Applied);
+    assert_eq!(
+        store
+            .load()
+            .unwrap()
+            .checkpoint()
+            .cursor("document")
+            .unwrap()
+            .position,
+        0
+    );
+    let observed = RemoteObservation::new(&profile, "consumer-target", operation.clone()).unwrap();
+    let reconciled = page.reconcile(&profile, vec![observed]).unwrap();
+    let completed = store.complete_page(&page, &reconciled).unwrap();
+    drop(store);
+    let store = CheckpointStore::open(&path, &profile).unwrap();
+    assert_eq!(store.reconcile(&completed).unwrap(), CommitStatus::Applied);
+    assert_eq!(
+        store
+            .load()
+            .unwrap()
+            .checkpoint()
+            .cursor("document")
+            .unwrap()
+            .position,
+        3
+    );
+    assert_eq!(
+        store
+            .key_state(operation.key())
+            .unwrap()
+            .unwrap()
+            .revision(),
+        7
+    );
+    drop(store);
+}

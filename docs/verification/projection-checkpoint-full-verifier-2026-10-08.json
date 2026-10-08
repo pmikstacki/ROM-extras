@@ -1,0 +1,30 @@
+{
+  "created_utc": "2026-10-08T23:25:02.948Z",
+  "baseline_commit": "64d824734e4a714b7dd5b332fa8a5bc940638e95",
+  "executed_source": "Dirty runtime additions relative to baseline; exact 189-file hashes in projection-checkpoint-runtime-freeze-2026-10-08.json",
+  "command": "./scripts/check-all",
+  "exit_code": 0,
+  "environment": "Rust 1.99.0; configured native toolchain and existing private service fixtures; ROM_EXTRAS_PYTHON points to Python 3.12.8",
+  "focused_tests": {
+    "passed": 26,
+    "compile_fail_doctests": 1,
+    "ignored_child_entry": "Invoked by process tests"
+  },
+  "archive": {
+    "sha256": "43ff6fc86e34cd7d5b19412297b15b5580ceb90867730ebd5970a036839be1ee",
+    "consumer_packages": 36,
+    "source": "Extracted normalized rom-projection-core Cargo archive"
+  },
+  "audits": {
+    "root": "zero known vulnerabilities; no warnings",
+    "public_consumer": "zero known vulnerabilities; informational RUSTSEC-2024-0436: paste 1.0.15 via oracle 0.6.3",
+    "archive_consumer": "zero known vulnerabilities; no warnings"
+  },
+  "review": "Independent source review: no actionable findings after completed-page consistency regressions were fixed. Reviewer did not execute tests.",
+  "limits": [
+    "Checkpoint core only; bounded worker, history reconstruction and Rust search/vector transports remain unfinished.",
+    "Native I/O error and post-sync unwind injection are not hardware power-loss qualification.",
+    "Public-consumer unmaintained dependency warning remains visible.",
+    "No private fixture credentials or core implementation are part of this evidence."
+  ]
+}

@@ -1,6 +1,6 @@
 # Authorized OpenSearch and vector projections
 
-Date: 2026-10-08. Status: implementation contract for approved Task 8; runtime implementation remains absent.
+Date: 2026-10-08. Status: approved Task 8; local checkpoint-store increment exists, while worker/provider runtime remains incomplete.
 
 ## Goal and evidence
 

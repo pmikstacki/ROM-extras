@@ -2348,6 +2348,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "rom-projection-core"
+version = "0.1.0-dev"
+dependencies = [
+ "redb",
+ "rom",
+ "rom-backup",
+ "sha2",
+]
+
+[[package]]
 name = "rom-rabbitmq"
 version = "0.1.0-dev"
 dependencies = [

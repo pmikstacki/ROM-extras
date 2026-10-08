@@ -2,6 +2,7 @@
 set -euo pipefail
 cd -- "$(dirname -- "$0")/.."
 ./scripts/check
+./scripts/check-projection-package
 ./scripts/check-postgres
 ./scripts/check-cockroach
 ./scripts/check-oracle

@@ -1,6 +1,6 @@
 # Projection checkpoint transaction contract
 
-Status: approved scope refinement; implementation and acceptance remain pending.
+Status: checkpoint-store increment implemented; worker and full family acceptance remain pending.
 Inspection date: 2026-10-08. This contract supplements [authorized projections](2026-10-08-projections.md).
 
 ## Research basis
@@ -236,14 +236,19 @@ Per-key records encode revision, tombstone, and digest; their table key encodes 
 Future changes increment the application format version. No unknown field is silently ignored.
 
 Use `TableDefinition<&[u8], &[u8]>` for exactly three tables: `romx_projection_meta`, `romx_projection_state`, and `romx_projection_keys`.
-Metadata has exactly the byte key `profile`. State has required `checkpoint` and optional `pending` keys.
+Metadata has exactly the byte key `profile`. State has required `checkpoint` and optional `pending` and `completed_page` keys.
+`completed_page` retains one canonical page record with tag 3, not an unbounded receipt history.
+Preflight reconstructs the completed checkpoint and compares every affected key against that record before accepting retained tokens.
 Reject any other application table, multimap, metadata key, or state key during preflight.
 Each current-generation key is distinct and validates against the admitted kinds.
 Generation switching must preserve previous-generation key state separately or publish a new store; it cannot reinterpret old keys under a new target.
 The final Task 6 storage extension needs explicit format qualification before switch methods become supported.
 
-Derive intent fingerprints using SHA-256 with domain `ROM-extras/projection-intent/v1` followed by the complete canonical encoded intent.
+Derive intent fingerprints with SHA-256, domain `ROM-extras/projection-intent/v1`, then length-delimited profile and canonical intent records.
 Use domain `ROM-extras/projection-control-state/v1` for previous-state digests, including the profile fingerprint.
+Hash each field as u64 big-endian byte length followed by its bytes.
+Control-state fields are profile, checkpoint/token record, optional pending page bytes, and optional last completed page bytes, in that order.
+Absent optional page records use zero-length fields, distinct from every valid encoded record.
 Use a separate domain for backend IDs and canonical document digests. A hash does not grant authority or prove backend persistence.
 [FIPS 180-4](https://csrc.nist.gov/pubs/fips/180-4/upd1/final) defines SHA-256; the existing lockfile resolves `sha2 0.10.9`.
 Full exact key comparison remains required for a backend-ID collision and checkpoint-key validation.
@@ -255,4 +260,5 @@ Both additions must validate before preparation; do not prepare an intent that c
 Identical repeated preparation returns the same `s + 1` token without another write.
 Identical repeated completion returns the retained `s + 2` token without another write.
 The completed record retains both transition tokens and their page fingerprint so acknowledgement loss can reconcile either phase.
+Its bounded retained page proves resulting cursors and key states; token equality alone is insufficient.
 These tokens are not a second unbounded receipt table.

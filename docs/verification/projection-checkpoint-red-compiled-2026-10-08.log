@@ -1,0 +1,101 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.33s
+     Running unittests src/lib.rs (target/debug/deps/rom_projection_core-3e4d3f9ebf90fc40)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/boundaries.rs (target/debug/deps/boundaries-e51388cb537fed4b)
+
+running 3 tests
+test invalid_identity_and_zero_revision_are_rejected_before_store_access ... FAILED
+test page_rejects_equal_revision_content_conflict_before_collapsing_keys ... FAILED
+test page_rejects_generation_gap_backward_progress_and_excess_work ... FAILED
+
+failures:
+
+---- invalid_identity_and_zero_revision_are_rejected_before_store_access stdout ----
+
+thread 'invalid_identity_and_zero_revision_are_rejected_before_store_access' (3962081) panicked at crates/rom-projection-core/tests/boundaries.rs:9:5:
+assertion failed: matches!(ProjectionProfile::new("", "qdrant", "v1", None),
+    Err(Error::Invalid))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- page_rejects_equal_revision_content_conflict_before_collapsing_keys stdout ----
+
+thread 'page_rejects_equal_revision_content_conflict_before_collapsing_keys' (3962082) panicked at crates/rom-projection-core/tests/boundaries.rs:30:5:
+assertion failed: matches!(PageIntent::new(&initial(), cursor(2), vec![a, b]),
+    Err(Error::Conflict))
+
+---- page_rejects_generation_gap_backward_progress_and_excess_work stdout ----
+
+thread 'page_rejects_generation_gap_backward_progress_and_excess_work' (3962083) panicked at crates/rom-projection-core/tests/boundaries.rs:18:5:
+assertion failed: matches!(PageIntent::new(&initial(), changed, vec![]), Err(Error::HistoryGap))
+
+
+failures:
+    invalid_identity_and_zero_revision_are_rejected_before_store_access
+    page_rejects_equal_revision_content_conflict_before_collapsing_keys
+    page_rejects_generation_gap_backward_progress_and_excess_work
+
+test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p rom-projection-core --test boundaries`
+     Running tests/checkpoint_recovery.rs (target/debug/deps/checkpoint_recovery-398f8dbb5644aeb5)
+
+running 5 tests
+test accepted_intent_survives_reopen_without_acknowledging_its_cursor ... FAILED
+test partial_or_conflicting_remote_observations_cannot_advance_cursor ... FAILED
+test complete_page_publishes_all_keys_and_cursor_together ... FAILED
+test filtered_page_advances_without_inventing_key_state ... FAILED
+test fresh_store_is_private_and_durable_after_full_close ... FAILED
+
+failures:
+
+---- accepted_intent_survives_reopen_without_acknowledging_its_cursor stdout ----
+
+thread 'accepted_intent_survives_reopen_without_acknowledging_its_cursor' (3962085) panicked at crates/rom-projection-core/tests/checkpoint_recovery.rs:28:88:
+called `Result::unwrap()` on an `Err` value: Unsupported
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- partial_or_conflicting_remote_observations_cannot_advance_cursor stdout ----
+
+thread 'partial_or_conflicting_remote_observations_cannot_advance_cursor' (3962089) panicked at crates/rom-projection-core/tests/checkpoint_recovery.rs:77:88:
+called `Result::unwrap()` on an `Err` value: Unsupported
+
+---- complete_page_publishes_all_keys_and_cursor_together stdout ----
+
+thread 'complete_page_publishes_all_keys_and_cursor_together' (3962086) panicked at crates/rom-projection-core/tests/checkpoint_recovery.rs:43:88:
+called `Result::unwrap()` on an `Err` value: Unsupported
+
+---- filtered_page_advances_without_inventing_key_state stdout ----
+
+thread 'filtered_page_advances_without_inventing_key_state' (3962087) panicked at crates/rom-projection-core/tests/checkpoint_recovery.rs:64:88:
+called `Result::unwrap()` on an `Err` value: Unsupported
+
+---- fresh_store_is_private_and_durable_after_full_close stdout ----
+
+thread 'fresh_store_is_private_and_durable_after_full_close' (3962088) panicked at crates/rom-projection-core/tests/checkpoint_recovery.rs:16:84:
+called `Result::unwrap()` on an `Err` value: Unsupported
+
+
+failures:
+    accepted_intent_survives_reopen_without_acknowledging_its_cursor
+    complete_page_publishes_all_keys_and_cursor_together
+    filtered_page_advances_without_inventing_key_state
+    fresh_store_is_private_and_durable_after_full_close
+    partial_or_conflicting_remote_observations_cannot_advance_cursor
+
+test result: FAILED. 0 passed; 5 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p rom-projection-core --test checkpoint_recovery`
+   Doc-tests rom_projection_core
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: 2 targets failed:
+    `-p rom-projection-core --test boundaries`
+    `-p rom-projection-core --test checkpoint_recovery`
