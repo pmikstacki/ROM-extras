@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+
+if ! command -v cargo >/dev/null || ! command -v rustc >/dev/null; then
+    echo 'Rust 1.99 or newer and a native linker are required.' >&2
+    exit 2
+fi
+
+rustc -Vv
+cargo fmt --all -- --check
+cargo fmt --manifest-path tests/public-consumer/Cargo.toml -- --check
+cargo clippy --workspace --all-targets --locked -- -D warnings
+cargo test --workspace --locked
+cargo test --workspace --doc --locked
+RUSTDOCFLAGS='-D warnings' cargo doc --workspace --no-deps --locked
+cargo check --workspace --no-default-features --locked
+cargo run --manifest-path tests/public-consumer/Cargo.toml --locked
+cargo clippy --manifest-path tests/public-consumer/Cargo.toml --all-targets --locked -- -D warnings
+if [[ "$(rustc -V | awk '{print $2}')" == 1.99.* ]]; then
+    cargo check --workspace --locked
+else
+    if ! command -v rustup >/dev/null; then
+        echo 'Run the MSRV check with Rust 1.99; rustup is unavailable.' >&2
+        exit 2
+    fi
+    cargo +1.99.0 check --workspace --locked
+fi
+git diff --check

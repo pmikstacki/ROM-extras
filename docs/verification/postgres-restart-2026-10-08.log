@@ -1,0 +1,7 @@
+CREATE TABLE
+INSERT 0 1
+/var/run/postgresql:5432 - accepting connections
+rom-extras-postgres-20261008
+running 2026-10-08 14:59:44.247703851 +0000 UTC
+/var/run/postgresql:5432 - rejecting connections
+73

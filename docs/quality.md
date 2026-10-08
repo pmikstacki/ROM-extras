@@ -25,7 +25,7 @@ After a structural change, run the affected tests, downstream compile fixtures a
 - Dependency adoption checks advisories, licenses, supported Rust versions and required features. Test the core without transport integrations.
 - Releases require compatibility review, migration notes and a packaged-consumer smoke test.
 
-The [Beskid compiler review](research/beskid-compiler-lessons.md) adds these concrete acceptance criteria:
+The [Beskid compiler review](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/docs/research/beskid-compiler-lessons.md) adds these concrete acceptance criteria:
 
 - Derived and manual declarations pass the same registration gate. Record its invariants. Freeze accepted definitions. Current values and permissions still need runtime checks.
 - Descriptor/codec conformance covers public names, missing/null/default behavior and custom fields. Compare actual encoded/decoded values, not only descriptor equality.
@@ -33,4 +33,4 @@ The [Beskid compiler review](research/beskid-compiler-lessons.md) adds these con
 - Negative fixtures fail for their intended reason and retain source/path context. Test downstream consumers independently of workspace feature unification.
 - Verification records identify the executed source, relevant dirty changes, lockfile, compiler, command and result. Source inspection, reported tests and locally reproduced tests are separate evidence categories.
 
-The [Beskid baseline audit](research/beskid-quality-baseline.md) explains the evidence behind these criteria. This is a stronger target in specific areas, not a claim that an unimplemented library already has higher code quality.
+The [Beskid baseline audit](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/docs/research/beskid-quality-baseline.md) explains the evidence behind these criteria. This is a stronger target in specific areas, not a claim that an unimplemented library already has higher code quality.

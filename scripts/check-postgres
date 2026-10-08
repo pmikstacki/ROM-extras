@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_POSTGRES_DSN:?Set a loopback PostgreSQL fixture DSN; this gate never skips missing backends.}"
+cargo test --manifest-path tests/public-consumer/Cargo.toml --locked \
+    --features postgres-conformance --test postgres_executor
+cargo clippy --manifest-path tests/public-consumer/Cargo.toml --locked \
+    --features postgres-conformance --all-targets -- -D warnings

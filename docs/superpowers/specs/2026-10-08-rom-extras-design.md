@@ -3,6 +3,14 @@
 Status: proposed design. No provider implementation or database verification is claimed.
 Date: 2026-10-08.
 
+## Approved execution and user decision policy
+
+The user approved this design, the implementation plan, and execution in the current chat on 2026-10-08.
+Every project and technology decision must use web research.
+Prefer official documentation, specifications, source repositories, and first-party APIs.
+Record inspection dates, source links, the selected approach, alternatives, and remaining uncertainty.
+Verify implemented behavior with appropriate tests; research alone does not prove conformance.
+
 ## Intent and baseline
 
 Create a separate ROM-extras repository with PostgreSQL, Microsoft SQL Server, and additional relational providers.

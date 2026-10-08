@@ -1,0 +1,187 @@
+    Updating crates.io index
+     Locking 71 packages to highest Rust 1.99 compatible versions
+      Adding async-trait v0.1.92
+      Adding base64 v0.22.1
+      Adding bitflags v2.13.2
+      Adding block-buffer v0.12.1
+      Adding bumpalo v3.20.3
+      Adding byteorder v1.5.0
+      Adding bytes v1.12.1
+      Adding chacha20 v0.10.2
+      Adding cmov v0.5.4
+      Adding const-oid v0.10.2
+      Adding cpufeatures v0.3.1
+      Adding crypto-common v0.2.2
+      Adding ctutils v0.4.3
+      Adding digest v0.11.3
+      Adding fallible-iterator v0.2.0
+      Adding futures-channel v0.3.34
+      Adding futures-core v0.3.34
+      Adding futures-sink v0.3.34
+      Adding futures-task v0.3.34
+      Adding futures-util v0.3.34
+      Adding getrandom v0.4.3
+      Adding hmac v0.13.0
+      Adding hybrid-array v0.4.15
+      Adding js-sys v0.3.106
+      Adding libredox v0.1.25
+      Adding lock_api v0.4.14
+      Adding log v0.4.34
+      Adding md-5 v0.11.0
+      Adding mio v1.2.4
+      Adding objc2-core-foundation v0.3.2
+      Adding objc2-system-configuration v0.3.2
+      Adding once_cell v1.21.4
+      Adding parking_lot v0.12.5
+      Adding parking_lot_core v0.9.12
+      Adding percent-encoding v2.3.2
+      Adding phf v0.13.1
+      Adding phf_shared v0.13.1
+      Adding postgres v0.19.14
+      Adding postgres-protocol v0.6.12
+      Adding postgres-types v0.2.14
+      Adding r-efi v6.0.0
+      Adding rand v0.10.3
+      Adding rand_core v0.10.1
+      Adding redox_syscall v0.5.18
+      Adding rustversion v1.0.23
+      Adding scopeguard v1.2.0
+      Adding sha2 v0.11.0
+      Adding siphasher v1.0.4
+      Adding slab v0.4.12
+      Adding smallvec v1.16.2
+      Adding socket2 v0.6.5
+      Adding stringprep v0.1.5
+      Adding tinyvec v1.13.3
+      Adding tokio-postgres v0.7.18
+      Adding tokio-util v0.7.19
+      Adding unicode-bidi v0.3.18
+      Adding unicode-normalization v0.1.25
+      Adding unicode-properties v0.1.4
+      Adding wasi v0.11.1+wasi-snapshot-preview1
+      Adding wasi v0.14.7+wasi-0.2.4
+      Adding wasip2 v1.0.4+wasi-0.2.12
+      Adding wasite v1.0.2
+      Adding wasm-bindgen v0.2.129
+      Adding wasm-bindgen-macro v0.2.129
+      Adding wasm-bindgen-macro-support v0.2.129
+      Adding wasm-bindgen-shared v0.2.129
+      Adding web-sys v0.3.106
+      Adding whoami v2.1.3
+      Adding windows-link v0.2.1
+      Adding windows-sys v0.61.2
+      Adding wit-bindgen v0.57.1
+ Downloading crates ...
+  Downloaded phf_shared v0.13.1
+  Downloaded cmov v0.5.4
+  Downloaded whoami v2.1.3
+  Downloaded stringprep v0.1.5
+  Downloaded postgres-protocol v0.6.12
+  Downloaded phf v0.13.1
+  Downloaded hmac v0.13.0
+  Downloaded ctutils v0.4.3
+  Downloaded fallible-iterator v0.2.0
+  Downloaded postgres v0.19.14
+  Downloaded postgres-types v0.2.14
+  Downloaded sha2 v0.11.0
+  Downloaded const-oid v0.10.2
+  Downloaded tokio-postgres v0.7.18
+   Compiling typenum v1.20.1
+   Compiling libc v0.2.190
+   Compiling hybrid-array v0.4.15
+   Compiling syn v3.0.6
+   Compiling cmov v0.5.4
+   Compiling ctutils v0.4.3
+   Compiling block-buffer v0.12.1
+   Compiling crypto-common v0.2.2
+   Compiling const-oid v0.10.2
+   Compiling digest v0.11.3
+   Compiling rand_core v0.10.1
+   Compiling cpufeatures v0.3.1
+   Compiling bytes v1.12.1
+   Compiling getrandom v0.4.3
+   Compiling tinyvec v1.13.3
+   Compiling memchr v2.8.3
+   Compiling tokio-macros v2.7.2
+   Compiling unicode-normalization v0.1.25
+   Compiling generic-array v0.14.7
+   Compiling chacha20 v0.10.2
+   Compiling socket2 v0.6.5
+   Compiling mio v1.2.4
+   Compiling parking_lot_core v0.9.12
+   Compiling futures-sink v0.3.34
+   Compiling unicode-bidi v0.3.18
+   Compiling futures-core v0.3.34
+   Compiling unicode-properties v0.1.4
+   Compiling tokio v1.53.1
+   Compiling stringprep v0.1.5
+   Compiling rand v0.10.3
+   Compiling sha2 v0.11.0
+   Compiling hmac v0.13.0
+   Compiling md-5 v0.11.0
+   Compiling scopeguard v1.2.0
+   Compiling smallvec v1.16.2
+   Compiling byteorder v1.5.0
+   Compiling siphasher v1.0.4
+   Compiling base64 v0.22.1
+   Compiling fallible-iterator v0.2.0
+   Compiling postgres-protocol v0.6.12
+   Compiling phf_shared v0.13.1
+   Compiling lock_api v0.4.14
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling futures-task v0.3.34
+   Compiling futures-util v0.3.34
+   Compiling digest v0.10.7
+   Compiling parking_lot v0.12.5
+   Compiling phf v0.13.1
+   Compiling postgres-types v0.2.14
+   Compiling tokio-util v0.7.19
+   Compiling futures-channel v0.3.34
+   Compiling async-trait v0.1.92
+   Compiling serde_derive v1.0.229
+   Compiling whoami v2.1.3
+   Compiling percent-encoding v2.3.2
+   Compiling log v0.4.34
+   Compiling serde_json v1.0.151
+   Compiling tokio-postgres v0.7.18
+   Compiling serde v1.0.229
+   Compiling sha2 v0.10.9
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling postgres v0.19.14
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 14.95s
+     Running tests/postgres_executor.rs (tests/public-consumer/target/debug/deps/postgres_executor-b6cf0b27b0095ed9)
+
+running 3 tests
+test a_driver_job_panic_retires_its_connection_and_rolls_back_uncommitted_sql ... FAILED
+test waiting_deadline_does_not_cancel_the_real_database_commit ... FAILED
+test postgres_client_runs_on_its_worker_inside_a_tokio_caller ... FAILED
+
+failures:
+
+---- a_driver_job_panic_retires_its_connection_and_rolls_back_uncommitted_sql stdout ----
+
+thread 'a_driver_job_panic_retires_its_connection_and_rolls_back_uncommitted_sql' (1732463) panicked at tests/postgres_executor.rs:13:10:
+ROM_EXTRAS_POSTGRES_DSN is required; missing backend is not a passing test: NotPresent
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- waiting_deadline_does_not_cancel_the_real_database_commit stdout ----
+
+thread 'waiting_deadline_does_not_cancel_the_real_database_commit' (1732465) panicked at tests/postgres_executor.rs:13:10:
+ROM_EXTRAS_POSTGRES_DSN is required; missing backend is not a passing test: NotPresent
+
+---- postgres_client_runs_on_its_worker_inside_a_tokio_caller stdout ----
+
+thread 'postgres_client_runs_on_its_worker_inside_a_tokio_caller' (1732464) panicked at tests/postgres_executor.rs:13:10:
+ROM_EXTRAS_POSTGRES_DSN is required; missing backend is not a passing test: NotPresent
+
+
+failures:
+    a_driver_job_panic_retires_its_connection_and_rolls_back_uncommitted_sql
+    postgres_client_runs_on_its_worker_inside_a_tokio_caller
+    waiting_deadline_does_not_cancel_the_real_database_commit
+
+test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test postgres_executor`

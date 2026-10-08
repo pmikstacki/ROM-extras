@@ -1,0 +1,21 @@
+   Compiling rom-sql-core v0.1.0-dev (/root/ROM-extras/crates/rom-sql-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.52s
+     Running tests/executor.rs (target/debug/deps/executor-d25b2c9f4e290f13)
+
+running 13 tests
+test close_stops_admission_but_drains_accepted_operations ... ok
+test dropping_last_handle_allows_admitted_work_to_finish ... ok
+test invalid_capacity_rejects_before_connection_initialization ... ok
+test connection_is_created_and_used_on_its_worker_even_when_not_send ... ok
+test discarding_a_ticket_does_not_discard_an_admitted_operation ... ok
+test full_queue_rejects_before_running_the_operation ... ok
+test recursive_use_rejects_instead_of_deadlocking_the_connection ... ok
+test panicking_operation_has_unknown_outcome_and_retires_connection ... ok
+test terminal_responses_are_consumed_once_even_after_failure ... ok
+test shutdown_joins_connection_destruction_and_reports_destructor_panics ... ok
+test initialization_errors_and_panics_are_reported_before_admission ... ok
+test waiting_deadline_preserves_ticket_and_does_not_cancel_admitted_work ... ok
+test cloned_handles_serialize_connection_operations ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

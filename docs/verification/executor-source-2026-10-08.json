@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-08T15:07:36.355Z",
+  "head": "dbe9d727cf2e8156606c55f624dacb173ac13109",
+  "scope": "Post-command source snapshot of reviewed uncommitted executor; not full Storage or release admission.",
+  "command": "./scripts/check-all",
+  "exit": 0,
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)",
+  "rom_revision": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "source": [
+    {
+      "path": "Cargo.lock",
+      "sha256": "c63c4e711fcaac308f9758c63220a672b0a806b86b792f853a2fe06d880397f0"
+    },
+    {
+      "path": "Cargo.toml",
+      "sha256": "666b7078724d88426f8ea1cc57277c159fb0a577ae34681a4d24d0a6911c7de3"
+    },
+    {
+      "path": "crates/rom-sql-core/Cargo.toml",
+      "sha256": "dd742e29d9dbcc77fcfbbf82460c37a4166f962ce9b62ad27624b2afc8e3982b"
+    },
+    {
+      "path": "crates/rom-sql-core/src/error.rs",
+      "sha256": "794c3b33983f4a74fdd7edfefeb1db6e6c50376c3c39a1e92034fbfbac343d07"
+    },
+    {
+      "path": "crates/rom-sql-core/src/executor.rs",
+      "sha256": "b969dba2859253e83aedbb6fd36d662d20985fcb8083c350dcd8f3d0dae8aa5e"
+    },
+    {
+      "path": "crates/rom-sql-core/src/lib.rs",
+      "sha256": "76f17c6bf390730e0138b714c532ce5213382b4888b115f6aa9e933c4b67d7c8"
+    },
+    {
+      "path": "crates/rom-sql-core/src/ticket.rs",
+      "sha256": "2cfb1af015d064284a0778454bd91f05a653450cd907137c645dceb4fe3d5e99"
+    },
+    {
+      "path": "crates/rom-sql-core/tests/executor.rs",
+      "sha256": "e2ef0b65dd24a80edcca7927edccd1ff8423c24911bfe92fe94b05b9348dda88"
+    },
+    {
+      "path": "scripts/check",
+      "sha256": "63460fac2794e376332efc103daa57a794aa3df8ddd5c3997908a304e7b08752"
+    },
+    {
+      "path": "scripts/check-all",
+      "sha256": "3450ea700172cf7a165708ee37824ff451e8044fecc62881287d5b176de6261f"
+    },
+    {
+      "path": "scripts/check-postgres",
+      "sha256": "11a623ce0de200ecbf92a0b821176df2503e3b58221b8471b999b8e7d056c7cc"
+    },
+    {
+      "path": "tests/public-consumer/Cargo.lock",
+      "sha256": "ef6990f69fc310a5dc378aa88bdcf608f206b3f9ad456fef847be629c77f3ac1"
+    },
+    {
+      "path": "tests/public-consumer/Cargo.toml",
+      "sha256": "c2b0492fd3f913acf2d2a3ff712e5c9babf4c781f864940404348b6fd4f3c96c"
+    },
+    {
+      "path": "tests/public-consumer/src/main.rs",
+      "sha256": "764b581a4c015a244da7c481fb68d6dc5db484c56391a014a2f5cf0833ebc36b"
+    },
+    {
+      "path": "tests/public-consumer/tests/postgres_executor.rs",
+      "sha256": "ea65495dbdcd3aa39af990897972df6fedb9793eef3907461b597d4db6a693ec"
+    }
+  ],
+  "logs": [
+    {
+      "path": "docs/verification/check-all-reviewed-2026-10-08.log",
+      "sha256": "b52ad759612093a2110f29927eb49caf6f2895235181b5f478f6e4d4f595708d"
+    },
+    {
+      "path": "docs/verification/consumer-audit-current-2026-10-08.json",
+      "sha256": "609cfa2d4481557391e5873ee0fe4826f55ab7bf5644f3eb9493e5edd3116c99"
+    }
+  ]
+}

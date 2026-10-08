@@ -1,0 +1,6 @@
+error: error loading advisory database: parse error: error parsing /root/.cargo/advisory-db/crates/anchor-lang/RUSTSEC-2026-0146.md: parse error: TOML parse error at line 7, column 8
+  |
+7 | cvss = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N"
+  |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+unsupported CVSS version: 4.0
+
