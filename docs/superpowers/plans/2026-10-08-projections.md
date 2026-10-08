@@ -161,3 +161,9 @@ Independent review required retained completion metadata to validate resulting c
 The [guide](../../projection-checkpoints.md) keeps the exact limited scope and missing runtime work explicit.
 The bounded worker, cancellable startup lifecycle, retained authorized-history reconstruction, provider integration, and full Task 2 acceptance remain pending.
 No Task 2 checkbox is complete merely because the checkpoint store exists.
+
+## Task 2 startup cancellation increment
+
+The store now accepts a shared monotonic cancellation token for open/reopen.
+Checks occur at admission, 256-record scan boundaries, and 64-KiB copy boundaries. Native repair has cooperative abort callbacks.
+This supplies startup lifecycle support; it does not complete worker admission, shutdown/join, or retained authorized-history reconstruction.

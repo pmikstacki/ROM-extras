@@ -194,7 +194,7 @@ Absent requires the exact previous control-state digest, unchanged sequence, and
 An unrelated, older, or contradictory token returns `Conflict` or `Corrupt`; it never grants blind retry permission.
 The method has no historical receipt lookup guarantee beyond the retained transition.
 
-Other error categories are `Invalid`, `TooLarge`, `Conflict`, `HistoryGap`, `RebuildRequired`, `Busy`, `Unsupported`, `Corrupt`, and `Storage`.
+Other error categories are `Cancelled`, `Invalid`, `TooLarge`, `Conflict`, `HistoryGap`, `RebuildRequired`, `Busy`, `Unsupported`, `Corrupt`, and `Storage`.
 `Unsupported` covers rejected format/profile/platform; `Busy` covers ownership contention.
 The implementation must keep a known rolled-back poisoned transaction separate from `Unknown`, and retire its engine for inspection.
 Provider observation errors cannot construct a `ReconciledPage` or advance a cursor.
@@ -262,3 +262,15 @@ Identical repeated completion returns the retained `s + 2` token without another
 The completed record retains both transition tokens and their page fingerprint so acknowledgement loss can reconcile either phase.
 Its bounded retained page proves resulting cursors and key states; token equality alone is insufficient.
 These tokens are not a second unbounded receipt table.
+
+## Implemented cooperative startup seam
+
+`Cancellation` is a shared monotonic request with `new`, `cancel`, and `is_cancelled` methods.
+`CheckpointStore::open_cancellable(path, profile, cancel)` and `reopen_cancellable(cancel)` supplement the stable startup paths.
+A pre-existing request rejects admission before opening or retiring an engine.
+After reopen admission starts, cancellation leaves the engine retired and keeps the same ownership reservation.
+Application scans check every 256 records. Private-copy readers check between 64-KiB chunks.
+Native repair callbacks request abort, without a fixed latency bound for native I/O or repair internals.
+Cancellation never interrupts a checkpoint commit or establishes an absent transaction.
+A failed open releases ownership after native handles close. Permitted original-file recovery can change bytes before a later cancellation.
+The dedicated thread, bounded worker command admission, shutdown/join, and authorized-history reconstruction remain pending.

@@ -1,0 +1,35 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+error[E0432]: unresolved import `rom_projection_core`
+ --> crates/rom-projection-core/src/../tests/support/mod.rs:4:5
+  |
+4 | use rom_projection_core::{Checkpoint, ProjectionProfile};
+  |     ^^^^^^^^^^^^^^^^^^^ use of unresolved module or unlinked crate `rom_projection_core`
+  |
+  = help: if you wanted to use a crate named `rom_projection_core`, use `cargo add rom_projection_core` to add it to your `Cargo.toml`
+
+error[E0308]: mismatched types
+   --> crates/rom-projection-core/src/preflight_cancellation.rs:14:47
+    |
+ 14 |     let observed = page.reconcile(&profile(), &[]).unwrap();
+    |                         ---------             ^^^ expected `Vec<RemoteObservation>`, found `&[_; 0]`
+    |                         |
+    |                         arguments to this method are incorrect
+    |
+    = note: expected struct `Vec<metadata::RemoteObservation>`
+            found reference `&[_; 0]`
+note: method defined here
+   --> crates/rom-projection-core/src/metadata.rs:210:12
+    |
+210 |     pub fn reconcile(
+    |            ^^^^^^^^^
+...
+213 |         observations: Vec<RemoteObservation>,
+    |         ------------------------------------
+help: try using a conversion method
+    |
+ 14 |     let observed = page.reconcile(&profile(), (&[]).to_vec()).unwrap();
+    |                                               +   ++++++++++
+
+Some errors have detailed explanations: E0308, E0432.
+For more information about an error, try `rustc --explain E0308`.
+error: could not compile `rom-projection-core` (lib test) due to 2 previous errors

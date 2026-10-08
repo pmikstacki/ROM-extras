@@ -1,7 +1,7 @@
 use rom::{JournalCursor, Key};
 use rom_projection_core::{
-    Checkpoint, CheckpointStore, CommitStatus, OperationMetadata, PageIntent, ProjectionProfile,
-    RemoteObservation, TransactionId,
+    Cancellation, Checkpoint, CheckpointStore, CommitStatus, Error, OperationMetadata, PageIntent,
+    ProjectionProfile, RemoteObservation, TransactionId,
 };
 use std::os::unix::fs::DirBuilderExt;
 
@@ -53,7 +53,14 @@ pub fn run() {
     .unwrap();
     let prepared = store.prepare_page(&page).unwrap();
     drop(store);
-    let mut store = CheckpointStore::open(&path, &profile).unwrap();
+    let cancel = Cancellation::new();
+    cancel.cancel();
+    assert!(matches!(
+        CheckpointStore::open_cancellable(&path, &profile, &cancel),
+        Err(Error::Cancelled)
+    ));
+    let mut store =
+        CheckpointStore::open_cancellable(&path, &profile, &Cancellation::new()).unwrap();
     let prepared = TransactionId::decode(&prepared.encode()).unwrap();
     assert_eq!(store.reconcile(&prepared).unwrap(), CommitStatus::Applied);
     assert_eq!(

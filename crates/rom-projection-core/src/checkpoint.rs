@@ -72,9 +72,18 @@ impl CheckpointStore {
     }
     /// Admit existing application format before repairing original native bytes.
     pub fn open(path: &Path, profile: &ProjectionProfile) -> Result<Self> {
+        Self::open_cancellable(path, profile, &crate::Cancellation::new())
+    }
+    /// Admit existing storage with cooperative startup cancellation.
+    pub fn open_cancellable(
+        path: &Path,
+        profile: &ProjectionProfile,
+        cancel: &crate::Cancellation,
+    ) -> Result<Self> {
+        cancel.check()?;
         let owner =
             NativeOwnership::acquire(path, NativeAccess::Existing).map_err(ownership_error)?;
-        let engine = admitted_engine(owner.path(), profile)?;
+        let engine = admitted_engine(owner.path(), profile, cancel)?;
         Ok(Self {
             engine: Some(engine),
             owner,
@@ -83,8 +92,14 @@ impl CheckpointStore {
     }
     /// Close a retired handle and recover under its retained ownership reservation.
     pub fn reopen(&mut self) -> Result<()> {
+        self.reopen_cancellable(&crate::Cancellation::new())
+    }
+    /// Reopen with cancellation. Once admission starts, cancellation leaves the engine retired.
+    /// Ownership remains held until this store closes; native repair may already have changed bytes.
+    pub fn reopen_cancellable(&mut self, cancel: &crate::Cancellation) -> Result<()> {
+        cancel.check()?;
         self.engine.take();
-        self.engine = Some(admitted_engine(self.owner.path(), &self.profile)?);
+        self.engine = Some(admitted_engine(self.owner.path(), &self.profile, cancel)?);
         Ok(())
     }
     fn engine(&self) -> Result<&redb::Database> {
@@ -303,12 +318,22 @@ fn ownership_error(error: rom::Error) -> Error {
         _ => Error::Storage,
     }
 }
-fn admitted_engine(path: &Path, profile: &ProjectionProfile) -> Result<redb::Database> {
-    preflight::admit(path, profile)?;
-    let engine = preflight::builder()
+fn admitted_engine(
+    path: &Path,
+    profile: &ProjectionProfile,
+    cancel: &crate::Cancellation,
+) -> Result<redb::Database> {
+    preflight::admit(path, profile, cancel)?;
+    cancel.check()?;
+    let engine = preflight::cancellable_builder(cancel)
         .open(path)
-        .map_err(preflight::database_error)?;
-    preflight::validate(&engine.begin_read().map_err(|_| Error::Storage)?, profile)?;
+        .map_err(|error| preflight::cancellable_database_error(error, cancel))?;
+    preflight::validate_cancellable(
+        &engine.begin_read().map_err(|_| Error::Storage)?,
+        profile,
+        &mut || cancel.check(),
+    )?;
+    cancel.check()?;
     Ok(engine)
 }
 fn prepare_token(

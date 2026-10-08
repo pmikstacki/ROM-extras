@@ -8,8 +8,7 @@ use std::sync::{
     atomic::{AtomicBool, AtomicU8, Ordering},
 };
 
-#[path = "../tests/support/fs.rs"]
-mod fs;
+use crate::test_support as fs;
 
 #[derive(Debug)]
 struct Fault {

@@ -2,6 +2,8 @@
 /// A sanitized projection failure.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum Error {
+    /// Cooperative startup cancellation; no commit outcome is inferred.
+    Cancelled,
     /// Invalid caller metadata.
     Invalid,
     /// Admission limit exceeded.
@@ -35,6 +37,7 @@ impl std::fmt::Display for Error {
             f,
             "projection checkpoint {}",
             match self {
+                Self::Cancelled => "cancelled",
                 Self::Invalid => "invalid",
                 Self::TooLarge => "too large",
                 Self::Conflict => "conflict",

@@ -1,0 +1,43 @@
+{
+  "created_utc": "2026-10-08T23:33:56.956Z",
+  "baseline_commit": "3d1a1d7971554b0223cd2070cdcb2a3d23b2fc14",
+  "executed_source": "Dirty increment over baseline, frozen exact 192-file source map in projection-cancellation-runtime-freeze-2026-10-08.json",
+  "command": "./scripts/check-all",
+  "exit_code": 0,
+  "compiler": "Rust 1.99.0 b940084d7; same configured native service/toolchain environment as checkpoint acceptance",
+  "focused": {
+    "tests_passed": 30,
+    "compile_fail_doctests_passed": 1,
+    "child_entry": "One ignored child entry executed by process parents"
+  },
+  "package": {
+    "sha256": "a80d167891a0e25a6c8ec3759955f57be24a46b5e3a1da76556a0d4138422810",
+    "normalized_archive_consumer": "Actual run and denied-warning Clippy passed; cancellation exercised through the public archive API"
+  },
+  "dependency_evidence": {
+    "locks_unchanged": [
+      "Cargo.lock",
+      "tests/public-consumer/Cargo.lock"
+    ],
+    "archive_consumer_lock": "Byte-identical to previously audited projection archive graph",
+    "audit_refs": [
+      "projection-checkpoint-root-audit-2026-10-08.json",
+      "projection-checkpoint-consumer-audit-2026-10-08.json",
+      "projection-checkpoint-package-audit-2026-10-08.json"
+    ],
+    "warning": "Informational RUSTSEC-2024-0436, paste via existing oracle dependency; unchanged and unsuppressed"
+  },
+  "review": "Independent source-only review: no actionable findings; reviewer executed no tests or fixtures",
+  "failures_preserved": [
+    "Two admission cases RED before cancellation behavior",
+    "Two segment cases compiled RED before checks",
+    "Initial segment test import/type compile failure",
+    "Combined suite fixture namespace collision, corrected through shared fixture module"
+  ],
+  "scope": [
+    "Cooperative startup and private-copy/key-scan cancellation only",
+    "Native repair callback source-qualified; no hard cancellation deadline or hardware power-loss claim",
+    "No dedicated worker, bounded worker command queue, shutdown/join, history reconstruction, or Rust provider transport acceptance"
+  ],
+  "full_goal": "Active and incomplete"
+}

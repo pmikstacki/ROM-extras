@@ -34,15 +34,49 @@ pub(crate) fn database_error(error: redb::DatabaseError) -> Error {
     }
 }
 
-pub(crate) fn admit(path: &Path, profile: &ProjectionProfile) -> Result<()> {
+pub(crate) fn cancellable_builder(cancel: &crate::Cancellation) -> redb::Builder {
+    let mut builder = builder();
+    let cancel = cancel.clone();
+    builder.set_repair_callback(move |session| {
+        if cancel.is_cancelled() {
+            session.abort();
+        }
+    });
+    builder
+}
+pub(crate) fn cancellable_database_error(
+    error: redb::DatabaseError,
+    cancel: &crate::Cancellation,
+) -> Error {
+    if matches!(error, redb::DatabaseError::RepairAborted) && cancel.is_cancelled() {
+        Error::Cancelled
+    } else {
+        database_error(error)
+    }
+}
+pub(crate) fn admit(
+    path: &Path,
+    profile: &ProjectionProfile,
+    cancel: &crate::Cancellation,
+) -> Result<()> {
+    cancel.check()?;
     match builder().open_read_only(path) {
-        Ok(database) => validate(&database.begin_read().map_err(|_| Error::Storage)?, profile),
-        Err(redb::DatabaseError::RepairAborted) => validate_repaired_copy(path, profile),
+        Ok(database) => validate_cancellable(
+            &database.begin_read().map_err(|_| Error::Storage)?,
+            profile,
+            &mut || cancel.check(),
+        ),
+        Err(redb::DatabaseError::RepairAborted) => validate_repaired_copy(path, profile, cancel),
         Err(error) => Err(database_error(error)),
     }
 }
 
-fn validate_repaired_copy(path: &Path, profile: &ProjectionProfile) -> Result<()> {
+fn validate_repaired_copy(
+    path: &Path,
+    profile: &ProjectionProfile,
+    cancel: &crate::Cancellation,
+) -> Result<()> {
+    cancel.check()?;
     let mut source = File::open(path).map_err(|_| Error::Storage)?;
     let before = source.metadata().map_err(|_| Error::Storage)?;
     if before.len() > limits::RECOVERY_FILE {
@@ -62,21 +96,10 @@ fn validate_repaired_copy(path: &Path, profile: &ProjectionProfile) -> Result<()
         .open(&target)
         .map_err(|_| Error::Storage)?;
     let temporary = CopyPath(target);
-    let mut copied = 0u64;
-    let mut buffer = [0u8; 64 * 1024];
-    loop {
-        let count = source.read(&mut buffer).map_err(|_| Error::Storage)?;
-        if count == 0 {
-            break;
-        }
-        copied = copied.checked_add(count as u64).ok_or(Error::TooLarge)?;
-        if copied > limits::RECOVERY_FILE || copied > before.len() {
-            return Err(Error::TooLarge);
-        }
-        output
-            .write_all(&buffer[..count])
-            .map_err(|_| Error::Storage)?;
-    }
+    let copied = copy_contents(&mut source, &mut output, before.len(), &mut || {
+        cancel.check()
+    })?;
+    cancel.check()?;
     output.sync_all().map_err(|_| Error::Storage)?;
     let after = source.metadata().map_err(|_| Error::Storage)?;
     let current = std::fs::metadata(path).map_err(|_| Error::Storage)?;
@@ -96,8 +119,15 @@ fn validate_repaired_copy(path: &Path, profile: &ProjectionProfile) -> Result<()
         return Err(Error::Conflict);
     }
     let result = {
-        let database = builder().create_file(output).map_err(database_error)?;
-        validate(&database.begin_read().map_err(|_| Error::Storage)?, profile)
+        cancel.check()?;
+        let database = cancellable_builder(cancel)
+            .create_file(output)
+            .map_err(|error| cancellable_database_error(error, cancel))?;
+        validate_cancellable(
+            &database.begin_read().map_err(|_| Error::Storage)?,
+            profile,
+            &mut || cancel.check(),
+        )
     };
     drop(temporary);
     result
@@ -127,10 +157,12 @@ pub(crate) fn snapshot(transaction: &redb::ReadTransaction) -> Result<StoreSnaps
     Ok(value)
 }
 
-pub(crate) fn validate(
+pub(crate) fn validate_cancellable(
     transaction: &redb::ReadTransaction,
     profile: &ProjectionProfile,
+    check: &mut impl FnMut() -> Result<()>,
 ) -> Result<()> {
+    check()?;
     let mut tables = transaction.list_tables().map_err(|_| Error::Storage)?;
     let mut seen = 0u8;
     for _ in 0..4 {
@@ -203,9 +235,11 @@ pub(crate) fn validate(
         segment += 1;
         if segment == limits::SCAN_SEGMENT {
             segment = 0;
+            check()?;
             std::thread::yield_now();
         }
     }
+    check()?;
     if let Some(page) = &state.pending {
         for operation in &page.operations {
             if let Some(value) = keys
@@ -232,6 +266,7 @@ pub(crate) fn validate(
             }
         }
     }
+    check()?;
     Ok(())
 }
 
@@ -281,3 +316,32 @@ fn validate_control(state: &StoreSnapshot, profile: &ProjectionProfile) -> Resul
     }
     Ok(())
 }
+
+fn copy_contents(
+    source: &mut File,
+    output: &mut File,
+    original_size: u64,
+    check: &mut impl FnMut() -> Result<()>,
+) -> Result<u64> {
+    let mut copied = 0u64;
+    let mut buffer = [0u8; 64 * 1024];
+    loop {
+        check()?;
+        let count = source.read(&mut buffer).map_err(|_| Error::Storage)?;
+        if count == 0 {
+            break;
+        }
+        copied = copied.checked_add(count as u64).ok_or(Error::TooLarge)?;
+        if copied > limits::RECOVERY_FILE || copied > original_size {
+            return Err(Error::TooLarge);
+        }
+        output
+            .write_all(&buffer[..count])
+            .map_err(|_| Error::Storage)?;
+    }
+    Ok(copied)
+}
+
+#[cfg(test)]
+#[path = "preflight_cancellation.rs"]
+mod cancellation_tests;

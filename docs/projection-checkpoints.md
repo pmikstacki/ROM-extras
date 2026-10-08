@@ -51,7 +51,7 @@ Both consumer gates are required by the repository verifier.
 
 Initial bounds include 64 operations/kinds, 128-KiB records, 2-KiB key records, 8-MiB native cache, and 256-MiB private-copy recovery admission.
 The native engine can allocate pages before application length checks. The cache setting is not a universal process-memory ceiling.
-Startup validates records incrementally without collecting the key table. Worker cancellation between scan segments remains unimplemented.
+Startup validates records incrementally without collecting the key table. Startup cancellation is checked between scan segments and 64-KiB private-copy chunks.
 
 Remaining Task 2 work includes the bounded worker, retained authorized-history reconstruction, and worker lifecycle/cancellation.
 Actual OpenSearch/Qdrant delivery, native ROM feeds, current authorized search, alias switching, and rebuild remain separate required tasks.
@@ -59,3 +59,16 @@ The existing native service probes do not qualify those missing runtime integrat
 
 The [full verification record](verification/projection-checkpoint-full-verifier-2026-10-08.json) contains the tested source hashes and acceptance limits.
 The independent consumer retains an informational warning for an existing unmaintained Oracle-driver dependency; see the decision log.
+
+## Cooperative startup cancellation
+
+Use `Cancellation::new()`, clone its token, and call `cancel()` from the controlling thread. The request cannot be reset.
+`open_cancellable` and `reopen_cancellable` check the request before admission, during application scans, and between copy chunks.
+Native repair also receives a redb abort callback. Native I/O and repair steps have no fixed cancellation deadline.
+A request present before reopening leaves the existing engine usable. Cancellation after reopening starts leaves it retired with ownership retained.
+A failed open releases its reservation after native handles close. Successful later admission uses a fresh, unrequested token.
+Cancellation does not classify a commit as absent. The API never interrupts checkpoint writes.
+Original repair is permitted only after private-copy acceptance. Cancellation during permitted original repair can occur after native bytes change.
+The dedicated worker thread, bounded command admission, shutdown/join, and retained-history reconstruction are still required.
+
+The [cancellation verification record](verification/projection-cancellation-full-verifier-2026-10-08.json) identifies actual tests, unchanged dependency graphs, and missing worker acceptance.

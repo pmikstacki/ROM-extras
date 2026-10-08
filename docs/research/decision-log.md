@@ -525,3 +525,31 @@ The independent public consumer reports informational [RUSTSEC-2024-0436](https:
 Preserve the warning; do not change an existing transitive driver dependency solely to suppress it.
 The new archive-consumer graph has no advisory warnings. A maintained-fork substitution requires separate driver qualification.
 This completes the checkpoint-store increment, not Task 2 or the full ROM-extras goal.
+
+## 2026-10-08: cooperative checkpoint startup cancellation
+
+Sources: [Tokio blocking-task cancellation and dedicated threads](https://docs.rs/tokio/latest/tokio/task/fn.spawn_blocking.html), [Rust atomic synchronization](https://doc.rust-lang.org/std/sync/atomic/), [thread join ownership](https://doc.rust-lang.org/stable/std/thread/struct.JoinHandle.html), [redb 4.3.0 repair callbacks](https://github.com/cberner/redb/blob/v4.3.0/src/db.rs).
+
+Select a monotonic shared atomic cancellation token rather than interpreting task abort as native I/O termination.
+Use release/acquire for the request; no projected values or diagnostics travel through the flag.
+Check admission, every 256 scanned key records, and each 64-KiB private-copy chunk; bound the remaining control scans through existing record limits.
+Use redb's repair callback to request abort at native callback points, without a latency guarantee for I/O or repair internals.
+Keep existing open/reopen paths compatible through unrequested tokens. Never interrupt commits or infer rollback from cancellation.
+A pre-cancelled reopen preserves the live engine; cancellation after retirement keeps ownership until retry or close.
+Tests use actual files and deterministic segment boundaries. They do not qualify a hard shutdown deadline.
+The first combined test run found two independently compiled temporary-directory counters with the same process prefix.
+Share one unit-test fixture module so both test families allocate from one counter; preserve the failing test output.
+Remaining alternatives include a host cancellation trait or Tokio token. Neither is required for a single irreversible flag without a new dependency.
+The worker's dedicated thread and shutdown join remain pending; source research does not establish their implementation.
+
+## 2026-10-08: pending-intent reconstruction source selection
+
+The [worker recovery research](projection-worker-recovery.md) selects the pinned public authorized journal, not direct rows or current reads.
+Recovery covers the immutable old interval even when a replay page now extends beyond its endpoint.
+Full intent equality is required after current authorization and immutable mapping; lost continuity and changed disclosure remain separate failures.
+Typed commands on a bounded dedicated storage thread preserve native transaction and ownership boundaries.
+These choices prepare the next implementation. No compiled worker or native history acceptance is claimed here.
+
+The cancellation increment passed the full local verifier, both archive consumers, and real service restart probes.
+The [execution record](../verification/projection-cancellation-full-verifier-2026-10-08.json) retains the 192-file source fence, failures, unchanged-lock audit references, and limits.
+Independent source review reported no actionable findings; it did not run tests.

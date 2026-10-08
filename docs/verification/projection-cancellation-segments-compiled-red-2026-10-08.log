@@ -1,0 +1,33 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.42s
+     Running unittests src/lib.rs (target/debug/deps/rom_projection_core-3e4d3f9ebf90fc40)
+
+running 2 tests
+test preflight::cancellation_tests::bounded_copy_cancels_after_one_chunk_without_changing_source ... FAILED
+test preflight::cancellation_tests::scan_cancels_at_256_records_before_later_corruption_is_examined ... FAILED
+
+failures:
+
+---- preflight::cancellation_tests::bounded_copy_cancels_after_one_chunk_without_changing_source stdout ----
+
+thread 'preflight::cancellation_tests::bounded_copy_cancels_after_one_chunk_without_changing_source' (4036729) panicked at crates/rom-projection-core/src/preflight_cancellation.rs:55:5:
+assertion `left == right` failed
+  left: Ok(153600)
+ right: Err(Cancelled)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- preflight::cancellation_tests::scan_cancels_at_256_records_before_later_corruption_is_examined stdout ----
+
+thread 'preflight::cancellation_tests::scan_cancels_at_256_records_before_later_corruption_is_examined' (4036730) panicked at crates/rom-projection-core/src/preflight_cancellation.rs:36:5:
+assertion `left == right` failed
+  left: Err(Corrupt)
+ right: Err(Cancelled)
+
+
+failures:
+    preflight::cancellation_tests::bounded_copy_cancels_after_one_chunk_without_changing_source
+    preflight::cancellation_tests::scan_cancels_at_256_records_before_later_corruption_is_examined
+
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.06s
+
+error: test failed, to rerun pass `-p rom-projection-core --lib`
