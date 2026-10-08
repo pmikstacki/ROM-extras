@@ -182,3 +182,13 @@ Retain failing evidence and the original deadline, retry policy, and eight simul
 A separate test verifies all outcome categories, at most one acknowledged winner, and unchanged bytes after explicit retry conflicts.
 Keep uncertain objects because the public maintenance contract requires grace and quiescence before deletion.
 The original full scope, cloud gates, and provider alternatives remain active.
+
+
+## 2026-10-08: Trace S3 locking before changing the fixture
+
+Use a separate verbose reproduction and retain the original failed qualification.
+[Exact binary lock source](https://github.com/seaweedfs/seaweedfs/blob/530be3e37/weed/cluster/lock_client.go) identifies trace stages and one-second contention waits.
+The [executed assessment](seaweedfs-race-assessment.md#executed-lock-path-reproduction) confirms lock use but leaves routing availability unresolved.
+[AWS GetBucketVersioning](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html) supports the read-only check that excludes enabled versioning.
+Preserve timeout and uncertain outcomes; investigate ring initialization without weakening eight-way qualification.
+Record forced trace termination separately from orderly lifecycle evidence.

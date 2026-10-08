@@ -1,0 +1,8 @@
+{
+  "operation": "GetBucketVersioning",
+  "http_status": 200,
+  "versioning_status": null,
+  "root_element": "VersioningConfiguration",
+  "request_timeout_seconds": 3,
+  "read_only": true
+}

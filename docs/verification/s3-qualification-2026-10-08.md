@@ -60,3 +60,17 @@ All 102 captured inputs remained identical before and after execution.
 See [the full failed gate](s3-full-verifier-2026-10-08.log) and [source inputs](s3-source-inputs-2026-10-08.json).
 The missing-fixture S3 command exits 1. The strict candidate failure remains required and is not bypassed.
 The whole ROM-extras goal remains active. No supported S3 provider or full extension completion is claimed.
+
+## Separate verbose reproduction and restoration
+
+The [lock-path assessment](../research/seaweedfs-race-assessment.md#executed-lock-path-reproduction) records an additional diagnostic run.
+Its native outcomes were one acceptance, six AlreadyExists responses, and one typed timeout.
+A sanitized server trace confirms distributed lock activity for that diagnostic object.
+A subsequent read-only GetBucketVersioning observation confirms the fixture has no versioning Status.
+These observations narrow the investigation without replacing the strict failed gate.
+
+The trace container required forced termination and remains preserved in exited state.
+After restoring the original fixture, the filtered public conformance test exited zero.
+See [restored conformance](s3-restored-conformance-2026-10-08.log).
+No production code, dependency graph, or verifier requirement changed in this diagnostic increment.
+The complete verifier's latest recorded result remains exit 101 at strict S3 qualification.

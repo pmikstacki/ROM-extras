@@ -43,3 +43,31 @@ If a healthy, documented profile repeatedly produces Unknown under this required
 After a strict passing race, independently read and hash the winner's bytes. Confirm losers never overwrite them. Repeat across fresh keys and after server restart using preserved storage. These observations prove only the tested profile and load.
 
 A recovered winner does not prove acknowledged success for all callers. TLS, lost acknowledgement recovery, authorization changes, native SQLite/redb lifecycle, orphan grace, and trusted cleanup remain separate acceptance gates. Source review here establishes possible mechanisms and a diagnostic plan; it does not establish the actual timeout cause or a supported SeaweedFS profile.
+
+## Executed lock-path reproduction
+
+A separate verbose reproduction used the same image, named volume, CPU limit, and memory limit.
+The binary reports commit `530be3e37`; inspect [its lock client](https://github.com/seaweedfs/seaweedfs/blob/530be3e37/weed/cluster/lock_client.go).
+The sanitized trace records 20 lock attempts, seven acquisitions, and six contention responses for this diagnostic object.
+Acquisitions include approximately one-, two-, and three-second offsets.
+This establishes distributed lock use in this reproduction, not every earlier run.
+
+The native client recorded one acceptance, six AlreadyExists responses, and one typed timeout at 3004 ms.
+The object existed afterward. Verbose logging changes scheduling; do not replace the original qualification result with these counts.
+The trace selector found no CreateEntry events; that does not establish absence of metadata creation.
+See [sanitized trace](../verification/s3-lock-trace-2026-10-08.json) and [native results](../verification/s3-traced-native-2026-10-08.log).
+
+A signed, read-only GetBucketVersioning request returned HTTP 200 with no Status element.
+[AWS documents this response](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html) for a bucket whose versioning was never enabled or suspended.
+The [executed observation](../verification/s3-bucket-versioning-2026-10-08.json) therefore excludes enabled versioning as this fixture's explanation.
+The administrative request used [AWS SigV4](https://docs.aws.amazon.com/AmazonS3/latest/developerguide/sig-v4-header-based-auth.html), a three-second timeout, and no ambient HTTP proxy.
+
+[Exact-commit routing](https://github.com/seaweedfs/seaweedfs/blob/530be3e37/weed/s3api/s3api_object_routed_write.go) permits an unversioned If-None-Match wildcard condition.
+PrimaryForKey returns no owner before the client has a ring. Routed RPC failures can also trigger lock fallback.
+The captured private log contains no routed-PUT failure marker. That absence alone does not establish why routing was unavailable.
+Investigate ring delivery and gateway initialization before changing fixture topology.
+
+The trace container required SIGKILL after its ten-second stop allowance and exited 137.
+This is not graceful drain evidence. The stopped trace container and original volume remain preserved.
+The original fixture was restored and public conformance passed again.
+The strict eight-way qualification remains failed; no client deadline, retries, or concurrency requirement changed.

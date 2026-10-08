@@ -1,0 +1,162 @@
+{
+  "scope": "one native8way traced reproduction;samebinary/volume/CPU/memory,verbosity4;notoriginaluntracedrun",
+  "event_counts": {
+    "attempt": 20,
+    "acquired": 7,
+    "contended": 6,
+    "create_entry": 0
+  },
+  "events": [
+    {
+      "kind": "attempt",
+      "relative_ms": 0.0
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 0.257
+    },
+    {
+      "kind": "acquired",
+      "relative_ms": 0.296
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 0.297
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 0.31
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 0.34
+    },
+    {
+      "kind": "contended",
+      "relative_ms": 0.494
+    },
+    {
+      "kind": "contended",
+      "relative_ms": 0.505
+    },
+    {
+      "kind": "contended",
+      "relative_ms": 0.513
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 0.956
+    },
+    {
+      "kind": "acquired",
+      "relative_ms": 1.045
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 1.047
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 1.471
+    },
+    {
+      "kind": "acquired",
+      "relative_ms": 1.535
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 1.536
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 16.183
+    },
+    {
+      "kind": "acquired",
+      "relative_ms": 16.335
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 16.337
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 1000.726
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 1000.744
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 1000.789
+    },
+    {
+      "kind": "contended",
+      "relative_ms": 1001.026
+    },
+    {
+      "kind": "acquired",
+      "relative_ms": 1001.049
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 1001.053
+    },
+    {
+      "kind": "contended",
+      "relative_ms": 1001.094
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 2001.589
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 2001.595
+    },
+    {
+      "kind": "acquired",
+      "relative_ms": 2001.832
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 2001.841
+    },
+    {
+      "kind": "contended",
+      "relative_ms": 2001.876
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 3001.908
+    },
+    {
+      "kind": "acquired",
+      "relative_ms": 3002.123
+    },
+    {
+      "kind": "attempt",
+      "relative_ms": 3002.126
+    }
+  ],
+  "raw_private_log_sha256": "355d8cc03644d19e9f9419d2fd9a498413087eff9d25eb6a04132bf0ce10f695",
+  "omitted": "objectkey,lockowner,renewtokens,credentials,rawmessages",
+  "native_result_log": "s3-traced-native-2026-10-08.log",
+  "restored_states": {
+    "rom-extras-seaweedfs-20261008": {
+      "status": "running",
+      "running": true,
+      "exit_code": 0
+    },
+    "rom-extras-seaweedfs-trace-20261008": {
+      "status": "exited",
+      "running": false,
+      "exit_code": 137
+    }
+  },
+  "trace_stop": "SIGTERM did not exit in10secs;CLI usedSIGKILL;notgracefuldrain",
+  "binary_reported_commit": "530be3e37",
+  "lock_source_url": "https://raw.githubusercontent.com/seaweedfs/seaweedfs/530be3e37/weed/cluster/lock_client.go",
+  "lock_source_sha256": "38e0f7cdd039ec238d37fd7bc881788c1233bb3680e9cb02def42e7389a5e6a3"
+}
