@@ -1,0 +1,12 @@
+   Compiling s3-native-diagnostic v0.0.0 (/root/ROM-extras/.superpowers/s3-native-diagnostic)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.49s
+     Running `tests/public-consumer/target/debug/s3-native-diagnostic`
+kind=accepted elapsed_ms=4 reqwest_seen=false typed_timeout=false typed_connect=false typed_http_status=None
+kind=already_exists elapsed_ms=4 reqwest_seen=false typed_timeout=false typed_connect=false typed_http_status=None
+kind=already_exists elapsed_ms=1005 reqwest_seen=false typed_timeout=false typed_connect=false typed_http_status=None
+kind=already_exists elapsed_ms=2006 reqwest_seen=false typed_timeout=false typed_connect=false typed_http_status=None
+kind=generic elapsed_ms=3000 reqwest_seen=true typed_timeout=true typed_connect=false typed_http_status=None
+kind=generic elapsed_ms=3002 reqwest_seen=true typed_timeout=true typed_connect=false typed_http_status=None
+kind=generic elapsed_ms=3002 reqwest_seen=true typed_timeout=true typed_connect=false typed_http_status=None
+kind=generic elapsed_ms=3002 reqwest_seen=true typed_timeout=true typed_connect=false typed_http_status=None
+head_exists=true

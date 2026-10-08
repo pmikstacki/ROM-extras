@@ -190,3 +190,12 @@ They verify rejected staging/digest input, owner-only reads, Ready/Detached reop
 No new production lifecycle or cleanup implementation is added.
 The initial Conflict expectation was corrected to the public tombstone Denied result; the failed run remains preserved.
 See [executed scope and remaining gates](verification/azure-lifecycle-2026-10-08.md).
+
+
+## S3-compatible candidate qualification
+
+SeaweedFS 4.48 passes published blob conformance, confirmed credential denial, and acknowledged false-byte retention after restart.
+An eight-way Unknown/reconciliation test passes without overwrite or automatic cleanup.
+A separate strict eight-way qualification fails with typed native HTTP timeout evidence near three seconds.
+The new S3 gate remains required in `check-all`; this increment does not have a green complete verifier or supported S3 profile.
+See [qualification scope](s3-compatible.md) and [preserved evidence](verification/s3-qualification-2026-10-08.md).

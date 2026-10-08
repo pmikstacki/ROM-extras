@@ -1,0 +1,1 @@
+./scripts/check-s3: line 4: ROM_EXTRAS_S3_ENDPOINT: Set the explicit dedicated loopback S3 endpoint.

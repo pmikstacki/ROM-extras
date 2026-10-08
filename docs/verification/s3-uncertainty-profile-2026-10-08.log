@@ -1,0 +1,23 @@
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.88s
+     Running tests/s3_blob.rs (tests/public-consumer/target/debug/deps/s3_blob-52c7ffc65e05471b)
+
+running 4 tests
+
+thread 'eight_way_create_has_one_winner_and_seven_confirmed_conflicts' (3121569) panicked at tests/s3_blob.rs:76:26:
+unexpected create outcome: Err(Unknown)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test eight_way_create_has_one_winner_and_seven_confirmed_conflicts ... FAILED
+test published_port_passes_on_seaweedfs ... ok
+uncertainty accepted=1 unknown=4 conflicts=3 retry_conflicts=8; object retained
+test uncertain_concurrent_creates_reconcile_without_overwrite_or_cleanup ... ok
+test confirmed_denial_and_restart_retention_pass_on_seaweedfs ... ok
+
+failures:
+
+failures:
+    eight_way_create_has_one_winner_and_seven_confirmed_conflicts
+
+test result: FAILED. 3 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 17.28s
+
+error: test failed, to rerun pass `--test s3_blob`

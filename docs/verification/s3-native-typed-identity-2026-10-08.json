@@ -1,0 +1,9 @@
+{
+  "source_sha256": "db653db540631bc6bd9048bebbcb3c421f07efdd75c25753cb736dcb96f759dd",
+  "prototype_directory": ".superpowers/s3-native-diagnostic",
+  "operation": "8barrier-released native create-only PUTs;3sec/no retries/typedreqwestcause",
+  "command": "CARGO_TARGET_DIR=tests/public-consumer/target cargo run --manifest-path .superpowers/s3-native-diagnostic/Cargo.toml",
+  "exit": 0,
+  "credential_values": "withheld",
+  "limitations": "response status substring flags in earlierprototype are not typed HTTPstatus; use finaltypedlog only"
+}

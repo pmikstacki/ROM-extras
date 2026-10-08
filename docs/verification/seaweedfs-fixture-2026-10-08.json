@@ -1,0 +1,43 @@
+{
+  "name": "rom-extras-seaweedfs-20261008",
+  "image": "docker.io/chrislusf/seaweedfs@sha256:aba492e2a4e4c90bff795745e8e660affa1f09e7650f5981bd7bccd1a06cd931",
+  "labels": {
+    "author": "Chris Lu",
+    "org.opencontainers.image.created": "2026-09-28T18:38:00.259Z",
+    "org.opencontainers.image.description": "SeaweedFS is a distributed storage system for blobs, objects, files, and data lake, to store and serve billions of files fast!",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "530be3e37337488ecc34d58441e0bc476e121c93",
+    "org.opencontainers.image.source": "https://github.com/seaweedfs/seaweedfs",
+    "org.opencontainers.image.title": "seaweedfs",
+    "org.opencontainers.image.url": "https://github.com/seaweedfs/seaweedfs",
+    "org.opencontainers.image.vendor": "Chris Lu",
+    "org.opencontainers.image.version": "4.48",
+    "rom-extras.fixture": "seaweedfs"
+  },
+  "port_bindings": {
+    "8333/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "55455"
+      }
+    ]
+  },
+  "memory": 536870912,
+  "mounts": [
+    {
+      "type": "volume",
+      "name": "rom-extras-seaweedfs-20261008",
+      "destination": "/data"
+    }
+  ],
+  "scope": "real local single-node S3-compatible fixture; notcloudAWS",
+  "startup_args": [
+    "mini",
+    "-dir=/data",
+    "-ip=127.0.0.1",
+    "-ip.bind=0.0.0.0",
+    "-admin.ui=false",
+    "-webdav=false"
+  ],
+  "credentials": "private generated access/secret values withheld"
+}

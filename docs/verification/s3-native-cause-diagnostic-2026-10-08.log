@@ -1,0 +1,12 @@
+   Compiling s3-native-diagnostic v0.0.0 (/root/ROM-extras/.superpowers/s3-native-diagnostic)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.43s
+     Running `tests/public-consumer/target/debug/s3-native-diagnostic`
+kind=accepted elapsed_ms=4 timeout=false status_500=false status_503=false connect=false io=false
+kind=already_exists elapsed_ms=4 timeout=false status_500=false status_503=false connect=false io=false
+kind=already_exists elapsed_ms=1006 timeout=false status_500=false status_503=false connect=false io=false
+kind=already_exists elapsed_ms=2007 timeout=false status_500=false status_503=false connect=false io=false
+kind=generic elapsed_ms=3002 timeout=true status_500=false status_503=false connect=false io=false
+kind=generic elapsed_ms=3002 timeout=true status_500=false status_503=false connect=false io=false
+kind=generic elapsed_ms=3002 timeout=true status_500=true status_503=false connect=false io=false
+kind=generic elapsed_ms=3002 timeout=true status_500=false status_503=false connect=false io=false
+head_exists=true

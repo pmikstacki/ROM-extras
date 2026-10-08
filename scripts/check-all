@@ -9,3 +9,4 @@ cd -- "$(dirname -- "$0")/.."
 ./scripts/check-rabbitmq
 ./scripts/check-kafka
 ./scripts/check-azure
+./scripts/check-s3

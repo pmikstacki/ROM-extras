@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_S3_ENDPOINT:?Set the explicit dedicated loopback S3 endpoint.}"
+: "${ROM_EXTRAS_S3_BUCKET:?Set the dedicated disposable S3 bucket.}"
+: "${ROM_EXTRAS_S3_REGION:?Set the explicit S3 fixture region.}"
+: "${ROM_EXTRAS_S3_ACCESS_KEY:?Set the private fixture access key.}"
+: "${ROM_EXTRAS_S3_SECRET:?Set the private fixture secret.}"
+cargo test --manifest-path tests/public-consumer/Cargo.toml --locked --features s3-conformance --test s3_blob
+cargo clippy --manifest-path tests/public-consumer/Cargo.toml --locked --all-targets --features s3-conformance -- -D warnings

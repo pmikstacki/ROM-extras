@@ -1,0 +1,17 @@
+use object_store::{ObjectStore,ObjectStoreExt,PutMode,PutOptions,aws::{AmazonS3Builder,S3ConditionalPut},path::Path};
+use std::{sync::Arc,time::{Duration,Instant,SystemTime,UNIX_EPOCH}};
+#[tokio::main(flavor="current_thread")]
+async fn main(){
+ let store=Arc::new(AmazonS3Builder::new().with_endpoint(std::env::var("ROM_EXTRAS_S3_ENDPOINT").unwrap()).with_bucket_name("rom-extras").with_region("us-east-1").with_access_key_id(std::env::var("ROM_EXTRAS_S3_ACCESS_KEY").unwrap()).with_secret_access_key(std::env::var("ROM_EXTRAS_S3_SECRET").unwrap()).with_virtual_hosted_style_request(false).with_conditional_put(S3ConditionalPut::ETagMatch).with_retry(object_store::RetryConfig{max_retries:0,..Default::default()}).with_client_options(object_store::ClientOptions::new().with_allow_http(true).with_timeout(Duration::from_secs(3)).with_connect_timeout(Duration::from_secs(1))).build().unwrap());
+ let key=Path::from(format!("diagnostic-{}",SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_nanos()));let barrier=Arc::new(tokio::sync::Barrier::new(8));let mut tasks=tokio::task::JoinSet::new();let start=Instant::now();
+ for n in 0u8..8 {let(store,key,barrier)=(store.clone(),key.clone(),barrier.clone());tasks.spawn(async move{barrier.wait().await;store.put_opts(&key,vec![n].into(),PutOptions{mode:PutMode::Create,..Default::default()}).await});}
+ while let Some(r)=tasks.join_next().await {
+ let out=r.unwrap();let mut timeout=false;let mut connect=false;let mut http_status=None;let mut reqwest_seen=false;
+ let kind=match out {
+ Ok(_)=>"accepted",Err(object_store::Error::AlreadyExists{..})=>"already_exists",Err(object_store::Error::Precondition{..})=>"precondition",
+ Err(e)=>{ let mut source:Option<&(dyn std::error::Error+'static)>=Some(&e);for _ in 0..8{if let Some(next)=source{if let Some(native)=next.downcast_ref::<reqwest::Error>(){reqwest_seen=true;timeout|=native.is_timeout();connect|=native.is_connect();http_status=native.status().map(|s|s.as_u16()).or(http_status);}source=next.source();}else{break}};match e{object_store::Error::Generic{..}=>"generic",_=>"other"}}
+ };
+ println!("kind={kind} elapsed_ms={} reqwest_seen={reqwest_seen} typed_timeout={timeout} typed_connect={connect} typed_http_status={http_status:?}",start.elapsed().as_millis());
+ }
+ println!("head_exists={}",store.head(&key).await.is_ok());
+}

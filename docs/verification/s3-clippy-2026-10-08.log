@@ -1,0 +1,65 @@
+    Checking libc v0.2.190
+    Checking aws-lc-sys v0.45.0
+    Checking digest v0.11.3
+    Checking same-file v1.0.6
+    Checking spin v0.10.1
+    Checking walkdir v2.5.0
+    Checking md-5 v0.11.0
+    Checking crc-fast v1.10.0
+    Checking aws-lc-rs v1.18.1
+    Checking mio v1.2.4
+    Checking socket2 v0.6.5
+    Checking getrandom v0.4.3
+    Checking getrandom v0.2.17
+    Checking parking_lot_core v0.9.12
+    Checking nix v0.31.3
+    Checking openssl-sys v0.9.117
+    Checking rustls-webpki v0.103.15
+    Checking jsonwebtoken v11.1.0
+    Checking rand_core v0.6.4
+    Checking rand v0.10.3
+    Checking parking_lot v0.12.5
+    Checking rand_chacha v0.3.1
+    Checking tokio v1.53.1
+    Checking rand v0.8.8
+    Checking rustls v0.23.45
+    Checking rdkafka-sys v4.10.0+2.12.1
+    Checking p12-keystore v0.2.1
+    Checking rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking nuid v0.5.0
+    Checking rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+    Checking rustls-platform-verifier v0.7.1
+    Checking futures-rustls v0.26.0
+    Checking rustls-connector v0.23.9
+    Checking tokio-util v0.7.19
+    Checking rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking tokio-rustls v0.26.6
+    Checking tokio-stream v0.1.19
+    Checking tower v0.5.3
+    Checking async-compat v0.2.6
+    Checking tryhard v0.5.2
+    Checking rdkafka v0.39.0
+    Checking async-rs v0.8.13
+    Checking h2 v0.4.20
+    Checking async-nats v0.50.0
+    Checking tower-http v0.6.11
+    Checking tcp-stream v0.34.14
+    Checking amq-protocol-tcp v10.6.3
+    Checking amq-protocol v10.6.3
+    Checking lapin v4.12.0
+    Checking hyper v1.12.0
+    Checking rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+    Checking rom-blob v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+    Checking rom-conformance v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking hyper-util v0.1.21
+    Checking rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Checking rom-rabbitmq v0.1.0-dev (/root/ROM-extras/crates/rom-rabbitmq)
+    Checking hyper-rustls v0.27.10
+    Checking reqwest v0.13.5
+    Checking object_store v0.14.2
+    Checking rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Checking rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+    Checking rom-blob-object-store v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 7.00s

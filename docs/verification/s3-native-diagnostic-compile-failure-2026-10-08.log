@@ -1,0 +1,56 @@
+    Updating crates.io index
+     Locking 203 packages to highest Rust 1.99.0 compatible versions
+      Adding generic-array v0.14.7 (available: v0.14.9)
+      Adding tokio v1.53.1 (available: v1.53.2)
+   Compiling zeroize v1.9.1
+   Compiling aws-lc-rs v1.18.1
+   Compiling syn v2.0.119
+   Compiling subtle v2.6.1
+   Compiling tokio v1.53.1
+   Compiling num-traits v0.2.19
+   Compiling crypto-common v0.1.7
+   Compiling serde_json v1.0.151
+   Compiling serde_urlencoded v0.7.1
+   Compiling rand v0.10.3
+   Compiling quick-xml v0.41.0
+   Compiling url v2.5.8
+   Compiling digest v0.10.7
+   Compiling rustls-pki-types v1.15.1
+   Compiling crc-fast v1.10.0
+   Compiling rustls v0.23.45
+   Compiling rustls-native-certs v0.8.4
+   Compiling chrono v0.4.45
+   Compiling rustls-webpki v0.103.15
+   Compiling tracing-attributes v0.1.31
+   Compiling tokio-util v0.7.19
+   Compiling tower v0.5.3
+   Compiling tracing v0.1.44
+   Compiling tower-http v0.6.11
+   Compiling h2 v0.4.20
+   Compiling tokio-rustls v0.26.6
+   Compiling rustls-platform-verifier v0.7.1
+   Compiling hyper v1.12.0
+   Compiling hyper-util v0.1.21
+   Compiling hyper-rustls v0.27.10
+   Compiling reqwest v0.13.5
+   Compiling object_store v0.14.2
+   Compiling s3-native-diagnostic v0.0.0 (/root/ROM-extras/.superpowers/s3-native-diagnostic)
+error[E0599]: no method named `head` found for struct `Arc<object_store::aws::AmazonS3>` in the current scope
+    --> src/main.rs:9:34
+     |
+   9 |  println!("head_exists={}",store.head(&key).await.is_ok());
+     |                                  ^^^^ method not found in `Arc<object_store::aws::AmazonS3>`
+     |
+    ::: /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/object_store-0.14.2/src/lib.rs:1496:8
+     |
+1496 |     fn head(&self, location: &Path) -> impl Future<Output = Result<ObjectMeta>>;
+     |        ---- the method is available for `Arc<object_store::aws::AmazonS3>` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: trait `ObjectStoreExt` which provides `head` is implemented but not in scope; perhaps you want to import it
+     |
+   1 + use object_store::ObjectStoreExt;
+     |
+
+For more information about this error, try `rustc --explain E0599`.
+error: could not compile `s3-native-diagnostic` (bin "s3-native-diagnostic") due to 1 previous error

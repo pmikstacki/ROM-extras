@@ -9,6 +9,7 @@ license = "MIT"
 [workspace]
 
 [features]
+s3-conformance = ["dep:tokio", "dep:rom-blob-object-store", "dep:rom-conformance"]
 azure-conformance = ["dep:tokio"]
 mysql-conformance = ["dep:mysql", "dep:tokio"]
 kafka-conformance = ["dep:rdkafka", "dep:tokio"]
@@ -45,7 +46,13 @@ required-features = ["nats-conformance"]
 name = "rabbitmq_delivery"
 required-features = ["rabbitmq-conformance"]
 
+[[test]]
+name = "s3_blob"
+required-features = ["s3-conformance"]
+
 [dependencies]
+rom-blob-object-store = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", optional = true }
+rom-conformance = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", features = ["blob"], optional = true }
 rom-azure-blob = { path = "../../crates/rom-azure-blob" }
 rom-blob = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
 mysql = { version = "=28.0.3", default-features = false, features = ["minimal-rust", "native-tls"], optional = true }
@@ -61,6 +68,6 @@ rom-oidc-presets = { path = "../../crates/rom-oidc-presets" }
 rom-delivery-core = { path = "../../crates/rom-delivery-core" }
 rom-webhook = { path = "../../crates/rom-webhook" }
 postgres = { version = "=0.19.14", optional = true }
-tokio = { version = "=1.53.1", features = ["rt", "macros", "net", "time"], optional = true }
+tokio = { version = "=1.53.1", features = ["rt", "macros", "net", "time", "sync"], optional = true }
 tiberius = { version = "=0.13.0", default-features = false, features = ["tds73", "rustls"], optional = true }
 tokio-util = { version = "=0.7.19", features = ["compat"], optional = true }

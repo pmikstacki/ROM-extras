@@ -162,3 +162,23 @@ MinIO community now states it is no longer maintained; preserve ROM's historical
 [SeaweedFS quickstart](https://github.com/seaweedfs/seaweedfs/blob/master/README.md) identifies the project image and authenticated mini launch.
 Garage remains an alternative needing its own conditional-create qualification.
 The actual 4.48 artifact download and isolated version check are recorded separately; neither establishes S3 conformance.
+
+
+## 2026-10-08: Real S3 qualification and uncertainty
+
+Reuse the public S3 Adapter and public blob conformance in an independent consumer.
+Versioned [SeaweedFS mini](https://github.com/seaweedfs/seaweedfs/blob/4.48/weed/command/mini.go) establishes private credential, bucket, persistence, and service controls.
+The real fixture is loopback-only with preserved named storage and fixed image digest.
+No private ROM implementation is copied.
+
+Keep strict eight-way responsiveness qualification separate from Unknown/reconciliation correctness.
+The strict test fails; source inspection cannot convert an uncertain write into confirmed rollback or Conflict.
+[Versioned lock and SDK assessment](seaweedfs-race-assessment.md) identifies possible contention without claiming traced causality.
+Use [reqwest typed errors](https://docs.rs/reqwest/0.13.5/reqwest/struct.Error.html) rather than substring status searches for diagnostic causes.
+Actual typed native timeouts are recorded; possible server-path causality remains unresolved.
+
+Add the S3 candidate gate to the full verifier even while qualification is incomplete.
+Retain failing evidence and the original deadline, retry policy, and eight simultaneous requests.
+A separate test verifies all outcome categories, at most one acknowledged winner, and unchanged bytes after explicit retry conflicts.
+Keep uncertain objects because the public maintenance contract requires grace and quiescence before deletion.
+The original full scope, cloud gates, and provider alternatives remain active.
