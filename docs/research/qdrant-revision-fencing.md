@@ -78,3 +78,10 @@ Pin Qdrant 1.19.2's executed image digest and persistent configuration. Restrict
 9. Inject unavailable service, worker/storage failures where practical, malformed revision fields, and bounded response failures. Do not advance checkpoints on unconfirmed results.
 
 These tests establish only their executed profile. Multi-node writes, shard changes, alias/generation switches, physical tombstone cleanup, and severe storage failures require separate qualification. A durable local ledger remains useful for checkpoints and recovery, but it is not the native stale-write fence.
+
+## Later execution follow-up
+
+The source findings above remain source-review evidence. The later [probe guide](../projection-probes.md) describes separate executed service cases.
+The original [initial probe record](../verification/qdrant-fence-probe-2026-10-08.json) remains historical evidence at its recorded source.
+New required probes add actual held requests after client timeout, real response suppression, distinct-vector retention, and persistent tombstone restart.
+No ROM worker, checkpoint, or distributed profile is implemented by those probes.

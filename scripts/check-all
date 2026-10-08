@@ -13,3 +13,4 @@ cd -- "$(dirname -- "$0")/.."
 ./scripts/check-azure
 ./scripts/check-s3
 ./scripts/check-openbao
+./scripts/check-projection-probes

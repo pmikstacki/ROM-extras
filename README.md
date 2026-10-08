@@ -14,6 +14,7 @@ The delivery core prepares bounded JSON and Standard Webhooks signatures.
 [Azure Blob](docs/azure-blob.md) now implements the public blob port with persistent Azurite conformance and independent-consumer evidence.
 The [S3 profiles](docs/s3-compatible.md) retain SeaweedFS’s failed strict burst evidence and add passing RustFS local public-port qualification.
 The [secrets/KMS family](docs/secrets-kms.md) adds host contracts, OpenBao acceptance cases and reference-only native host preparation.
+[Native OpenSearch and Qdrant probes](docs/projection-probes.md) qualify revision fences and restart behavior; ROM projection adapters remain unimplemented.
 See [the complete goal](docs/goal.md), [the implementation plan](docs/superpowers/plans/2026-10-08-rom-extras.md), and [support status](docs/support.md).
 
 ## Verify locally
@@ -25,5 +26,7 @@ Run:
 ```sh
 ./scripts/check
 ```
+
+The full actual-backend verifier is `./scripts/check-all`. It requires the configured services and Python 3 for projection probes.
 
 GitHub hosts source code. GitHub Actions is disabled.

@@ -138,3 +138,13 @@ All spec requirements have task owners. Task 1 intentionally precedes concrete w
 Task 2 must finalize those signatures in this plan before implementation. This document does not claim that an unresolved protocol is executable.
 Tasks 3 and 4 independently qualify backend guarantees; Tasks 5 and 6 establish public ROM integration and recovery.
 Task 7 covers package consumers and the repository-wide acceptance gates.
+
+## Task 1 execution checkpoint
+
+The native Qdrant conditional protocol has source and actual single-node fencing evidence, including delayed requests and response loss.
+Both immutable service images run with persistent verified TLS fixtures. OpenSearch has actual version, Bulk, scope, and restart evidence.
+The [probe guide](../../projection-probes.md) states the exact tested scope and preserved failures.
+The required `scripts/check-projection-probes` gate is included in `scripts/check-all`.
+This completes fixture preparation and the Qdrant protocol experiments, not Task 2 or the whole family.
+Before Task 2 code, specify the concrete checkpoint transaction interface and finalize both adapters' reconciliation result types.
+OpenSearch response-loss injection remains an adapter qualification requirement in Task 3.

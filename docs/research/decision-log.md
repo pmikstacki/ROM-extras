@@ -428,3 +428,38 @@ No production adapter, ROM checkpoint worker, or support claim follows from this
 Independent source review found default Python redirects in the exploratory credential-bearing probe.
 Reject redirects explicitly. A controlled loopback redirect test confirmed that the target received zero requests.
 The corrected probe and persistent restart checks passed again. Updated evidence hashes identify the executed corrected source.
+
+## 2026-10-08: executed projection fault and OpenSearch fixture profiles
+
+Sources: [Qdrant tagged conditional tests](https://github.com/qdrant/qdrant/blob/v1.19.2/tests/openapi/test_conditional_update.py), [Python fixture server](https://docs.python.org/3.12/library/http.server.html), [OpenSearch TLS](https://docs.opensearch.org/latest/security/configuration/tls/), [certificate authentication](https://docs.opensearch.org/latest/security/authentication-backends/client-auth/), [initialization tool](https://docs.opensearch.org/latest/security/configuration/security-admin/), [disk settings](https://docs.opensearch.org/latest/install-and-configure/configuring-opensearch/cluster-settings/), [audit fields](https://docs.opensearch.org/latest/security/audit-logs/field-reference/).
+
+Select an isolated TLS forwarding proxy for actual Qdrant delayed-request and response-loss qualification.
+The held old request reaches the backend only after its client times out and newer state is accepted.
+Use different unit vectors for old and new writes. This establishes vector retention as well as revision/payload retention.
+Drop one real completed write response, retrieve its state directly, then verify newer state and stale replay.
+Repeat indexed and unindexed conditions and persistent restart, including u64::MAX tombstones.
+These are executed native protocol cases, not a ROM checkpoint implementation.
+
+Select OpenSearch certificate authentication for the first local fixture instead of demo certificates or shared admin passwords.
+Use distinct writer/reader/operator certificates and a private CA. Limit writer index access to `rom_extras_*`.
+Keep CA and client private keys outside the server-mounted TLS directory after verified bootstrap.
+Retain request-body audit logging disabled; the official field reference identifies its disclosure surface.
+This is an explicit fixture policy, not a universal assertion about all upstream logs.
+
+Pin the official amd64 OpenSearch 3.9.0 image at `sha256:13487e0953520edf6cc866dfc672fd67a70ab122aa7d84d4a6c97106f84d3f84`.
+Use an experimental 2-CPU/2-GiB allowance with 512-MiB heap. Actual startup and bounded native probes succeeded; production sizing remains unqualified.
+The high-disk watermark initially blocked the security index. Actual filesystem availability was 198621110272 bytes when inspected.
+Use documented absolute reserves 20/10/5 GiB for this fixture, retaining disk protection. Percentage thresholds were an unsuitable local alternative.
+The immediate retry still saw the previous asynchronous block. Logs and settings then confirmed automatic release before further initialization.
+Single-type bootstrap uploaded config but waited for missing types. Complete bootstrap loaded all nine expected types successfully.
+Preserve failed output, rather than reporting those attempts as successful setup.
+
+Actual OpenSearch evidence covers strict native versions, signed overflow rejection, HTTP-200 Bulk partial failures, scoped credentials, live/tombstone filtering, and restart.
+A future adapter must reconcile equal-revision conflicts and unknown outcomes against stored identity/content; conflict alone is not replay success.
+Add the real-service probes as a required `check-all` gate. A missing Python executable, private fixture, or backend is a failure.
+Standard-library socket timeouts do not establish the future adapter's total request deadline.
+
+The full verifier, including the new required native probe gate, exited successfully with 168 frozen input files unchanged.
+The [execution record](../verification/projection-probes-full-verifier-2026-10-08.json) retains exact source hashes, service profiles, raw output, and incomplete requirements.
+Public ROM HEAD was independently rechecked and remains `d7ef529040eec60dc869034c2d33130219db85fe`.
+The referenced architecture chat remains active on release qualification; its private changes are not dependencies of this increment.
