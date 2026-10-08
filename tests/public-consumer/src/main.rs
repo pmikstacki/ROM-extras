@@ -62,6 +62,11 @@ fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
         )
         .is_err()
     );
+    let secret_reference = rom_secrets::SecretRef::new("oidc-client")?;
+    assert_eq!(secret_reference.as_str(), "oidc-client");
+    let binding = rom_kms::Binding::new(b"tenant-one".to_vec(), b"resource-one".to_vec())?;
+    assert_eq!(binding.context(), b"tenant-one");
+    let _limits = rom_openbao::Limits::default();
     println!(
         "Public custom field, connection execution, issuer preset, and bounded delivery verified."
     );

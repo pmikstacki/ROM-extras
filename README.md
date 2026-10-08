@@ -13,6 +13,7 @@ The delivery core prepares bounded JSON and Standard Webhooks signatures.
 [Kafka publication](docs/kafka.md) has live offset, duplicate, Runtime recovery, TLS/SASL, restart, and independent consumer tests.
 [Azure Blob](docs/azure-blob.md) now implements the public blob port with persistent Azurite conformance and independent-consumer evidence.
 The [S3 profiles](docs/s3-compatible.md) retain SeaweedFS’s failed strict burst evidence and add passing RustFS local public-port qualification.
+The [secrets/KMS family](docs/secrets-kms.md) adds host contracts, OpenBao acceptance cases and reference-only native host preparation.
 See [the complete goal](docs/goal.md), [the implementation plan](docs/superpowers/plans/2026-10-08-rom-extras.md), and [support status](docs/support.md).
 
 ## Verify locally

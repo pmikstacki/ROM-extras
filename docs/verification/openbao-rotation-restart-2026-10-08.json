@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-08",
+  "evidence_category": "locally executed Rust acceptance increment; family incomplete",
+  "command": "./scripts/check-openbao",
+  "exit_code": 0,
+  "tests_passed": 13,
+  "compile_fail_doctests_passed": 2,
+  "real_service_cases_passed": 7,
+  "clippy": "all targets, warnings denied, exit0",
+  "service": "OpenBao2.7.1; private verified TLS; persistent single-node Raft",
+  "added_cases": [
+    "actual KV rotation; pinned previous version; deleted and destroyed versions return NotFound",
+    "explicit token revocation returns Denied with no cached material",
+    "actual Transit rotation returns versions1/2 and decrypts both before minimum version change",
+    "minimum decryption version2 rejects old ciphertext and preserves new decryption",
+    "wrong envelope profile, key alias and version metadata fail validation",
+    "malformed ciphertext is rejected by the actual service",
+    "stopped service returns Unavailable; same persistent fixture restarts sealed",
+    "explicit private unseal followed by fresh client preserves actual KV bytes and decrypts pre-restart ciphertext"
+  ],
+  "negative_tls_evidence": "independent bounded curl requires exit60 and English certificate subject-name mismatch; Rust returns redacted Unavailable",
+  "fixture_controls": "fresh isolated paths/keys/tokens; serial service execution; bounded Docker subprocesses; no runtime administration methods",
+  "source_review": "two initial test-control findings corrected; follow-up source inspection reports no remaining actionable findings; reviewer did not execute service",
+  "preserved_failures": [
+    "test helper used unavailable reqwest JSON feature; reused bounded response decoder instead",
+    "Clippy rejected a collapsible conditional; corrected",
+    "initial curl diagnostic assertion used different wording; matched observed English fixture diagnostic"
+  ],
+  "runtime_hashes": {
+    "service_test": "1a4440b56e3c0707c77ef21cc47e69450b0f494f4cdc560cfd65bfd741b078d1",
+    "test_administration": "20179b1a3a0d207c61f754f9c7dbb90fb949f5a4b5cc1d6f8222204c1d03642c",
+    "required_gate": "e2877faa0c14a3fc229c0c8d8495d95696cae83cbda3cd08e2559eb026ba18ff",
+    "workspace_lock": "f20f505e618f6f4583e4ecb85073db4d52b49aa0e1600013500bbcac1c554860",
+    "consumer_lock": "d76829a698ec08227b56cf87cd6987151f0e402e2a303bf6f7c5d59906a95dd3"
+  },
+  "pending": [
+    "explicit expiry and missing-key authorization cases",
+    "admission saturation and operation deadline acceptance",
+    "native ROM host activation and controlled persistence/capture checks",
+    "independently packaged consumer",
+    "separate Vault/AWS/Azure provider profiles",
+    "replicated recovery, production key custody and token renewal"
+  ],
+  "full_verifier": "./scripts/check-all exit0;147 runtime inputs unchanged; see secrets-kms-configured-full-verifier-2026-10-08.json"
+}

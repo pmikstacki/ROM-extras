@@ -286,3 +286,115 @@ Inspect the pinned image's actual scripts and retain fresh shutdown logs; do not
 Require exited 143 plus fresh `ORACLE instance shut down.` confirmation for this exact fixture.
 [Oracle's shutdown source](https://github.com/oracle/docker-images/blob/main/OracleDatabase/SingleInstance/dockerfiles/23.26.0/shutDown.sh) uses shutdown immediate.
 This is graceful retained-store restart evidence, not a power-loss or replicated durability qualification.
+
+## Initial secrets/KMS host adapter, 2026-10-08
+
+Implement host-owned references, bounded secret bytes, and separate KMS context/AAD contracts under approved Task 7.
+The [public ROM host boundary assessment](secrets-kms-assessment.md) excludes plaintext credentials from Resource fields and provenance.
+Use approved aliases rather than interpreting Resource text as a URL or provider path.
+Select a 64-byte ASCII alias grammar and 256-entry maps as explicit initial host policy, not provider limits.
+Use separate positive pinned versions and actual returned version validation.
+The [KV v2 API](https://openbao.org/docs/api/secret/kv/kv-v2/) specifies nested data and version selection.
+
+Reuse the existing reqwest 0.13.5, serde_json 1.0.151, serde 1.0.229, Tokio 1.53.1, base64 0.22.1 and zeroize 1.9.1 versions.
+The initial incorrect serde_json 1.0.149 pin caused a graph-resolution failure; preserve that failure and use the existing exact pin.
+Disable proxies, redirects and client retries. Use one admitted permit through request construction, body reading and decoding.
+[ClientBuilder](https://docs.rs/reqwest/0.13.5/reqwest/struct.ClientBuilder.html) and [retry::never](https://docs.rs/reqwest/0.13.5/reqwest/retry/fn.never.html) specify these settings.
+Bound streamed success and error bodies before JSON parsing. Keep every public error category free of upstream text.
+Serialize borrowed wire fields, avoiding an intermediate plaintext-bearing JSON value.
+[Serde serialization](https://docs.rs/serde/1.0.229/serde/trait.Serialize.html) supports borrowed request fields.
+Clear owned encoded plaintext buffers through zeroize; do not claim HTTP, parser or host copies are completely erased.
+
+Select the existing derived aes256-gcm96 key profile and separate derivation context from authenticated associated data.
+[Transit API](https://openbao.org/docs/api/secret/transit/) specifies both inputs.
+The exact OpenBao 2.7.1 fixture accepted this combination and rejected changes to either input through the Rust adapter.
+TLS negative acceptance uses the fixture's private CA and an IPv4-mapped IPv6 reference identity absent from its SAN.
+[RFC 9525](https://www.rfc-editor.org/rfc/rfc9525.html#section-6.4) requires exact IP identity comparison.
+An independent curl probe failed with certificate name mismatch, exit 60; the Rust client rejected the same endpoint.
+This is Linux fixture evidence, not a universal routing assertion for IPv4-mapped addresses.
+
+The initial administrative initialization exceeded a five-second caller read budget after committing initialization.
+Authoritative GET sys/init reported initialized, but the response containing keys was not retained.
+Preserve that stopped container and data. Initialize a separate fresh Raft directory with a 60-second administrative budget.
+This budget does not change runtime adapter deadlines or add automatic retries.
+The [initialization contract](https://openbao.org/docs/commands/operator/init/) separates initialization and unseal from runtime use.
+A later HTTP500 mount failure remains preserved; its cause is unproven.
+After inspecting existing mounts, an explicit mount request returned204; setup resumed with its retained known initialization response.
+
+The initial Rust service cases and independent compile checks do not complete rotation, restart, token renewal, native host integration or release acceptance.
+Keep those gates, plus separate Vault/AWS/Azure profiles, open in the full goal.
+
+### OpenBao rotation and persistent recovery acceptance
+
+Use fresh test-only KV paths, Transit keys and restricted child tokens for destructive acceptance cases.
+The [KV v2 API](https://openbao.org/docs/api/secret/kv/kv-v2/) defines deletion, destruction and version selection.
+The [Transit API](https://openbao.org/docs/api/secret/transit/) defines rotation and minimum decryption versions.
+The [token API](https://openbao.org/docs/api/auth/token/) defines explicit token revocation.
+These cases preserve the baseline fixture and test actual bytes, not only successful response status.
+
+Run service cases serially because persistent recovery stops and starts the shared isolated fixture.
+Keep the same Raft directory and perform one explicit unseal with privately retained fixture material.
+Use a fresh Rust client to verify persisted KV versions and decrypt a pre-restart ciphertext.
+The [Raft contract](https://openbao.org/docs/configuration/storage/raft/) and [unseal API](https://openbao.org/docs/api/system/unseal/) specify this separation.
+Read-only readiness polling is test administration; it adds no runtime adapter retries.
+
+Bound Docker subprocess execution separately from its shutdown grace period.
+[Coreutils timeout source](https://github.com/coreutils/coreutils/blob/master/src/timeout.c) specifies the outer deadline and subsequent kill interval.
+GNU documentation requests failed during research; the upstream source was available.
+Require an independent certificate-name rejection, not generic connection failure, alongside the redacted Rust result.
+The [curl manual](https://curl.se/docs/manpage.html) documents certificate verification and transfer deadlines.
+Use English diagnostic output for this fixed Linux fixture; do not claim cross-platform curl diagnostic compatibility.
+The required `check-openbao` gate fails when protected configuration or its real service is absent.
+
+### Host secret preparation, expiry and bounded work
+
+Create a three-second, nonrenewable test token with the same explicit maximum TTL.
+Check the issued lease before testing successful resolution followed by expiry denial.
+The [token API](https://openbao.org/docs/api/auth/token/) defines these issuance controls.
+An update-only token receives Denied for a missing Transit key; administrative reads confirm the key remains absent.
+The [Transit capability contract](https://openbao.org/docs/api/secret/transit/) distinguishes update from create/upsert.
+Preserve the initial test's incorrect Rejected expectation as failure evidence.
+
+Hold one real read future at Pending before trying another operation against a one-permit adapter.
+Require Busy, then complete the original read and verify subsequent admission.
+The [Tokio semaphore API](https://docs.rs/tokio/latest/tokio/sync/struct.Semaphore.html) specifies nonblocking admission.
+The pinned-version documentation URL was unavailable; inspect the pinned local source as well.
+Pause only the isolated real service to verify the 100ms complete-operation deadline.
+Use a drop guard and explicit unpause before assertions. Require same-client recovery afterward.
+[Podman pause](https://docs.podman.io/en/latest/markdown/podman-pause.1.html) and [unpause](https://docs.podman.io/en/latest/markdown/podman-unpause.1.html) define these process controls.
+This Linux test allowance is not a provider latency guarantee.
+
+Use the unchanged public [IdentityProvider host boundary](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom-identity/README.md).
+Authorize the provider read before secret resolution. Validate its opaque alias through the resolver's approved map.
+Re-read the activation after resolution and reject a changed revision or disabled provider.
+The example prepares material for a verifier; it does not establish an authenticated actor.
+The host must still configure the verifier from the captured activation and follow core's verification/binding checks.
+Check SQLite/redb state, journal, receipts, fixed host errors and retained files for fixture markers and the runtime token.
+This establishes the tested host path and captures, not universal prevention of an application's explicit secret copies.
+Add only pinned rom-identity to the independent consumer; retain previous dependency identities and checksums.
+
+Two serial runs returned HTTP500 while creating a fresh policy after restart; an isolated run succeeded.
+Diagnostic runs subsequently passed, so the exact upstream cause remains unproven.
+Preserve both failures without adding mutation retries or skips.
+After explicit unseal, require default [health status200](https://openbao.org/docs/api/system/health/) before administration proceeds.
+The [configuration contract](https://openbao.org/docs/configuration/) permits standby reads by default; a successful read alone is insufficient write readiness.
+Service logs also report the fixture's disable_mlock field as unsupported. It has no established effect in this 2.7.1 profile.
+Retain the original configuration and make no locked-memory claim.
+
+Package the three family crates with exact versions on internal path dependencies.
+[Cargo packaging](https://doc.rust-lang.org/cargo/commands/cargo-package.html) requires versions and rewrites distributed manifests without paths.
+Verify the generated archive sources through a separate consumer and local patches before claiming package acceptance.
+No registry publication is authorized by this local packaging step.
+
+The initial plain and explicit-registry Cargo package runs could not resolve unpublished rom-secrets.
+Preserve both failures. Use local patches only for package assembly, then consume extracted normalized archives through separate local patches.
+[Cargo's dependency patch contract](https://doc.rust-lang.org/cargo/reference/overriding-dependencies.html#the-patch-section) supplies local sources for registry names.
+The independent consumer executes actual KV resolution and derived Transit round-trip; it does not use the workspace source paths.
+Package assembly's no-verify option is followed by this independent compilation, execution and Clippy gate.
+This establishes local archive-consumer acceptance, not registry availability or publication.
+
+Preserve raw verification logs byte-for-byte, including Rust test output's trailing spaces.
+Apply Git's raw-evidence attributes only to docs/verification/*.log; code and prose keep their whitespace checks.
+The [Git attributes contract](https://git-scm.com/docs/gitattributes) defines unset text and whitespace behavior.
+The staged raw output initially reported two whitespace diagnostics. After the attributes change, the same staged bytes pass the check.
+This metadata check follows the full backend verifier; no runtime input changes or log edits accompany it.

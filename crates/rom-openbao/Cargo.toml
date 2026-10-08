@@ -1,0 +1,25 @@
+[package]
+name = "rom-openbao"
+description = "Bounded OpenBao KV v2 and derived Transit host adapter"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+[lints]
+workspace = true
+[features]
+service-fixture = []
+[dependencies]
+rom-secrets = { path = "../rom-secrets", version = "=0.1.0-dev" }
+rom-kms = { path = "../rom-kms", version = "=0.1.0-dev" }
+reqwest = { version = "=0.13.5", default-features = false, features = ["rustls"] }
+tokio = { version = "=1.53.1", features = ["time", "sync"] }
+url = "=2.5.8"
+base64 = "=0.22.1"
+serde = { version = "=1.0.229", features = ["derive"] }
+serde_json = "=1.0.151"
+zeroize = { version = "=1.9.1", default-features = false, features = ["alloc"] }
+[dev-dependencies]
+tokio = { version = "=1.53.1", features = ["rt", "macros"] }

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_OPENBAO_ENDPOINT:?Set the isolated verified-TLS OpenBao fixture endpoint.}"
+: "${ROM_EXTRAS_OPENBAO_CA:?Set the protected fixture CA file.}"
+: "${ROM_EXTRAS_OPENBAO_TOKEN:?Set the limited runtime fixture token.}"
+: "${ROM_EXTRAS_OPENBAO_MARKERS:?Set the protected expected-material file.}"
+: "${ROM_EXTRAS_OPENBAO_ADMIN_FILE:?Set the private test-only provisioning file.}"
+cargo test -p rom-secrets -p rom-kms -p rom-openbao --locked \
+    --features rom-openbao/service-fixture -- --test-threads=1
+cargo clippy -p rom-secrets -p rom-kms -p rom-openbao --locked \
+    --features rom-openbao/service-fixture --all-targets -- -D warnings
+cargo test --manifest-path tests/public-consumer/Cargo.toml --locked \
+    --features secrets-host --test secrets_host
+cargo clippy --manifest-path tests/public-consumer/Cargo.toml --locked \
+    --features secrets-host --all-targets -- -D warnings
+./scripts/check-secrets-package

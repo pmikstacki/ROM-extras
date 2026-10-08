@@ -1,0 +1,2 @@
+# Preserve raw verification output; writing rules prohibit rewriting evidence.
+docs/verification/*.log -text -whitespace

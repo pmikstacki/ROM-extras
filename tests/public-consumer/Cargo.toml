@@ -9,6 +9,7 @@ license = "MIT"
 [workspace]
 
 [features]
+secrets-host = ["dep:tokio", "dep:rom-identity", "dep:rom-sqlite", "dep:rom-redb", "dep:serde_json"]
 oracle-conformance = ["dep:oracle", "dep:tokio"]
 s3-lifecycle = ["s3-conformance", "dep:rom-sqlite", "dep:rom-redb", "dep:futures-util"]
 s3-conformance = ["dep:tokio", "dep:rom-blob-object-store", "dep:rom-conformance"]
@@ -20,6 +21,10 @@ nats-conformance = ["dep:async-nats", "dep:tokio"]
 cockroach-conformance = ["dep:postgres", "dep:tokio"]
 postgres-conformance = ["dep:postgres", "dep:tokio"]
 mssql-conformance = ["dep:tiberius", "dep:tokio", "dep:tokio-util"]
+
+[[test]]
+name = "secrets_host"
+required-features = ["secrets-host"]
 
 [[test]]
 name = "cockroach_executor"
@@ -62,6 +67,11 @@ name = "oracle_executor"
 required-features = ["oracle-conformance"]
 
 [dependencies]
+rom-identity = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", optional = true }
+serde_json = { version = "=1.0.151", optional = true }
+rom-secrets = { path = "../../crates/rom-secrets" }
+rom-kms = { path = "../../crates/rom-kms" }
+rom-openbao = { path = "../../crates/rom-openbao" }
 oracle = { version = "=0.6.3", default-features = false, optional = true }
 rom-sqlite = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", optional = true }
 rom-redb = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", optional = true }

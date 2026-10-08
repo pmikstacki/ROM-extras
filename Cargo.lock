@@ -2303,6 +2303,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "rom-kms"
+version = "0.1.0-dev"
+dependencies = [
+ "rom-secrets",
+]
+
+[[package]]
 name = "rom-nats"
 version = "0.1.0-dev"
 dependencies = [
@@ -2326,6 +2333,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "rom-openbao"
+version = "0.1.0-dev"
+dependencies = [
+ "base64 0.22.1",
+ "reqwest",
+ "rom-kms",
+ "rom-secrets",
+ "serde",
+ "serde_json",
+ "tokio",
+ "url",
+ "zeroize",
+]
+
+[[package]]
 name = "rom-rabbitmq"
 version = "0.1.0-dev"
 dependencies = [
@@ -2346,6 +2368,13 @@ dependencies = [
  "rom",
  "rom-backup",
  "serde_json",
+]
+
+[[package]]
+name = "rom-secrets"
+version = "0.1.0-dev"
+dependencies = [
+ "zeroize",
 ]
 
 [[package]]

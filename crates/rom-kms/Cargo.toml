@@ -1,0 +1,13 @@
+[package]
+name = "rom-kms"
+description = "Bounded host authenticated-encryption contracts"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+[lints]
+workspace = true
+[dependencies]
+rom-secrets = { path = "../rom-secrets", version = "=0.1.0-dev" }

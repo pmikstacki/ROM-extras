@@ -12,3 +12,4 @@ cd -- "$(dirname -- "$0")/.."
 ./scripts/check-kafka
 ./scripts/check-azure
 ./scripts/check-s3
+./scripts/check-openbao

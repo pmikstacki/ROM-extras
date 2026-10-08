@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-08",
+  "evidence_category": "locally executed independent API probe; Rust adapter not implemented",
+  "image": "quay.io/openbao/openbao@sha256:a36ea8c27f0dcff5757664ad080425f96d3b6b2f33db3e76c4e2d3112fb17005",
+  "binary_version": "2.7.1",
+  "binary_commit": "a5db72cef75c24b920ade02065b18dd8eb666bac",
+  "go_version": "go1.27.1",
+  "cgo": false,
+  "container": "rom-extras-openbao-20261008",
+  "storage": "persistent single-node Raft; data-qualified bind directory",
+  "node_id": "rom-extras-openbao-20261008",
+  "host_api": "https://127.0.0.1:55459",
+  "cluster": "container loopback; unpublished",
+  "allowance": {
+    "cpus": 1,
+    "memory_mib": 512,
+    "claim": "experimental fixture limits, not production sizing"
+  },
+  "tls": {
+    "verified_private_ca": true,
+    "certificate_days": 7,
+    "minimum": "tls12"
+  },
+  "initialization": {
+    "shares": 1,
+    "threshold": 1,
+    "scope": "local test only, not production key custody",
+    "admin_client_timeout_seconds": 60,
+    "initial_unknown_outcome": "first service initialized after five-second client wait expired; keys not retained; stopped container and data preserved separately"
+  },
+  "runtime_token": {
+    "root": false,
+    "renewable": false,
+    "ttl": "24h",
+    "permissions": [
+      "read secret/data/rom-extras/client",
+      "update transit/encrypt/rom-extras",
+      "update transit/decrypt/rom-extras"
+    ]
+  },
+  "key": {
+    "type": "aes256-gcm96",
+    "derived": true,
+    "exportable": false,
+    "plaintext_backup": false,
+    "convergent": false
+  },
+  "probes_passed": [
+    "actual version1 pinned read",
+    "latest version2 read",
+    "derived-key encrypt/decrypt with separate context and AAD",
+    "changed AAD rejected HTTP400",
+    "denied path rejected HTTP403"
+  ],
+  "pending": [
+    "Rust adapter",
+    "changed derivation context",
+    "rotation",
+    "expired/revoked token",
+    "bounded response and admission",
+    "restart retained-state proof",
+    "native ROM host example",
+    "full verifier"
+  ],
+  "config_sha256": "fd42c7288eb5e38925f1d361f9d839cdcccb953567790d8bb6a24179aee7aed0"
+}

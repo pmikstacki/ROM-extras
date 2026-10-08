@@ -236,3 +236,17 @@ The consumer dependency graph adds ten packages, preserves all previous identiti
 This Rust audit does not assess native OCI security. Native libraries remain unmodified outside Git.
 See [fixture scope](oracle-fixture.md), [fixture facts](verification/oracle-fixture-2026-10-08.json), and [dependency inventory](verification/oracle-dependencies-2026-10-08.json).
 Full Storage, TLS, ambiguous commit fault injection, Transaction Guard, replicated durability and packaged release acceptance remain pending.
+
+## Host secrets and KMS increment
+
+The family adds rom-secrets, rom-kms and rom-openbao with one bounded internal HTTPS transport.
+The local OpenBao2.7.1 profile covers versioned KV, token denial/expiry/revocation, key rotation and authenticated context/AAD.
+It also exercises admission limits, operation deadlines, certificate identity and persistent restart/unseal.
+The native host example uses public IdentityProvider references, current authorization and a revision check after actual resolution.
+Two scenarios run on SQLite and redb, including a provider disable during resolution and controlled capture checks.
+An independent consumer compiles normalized Cargo archives and executes actual KV and Transit operations.
+Local patches resolve the unpublished family packages; no registry publication is claimed.
+The required check-openbao gate includes service, native-host and archive-consumer checks.
+See [contracts, fixture limits and uncertainties](secrets-kms.md) and [dependency evidence](verification/secrets-kms-final-dependencies-2026-10-08.json).
+Two administrative HTTP500 failures remain preserved; their exact cause is unproven.
+Separate Vault/AWS/Azure profiles, production custody, replicated durability and renewal remain pending.

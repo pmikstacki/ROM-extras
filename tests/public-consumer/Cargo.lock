@@ -2935,17 +2935,33 @@ dependencies = [
  "rom-blob-object-store",
  "rom-conformance",
  "rom-delivery-core",
+ "rom-identity",
  "rom-kafka",
+ "rom-kms",
  "rom-nats",
  "rom-oidc-presets",
+ "rom-openbao",
  "rom-rabbitmq",
  "rom-redb",
+ "rom-secrets",
  "rom-sql-core",
  "rom-sqlite",
  "rom-webhook",
+ "serde_json",
  "tiberius",
  "tokio",
  "tokio-util",
+]
+
+[[package]]
+name = "rom-identity"
+version = "0.0.3"
+source = "git+https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef529040eec60dc869034c2d33130219db85fe"
+dependencies = [
+ "rom",
+ "rom-auth",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]
@@ -2956,6 +2972,13 @@ dependencies = [
  "rom",
  "rom-delivery-core",
  "tokio",
+]
+
+[[package]]
+name = "rom-kms"
+version = "0.1.0-dev"
+dependencies = [
+ "rom-secrets",
 ]
 
 [[package]]
@@ -2977,6 +3000,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "rom-openbao"
+version = "0.1.0-dev"
+dependencies = [
+ "base64 0.22.1",
+ "reqwest",
+ "rom-kms",
+ "rom-secrets",
+ "serde",
+ "serde_json",
+ "tokio",
+ "url",
+ "zeroize",
+]
+
+[[package]]
 name = "rom-rabbitmq"
 version = "0.1.0-dev"
 dependencies = [
@@ -2995,6 +3033,13 @@ dependencies = [
  "rom",
  "rom-backup",
  "serde_json",
+]
+
+[[package]]
+name = "rom-secrets"
+version = "0.1.0-dev"
+dependencies = [
+ "zeroize",
 ]
 
 [[package]]
@@ -3640,7 +3685,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "32497e9a4c7b38532efcdebeef879707aa9f794296a4f0244f6f69e9bc8574bd"
 dependencies = [
  "fastrand",
- "getrandom 0.4.3",
+ "getrandom 0.3.4",
  "once_cell",
  "rustix",
  "windows-sys 0.61.2",
