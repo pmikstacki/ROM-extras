@@ -1,0 +1,38 @@
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+   Compiling rom-rabbitmq v0.1.0-dev (/root/ROM-extras/crates/rom-rabbitmq)
+   Compiling rom-sqlite v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-redb v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+error[E0425]: cannot find type `Execution` in this scope
+  --> crates/rom-rabbitmq/tests/common/receiver.rs:20:52
+   |
+20 |     pub async fn accept(&self,id:&str,body:&[u8])->Execution {
+   |                                                    ^^^^^^^^^ not found in this scope
+
+error[E0609]: no field `count` on type `Option<Received>`
+  --> crates/rom-rabbitmq/tests/common/receiver.rs:24:109
+   |
+24 |     pub async fn count(&self)->u64 {self.rt.read::<Received>(&Self::actor(),"counter").await.unwrap().value.count}
+   |                                                                                                             ^^^^^ unknown field
+   |
+help: one of the expressions' fields has a field of the same name
+   |
+24 |     pub async fn count(&self)->u64 {self.rt.read::<Received>(&Self::actor(),"counter").await.unwrap().value.unwrap().count}
+   |                                                                                                             +++++++++
+
+error[E0533]: expected value, found struct variant `Error::Invalid`
+ --> crates/rom-rabbitmq/tests/common/receiver.rs:7:28
+  |
+7 |     if payload {return Err(Error::Invalid);}
+  |                            ^^^^^^^^^^^^^^ not a value
+  |
+help: you might have meant to create a new value of the struct
+  |
+7 -     if payload {return Err(Error::Invalid);}
+7 +     if payload {return Err(Error::Invalid { kind: /* value */, field: /* value */ };}
+  |
+
+Some errors have detailed explanations: E0425, E0533, E0609.
+For more information about an error, try `rustc --explain E0425`.
+error: could not compile `rom-rabbitmq` (test "runtime") due to 3 previous errors

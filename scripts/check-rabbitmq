@@ -3,6 +3,7 @@ set -euo pipefail
 cd -- "$(dirname -- "$0")/.."
 : "${ROM_EXTRAS_RABBITMQ_URI:?Required dedicated RabbitMQ fixture configuration}"
 cargo test -p rom-rabbitmq --features broker-conformance --test broker --locked
+cargo test -p rom-rabbitmq --features broker-conformance --test runtime --locked
 cargo clippy -p rom-rabbitmq --features broker-conformance --all-targets --locked -- -D warnings
 cargo test --manifest-path tests/public-consumer/Cargo.toml --features rabbitmq-conformance --test rabbitmq_delivery --locked
 cargo clippy --manifest-path tests/public-consumer/Cargo.toml --features rabbitmq-conformance --all-targets --locked -- -D warnings

@@ -57,5 +57,13 @@ After restart, readiness checks the RabbitMQ application; runtime ping alone doe
 One live test checks confirms, properties, duplicate messages, persistence/restart, unacknowledged redelivery,
 unroutable return/reprovision, invalid configuration, preparation refusal, overload, timeout/cancellation retirement, and eventual buffered writes.
 An independent public consumer receives actual confirmation and reads persistent false JSON and the unchanged ID.
-Post-commit confirmation-loss injection, native Runtime integration, verified TLS host profiles, and packaged release remain open.
+The required Runtime test drops a real basic.ack after broker acceptance. A separate connection reads the message before timeout.
+SQLite/redb reopening preserves Pending, Unknown, identity, and attempt count. Explicit host rebinding permits the Runtime-owned second attempt.
+That retry creates two queue messages with the same ID. RabbitMQ does not deduplicate these publications.
+A fixture receiver uses ROM's durable action receipt to commit one effect for both messages.
+After the first effect commits, its consumer connection closes without ACK. RabbitMQ automatically redelivers the unacknowledged message.
+The reopened receiver replays its receipt before acknowledging duplicates. A further reopening verifies exactly one retained counter increment.
+Current source disclosure denial and service revocation stop work without further publication.
+This receiver is a test application, not a universal production receiver or distributed exactly-once guarantee.
+Verified TLS host profiles and packaged release remain open.
 No complete production RabbitMQ provider support is claimed by this increment.

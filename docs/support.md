@@ -131,5 +131,17 @@ Real RabbitMQ4.3.2 tests verify false payload/properties, two same-ID messages, 
 NO_ROUTE/reprovision, preparation refusal, overload, timeout/cancellation, eventual buffered writes, and no later publication from retired adapters.
 An independent consumer obtains a real confirmation and reads persistent false JSON with the unchanged ID.
 Queue durability is a host invariant; passive binding checks existence only. The fixture CLI records durable quorum queues.
-Native Runtime, post-commit confirm-loss injection, verified TLS, and production release acceptance remain open.
+The following increment supplies native Runtime and actual post-commit confirmation-loss evidence.
+Verified TLS and production release acceptance remain open.
 The selected client can trace returned payloads; hosts must filter dependency logs. See [configuration and limits](rabbitmq.md).
+
+## RabbitMQ post-commit confirmation loss and durable receiver increment
+
+A loopback proxy drops the first actual publisher basic.ack, with channel1 and delivery tag1.
+A separate broker connection reads the preserved ID and false JSON while Runtime still awaits confirmation.
+Both native backends retain Unknown and attempts across reopening. Explicit host rebinding allows Runtime's second attempt to reach Accepted.
+Two messages retain the same ID. The fixture receiver commits one Resource effect with a durable ROM idempotency receipt.
+Its connection closes without consumer ACK after commit. Actual broker redelivery and publication duplicates replay the reopened receipt.
+Another receiver reopening retains one effect. Current source/service denial prevents further publication.
+This verifies the fixture application pattern, not a production receiver library or unrestricted exactly-once effects.
+TLS, replicated failover, and packaged release remain open.

@@ -1,0 +1,76 @@
+{
+  "base": "01b2dc656c2fd2a2ee642f5a455f78e69c96563d",
+  "scope": "post-command source witness, not a complete pre/post release fence",
+  "command": "./scripts/check-all",
+  "terminal_exit": 0,
+  "source": [
+    {
+      "path": "Cargo.lock",
+      "sha256": "9e51f62d48f9fad03ecdbc31c3b81af3e58421c35c2d81a6404f67e0f84dee36"
+    },
+    {
+      "path": "Cargo.toml",
+      "sha256": "05a29129e999b0f0d8558fc9e87eb473260fff6ec710e639d6f7aab6bc3bdd63"
+    },
+    {
+      "path": "crates/rom-rabbitmq/Cargo.toml",
+      "sha256": "064c2cde697154e304c28367008d162766c56161bd9843bac57e514faabf6c2e"
+    },
+    {
+      "path": "crates/rom-rabbitmq/tests/runtime.rs",
+      "sha256": "9683f81f392b2a0744fcc9b4295d6d7530e2894ec766cdb1b2b233fa2d11549e"
+    },
+    {
+      "path": "crates/rom-rabbitmq/src/error.rs",
+      "sha256": "319c603c916ab31e7de1db84c95970488c6bd029533cc13c742361d398273e9c"
+    },
+    {
+      "path": "crates/rom-rabbitmq/src/delivery.rs",
+      "sha256": "ee3aa146118f5d3c0ee4b178d9b9e52f78b52cc480834a909da91a741755c659"
+    },
+    {
+      "path": "crates/rom-rabbitmq/src/lib.rs",
+      "sha256": "3741c4dfee3ff643d7859177e29ec6391f25903f0de43cc3158dcc75e048aa03"
+    },
+    {
+      "path": "crates/rom-rabbitmq/tests/common/mod.rs",
+      "sha256": "464770c2f3a150ed4c121af7fa6c00cc729b86ab0280b5c9feecb5dce5e9f4cc"
+    },
+    {
+      "path": "crates/rom-rabbitmq/tests/common/receiver.rs",
+      "sha256": "8b12b9510eacb0e06a3b4bf3ecaf2509b3518f8ffca34e234238ae63c0a9b889"
+    },
+    {
+      "path": "crates/rom-rabbitmq/tests/broker.rs",
+      "sha256": "33bf7cac9d51e63891eddfa0198ff4e7d1cd401810e845c0c130d4d3ceef1da6"
+    },
+    {
+      "path": "crates/rom-rabbitmq/tests/common/ack-proxy.cjs",
+      "sha256": "8497355834b9b1293eef4c1071e06bcbe42d0b92fcc8a67fb170926af632508f"
+    },
+    {
+      "path": "crates/rom-rabbitmq/tests/common/ack_proxy.rs",
+      "sha256": "2732ea40fd6e878aeda2f7cf4fa596ca31f18f4403fd816eeead4f266aca9e74"
+    },
+    {
+      "path": "scripts/check-rabbitmq",
+      "sha256": "c9a1113a5a0664477c48c3ef4bfe86336d4375b926d148bc19709854ba54d137"
+    },
+    {
+      "path": "scripts/check-all",
+      "sha256": "c1013684b8fba90385699a1fdbc153e5efea5f5a12d5fc17d86c923f5e62a41f"
+    },
+    {
+      "path": "scripts/check",
+      "sha256": "784b64e7eba5779497d29be7df046d020c558223cfa859e3e84e688ffd8c87ec"
+    },
+    {
+      "path": "tests/public-consumer/Cargo.lock",
+      "sha256": "526639a98a9a4f573ba9249f291f7171c9d1abfadf9d5570e80585537a53f172"
+    }
+  ],
+  "log": {
+    "path": "docs/verification/check-all-rabbitmq-runtime-2026-10-08.log",
+    "sha256": "cd9d94ba4163cfc2d9ea51d77a1f0ba921c159087d86b9bc1d8cc40974634b25"
+  }
+}

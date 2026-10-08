@@ -1,0 +1,40 @@
+   Compiling rom-rabbitmq v0.1.0-dev (/root/ROM-extras/crates/rom-rabbitmq)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.06s
+     Running tests/runtime.rs (target/debug/deps/runtime-256ca078a646ff0f)
+
+running 1 test
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module '/root/ROM-extras/crates/rom-rabbitmq/tests/common/ack-proxy.cjs'
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v22.16.0
+test reopened_runtime_retries_committed_message_and_receiver_deduplicates_durably ... FAILED
+
+failures:
+
+---- reopened_runtime_retries_committed_message_and_receiver_deduplicates_durably stdout ----
+
+thread 'reopened_runtime_retries_committed_message_and_receiver_deduplicates_durably' (2362977) panicked at crates/rom-rabbitmq/tests/common/ack_proxy.rs:41:45:
+proxy readiness port: ParseIntError { kind: Empty }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    reopened_runtime_retries_committed_message_and_receiver_deduplicates_durably
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+
+error: test failed, to rerun pass `-p rom-rabbitmq --test runtime`
