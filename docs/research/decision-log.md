@@ -398,3 +398,33 @@ Apply Git's raw-evidence attributes only to docs/verification/*.log; code and pr
 The [Git attributes contract](https://git-scm.com/docs/gitattributes) defines unset text and whitespace behavior.
 The staged raw output initially reported two whitespace diagnostics. After the attributes change, the same staged bytes pass the check.
 This metadata check follows the full backend verifier; no runtime input changes or log edits accompany it.
+
+## 2026-10-08: projection protocol and delayed writes
+
+Sources: [OpenSearch Bulk](https://docs.opensearch.org/latest/api-reference/document-apis/bulk/), [delete-version lifetime](https://docs.opensearch.org/latest/api-reference/document-apis/delete-document/), [Qdrant consistency](https://qdrant.tech/documentation/scaling/consistency-guarantees/), [tagged conditional operations](https://github.com/qdrant/qdrant/blob/v1.19.2/lib/collection/src/operations/point_ops.rs).
+
+Select separate backend adapters behind shared durable intent/checkpoint orchestration and current ROM disclosure.
+Use persistent tombstone revision state; physical-delete retention cannot establish indefinite stale-replay protection.
+Do not accept local single-writer serialization alone as Qdrant's remote revision fence.
+A submitted old request can remain active after an HTTP timeout and complete after a newer write.
+The conditional check/application boundary needs tagged source inspection and actual concurrency tests before protocol admission.
+Strong ordering is an alternative ordering setting, not evidence of ROM revision comparison.
+The new spec and plan retain this gate explicitly; no runtime/provider support claim follows from research.
+Application bounds are conservative fixture policy, not vendor maxima, and remain subject to measured qualification.
+Observed host memory available was 9582 MiB and disk available was 193 GiB; these snapshots do not reserve service capacity.
+Observed vm.max_map_count was 1048576, above OpenSearch's documented 262144 requirement. No global setting was changed.
+
+### Executed Qdrant native-fence probe
+
+The [tagged-source report](qdrant-revision-fencing.md) identifies conditional resolution under an exclusive submit lock and queue drain.
+Select conditional whole-point upsert, strict lexicographic u32 revision halves, and persistent same-ID tombstones for single-node qualification.
+The [actual probe record](../verification/qdrant-fence-probe-2026-10-08.json) confirms indexed and unindexed high-u64 comparison, concurrent inserts, and empty-vector tombstones.
+Its physical-delete counterexample confirms that a stale request can reinsert a deleted point.
+A completed conditional operation can be a no-op. Require stored identity/revision/content reconciliation before acknowledging the worker page.
+The exploratory restart preserved u64::MAX and concurrent highest revisions. It did not qualify tombstone restart or acknowledgement loss.
+The official image runs with an experimental 1-CPU/512-MiB fixture allowance. This is not a vendor resource minimum.
+No production adapter, ROM checkpoint worker, or support claim follows from this probe.
+
+Independent source review found default Python redirects in the exploratory credential-bearing probe.
+Reject redirects explicitly. A controlled loopback redirect test confirmed that the target received zero requests.
+The corrected probe and persistent restart checks passed again. Updated evidence hashes identify the executed corrected source.

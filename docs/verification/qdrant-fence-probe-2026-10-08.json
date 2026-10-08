@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-08",
+  "category": "executed exploratory real-service probe; not completed provider",
+  "server": {
+    "version": "1.19.2",
+    "commit": "016542aa5deb6c66380bb137badf73d54f742bde",
+    "image": "docker.io/qdrant/qdrant@sha256:0e8273b9130ca3b0dd9dcfaa8f55342066711f8aaeb2aa072e53344c42ecf57f",
+    "container": "rom-extras-qdrant-20261008",
+    "rest": "https://127.0.0.1:55461",
+    "persistent": true,
+    "grpc_disabled": true,
+    "telemetry_disabled": true,
+    "cpus": 1,
+    "memory_bytes": 536870912,
+    "limits_are": "experimental fixture allowances, not vendor minima"
+  },
+  "transport": {
+    "verified_private_tls": true,
+    "proxies": false,
+    "timeout_seconds": 5,
+    "response_bytes": 1048576,
+    "write_and_read_credentials_private": true,
+    "redirects": false
+  },
+  "source": {
+    "probe": "tests/projection-probes/qdrant_fence.py",
+    "sha256": "23239c77ca3820bfa08a31cddebc060553cf84a0038cd18a1f490cc8f12225ea",
+    "tagged_config_sha256": "97d5918e429cbb1672d645955a28c8d8ef25e28f97bb8940d2ea0b253d5a2f35",
+    "image_manifest_sha256": "0decaa2055689a5db803a8bc1236af90d2c113c792c62146654d7f074d56f3a6"
+  },
+  "command": "/nix/store/b8n5rllwv18y2izb3dzipnzrk4ic5w53-python3-3.12.8-env/bin/python3 .superpowers/qdrant-fence-probe.py",
+  "exit_code": 0,
+  "output": "docs/verification/qdrant-fence-probe-2026-10-08.log",
+  "cases": {
+    "both_indexed_and_unindexed": true,
+    "revisions": [
+      "1",
+      "4294967295",
+      "4294967296",
+      "9007199254740991",
+      "9007199254740992",
+      "9223372036854775807",
+      "9223372036854775808",
+      "18446744073709551615"
+    ],
+    "stale_and_equal_no_overwrite": true,
+    "empty_named_vector_tombstone": true,
+    "concurrent_initial_insert_highest_revision": true,
+    "physical_delete_resurrection_counterexample": true,
+    "unauthorized_and_read_only_write_denied": true,
+    "persistent_restart_max_and_race_revisions": true
+  },
+  "limitations": [
+    "No ROM worker or checkpoint implementation exists.",
+    "No actual delayed-request proxy or ACK-loss injection executed.",
+    "No tombstone restart case executed: physical-delete counterexample subsequently replaced the probe tombstone.",
+    "No OpenSearch fixture or integration executed.",
+    "No multi-node guarantee or full-verifier claim for projection runtime.",
+    "Exploratory probe uses a fixed isolated private fixture path; it is not a production API."
+  ],
+  "restart_output": "docs/verification/qdrant-restart-check-2026-10-08.log",
+  "redirect_test_output": "docs/verification/qdrant-probe-redirect-test-2026-10-08.log",
+  "executed_collections": [
+    "rom_extras_fence_4b0af992a89941ffb459729997c7885c",
+    "rom_extras_fence_dd5bd9c50b924761b065264550c18f7a"
+  ],
+  "review": {
+    "category": "independent source review",
+    "finding": "Default redirect handler could forward API key; fixed by rejecting redirects.",
+    "verification": "Controlled local redirect rejected with zero target calls; current probe and restart rerun passed."
+  },
+  "repository_check": {
+    "command": "./scripts/check",
+    "exit_code": 0,
+    "base_commit": "f38e7bfe1a7f12c1819b5316467acb96be60d18d",
+    "changes": "Projection research/spec/plan, exploratory Python probe and evidence only; Rust workspace runtime/manifests/lockfiles unchanged.",
+    "output": "docs/verification/projection-design-local-check-2026-10-08.log",
+    "output_sha256": "1243c2d4e5cbfb0a8fda0284cdaf428d57643e665e3f191907478a2230e5f801",
+    "scope": "Existing workspace gate plus separate real Qdrant exploratory probe; not full projection-family acceptance."
+  }
+}

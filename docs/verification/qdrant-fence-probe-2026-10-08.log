@@ -1,0 +1,3 @@
+PASS indexed=False exact-u64 stale/equal fencing, empty-vector tombstone, concurrent initial insert; physical-delete resurrection counterexample confirmed
+PASS indexed=True exact-u64 stale/equal fencing, empty-vector tombstone, concurrent initial insert; physical-delete resurrection counterexample confirmed
+PASS unauthorized/read-only writes rejected; verified HTTPS; service version 1.19.2
