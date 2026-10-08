@@ -1,0 +1,43 @@
+   Compiling h2 v0.4.20
+   Compiling rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-redb v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-sqlite v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling hyper v1.12.0
+   Compiling hyper-util v0.1.21
+   Compiling hyper-rustls v0.27.10
+   Compiling reqwest v0.13.5
+   Compiling object_store v0.14.2
+   Compiling rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+warning: unused import: `Result`
+ --> crates/rom-azure-blob/tests/common/lifecycle_store.rs:3:48
+  |
+3 | use rom_blob::{BlobStore, Metadata, ObjectKey, Result, StoreFuture};
+  |                                                ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: `rom-azure-blob` (test "lifecycle") generated 1 warning (run `cargo fix --test "lifecycle" -p rom-azure-blob` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.12s
+     Running tests/lifecycle.rs (target/debug/deps/lifecycle-682ef4364eca1b33)
+
+running 2 tests
+test deleted_reservation_returns_real_unattached_object_without_implicit_cleanup ... FAILED
+test staged_content_authorization_and_detachment_survive_native_reopen ... ok
+
+failures:
+
+---- deleted_reservation_returns_real_unattached_object_without_implicit_cleanup stdout ----
+
+thread 'deleted_reservation_returns_real_unattached_object_without_implicit_cleanup' (3066673) panicked at crates/rom-azure-blob/tests/lifecycle.rs:188:9:
+assertion `left == right` failed
+  left: Denied
+ right: Conflict
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    deleted_reservation_returns_real_unattached_object_without_implicit_cleanup
+
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.24s
+
+error: test failed, to rerun pass `-p rom-azure-blob --test lifecycle`

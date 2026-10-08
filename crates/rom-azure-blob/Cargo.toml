@@ -19,6 +19,9 @@ tokio = { version = "=1.53.1", features = ["sync", "time"] }
 url = "=2.5.8"
 
 [dev-dependencies]
+rom = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+rom-sqlite = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+rom-redb = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
 tokio = { version = "=1.53.1", features = ["macros", "rt", "net", "io-util"] }
 rom-conformance = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", features = ["blob"] }
 
@@ -27,4 +30,8 @@ emulator-conformance = []
 
 [[test]]
 name = "emulator"
+required-features = ["emulator-conformance"]
+
+[[test]]
+name = "lifecycle"
 required-features = ["emulator-conformance"]

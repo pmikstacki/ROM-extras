@@ -97,7 +97,7 @@ The Node 22.16 fixture SQLite API is experimental; this is not a production rece
 | NATS | Acknowledged JetStream publication, broker recovery/redelivery, and native Runtime retry/revocation verified; single-node TLS-first token/reconnect profile verified; production topology and release remain pending. |
 | RabbitMQ | Mandatory publication, native Runtime, actual confirm loss, receiver receipts, TLS and explicit reconnect verified; replicated failover and release remain pending. |
 | Kafka, notifications | Kafka publication, actual acknowledgement loss, native Runtime/receipt recovery and TLS/SASL verified; additional notification connectors and release remain pending. |
-| S3-compatible, Azure Blob | Azure port and persistent Azurite conformance implemented; cloud, BlobService lifecycle, actual acknowledgement loss, and S3 profiles remain pending. |
+| S3-compatible, Azure Blob | Azure port and persistent Azurite conformance implemented; basic native BlobService lifecycle verified; cloud, further lifecycle faults, actual acknowledgement loss, and S3 profiles remain pending. |
 | Secrets and KMS | Bounded family contract, provider implementation, and service verification remain pending. |
 | OpenSearch and vectors | Projection contract, implementation, authorization checks, and real fixtures remain pending. |
 | Backup, migration, import | SQL archive contract and provenance-preserving tools remain pending. |
@@ -181,3 +181,12 @@ Review corrected endpoint tests that were masked by malformed credentials; mutat
 The 360-package workspace and 422-package consumer graphs have no reported audit vulnerabilities or warnings.
 This establishes local emulator behavior, not Azure cloud support or complete BlobService integration.
 See [the adapter contract](azure-blob.md) and [retained evidence](verification/azure-blob-2026-10-08.md).
+
+
+## Azure native BlobService lifecycle increment
+
+Two additional test scenarios run on both SQLite and redb with actual Azure adapter operations.
+They verify rejected staging/digest input, owner-only reads, Ready/Detached reopening, and retained unattached objects after reservation deletion.
+No new production lifecycle or cleanup implementation is added.
+The initial Conflict expectation was corrected to the public tombstone Denied result; the failed run remains preserved.
+See [executed scope and remaining gates](verification/azure-lifecycle-2026-10-08.md).

@@ -2227,8 +2227,11 @@ version = "0.1.0-dev"
 dependencies = [
  "futures-util",
  "object_store",
+ "rom",
  "rom-blob",
  "rom-conformance",
+ "rom-redb",
+ "rom-sqlite",
  "tokio",
  "url",
 ]

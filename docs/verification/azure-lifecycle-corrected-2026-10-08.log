@@ -1,0 +1,68 @@
+   Compiling rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.99s
+     Running unittests src/lib.rs (target/debug/deps/rom_azure_blob-b5a9e0d4b6b50609)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/configuration.rs (target/debug/deps/configuration-d87ec740c65e4efc)
+
+running 3 tests
+test malformed_credentials_and_unbounded_limits_are_rejected ... ok
+test unsafe_endpoints_are_refused_with_valid_credentials ... ok
+test valid_cloud_and_emulator_configuration_construct_clients ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests/emulator.rs (target/debug/deps/emulator-20e1a7dc926d9cb4)
+
+running 3 tests
+test published_blob_contract_passes_against_azurite ... ok
+test false_payload_retains_metadata_and_bytes_after_emulator_restart ... ok
+test wrong_account_key_is_confirmed_denied ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.70s
+
+     Running tests/interruption.rs (target/debug/deps/interruption-6c7d726326c76d70)
+
+running 2 tests
+test etag_change_between_metadata_and_body_is_refused ... ok
+test busy_admission_refuses_extra_request_and_unacknowledged_write_is_unknown ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.52s
+
+     Running tests/lifecycle.rs (target/debug/deps/lifecycle-682ef4364eca1b33)
+
+running 2 tests
+test deleted_reservation_returns_real_unattached_object_without_implicit_cleanup ... ok
+test staged_content_authorization_and_detachment_survive_native_reopen ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.49s
+
+   Doc-tests rom_azure_blob
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+    Checking h2 v0.4.20
+    Checking rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-sqlite v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-redb v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking hyper v1.12.0
+    Checking hyper-util v0.1.21
+    Checking hyper-rustls v0.27.10
+    Checking reqwest v0.13.5
+    Checking object_store v0.14.2
+    Checking rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.36s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s
+     Running tests/azure_blob.rs (tests/public-consumer/target/debug/deps/azure_blob-5c12a0cb78d6ac02)
+
+running 1 test
+test public_consumer_preserves_false_and_create_only_contract ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.19s

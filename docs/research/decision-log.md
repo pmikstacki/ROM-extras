@@ -134,3 +134,20 @@ Use [Tokio timeout](https://docs.rs/tokio/1.53.1/tokio/time/fn.timeout.html) for
 Serialize tests that restart their shared emulator with an async mutex held across awaits.
 [Tokio Mutex](https://docs.rs/tokio/1.53.1/tokio/sync/struct.Mutex.html) supports that lifetime; the preserved failed run establishes the local interference.
 A distinct fixture per test is an alternative, but duplicates service provisioning without improving this single-emulator contract.
+
+## 2026-10-08: Azure BlobService integration on native storage
+
+Reuse published BlobService staging, SHA256 verification, current authorization, and conditional attachment.
+Add real Azure provider tests on separately reopened SQLite and redb, instead of implementing another blob lifecycle.
+[Public operations](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom-blob/src/service/operations.rs) and [staging](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom-blob/src/staging.rs) establish these contracts.
+
+A deleted reservation must preserve the observed Denied cause, not the test's initial assumed Conflict.
+[Public Runtime read](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom/src/query.rs) rejects a tombstone before authorization.
+A distinct stale-revision case remains separate. The preserved initial failure verifies the mistaken test assumption.
+
+Use a test-only wrapper to pause after confirmed provider creation and establish the attachment race.
+Direct Azure reads independently verify retained bytes. The wrapper is not a network acknowledgement-loss substitute.
+The assessment [documents lifecycle ownership and trusted cleanup](azure-blob-lifecycle-assessment.md) from primary sources.
+Drain BlobService, drain Runtime, then drop Runtime owners before native reopen.
+Retain unattached and detached bytes because neither a receipt nor a missing Resource proves grace and quiescence.
+No automatic deletion is added; reconciliation and actual wire failure evidence remain separate work.
