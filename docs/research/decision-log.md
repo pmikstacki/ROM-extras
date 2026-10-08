@@ -99,3 +99,38 @@ Use `VARBINARY` for the identity experiment. [MySQL byte semantics](https://dev.
 Require explicit rollback after a statement-only duplicate-key rejection. [MySQL InnoDB error handling](https://dev.mysql.com/doc/refman/8.4/en/innodb-error-handling.html) explains the distinction. An observed rollback after panic/disconnection does not classify a lost commit acknowledgement.
 
 The initial Rustls feature selection resolved `rustls-pemfile` 2.2.0, flagged unmaintained by [RUSTSEC-2025-0134](https://rustsec.org/advisories/RUSTSEC-2025-0134.html). Preserve that audit and initial inventory. Select the driver's `native-tls` feature instead; its [implementation](https://github.com/blackbeam/rust-mysql-simple/blob/v28.0.3/src/io/tls/native_tls_io.rs) supports certificate and hostname verification. [native-tls](https://docs.rs/native-tls/0.2.18/native_tls/) uses OpenSSL on this Linux host. Reuse the separately verified maintained OpenSSL 3.5.9 installation, without vendored OpenSSL. This selection requires a fresh resolved-graph audit and full gate. Enabling a TLS backend is not evidence of a verified MySQL/MariaDB TLS handshake.
+
+## 2026-10-08: Azure Blob public-port increment
+
+Implement Azure through published `rom_blob::BlobStore`, because the current object-store adapter has no public arbitrary-provider constructor.
+Reuse BlobService and its Resource lifecycle. Preserve private ROM boundaries; do not copy private implementation.
+[Published adapter](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom-blob-object-store/src/adapter.rs) and [family assessment](object-storage-assessment.md) establish this choice.
+A future public generic constructor is an alternative; it cannot be assumed today.
+
+Use object_store 0.14.2 with only the Azure provider feature, explicit credentials and a fixed credential type.
+Avoid its ambient emulator endpoint branch. Supply an explicit numeric-loopback account path instead.
+[Builder source](https://github.com/apache/arrow-rs-object-store/blob/v0.14.2/src/azure/builder.rs) and [builder API](https://docs.rs/object_store/0.14.2/object_store/azure/struct.MicrosoftAzureBuilder.html) establish these controls.
+Zero SDK retries and finite Tokio admission/deadlines preserve caller ownership of uncertain writes.
+Default HTTP proxy and redirect behavior remains a documented SDK limitation, not a disabled behavior claim.
+
+Use create-only PUT and ETag-conditioned bounded GET rather than unconditional writes or unconditioned two-request reads.
+[Azure conditional requests](https://learn.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations) establish these operations.
+The 16-MiB object ceiling follows ROM's existing object-store profile; smaller configured limits remain available.
+[Published profile](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom-blob-object-store/src/configuration.rs) is the compatibility reference.
+These limits bound object bytes, not every SDK allocation.
+
+Use official Azurite 3.37.0 with a persistent named volume, explicit custom account, loopback binding, and telemetry disabled.
+[Azurite README](https://github.com/Azure/Azurite) documents these controls and its emulator scope.
+Its tested digest is recorded separately. Cloud TLS and authorization need a real account and remain unverified.
+Fixture SharedKey initialization follows [the official signing procedure](https://learn.microsoft.com/en-us/rest/api/storageservices/authorize-with-shared-key); credentials stay private.
+
+Endpoint regression tests must use valid credentials so another validation cannot mask the intended rejection.
+The initial masked tests passed after endpoint policy removal; corrected tests failed against that same mutation.
+This follows the repository's negative-fixture quality gate, verified locally rather than inferred from research.
+The SDK constructor's separate credential validation in the pinned builder source establishes the independent failure path.
+
+Validate account/container syntax from [Azure naming rules](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules) and [blob naming](https://learn.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata).
+Use [Tokio timeout](https://docs.rs/tokio/1.53.1/tokio/time/fn.timeout.html) for the complete operation, without implying synchronous work is preemptible.
+Serialize tests that restart their shared emulator with an async mutex held across awaits.
+[Tokio Mutex](https://docs.rs/tokio/1.53.1/tokio/sync/struct.Mutex.html) supports that lifetime; the preserved failed run establishes the local interference.
+A distinct fixture per test is an alternative, but duplicates service provisioning without improving this single-emulator contract.

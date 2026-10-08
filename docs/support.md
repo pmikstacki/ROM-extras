@@ -95,9 +95,9 @@ The Node 22.16 fixture SQLite API is experimental; this is not a production rece
 | OpenTelemetry | Public diagnostic interface publication and OTLP implementation remain pending. |
 | Webhooks | HTTPS/signing/destination policy and native Runtime recovery/authorization tests implemented; production receiver and release acceptance remain pending. |
 | NATS | Acknowledged JetStream publication, broker recovery/redelivery, and native Runtime retry/revocation verified; single-node TLS-first token/reconnect profile verified; production topology and release remain pending. |
-| RabbitMQ | Mandatory confirmed publication, persistence/restart/redelivery, and uncertainty/cancellation retirement verified; Runtime, post-commit confirm loss, and TLS remain pending. |
-| Kafka, notifications | Shared delivery preparation/signing implemented; provider implementations and real acknowledgement/recovery remain pending. |
-| S3-compatible, Azure Blob | Existing ROM adapter review and missing-operation implementation/real fixtures remain pending. |
+| RabbitMQ | Mandatory publication, native Runtime, actual confirm loss, receiver receipts, TLS and explicit reconnect verified; replicated failover and release remain pending. |
+| Kafka, notifications | Kafka publication, actual acknowledgement loss, native Runtime/receipt recovery and TLS/SASL verified; additional notification connectors and release remain pending. |
+| S3-compatible, Azure Blob | Azure port and persistent Azurite conformance implemented; cloud, BlobService lifecycle, actual acknowledgement loss, and S3 profiles remain pending. |
 | Secrets and KMS | Bounded family contract, provider implementation, and service verification remain pending. |
 | OpenSearch and vectors | Projection contract, implementation, authorization checks, and real fixtures remain pending. |
 | Backup, migration, import | SQL archive contract and provenance-preserving tools remain pending. |
@@ -172,3 +172,12 @@ An explicitly rebound adapter confirms a new publication. This does not claim au
 The independent consumer exercises public lapin TLS configuration and the unchanged adapter.
 The profile adds a fixture CA alongside native roots; it is not exclusive certificate pinning or mTLS.
 Clustered failover, certificate rotation, client-certificate authentication, and packaged release remain open.
+
+## Azure Blob port increment
+
+`rom-azure-blob` implements create-only storage, ETag-conditioned bounded reads, metadata, and idempotent maintenance deletion.
+Eight workspace tests and one independent consumer test passed against persistent Azurite and local native-HTTP fixtures.
+Review corrected endpoint tests that were masked by malformed credentials; mutation evidence verifies the correction.
+The 360-package workspace and 422-package consumer graphs have no reported audit vulnerabilities or warnings.
+This establishes local emulator behavior, not Azure cloud support or complete BlobService integration.
+See [the adapter contract](azure-blob.md) and [retained evidence](verification/azure-blob-2026-10-08.md).

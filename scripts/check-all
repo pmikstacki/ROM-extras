@@ -8,3 +8,4 @@ cd -- "$(dirname -- "$0")/.."
 ./scripts/check-nats
 ./scripts/check-rabbitmq
 ./scripts/check-kafka
+./scripts/check-azure

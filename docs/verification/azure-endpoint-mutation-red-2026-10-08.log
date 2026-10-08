@@ -1,0 +1,25 @@
+   Compiling rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.23s
+     Running tests/configuration.rs (target/debug/deps/configuration-47d13c6018a3f8e1)
+
+running 3 tests
+test malformed_credentials_and_unbounded_limits_are_rejected ... ok
+test unsafe_endpoints_are_refused_with_valid_credentials ... FAILED
+test valid_cloud_and_emulator_configuration_construct_clients ... ok
+
+failures:
+
+---- unsafe_endpoints_are_refused_with_valid_credentials stdout ----
+
+thread 'unsafe_endpoints_are_refused_with_valid_credentials' (3039265) panicked at crates/rom-azure-blob/tests/configuration.rs:24:9:
+assertion failed: matches!(AzureBlob::connect(config(endpoint, EndpointPolicy::HttpsOnly),
+    Limits::default()), Err(Error::Invalid))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    unsafe_endpoints_are_refused_with_valid_credentials
+
+test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+error: test failed, to rerun pass `-p rom-azure-blob --test configuration`

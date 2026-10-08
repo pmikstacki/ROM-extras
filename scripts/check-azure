@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_AZURE_ENDPOINT:?Set the explicit loopback emulator endpoint; missing fixtures never pass.}"
+: "${ROM_EXTRAS_AZURE_ACCOUNT:?Set the dedicated emulator account.}"
+: "${ROM_EXTRAS_AZURE_KEY:?Set the private emulator key.}"
+: "${ROM_EXTRAS_AZURE_CONTAINER:?Set the dedicated emulator namespace.}"
+cargo test -p rom-azure-blob --locked --features emulator-conformance
+cargo clippy -p rom-azure-blob --locked --all-targets --features emulator-conformance -- -D warnings
+cargo test --manifest-path tests/public-consumer/Cargo.toml --locked --features azure-conformance --test azure_blob
+cargo clippy --manifest-path tests/public-consumer/Cargo.toml --locked --all-targets --features azure-conformance -- -D warnings

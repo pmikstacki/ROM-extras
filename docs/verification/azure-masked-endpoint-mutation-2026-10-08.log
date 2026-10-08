@@ -1,0 +1,10 @@
+   Compiling rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.79s
+     Running tests/configuration.rs (target/debug/deps/configuration-47d13c6018a3f8e1)
+
+running 2 tests
+test credentials_and_unsafe_endpoints_are_refused_before_network ... ok
+test malformed_credentials_and_unbounded_limits_are_rejected ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

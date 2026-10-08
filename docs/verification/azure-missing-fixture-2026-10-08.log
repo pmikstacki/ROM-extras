@@ -1,0 +1,1 @@
+./scripts/check-azure: line 4: ROM_EXTRAS_AZURE_ENDPOINT: Set the explicit loopback emulator endpoint; missing fixtures never pass.

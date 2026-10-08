@@ -11,6 +11,7 @@ The delivery core prepares bounded JSON and Standard Webhooks signatures.
 [NATS JetStream publication](docs/nats.md) has live acknowledgement, deduplication, Runtime recovery, and TLS-first/reconnect tests.
 [RabbitMQ publication](docs/rabbitmq.md) has mandatory confirmation, persistence/restart, redelivery, and uncertainty/cancellation tests.
 [Kafka publication](docs/kafka.md) has live offset, duplicate, Runtime recovery, TLS/SASL, restart, and independent consumer tests.
+[Azure Blob](docs/azure-blob.md) now implements the public blob port with persistent Azurite conformance and independent-consumer evidence.
 See [the complete goal](docs/goal.md), [the implementation plan](docs/superpowers/plans/2026-10-08-rom-extras.md), and [support status](docs/support.md).
 
 ## Verify locally

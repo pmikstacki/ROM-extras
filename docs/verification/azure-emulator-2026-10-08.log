@@ -1,0 +1,15 @@
+    Updating crates.io index
+    Updating git repository `https://github.com/pmikstacki/ROM`
+     Locking 1 package to highest Rust 1.99 compatible version
+      Adding rom-conformance v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-conformance v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.20s
+     Running tests/emulator.rs (target/debug/deps/emulator-9dab41c85db20687)
+
+running 2 tests
+test false_payload_retains_metadata_and_bytes_after_emulator_restart ... ok
+test published_blob_contract_passes_against_azurite ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.04s
+

@@ -1,0 +1,39 @@
+   Compiling rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.62s
+     Running unittests src/lib.rs (target/debug/deps/rom_azure_blob-5066ba3e39fde0c7)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/configuration.rs (target/debug/deps/configuration-9a9cbd9621573753)
+
+running 2 tests
+test credentials_and_unsafe_endpoints_are_refused_before_network ... ok
+test malformed_credentials_and_unbounded_limits_are_rejected ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/emulator.rs (target/debug/deps/emulator-9dab41c85db20687)
+
+running 3 tests
+test false_payload_retains_metadata_and_bytes_after_emulator_restart ... ok
+test wrong_account_key_is_confirmed_denied ... ok
+test published_blob_contract_passes_against_azurite ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.57s
+
+     Running tests/interruption.rs (target/debug/deps/interruption-ebefcc98997dd5e3)
+
+running 2 tests
+test etag_change_between_metadata_and_body_is_refused ... ok
+test busy_admission_refuses_extra_request_and_unacknowledged_write_is_unknown ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.52s
+
+   Doc-tests rom_azure_blob
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,30 @@
+[package]
+name = "rom-azure-blob"
+description = "Azure Blob host adapter for the public ROM blob contract"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+rom-blob = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+object_store = { version = "=0.14.2", default-features = false, features = ["azure"] }
+futures-util = { version = "=0.3.34", default-features = false, features = ["std"] }
+tokio = { version = "=1.53.1", features = ["sync", "time"] }
+url = "=2.5.8"
+
+[dev-dependencies]
+tokio = { version = "=1.53.1", features = ["macros", "rt", "net", "io-util"] }
+rom-conformance = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", features = ["blob"] }
+
+[features]
+emulator-conformance = []
+
+[[test]]
+name = "emulator"
+required-features = ["emulator-conformance"]

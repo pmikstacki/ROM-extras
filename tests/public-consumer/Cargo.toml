@@ -9,12 +9,17 @@ license = "MIT"
 [workspace]
 
 [features]
+azure-conformance = ["dep:tokio"]
 mysql-conformance = ["dep:mysql", "dep:tokio"]
 kafka-conformance = ["dep:rdkafka", "dep:tokio"]
 rabbitmq-conformance = ["dep:lapin", "dep:tokio"]
 nats-conformance = ["dep:async-nats", "dep:tokio"]
 postgres-conformance = ["dep:postgres", "dep:tokio"]
 mssql-conformance = ["dep:tiberius", "dep:tokio", "dep:tokio-util"]
+
+[[test]]
+name = "azure_blob"
+required-features = ["azure-conformance"]
 
 [[test]]
 name = "mysql_executor"
@@ -41,6 +46,8 @@ name = "rabbitmq_delivery"
 required-features = ["rabbitmq-conformance"]
 
 [dependencies]
+rom-azure-blob = { path = "../../crates/rom-azure-blob" }
+rom-blob = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
 mysql = { version = "=28.0.3", default-features = false, features = ["minimal-rust", "native-tls"], optional = true }
 rom-kafka = { path = "../../crates/rom-kafka" }
 rdkafka = { version = "=0.39.0", default-features = false, features = ["tokio", "ssl"], optional = true }

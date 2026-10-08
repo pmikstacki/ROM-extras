@@ -1,0 +1,83 @@
+   Compiling rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.62s
+     Running unittests src/lib.rs (target/debug/deps/rom_azure_blob-5066ba3e39fde0c7)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/configuration.rs (target/debug/deps/configuration-9a9cbd9621573753)
+
+running 2 tests
+test credentials_and_unsafe_endpoints_are_refused_before_network ... ok
+test malformed_credentials_and_unbounded_limits_are_rejected ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/emulator.rs (target/debug/deps/emulator-9dab41c85db20687)
+
+running 3 tests
+test wrong_account_key_is_confirmed_denied ... ok
+test published_blob_contract_passes_against_azurite ... FAILED
+test false_payload_retains_metadata_and_bytes_after_emulator_restart ... ok
+
+failures:
+
+---- published_blob_contract_passes_against_azurite stdout ----
+
+thread 'published_blob_contract_passes_against_azurite' (3022626) panicked at crates/rom-azure-blob/tests/emulator.rs:32:52:
+called `Result::unwrap()` on an `Err` value: ConformanceError { profile: 1, case: "blob.exact.create", category: Adapter }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    published_blob_contract_passes_against_azurite
+
+test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.45s
+
+error: test failed, to rerun pass `-p rom-azure-blob --test emulator`
+    Checking hashbrown v0.17.1
+    Checking equivalent v1.0.2
+    Checking tokio v1.53.1
+    Checking fnv v1.0.7
+    Checking either v1.19.0
+    Checking form_urlencoded v1.2.2
+    Checking serde_json v1.0.151
+    Checking zerotrie v0.2.5
+    Checking tinystr v0.8.4
+    Checking icu_collections v2.3.0
+    Checking num-traits v0.2.19
+    Checking parking_lot_core v0.9.12
+    Checking iana-time-zone v0.1.65
+    Checking ryu v1.0.23
+    Checking rand v0.10.3
+    Checking quick-xml v0.41.0
+    Checking humantime v2.4.0
+    Checking icu_locale_core v2.3.0
+    Checking rayon v1.12.0
+    Checking itertools v0.15.0
+    Checking serde_urlencoded v0.7.1
+    Checking parking_lot v0.12.5
+    Checking indexmap v2.14.2
+    Checking chrono v0.4.45
+    Checking icu_provider v2.3.1
+    Checking icu_normalizer v2.3.0
+    Checking icu_properties v2.3.0
+    Checking idna_adapter v1.2.2
+    Checking idna v1.1.0
+    Checking url v2.5.8
+    Checking tokio-util v0.7.19
+    Checking tower v0.5.3
+    Checking tokio-rustls v0.26.6
+    Checking rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking tower-http v0.6.11
+    Checking h2 v0.4.20
+    Checking hyper v1.12.0
+    Checking rom-blob v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-conformance v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking hyper-util v0.1.21
+    Checking hyper-rustls v0.27.10
+    Checking reqwest v0.13.5
+    Checking object_store v0.14.2
+    Checking rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 5.90s
