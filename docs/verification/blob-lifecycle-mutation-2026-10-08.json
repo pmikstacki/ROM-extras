@@ -1,0 +1,9 @@
+{
+  "mutation": "omit the test observer real BlobStore::create call, retaining counters and fake success",
+  "mutant_source_sha256": "941471053d1402b942801f8f2e366b2e8ee121fc3ed7eb7dc6b0bcc2087cc2cc",
+  "correct_source_sha256": "3aa3a95edde2785b617d553663a87043f649f3b4452463e88fac2d16de567bb2",
+  "restored_exact_source": true,
+  "mutant_test_exit_code": 101,
+  "mutant_failure_category": "runtime Missing on verified BlobService read after fake create success",
+  "scope": "test-harness sensitivity; no production adapter modified"
+}

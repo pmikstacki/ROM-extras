@@ -212,3 +212,17 @@ Select RustFS 1.0.1 for an additional local qualification, with one CPU and 1 Gi
 Preserve SeaweedFS, its volume, and the strict failed evidence as a separate profile.
 No scenario, public deadline, retry limit, constructor, or dependency changes.
 The configured fixture controls the existing verifier gate; passing RustFS does not qualify SeaweedFS or cloud S3.
+
+
+## 2026-10-08: Share native blob lifecycle acceptance
+
+Use the public BlobStore contract to run identical native BlobService scenarios on Azure and S3.
+[The lifecycle assessment](s3-blob-lifecycle-assessment.md) establishes staging, authorization, attachment, detachment, and drain/reopen behavior at the pinned public revision.
+Extract existing Azure test orchestration into one shared harness; preserve its assertions and test names.
+Add optional published SQLite/redb dependencies to the independent consumer's s3-lifecycle feature.
+Require all existing S3 port cases and the two native lifecycle cases through scripts/check-s3.
+
+Retain post-provider-success pause as an attachment race, not a wire acknowledgement fault.
+A mutation that omits real provider creation must fail during verified reading; restored source must pass again.
+Keep detached and unattached objects because [public trusted-delete requirements](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom-blob/src/storage.rs) require grace and quiescence.
+Use shared acceptance only for these common guarantees; retain separate provider TLS, credential, retention, and wire fault tests.

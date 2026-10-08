@@ -1,5 +1,8 @@
 //! Real S3-compatible qualification through ROM's unchanged public adapter.
 use rom_blob::{BlobStore, Digest, Error, ObjectKey};
+#[cfg(feature = "s3-lifecycle")]
+#[path = "../../common/blob_lifecycle/mod.rs"]
+mod blob_lifecycle;
 mod s3_fixture;
 use s3_fixture::{adapter, restart};
 use std::{
@@ -178,4 +181,26 @@ async fn uncertain_concurrent_creates_reconcile_without_overwrite_or_cleanup() {
         conflicted.len()
     );
     // No deletion: completed waiters do not prove provider quiescence after Unknown.
+}
+
+#[cfg(feature = "s3-lifecycle")]
+#[tokio::test]
+async fn blob_service_attachment_authorization_and_detachment_survive_native_reopen() {
+    let _exclusive = FIXTURE.lock().await;
+    let artifacts = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../.superpowers");
+    blob_lifecycle::staged_content_authorization_and_detachment("s3", &artifacts, || {
+        adapter(1024, false)
+    })
+    .await;
+}
+
+#[cfg(feature = "s3-lifecycle")]
+#[tokio::test]
+async fn blob_service_deleted_reservation_retains_real_unattached_object() {
+    let _exclusive = FIXTURE.lock().await;
+    let artifacts = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../.superpowers");
+    blob_lifecycle::deleted_reservation_returns_unattached("s3", &artifacts, || {
+        adapter(1024, false)
+    })
+    .await;
 }

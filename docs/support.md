@@ -97,7 +97,7 @@ The Node 22.16 fixture SQLite API is experimental; this is not a production rece
 | NATS | Acknowledged JetStream publication, broker recovery/redelivery, and native Runtime retry/revocation verified; single-node TLS-first token/reconnect profile verified; production topology and release remain pending. |
 | RabbitMQ | Mandatory publication, native Runtime, actual confirm loss, receiver receipts, TLS and explicit reconnect verified; replicated failover and release remain pending. |
 | Kafka, notifications | Kafka publication, actual acknowledgement loss, native Runtime/receipt recovery and TLS/SASL verified; additional notification connectors and release remain pending. |
-| S3-compatible, Azure Blob | Azure port and persistent Azurite conformance implemented; basic native BlobService lifecycle verified; RustFS local public-port qualification passes; cloud, further lifecycle faults, and actual acknowledgement loss remain pending. |
+| S3-compatible, Azure Blob | Azure port and persistent Azurite conformance implemented; basic native BlobService lifecycle verified on Azure and both local S3 profiles; RustFS local public-port qualification passes; cloud, further lifecycle faults, and actual acknowledgement loss remain pending. |
 | Secrets and KMS | Bounded family contract, provider implementation, and service verification remain pending. |
 | OpenSearch and vectors | Projection contract, implementation, authorization checks, and real fixtures remain pending. |
 | Backup, migration, import | SQL archive contract and provenance-preserving tools remain pending. |
@@ -197,6 +197,9 @@ See [executed scope and remaining gates](verification/azure-lifecycle-2026-10-08
 SeaweedFS 4.48 passes published blob conformance, confirmed credential denial, and acknowledged false-byte retention after restart.
 An eight-way Unknown/reconciliation test passes without overwrite or automatic cleanup.
 A separate strict eight-way qualification fails with typed native HTTP timeout evidence near three seconds.
-RustFS 1.0.1 separately passes all four tests through the same public constructor, including sixteen eight-way races.
+RustFS 1.0.1 separately passes the four public-port cases, including sixteen eight-way races.
+The required S3 gate now also runs two BlobService tests, each on SQLite and redb, through the shared Azure/S3 scenario functions.
+Those filtered lifecycle cases also pass on SeaweedFS; its strict burst remains unqualified.
+See [shared native lifecycle evidence](verification/blob-lifecycle-shared-2026-10-08.md).
 The S3 gate remains required in `check-all` for the selected profile; these results do not establish complete provider support.
 See [qualification scope](s3-compatible.md) and [preserved evidence](verification/s3-qualification-2026-10-08.md).

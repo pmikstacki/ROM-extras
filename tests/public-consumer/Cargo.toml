@@ -9,6 +9,7 @@ license = "MIT"
 [workspace]
 
 [features]
+s3-lifecycle = ["s3-conformance", "dep:rom-sqlite", "dep:rom-redb", "dep:futures-util"]
 s3-conformance = ["dep:tokio", "dep:rom-blob-object-store", "dep:rom-conformance"]
 azure-conformance = ["dep:tokio"]
 mysql-conformance = ["dep:mysql", "dep:tokio"]
@@ -51,6 +52,9 @@ name = "s3_blob"
 required-features = ["s3-conformance"]
 
 [dependencies]
+rom-sqlite = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", optional = true }
+rom-redb = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", optional = true }
+futures-util = { version = "=0.3.34", default-features = false, features = ["std"], optional = true }
 rom-blob-object-store = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", optional = true }
 rom-conformance = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", features = ["blob"], optional = true }
 rom-azure-blob = { path = "../../crates/rom-azure-blob" }

@@ -1,0 +1,22 @@
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.75s
+     Running tests/s3_blob.rs (tests/public-consumer/target/debug/deps/s3_blob-326b9d1261ffae3f)
+
+running 1 test
+test blob_service_attachment_authorization_and_detachment_survive_native_reopen ... FAILED
+
+failures:
+
+---- blob_service_attachment_authorization_and_detachment_survive_native_reopen stdout ----
+
+thread 'blob_service_attachment_authorization_and_detachment_survive_native_reopen' (3264498) panicked at tests/../../common/blob_lifecycle/attached.rs:48:48:
+called `Result::unwrap()` on an `Err` value: Missing
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    blob_service_attachment_authorization_and_detachment_survive_native_reopen
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.10s
+
+error: test failed, to rerun pass `--test s3_blob`

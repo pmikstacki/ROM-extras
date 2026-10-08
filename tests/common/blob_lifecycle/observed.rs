@@ -1,5 +1,4 @@
-//! Test orchestration around actual Azure operations; not a wire acknowledgement fault.
-use rom_azure_blob::AzureBlob;
+//! Observation of real provider operations; not a wire acknowledgement fault.
 use rom_blob::{BlobStore, Metadata, ObjectKey, StoreFuture};
 use std::sync::{
     Mutex,
@@ -7,8 +6,8 @@ use std::sync::{
 };
 use tokio::sync::Notify;
 
-pub struct Observed {
-    pub inner: AzureBlob,
+pub(super) struct Observed<B> {
+    pub inner: B,
     pub creates: AtomicUsize,
     pub reads: AtomicUsize,
     pub pause: AtomicBool,
@@ -16,8 +15,8 @@ pub struct Observed {
     pub release: Notify,
     pub last_key: Mutex<Option<ObjectKey>>,
 }
-impl Observed {
-    pub fn new(inner: AzureBlob) -> Self {
+impl<B> Observed<B> {
+    pub fn new(inner: B) -> Self {
         Self {
             inner,
             creates: AtomicUsize::new(0),
@@ -29,7 +28,7 @@ impl Observed {
         }
     }
 }
-impl BlobStore for Observed {
+impl<B: BlobStore> BlobStore for Observed<B> {
     fn create<'a>(&'a self, key: &'a ObjectKey, bytes: Vec<u8>) -> StoreFuture<'a, ()> {
         Box::pin(async move {
             self.creates.fetch_add(1, Ordering::SeqCst);

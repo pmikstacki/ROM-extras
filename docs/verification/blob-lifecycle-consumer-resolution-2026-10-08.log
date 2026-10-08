@@ -1,0 +1,46 @@
+     Locking 13 packages to highest Rust 1.99 compatible versions
+      Adding fallible-iterator v0.3.0
+      Adding fallible-streaming-iterator v0.1.9
+      Adding foldhash v0.2.0
+      Adding hashbrown v0.16.1
+      Adding hashlink v0.12.2
+      Adding libsqlite3-sys v0.38.2
+      Adding redb v4.3.0
+      Adding rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+      Adding rom-redb v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+      Adding rom-sqlite v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+      Adding rsqlite-vfs v0.1.1
+      Adding rusqlite v0.40.2
+      Adding sqlite-wasm-rs v0.5.5
+    Checking foldhash v0.2.0
+   Compiling libsqlite3-sys v0.38.2
+   Compiling redb v4.3.0
+    Checking rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking fallible-iterator v0.3.0
+    Checking fallible-streaming-iterator v0.1.9
+    Checking hashbrown v0.17.1
+    Checking indexmap v2.14.2
+    Checking hashlink v0.12.2
+    Checking h2 v0.4.20
+    Checking rom-redb v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking hyper v1.12.0
+    Checking hyper-util v0.1.21
+    Checking hyper-rustls v0.27.10
+    Checking reqwest v0.13.5
+    Checking object_store v0.14.2
+    Checking rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Checking rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+    Checking rom-blob-object-store v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rusqlite v0.40.2
+    Checking rom-sqlite v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+warning: unused import: `Digest`
+ --> tests/../../common/blob_lifecycle/attached.rs:7:44
+  |
+7 | use rom_blob::{Blob, BlobState, BlobStore, Digest, Error, Upload, UploadOutcome};
+  |                                            ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: `rom-extras-public-consumer` (test "s3_blob") generated 1 warning (run `cargo fix --test "s3_blob" -p rom-extras-public-consumer` to apply 1 suggestion)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 40.31s

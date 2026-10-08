@@ -62,6 +62,8 @@ Missing fixture variables fail the profile. Do not place credentials in command 
 Azure cloud support is not established. Real cloud TLS, authorization, and conformance remain pending.
 Two additional BlobService tests now verify staging/digest refusal, private reads, Ready/Detached native reopening, and retained unattached objects on SQLite and redb.
 See [lifecycle evidence](verification/azure-lifecycle-2026-10-08.md).
+Those assertions now run through a shared provider-neutral harness, also executed against S3.
+[Shared lifecycle evidence](verification/blob-lifecycle-shared-2026-10-08.md) records preserved Azure assertions and the new provider runs.
 Current revocation during I/O, cancellation/drain, trusted orphan reconciliation, and actual post-write acknowledgement loss still require separate integration tests.
 Bearer-token authentication is configuration-only evidence so far. Packaged-consumer and redistribution checks remain pending.
 The full ROM-extras goal remains active.

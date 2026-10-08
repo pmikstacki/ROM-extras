@@ -1,0 +1,126 @@
+{
+  "consumer_packages_before": 427,
+  "consumer_packages_after": 440,
+  "previous_identities_and_checksums_preserved": true,
+  "root_lockfile_unchanged": true,
+  "added_packages": [
+    {
+      "name": "fallible-iterator",
+      "version": "0.3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "2acce4a10f12dc2fb14a218589d4f1f62ef011b2d0cc4b3cb1bba8e94da14649",
+      "license_declaration": "MIT/Apache-2.0",
+      "rust_version": null,
+      "manifest_sha256": "1eefc77c1092c098db3822fd01220a0015a1e3851320a953665823fb9b46b4c1"
+    },
+    {
+      "name": "fallible-streaming-iterator",
+      "version": "0.1.9",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "7360491ce676a36bf9bb3c56c1aa791658183a54d2744120f27285738d90465a",
+      "license_declaration": "MIT/Apache-2.0",
+      "rust_version": null,
+      "manifest_sha256": "9af8cd50237f6a32a46ae7d0f3d39555dc7cdb97b247535c191582a4a299d58c"
+    },
+    {
+      "name": "foldhash",
+      "version": "0.2.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "77ce24cb58228fbb8aa041425bb1050850ac19177686ea6e0f41a70416f56fdb",
+      "license_declaration": "Zlib",
+      "rust_version": "1.60",
+      "manifest_sha256": "0a76cc29da1c33f4bdb505f5828ecdc20859c4cb9faa402e000f5f10511a27cc"
+    },
+    {
+      "name": "hashbrown",
+      "version": "0.16.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "841d1cc9bed7f9236f321df977030373f4a4163ae1a7dbfe1a51a2c1a51d9100",
+      "license_declaration": "MIT OR Apache-2.0",
+      "rust_version": "1.65.0",
+      "manifest_sha256": "e5cbc66eeb71d7544bcbbda22065478c5ea270dd620fbcc6d9757e7b18485d47"
+    },
+    {
+      "name": "hashlink",
+      "version": "0.12.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "a596f1b20ed2cc5ecac41a164aaebc7258057060f06c0cf7a2ba3991ee7990fb",
+      "license_declaration": "MIT OR Apache-2.0",
+      "rust_version": "1.85",
+      "manifest_sha256": "d6c3b754effe5db64444c53cbaa28b6d3b65641cdabdd95de09b73f929ff58ce"
+    },
+    {
+      "name": "libsqlite3-sys",
+      "version": "0.38.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "f1d20bef17f513b9b3004532233187769cd072d790971f4e4da0e346eb6401e8",
+      "license_declaration": "MIT",
+      "rust_version": null,
+      "manifest_sha256": "ce2c66104c29834e8c5e875f765e2ddfc577b9366b1ccef80f3680c2039948b3"
+    },
+    {
+      "name": "redb",
+      "version": "4.3.0",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "fb338a6c67830a61bed824b78c2bb034ab1ff401a20616bd7957524f4fdc2f22",
+      "license_declaration": "MIT OR Apache-2.0",
+      "rust_version": "1.90",
+      "manifest_sha256": "510ae9823ced4e2bc07abe4e04f3feb39594ad74f43c2deba80e52b4b5da9c9a"
+    },
+    {
+      "name": "rom-backup",
+      "version": "0.0.3",
+      "source": "git+https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef529040eec60dc869034c2d33130219db85fe",
+      "checksum": null,
+      "license_declaration": "MIT",
+      "rust_version": "1.99",
+      "manifest_sha256": "ab243d699803e265a5d445085f1c638edf9ab25a301a8ba039946b262f42ad61"
+    },
+    {
+      "name": "rom-redb",
+      "version": "0.0.3",
+      "source": "git+https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef529040eec60dc869034c2d33130219db85fe",
+      "checksum": null,
+      "license_declaration": "MIT",
+      "rust_version": "1.99",
+      "manifest_sha256": "03e8f21439dea72499da2193fd251838f0329cfc84b33981dd6031416f0e060e"
+    },
+    {
+      "name": "rom-sqlite",
+      "version": "0.0.3",
+      "source": "git+https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef529040eec60dc869034c2d33130219db85fe",
+      "checksum": null,
+      "license_declaration": "MIT",
+      "rust_version": "1.99",
+      "manifest_sha256": "9bd0237fcf11e32bb5128c594730e896e96f585f072f00fda1afac9c62e64547"
+    },
+    {
+      "name": "rsqlite-vfs",
+      "version": "0.1.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "c51c9ae4df8a7fba42103df5c621fa3c37eccf3a3c650879e90fc48b11cc192c",
+      "license_declaration": "MIT",
+      "rust_version": "1.81.0",
+      "manifest_sha256": "2134b8f37e904ca9ed6ae7fb8ffde7e6e93089188dd2378670ccd0af0c468861"
+    },
+    {
+      "name": "rusqlite",
+      "version": "0.40.2",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "23f2a97da3e3873c73cb2a2e71b35c40ff95e0b1eefa8d72d8499a6928c3b5b3",
+      "license_declaration": "MIT",
+      "rust_version": null,
+      "manifest_sha256": "e8213c0b968070c507f57ea6d87db4bd92c5453886981525c400a6eba8565dc7"
+    },
+    {
+      "name": "sqlite-wasm-rs",
+      "version": "0.5.5",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "dc3efc0da82635d7e1ced0053bbbfa8c7ab9645d0bf36ceb4f7127bb85315d75",
+      "license_declaration": "MIT",
+      "rust_version": "1.81.0",
+      "manifest_sha256": "09f13e5f5d3e2cb866577f1fc84cf02995b9c2255858c8080989510eb83d8741"
+    }
+  ],
+  "scope": "manifest license/MSRV declarations and advisory audit; not a redistribution certificate"
+}
