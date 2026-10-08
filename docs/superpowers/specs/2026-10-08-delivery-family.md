@@ -30,7 +30,7 @@ Support one current and at most one previous 32-byte key for bounded rotation.
 Do not claim that every cryptographic intermediate is erased.
 Host configuration supplies entropy, secret acquisition, and trusted time. Receivers enforce timestamp tolerance and durable ID deduplication.
 
-The transport increment will use [reqwest](https://docs.rs/reqwest/0.13.5/reqwest/struct.ClientBuilder.html) with verified HTTPS and no automatic redirects or implicit proxy.
+The transport increment uses [reqwest](https://docs.rs/reqwest/0.13.5/reqwest/struct.ClientBuilder.html) with verified HTTPS and no automatic redirects or implicit proxy.
 Destinations belong to host configuration, never delivery payloads. Pin validated resolution results to avoid DNS rebinding between validation and connection.
 Reject resolved private, loopback, link-local, special-use, and multicast addresses for the public destination profile.
 Use [IANA IPv4](https://www.iana.org/assignments/iana-ipv4-special-registry) and [IPv6](https://www.iana.org/assignments/iana-ipv6-special-registry) registries for address decisions.
@@ -40,9 +40,9 @@ Retries belong to Runtime. A lost acknowledgement remains unknown; it does not p
 
 ## Required acceptance still open
 
-Implement HTTPS transport with destination policy and explicit status/outcome mapping.
-Verify signed requests with an independently implemented real HTTP receiver.
-Test redirects, private resolution, body limits, permanent rejection, overload, duplicates, and missing acknowledgement.
+HTTPS transport, destination policy, and status/outcome mapping are implemented. Full Runtime integration remains open.
+An independent Node HTTPS receiver verifies signed raw requests.
+Tests cover redirects, private address sets, body limits, permanent rejection, overload, duplicates, missing acknowledgement, and deadline.
 Create committed channel intents in a durable ROM backend, reopen, deliver, and inspect persisted outcomes.
 Exercise source authorization revocation before send. Test bounded Runtime retry and receiver deduplication.
 Kafka, NATS, RabbitMQ, and notifications each require real provider acknowledgement and restart/redelivery tests.

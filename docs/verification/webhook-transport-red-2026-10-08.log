@@ -1,0 +1,38 @@
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+warning: fields `url` and `addresses` are never read
+  --> crates/rom-webhook/src/destination.rs:10:16
+   |
+ 9 | pub struct Destination {
+   |            ----------- fields in this struct
+10 |     pub(crate) url: Url,
+   |                ^^^
+11 |     pub(crate) addresses: Vec<SocketAddr>,
+   |                ^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: fields `concurrency`, `connect`, and `request` are never read
+ --> crates/rom-webhook/src/limits.rs:7:16
+  |
+6 | pub struct TransportLimits {
+  |            --------------- fields in this struct
+7 |     pub(crate) concurrency: usize,
+  |                ^^^^^^^^^^^
+8 |     pub(crate) connect: Duration,
+  |                ^^^^^^^
+9 |     pub(crate) request: Duration,
+  |                ^^^^^^^
+  |
+  = note: `TransportLimits` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: `rom-webhook` (lib) generated 2 warnings
+warning: `rom-webhook` (lib test) generated 2 warnings (2 duplicates)
+error[E0432]: unresolved import `rom_webhook::Webhook`
+ --> crates/rom-webhook/tests/https.rs:5:49
+  |
+5 | use rom_webhook::{Destination, TransportLimits, Webhook};
+  |                                                 ^^^^^^^ no `Webhook` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rom-webhook` (test "https") due to 1 previous error
+warning: build failed, waiting for other jobs to finish...

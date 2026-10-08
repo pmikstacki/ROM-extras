@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/rom-sql-core", "crates/rom-oidc-presets", "crates/rom-delivery-core"]
+members = ["crates/rom-sql-core", "crates/rom-oidc-presets", "crates/rom-delivery-core", "crates/rom-webhook"]
 exclude = ["tests/public-consumer"]
 resolver = "3"
 

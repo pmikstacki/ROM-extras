@@ -49,7 +49,19 @@ Five preparation tests, two signing tests, and one doctest passed. The signature
 Independent source review found no actionable defect; the full local verifier passed with both SQL fixtures.
 Cargo-audit 0.22.2 reported no vulnerabilities or warnings for 113 workspace and 209 consumer packages.
 Both scans used RustSec commit `550efd3d587a29b2e2c2b21b17a440da4fede999` on 2026-10-08.
-No webhook network transport, durable channel reopen scenario, receiver acknowledgement, or broker integration is supported yet.
+The HTTPS transport increment is implemented; see [its boundaries and verification](webhooks.md).
+Durable channel reopening, persisted outcomes, current authorization revocation, and full Runtime retry acceptance remain open.
+No production webhook or broker provider is supported yet.
+
+## HTTPS transport increment
+
+Two destination/admission tests and one real Node HTTPS receiver test passed.
+The receiver checks signatures independently and counts requests, including deadline, lost acknowledgement, and redirect cases.
+The full local verifier passed, including both real database fixtures. Source review findings about counters and deadline coverage were resolved.
+Cargo-audit 0.22.2 found zero vulnerabilities or warnings in 195 workspace and 251 consumer locked packages.
+Both scans used RustSec commit `550efd3d587a29b2e2c2b21b17a440da4fede999` on 2026-10-08.
+License manifest inventories have no absent declarations; redistribution review remains open.
+Durable receiver deduplication and ROM authorization/reopen integration remain pending.
 
 ## Whole-goal tracking
 

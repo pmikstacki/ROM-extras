@@ -51,6 +51,17 @@ fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     )?;
     assert_eq!(message.id(), "work-17");
     assert_eq!(message.body(), b"false");
+    let _destination = rom_webhook::Destination::public_resolved(
+        "https://receiver.example/hook",
+        &["8.8.8.8".parse()?],
+    )?;
+    assert!(
+        rom_webhook::Destination::public_resolved(
+            "https://receiver.example/hook",
+            &["127.0.0.1".parse()?],
+        )
+        .is_err()
+    );
     println!(
         "Public custom field, connection execution, issuer preset, and bounded delivery verified."
     );

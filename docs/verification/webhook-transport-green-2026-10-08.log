@@ -1,0 +1,30 @@
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.90s
+     Running unittests src/lib.rs (target/debug/deps/rom_webhook-019802a2807c219a)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/https.rs (target/debug/deps/https-96c83bba4af39a5d)
+
+running 1 test
+test delivers_signed_exact_bytes_and_preserves_uncertainty ... FAILED
+
+failures:
+
+---- delivers_signed_exact_bytes_and_preserves_uncertainty stdout ----
+
+thread 'delivers_signed_exact_bytes_and_preserves_uncertainty' (1973407) panicked at crates/rom-webhook/tests/https.rs:112:9:
+assertion `left == right` failed: /accept
+  left: Unknown
+ right: Accepted
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    delivers_signed_exact_bytes_and_preserves_uncertainty
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+error: test failed, to rerun pass `-p rom-webhook --test https`

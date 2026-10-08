@@ -1,0 +1,441 @@
+rustc 1.99.0 (b940084d7 2026-09-28)
+binary: rustc
+commit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4
+commit-date: 2026-09-28
+host: x86_64-unknown-linux-gnu
+release: 1.99.0
+LLVM version: 23.1.1
+   Compiling libc v0.2.190
+    Checking bytes v1.12.1
+   Compiling jobserver v0.1.35
+   Compiling cc v1.6.0
+   Compiling aws-lc-rs v1.18.1
+    Checking socket2 v0.6.5
+    Checking mio v1.2.4
+    Checking smallvec v1.16.2
+    Checking tokio v1.53.1
+   Compiling cmake v0.1.58
+   Compiling aws-lc-sys v0.45.0
+    Checking percent-encoding v2.3.2
+    Checking futures-core v0.3.34
+    Checking icu_normalizer v2.3.0
+    Checking idna_adapter v1.2.2
+    Checking once_cell v1.21.4
+    Checking idna v1.1.0
+    Checking form_urlencoded v1.2.2
+    Checking http v1.5.0
+    Checking rustls-pki-types v1.15.1
+    Checking http-body v1.1.0
+    Checking url v2.5.8
+    Checking slab v0.4.12
+    Checking futures-task v0.3.34
+    Checking untrusted v0.9.0
+    Checking futures-util v0.3.34
+    Checking tower-service v0.3.3
+    Checking try-lock v0.2.5
+    Checking want v0.3.2
+    Checking httparse v1.10.1
+    Checking rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking tracing-core v0.1.36
+    Checking atomic-waker v1.1.2
+    Checking hyper v1.12.0
+    Checking tracing v0.1.44
+    Checking sync_wrapper v1.0.2
+    Checking futures-channel v0.3.34
+    Checking tower-layer v0.3.3
+    Checking ipnet v2.12.2
+    Checking base64 v0.23.1
+    Checking openssl-probe v0.2.1
+    Checking rustls-native-certs v0.8.4
+    Checking hyper-util v0.1.21
+    Checking tower v0.5.3
+    Checking rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+    Checking log v0.4.34
+    Checking bitflags v2.13.2
+    Checking tower-http v0.6.11
+    Checking http-body-util v0.1.5
+    Checking rom-sql-core v0.1.0-dev (/root/ROM-extras/crates/rom-sql-core)
+   Compiling rustls v0.23.45
+    Checking rustls-webpki v0.103.15
+    Checking jsonwebtoken v11.1.0
+    Checking rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+    Checking tokio-rustls v0.26.6
+    Checking rustls-platform-verifier v0.7.1
+    Checking hyper-rustls v0.27.10
+    Checking reqwest v0.13.5
+    Checking rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 27.67s
+   Compiling aws-lc-rs v1.18.1
+   Compiling rustls-pki-types v1.15.1
+   Compiling rustls v0.23.45
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rustls-webpki v0.103.15
+   Compiling rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+   Compiling rustls-native-certs v0.8.4
+   Compiling tokio-rustls v0.26.6
+   Compiling rustls-platform-verifier v0.7.1
+   Compiling jsonwebtoken v11.1.0
+   Compiling hyper-rustls v0.27.10
+   Compiling reqwest v0.13.5
+   Compiling rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.50s
+     Running unittests src/lib.rs (target/debug/deps/rom_delivery_core-9dd983476490980b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/preparation.rs (target/debug/deps/preparation-d66c4bb57025badf)
+
+running 5 tests
+test encoded_byte_limit_includes_json_quotes_escaping_and_utf8 ... ok
+test invalid_identity_rejects_before_payload_encoding ... ok
+test prepared_debug_output_does_not_disclose_payload_values ... ok
+test retry_keeps_identity_and_payload_but_exposes_the_runtime_attempt ... ok
+test scalar_payloads_keep_null_false_zero_and_empty_distinct ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/signing.rs (target/debug/deps/signing-a26771e720542280)
+
+running 2 tests
+test signature_matches_independent_node_crypto_vector ... ok
+test rotation_signs_with_current_and_previous_keys_without_changing_the_message ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_oidc_presets-c459552517850c5e)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/configuration.rs (target/debug/deps/configuration-300e02c57cd34756)
+
+running 6 tests
+test entra_binds_one_concrete_tenant ... ok
+test configuration_delegates_names_and_does_not_fetch_keys ... ok
+test exact_issuer_preserves_the_original_binding ... ok
+test invalid_issuer_forms_are_rejected ... ok
+test unicode_whitespace_and_controls_are_rejected_before_url_parsing ... ok
+test keycloak_keeps_the_deployment_context_path ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/verification.rs (target/debug/deps/verification-a4f33bc4f0aa3dd9)
+
+running 3 tests
+test rotation_replaces_keys_without_changing_the_issuer_or_profile ... ok
+test every_preset_preserves_rom_human_evidence_and_expiry ... ok
+test binding_expiry_and_signature_failures_cannot_create_evidence ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_sql_core-3b3abcab3f618c41)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/executor.rs (target/debug/deps/executor-d25b2c9f4e290f13)
+
+running 13 tests
+test invalid_capacity_rejects_before_connection_initialization ... ok
+test dropping_last_handle_allows_admitted_work_to_finish ... ok
+test full_queue_rejects_before_running_the_operation ... ok
+test recursive_use_rejects_instead_of_deadlocking_the_connection ... ok
+test waiting_deadline_preserves_ticket_and_does_not_cancel_admitted_work ... ok
+test terminal_responses_are_consumed_once_even_after_failure ... ok
+test connection_is_created_and_used_on_its_worker_even_when_not_send ... ok
+test panicking_operation_has_unknown_outcome_and_retires_connection ... ok
+test discarding_a_ticket_does_not_discard_an_admitted_operation ... ok
+test initialization_errors_and_panics_are_reported_before_admission ... ok
+test shutdown_joins_connection_destruction_and_reports_destructor_panics ... ok
+test close_stops_admission_but_drains_accepted_operations ... ok
+test cloned_handles_serialize_connection_operations ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_webhook-b0dccd1bb9392fc4)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/https.rs (target/debug/deps/https-cf8b0cc77da62444)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/policy.rs (target/debug/deps/policy-a08adec7b46ed43a)
+
+running 2 tests
+test refuses_unbounded_or_inconsistent_transport_limits ... ok
+test refuses_non_public_resolutions_and_ambiguous_urls ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_delivery_core
+
+running 1 test
+test crates/rom-delivery-core/src/lib.rs - (line 7) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.18s; merged doctests compilation took 0.17s
+   Doc-tests rom_oidc_presets
+
+running 1 test
+test crates/rom-oidc-presets/src/lib.rs - (line 6) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.17s; merged doctests compilation took 0.17s
+   Doc-tests rom_sql_core
+
+running 1 test
+test crates/rom-sql-core/src/lib.rs - (line 7) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.22s; merged doctests compilation took 0.21s
+   Doc-tests rom_webhook
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.40s
+     Running unittests src/lib.rs (target/debug/deps/rom_webhook-019802a2807c219a)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/https.rs (target/debug/deps/https-96c83bba4af39a5d)
+
+running 1 test
+test delivers_signed_exact_bytes_and_preserves_uncertainty ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.47s
+
+     Running tests/policy.rs (target/debug/deps/policy-3b42ab9ea1bd1c61)
+
+running 2 tests
+test refuses_unbounded_or_inconsistent_transport_limits ... ok
+test refuses_non_public_resolutions_and_ambiguous_urls ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_webhook
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+    Checking subtle v2.6.1
+    Checking zeroize v1.9.1
+   Compiling aws-lc-rs v1.18.1
+   Compiling rustls v0.23.45
+    Checking digest v0.10.7
+    Checking rustls-pki-types v1.15.1
+    Checking sha2 v0.10.9
+    Checking rustls-native-certs v0.8.4
+    Checking rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rustls-webpki v0.103.15
+    Checking hmac v0.12.1
+    Checking rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+    Checking tokio-rustls v0.26.6
+    Checking rustls-platform-verifier v0.7.1
+    Checking hyper-rustls v0.27.10
+    Checking reqwest v0.13.5
+    Checking rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.25s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+   Doc-tests rom_delivery_core
+
+running 1 test
+test crates/rom-delivery-core/src/lib.rs - (line 7) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.18s; merged doctests compilation took 0.17s
+   Doc-tests rom_oidc_presets
+
+running 1 test
+test crates/rom-oidc-presets/src/lib.rs - (line 6) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.17s; merged doctests compilation took 0.17s
+   Doc-tests rom_sql_core
+
+running 1 test
+test crates/rom-sql-core/src/lib.rs - (line 7) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.22s; merged doctests compilation took 0.21s
+   Doc-tests rom_webhook
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+    Checking rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+ Documenting rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+ Documenting rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+ Documenting rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.28s
+   Generated /root/ROM-extras/target/doc/rom_delivery_core/index.html and 3 other files
+    Checking rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Checking rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.11s
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
+   Compiling smallvec v1.16.2
+   Compiling aws-lc-rs v1.18.1
+   Compiling tokio v1.53.1
+   Compiling http v1.5.0
+   Compiling rustls-pki-types v1.15.1
+   Compiling http-body v1.1.0
+   Compiling icu_normalizer v2.3.0
+   Compiling slab v0.4.12
+   Compiling futures-task v0.3.34
+   Compiling rustls-webpki v0.103.15
+   Compiling futures-util v0.3.34
+   Compiling rustls v0.23.45
+   Compiling idna_adapter v1.2.2
+   Compiling try-lock v0.2.5
+   Compiling tower-service v0.3.3
+   Compiling want v0.3.2
+   Compiling idna v1.1.0
+   Compiling httparse v1.10.1
+   Compiling atomic-waker v1.1.2
+   Compiling hyper v1.12.0
+   Compiling tracing v0.1.44
+   Compiling url v2.5.8
+   Compiling futures-channel v0.3.34
+   Compiling sync_wrapper v1.0.2
+   Compiling ipnet v2.12.2
+   Compiling tower-layer v0.3.3
+   Compiling base64 v0.23.1
+   Compiling hyper-util v0.1.21
+   Compiling tokio-rustls v0.26.6
+   Compiling tower v0.5.3
+   Compiling rustls-native-certs v0.8.4
+   Compiling bitflags v2.13.2
+   Compiling tower-http v0.6.11
+   Compiling jsonwebtoken v11.1.0
+   Compiling rustls-platform-verifier v0.7.1
+   Compiling hyper-rustls v0.27.10
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling http-body-util v0.1.5
+   Compiling reqwest v0.13.5
+   Compiling rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+   Compiling rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 9.41s
+     Running `tests/public-consumer/target/debug/rom-extras-public-consumer`
+Public custom field, connection execution, issuer preset, and bounded delivery verified.
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.13s
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.06s
+   Compiling futures-util v0.3.34
+   Compiling icu_normalizer v2.3.0
+   Compiling idna_adapter v1.2.2
+   Compiling idna v1.1.0
+   Compiling hyper v1.12.0
+   Compiling url v2.5.8
+   Compiling hyper-util v0.1.21
+   Compiling tower v0.5.3
+   Compiling parking_lot_core v0.9.12
+   Compiling tokio-rustls v0.26.6
+   Compiling tower-http v0.6.11
+   Compiling jsonwebtoken v11.1.0
+   Compiling hyper-rustls v0.27.10
+   Compiling parking_lot v0.12.5
+   Compiling tokio-postgres v0.7.18
+   Compiling rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling reqwest v0.13.5
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+   Compiling postgres v0.19.14
+   Compiling rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.81s
+     Running tests/postgres_executor.rs (tests/public-consumer/target/debug/deps/postgres_executor-16acc548b25ee631)
+
+running 3 tests
+test postgres_client_runs_on_its_worker_inside_a_tokio_caller ... ok
+test a_driver_job_panic_retires_its_connection_and_rolls_back_uncommitted_sql ... ok
+test waiting_deadline_does_not_cancel_the_real_database_commit ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+
+    Checking futures-util v0.3.34
+    Checking icu_normalizer v2.3.0
+    Checking idna_adapter v1.2.2
+    Checking idna v1.1.0
+    Checking hyper v1.12.0
+    Checking url v2.5.8
+    Checking parking_lot_core v0.9.12
+    Checking tokio-rustls v0.26.6
+    Checking hyper-util v0.1.21
+    Checking tower v0.5.3
+    Checking jsonwebtoken v11.1.0
+    Checking hyper-rustls v0.27.10
+    Checking tower-http v0.6.11
+    Checking parking_lot v0.12.5
+    Checking reqwest v0.13.5
+    Checking tokio-postgres v0.7.18
+    Checking rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+    Checking rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Checking postgres v0.19.14
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.12s
+   Compiling tokio-rustls v0.26.6
+   Compiling hyper-util v0.1.21
+   Compiling tower v0.5.3
+   Compiling tower-http v0.6.11
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling hyper-rustls v0.27.10
+   Compiling rustls-platform-verifier v0.7.1
+   Compiling reqwest v0.13.5
+   Compiling rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+   Compiling tokio-util v0.7.19
+   Compiling tiberius v0.13.0
+   Compiling rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.86s
+     Running tests/mssql_executor.rs (tests/public-consumer/target/debug/deps/mssql_executor-8d241512ba1f1cd3)
+
+running 3 tests
+test async_tds_connection_runs_on_its_worker_inside_a_tokio_host ... ok
+test panic_retires_tds_connection_and_open_transaction_rolls_back ... ok
+test caller_timeout_does_not_cancel_a_later_sql_server_commit ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.19s
+
+    Checking tokio-rustls v0.26.6
+    Checking hyper-util v0.1.21
+    Checking tower v0.5.3
+    Checking tower-http v0.6.11
+    Checking rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking hyper-rustls v0.27.10
+    Checking rustls-platform-verifier v0.7.1
+    Checking reqwest v0.13.5
+    Checking tokio-util v0.7.19
+    Checking tiberius v0.13.0
+    Checking rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+    Checking rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Checking rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.17s

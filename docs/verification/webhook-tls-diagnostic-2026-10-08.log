@@ -1,0 +1,22 @@
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.41s
+     Running tests/https.rs (target/debug/deps/https-96c83bba4af39a5d)
+
+running 1 test
+fixture diagnostic: reqwest::Error { kind: Request, url: "https://receiver.example:41181/accept", source: hyper_util::client::legacy::Error(Connect, Custom { kind: Other, error: Custom { kind: InvalidData, error: InvalidCertificate(Other(OtherError(CaUsedAsEndEntity))) } }) }
+
+thread 'delivers_signed_exact_bytes_and_preserves_uncertainty' (1980556) panicked at crates/rom-webhook/tests/https.rs:112:9:
+assertion `left == right` failed: /accept
+  left: Unknown
+ right: Accepted
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test delivers_signed_exact_bytes_and_preserves_uncertainty ... FAILED
+
+failures:
+
+failures:
+    delivers_signed_exact_bytes_and_preserves_uncertainty
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+error: test failed, to rerun pass `-p rom-webhook --test https`

@@ -12,11 +12,18 @@ if ! command -v openssl >/dev/null; then
     exit 2
 fi
 
+if ! command -v node >/dev/null; then
+    echo 'Node.js is required for the independent HTTPS receiver.' >&2
+    exit 2
+fi
+
 rustc -Vv
 cargo fmt --all -- --check
 cargo fmt --manifest-path tests/public-consumer/Cargo.toml -- --check
 cargo clippy --workspace --all-targets --locked -- -D warnings
 cargo test --workspace --locked
+cargo test -p rom-webhook --features loopback-fixture --locked
+cargo clippy -p rom-webhook --all-targets --features loopback-fixture --locked -- -D warnings
 cargo test --workspace --doc --locked
 RUSTDOCFLAGS='-D warnings' cargo doc --workspace --no-deps --locked
 cargo check --workspace --no-default-features --locked
