@@ -1,0 +1,88 @@
+   Compiling aws-lc-sys v0.45.0
+   Compiling openssl-sys v0.9.117
+   Compiling crc32fast v1.5.2
+   Compiling ring v0.17.14
+   Compiling getrandom v0.3.4
+   Compiling miniz_oxide v0.9.1
+   Compiling mysql_common v0.37.3
+   Compiling btoi v0.5.0
+   Compiling derive_utils v0.16.0
+   Compiling mysql v28.0.3
+   Compiling saturating v0.1.0
+   Compiling pem v4.0.0
+   Compiling arc-swap v1.9.2
+   Compiling crossbeam-queue v0.3.14
+   Compiling webpki-roots v1.0.9
+   Compiling rustls-pemfile v2.2.0
+   Compiling twox-hash v2.1.5
+   Compiling bufstream v0.1.4
+   Compiling lru v0.18.5
+   Compiling rdkafka-sys v4.10.0+2.12.1
+   Compiling flate2 v1.1.10
+   Compiling io-enum v1.3.0
+   Compiling webpki v0.22.4
+   Compiling aws-lc-rs v1.18.1
+   Compiling rustls v0.23.45
+   Compiling rustls-webpki v0.103.15
+   Compiling jsonwebtoken v11.1.0
+   Compiling rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+   Compiling rustls-platform-verifier v0.7.1
+   Compiling futures-rustls v0.26.0
+   Compiling tokio-rustls v0.26.6
+   Compiling hyper-rustls v0.27.10
+   Compiling async-nats v0.50.0
+   Compiling rustls-connector v0.23.9
+   Compiling reqwest v0.13.5
+   Compiling tcp-stream v0.34.14
+   Compiling amq-protocol-tcp v10.6.3
+   Compiling amq-protocol v10.6.3
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+   Compiling lapin v4.12.0
+   Compiling rdkafka v0.39.0
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+   Compiling rom-rabbitmq v0.1.0-dev (/root/ROM-extras/crates/rom-rabbitmq)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 18.05s
+     Running tests/mysql_executor.rs (tests/public-consumer/target/debug/deps/mysql_executor-3c155bcf8ffe548b)
+
+running 4 tests
+test panic_retires_connection_and_uncommitted_rows_are_absent ... FAILED
+test statement_failure_requires_explicit_whole_operation_rollback ... FAILED
+test waiting_deadline_preserves_unknown_while_native_transaction_later_commits ... FAILED
+test native_client_runs_on_executor_worker_and_checks_durable_profile ... FAILED
+
+failures:
+
+---- panic_retires_connection_and_uncommitted_rows_are_absent stdout ----
+
+thread 'panic_retires_connection_and_uncommitted_rows_are_absent' (2911630) panicked at tests/mysql_executor.rs:9:61:
+required MySQL/MariaDB profile: NotPresent
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- statement_failure_requires_explicit_whole_operation_rollback stdout ----
+
+thread 'statement_failure_requires_explicit_whole_operation_rollback' (2911631) panicked at tests/mysql_executor.rs:9:61:
+required MySQL/MariaDB profile: NotPresent
+
+---- waiting_deadline_preserves_unknown_while_native_transaction_later_commits stdout ----
+
+thread 'waiting_deadline_preserves_unknown_while_native_transaction_later_commits' (2911632) panicked at tests/mysql_executor.rs:9:61:
+required MySQL/MariaDB profile: NotPresent
+
+---- native_client_runs_on_executor_worker_and_checks_durable_profile stdout ----
+
+thread 'native_client_runs_on_executor_worker_and_checks_durable_profile' (2911629) panicked at tests/mysql_executor.rs:9:61:
+required MySQL/MariaDB profile: NotPresent
+
+
+failures:
+    native_client_runs_on_executor_worker_and_checks_durable_profile
+    panic_retires_connection_and_uncommitted_rows_are_absent
+    statement_failure_requires_explicit_whole_operation_rollback
+    waiting_deadline_preserves_unknown_while_native_transaction_later_commits
+
+test result: FAILED. 0 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test mysql_executor`

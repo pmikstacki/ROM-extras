@@ -1,0 +1,18 @@
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.76s
+     Running tests/mysql_executor.rs (tests/public-consumer/target/debug/deps/mysql_executor-3c155bcf8ffe548b)
+
+running 5 tests
+test acknowledged_binary_identities_survive_labelled_server_restart ... ok
+test native_client_runs_on_executor_worker_and_checks_durable_profile ... Backend: 8.4.11
+ok
+test panic_retires_connection_and_uncommitted_rows_are_absent ... 
+thread 'rom-sql-connection' (2913027) panicked at tests/mysql_executor.rs:131:13:
+synthetic panic before native commit
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+ok
+test statement_failure_requires_explicit_whole_operation_rollback ... ok
+test waiting_deadline_preserves_unknown_while_native_transaction_later_commits ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.86s
+

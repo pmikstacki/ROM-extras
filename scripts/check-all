@@ -4,6 +4,7 @@ cd -- "$(dirname -- "$0")/.."
 ./scripts/check
 ./scripts/check-postgres
 ./scripts/check-mssql
+./scripts/check-mysql
 ./scripts/check-nats
 ./scripts/check-rabbitmq
 ./scripts/check-kafka

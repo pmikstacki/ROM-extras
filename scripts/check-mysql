@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_MYSQL_DSN:?Set the loopback MySQL fixture DSN; missing backend never passes.}"
+: "${ROM_EXTRAS_MARIADB_DSN:?Set the loopback MariaDB fixture DSN; missing backend never passes.}"
+for profile in mysql mariadb; do
+    ROM_EXTRAS_MYSQL_PROFILE="$profile" cargo test \
+        --manifest-path tests/public-consumer/Cargo.toml --locked \
+        --features mysql-conformance --test mysql_executor -- --test-threads=1 --nocapture
+done
+cargo clippy --manifest-path tests/public-consumer/Cargo.toml --locked \
+    --features mysql-conformance --all-targets -- -D warnings

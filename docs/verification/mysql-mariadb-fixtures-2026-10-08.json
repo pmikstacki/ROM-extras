@@ -1,0 +1,112 @@
+[
+  {
+    "profile": "mysql",
+    "discovery_tag": "8.4",
+    "executed_image": "docker.io/library/mysql@sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242",
+    "image_id": "8d132912e9d3c985237567595ec2aeae04936044eb1f9336e8e4da2326238b84",
+    "container": "rom-extras-mysql-20261008",
+    "volume": "rom-extras-mysql-20261008",
+    "loopback_port": 55452,
+    "cpu_limit": 1,
+    "memory_limit_mib": 768,
+    "server_args": [
+      "innodb-flush-log-at-trx-commit=1",
+      "sync-binlog=1",
+      "log-bin=extras-bin",
+      "max-connections=32"
+    ],
+    "executed_settings_columns": [
+      "version",
+      "innodb_flush_log_at_trx_commit",
+      "sync_binlog",
+      "log_bin",
+      "sql_mode",
+      "character_set_server",
+      "isolation"
+    ],
+    "executed_settings": [
+      "8.4.11",
+      "1",
+      "1",
+      "1",
+      "ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+      "utf8mb4",
+      "REPEATABLE-READ"
+    ],
+    "application_user_authentication_plugin": [
+      "caching_sha2_password"
+    ],
+    "executed_port_bindings": {
+      "3306/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "55452"
+        }
+      ]
+    },
+    "executed_memory_bytes": 805306368,
+    "executed_mounts": [
+      {
+        "Type": "volume",
+        "Name": "rom-extras-mysql-20261008",
+        "Destination": "/var/lib/mysql",
+        "RW": true
+      }
+    ]
+  },
+  {
+    "profile": "mariadb",
+    "discovery_tag": "11.8",
+    "executed_image": "docker.io/library/mariadb@sha256:6422478cb8e159f080fb1d8ccf65101e26fe51385787fde7d16c3b165a331f15",
+    "image_id": "53ef799caed285438d88678b529b4ff24406d4788f47ab8a74bb2212c707899a",
+    "container": "rom-extras-mariadb-20261008",
+    "volume": "rom-extras-mariadb-20261008",
+    "loopback_port": 55453,
+    "cpu_limit": 1,
+    "memory_limit_mib": 768,
+    "server_args": [
+      "innodb-flush-log-at-trx-commit=1",
+      "sync-binlog=1",
+      "log-bin=extras-bin",
+      "max-connections=32"
+    ],
+    "executed_settings_columns": [
+      "version",
+      "innodb_flush_log_at_trx_commit",
+      "sync_binlog",
+      "log_bin",
+      "sql_mode",
+      "character_set_server",
+      "isolation"
+    ],
+    "executed_settings": [
+      "11.8.9-MariaDB-ubu2404-log",
+      "1",
+      "1",
+      "1",
+      "STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION",
+      "utf8mb4",
+      "REPEATABLE-READ"
+    ],
+    "application_user_authentication_plugin": [
+      "mysql_native_password"
+    ],
+    "executed_port_bindings": {
+      "3306/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "55453"
+        }
+      ]
+    },
+    "executed_memory_bytes": 805306368,
+    "executed_mounts": [
+      {
+        "Type": "volume",
+        "Name": "rom-extras-mariadb-20261008",
+        "Destination": "/var/lib/mysql",
+        "RW": true
+      }
+    ]
+  }
+]

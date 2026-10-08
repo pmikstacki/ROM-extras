@@ -1,0 +1,25 @@
+    Updating crates.io index
+     Locking 9 packages to highest Rust 1.99 compatible versions
+      Adding errno v0.3.14
+      Adding foreign-types v0.3.2
+      Adding foreign-types-shared v0.1.1
+      Adding linux-raw-sys v0.12.1
+      Adding native-tls v0.2.18
+      Adding openssl v0.10.81
+      Adding openssl-macros v0.1.1
+      Adding rustix v1.1.5
+      Adding tempfile v3.27.0
+ Downloading crates ...
+  Downloaded foreign-types v0.3.2
+  Downloaded foreign-types-shared v0.1.1
+  Downloaded openssl-macros v0.1.1
+  Downloaded native-tls v0.2.18
+  Downloaded openssl v0.10.81
+    Checking foreign-types-shared v0.1.1
+   Compiling openssl v0.10.81
+   Compiling openssl-macros v0.1.1
+   Compiling native-tls v0.2.18
+   Compiling mysql v28.0.3
+    Checking foreign-types v0.3.2
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.82s

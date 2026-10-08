@@ -47,6 +47,15 @@ The Tiberius 0.13.0 published archive checksum is `e07324791de2bdaed058af4aa433a
 Cargo-audit 0.22.2 reported zero vulnerabilities or warnings in 207 consumer packages with RustSec commit `550efd3d587a29b2e2c2b21b17a440da4fede999`.
 No MSSQL Storage provider or production TLS profile is supported yet. See [the fixture](mssql-fixture.md).
 
+## MySQL and MariaDB execution increment
+
+Five native executor tests passed separately against MySQL 8.4.11 and MariaDB 11.8.9.
+They verify timeout uncertainty, later commit, panic retirement, explicit rollback after statement failure, and binary identities after restart.
+The independent consumer pins mysql 28.0.3 with Rust compression and native-tls features.
+Its final 403-package graph has no reported cargo-audit vulnerabilities or warnings at RustSec revision `550efd3d587a29b2e2c2b21b17a440da4fede999`.
+These plaintext loopback fixtures do not establish verified TLS or full ROM Storage support.
+See [fixture boundaries](mysql-fixtures.md) and [executed evidence](verification/mysql-mariadb-execution-2026-10-08.md).
+
 ## Delivery preparation increment
 
 `rom-delivery-core` prepares bounded JSON bytes from typed ROM deliveries, preserving stable identity and attempt.
@@ -80,7 +89,8 @@ The Node 22.16 fixture SQLite API is experimental; this is not a production rece
 | Shared SQL | Connection executor verified; Storage protocol awaits public incremental Work APIs. |
 | PostgreSQL | Three live executor tests and control-row restart evidence; full Storage provider remains pending. |
 | MSSQL | Three live executor tests, encryption, and restart control evidence; full Storage provider remains pending. |
-| MySQL, MariaDB, CockroachDB, Oracle | Driver research exists; provider implementation and real-backend conformance remain pending. |
+| MySQL, MariaDB | Five live executor tests each, binary identity and restart evidence; full Storage providers and verified TLS remain pending. |
+| CockroachDB, Oracle | Driver research exists; provider implementation and real-backend conformance remain pending. |
 | OIDC | Preset configuration and signed synthetic-token integration verified; live provider login remains pending. |
 | OpenTelemetry | Public diagnostic interface publication and OTLP implementation remain pending. |
 | Webhooks | HTTPS/signing/destination policy and native Runtime recovery/authorization tests implemented; production receiver and release acceptance remain pending. |

@@ -1,0 +1,32 @@
+   Compiling foreign-types-shared v0.1.1
+   Compiling openssl v0.10.81
+   Compiling native-tls v0.2.18
+   Compiling foreign-types v0.3.2
+   Compiling mysql v28.0.3
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.95s
+     Running tests/mysql_executor.rs (tests/public-consumer/target/debug/deps/mysql_executor-7f54fd74248d3be4)
+
+running 1 test
+test native_client_runs_on_executor_worker_and_checks_durable_profile ... FAILED
+
+failures:
+
+---- native_client_runs_on_executor_worker_and_checks_durable_profile stdout ----
+
+thread 'rom-sql-connection' (2938063) panicked at tests/mysql_executor.rs:27:5:
+assertion `left == right` failed: profile requires its labelled fixture IP
+  left: "127.0.0.2"
+ right: "127.0.0.1"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'native_client_runs_on_executor_worker_and_checks_durable_profile' (2938062) panicked at tests/mysql_executor.rs:54:6:
+called `Result::unwrap()` on an `Err` value: Initialization
+
+
+failures:
+    native_client_runs_on_executor_worker_and_checks_durable_profile
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 4 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test mysql_executor`

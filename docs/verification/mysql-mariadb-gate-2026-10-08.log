@@ -1,0 +1,93 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s
+     Running tests/mysql_executor.rs (tests/public-consumer/target/debug/deps/mysql_executor-3c155bcf8ffe548b)
+
+running 5 tests
+test acknowledged_binary_identities_survive_labelled_server_restart ... ok
+test native_client_runs_on_executor_worker_and_checks_durable_profile ... Backend: 8.4.11
+ok
+test panic_retires_connection_and_uncommitted_rows_are_absent ... 
+thread 'rom-sql-connection' (2913898) panicked at tests/mysql_executor.rs:131:13:
+synthetic panic before native commit
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+ok
+test statement_failure_requires_explicit_whole_operation_rollback ... ok
+test waiting_deadline_preserves_unknown_while_native_transaction_later_commits ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.13s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s
+     Running tests/mysql_executor.rs (tests/public-consumer/target/debug/deps/mysql_executor-3c155bcf8ffe548b)
+
+running 5 tests
+test acknowledged_binary_identities_survive_labelled_server_restart ... ok
+test native_client_runs_on_executor_worker_and_checks_durable_profile ... Backend: 11.8.9-MariaDB-ubu2404-log
+ok
+test panic_retires_connection_and_uncommitted_rows_are_absent ... 
+thread 'rom-sql-connection' (2914177) panicked at tests/mysql_executor.rs:131:13:
+synthetic panic before native commit
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+ok
+test statement_failure_requires_explicit_whole_operation_rollback ... ok
+test waiting_deadline_preserves_unknown_while_native_transaction_later_commits ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.78s
+
+    Checking tokio-rustls v0.26.6
+   Compiling ring v0.17.14
+    Checking simd-adler32 v0.3.10
+    Checking adler2 v2.0.1
+    Checking crc32fast v1.5.2
+    Checking amq-protocol-tcp v10.6.3
+    Checking getrandom v0.3.4
+    Checking btoi v0.5.0
+    Checking saturating v0.1.0
+    Checking pem v4.0.0
+    Checking arc-swap v1.9.2
+    Checking crossbeam-queue v0.3.14
+    Checking webpki-roots v1.0.9
+    Checking rustls-pemfile v2.2.0
+    Checking twox-hash v2.1.5
+    Checking bufstream v0.1.4
+    Checking lru v0.18.5
+    Checking miniz_oxide v0.9.1
+    Checking amq-protocol v10.6.3
+    Checking hyper-rustls v0.27.10
+    Checking async-nats v0.50.0
+    Checking reqwest v0.13.5
+    Checking flate2 v1.1.10
+    Checking mysql_common v0.37.3
+    Checking rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Checking lapin v4.12.0
+    Checking webpki v0.22.4
+    Checking mysql v28.0.3
+    Checking rom-rabbitmq v0.1.0-dev (/root/ROM-extras/crates/rom-rabbitmq)
+    Checking rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+error: returning the result of a `let` binding from a block
+  --> tests/mysql_executor.rs:33:5
+   |
+27 | /     let opts = OptsBuilder::from_opts(opts)
+28 | |         .prefer_socket(false)
+29 | |         .tcp_connect_timeout(Some(Duration::from_secs(3)))
+30 | |         .read_timeout(Some(Duration::from_secs(5)))
+31 | |         .write_timeout(Some(Duration::from_secs(5)))
+32 | |         .init(vec!["SET SESSION innodb_lock_wait_timeout = 3"]);
+   | |________________________________________________________________- unnecessary `let` binding
+33 |       opts
+   |       ^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#let_and_return
+   = note: `-D clippy::let-and-return` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::let_and_return)]`
+help: return the expression directly
+   |
+27 ~     
+28 ~     OptsBuilder::from_opts(opts)
+29 +         .prefer_socket(false)
+30 +         .tcp_connect_timeout(Some(Duration::from_secs(3)))
+31 +         .read_timeout(Some(Duration::from_secs(5)))
+32 +         .write_timeout(Some(Duration::from_secs(5)))
+33 +         .init(vec!["SET SESSION innodb_lock_wait_timeout = 3"])
+   |
+
+error: could not compile `rom-extras-public-consumer` (test "mysql_executor") due to 1 previous error

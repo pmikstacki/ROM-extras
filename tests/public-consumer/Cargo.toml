@@ -9,11 +9,16 @@ license = "MIT"
 [workspace]
 
 [features]
+mysql-conformance = ["dep:mysql", "dep:tokio"]
 kafka-conformance = ["dep:rdkafka", "dep:tokio"]
 rabbitmq-conformance = ["dep:lapin", "dep:tokio"]
 nats-conformance = ["dep:async-nats", "dep:tokio"]
 postgres-conformance = ["dep:postgres", "dep:tokio"]
 mssql-conformance = ["dep:tiberius", "dep:tokio", "dep:tokio-util"]
+
+[[test]]
+name = "mysql_executor"
+required-features = ["mysql-conformance"]
 
 [[test]]
 name = "kafka_delivery"
@@ -36,6 +41,7 @@ name = "rabbitmq_delivery"
 required-features = ["rabbitmq-conformance"]
 
 [dependencies]
+mysql = { version = "=28.0.3", default-features = false, features = ["minimal-rust", "native-tls"], optional = true }
 rom-kafka = { path = "../../crates/rom-kafka" }
 rdkafka = { version = "=0.39.0", default-features = false, features = ["tokio", "ssl"], optional = true }
 rom-rabbitmq = { path = "../../crates/rom-rabbitmq" }
