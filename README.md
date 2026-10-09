@@ -39,14 +39,16 @@ These are executor profiles. Full ROM Storage integration remains pending.
 | --- | --- | --- |
 | Shared core | [Durable checkpoints](docs/projection-checkpoints.md), bounded workers, public SQLite/redb history and [authorized search](docs/verification/projection-search-core-2026-10-09.md). | Generation switching and full projection-family acceptance. |
 | [OpenSearch](crates/rom-opensearch/README.md) | [Native writes](docs/verification/opensearch-rust-write-2026-10-09.md) and [typed search with current authorization](docs/verification/opensearch-native-search-2026-10-09.md). | Generation switching and final provider acceptance. |
-| [Qdrant](docs/projection-probes.md) | Native revision-fence and restart probes. | Rust transport, vector queries and Runtime integration. |
+| [Qdrant](docs/projection-probes.md) | Rust wire transport, native revision-fence and restart probes. | Full projection target, vector queries and Runtime integration. |
 
 ### Maps
 
 [Generic map providers](docs/maps.md) are in scope. The local typed-core increment has boundary and public-consumer tests.
 Nominatim search/reverse has controlled HTTPS and public-consumer tests; native-service qualification remains pending.
 OSRM routing passed qualification on an authored driving graph before and after restart.
-Configured sources, MapTiler, browser approval and the UI example remain in progress.
+Configured raster/vector TileJSON and MapLibre styles have controlled HTTPS and independent-consumer tests.
+A local Nginx fixture qualifies metadata delivery before and after restart; tile content and rendering remain unqualified.
+MapTiler, browser approval and the UI example remain in progress.
 
 ### Roadmap
 

@@ -1,0 +1,12 @@
+[workspace]
+[package]
+name = "rom-configured-map-consumer"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.99"
+license = "MIT"
+[dependencies]
+rom-map-core = { path = "../../crates/rom-map-core" }
+rom-configured-maps = { path = "../../crates/rom-configured-maps" }
+tokio = { version = "=1.53.1", features = ["rt", "macros"] }
+rom-map-http = { path = "../../crates/rom-map-http" }

@@ -1,0 +1,59 @@
+{
+  "scope": "Configured map metadata and isolated NATS fixture increment; not full map-provider acceptance",
+  "baseline": "b46e6ada7b61e78bd1c5949a7716bd8955eddb62",
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "exit": 0,
+    "log": ".superpowers/configured-map-nats-reviewed-full-verifier-2026-10-09.log",
+    "source_snapshot": ".superpowers/configured-map-nats-reviewed-source-snapshot-2026-10-09.json",
+    "snapshot_sha256": "49abd0635575d84c334ce5b0ca93eabe83e74e19b7e3bdda0a74177c544343ea",
+    "files_verified_unchanged": 1004
+  },
+  "affected_nats": {
+    "exit": 0,
+    "log": ".superpowers/nats-selector-review-fix-qualification-2026-10-09.log"
+  },
+  "native_metadata": {
+    "service": "Nginx 1.29.8 controlled local HTTPS",
+    "consumer": "tests/configured-map-consumer",
+    "cases": [
+      "raster/vector metadata",
+      "explicit style source resolution",
+      "exact native IDs",
+      "429",
+      "redirect rejected"
+    ],
+    "before_after_restart_exit": 0,
+    "limits": [
+      "No tile data qualification",
+      "No renderer qualification",
+      "No production endpoint default"
+    ],
+    "restart_logs": [
+      ".superpowers/configured-map-native-after-restart-2026-10-09.log",
+      ".superpowers/configured-map-native-before-restart-2026-10-09.log",
+      ".superpowers/configured-map-native-restart-2026-10-09.log"
+    ]
+  },
+  "package_consumer": {
+    "archives": 5,
+    "consumer": "Independent extracted package manifest",
+    "operations": "Configured map APIs only; Nominatim/OSRM dependencies compiled"
+  },
+  "source_review": {
+    "actionable_defects": [],
+    "record": ".superpowers/configured-map-package-nats-source-review-2026-10-09.json"
+  },
+  "advisories": {
+    "root_exit": 0,
+    "consumer_exit": 0
+  },
+  "remaining": [
+    "MapTiler root integration and native account qualification",
+    "Explicit browser public token contract integration",
+    "ROM/UI running example",
+    "Full SQL Storage integration",
+    "Full ROM-extras family acceptance"
+  ],
+  "historical_evidence": "Old NATS quota failure and old fixtures retained; dedicated qualification volume uses unchanged quota"
+}

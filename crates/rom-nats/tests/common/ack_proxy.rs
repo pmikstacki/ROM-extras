@@ -10,6 +10,10 @@ pub struct AckProxy {
 }
 impl AckProxy {
     pub fn start(stream: &str) -> Self {
+        let url = std::env::var("ROM_EXTRAS_NATS_URL").expect("required fixture URL");
+        let fixture = super::fixture_name::selected(false);
+        super::fixture_name::assert_endpoint(&fixture, false, &url);
+        let port = url.rsplit(':').next().expect("validated loopback port");
         let evidence =
             std::env::temp_dir().join(format!("rom-nats-ack-{}-{stream}.json", std::process::id()));
         let mut child = Command::new("node")
@@ -19,6 +23,7 @@ impl AckProxy {
             ))
             .arg(stream)
             .arg(&evidence)
+            .arg(port)
             .stdout(Stdio::piped())
             .spawn()
             .unwrap();

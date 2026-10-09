@@ -1,22 +1,17 @@
 [package]
-name = "rom-osrm"
+name = "rom-configured-maps"
 version = "0.1.0-dev"
 edition = "2024"
 rust-version = "1.99"
 license = "MIT"
-publish = false
 [dependencies]
 rom-map-core = { path = "../rom-map-core", version = "=0.1.0-dev" }
-serde_json = "=1.0.151"
 rom-map-http = { path = "../rom-map-http", version = "=0.1.0-dev" }
-url = "=2.5.8"
-[lints.rust]
-unsafe_code = "forbid"
-unused_must_use = "deny"
-missing_docs = "deny"
-
 [dev-dependencies]
 tokio = { version = "=1.53.1", features = ["rt", "macros"] }
+[lints.rust]
+unsafe_code = "forbid"
+missing_docs = "deny"
 
 [features]
 controlled-fixture = []

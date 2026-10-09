@@ -121,3 +121,16 @@ Runtime and acknowledgement-loss tests use the separate plaintext loopback fixtu
 
 This verifies a single-node TLS-first token profile. It does not verify clustered failover, mTLS/JWT profiles,
 certificate rotation, power-loss durability, production deployment configuration, or packaged release acceptance.
+
+## Isolated qualification fixtures
+
+Historical streams can reserve the complete fixture storage quota even when their stored messages occupy little space.
+Preserve those fixtures and use a new labelled fixture for subsequent qualification.
+The October 9 qualification uses a separate disk volume with the original 256 MiB file-store limit.
+
+`ROM_EXTRAS_NATS_CONTAINER` selects the owned plaintext fixture. `ROM_EXTRAS_NATS_TLS_CONTAINER` selects its TLS counterpart.
+When these variables are absent, tests retain their original fixture names.
+Selectors require bounded ASCII names with the `rom-extras-nats-` prefix and the expected `rom-extras.fixture` label.
+The configured endpoint must match the selected fixture's published IPv4 loopback port and transport.
+Restart and pause operations apply only to that verified fixture. The pause guard retains the selected name until restoration.
+These selectors are test infrastructure. They do not change the delivery adapter's endpoint or transport contract.

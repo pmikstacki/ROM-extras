@@ -2259,6 +2259,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "rom-configured-maps"
+version = "0.1.0-dev"
+dependencies = [
+ "rom-map-core",
+ "rom-map-http",
+ "tokio",
+]
+
+[[package]]
 name = "rom-conformance"
 version = "0.0.3"
 source = "git+https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef529040eec60dc869034c2d33130219db85fe"

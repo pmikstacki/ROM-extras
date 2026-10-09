@@ -1,11 +1,13 @@
 // Test-only plaintext loopback proxy. Never inspect or log client CONNECT credentials.
 const net = require('node:net');
 const fs = require('node:fs');
-const [stream, evidence] = process.argv.slice(2);
+const [stream, evidence, portText] = process.argv.slice(2);
 if (!/^[A-Za-z0-9_-]+$/.test(stream)) throw new Error('invalid fixture stream');
+const port=Number(portText);
+if(!Number.isInteger(port)||port<1||port>65535)throw new Error('invalid fixture port');
 let dropped = false;
 const server = net.createServer(client => {
-  const broker = net.connect(55441, '127.0.0.1');
+  const broker = net.connect(port, '127.0.0.1');
   let buffered = Buffer.alloc(0);
   client.pipe(broker);
   client.on('error', () => broker.destroy());

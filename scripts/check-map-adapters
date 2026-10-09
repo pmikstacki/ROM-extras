@@ -27,8 +27,8 @@ for rom_fixture_cert in ca.pem node.pem; do
 done
 openssl verify -CAfile "$ROM_EXTRAS_MAP_FIXTURE_TLS/ca.pem" "$ROM_EXTRAS_MAP_FIXTURE_TLS/node.pem" >/dev/null
 [[ -f "$ROM_EXTRAS_MAP_FIXTURE_TLS/node.key" ]]
-cargo test --locked -p rom-map-http -p rom-nominatim -p rom-osrm --features controlled-fixture
-cargo clippy --locked -p rom-map-http -p rom-nominatim -p rom-osrm --all-targets --features controlled-fixture -- -D warnings
+cargo test --locked -p rom-map-http -p rom-nominatim -p rom-osrm -p rom-configured-maps --features controlled-fixture
+cargo clippy --locked -p rom-map-http -p rom-nominatim -p rom-osrm -p rom-configured-maps --all-targets --features controlled-fixture -- -D warnings
 cargo fmt --manifest-path tests/map-adapter-consumer/Cargo.toml -- --check
 cargo build --manifest-path tests/map-adapter-consumer/Cargo.toml --locked --offline --target-dir target/map-adapter-consumer
 node scripts/check-map-adapter-consumer.mjs
@@ -37,3 +37,12 @@ cargo clippy --manifest-path tests/map-adapter-consumer/Cargo.toml --locked --of
 cargo fmt --manifest-path tests/osrm-public-consumer/Cargo.toml -- --check
 cargo build --manifest-path tests/osrm-public-consumer/Cargo.toml --locked --offline --target-dir target/osrm-public-consumer
 cargo clippy --manifest-path tests/osrm-public-consumer/Cargo.toml --locked --offline --target-dir target/osrm-public-consumer --all-targets -- -D warnings
+
+cargo fmt --manifest-path tests/configured-map-consumer/Cargo.toml -- --check
+cargo run --manifest-path tests/configured-map-consumer/Cargo.toml --locked --offline --target-dir target/configured-map-consumer
+cargo clippy --manifest-path tests/configured-map-consumer/Cargo.toml --locked --offline --target-dir target/configured-map-consumer --all-targets -- -D warnings
+if [[ -n "${ROM_EXTRAS_MAP_METADATA_ENDPOINT:-}${ROM_EXTRAS_MAP_METADATA_CA:-}" ]]; then
+    : "${ROM_EXTRAS_MAP_METADATA_ENDPOINT:?explicit controlled metadata endpoint required}"
+    : "${ROM_EXTRAS_MAP_METADATA_CA:?explicit controlled metadata CA required}"
+    target/configured-map-consumer/debug/rom-configured-map-consumer "$ROM_EXTRAS_MAP_METADATA_ENDPOINT" "$ROM_EXTRAS_MAP_METADATA_CA"
+fi

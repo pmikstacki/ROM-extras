@@ -12,14 +12,13 @@ use std::time::Duration;
 
 #[tokio::test]
 async fn dropped_publish_ack_preserves_message_and_retry_identity() {
-    assert_eq!(
-        std::env::var("ROM_EXTRAS_NATS_URL").expect("required fixture URL"),
-        "nats://127.0.0.1:55441"
-    );
+    let url = std::env::var("ROM_EXTRAS_NATS_URL").expect("required fixture URL");
+    let fixture = common::fixture_name::selected(false);
+    common::fixture_name::assert_endpoint(&fixture, false, &url);
     let token = std::env::var("ROM_EXTRAS_NATS_TOKEN").expect("required fixture token");
     let direct = async_nats::ConnectOptions::with_token(token.clone())
         .connection_timeout(Duration::from_secs(2))
-        .connect("nats://127.0.0.1:55441")
+        .connect(url.as_str())
         .await
         .unwrap_or_else(|_| panic!("fixture connect failed"));
     let context = jetstream::new(direct);

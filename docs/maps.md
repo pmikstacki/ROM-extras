@@ -38,7 +38,7 @@ It is not a complete renderer schema validator. The host must also enforce brows
 
 | Provider | Required capabilities | Current acceptance |
 | --- | --- | --- |
-| Host configuration | Self-hosted TileJSON and MapLibre styles/tiles | Implementation pending |
+| Host configuration | Self-hosted TileJSON and MapLibre styles/tiles | Implemented; native static HTTPS metadata qualified; rendering and tile contents pending |
 | Nominatim | Search and reverse lookup | Implemented; native qualification pending |
 | OSRM | Route GeoJSON with explicit prepared profile | Implemented; authored driving graph and restart qualified; regional datasets and other modes pending |
 | MapTiler | Styles/tiles and search/reverse | Implementation pending |
@@ -125,3 +125,30 @@ The host binds the travel mode to the graph preparation profile. A URL profile n
 The independent consumer is `tests/osrm-public-consumer`. Supply an explicit controlled HTTPS endpoint and CA file as its two arguments. It requires the authored qualification graph and a 5 metre snapping radius. The prior private qualification used OSRM 26.10.0, five authored nodes, a driving graph and two disconnected roads. It passed before and after restart. These results do not qualify regional OSM datasets, cycling, walking, public deployments or UI integration. The promoted source passed the full local verifier and the native restart rerun. See [the scoped verification record](verification/maps-osrm-2026-10-09.json).
 
 See the [official OSRM HTTP API](https://project-osrm.org/docs/v5.24.0/api/) for profile preparation, coordinate ordering, radius options and native response codes. The authored fixture is MIT data. Real OSM imports require their own attribution and license review.
+
+## Configured source adapters
+
+`rom-configured-maps` supplies separate raster, vector and style capabilities.
+`ConfiguredRaster`, `ConfiguredVector` and `ConfiguredStyle` admit explicit host documents without network I/O.
+`HostedRaster`, `HostedVector` and `HostedStyle` read one explicitly selected HTTPS document when the host invokes the capability.
+The document name is a single ASCII filename of at most 256 bytes. Configure nested paths in the backend endpoint.
+
+Pass private backend configuration through `rom_map_http::Config`. Pass browser origins through a separate `BrowserPolicy`.
+Server query keys remain in the transport configuration. Query-bearing browser URLs are rejected under the current strict profile.
+No browser-public token grant is implemented yet.
+
+Styles require explicit attribution and pre-approved TileJSON bindings keyed by exact native style source identifier.
+The adapter does not fetch nested manifests. The host must bind each manifest to its selected source and enforce browser redirect policy.
+Required credits survive source inlining. The host remains responsible for dataset rights and approved browser disclosure.
+
+Reads use bounded response sizes, verified TLS, cancellation and total deadlines. Redirects and automatic retries are disabled.
+There is no adapter cache. Admission and rate limits apply per provider instance; the host must share instances for aggregate limits.
+
+The independent consumer is `tests/configured-map-consumer`. Without arguments, it checks explicit configuration and optional capabilities.
+With an explicit controlled endpoint and CA file, it checks the authored native metadata fixture.
+`ROM_EXTRAS_MAP_METADATA_ENDPOINT` and `ROM_EXTRAS_MAP_METADATA_CA` opt into this fixture-specific qualification in map gates.
+The fixture contains authored MIT metadata served by Nginx 1.29.8. Its consumer passed before and after restart.
+This qualifies metadata delivery, source resolution, 429 and rejection of redirects. It does not qualify tile data, rendering or production deployments.
+
+Run `./scripts/check-map-package` to check normalized archives outside the workspace.
+The configured-source increment passed the full local verifier on frozen source. See [the scoped verification record](verification/maps-configured-2026-10-09.json).

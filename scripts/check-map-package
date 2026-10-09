@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+node --check scripts/prepare-map-package.mjs
+map_packages=(rom-map-core rom-map-http rom-nominatim rom-osrm rom-configured-maps)
+map_package_args=()
+for map_package in "${map_packages[@]}"; do
+    map_package_args+=(-p "$map_package" --config "patch.crates-io.$map_package.path=\"crates/$map_package\"")
+done
+cargo package --allow-dirty --locked --no-verify "${map_package_args[@]}" \
+    --config 'patch.crates-io.rom.git="https://github.com/pmikstacki/ROM"' \
+    --config 'patch.crates-io.rom.rev="d7ef529040eec60dc869034c2d33130219db85fe"'
+map_consumer=$(node scripts/prepare-map-package.mjs)
+cargo run --manifest-path "$map_consumer/Cargo.toml" --offline --target-dir target/map-packaged-consumer
+cargo clippy --manifest-path "$map_consumer/Cargo.toml" --locked --offline --target-dir target/map-packaged-consumer --all-targets -- -D warnings
+if [[ -n "${ROM_EXTRAS_MAP_METADATA_ENDPOINT:-}${ROM_EXTRAS_MAP_METADATA_CA:-}" ]]; then
+    : "${ROM_EXTRAS_MAP_METADATA_ENDPOINT:?explicit controlled endpoint required}"
+    : "${ROM_EXTRAS_MAP_METADATA_CA:?explicit controlled CA required}"
+    target/map-packaged-consumer/debug/rom-map-packaged-consumer "$ROM_EXTRAS_MAP_METADATA_ENDPOINT" "$ROM_EXTRAS_MAP_METADATA_CA"
+fi

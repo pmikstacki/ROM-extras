@@ -9,15 +9,15 @@ use rom::{Delivery, DeliveryOutcome};
 use rom_delivery_core::PayloadLimit;
 use rom_nats::JetStreamDelivery;
 use std::time::Duration;
+#[path = "common/fixture_name.rs"]
+mod fixture_name;
 
 #[tokio::test]
 async fn acknowledges_exact_payload_and_deduplicates_after_broker_restart() {
     let url =
         std::env::var("ROM_EXTRAS_NATS_URL").expect("required isolated NATS fixture configuration");
-    assert_eq!(
-        url, "nats://127.0.0.1:55441",
-        "restart test requires the dedicated loopback fixture"
-    );
+    let fixture = fixture_name::selected(false);
+    fixture_name::assert_endpoint(&fixture, false, &url);
     let client = async_nats::ConnectOptions::with_token(
         std::env::var("ROM_EXTRAS_NATS_TOKEN").expect("required fixture token"),
     )
@@ -111,20 +111,9 @@ async fn acknowledges_exact_payload_and_deduplicates_after_broker_restart() {
     drop(first);
     drop(messages);
     drop(consumer); // Deliberately withhold consumer acknowledgement.
-    let label = std::process::Command::new("docker")
-        .args([
-            "inspect",
-            "rom-extras-nats-20261008",
-            "--format",
-            "{{index .Config.Labels \"rom-extras.fixture\"}}",
-        ])
-        .output()
-        .unwrap();
-    assert!(label.status.success());
-    assert_eq!(String::from_utf8(label.stdout).unwrap().trim(), "nats");
     assert!(
         std::process::Command::new("docker")
-            .args(["restart", "--time", "10", "rom-extras-nats-20261008"])
+            .args(["restart", "--time", "10", &fixture])
             .stdout(std::process::Stdio::null())
             .status()
             .unwrap()
@@ -329,24 +318,27 @@ async fn acknowledges_exact_payload_and_deduplicates_after_broker_restart() {
 }
 
 // Always restore only the labelled fixture, including unwinding test failures.
-struct PausedBroker;
+struct PausedBroker {
+    name: String,
+}
 impl PausedBroker {
     fn new() -> Self {
+        let name = fixture_name::selected(false);
         assert!(
             std::process::Command::new("docker")
-                .args(["pause", "rom-extras-nats-20261008"])
+                .args(["pause", &name])
                 .stdout(std::process::Stdio::null())
                 .status()
                 .unwrap()
                 .success()
         );
-        Self
+        Self { name }
     }
 }
 impl Drop for PausedBroker {
     fn drop(&mut self) {
         let restored = std::process::Command::new("docker")
-            .args(["unpause", "rom-extras-nats-20261008"])
+            .args(["unpause", &self.name])
             .stdout(std::process::Stdio::null())
             .status();
         assert!(

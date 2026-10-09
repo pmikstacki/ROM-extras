@@ -1,4 +1,6 @@
 //! CA/hostname/auth verification and reconnection against the required TLS-first broker fixture.
+#[path = "common/fixture_name.rs"]
+mod fixture_name;
 use async_nats::{
     ConnectOptions, Event,
     jetstream::{
@@ -35,18 +37,23 @@ fn options(token: String, ca: PathBuf) -> ConnectOptions {
 #[tokio::test]
 async fn tls_first_verifies_identity_and_reconnects_same_client_after_restart() {
     let url = std::env::var("ROM_EXTRAS_NATS_TLS_URL").expect("required dedicated TLS fixture URL");
-    assert_eq!(url, "tls://127.0.0.1:55443");
+    let fixture = fixture_name::selected(true);
+    fixture_name::assert_endpoint(&fixture, true, &url);
     let token = std::env::var("ROM_EXTRAS_NATS_TLS_TOKEN").expect("required TLS fixture token");
     let ca =
         PathBuf::from(std::env::var("ROM_EXTRAS_NATS_TLS_CA").expect("required TLS fixture CA"));
     let wrong_ca = PathBuf::from(
         std::env::var("ROM_EXTRAS_NATS_TLS_WRONG_CA").expect("required unrelated fixture CA"),
     );
+    let mismatched_hostname = url.replace("127.0.0.1", "localhost");
+    let plain_url = std::env::var("ROM_EXTRAS_NATS_URL").expect("required plain fixture URL");
+    let plain_fixture = fixture_name::selected(false);
+    fixture_name::assert_endpoint(&plain_fixture, false, &plain_url);
     for (label, destination, credentials, root) in [
         ("untrusted CA", url.as_str(), token.clone(), wrong_ca),
         (
             "hostname mismatch",
-            "tls://localhost:55443",
+            mismatched_hostname.as_str(),
             token.clone(),
             ca.clone(),
         ),
@@ -58,7 +65,7 @@ async fn tls_first_verifies_identity_and_reconnects_same_client_after_restart() 
         ),
         (
             "plaintext fallback",
-            "nats://127.0.0.1:55441",
+            plain_url.as_str(),
             token.clone(),
             ca.clone(),
         ),
@@ -158,20 +165,9 @@ async fn tls_first_verifies_identity_and_reconnects_same_client_after_restart() 
             .await,
         DeliveryOutcome::Accepted
     );
-    let label = std::process::Command::new("docker")
-        .args([
-            "inspect",
-            "rom-extras-nats-tls-20261008",
-            "--format",
-            "{{index .Config.Labels \"rom-extras.fixture\"}}",
-        ])
-        .output()
-        .unwrap();
-    assert!(label.status.success());
-    assert_eq!(String::from_utf8(label.stdout).unwrap().trim(), "nats-tls");
     assert!(
-        tokio::task::spawn_blocking(|| std::process::Command::new("docker")
-            .args(["restart", "--time", "10", "rom-extras-nats-tls-20261008"])
+        tokio::task::spawn_blocking(move || std::process::Command::new("docker")
+            .args(["restart", "--time", "10", &fixture])
             .stdout(std::process::Stdio::null())
             .status()
             .unwrap()
