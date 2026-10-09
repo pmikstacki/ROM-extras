@@ -40,7 +40,7 @@ It is not a complete renderer schema validator. The host must also enforce brows
 | --- | --- | --- |
 | Host configuration | Self-hosted TileJSON and MapLibre styles/tiles | Implementation pending |
 | Nominatim | Search and reverse lookup | Implemented; native qualification pending |
-| OSRM | Route GeoJSON with explicit prepared profile | Implementation pending |
+| OSRM | Route GeoJSON with explicit prepared profile | Implemented; authored driving graph and restart qualified; regional datasets and other modes pending |
 | MapTiler | Styles/tiles and search/reverse | Implementation pending |
 
 Hosts must explicitly configure endpoints and authorize browser disclosure.
@@ -115,3 +115,13 @@ Run ./scripts/check-map-adapters for controlled TLS protocol and independent con
 Each gate run generates a private CA and separate server certificate in a new retained .superpowers directory.
 Set ROM_EXTRAS_MAP_FIXTURE_TLS to use an existing controlled fixture directory.
 The authored receiver is not a running Nominatim service; these tests do not qualify a real Nominatim deployment.
+
+## OSRM routing adapter
+
+`rom-osrm` implements only the Routing capability. The host supplies an HTTPS endpoint, user agent, graph provenance and attribution. Demo endpoints are rejected. The host must select a finite snapping radius with `Config::with_snap_radius(Metres)` before constructing `Osrm`. No unlimited radius is implicit.
+
+The host binds the travel mode to the graph preparation profile. A URL profile name cannot change that profile. Requests use longitude first, full GeoJSON geometry, metres and seconds. Native `NoRoute` and `NoSegment` responses return an absent route. Other native errors remain closed errors; native messages are never displayed. HTTP response limits, cancellation, timeouts and rate admission use the map transport. No caching or automatic retry is enabled.
+
+The independent consumer is `tests/osrm-public-consumer`. Supply an explicit controlled HTTPS endpoint and CA file as its two arguments. It requires the authored qualification graph and a 5 metre snapping radius. The prior private qualification used OSRM 26.10.0, five authored nodes, a driving graph and two disconnected roads. It passed before and after restart. These results do not qualify regional OSM datasets, cycling, walking, public deployments or UI integration. The promoted source passed the full local verifier and the native restart rerun. See [the scoped verification record](verification/maps-osrm-2026-10-09.json).
+
+See the [official OSRM HTTP API](https://project-osrm.org/docs/v5.24.0/api/) for profile preparation, coordinate ordering, radius options and native response codes. The authored fixture is MIT data. Real OSM imports require their own attribution and license review.

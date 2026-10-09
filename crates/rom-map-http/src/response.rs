@@ -1,6 +1,10 @@
 //! Closed response failures and finite declared/streamed payload admission.
 use rom_map_core::{Error, Result};
-pub(crate) async fn read(mut response: reqwest::Response, limit: usize) -> Result<Vec<u8>> {
+pub(crate) async fn read(
+    mut response: reqwest::Response,
+    limit: usize,
+    admit_bad_request: bool,
+) -> Result<crate::NativeResponse> {
     let status = response.status();
     if status.as_u16() == 429 {
         let retry_after_seconds = response
@@ -13,7 +17,7 @@ pub(crate) async fn read(mut response: reqwest::Response, limit: usize) -> Resul
             retry_after_seconds,
         });
     }
-    if !status.is_success() {
+    if !status.is_success() && !(admit_bad_request && status.as_u16() == 400) {
         return Err(if status.is_server_error() {
             Error::Unavailable
         } else {
@@ -33,5 +37,12 @@ pub(crate) async fn read(mut response: reqwest::Response, limit: usize) -> Resul
         }
         body.extend_from_slice(&chunk);
     }
-    Ok(body)
+    Ok(crate::NativeResponse {
+        status: if status.as_u16() == 400 {
+            crate::ReadStatus::BadRequest
+        } else {
+            crate::ReadStatus::Success
+        },
+        body,
+    })
 }

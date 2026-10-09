@@ -13,6 +13,9 @@ const server=https.createServer({cert:fs.readFileSync(`${tls}/node.pem`),key:fs.
   state.backendKey=u.searchParams.get('key')==='synthetic-backend-secret';
   res.on('close',()=>{if(!res.writableEnded)state.aborted++;});
   switch(u.pathname){
+    case '/operator/bad':res.writeHead(400);res.end('{"code":"NoRoute","message":"synthetic-secret"}');return;
+    case '/operator/bad-huge':res.writeHead(400,{'Content-Length':'1048577'});res.end();return;
+    case '/operator/bad-stream':res.writeHead(400);res.end('x'.repeat(1800));return;
     case '/operator/ok':res.end('[{"fixture":true}]');break;
     case '/operator/rate':res.writeHead(429,{'Retry-After':'2'});res.end('PRIVATE native error');break;
     case '/operator/rate-malformed':res.writeHead(429,{'Retry-After':'not-a-delay'});res.end('PRIVATE native error');break;

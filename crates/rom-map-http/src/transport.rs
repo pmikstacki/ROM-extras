@@ -43,6 +43,16 @@ impl Http {
             next: Mutex::new(None),
         })
     }
+    /// Explicitly admit bounded native HTTP400 data for adapter-side normalization.
+    /// This is not a browser response or a safe error message.
+    pub async fn get_native(
+        &self,
+        segments: &[&str],
+        query: &[(&str, &str)],
+        context: &RequestContext,
+    ) -> Result<crate::NativeResponse> {
+        self.read(segments, query, context, true).await
+    }
     /// Read one bounded response using the host's total operation context.
     pub async fn get(
         &self,
@@ -50,6 +60,17 @@ impl Http {
         query: &[(&str, &str)],
         context: &RequestContext,
     ) -> Result<Vec<u8>> {
+        self.read(segments, query, context, false)
+            .await
+            .map(|response| response.body)
+    }
+    async fn read(
+        &self,
+        segments: &[&str],
+        query: &[(&str, &str)],
+        context: &RequestContext,
+        admit_bad_request: bool,
+    ) -> Result<crate::NativeResponse> {
         context
             .run(async {
                 let _permit = self
@@ -72,7 +93,7 @@ impl Http {
                     .send()
                     .await
                     .map_err(failure)?;
-                super::response::read(response, self.config.limit).await
+                super::response::read(response, self.config.limit, admit_bad_request).await
             })
             .await
     }

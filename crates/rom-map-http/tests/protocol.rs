@@ -314,4 +314,34 @@ mod controlled {
         }
         assert_eq!(fixture.events().await["requests"], 2);
     }
+
+    #[tokio::test(flavor = "current_thread")]
+    async fn native_bad_request_is_explicit_and_still_bounded() {
+        let fixture = Fixture::start();
+        let http = fixture.http();
+        assert_eq!(
+            http.get(&["bad"], &[], &context(1000)).await.unwrap_err(),
+            Error::Rejected
+        );
+        let response = http
+            .get_native(&["bad"], &[], &context(1000))
+            .await
+            .unwrap();
+        assert_eq!(response.status(), rom_map_http::ReadStatus::BadRequest);
+        let value: Value = serde_json::from_slice(response.body()).unwrap();
+        assert_eq!(value["code"], "NoRoute");
+        for path in ["bad-huge", "bad-stream"] {
+            assert!(matches!(
+                http.get_native(&[path], &[], &context(1000)).await,
+                Err(Error::TooLarge)
+            ));
+        }
+        let ok = http.get_native(&["ok"], &[], &context(1000)).await.unwrap();
+        assert_eq!(ok.status(), rom_map_http::ReadStatus::Success);
+        assert!(matches!(
+            http.get_native(&["redirect"], &[], &context(1000)).await,
+            Err(Error::Rejected)
+        ));
+        assert_eq!(fixture.events().await["target"], 0);
+    }
 }

@@ -1,0 +1,86 @@
+{
+  "sourceSnapshot": ".superpowers/osrm-promoted-source-snapshot-2026-10-09.json",
+  "sourceUnchanged": true,
+  "nativeVersion": "26.10.0",
+  "graph": "five authored nodes; driving; two disconnected roads",
+  "snapRadiusMetres": 5,
+  "independentConsumer": "tests/osrm-public-consumer",
+  "beforeRestartExit": 0,
+  "afterRestartExit": 0,
+  "graphFilesUnchanged": 28,
+  "logs": [
+    ".superpowers/osrm-promoted-native-before-restart-2026-10-09.log",
+    ".superpowers/osrm-promoted-native-after-restart-2026-10-09.log"
+  ],
+  "ownedProxyStopped": true,
+  "fullVerifier": {
+    "session": 21330,
+    "exit": 0,
+    "command": "./scripts/check-all",
+    "log": ".superpowers/osrm-promoted-full-verifier-2026-10-09.log",
+    "sourceUnchanged": true,
+    "sourceFileCount": 983
+  },
+  "productionQualification": false,
+  "affected": {
+    "exit": 0,
+    "httpTests": 14,
+    "nominatimTests": 11,
+    "osrmTests": 10,
+    "consumerBuildAndClippy": true,
+    "log": ".superpowers/osrm-promoted-consumer-affected-2026-10-09.log"
+  },
+  "audits": [
+    {
+      "scope": "root",
+      "exit": 0,
+      "log": ".superpowers/osrm-promoted-root-audit-2026-10-09.log",
+      "sha256": "250ed6d73f40217bc663624e7daf0634c672fc6036e214b1cc7428a68dfbe6b7"
+    },
+    {
+      "scope": "consumer",
+      "exit": 0,
+      "log": ".superpowers/osrm-promoted-consumer-audit-2026-10-09.log",
+      "sha256": "dfe2c0049fe24e7699de81087711eb8b052c4f1a1f20cc134b800c59b7f02cda"
+    }
+  ],
+  "sourceHashes": {
+    "crates/rom-map-http/src/native_response.rs": "a9f2a38dc753e0a5d29966e847414bda4e2e351c07fb1aa962f0fb4602782e38",
+    "crates/rom-osrm/Cargo.toml": "c2369ba26c62a13052a013f52fb13e30caa841417d70119948b0f29157ead632",
+    "crates/rom-osrm/src/adapter.rs": "e79e3f9044b1e2530e69c70109b3f08dd5e5dcd7cdeadb780e4333aa2a050aae",
+    "crates/rom-osrm/src/decoding.rs": "668d31d31c07e1e8c92a053956f1b5ef6cb6e9d700fe2f42b255a69dd61f1ebf",
+    "crates/rom-osrm/src/lib.rs": "0486db5c60b71a9654a6491268b268eb7bc507cc6486552cf22057695a56f5a4",
+    "crates/rom-osrm/tests/adapter.rs": "4e67d15f648539ce4a5396a3766b1a963410433a945e0d3e3b503f6b8cb849c9",
+    "crates/rom-osrm/tests/decoding.rs": "c1cb2c72569114da15e66f726266ee0609102e6012e0d137cb8d743c8f47f665",
+    "crates/rom-osrm/tests/protocol.rs": "1d0c93ffbfc192866d1d13c45178204156b9f6ec938330f237bcfcbc896df97e",
+    "crates/rom-osrm/tests/receiver.mjs": "4cca2073cdf753d62b0d7f6f4bff87cb01e6a35b701ca3d6306ad28d0ee879e5",
+    "tests/osrm-public-consumer/Cargo.lock": "f8bc7bad41c749b5f0e6ec437fe4dd692d95f09b714d2bd9641d1515fa9f7bce",
+    "tests/osrm-public-consumer/Cargo.toml": "c47cf0012545066e2710bb2987921d84ec4bcca223ecf522e4e2d07ea765d694",
+    "tests/osrm-public-consumer/src/main.rs": "128133fd8ed1e59d5546ee7decdde1f6a927c5483f6b0951eefa7dda6c4ad5a8",
+    "Cargo.lock": "dd37e1a9721cb1296b5662539bf04468bd01dcb24237d0706b77a2dc23071286",
+    "Cargo.toml": "9e6a618ea38fd8b3223c0cd248ae57fc8c7c08ae2b8b3754dc7a3c56b7b93538",
+    "crates/rom-map-http/Cargo.toml": "729c79fd30f34436846ebbcfc7fa0b4cfc9617f0ed4e75083a364d7ce3ecbb3d",
+    "crates/rom-map-http/src/config.rs": "4cebbaa5fee58c82028a4ded82a29b27bbacee122f77ba00e6385b8f18c4b33d",
+    "crates/rom-map-http/src/lib.rs": "ea848280586b5b0637f0b5289cadde90492382625662a7d0ebd7b5fa88f777c2",
+    "crates/rom-map-http/src/request_url.rs": "2f6bd57594c859518f59629b17e577e970ec97ecded90fe5d6e898c77753fdc3",
+    "crates/rom-map-http/src/response.rs": "41b3c5744262588418272d6bfcd81b5358e601e177ea74e94126ef943d769cef",
+    "crates/rom-map-http/src/transport.rs": "bc6a4638efebadf3802c10db1617c5c19bfa09d8abf247e09aa4f6cba7ac8da9",
+    "crates/rom-map-http/tests/config.rs": "9b9cf8b3197fc403974871ab0acd4f95bd68ca48d87c6fddabfda2ff771d0bd6",
+    "crates/rom-map-http/tests/protocol.rs": "a58d9f84c388cd7caf7890f34af702a0960fd9f1bd50a9b998eb08621f06ea5f",
+    "crates/rom-map-http/tests/receiver.mjs": "c762b81f1a3816b45e59f3909e59c0741159af498db02688ec3ef732caa3756d",
+    "scripts/check-map-adapters": "fb58ddf581ca50cc4c4d304c103a8baf91a2745f640eb73c5b007bc96b0b7561"
+  },
+  "remaining": [
+    "packaged map-family consumer",
+    "regional datasets and other modes",
+    "actual Nominatim service qualification",
+    "MapTiler adapter",
+    "host/rom-ui integration",
+    "full ROM-extras goal"
+  ],
+  "sourceReview": {
+    "result": "no actionable code defects; stale provider status corrected",
+    "scope": "source only; no execution",
+    "reviewer": "maps_http_increment_review"
+  }
+}

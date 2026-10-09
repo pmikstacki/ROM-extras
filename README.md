@@ -45,7 +45,8 @@ These are executor profiles. Full ROM Storage integration remains pending.
 
 [Generic map providers](docs/maps.md) are in scope. The local typed-core increment has boundary and public-consumer tests.
 Nominatim search/reverse has controlled HTTPS and public-consumer tests; native-service qualification remains pending.
-Configured sources, OSRM, MapTiler, browser approval and the UI example remain in progress.
+OSRM routing passed qualification on an authored driving graph before and after restart.
+Configured sources, MapTiler, browser approval and the UI example remain in progress.
 
 ### Roadmap
 

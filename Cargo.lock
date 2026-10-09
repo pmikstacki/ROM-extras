@@ -2396,6 +2396,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "rom-osrm"
+version = "0.1.0-dev"
+dependencies = [
+ "rom-map-core",
+ "rom-map-http",
+ "serde_json",
+ "tokio",
+ "url",
+]
+
+[[package]]
 name = "rom-projection-core"
 version = "0.1.0-dev"
 dependencies = [
