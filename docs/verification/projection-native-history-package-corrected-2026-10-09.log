@@ -1,0 +1,116 @@
+   Packaging rom-sql-core v0.1.0-dev (/root/ROM-extras/crates/rom-sql-core)
+warning: patch `rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)` was not used in the crate graph
+warning: patch `rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)` was not used in the crate graph
+warning: patch `rom-redb v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)` was not used in the crate graph
+warning: patch `rom-sqlite v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)` was not used in the crate graph
+help: Check that the patched package version and available features are compatible
+      with the dependency requirements. If the patch has a different version from
+      what is locked in the Cargo.lock file, run `cargo update` to use the new
+      version. This may also occur with an optional dependency that is not enabled.
+    Packaged 9 files, 22.9KiB (6.1KiB compressed)
+   Packaging rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Updating crates.io index
+    Packaged 41 files, 234.8KiB (52.0KiB compressed)
+   Compiling stable_deref_trait v1.2.1
+   Compiling foldhash v0.2.0
+   Compiling writeable v0.6.4
+   Compiling litemap v0.8.3
+   Compiling utf8_iter v1.0.4
+   Compiling icu_properties_data v2.3.0
+   Compiling icu_normalizer_data v2.3.0
+   Compiling syn v3.0.6
+   Compiling smallvec v1.16.2
+   Compiling shlex v2.0.1
+   Compiling find-msvc-tools v0.1.14
+   Compiling vcpkg v0.2.15
+   Compiling pkg-config v0.3.34
+   Compiling percent-encoding v2.3.2
+   Compiling bitflags v2.13.2
+   Compiling fallible-streaming-iterator v0.1.9
+   Compiling fallible-iterator v0.3.0
+   Compiling hashbrown v0.17.1
+   Compiling cc v1.6.0
+   Compiling form_urlencoded v1.2.2
+   Compiling rom-sql-core v0.1.0-dev (/root/ROM-extras/.superpowers/projection-packaged-a0Pdp5/rom-sql-core-0.1.0-dev)
+   Compiling indexmap v2.14.2
+   Compiling hashlink v0.12.2
+   Compiling libsqlite3-sys v0.38.2
+   Compiling serde_json v1.0.151
+   Compiling synstructure v0.14.0
+   Compiling zerofrom-derive v0.1.8
+   Compiling yoke-derive v0.8.4
+   Compiling zerovec-derive v0.11.6
+   Compiling displaydoc v0.2.7
+   Compiling tokio-macros v2.7.2
+   Compiling serde_derive v1.0.229
+   Compiling rom-derive v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling tokio v1.53.1
+   Compiling zerofrom v0.1.8
+   Compiling yoke v0.8.3
+   Compiling zerovec v0.11.8
+   Compiling zerotrie v0.2.5
+   Compiling tinystr v0.8.4
+   Compiling potential_utf v0.1.6
+   Compiling icu_collections v2.3.0
+   Compiling icu_locale_core v2.3.0
+   Compiling serde v1.0.229
+   Compiling icu_provider v2.3.1
+   Compiling icu_normalizer v2.3.0
+   Compiling icu_properties v2.3.0
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling idna_adapter v1.2.2
+   Compiling idna v1.1.0
+   Compiling url v2.5.8
+   Compiling rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-redb v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/.superpowers/projection-packaged-a0Pdp5/rom-projection-core-0.1.0-dev)
+   Compiling rusqlite v0.40.2
+   Compiling rom-sqlite v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-projection-packaged-consumer v0.0.0 (/root/ROM-extras/.superpowers/projection-packaged-a0Pdp5/consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 8.03s
+     Running `target/projection-packaged-consumer/debug/rom-projection-packaged-consumer`
+packaged projection checkpoint close/reopen: passed
+    Checking stable_deref_trait v1.2.1
+    Checking foldhash v0.2.0
+    Checking litemap v0.8.3
+    Checking writeable v0.6.4
+    Checking utf8_iter v1.0.4
+    Checking smallvec v1.16.2
+    Checking serde v1.0.229
+    Checking icu_normalizer_data v2.3.0
+    Checking zerofrom v0.1.8
+    Checking tokio v1.53.1
+    Checking icu_properties_data v2.3.0
+    Checking percent-encoding v2.3.2
+    Checking bitflags v2.13.2
+    Checking fallible-streaming-iterator v0.1.9
+    Checking libsqlite3-sys v0.38.2
+    Checking fallible-iterator v0.3.0
+    Checking rom-sql-core v0.1.0-dev (/root/ROM-extras/.superpowers/projection-packaged-a0Pdp5/rom-sql-core-0.1.0-dev)
+    Checking yoke v0.8.3
+    Checking hashbrown v0.17.1
+    Checking form_urlencoded v1.2.2
+    Checking zerovec v0.11.8
+    Checking zerotrie v0.2.5
+    Checking indexmap v2.14.2
+    Checking hashlink v0.12.2
+    Checking tinystr v0.8.4
+    Checking potential_utf v0.1.6
+    Checking icu_collections v2.3.0
+    Checking icu_locale_core v2.3.0
+    Checking rusqlite v0.40.2
+    Checking serde_json v1.0.151
+    Checking icu_provider v2.3.1
+    Checking icu_properties v2.3.0
+    Checking icu_normalizer v2.3.0
+    Checking rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking idna_adapter v1.2.2
+    Checking idna v1.1.0
+    Checking url v2.5.8
+    Checking rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-redb v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-projection-core v0.1.0-dev (/root/ROM-extras/.superpowers/projection-packaged-a0Pdp5/rom-projection-core-0.1.0-dev)
+    Checking rom-sqlite v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-projection-packaged-consumer v0.0.0 (/root/ROM-extras/.superpowers/projection-packaged-a0Pdp5/consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.85s
+error: package `rom-projection-core` cannot be tested because it requires dev-dependencies and is not a member of the workspace

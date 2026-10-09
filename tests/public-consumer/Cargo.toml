@@ -9,7 +9,7 @@ license = "MIT"
 [workspace]
 
 [features]
-projection-checkpoints = ["dep:tokio", "dep:serde_json", "serde_json/arbitrary_precision", "serde_json/preserve_order"]
+projection-checkpoints = ["dep:rom-sqlite", "dep:rom-redb", "dep:tokio", "dep:serde_json", "serde_json/arbitrary_precision", "serde_json/preserve_order"]
 secrets-host = ["dep:tokio", "dep:rom-identity", "dep:rom-sqlite", "dep:rom-redb", "dep:serde_json"]
 oracle-conformance = ["dep:oracle", "dep:tokio"]
 s3-lifecycle = ["s3-conformance", "dep:rom-sqlite", "dep:rom-redb", "dep:futures-util"]

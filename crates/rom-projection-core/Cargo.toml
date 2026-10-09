@@ -23,3 +23,6 @@ tokio = { version = "=1.53.1", default-features = false, features = ["sync"] }
 
 [dev-dependencies]
 tokio = { version = "=1.53.1", default-features = false, features = ["rt"] }
+
+rom-sqlite = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+rom-redb = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }

@@ -1,0 +1,49 @@
+   Compiling serde_json v1.0.151
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling amq-protocol-types v10.6.3
+   Compiling jsonwebtoken v11.1.0
+   Compiling rdkafka v0.39.0
+   Compiling object_store v0.14.2
+   Compiling async-nats v0.50.0
+   Compiling rom-openbao v0.1.0-dev (/root/ROM-extras/crates/rom-openbao)
+   Compiling amq-protocol-uri v10.6.3
+   Compiling amq-protocol-tcp v10.6.3
+   Compiling amq-protocol v10.6.3
+   Compiling rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+   Compiling lapin v4.12.0
+   Compiling rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+   Compiling rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-blob v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+   Compiling rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+   Compiling rom-rabbitmq v0.1.0-dev (/root/ROM-extras/crates/rom-rabbitmq)
+   Compiling rom-redb v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-sqlite v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.37s
+     Running tests/projection_checkpoints.rs (tests/public-consumer/target/debug/deps/projection_checkpoints-f7041e28dedf4172)
+
+running 16 tests
+test redb_generation_expiry_closed_source ... ok
+test redb_bounded_selected_vectors ... ok
+test redb_oversize_selection_before_vectors ... ok
+test sqlite_generation_expiry_closed_source ... ok
+test sqlite_bounded_selected_vectors ... ok
+test sqlite_oversize_selection_before_vectors ... ok
+test public_worker_recovers_pending_history_after_restart ... ok
+test redb_denied_empty_page_advances ... ok
+test redb_revoked_row_blocks_recovery ... ok
+test sqlite_revoked_row_blocks_recovery ... ok
+test redb_revoked_field_blocks_recovery ... ok
+test sqlite_denied_empty_page_advances ... ok
+test sqlite_revoked_field_blocks_recovery ... ok
+test public_checkpoint_consumer_closes_reopens_and_reconciles_both_phases ... ok
+test redb_tombstone_restart_old_endpoint ... ok
+test sqlite_tombstone_restart_old_endpoint ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.72s
+

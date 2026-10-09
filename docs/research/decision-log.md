@@ -716,3 +716,35 @@ The actual Busy wake-order regression failed before correction and passed afterw
 Final source review found no actionable issue. Independent public and normalized archive consumers passed managed-worker restart recovery.
 Root, public-consumer and archive lockfiles are byte-identical to their prior graphs. Fresh audits report no known vulnerabilities.
 The public consumer retains the unsuppressed paste informational warning. Native feed/authorization and Rust provider transport acceptance remain required.
+
+## 2026-10-09: authorized native history for projection recovery
+
+Use public ROM 0.0.3 at immutable revision d7ef529040eec60dc869034c2d33130219db85fe.
+RuntimeHistory owns a fixed Runtime, Actor, Resource kind and derived mapping profile.
+Read history through Runtime::journal; do not reconstruct disclosure from private storage or partial Resource decoding.
+Current row and field policy can suppress historical values. Recovery must compare the complete pending intent before target dispatch.
+Denied or expired identity requires rebuilding; source operational errors remain sanitized SourceUnavailable.
+
+Sources inspected on 2026-10-09: [public journal](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom/src/journal.rs), [historical disclosure](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom/src/projection.rs), [identity policy](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom/src/policy.rs), [command identity](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom/src/resource/command.rs), [runtime limits](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom/src/execution/lifecycle.rs).
+
+Use a trusted bounded HostVectors callback over validated selected field references.
+Reject model changes before and after computation. Tombstones do not invoke the callback.
+Canonical validation precedes callback invocation and cloning. This does not qualify any embedding model or prove arbitrary host callback bounds.
+Native Runtime limits remain host configuration; projection bounds do not establish an arbitrary runtime's peak memory bound.
+Authorization applies at each source fetch; continuous remote revocation fencing remains unimplemented.
+
+Archive tests consume unchanged normalized manifests outside the parent workspace.
+The extracted library's own manifest selects its integration tests and development dependencies.
+Share immutable public-ROM CLI patches between packaging and extracted tests.
+First resolve the extracted graph offline; repeat tests with its resulting lockfile locked.
+Sources: [Cargo test selection](https://doc.rust-lang.org/cargo/commands/cargo-test.html), [workspace discovery](https://doc.rust-lang.org/cargo/reference/workspaces.html), [configuration patches](https://doc.rust-lang.org/cargo/reference/config.html), [dependency overrides](https://doc.rust-lang.org/cargo/reference/overriding-dependencies.html).
+
+Actual SQLite and redb cases passed tombstone restart, old endpoint clamping, revoked row/field recovery, generation/identity/closed source errors, selected vector inputs, denied empty pages and oversized values.
+Targets are controlled adapters, not OpenSearch or Qdrant transports.
+Initial missing API, fixture identity, fixture command limit and Cargo workspace-routing failures are retained separately from passing evidence.
+
+The native archive consumer expands from 40 to 95 resolved packages because it directly tests public SQLite and redb.
+The 55 additional package versions already exist in the root graph. No production dependency is added to projection core.
+Declared licenses include MIT/Apache-2.0, Zlib, Unicode-3.0 and Unlicense alternatives; only the temporary consumer lacks package license metadata.
+Declared package Rust requirements remain within the tested 1.99 toolchain. Native source dependencies have no optional features enabled.
+Root and archive audits report no known vulnerabilities or warnings. The public consumer retains its unsuppressed paste maintenance warning.

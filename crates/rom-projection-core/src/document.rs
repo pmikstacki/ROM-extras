@@ -70,11 +70,18 @@ impl DocumentMapping {
         event: &JournalView,
         mut vector: Option<Vec<f32>>,
     ) -> Result<ApprovedDocument> {
+        self.validate_identity(event)?;
+        self.validate_vector(event.view.value.is_none(), &mut vector)?;
+        self.build(event, |_| Ok(vector))
+    }
+    fn validate_identity(&self, event: &JournalView) -> Result<()> {
         limits::key(&event.view.key)?;
         if event.position == 0 || event.view.revision == 0 {
             return Err(Error::Invalid);
         }
-        let tombstone = event.view.value.is_none();
+        Ok(())
+    }
+    fn validate_vector(&self, tombstone: bool, vector: &mut Option<Vec<f32>>) -> Result<()> {
         match (tombstone, self.dimension, vector.as_mut()) {
             (true, _, None) | (false, None, None) => {}
             (false, Some(d), Some(v)) if v.len() == d => {
@@ -89,6 +96,16 @@ impl DocumentMapping {
             }
             _ => return Err(Error::Invalid),
         }
+        Ok(())
+    }
+    // One selected-value admission/identity implementation; providers see only bounded references.
+    pub(crate) fn build(
+        &self,
+        event: &JournalView,
+        generate: impl FnOnce(&[(&str, &Value)]) -> Result<Option<Vec<f32>>>,
+    ) -> Result<ApprovedDocument> {
+        self.validate_identity(event)?;
+        let tombstone = event.view.value.is_none();
         // Gather only bounded references; clone selected trees only after complete validation.
         let selected: Vec<_> = self
             .fields
@@ -107,6 +124,8 @@ impl DocumentMapping {
         } else {
             document_encoding::fields(&selected)?
         };
+        let mut vector = generate(&selected)?;
+        self.validate_vector(tombstone, &mut vector)?;
         let mut hash = Sha256::new();
         hash.update(b"ROM-extras/projection-document/v1");
         frame(&mut hash, &codec::profile(&self.profile));

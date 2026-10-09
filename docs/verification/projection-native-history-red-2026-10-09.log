@@ -1,0 +1,13 @@
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-sqlite v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-redb v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+error[E0432]: unresolved imports `rom_projection_core::HostVectors`, `rom_projection_core::RuntimeHistory`, `rom_projection_core::VectorInput`
+ --> crates/rom-projection-core/tests/../../../tests/packaged-projections/native_history_case.rs:3:95
+  |
+3 | ...r, HostVectors, OperationMetadata, ProjectionHistory, ProjectionProfile, ProjectionTarget, RemoteObservation, RuntimeHistory, StorageLifecycle, TargetFailure, VectorInput, W...
+  |       ^^^^^^^^^^^ no `HostVectors` in the root                                                                   ^^^^^^^^^^^^^^ no `RuntimeHistory` in the root   ^^^^^^^^^^^ no `VectorInput` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rom-projection-core` (test "native_history") due to 1 previous error

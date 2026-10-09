@@ -1,0 +1,169 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.07s
+     Running unittests src/lib.rs (target/debug/deps/rom_projection_core-2dc88edf796bc459)
+
+running 17 tests
+test metadata::tests::sequence_exhaustion_is_rejected_before_preparing_an_unfinishable_page ... ok
+test preflight::cancellation_tests::bounded_copy_cancels_after_one_chunk_without_changing_source ... ok
+test lifecycle::tests::native_start_failure_releases_slot_before_waking_its_response ... ok
+test lifecycle::tests::dropping_a_buffered_startup_response_releases_ownership_without_host_shutdown ... ok
+test storage_worker::tests::unexpected_job_panic_loses_response_without_claiming_rollback ... ok
+test storage_worker::lifecycle_tests::async_shutdown_yields_while_native_work_is_still_active ... ok
+test storage_worker::lifecycle_tests::managed_drop_never_joins_active_native_io_on_the_async_caller ... ok
+test storage_worker::tests::owner_drop_waits_for_active_work_and_releases_native_ownership ... ok
+test lifecycle::tests::dropped_inflight_startup_future_keeps_slot_until_actual_owner_cleanup ... ok
+test storage_worker::lifecycle_tests::dropped_shutdown_future_still_drains_accepted_intent_and_retains_terminal_result ... ok
+test checkpoint::faults::error_before_native_write_reconciles_absent_after_handle_retirement ... ok
+test storage_worker::tests::full_queue_rejects_without_execution_and_join_drains_the_accepted_intent ... ok
+test preflight::cancellation_tests::scan_cancels_at_256_records_before_later_corruption_is_examined ... ok
+test checkpoint::faults::completion_write_error_recovers_atomically_absent_keys_and_unadvanced_cursor ... ok
+test checkpoint::faults::completion_sync_error_recovers_atomically_applied_keys_cursor_and_receipt ... ok
+test checkpoint::faults::error_after_actual_native_sync_reconciles_applied_after_handle_retirement ... ok
+test checkpoint::faults::unwinding_commit_panic_retires_handle_and_reconciles_the_durable_intent ... ok
+
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.13s
+
+     Running tests/boundaries.rs (target/debug/deps/boundaries-f588f719de424054)
+
+running 4 tests
+test invalid_identity_and_zero_revision_are_rejected_before_store_access ... ok
+test page_rejects_equal_revision_content_conflict_before_collapsing_keys ... ok
+test page_rejects_generation_gap_backward_progress_and_excess_work ... ok
+test remote_observation_rejects_oversized_target_before_owned_copy ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cancellation.rs (target/debug/deps/cancellation-937cb6fc2e045689)
+
+running 2 tests
+test pre_cancelled_reopen_does_not_retire_a_usable_engine_or_release_ownership ... ok
+test cancelled_open_preserves_bytes_and_releases_admission ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+     Running tests/checkpoint_recovery.rs (target/debug/deps/checkpoint_recovery-466d655fb1c8a39a)
+
+running 7 tests
+test partial_or_conflicting_remote_observations_cannot_advance_cursor ... ok
+test fresh_store_is_private_and_durable_after_full_close ... ok
+test durable_key_state_rejects_stale_and_conflicting_equal_revision_after_reopen ... ok
+test filtered_page_advances_without_inventing_key_state ... ok
+test complete_page_publishes_all_keys_and_cursor_together ... ok
+test accepted_intent_survives_reopen_without_acknowledging_its_cursor ... ok
+test original_keys_with_ambiguous_separator_concatenation_remain_distinct ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s
+
+     Running tests/documents.rs (target/debug/deps/documents-cb8054fd80ecd614)
+
+running 8 tests
+test duplicate_fields_and_model_dimension_mismatch_are_rejected ... ok
+test only_selected_authorized_fields_are_retained_and_position_is_not_content ... ok
+test configuration_and_array_order_change_content_but_object_order_does_not ... ok
+test absent_null_false_zero_empty_and_integer_precision_remain_distinct ... ok
+test tombstones_clear_fields_and_vectors_and_vector_profile_is_exact ... ok
+test oversize_and_deep_selected_values_are_rejected_but_unselected_values_are_not_copied ... ok
+test largest_vector_and_canonical_zero_are_supported_with_finite_bounds ... ok
+test changed_selector_is_a_different_durable_profile_not_an_in_place_mapping ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+     Running tests/history.rs (target/debug/deps/history-cffbfb459d4723fc)
+
+running 11 tests
+test cancellation_preserves_cursor_and_accepts_a_later_uncancelled_attempt ... ok
+test changed_disclosure_and_changed_mapping_require_rebuild ... ok
+test fetch_budget_is_finite_and_empty_noop_requires_no_fetch ... ok
+test filtered_empty_history_advances_only_after_inspected_coverage ... ok
+test malformed_overrun_is_rejected_before_any_mapping_and_poisoned ... ok
+test mapper_cannot_substitute_original_identity_or_tombstone ... ok
+test mapper_panic_cannot_leave_a_reusable_partial_reconstruction ... ok
+test replay_overrun_maps_only_old_interval_and_returns_exact_old_intent ... ok
+test stalled_generation_change_and_work_exhaustion_fail_closed ... ok
+test revision_regression_and_equal_revision_mismatch_across_batches_fail ... ok
+test reconstruction_does_not_publish_or_replace_the_actual_durable_pending_intent ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running tests/lifecycle.rs (target/debug/deps/lifecycle-3c446e2a41730296)
+
+running 6 tests
+test oversized_path_rejects_before_lifecycle_admission ... ok
+test precancelled_create_never_creates_checkpoint ... ok
+test active_owner_rejects_second_start_without_creating_its_file ... ok
+test host_shutdown_revokes_a_live_managed_owner_and_closes_future_admission ... ok
+test failed_native_start_preserves_classification_and_releases_only_its_slot ... ok
+test managed_create_shutdown_and_reopen_release_actual_native_ownership ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.11s
+
+     Running tests/native_history.rs (target/debug/deps/native_history-5ea3c9efee63de35)
+
+running 14 tests
+test redb_generation_expiry_closed_source ... ok
+test redb_bounded_selected_vectors ... ok
+test sqlite_generation_expiry_closed_source ... ok
+test redb_oversize_selection_before_vectors ... ok
+test sqlite_oversize_selection_before_vectors ... ok
+test sqlite_bounded_selected_vectors ... ok
+test redb_denied_empty_page_advances ... ok
+test redb_revoked_row_blocks_recovery ... ok
+test sqlite_revoked_field_blocks_recovery ... ok
+test sqlite_denied_empty_page_advances ... ok
+test sqlite_revoked_row_blocks_recovery ... ok
+test redb_revoked_field_blocks_recovery ... ok
+test redb_tombstone_restart_old_endpoint ... ok
+test sqlite_tombstone_restart_old_endpoint ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.41s
+
+     Running tests/process_recovery.rs (target/debug/deps/process_recovery-7bbd53840e6016d5)
+
+running 10 tests
+test child_process ... ignored, invoked in a bounded child process by the parent cases
+test hard_link_deployment_is_rejected_before_engine_open ... ok
+test ownership_rejects_a_second_process_and_supported_path_alias ... ok
+test missing_application_marker_is_not_initialized_as_a_fresh_store ... ok
+test oversized_state_record_is_rejected_without_source_changes ... ok
+test future_format_rejection_preserves_original_bytes ... ok
+test retained_receipt_cannot_hide_a_changed_completed_cursor ... ok
+test retained_receipt_cannot_hide_a_missing_acknowledged_key ... ok
+test rejected_future_dirty_source_is_not_repaired_or_rewritten ... ok
+test acknowledged_intent_recovers_after_process_exit_without_engine_drop ... ok
+
+test result: ok. 9 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.27s
+
+     Running tests/storage_worker.rs (target/debug/deps/storage_worker-b5bed65710e2c20f)
+
+running 3 tests
+test cancelled_initialization_returns_the_checkpoint_category ... ok
+test accepted_intent_survives_dropped_response_and_join_releases_ownership ... ok
+test typed_commands_publish_and_shutdown_precedes_another_owner ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s
+
+     Running tests/worker.rs (target/debug/deps/worker-6e7e64a0d1d4a381)
+
+running 12 tests
+test precancelled_attempt_never_prepares_or_dispatches ... ok
+test request_validation_rejects_before_native_intent_and_dispatch ... ok
+test unreconstructable_span_is_rejected_before_native_intent ... ok
+test empty_filtered_page_commits_without_backend_request ... ok
+test recovery_never_fetches_a_sixty_fifth_history_page ... ok
+test native_intent_precedes_dispatch_and_exact_observation_publishes_cursor ... ok
+test unknown_remote_result_keeps_pending_and_blocks_later_page ... ok
+test higher_remote_revision_is_not_exact_acknowledgement ... ok
+test changed_disclosure_after_restart_never_dispatches_or_advances ... ok
+test restart_recovery_reconstructs_old_interval_before_replay_and_ignores_overrun ... ok
+test cancellation_after_host_acceptance_preserves_pending_before_local_completion ... ok
+test dropped_future_after_host_acceptance_keeps_native_intent_for_recovery ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.59s
+
+   Doc-tests rom_projection_core
+
+running 1 test
+test crates/rom-projection-core/src/metadata.rs - metadata::ReconciledPage (line 273) - compile fail ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+

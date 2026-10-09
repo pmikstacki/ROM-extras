@@ -1,17 +1,33 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd -- "$(dirname -- "$0")/.."
-rustfmt --edition 2024 --check tests/packaged-projections/main.rs tests/packaged-projections/checkpoint_case.rs
+rustfmt --edition 2024 --config skip_children=true --check tests/packaged-projections/main.rs tests/packaged-projections/checkpoint_case.rs tests/packaged-projections/worker_case.rs crates/rom-projection-core/tests/native_history_fixture/native_history_case.rs
 node --check scripts/lib/package-consumer.mjs
 node --check scripts/prepare-projection-package.mjs
-cargo package --allow-dirty --locked --no-verify -p rom-sql-core -p rom-projection-core \
-    --config 'patch.crates-io.rom-sql-core.path="crates/rom-sql-core"' \
-    --config 'patch.crates-io.rom.git="https://github.com/pmikstacki/ROM"' \
-    --config 'patch.crates-io.rom.rev="d7ef529040eec60dc869034c2d33130219db85fe"' \
-    --config 'patch.crates-io.rom-backup.git="https://github.com/pmikstacki/ROM"' \
+public_rom_patches=(
+    --config 'patch.crates-io.rom.git="https://github.com/pmikstacki/ROM"'
+    --config 'patch.crates-io.rom.rev="d7ef529040eec60dc869034c2d33130219db85fe"'
+    --config 'patch.crates-io.rom-backup.git="https://github.com/pmikstacki/ROM"'
     --config 'patch.crates-io.rom-backup.rev="d7ef529040eec60dc869034c2d33130219db85fe"'
+    --config 'patch.crates-io.rom-sqlite.git="https://github.com/pmikstacki/ROM"'
+    --config 'patch.crates-io.rom-sqlite.rev="d7ef529040eec60dc869034c2d33130219db85fe"'
+    --config 'patch.crates-io.rom-redb.git="https://github.com/pmikstacki/ROM"'
+    --config 'patch.crates-io.rom-redb.rev="d7ef529040eec60dc869034c2d33130219db85fe"'
+)
+cargo package --allow-dirty --locked --no-verify -p rom-sql-core -p rom-projection-core \
+    --config 'patch.crates-io.rom-sql-core.path="crates/rom-sql-core"' "${public_rom_patches[@]}"
 package_consumer=$(node scripts/prepare-projection-package.mjs)
 cargo run --manifest-path "$package_consumer/Cargo.toml" --offline \
     --target-dir target/projection-packaged-consumer
 cargo clippy --manifest-path "$package_consumer/Cargo.toml" --locked --offline \
     --target-dir target/projection-packaged-consumer --all-targets -- -D warnings
+
+projection_package_root=$(dirname -- "$package_consumer")
+projection_manifest="$projection_package_root/rom-projection-core-0.1.0-dev/Cargo.toml"
+projection_core_patch="patch.crates-io.rom-sql-core.path=\"$projection_package_root/rom-sql-core-0.1.0-dev\""
+cargo test --manifest-path "$projection_manifest" --offline \
+    --target-dir target/projection-packaged-consumer --test native_history \
+    --config "$projection_core_patch" "${public_rom_patches[@]}"
+cargo test --manifest-path "$projection_manifest" --offline --locked \
+    --target-dir target/projection-packaged-consumer --test native_history \
+    --config "$projection_core_patch" "${public_rom_patches[@]}"

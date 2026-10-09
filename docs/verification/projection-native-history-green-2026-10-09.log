@@ -1,0 +1,113 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.62s
+     Running tests/native_history.rs (target/debug/deps/native_history-5ea3c9efee63de35)
+
+running 14 tests
+test redb_denied_empty_page_advances ... FAILED
+test redb_revoked_row_blocks_recovery ... FAILED
+test redb_oversize_selection_before_vectors ... FAILED
+test redb_bounded_selected_vectors ... FAILED
+test redb_revoked_field_blocks_recovery ... FAILED
+test redb_tombstone_restart_old_endpoint ... FAILED
+test redb_generation_expiry_closed_source ... FAILED
+test sqlite_tombstone_restart_old_endpoint ... FAILED
+test sqlite_denied_empty_page_advances ... FAILED
+test sqlite_bounded_selected_vectors ... FAILED
+test sqlite_oversize_selection_before_vectors ... FAILED
+test sqlite_revoked_row_blocks_recovery ... FAILED
+test sqlite_revoked_field_blocks_recovery ... FAILED
+test sqlite_generation_expiry_closed_source ... FAILED
+
+failures:
+
+---- redb_denied_empty_page_advances stdout ----
+
+thread 'redb_denied_empty_page_advances' (244622) panicked at crates/rom-projection-core/tests/../../../tests/packaged-projections/native_history_case.rs:353:10:
+called `Result::unwrap()` on an `Err` value: Invalid { kind: "native_documents", field: "identity" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- redb_revoked_row_blocks_recovery stdout ----
+
+thread 'redb_revoked_row_blocks_recovery' (244626) panicked at crates/rom-projection-core/tests/../../../tests/packaged-projections/native_history_case.rs:353:10:
+called `Result::unwrap()` on an `Err` value: Invalid { kind: "native_documents", field: "identity" }
+
+---- redb_oversize_selection_before_vectors stdout ----
+
+thread 'redb_oversize_selection_before_vectors' (244624) panicked at crates/rom-projection-core/tests/../../../tests/packaged-projections/native_history_case.rs:292:14:
+called `Result::unwrap()` on an `Err` value: TooLarge
+
+---- redb_bounded_selected_vectors stdout ----
+
+thread 'redb_bounded_selected_vectors' (244621) panicked at crates/rom-projection-core/tests/../../../tests/packaged-projections/native_history_case.rs:292:14:
+called `Result::unwrap()` on an `Err` value: Invalid { kind: "native_documents", field: "identity" }
+
+---- redb_revoked_field_blocks_recovery stdout ----
+
+thread 'redb_revoked_field_blocks_recovery' (244625) panicked at crates/rom-projection-core/tests/../../../tests/packaged-projections/native_history_case.rs:353:10:
+called `Result::unwrap()` on an `Err` value: Invalid { kind: "native_documents", field: "identity" }
+
+---- redb_tombstone_restart_old_endpoint stdout ----
+
+thread 'redb_tombstone_restart_old_endpoint' (244627) panicked at crates/rom-projection-core/tests/../../../tests/packaged-projections/native_history_case.rs:215:14:
+called `Result::unwrap()` on an `Err` value: Invalid { kind: "native_documents", field: "identity" }
+
+---- redb_generation_expiry_closed_source stdout ----
+
+thread 'redb_generation_expiry_closed_source' (244623) panicked at crates/rom-projection-core/tests/../../../tests/packaged-projections/native_history_case.rs:353:10:
+called `Result::unwrap()` on an `Err` value: Invalid { kind: "native_documents", field: "identity" }
+
+---- sqlite_tombstone_restart_old_endpoint stdout ----
+
+thread 'sqlite_tombstone_restart_old_endpoint' (244634) panicked at crates/rom-projection-core/tests/../../../tests/packaged-projections/native_history_case.rs:215:14:
+called `Result::unwrap()` on an `Err` value: Invalid { kind: "native_documents", field: "identity" }
+
+---- sqlite_denied_empty_page_advances stdout ----
+
+thread 'sqlite_denied_empty_page_advances' (244629) panicked at crates/rom-projection-core/tests/../../../tests/packaged-projections/native_history_case.rs:353:10:
+called `Result::unwrap()` on an `Err` value: Invalid { kind: "native_documents", field: "identity" }
+
+---- sqlite_bounded_selected_vectors stdout ----
+
+thread 'sqlite_bounded_selected_vectors' (244628) panicked at crates/rom-projection-core/tests/../../../tests/packaged-projections/native_history_case.rs:292:14:
+called `Result::unwrap()` on an `Err` value: Invalid { kind: "native_documents", field: "identity" }
+
+---- sqlite_oversize_selection_before_vectors stdout ----
+
+thread 'sqlite_oversize_selection_before_vectors' (244631) panicked at crates/rom-projection-core/tests/../../../tests/packaged-projections/native_history_case.rs:292:14:
+called `Result::unwrap()` on an `Err` value: TooLarge
+
+---- sqlite_revoked_row_blocks_recovery stdout ----
+
+thread 'sqlite_revoked_row_blocks_recovery' (244633) panicked at crates/rom-projection-core/tests/../../../tests/packaged-projections/native_history_case.rs:353:10:
+called `Result::unwrap()` on an `Err` value: Invalid { kind: "native_documents", field: "identity" }
+
+---- sqlite_revoked_field_blocks_recovery stdout ----
+
+thread 'sqlite_revoked_field_blocks_recovery' (244632) panicked at crates/rom-projection-core/tests/../../../tests/packaged-projections/native_history_case.rs:353:10:
+called `Result::unwrap()` on an `Err` value: Invalid { kind: "native_documents", field: "identity" }
+
+---- sqlite_generation_expiry_closed_source stdout ----
+
+thread 'sqlite_generation_expiry_closed_source' (244630) panicked at crates/rom-projection-core/tests/../../../tests/packaged-projections/native_history_case.rs:353:10:
+called `Result::unwrap()` on an `Err` value: Invalid { kind: "native_documents", field: "identity" }
+
+
+failures:
+    redb_bounded_selected_vectors
+    redb_denied_empty_page_advances
+    redb_generation_expiry_closed_source
+    redb_oversize_selection_before_vectors
+    redb_revoked_field_blocks_recovery
+    redb_revoked_row_blocks_recovery
+    redb_tombstone_restart_old_endpoint
+    sqlite_bounded_selected_vectors
+    sqlite_denied_empty_page_advances
+    sqlite_generation_expiry_closed_source
+    sqlite_oversize_selection_before_vectors
+    sqlite_revoked_field_blocks_recovery
+    sqlite_revoked_row_blocks_recovery
+    sqlite_tombstone_restart_old_endpoint
+
+test result: FAILED. 0 passed; 14 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
+
+error: test failed, to rerun pass `-p rom-projection-core --test native_history`

@@ -40,3 +40,6 @@ pub use worker_contract::{
 
 mod lifecycle;
 pub use lifecycle::{StorageLifecycle, StorageStartup};
+
+mod runtime_history;
+pub use runtime_history::{HostVectors, NoVectors, RuntimeHistory, VectorInput};

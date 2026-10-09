@@ -168,3 +168,21 @@ Standalone StorageWorker behavior remains blocking. shutdown_async rejects stand
 Native public history/authorization and Rust provider transports remain required.
 
 The [lifecycle verification record](verification/projection-lifecycle-full-verifier-2026-10-09.json) preserves controlled native tests and full-verifier results.
+
+## Authorized native history
+
+RuntimeHistory reads public Runtime::journal with its fixed Actor and Resource kind.
+Scalar sources use RuntimeHistory::new. Vector sources use RuntimeHistory::with_vectors and a trusted HostVectors implementation.
+The callback receives only validated selected fields, the original key and revision.
+It must perform bounded deterministic computation without I/O or runtime reentry.
+The configured model identifier must remain stable. Tombstones skip vector generation.
+
+Recovery rechecks current row and field disclosure through the public feed before target replay.
+Changed disclosure that changes the pending intent returns RebuildRequired and retains the old cursor.
+History discontinuity returns HistoryGap. Operational source failures return SourceUnavailable without exposing native error details.
+Configure native Runtime feed limits; this adapter cannot inspect the Runtime's private configuration.
+
+Fourteen cases use actual public SQLite and redb files. They cover restart, tombstones, filtered positions, revocation and selected vector inputs.
+Their targets are controlled adapters. Native remote transport and continuous authorization fencing remain required.
+
+The [native history verification record](verification/projection-native-history-full-verifier-2026-10-09.json) contains executed source hashes and scope limits.

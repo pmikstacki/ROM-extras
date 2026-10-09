@@ -1,0 +1,41 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.39s
+     Running tests/native_history.rs (target/debug/deps/native_history-5ea3c9efee63de35)
+
+running 14 tests
+test redb_oversize_selection_before_vectors ... FAILED
+test redb_generation_expiry_closed_source ... ok
+test sqlite_oversize_selection_before_vectors ... FAILED
+test sqlite_generation_expiry_closed_source ... ok
+test redb_bounded_selected_vectors ... ok
+test sqlite_bounded_selected_vectors ... ok
+test redb_denied_empty_page_advances ... ok
+test redb_revoked_field_blocks_recovery ... ok
+test sqlite_denied_empty_page_advances ... ok
+test sqlite_revoked_field_blocks_recovery ... ok
+test sqlite_revoked_row_blocks_recovery ... ok
+test redb_revoked_row_blocks_recovery ... ok
+test redb_tombstone_restart_old_endpoint ... ok
+test sqlite_tombstone_restart_old_endpoint ... ok
+
+failures:
+
+---- redb_oversize_selection_before_vectors stdout ----
+
+thread 'redb_oversize_selection_before_vectors' (246552) panicked at crates/rom-projection-core/tests/../../../tests/packaged-projections/native_history_case.rs:315:10:
+called `Result::unwrap()` on an `Err` value: TooLarge
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- sqlite_oversize_selection_before_vectors stdout ----
+
+thread 'sqlite_oversize_selection_before_vectors' (246559) panicked at crates/rom-projection-core/tests/../../../tests/packaged-projections/native_history_case.rs:315:10:
+called `Result::unwrap()` on an `Err` value: TooLarge
+
+
+failures:
+    redb_oversize_selection_before_vectors
+    sqlite_oversize_selection_before_vectors
+
+test result: FAILED. 12 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.69s
+
+error: test failed, to rerun pass `-p rom-projection-core --test native_history`

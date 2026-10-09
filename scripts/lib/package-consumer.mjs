@@ -1,15 +1,16 @@
 import { mkdtempSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { resolve, join, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 
 // Both callers consume Cargo's normalized archives, never their workspace manifests.
-export function preparePackagedConsumer({ prefix, packages, source, extraDependencies = "", extraPatches = "", supportSources = [] }) {
+export function preparePackagedConsumer({ prefix, packages, source, extraDependencies = "", extraPatches = "", supportSources = [], isolated = false }) {
   const root = resolve(fileURLToPath(new URL("../..", import.meta.url)));
   const artifacts = join(root, ".superpowers");
   mkdirSync(artifacts, { recursive: true });
-  const directory = mkdtempSync(join(artifacts, `${prefix}-packaged-`));
+  const directory = mkdtempSync(join(isolated ? tmpdir() : artifacts, `${prefix}-packaged-`));
   const version = "0.1.0-dev";
   const hashes = {};
   for (const name of packages) {

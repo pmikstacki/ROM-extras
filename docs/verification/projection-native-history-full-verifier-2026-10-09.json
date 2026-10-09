@@ -1,0 +1,55 @@
+{
+  "inspection_date": "2026-10-09",
+  "baseline_commit": "878b08c025ea1bf7a33fa4d1c51b42daf0b66843",
+  "command": "./scripts/check-all",
+  "exit_code": 0,
+  "completed_utc": "2026-10-09T01:25:39.025Z",
+  "frozen_files": 212,
+  "unchanged": true,
+  "source_fence": "projection-native-history-runtime-inputs-2026-10-09.json",
+  "full_log": "projection-native-history-full-verifier-2026-10-09.log",
+  "compiler": "projection-native-history-compiler-2026-10-09.log",
+  "focused_cases": 93,
+  "compile_fail_doctests": 1,
+  "new_native_history_cases": 14,
+  "actual_source_backends": [
+    "public ROM SQLite",
+    "public ROM redb"
+  ],
+  "public_consumer_cases": 16,
+  "normalized_archive_native_cases": 14,
+  "normalized_archive_native_locked_repeat": true,
+  "archives": {
+    "rom-sql-core": "3e833d23b8ceb0cab734ebaae82a105554d3e2b082fd80c54e13a42b46f316dc",
+    "rom-projection-core": "13ea2a8b8aec36d8170b1fd64006ef8ca69845f798e098da4958da3988ecbbfb"
+  },
+  "archive_packages": 95,
+  "archive_added_packages": 55,
+  "added_archive_versions_already_in_root": true,
+  "new_production_dependencies": 0,
+  "root_lock_change": "two development dependency edges only; package versions and checksums unchanged",
+  "public_lock_change": "byte-identical to baseline",
+  "audits": {
+    "known_vulnerabilities": 0,
+    "public_consumer_warning": "RUSTSEC-2024-0436 paste maintenance warning retained"
+  },
+  "review": {
+    "source_only": true,
+    "reviewer_ran_tests": false,
+    "findings": 0
+  },
+  "initial_failures": {
+    "missing_api": "compile failure, not behavioral RED",
+    "native_fixture": "missing command identity and overly small native command limit; corrected test harness",
+    "clippy": "eight-argument test helper corrected",
+    "packaging": "missing native registry patch and Cargo package/workspace selection corrected; failed logs retained"
+  },
+  "scope_limits": [
+    "Targets are controlled adapters, not OpenSearch/Qdrant Rust transports.",
+    "Fixture vectors are not a qualified embedding model.",
+    "Per-fetch authorization does not provide continuous remote revocation fencing.",
+    "Native runtime limits remain host configuration.",
+    "HostVectors implementations are trusted bounded pure computations.",
+    "Task2 final acceptance and full ROM-extras goal remain incomplete."
+  ]
+}

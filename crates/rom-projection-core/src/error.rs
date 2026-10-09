@@ -2,6 +2,8 @@
 /// A sanitized projection failure.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum Error {
+    /// Authorized source did not establish a bounded history page; no completion is inferred.
+    SourceUnavailable,
     /// Cooperative startup cancellation; no commit outcome is inferred.
     Cancelled,
     /// Invalid caller metadata.
@@ -39,6 +41,7 @@ impl std::fmt::Display for Error {
             f,
             "projection checkpoint {}",
             match self {
+                Self::SourceUnavailable => "source unavailable",
                 Self::Cancelled => "cancelled",
                 Self::Invalid => "invalid",
                 Self::TooLarge => "too large",
