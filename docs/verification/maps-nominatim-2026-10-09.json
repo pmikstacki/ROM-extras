@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-09",
+  "baseline": "450fe49",
+  "status": "affected checks and full local verifier passed on 324 unchanged runtime inputs; native map services and UI remain unqualified",
+  "scope": [
+    "rom-map-http controlled HTTPS transport",
+    "Nominatim search and reverse geocoding",
+    "independent public API consumer through controlled HTTPS"
+  ],
+  "checks": {
+    "map_http_configuration_tests": 3,
+    "map_http_controlled_https_tests": 10,
+    "nominatim_configuration_tests": 3,
+    "nominatim_decoder_tests": 6,
+    "nominatim_controlled_https_tests": 2,
+    "clippy_exit_code": 0,
+    "independent_consumer_run_exit_code": 0,
+    "independent_consumer_clippy_exit_code": 0
+  },
+  "affected_log": ".superpowers/maps-nominatim-promoted-final-affected-2026-10-09.log",
+  "affected_log_sha256": "e9a3d6f4b87c45448bdaf27702b8baf2bf0e8b61f985943883b67aa2f6b73999",
+  "full_verifier": {
+    "status": "passed",
+    "session_id": 74385,
+    "runtime_files": 324,
+    "snapshot": ".superpowers/maps-nominatim-promoted-final-runtime-inputs-2026-10-09.json",
+    "snapshot_sha256": "082e6c9c222fbab6f53b987f59ea64335390f85cf3b7db9dd4ee504300093d4c",
+    "log": ".superpowers/maps-nominatim-promoted-final-full-verifier-2026-10-09.log",
+    "exit_code": 0,
+    "runtime_inputs_unchanged": true,
+    "log_sha256": "4ac54edbd2e7049a5e34d766deb93b8be3b9f668b2fae23c68177d58f6b6bc95"
+  },
+  "qualification": {
+    "authored_controlled_protocol_receiver": true,
+    "native_nominatim_service": false,
+    "production_deployment": false,
+    "browser_ui": false,
+    "packaged_map_consumer": false
+  },
+  "preserved_failures": [
+    {
+      "log": ".superpowers/maps-nominatim-promoted-affected-2026-10-09.log",
+      "reason": "controlled TLS CA was incorrectly used as server leaf; corrected separate CA/server certificate; original TLS evidence retained"
+    },
+    {
+      "log": ".superpowers/maps-nominatim-promoted-full-verifier-2026-10-09.log",
+      "exit_code": 101,
+      "log_sha256": "47a0b7568620396f0cec777163b5978ce9ceb1b88f346516ffdfd8f032225484",
+      "reason": "missing_docs on feature-disabled integration test crate; moved conditional contents inside documented test module"
+    }
+  ],
+  "review_fixes": [
+    "non-OSM native result uses exact namespaced place_id when OSM pair absent",
+    "whitespace provider rejected before I/O",
+    "fresh retained TLS fixture each gate run avoids expired/incomplete certificate reuse; explicit override validates certificates"
+  ],
+  "remaining": [
+    "native Nominatim service qualification",
+    "OSRM and MapTiler adapters",
+    "configured style/tile source adapter",
+    "explicit browser token grant",
+    "pnpm rom-ui/maps example",
+    "packaged map consumer"
+  ],
+  "audits": [
+    {
+      "scope": "root",
+      "dependency_count": 370,
+      "vulnerabilities": 0,
+      "warnings": {},
+      "advisory_database_commit": "550efd3d587a29b2e2c2b21b17a440da4fede999"
+    },
+    {
+      "scope": "consumer",
+      "dependency_count": 176,
+      "vulnerabilities": 0,
+      "warnings": {},
+      "advisory_database_commit": "550efd3d587a29b2e2c2b21b17a440da4fede999"
+    }
+  ],
+  "dependency_metadata": [
+    {
+      "scope": "root",
+      "sha256": "a6beda7c8205b97407d56c9dd39953ac778fef3770bc66575cae2cc33a9b51c3",
+      "packages_without_manifest_license": [],
+      "declared_msrv_above_1_99": []
+    },
+    {
+      "scope": "consumer",
+      "sha256": "acf2d9f561cfd0ae3824b4dd5d5faee1c1cf4e880f71cb15180c65e71f394ae8",
+      "packages_without_manifest_license": [
+        "rom-map-adapter-consumer"
+      ],
+      "declared_msrv_above_1_99": []
+    }
+  ]
+}

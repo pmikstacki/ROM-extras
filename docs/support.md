@@ -254,6 +254,7 @@ Separate Vault/AWS/Azure profiles, production custody, replicated durability and
 ## Map-provider scope amendment — 2026-10-09
 
 Generic map capabilities and host-configured/Nominatim/OSRM/MapTiler adapters are now part of the full goal.
-The local typed spatial core has 15 contract tests and an independent public consumer.
-Actual map-service adapters, browser descriptor approval, protocol fixtures, packaged consumers and rom-ui/maps examples remain incomplete.
+The local typed core has 36 contract tests and an independent public consumer.
+Nominatim search/reverse and map HTTP have controlled HTTPS tests; native-service qualification remains incomplete.
+Browser descriptor approval, other service adapters, packaged consumers and rom-ui/maps examples remain incomplete.
 See [map configuration and exact limits](maps.md). No map provider support is advertised from core-only tests.

@@ -19,3 +19,5 @@ cd -- "$(dirname -- "$0")/.."
 ./scripts/check-opensearch
 ./scripts/check-projection-probes
 ./scripts/check-map-core
+
+./scripts/check-map-adapters

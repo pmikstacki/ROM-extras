@@ -2320,6 +2320,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "rom-map-http"
+version = "0.1.0-dev"
+dependencies = [
+ "reqwest",
+ "rom-map-core",
+ "serde_json",
+ "tokio",
+ "url",
+ "zeroize",
+]
+
+[[package]]
 name = "rom-nats"
 version = "0.1.0-dev"
 dependencies = [
@@ -2330,6 +2342,17 @@ dependencies = [
  "rom-redb",
  "rom-sqlite",
  "tokio",
+]
+
+[[package]]
+name = "rom-nominatim"
+version = "0.1.0-dev"
+dependencies = [
+ "rom-map-core",
+ "rom-map-http",
+ "serde_json",
+ "tokio",
+ "url",
 ]
 
 [[package]]

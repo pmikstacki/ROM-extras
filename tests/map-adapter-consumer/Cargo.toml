@@ -1,0 +1,11 @@
+[workspace]
+[package]
+name = "rom-map-adapter-consumer"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.99"
+publish = false
+[dependencies]
+rom-map-core = { path = "../../crates/rom-map-core" }
+rom-nominatim = { path = "../../crates/rom-nominatim" }
+tokio = { version = "=1.53.1", features = ["rt", "macros"] }

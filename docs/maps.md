@@ -39,7 +39,7 @@ It is not a complete renderer schema validator. The host must also enforce brows
 | Provider | Required capabilities | Current acceptance |
 | --- | --- | --- |
 | Host configuration | Self-hosted TileJSON and MapLibre styles/tiles | Implementation pending |
-| Nominatim | Search and reverse lookup | Implementation pending |
+| Nominatim | Search and reverse lookup | Implemented; native qualification pending |
 | OSRM | Route GeoJSON with explicit prepared profile | Implementation pending |
 | MapTiler | Styles/tiles and search/reverse | Implementation pending |
 
@@ -55,7 +55,8 @@ Provider contracts determine rate, retries, cache retention and data attribution
 
 ## Remaining integration
 
-Controlled protocol fixtures, concrete adapters, explicit browser-token grants and packaged map consumers remain to implement.
+Nominatim search and reverse adapters now have controlled HTTPS protocol tests and an independent public consumer.
+Native-service qualification, other adapters, explicit browser-token grants and packaged map consumers remain incomplete.
 The active rom-ui gallery worktree declares rom-ui/maps in version 0.1.0-alpha.6.
 The older rom-ui checkout remains at alpha.3 without that export.
 The export and ResourceMap source were inspected; ROM-extras has not yet executed an installed frontend integration example.
@@ -67,4 +68,50 @@ The full local verifier must pass on a frozen combined source before integration
 Current map changes remain a working increment; no map-service production support is claimed.
 
 Current core and shared-transport evidence: [verification record](verification/maps-core-shared-http-2026-10-09.json).
-This record separates passed affected checks from the running full verifier and unfinished adapters.
+The record proves the previous core/projection increment passed its full verifier.
+The map HTTP and Nominatim increment passed its combined local verifier on 324 unchanged runtime inputs.
+See [executed scope and retained failures](verification/maps-nominatim-2026-10-09.json).
+
+## Nominatim backend configuration
+
+The host must select an HTTPS service, an identifying user agent, provenance and a minimum dispatch interval.
+The adapter rejects nominatim.openstreetmap.org. It does not use donated infrastructure as a generic platform backend.
+Configuration opens no connection. Queries use explicit jsonv2 output and validated coordinates.
+
+```rust
+use rom_nominatim::{Config, Nominatim};
+use std::time::Duration;
+
+let provider = Nominatim::new(Config::new(
+    "https://geocoder.example.test/operator/",
+    "Example host/1 (operator@example.test)",
+    "example-private-nominatim",
+    Duration::from_secs(1),
+)?)?;
+```
+
+This configuration example requires an operator-provided service; it is not a deployed endpoint.
+Use with_ca for a host-approved private CA. Never disable certificate verification.
+The host must share adapter instances when enforcing an aggregate service rate limit.
+Admission allows one concurrent operation. Each response is limited to 1 MiB and at most the requested result count.
+RequestContext bounds the complete operation and supports cancellation. Redirects and automatic retries are disabled.
+A 429 response returns a bounded Retry-After hint; the host decides whether to retry.
+No response cache is provided. The operator must approve caching under the selected service's terms before adding one.
+
+Results retain native licence text and the OpenStreetMap copyright link.
+Accuracy remains Unknown; importance is not a measured positional uncertainty.
+An OSM reference uses its native type and exact identifier.
+When both OSM fields are absent, an exact place_id uses the nominatim-place/ namespace.
+This fallback is service/import scoped and unstable across reimports. Keep provider provenance attached to the identifier.
+A partial or malformed OSM reference is rejected.
+No result identifier creates or replaces a ROM Resource key.
+
+Search supports non-wrapping bounded viewboxes. Antimeridian viewboxes return Unsupported before any request.
+Reverse supports one native result or the exact JSONv2 no-coverage object from Nominatim 5.3.2.
+Other error objects are rejected without exposing their contents.
+The adapter does not activate browser connections, geolocation, sessions or ROM mutations.
+
+Run ./scripts/check-map-adapters for controlled TLS protocol and independent consumer checks.
+Each gate run generates a private CA and separate server certificate in a new retained .superpowers directory.
+Set ROM_EXTRAS_MAP_FIXTURE_TLS to use an existing controlled fixture directory.
+The authored receiver is not a running Nominatim service; these tests do not qualify a real Nominatim deployment.
