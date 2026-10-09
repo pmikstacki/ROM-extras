@@ -40,6 +40,7 @@ impl<T> StorageResponse<T> {
 /// Awaiting command responses does not block. Dropping a response never cancels admitted work.
 pub struct StorageWorker {
     executor: rom_sql_core::Executor<CheckpointStore>,
+    profile: ProjectionProfile,
 }
 impl StorageWorker {
     /// Create native storage on its owner thread. Initialization can block on local I/O.
@@ -48,7 +49,9 @@ impl StorageWorker {
         profile: ProjectionProfile,
         initial: Checkpoint,
     ) -> std::result::Result<Self, StorageFailure> {
-        Self::spawn(move || CheckpointStore::create(&path, &profile, &initial))
+        Self::spawn(profile.clone(), move || {
+            CheckpointStore::create(&path, &profile, &initial)
+        })
     }
     /// Open native storage on its owner thread with cooperative startup cancellation.
     pub fn open(
@@ -56,9 +59,12 @@ impl StorageWorker {
         profile: ProjectionProfile,
         cancel: Cancellation,
     ) -> std::result::Result<Self, StorageFailure> {
-        Self::spawn(move || CheckpointStore::open_cancellable(&path, &profile, &cancel))
+        Self::spawn(profile.clone(), move || {
+            CheckpointStore::open_cancellable(&path, &profile, &cancel)
+        })
     }
     fn spawn(
+        profile: ProjectionProfile,
         initialize: impl FnOnce() -> crate::Result<CheckpointStore> + Send + 'static,
     ) -> std::result::Result<Self, StorageFailure> {
         let (sender, response) = std::sync::mpsc::sync_channel(1);
@@ -68,12 +74,16 @@ impl StorageWorker {
                 rom_sql_core::ExecutorError::Initialization
             })
         }) {
-            Ok(executor) => Ok(Self { executor }),
+            Ok(executor) => Ok(Self { executor, profile }),
             Err(_) => Err(response
                 .try_recv()
                 .map(StorageFailure::Checkpoint)
                 .unwrap_or(StorageFailure::Unclassified)),
         }
+    }
+    /// Profile used by successful native initialization, without additional native I/O.
+    pub fn profile(&self) -> &ProjectionProfile {
+        &self.profile
     }
     // Only this module constructs closures; every public capture has validated bounded metadata.
     fn submit<T: Send + 'static>(

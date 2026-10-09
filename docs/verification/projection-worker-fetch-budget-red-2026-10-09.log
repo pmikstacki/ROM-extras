@@ -1,0 +1,24 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.40s
+     Running tests/worker.rs (target/debug/deps/worker-a60f148405d7eef0)
+
+running 1 test
+test recovery_never_fetches_a_sixty_fifth_history_page ... FAILED
+
+failures:
+
+---- recovery_never_fetches_a_sixty_fifth_history_page stdout ----
+
+thread 'recovery_never_fetches_a_sixty_fifth_history_page' (102426) panicked at crates/rom-projection-core/tests/worker.rs:262:5:
+assertion `left == right` failed
+  left: 65
+ right: 64
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    recovery_never_fetches_a_sixty_fifth_history_page
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 10 filtered out; finished in 0.14s
+
+error: test failed, to rerun pass `-p rom-projection-core --test worker`

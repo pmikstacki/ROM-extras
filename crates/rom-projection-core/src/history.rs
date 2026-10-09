@@ -46,6 +46,13 @@ impl PendingHistory {
     pub fn cursor(&self) -> &JournalCursor {
         &self.cursor
     }
+    pub(crate) fn check_fetch_budget(&self) -> Result<()> {
+        if self.fetches >= FETCHES {
+            Err(Error::TooLarge)
+        } else {
+            Ok(())
+        }
+    }
     /// Validate a complete batch before mapping its old interval.
     /// Limits are 64 fetches, 4096 views and 4096 global inspected positions, including overrun.
     /// A pre-cancelled call leaves state intact. Any other error makes reconstruction terminal.
@@ -87,13 +94,13 @@ impl PendingHistory {
             .expected
             .cursor(&self.cursor.kind)
             .ok_or(Error::HistoryGap)?;
-        if self.fetches >= FETCHES
-            || batch
-                .cursor
-                .position
-                .checked_sub(start.position)
-                .ok_or(Error::HistoryGap)?
-                > INSPECTED
+        self.check_fetch_budget()?;
+        if batch
+            .cursor
+            .position
+            .checked_sub(start.position)
+            .ok_or(Error::HistoryGap)?
+            > INSPECTED
             || batch.events.len() > VIEWS - self.views
         {
             return Err(Error::TooLarge);

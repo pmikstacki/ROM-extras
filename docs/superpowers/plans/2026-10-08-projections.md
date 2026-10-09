@@ -189,3 +189,11 @@ Immutable selected-field mapping now derives exact content metadata and a durabl
 Actual checkpoint files reject changed mapping profiles; pending reconstruction rejects changed approved content without publication.
 Core construction and feature-independent consumers are distinct from native authorization and provider round-trip acceptance.
 Full page dispatch/recover orchestration and bounded asynchronous host lifecycle remain pending.
+
+## Task 2 core orchestration increment
+
+Worker::apply_page/recover now composes accepted storage, documents and pending-history components.
+Core tests cover durable preparation, exact completion, unknown outcomes, cancellation/drop and old-interval restart replay.
+Admission and recovery share the 4096-position bound; recovery permits at most 64 actual fetches.
+Synthetic target/source acceptance does not complete native feed, authorization or provider qualification.
+The bounded asynchronous lifecycle bridge and full Task 2 acceptance remain required.

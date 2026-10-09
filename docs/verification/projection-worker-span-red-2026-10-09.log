@@ -1,0 +1,24 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.33s
+     Running tests/worker.rs (target/debug/deps/worker-a60f148405d7eef0)
+
+running 1 test
+test unreconstructable_span_is_rejected_before_native_intent ... FAILED
+
+failures:
+
+---- unreconstructable_span_is_rejected_before_native_intent stdout ----
+
+thread 'unreconstructable_span_is_rejected_before_native_intent' (112527) panicked at crates/rom-projection-core/tests/worker.rs:306:5:
+assertion `left == right` failed
+  left: Err(Target(Unknown))
+ right: Err(Core(TooLarge))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    unreconstructable_span_is_rejected_before_native_intent
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 11 filtered out; finished in 0.15s
+
+error: test failed, to rerun pass `-p rom-projection-core --test worker`

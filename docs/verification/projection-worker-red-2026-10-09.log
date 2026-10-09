@@ -1,0 +1,72 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.61s
+     Running tests/worker.rs (target/debug/deps/worker-a60f148405d7eef0)
+
+running 7 tests
+test native_intent_precedes_dispatch_and_exact_observation_publishes_cursor ... FAILED
+test empty_filtered_page_commits_without_backend_request ... FAILED
+test higher_remote_revision_is_not_exact_acknowledgement ... FAILED
+test request_validation_rejects_before_native_intent_and_dispatch ... FAILED
+test unknown_remote_result_keeps_pending_and_blocks_later_page ... FAILED
+test changed_disclosure_after_restart_never_dispatches_or_advances ... FAILED
+test restart_recovery_reconstructs_old_interval_before_replay_and_ignores_overrun ... FAILED
+
+failures:
+
+---- native_intent_precedes_dispatch_and_exact_observation_publishes_cursor stdout ----
+
+thread 'native_intent_precedes_dispatch_and_exact_observation_publishes_cursor' (85761) panicked at crates/rom-projection-core/tests/worker.rs:9:99:
+called `Result::unwrap()` on an `Err` value: Core(Unsupported)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- empty_filtered_page_commits_without_backend_request stdout ----
+
+thread 'empty_filtered_page_commits_without_backend_request' (85759) panicked at crates/rom-projection-core/tests/worker.rs:36:86:
+called `Result::unwrap()` on an `Err` value: Core(Unsupported)
+
+---- higher_remote_revision_is_not_exact_acknowledgement stdout ----
+
+thread 'higher_remote_revision_is_not_exact_acknowledgement' (85760) panicked at crates/rom-projection-core/tests/worker.rs:30:5:
+assertion `left == right` failed
+  left: Err(Core(Unsupported))
+ right: Err(Core(Conflict))
+
+---- request_validation_rejects_before_native_intent_and_dispatch stdout ----
+
+thread 'request_validation_rejects_before_native_intent_and_dispatch' (85762) panicked at crates/rom-projection-core/tests/worker.rs:16:5:
+assertion `left == right` failed
+  left: Err(Core(Unsupported))
+ right: Err(Core(TooLarge))
+
+---- unknown_remote_result_keeps_pending_and_blocks_later_page stdout ----
+
+thread 'unknown_remote_result_keeps_pending_and_blocks_later_page' (85764) panicked at crates/rom-projection-core/tests/worker.rs:23:5:
+assertion `left == right` failed
+  left: Err(Core(Unsupported))
+ right: Err(Target(Unknown))
+
+---- changed_disclosure_after_restart_never_dispatches_or_advances stdout ----
+
+thread 'changed_disclosure_after_restart_never_dispatches_or_advances' (85758) panicked at crates/rom-projection-core/tests/worker.rs:53:5:
+assertion `left == right` failed
+  left: Err(Core(Unsupported))
+ right: Err(Core(RebuildRequired))
+
+---- restart_recovery_reconstructs_old_interval_before_replay_and_ignores_overrun stdout ----
+
+thread 'restart_recovery_reconstructs_old_interval_before_replay_and_ignores_overrun' (85763) panicked at crates/rom-projection-core/tests/worker.rs:45:69:
+called `Result::unwrap()` on an `Err` value: Core(Unsupported)
+
+
+failures:
+    changed_disclosure_after_restart_never_dispatches_or_advances
+    empty_filtered_page_commits_without_backend_request
+    higher_remote_revision_is_not_exact_acknowledgement
+    native_intent_precedes_dispatch_and_exact_observation_publishes_cursor
+    request_validation_rejects_before_native_intent_and_dispatch
+    restart_recovery_reconstructs_old_interval_before_replay_and_ignores_overrun
+    unknown_remote_result_keeps_pending_and_blocks_later_page
+
+test result: FAILED. 0 passed; 7 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.22s
+
+error: test failed, to rerun pass `-p rom-projection-core --test worker`

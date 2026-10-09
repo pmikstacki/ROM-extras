@@ -1,0 +1,70 @@
+{
+  "inspection_date": "2026-10-09",
+  "baseline_commit": "4ddf1be249842223e78cb5d43a12d6eba7f2d881",
+  "command": "./scripts/check-all",
+  "exit_code": 0,
+  "completed_utc": "2026-10-09T00:47:55.169Z",
+  "frozen_files": 205,
+  "unchanged": true,
+  "source_fence": "projection-worker-source-freeze-2026-10-09.json",
+  "full_log": "projection-worker-full-verifier-2026-10-09.log",
+  "compiler": "projection-worker-compiler-2026-10-09.log",
+  "focused_cases": 67,
+  "new_worker_cases": 12,
+  "compile_fail_doctests": 1,
+  "ignored_child_entry": 1,
+  "child_entry_executed_by_parent_tests": true,
+  "red": [
+    {
+      "log": "projection-worker-red-2026-10-09.log",
+      "intended_failures": 7,
+      "exit_code": 101
+    },
+    {
+      "log": "projection-worker-fetch-budget-red-2026-10-09.log",
+      "failure": "65 source fetches instead of64",
+      "exit_code": 101
+    },
+    {
+      "log": "projection-worker-span-red-2026-10-09.log",
+      "failure": "target dispatch after unreconstructable4097-position intent",
+      "exit_code": 101
+    }
+  ],
+  "consumer_initial_failure": {
+    "log": "projection-worker-public-final-2026-10-09.log",
+    "exit_code": 101,
+    "classification": "extra argument in new test harness, corrected without production API change"
+  },
+  "review": {
+    "initial_findings": 1,
+    "severity": "P2",
+    "finding": "admission accepted history span rejected by recovery",
+    "resolution": "reuse PendingHistory::new before target/native preparation",
+    "final_findings": 0,
+    "reviewer_ran_tests": false
+  },
+  "archives": {
+    "target/package/rom-sql-core-0.1.0-dev.crate": "3483fd7393f94e73cf82594874281c40339750ff1c11d54440f811fd24ccb993",
+    "target/package/rom-projection-core-0.1.0-dev.crate": "49a7c1d1116db211634a7bc765468bde93beb20414646239538499ca061b48d1"
+  },
+  "archive_consumer": ".superpowers/projection-packaged-vXNGBk/consumer",
+  "archive_packages": 40,
+  "audits": {
+    "known_vulnerabilities": 0,
+    "root_and_archive_warnings": 0,
+    "public_consumer_warning": "RUSTSEC-2024-0436 paste1.0.15 unmaintained, unsuppressed",
+    "root_lock": "Byte-identical to baseline",
+    "public_consumer_lock": "Byte-identical to baseline",
+    "new_production_dependencies": 0
+  },
+  "limits": [
+    "Core worker with synthetic target/history seams; no native Rust provider qualification",
+    "Actual native SQLite/redb authorized journal feeds remain required",
+    "Target wire/numeric/metric bounds, transport parser/deadlines, stored-state reads and fencing require qualified implementations",
+    "Construction, error cleanup, destruction and shutdown still require blocking host lifecycle; asynchronous bridge unfinished",
+    "Controlled checkpoint faults do not prove arbitrary hardware power-loss durability",
+    "No Worker-specific injected native uncertainty test; forwarding source-reviewed alongside existing storage fault tests"
+  ],
+  "full_goal": "Active and incomplete"
+}

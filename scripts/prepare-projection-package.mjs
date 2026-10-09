@@ -5,7 +5,7 @@ process.stdout.write(preparePackagedConsumer({
   prefix: "projection",
   packages: ["rom-sql-core", "rom-projection-core"],
   source: "tests/packaged-projections/main.rs",
-  supportSources: ["tests/packaged-projections/checkpoint_case.rs"],
+  supportSources: ["tests/packaged-projections/checkpoint_case.rs", "tests/packaged-projections/worker_case.rs"],
   extraDependencies: `rom = ${rom}
 tokio = { version = "=1.53.1", default-features = false, features = ["rt"] }
 serde_json = { version = "=1.0.151", features = ["arbitrary_precision", "preserve_order"] }`,

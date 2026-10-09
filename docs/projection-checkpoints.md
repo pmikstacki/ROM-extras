@@ -131,3 +131,20 @@ Selected-value encoding is an object: tag8,count, then sorted framed UTF-8 names
 Value tags are0 null,1 false,2 true,3 u64,4 negative i64,5 finite f64 bits,6 framed UTF-8 string,7 array and8 object.
 Integer/float words are big-endian; float zero bits normalize to positive zero. Arrays encode count and ordered values; objects encode count and sorted entries.
 Tombstones encode an empty selected-value frame and no vector. The profile/configuration remains bound even when values are absent.
+
+## Core page orchestration
+
+Worker::apply_page validates selected documents and prepares an owned target request before durable intent.
+It awaits native preparation before target dispatch. Exact stored-state observations allow atomic local completion.
+Unknown target outcomes retain pending intent and the old cursor. Later pages require recovery first.
+Worker::recover reconstructs and compares the complete old interval before replay. It never publishes an overrun endpoint.
+Admission uses the same 4096-position interval limit as recovery. Recovery checks the 64-fetch budget before fetching.
+
+Cancellation after target acceptance retains pending work. Dropping a future does not prove remote or native rollback.
+An admitted local completion returns its classified outcome despite late cancellation. Native uncertainty tokens remain unchanged.
+The target must enforce wire/numeric/metric bounds and fencing. The source must enforce immutable export authorization.
+These trusted interfaces do not establish native adapter correctness.
+Construction, error cleanup, destruction and shutdown require a blocking host context. The asynchronous lifecycle bridge remains unfinished.
+Actual SQLite/redb authorization/history and Rust OpenSearch/Qdrant transport acceptance remain required.
+
+The [worker verification record](verification/projection-worker-full-verifier-2026-10-09.json) records core composition and independent consumer evidence.

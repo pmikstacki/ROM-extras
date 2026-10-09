@@ -30,3 +30,10 @@ pub use history::PendingHistory;
 mod document;
 pub use document::{ApprovedDocument, DocumentMapping};
 mod document_encoding;
+
+mod worker;
+mod worker_contract;
+pub use worker::Worker;
+pub use worker_contract::{
+    ProjectionHistory, ProjectionTarget, TargetFailure, WorkerFailure, WorkerResult,
+};

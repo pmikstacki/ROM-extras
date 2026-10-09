@@ -656,3 +656,35 @@ Root lock bytes and public registry versions/checksums are unchanged. The public
 The40-package archive graph includes the additional feature dependencies; licenses are MIT/Apache-2.0 and their highest MSRV is1.85.
 Fresh audits report no known vulnerabilities; the public consumer retains its unsuppressed informational paste warning.
 This accepts immutable core construction and independent consumers, not native feed authorization, provider round-trips or the full worker.
+
+## 2026-10-09: full core page orchestration
+
+Sources: [public authorized journal and inspected cursors](https://raw.githubusercontent.com/pmikstacki/ROM/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom/src/journal.rs), [Tokio1.53.1 oneshot receiver lifecycle](https://docs.rs/tokio/1.53.1/tokio/sync/oneshot/struct.Receiver.html), [Rust return-position futures in traits](https://doc.rust-lang.org/reference/items/traits.html#async-functions-and-impl-trait-in-traits).
+
+Compose the accepted storage owner, approved documents and pending-history reconstruction into Worker::apply_page/recover.
+Use static Send future contracts rather than a new async-trait dependency or boxed arbitrary backend commands.
+A trusted target prepares an owned bounded request before durable preparation; only apply performs backend I/O and returns actual stored-state observations.
+Request preparation must enforce provider numeric, metric, origin/profile and complete wire bounds. A synthetic target is only core protocol evidence.
+Require target/source/document profiles to match the actual storage-owner profile. Cache that profile from successful native initialization, not host assertion.
+Collapse approved documents using the same exact-key order as immutable intent; dispatch only the selected complete representations.
+An empty filtered interval needs no backend request. Publish it only through the same durable intent/completion transactions.
+Await preparation before dispatch. Preserve native uncertain tokens unchanged; do not automatically retry, reopen or infer rollback.
+Recovery first reconstructs the complete old authorized interval and its latest approved documents; compare full intent before backend I/O.
+Reject later page admission while any durable intent remains pending. Higher/different observations cannot establish exact completion.
+Cancellation checks are cooperative phase boundaries. Dropping a future does not establish native rollback or remote nonacceptance.
+Once local completion is admitted, wait for its classified outcome; a late cancellation flag cannot retract a confirmed commit.
+Constructor/error/drop and shutdown still use blocking owner lifecycle. The bounded asynchronous lifecycle bridge remains required.
+Native public SQLite/redb feed tests and Rust OpenSearch/Qdrant transports remain separate mandatory acceptance scopes.
+
+Worker review found an admission/recovery mismatch: an interval exceeding 4096 positions could become permanently unreconstructable.
+Reuse PendingHistory::new before intent admission; do not duplicate the bound. The regression first reached Target(Unknown), then passed after correction.
+The fetch-budget regression first made 65 source calls. Check the shared budget before fetch to enforce 64 actual calls.
+Cancellation/drop tests use controlled synthetic target acceptance and actual checkpoint files; they do not prove native remote acknowledgement loss.
+The Tokio receiver contract does not establish rollback of admitted work. Preserve pending recovery and exact native failure classification.
+
+The [worker execution record](../verification/projection-worker-full-verifier-2026-10-09.json) identifies the verified source and scope.
+The full verifier passed with 205 unchanged runtime files, 67 focused cases and one compile-fail doctest.
+Independent public and normalized archive consumers passed synthetic-target restart recovery.
+Source review found one admission/recovery P2; the regression failed before correction and passed afterward. Final source review found no actionable issue.
+Both lockfiles are byte-identical to baseline. Fresh root, consumer and 40-package archive audits report no known vulnerabilities.
+The public consumer retains the unsuppressed paste informational warning. Task 2 and the full goal remain incomplete.

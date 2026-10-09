@@ -1,0 +1,26 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+error[E0061]: this function takes 3 arguments but 4 arguments were supplied
+   --> tests/../../packaged-projections/worker_case.rs:102:19
+    |
+102 |     let storage = StorageWorker::create(
+    |                   ^^^^^^^^^^^^^^^^^^^^^
+...
+106 |         Cancellation::new(),
+    |         ------------------- unexpected argument #4 of type `Cancellation`
+    |
+note: associated function defined here
+   --> /root/ROM-extras/crates/rom-projection-core/src/storage_worker.rs:47:12
+    |
+ 47 |     pub fn create(
+    |            ^^^^^^
+help: remove the extra argument
+    |
+105 -         initial,
+106 -         Cancellation::new(),
+105 +         initial,
+    |
+
+For more information about this error, try `rustc --explain E0061`.
+error: could not compile `rom-extras-public-consumer` (test "projection_checkpoints") due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
