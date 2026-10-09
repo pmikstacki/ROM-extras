@@ -1,8 +1,7 @@
 //! Public-only native write, observation and persistent-tombstone conformance case.
 #[path = "approved_document.rs"]
 mod approved_document;
-#[path = "native_fixture.rs"]
-mod native_fixture;
+use crate::native_fixture;
 use rom_projection_core::{ProjectionTarget, TargetFailure};
 pub fn run() {
     let rt = tokio::runtime::Builder::new_current_thread()

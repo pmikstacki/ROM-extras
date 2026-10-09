@@ -1,6 +1,8 @@
 //! Public current authorization with controlled candidates and actual SQLite/redb.
 #[path = "search_fixture/native_case.rs"]
 mod native_case;
+#[path = "search_fixture/search_permissions.rs"]
+mod search_permissions;
 macro_rules! cases {
     ($a:ident, $b:ident, $case:expr) => {
         #[test]

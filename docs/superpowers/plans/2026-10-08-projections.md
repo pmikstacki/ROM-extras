@@ -245,3 +245,15 @@ Use typed match with AND/OR modes, live/kind/profile filters, metadata-only sour
 Reject partial/timed-out shard responses and malformed candidate metadata. Keep one total provider deadline and existing transport bounds.
 Qualify native doc-value filters before changing the accepted mapping. Keep write durability separate from explicit test refresh.
 Complete native paused-response/current-policy tests, independent consumers, archives, review, fresh audits and frozen full verification before integration.
+
+## Native typed OpenSearch execution
+
+Root owns all source and test edits. Preserve historical native indexes and evidence.
+Native metadata-filter probe qualifies the unchanged accepted mapping before Rust implementation.
+Implement named search and search_response modules. Reuse write-key hashing and existing verified transport.
+Mint queries only through accepted core Search; check configured text field and fixed profile/generation before I/O.
+Qualify original Unicode keys, explicit modes and stale/deleted current Resource hydration in actual SQLite/redb cases.
+Add complete-response protocol negatives. Keep these controlled parser checks separate from real-service evidence.
+Next qualify actual delayed search responses with current query, row and field revocation; then hostile response/deadline and generation replacement cases.
+Reuse public search_case outside workspace and in normalized archives. Run fresh dependency audits and frozen full verifier before integration.
+The first two native cases and parser/Clippy checks are progress, not complete Task3 or whole-family acceptance.

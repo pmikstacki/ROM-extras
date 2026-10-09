@@ -12,6 +12,7 @@ workspace = true
 [features]
 service-fixture = []
 [dependencies]
+rom = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
 rom-projection-core = { path = "../rom-projection-core", version = "=0.1.0-dev" }
 reqwest = { version = "=0.13.5", default-features = false, features = ["rustls"] }
 serde_json = "=1.0.151"
@@ -20,7 +21,6 @@ url = "=2.5.8"
 tokio = { version = "=1.53.1", features = ["time"] }
 zeroize = { version = "=1.9.1", default-features = false, features = ["alloc"] }
 [dev-dependencies]
-rom = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
 tokio = { version = "=1.53.1", features = ["rt", "macros"] }
 rom-sqlite = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
 rom-redb = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }

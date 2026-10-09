@@ -1,4 +1,7 @@
 //! Shared real-service fixture construction; no transport simulation.
+#[path = "generation_readiness.rs"]
+mod generation_readiness;
+
 use rom_opensearch::{OpenSearch, TlsConfig};
 use rom_projection_core::{DocumentMapping, ProjectionProfile, ProjectionTarget};
 use std::{
@@ -9,18 +12,6 @@ pub(crate) fn fixture() -> (OpenSearch, DocumentMapping) {
     fixture_with_fields(vec!["title".into()])
 }
 pub(crate) fn fixture_with_fields(fields: Vec<String>) -> (OpenSearch, DocumentMapping) {
-    let root = "/root/ROM-extras/.superpowers/opensearch-fixture";
-    let tls = TlsConfig::new(
-        "https://127.0.0.1:55460",
-        fs::read(format!("{root}/tls/ca.pem")).unwrap(),
-        [
-            fs::read(format!("{root}/tls/projection-writer.pem")).unwrap(),
-            fs::read(format!("{root}/client-private/projection-writer.key")).unwrap(),
-        ]
-        .concat(),
-        Duration::from_secs(5),
-    )
-    .unwrap();
     let mapping = DocumentMapping::new(
         ProjectionProfile::new("native-test", "opensearch", "text-v1", None).unwrap(),
         vec!["title".into(), "other".into()],
@@ -36,14 +27,22 @@ pub(crate) fn fixture_with_fields(fields: Vec<String>) -> (OpenSearch, DocumentM
             .as_nanos()
     );
     (
-        OpenSearch::new(tls, mapping.profile().clone(), &name, fields).unwrap(),
+        target_at(
+            "https://127.0.0.1:55460",
+            mapping.profile().clone(),
+            &name,
+            fields,
+        ),
         mapping,
     )
 }
 /// Resolve uncertain initialization by read-only inspection; never repeat creation after Unknown.
 pub(crate) async fn create_generation(target: &mut OpenSearch) {
     match target.create_generation().await {
-        Ok(()) => return,
+        Ok(()) => {
+            generation_readiness::wait(target.physical_target()).await;
+            return;
+        }
         Err(rom_projection_core::TargetFailure::Unknown) => {}
         Err(error) => panic!(
             "native generation {} rejected: {error:?}",
@@ -61,4 +60,27 @@ pub(crate) async fn create_generation(target: &mut OpenSearch) {
     tokio::time::timeout(Duration::from_secs(45), inspection)
         .await
         .expect("uncertain native generation did not reconcile");
+    generation_readiness::wait(target.physical_target()).await;
+}
+
+/// Construct the same fixed TLS policy for direct native traffic or an owned relay.
+pub(crate) fn target_at(
+    endpoint: &str,
+    profile: ProjectionProfile,
+    physical: &str,
+    fields: Vec<String>,
+) -> OpenSearch {
+    let root = "/root/ROM-extras/.superpowers/opensearch-fixture";
+    let tls = TlsConfig::new(
+        endpoint,
+        fs::read(format!("{root}/tls/ca.pem")).unwrap(),
+        [
+            fs::read(format!("{root}/tls/projection-writer.pem")).unwrap(),
+            fs::read(format!("{root}/client-private/projection-writer.key")).unwrap(),
+        ]
+        .concat(),
+        Duration::from_secs(5),
+    )
+    .unwrap();
+    OpenSearch::new(tls, profile, physical, fields).unwrap()
 }

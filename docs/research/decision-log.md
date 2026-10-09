@@ -859,3 +859,44 @@ No Debug formatter exposes query text or candidate keys. Current hydration is no
 
 Sources inspected 2026-10-09: [public pinned ROM projection](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom/src/projection.rs), [OpenSearch match semantics](https://docs.opensearch.org/latest/query-dsl/full-text/match/), [finite search and partial-result controls](https://docs.opensearch.org/latest/api-reference/search-apis/search/), [keyword doc values](https://docs.opensearch.org/latest/mappings/supported-field-types/keyword/).
 Native keyword-filter behavior still requires qualification; do not change the accepted write mapping based only on inference.
+
+## 2026-10-09: native OpenSearch typed candidates
+
+Native OpenSearch 3.9.0 qualifies existing index:false keyword doc-value filters for kind/profile, AND/OR matching and metadata-only source selection.
+The private probe preserves its index; no mapping or service permission was changed. The accepted write mapping remains compatible.
+Implement SearchTarget with one total deadline around generation inspection, search and final UUID inspection.
+Use finite size, track_total_hits:false, explicit match operator and zero_terms_query:none. Disable partial results in the request.
+Reject timed-out/failed/incomplete shards, foreign generation/profile/kind, inconsistent original-key hashes or versions and duplicate/oversized pages.
+Return only validated keys/revisions to the accepted core, which supplies current Resource disclosure.
+Reuse the existing write-key hash; do not introduce a second key encoding.
+Move the existing pinned public ROM dependency from development to production for Key construction. This introduces no new package version.
+The two native SQLite/redb cases pass current hydration, stale/deleted filtering and original Unicode identity. They do not qualify paused-response revocation yet.
+
+Sources inspected 2026-10-09: [Search API](https://docs.opensearch.org/latest/api-reference/search-apis/search/), [match semantics](https://docs.opensearch.org/latest/query-dsl/full-text/match/), [keyword doc values](https://docs.opensearch.org/latest/mappings/supported-field-types/keyword/), [Cargo dependency scopes and commit pins](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html).
+
+## 2026-10-09: actual search-response authorization barrier
+
+Retain the actual bounded native HTTP200 response in a verified-mTLS relay; do not fabricate candidates for revocation qualification.
+An atomic held marker proves four native candidates exist before test authority changes. A release marker sends the retained bytes unchanged.
+Test current query, row and title-field revocation independently on both public storage backends, with Resource revisions still one.
+A permitted note remains visible after title revocation. Hidden title membership still yields no query result.
+A fresh relay request counter proves protected-field scope denial sends zero HTTP requests. A real two-candidate budget also executes before mutation.
+Extract one shared test permission registry rather than duplicate the isolation logic across core and native provider fixtures.
+Reuse the bounded child process owner; embed the relay script in shared test helpers so extracted consumers can execute it.
+Declare Tokio macros explicitly in the archive fixture because join! multiplexes the query and revocation barrier on one task.
+This is a test dependency feature; the production adapter feature profile remains unchanged.
+
+Sources inspected 2026-10-09: [Node22 verified HTTPS forwarding](https://github.com/nodejs/node/blob/v22.16.0/doc/api/https.md), [Node22 TLS verification](https://github.com/nodejs/node/blob/v22.16.0/doc/api/tls.md), [Tokio1.53.1 join](https://docs.rs/tokio/1.53.1/tokio/macro.join.html), [OpenSearch finite search controls](https://docs.opensearch.org/latest/api-reference/search-apis/search/).
+
+### Native OpenSearch test setup: wait for the target primary shard
+
+The full search qualification and an isolated restart→recovery sequence both failed in the first redb recovery case with `TargetFailure::Unknown`. The service log placed primary-shard activation after that case failed. Mapping/settings inspection had already succeeded. This evidence identifies a setup readiness gap; it does not justify changing production deadlines or recovery semantics.
+
+[Create Index](https://docs.opensearch.org/latest/api-reference/index-apis/create-index/) distinguishes metadata acknowledgement from shard acknowledgement and explains that a timed-out creation can still create the index. [Cluster Health](https://docs.opensearch.org/latest/api-reference/cluster-api/cluster-health/) supports an exact-index health request and reports active primary, initializing, relocating and unassigned shards.
+
+The shared native test fixture therefore performs a read-only, verified mTLS health wait for its own physical index after either successful creation or metadata reconciliation. The setup deadline is 45 seconds, each HTTP request is bounded, response bytes are capped, and only sanitized first/last health summaries are retained privately. Creation is never repeated. Production writer permissions, request deadlines and public APIs are unchanged. Independent and extracted consumers use the same setup helper with an explicitly scoped reqwest dependency.
+
+The first readiness probe exposed HTTP 408 for an unmet one-second wait. OpenSearch 3.9 [ClusterHealthResponse.status](https://github.com/opensearch-project/OpenSearch/blob/3.9/server/src/main/java/org/opensearch/action/admin/cluster/health/ClusterHealthResponse.java) explicitly maps `timed_out` to `REQUEST_TIMEOUT`. The helper now parses bounded health bodies for both 200 and 408, retaining the latter as a pending observation; only `timed_out=false` plus the exact ready-shard conditions permits test execution.
+
+The corrected restart→recovery sequence passed both native stores. Its first redb readiness observation had zero active primaries and one unassigned shard; the final observation had one active primary and no pending shards after 16,339 ms. The full verifier then detected archive-only Rust module resolution: a bare child module in a relocated source file searches a child directory. The fixture now names the copied sibling file explicitly; archive acceptance remains required.
+The sibling `path` attribute follows the [Rust Reference module-source rules](https://doc.rust-lang.org/reference/items/modules.html#the-path-attribute): an explicit non-inline module path is relative to the containing source directory. This keeps native and relocated consumer fixtures aligned.

@@ -1,4 +1,5 @@
 //! Shared actual public-storage hydration; candidate transport is controlled, not OpenSearch.
+use super::search_permissions::{Permissions, permission};
 use rom::{Access, Actor, Command, Resource, Runtime, Storage};
 use rom_projection_core::{
     ApprovedTextQuery, ProjectionProfile, Search, SearchCandidate, SearchFailure, SearchPolicy,
@@ -266,35 +267,5 @@ impl Directory {
 impl Drop for Directory {
     fn drop(&mut self) {
         std::fs::remove_dir_all(&self.0).unwrap();
-    }
-}
-
-// Each fixture actor owns isolated mutable host policy; native Resource revisions stay unchanged.
-type Permission = (Arc<AtomicBool>, Arc<AtomicBool>);
-fn registry() -> &'static std::sync::Mutex<std::collections::BTreeMap<String, Permission>> {
-    static REGISTRY: std::sync::OnceLock<
-        std::sync::Mutex<std::collections::BTreeMap<String, Permission>>,
-    > = std::sync::OnceLock::new();
-    REGISTRY.get_or_init(Default::default)
-}
-fn permission(actor: &Actor) -> Option<Permission> {
-    registry().lock().unwrap().get(&actor.subject).cloned()
-}
-struct Permissions(Actor);
-impl Permissions {
-    fn new(actor: Actor, row: Arc<AtomicBool>, field: Arc<AtomicBool>) -> Self {
-        assert!(
-            registry()
-                .lock()
-                .unwrap()
-                .insert(actor.subject.clone(), (row, field))
-                .is_none()
-        );
-        Self(actor)
-    }
-}
-impl Drop for Permissions {
-    fn drop(&mut self) {
-        registry().lock().unwrap().remove(&self.0.subject);
     }
 }

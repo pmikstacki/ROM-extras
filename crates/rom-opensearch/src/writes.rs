@@ -23,7 +23,7 @@ pub(crate) struct Entry {
 pub(crate) fn hex(bytes: &[u8]) -> String {
     bytes.iter().map(|b| format!("{b:02x}")).collect()
 }
-fn id(kind: &str, key: &str) -> String {
+pub(crate) fn id(kind: &str, key: &str) -> String {
     let mut hash = Sha256::new();
     hash.update(b"ROM-extras/opensearch-key/v1");
     for s in [kind, key] {

@@ -1,5 +1,5 @@
 //! Actual verified-mTLS acknowledgement-loss relay owner.
-use rom_opensearch::{OpenSearch, TlsConfig};
+use rom_opensearch::OpenSearch;
 use rom_projection_core::DocumentMapping;
 use std::{fs, time::Duration};
 pub(crate) struct LossProxy {
@@ -45,25 +45,12 @@ pub(crate) fn lossy_target(
     mapping: &DocumentMapping,
     physical: &str,
 ) -> OpenSearch {
-    let root = "/root/ROM-extras/.superpowers/opensearch-fixture";
-    let tls = TlsConfig::new(
+    crate::native_fixture::target_at(
         &proxy.endpoint,
-        fs::read(format!("{root}/tls/ca.pem")).unwrap(),
-        [
-            fs::read(format!("{root}/tls/projection-writer.pem")).unwrap(),
-            fs::read(format!("{root}/client-private/projection-writer.key")).unwrap(),
-        ]
-        .concat(),
-        Duration::from_secs(5),
-    )
-    .unwrap();
-    OpenSearch::new(
-        tls,
         mapping.profile().clone(),
         physical,
         vec!["title".into()],
     )
-    .unwrap()
 }
 
 #[path = "fixture_process.rs"]

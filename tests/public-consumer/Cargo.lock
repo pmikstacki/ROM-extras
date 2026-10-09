@@ -2929,6 +2929,7 @@ dependencies = [
  "oracle",
  "postgres",
  "rdkafka",
+ "reqwest",
  "rom",
  "rom-azure-blob",
  "rom-blob",
@@ -3021,6 +3022,7 @@ name = "rom-opensearch"
 version = "0.1.0-dev"
 dependencies = [
  "reqwest",
+ "rom",
  "rom-projection-core",
  "serde_json",
  "sha2 0.10.9",
