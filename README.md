@@ -41,6 +41,11 @@ These are executor profiles. Full ROM Storage integration remains pending.
 | [OpenSearch](crates/rom-opensearch/README.md) | [Native writes](docs/verification/opensearch-rust-write-2026-10-09.md) and [typed search with current authorization](docs/verification/opensearch-native-search-2026-10-09.md). | Generation switching and final provider acceptance. |
 | [Qdrant](docs/projection-probes.md) | Native revision-fence and restart probes. | Rust transport, vector queries and Runtime integration. |
 
+### Maps
+
+[Generic map providers](docs/maps.md) are in scope. The local typed-core increment has boundary and public-consumer tests.
+Host-configured sources, Nominatim, OSRM, MapTiler, browser approval and the UI example remain in progress.
+
 ### Roadmap
 
 OpenTelemetry, additional notification connectors, and backup, migration and provenance-preserving import tools remain in scope.

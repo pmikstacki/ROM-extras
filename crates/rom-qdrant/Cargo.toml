@@ -1,0 +1,20 @@
+[package]
+name = "rom-qdrant"
+description = "Bounded conditional Qdrant projection operations"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+[lints]
+workspace = true
+[features]
+service-fixture = []
+[dependencies]
+rom-projection-http = { path = "../rom-projection-http", version = "=0.1.0-dev" }
+rom-projection-core = { path = "../rom-projection-core", version = "=0.1.0-dev" }
+serde_json = "=1.0.151"
+sha2 = "=0.10.9"
+[dev-dependencies]
+rom = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }

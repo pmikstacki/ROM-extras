@@ -1,0 +1,22 @@
+[package]
+name = "rom-projection-http"
+description = "Shared bounded verified HTTP transport for projection adapters"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+[lints]
+workspace = true
+[features]
+service-fixture = []
+[dependencies]
+rom-projection-core = { path = "../rom-projection-core", version = "=0.1.0-dev" }
+reqwest = { version = "=0.13.5", default-features = false, features = ["rustls"] }
+serde_json = "=1.0.151"
+url = "=2.5.8"
+tokio = { version = "=1.53.1", features = ["time"] }
+zeroize = { version = "=1.9.1", default-features = false, features = ["alloc"] }
+[dev-dependencies]
+tokio = { version = "=1.53.1", features = ["rt", "macros"] }

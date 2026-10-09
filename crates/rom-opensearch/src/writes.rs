@@ -109,7 +109,7 @@ impl ProjectionTarget for OpenSearch {
         if request.profile != self.profile || request.physical != self.physical {
             return Err(TargetFailure::Rejected);
         }
-        let deadline = self.transport.deadline;
+        let deadline = self.transport.deadline();
         let operation = async {
             self.verify_generation().await?;
             if request.entries.is_empty() {
@@ -177,7 +177,7 @@ impl OpenSearch {
         if request.profile != self.profile || request.physical != self.physical {
             return Err(TargetFailure::Rejected);
         }
-        let deadline = self.transport.deadline;
+        let deadline = self.transport.deadline();
         let operation = async {
             self.verify_generation().await?;
             self.stored_observations(&request.entries).await
@@ -221,7 +221,7 @@ impl OpenSearch {
     /// Create a fresh fixed generation with request translog durability and explicit mappings.
     /// A lost acknowledgement is unknown; inspect the existing generation rather than assuming absence.
     pub async fn create_generation(&mut self) -> std::result::Result<(), TargetFailure> {
-        let deadline = self.transport.deadline;
+        let deadline = self.transport.deadline();
         tokio::time::timeout(deadline, self.create_native_generation())
             .await
             .map_err(|_| TargetFailure::Unknown)?
@@ -245,7 +245,7 @@ impl OpenSearch {
     }
     /// Inspect exact mappings, request durability, a concrete physical index and fixed index UUID.
     pub async fn verify_generation(&mut self) -> std::result::Result<(), TargetFailure> {
-        let deadline = self.transport.deadline;
+        let deadline = self.transport.deadline();
         tokio::time::timeout(deadline, self.inspect_generation())
             .await
             .map_err(|_| TargetFailure::Unknown)?

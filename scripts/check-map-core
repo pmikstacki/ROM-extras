@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+cargo fmt --manifest-path tests/map-public-consumer/Cargo.toml -- --check
+cargo test --locked -p rom-map-core
+cargo clippy --locked -p rom-map-core --all-targets -- -D warnings
+cargo run --manifest-path tests/map-public-consumer/Cargo.toml --locked --offline --target-dir target/map-public-consumer
+cargo clippy --manifest-path tests/map-public-consumer/Cargo.toml --locked --offline --target-dir target/map-public-consumer --all-targets -- -D warnings

@@ -1,4 +1,5 @@
 import json
+import os
 import pathlib
 import ssl
 import urllib.error
@@ -10,6 +11,12 @@ root = pathlib.Path('/root/ROM-extras/.superpowers/qdrant-fixture')
 keys = json.loads((root / 'credentials.json').read_text())
 context = ssl.create_default_context(cafile=str(root / 'tls/ca.pem'))
 opener = client(context)
+
+def fixture_container():
+    name = os.environ.get('ROM_EXTRAS_QDRANT_CONTAINER', 'rom-extras-qdrant-20261008')
+    if not name.startswith('rom-extras-qdrant-') or len(name) > 128 or not all(c in 'abcdefghijklmnopqrstuvwxyz0123456789-_' for c in name):
+        raise ValueError('invalid Qdrant fixture container selection')
+    return name
 
 def call(method, path, value=None, credential='write'):
     data = None if value is None else json.dumps(value, allow_nan=False).encode()

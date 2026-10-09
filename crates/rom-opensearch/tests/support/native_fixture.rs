@@ -106,3 +106,19 @@ pub(crate) async fn change_mapping(physical: &str) {
         response.status()
     );
 }
+
+/// Select only an explicitly named owned fixture; production targets do not use Docker.
+#[allow(dead_code)]
+pub(crate) fn container_name() -> String {
+    let name = std::env::var("ROM_EXTRAS_OPENSEARCH_CONTAINER")
+        .unwrap_or_else(|_| "rom-extras-opensearch-20261008".into());
+    assert!(
+        name.starts_with("rom-extras-opensearch-")
+            && name.len() <= 128
+            && name
+                .bytes()
+                .all(|b| b.is_ascii_lowercase() || b.is_ascii_digit() || b == b'-' || b == b'_'),
+        "invalid owned fixture container name"
+    );
+    name
+}

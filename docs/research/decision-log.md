@@ -972,3 +972,157 @@ Inspection date: 2026-10-09. The user requested correction of the README's conti
 Inspection date: 2026-10-09. Tagged SSE/AVX/NEON sources, Arm intrinsic reduction documentation and Rust's fused-rounding guarantee establish explicit arithmetic sequences. A safe standalone Rust reference used typed float32 operations, without unsafe code. GET-only comparison matched all32 existing Cosine points, including the two4096-dimensional counterexamples, which matched AVX only.
 
 Select exact tagged arithmetic reconciliation as the next implementation method to qualify. Preserve original approved host-document identity; compare native normalized values against eligible complete-vector reference results. Do not replace this with approximate component tolerances, a universal host-normalization bypass, another metric or fewer dimensions. The comparison record is candidate protocol evidence, not production Rust adapter or native ARM acceptance. Raw-vector, CPU-boundary, conditional write/recovery and query cases remain required.
+
+## 2026-10-09 — Qdrant Rust conditional wire preparation
+
+Select a whole-point conditional upsert with strict revision comparison and original Resource kind/id predicates.
+Comparing only revision halves permits a higher-revision colliding key to replace another Resource.
+The original-key predicates remain inside the native condition, including concurrent first insertion.
+The tagged [conditional operation](https://github.com/qdrant/qdrant/blob/v1.19.2/lib/shard/src/operations/point_ops.rs) applies its condition to existing points.
+The [REST contract](https://api.qdrant.tech/api-reference/points/upsert-points) supplies wait and write-ordering controls.
+Neither an HTTP success nor a completed condition no-op establishes exact content acceptance.
+
+Derive length-framed SHA-256 point identities, retaining 122 digest bits in UUIDv8 form.
+The [UUID standard](https://www.rfc-editor.org/rfc/rfc9562.html#section-5.8) permits application-defined UUIDv8 content.
+Retain and verify original keys; digest uniqueness is not an acceptance assumption.
+Keep u64 revisions in two exact scalar u32 halves. Never send full revisions as floating-point filter bounds.
+
+Retain selected approved JSON as a JSON string in payload, separately from its core-derived digest.
+This preserves original JSON number representations instead of relying on native payload numeric conversion.
+Actual Rust-generated requests retained u64::MAX selected values, fenced stale and equal-revision changes, and retained an empty-vector tombstone.
+Eight concurrent initially missing forced-ID collision rounds retained their first accepted original key.
+The native fixture uses verified HTTPS and existing private write/read API keys through the probe client.
+This qualifies generated wire and the native predicate, not a production Rust transport, exact vector reconciliation, checkpoint recovery, or the complete adapter.
+The local negative tests first failed against missing preparation; all collections and failure logs remain preserved.
+
+## 2026-10-09 — Shared bounded projection HTTP transport
+
+Move the qualified fixed-origin OpenSearch HTTP machinery into a transport crate used by both projection adapters.
+Keep domain orchestration independent of reqwest. Preserve the public OpenSearch TlsConfig constructor and path.
+Retain verified TLS, no proxies, no redirects, no implicit retries, streamed 1-MiB bounds, and finite total/connect deadlines.
+Add a separately validated opaque API-key header for Qdrant.
+The [Qdrant upsert contract](https://api.qdrant.tech/api-reference/points/upsert-points) specifies API-key authentication.
+The pinned [reqwest ClientBuilder](https://docs.rs/reqwest/0.13.5/reqwest/struct.ClientBuilder.html) documents these controls and sensitive default headers.
+Mark the API-key HeaderValue sensitive. Do not expose origins, credentials, requests or response bodies through errors or Debug.
+This shares transport guarantees only. Provider-native acknowledgement and revision reconciliation remain separate.
+
+## 2026-10-09 — Generic map core and host boundaries
+
+Extend the full goal with the user-requested map providers; preserve existing SQL and projection work.
+Select separate map capabilities, not additional operations on SQL or projection ports.
+Use WGS84 longitude, latitude ordering and antimeridian-aware west, south, east, north boxes.
+The [GeoJSON specification](https://www.rfc-editor.org/rfc/rfc7946.html) defines coordinates, line geometry and antimeridian bounds.
+Reject malformed and excessive geometry instead of silently repairing or truncating it.
+Route distance and estimated duration use explicit metres and seconds, matching the [tagged OSRM protocol](https://raw.githubusercontent.com/Project-OSRM/osrm-backend/v26.10.0/docs/http.md).
+
+Preserve public ROM Key directly. Do not derive Resource identity from native map result IDs.
+Use explicit native provenance and required plain-text attribution with controlled credit links.
+Nominatim importance and MapTiler relevance do not establish measured positional accuracy; retain Unknown unless the native service reports it.
+The [provider research](map-providers-2026-10-09.md) links those API contracts and license/usage policies.
+
+Select optional asynchronous geocoding, reverse-geocoding and routing ports with no default network provider.
+Use a monotonic watch cancellation token and a total operation budget covering rate/admission waits and I/O.
+The pinned [Tokio select contract](https://docs.rs/tokio/1.53.1/tokio/macro.select.html) documents cancellation by dropping losing futures.
+The pinned [watch wait_for contract](https://docs.rs/tokio/1.53.1/tokio/sync/watch/struct.Receiver.html#method.wait_for) retains current state across subscription.
+Cancellation before dispatch must not poll the request future. In-flight cancellation and timeout are tested separately.
+This token has asynchronous wait semantics; the projection startup token has a different cooperative native-operation contract.
+Do not couple map capabilities to projection orchestration merely to share an atomic flag.
+
+Keep map transport separate where projection HTTP cannot represent required 429/rate policy, identifying User-Agent, query authentication and cancellation.
+Do not weaken projection transport or reinterpret its unknown outcomes as map rate limits.
+The current rom-ui package has no maps export. This is an open example integration gap, not permission to fabricate imports or move UI code into Rust.
+
+## Map browser boundary: reviewed source requirements, implementation pending
+
+Date: 2026-10-09. This decision extends the map plan; it does not qualify a browser adapter.
+
+A style URL is not a complete network disclosure boundary. MapLibre styles reference sources, sprites, glyphs and font faces.
+The configured-source adapter must inspect supported resource references before the host approves a browser descriptor.
+Reject unsupported network-bearing constructs rather than claim that checking the top-level origin covers them.
+Keep backend credentials outside this descriptor. Require a separate explicit host grant for a browser token and its approved origins.
+Keep required credit links and dataset notices separate from untrusted provider HTML.
+
+MapTiler map content must not gain a server cache or proxy through a generic default.
+Its Cloud terms require written permission for proxy use and restrict server-side caching.
+The adapter must distinguish browser map access from backend geocoding and apply the selected operator's permissions separately.
+A controlled fixture cannot establish commercial permission or production service qualification.
+
+Sources: [MapLibre style resources](https://maplibre.org/maplibre-style-spec/root/),
+[MapLibre source types](https://maplibre.org/maplibre-style-spec/sources/),
+[MapTiler Cloud terms](https://www.maptiler.com/terms/cloud/).
+
+## Map HTTP semantics remain separate from projection write outcomes
+
+Date: 2026-10-09. Map transport implementation remains pending.
+
+The extracted projection transport returns Rejected or Unknown target outcomes. It requires projection-core and fixed TLS authentication.
+Map operations need RateLimited, Retry-After, host cancellation, identified geocoder requests and operator-specific admission rules.
+Do not translate a map rate limit into an unknown committed write. Do not extend SQL or projection ports to add these semantics.
+Reuse the pinned HTTP library and verified security settings where appropriate. Preserve projection redirects, proxy and retry restrictions.
+The map contract will require explicit endpoints, bounded streaming, verified TLS and a total context budget that includes admission.
+It will perform no implicit retries. A rate-limit response must preserve bounded retry guidance without disclosing response bodies or credentials.
+
+Sources: [HTTP 429](https://www.rfc-editor.org/rfc/rfc6585.html),
+[reqwest client controls](https://docs.rs/reqwest/0.13.5/reqwest/struct.ClientBuilder.html).
+
+## Retain completed fixture indices without keeping every historical shard active
+
+Date: 2026-10-09. This changes the controlled fixture state, not adapter code or production deadlines.
+
+The full verifier failed three public-consumer cases at the fixture's 90-second aggregate readiness gate.
+Two failure records retained 190 and 386 unassigned shards after restart. Both actual acceptance barrier files existed.
+The fixture had 625 owned open indices, plus five other indices.
+
+Use the reversible OpenSearch close operation for owned historical indices created before the frozen runtime inputs.
+Keep current-run indices open. Keep other indices unselected. Do not delete indices, documents, logs or test records.
+The operation closed 566 historical indices with unchanged UUIDs and retained 59 current-run indices open.
+A closed sample was reopened and read: its five documents retained the same exact data digest. It was then closed again.
+The private retention manifest records original UUIDs, document counts and each acknowledged batch for later reopening.
+This maintenance does not qualify production capacity or relax the adapter's operation limits.
+Rerun the failed cases and the full verifier before integration; preserve the original failed result.
+
+Sources: [Close Index API](https://docs.opensearch.org/latest/api-reference/index-apis/close-index/),
+[Open Index API](https://docs.opensearch.org/latest/api-reference/index-apis/open-index/).
+
+The first retained-fixture rerun still failed its two process-restart readiness cases; retain that failed result too.
+A controlled comparison found 633 indices in the implicit health query and 66 with explicit `expand_wildcards=open`.
+Require that parameter in fixture readiness. Keep the existing 90-second aggregate and 45-second individual readiness limits.
+Every current open index still requires green status, active primaries and zero initializing, relocating or unassigned shards.
+Current-index persistence, exact observation, checkpoint recovery and authorization assertions remain unchanged.
+This is a fixture query correction. It does not change production transport or target behavior.
+Source: [Cluster Health API](https://docs.opensearch.org/latest/api-reference/cluster-api/cluster-health/).
+
+Explicit open-index readiness alone still timed out: two open shards remained unassigned at 90 seconds.
+A bounded read-only allocation diagnostic identified an older `top_queries` index throttled behind four initial primary recoveries.
+Archived closed indices still participated in backend recovery. Closing them did not by itself remove this scheduling pressure.
+Set recovery priority to zero only on the 566 UUID-verified historical closed fixture indices.
+Record each original priority for restoration. Leave current open indices and other indices unchanged.
+OpenSearch allocates higher-priority indices first, then orders equal priorities by creation date.
+The focused rerun must confirm this fixture scheduling change before the full verifier runs again.
+Source: [OpenSearch index recovery priority](https://docs.opensearch.org/latest/install-and-configure/configuring-opensearch/index-settings/).
+
+The priority change did not resolve every readiness timeout. The user selected a separate qualification fixture.
+Preserve the previous container, persistent data and failed test evidence as an archive.
+The new fixture uses the same image, verified TLS configuration, security roles, CPU and memory limits.
+Its persistent data directory is separate. Restart tests select the fixture through validated host configuration.
+Both process-interruption cases and the SQLite query-revocation case passed on this fixture.
+The first full rerun then stopped at CockroachDB initialization: its retained container had exited with code 8.
+Six later failures were poisoned-lock consequences of the first failure. This result does not qualify the full increment.
+Restart the same CockroachDB container and verify its SQL readiness before another full run.
+Keep disk-stall protection enabled. CockroachDB documents disk-stall detection and process termination as availability safeguards.
+Source: [CockroachDB availability runbook](https://github.com/cockroachlabs/cockroachdb-runbook-template/blob/main/system-overview/data-availability.md).
+
+Keep pure style and tile metadata contracts in rom-map-core, alongside the other map capabilities.
+Expose styles, raster metadata and vector metadata as independent optional ports.
+Typed raster/vector wrappers reject the other source kind. They do not activate browser or server connections.
+Preserve MapLibre source-option precedence over resolved TileJSON metadata through the same bounded validation.
+Retain inherited dataset credits when a style adds its own attribution.
+Reject unimplemented rendering properties explicitly instead of silently changing the style.
+Source: [MapLibre root specification](https://maplibre.org/maplibre-style-spec/root/),
+[MapLibre TileJSON loading implementation](https://raw.githubusercontent.com/maplibre/maplibre-gl-js/main/src/source/load_tilejson.ts).
+
+The isolated full rerun passed OpenSearch but failed Qdrant's existing 15-second post-restart fixture readiness check.
+The retained Qdrant fixture contains 105 collections and later accepted verified TLS requests.
+Measure startup before changing the fixture or its readiness budget. Do not relax adapter request deadlines or certificate validation.
+Qdrant distinguishes readiness from a container merely running.
+Source: [Qdrant monitoring endpoints](https://qdrant.tech/documentation/ops-monitoring/monitoring/).

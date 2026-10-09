@@ -25,7 +25,7 @@ impl SearchTarget for OpenSearch {
         {
             return Err(TargetFailure::Rejected);
         }
-        let deadline = self.transport.deadline;
+        let deadline = self.transport.deadline();
         let operation = async {
             self.verify_generation().await?;
             let mode = match query.query().mode() {
@@ -34,7 +34,7 @@ impl SearchTarget for OpenSearch {
             };
             let field = format!("rom_search.{}", query.query().field());
             let body = json!({"size":query.query().candidate_budget(),"track_total_hits":false,"version":true,
-                "timeout":format!("{}ms", self.transport.deadline.as_millis()),
+                "timeout":format!("{}ms", self.transport.deadline().as_millis()),
                 "_source":["rom_kind","rom_id","rom_revision","rom_profile","rom_live"],
                 "query":{"bool":{"filter":[{"term":{"rom_live":true}},{"term":{"rom_kind":query.scope().kind()}},{"term":{"rom_profile":self.profile_digest}}],
                     "must":[{"match":{field:{"query":query.query().text(),"operator":mode,"zero_terms_query":"none"}}}]}}});

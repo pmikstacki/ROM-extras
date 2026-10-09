@@ -14,7 +14,8 @@ public_rom_patches=(
     --config 'patch.crates-io.rom-redb.git="https://github.com/pmikstacki/ROM"'
     --config 'patch.crates-io.rom-redb.rev="d7ef529040eec60dc869034c2d33130219db85fe"'
 )
-cargo package --allow-dirty --locked --no-verify -p rom-sql-core -p rom-projection-core -p rom-opensearch \
+cargo package --allow-dirty --locked --no-verify -p rom-sql-core -p rom-projection-core -p rom-projection-http -p rom-opensearch \
+    --config 'patch.crates-io.rom-projection-http.path="crates/rom-projection-http"' \
     --config 'patch.crates-io.rom-projection-core.path="crates/rom-projection-core"' \
     --config 'patch.crates-io.rom-sql-core.path="crates/rom-sql-core"' "${public_rom_patches[@]}"
 package_consumer=$(node scripts/prepare-projection-package.mjs)

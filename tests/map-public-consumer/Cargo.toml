@@ -1,0 +1,12 @@
+[package]
+name = "rom-map-public-consumer"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.99"
+publish = false
+[workspace]
+[dependencies]
+rom-map-core = { path = "../../crates/rom-map-core" }
+rom = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+tokio = { version = "=1.53.1", features = ["rt", "macros"] }
+serde_json = "=1.0.151"

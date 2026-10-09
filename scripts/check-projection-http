@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+cargo test --locked -p rom-projection-http --features service-fixture
+cargo clippy --locked -p rom-projection-http --all-targets --all-features -- -D warnings

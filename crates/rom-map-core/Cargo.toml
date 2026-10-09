@@ -1,0 +1,18 @@
+[package]
+name = "rom-map-core"
+description = "Validated spatial values and independent host-owned map capabilities"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+[lints]
+workspace = true
+[dependencies]
+rom = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+serde_json = "=1.0.151"
+url = "=2.5.8"
+tokio = { version = "=1.53.1", features = ["sync", "time", "macros"] }
+[dev-dependencies]
+tokio = { version = "=1.53.1", features = ["rt", "macros"] }

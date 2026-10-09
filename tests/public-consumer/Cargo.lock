@@ -3024,11 +3024,10 @@ dependencies = [
  "reqwest",
  "rom",
  "rom-projection-core",
+ "rom-projection-http",
  "serde_json",
  "sha2 0.10.9",
  "tokio",
- "url",
- "zeroize",
 ]
 
 [[package]]
@@ -3041,6 +3040,18 @@ dependencies = [
  "rom-sql-core",
  "sha2 0.10.9",
  "tokio",
+]
+
+[[package]]
+name = "rom-projection-http"
+version = "0.1.0-dev"
+dependencies = [
+ "reqwest",
+ "rom-projection-core",
+ "serde_json",
+ "tokio",
+ "url",
+ "zeroize",
 ]
 
 [[package]]

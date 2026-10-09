@@ -4,7 +4,7 @@ const rom = `{ version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", re
 process.stdout.write(preparePackagedConsumer({
   prefix: "projection",
   isolated: true,
-  packages: ["rom-sql-core", "rom-projection-core", "rom-opensearch"],
+  packages: ["rom-sql-core", "rom-projection-core", "rom-projection-http", "rom-opensearch"],
   source: "tests/packaged-projections/main.rs",
   supportSources: ["crates/rom-opensearch/tests/support/process_crash_case.rs", "crates/rom-opensearch/tests/support/loss_proxy.rs", "crates/rom-opensearch/tests/support/response_loss_proxy.mjs", "crates/rom-opensearch/tests/support/fixture_admin.rs", "crates/rom-opensearch/tests/support/generation_readiness.rs", "crates/rom-projection-core/tests/search_fixture/search_permissions.rs", "crates/rom-opensearch/tests/support/search_proxy.rs", "crates/rom-opensearch/tests/support/search_response_proxy.mjs", "crates/rom-opensearch/tests/support/fixture_process.rs", "crates/rom-opensearch/tests/support/search_case.rs", "crates/rom-projection-core/tests/search_fixture/native_case.rs", "tests/packaged-projections/checkpoint_case.rs", "tests/packaged-projections/worker_case.rs", "crates/rom-projection-core/tests/native_history_fixture/native_history_case.rs", "crates/rom-opensearch/tests/support/public_case.rs", "crates/rom-opensearch/tests/support/native_fixture.rs", "crates/rom-opensearch/tests/support/approved_document.rs"],
   extraDependencies: `reqwest = { version = "=0.13.5", default-features = false, features = ["rustls"] }

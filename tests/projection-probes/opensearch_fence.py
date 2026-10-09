@@ -1,5 +1,6 @@
 """Native version/mapping/auth probe; this is not a ROM storage/search adapter."""
 import json
+import os
 import pathlib
 import ssl
 import subprocess
@@ -93,8 +94,10 @@ def run():
                 actor='projection-reader')['hits']['hits']
     assert {hit['_id'] for hit in hits} == {'1', '3', '4'}
     print('PASS verified mTLS writer/reader scopes; external version stale/equal fences; signed revision limit; persistent tombstone; HTTP200 Bulk partial failure inspected; live query excludes tombstone')
+    container = os.environ.get('ROM_EXTRAS_OPENSEARCH_CONTAINER', 'rom-extras-opensearch-20261008')
+    assert container.startswith('rom-extras-opensearch-') and len(container) <= 128 and all(c in 'abcdefghijklmnopqrstuvwxyz0123456789-_' for c in container)
     subprocess.run(['timeout', '--kill-after=2s', '30s', 'docker', 'restart', '--time', '10',
-                    'rom-extras-opensearch-20261008'], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                    container], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     deadline = time.monotonic() + 35
     while True:
         try:

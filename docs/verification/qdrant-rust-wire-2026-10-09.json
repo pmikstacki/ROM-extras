@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-09",
+  "baseline": "d969fac2acb589eff0825619df2203e38e7685a3",
+  "uncommitted_increment": true,
+  "sources": [
+    {
+      "path": "Cargo.toml",
+      "sha256": "7a5c5fbb67eb9302d98a32f513681c41e429c5fb4a95107027c83b62ffa19612"
+    },
+    {
+      "path": "Cargo.lock",
+      "sha256": "06569454d58f20686177abe36215c8c08e0aad8978bf42fb1bed455ee103f409"
+    },
+    {
+      "path": "crates/rom-qdrant/Cargo.toml",
+      "sha256": "b51938c5ae2659fe9ef82e49398f02ef633051b0c5042e384f059c3d35ae7f5a"
+    },
+    {
+      "path": "crates/rom-qdrant/src/lib.rs",
+      "sha256": "3b7ddcb47d5438d422c88dd9b0448997a9258e501c171adc58ba8c012505e39a"
+    },
+    {
+      "path": "crates/rom-qdrant/src/writes.rs",
+      "sha256": "2e496fa93fddb38305bf61217711859712cc99cf1e72e3c2e3019d6fb06c176e"
+    },
+    {
+      "path": "crates/rom-qdrant/src/writes_tests.rs",
+      "sha256": "f2ddb5cb99da891a48c0fefcb4626262155b13488e15532a2b224c0ae6a839b0"
+    },
+    {
+      "path": "crates/rom-qdrant/tests/service.rs",
+      "sha256": "c349594773ba7b44b205e0ee4d16882cb82ae1596aa764b0a212fded4188292d"
+    },
+    {
+      "path": "crates/rom-qdrant/tests/native_fence.py",
+      "sha256": "c4ff37fbf510500aa0f710ab09299e4b9893118a6106dfb14a66a05c8f9448a6"
+    },
+    {
+      "path": "tests/projection-probes/qdrant_fixture.py",
+      "sha256": "b1d7c36843ff929061685de426a998449d0af4c6dcf9a8cb3950cbf29245b0fd"
+    },
+    {
+      "path": "tests/projection-probes/probe_transport.py",
+      "sha256": "11b025b297be4b4e22da10d311436b18a66055a1a2e267757412555e8b0997d8"
+    }
+  ],
+  "commands": [
+    {
+      "command": "cargo test --offline -p rom-qdrant",
+      "stage": "RED",
+      "result": "3 expected missing-preparation test failures"
+    },
+    {
+      "command": "cargo test --offline -p rom-qdrant --features service-fixture --test service",
+      "stage": "RED",
+      "result": "expected missing-preparation failure before backend I/O"
+    },
+    {
+      "command": "cargo test --locked --offline -p rom-qdrant --features service-fixture -- --nocapture",
+      "exit_code": 0,
+      "unit_passed": 3,
+      "actual_service_passed": 1
+    },
+    {
+      "command": "cargo clippy --locked --offline -p rom-qdrant --all-targets --all-features -- -D warnings",
+      "exit_code": 0
+    },
+    {
+      "command": "RUST_TEST_THREADS=1 ./scripts/check",
+      "exit_code": 0,
+      "scope": "local verifier; not full check-all actual-backend acceptance"
+    }
+  ],
+  "native": {
+    "version": "1.19.2",
+    "collection": "rom_extras_rust_identity_64d9efa62b6444f4a5a37214ed8d7a50",
+    "operations": 39,
+    "concurrent_missing_collision_rounds": 8,
+    "transport": "existing verified private HTTPS Python probe client; actual bodies from Rust",
+    "profile": "3-dimensional Dot fixture only; final scope still includes all approved metrics and 1..4096 dimensions",
+    "preserved": true
+  },
+  "raw_log_hashes": [
+    {
+      "private_log": "qdrant-writes-red-2026-10-09.log",
+      "sha256": "7261f03cfed5d0a0b341cf1fbaf538c3f2f78d6c3d1c06cfde536a89a3f079bb"
+    },
+    {
+      "private_log": "qdrant-native-writes-red-2026-10-09.log",
+      "sha256": "316dc6e4cb807d5301a20d10c481617bbc9b515eb31661db18e33853d4e56a1e"
+    },
+    {
+      "private_log": "qdrant-writes-collision-race-2026-10-09.log",
+      "sha256": "7cd446b29c3cb3d75bba7b0c70f69fd5b4ce4b6ae2dcff29c592cb705e06a9dd"
+    },
+    {
+      "private_log": "qdrant-writes-clippy-fixed-2026-10-09.log",
+      "sha256": "d565a3d739b07db033202a260f9cb5147f3d20d3877aeae31c26e9791ca665df"
+    },
+    {
+      "private_log": "qdrant-writes-local-check-doc-order-2026-10-09.log",
+      "sha256": "efa5cde87aa44d5539355f53f6a472ab728a67810ceee20b0e0526623d81712c"
+    }
+  ],
+  "remaining": [
+    "shared Rust HTTP transport",
+    "generation dimension/model/metric validation",
+    "exact native vector reconciliation",
+    "ProjectionTarget page orchestration",
+    "typed vector query and current ROM authorization",
+    "lost acknowledgement and actual process interruption",
+    "backend/checkpoint restart",
+    "independent consumers and extracted archives",
+    "audits, review, full check-all"
+  ],
+  "full_adapter_supported": false,
+  "full_goal_complete": false
+}

@@ -185,8 +185,8 @@ pub fn run(redb: bool, child_args: &[&str]) {
             "restart",
             "--time",
             "10",
-            "rom-extras-opensearch-20261008",
         ])
+        .arg(native_fixture::container_name())
         .stdout(std::process::Stdio::null())
         .stderr(std::process::Stdio::null())
         .status()

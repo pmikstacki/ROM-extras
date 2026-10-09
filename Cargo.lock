@@ -2310,6 +2310,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "rom-map-core"
+version = "0.1.0-dev"
+dependencies = [
+ "rom",
+ "serde_json",
+ "tokio",
+ "url",
+]
+
+[[package]]
 name = "rom-nats"
 version = "0.1.0-dev"
 dependencies = [
@@ -2354,13 +2364,12 @@ dependencies = [
  "reqwest",
  "rom",
  "rom-projection-core",
+ "rom-projection-http",
  "rom-redb",
  "rom-sqlite",
  "serde_json",
  "sha2",
  "tokio",
- "url",
- "zeroize",
 ]
 
 [[package]]
@@ -2375,6 +2384,29 @@ dependencies = [
  "rom-sqlite",
  "sha2",
  "tokio",
+]
+
+[[package]]
+name = "rom-projection-http"
+version = "0.1.0-dev"
+dependencies = [
+ "reqwest",
+ "rom-projection-core",
+ "serde_json",
+ "tokio",
+ "url",
+ "zeroize",
+]
+
+[[package]]
+name = "rom-qdrant"
+version = "0.1.0-dev"
+dependencies = [
+ "rom",
+ "rom-projection-core",
+ "rom-projection-http",
+ "serde_json",
+ "sha2",
 ]
 
 [[package]]

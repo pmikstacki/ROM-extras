@@ -44,8 +44,8 @@ fn restart_preserves_exact_live_and_tombstone_before_replay() {
             "restart",
             "--time",
             "10",
-            "rom-extras-opensearch-20261008",
         ])
+        .arg(native_fixture::container_name())
         .stdout(std::process::Stdio::null())
         .stderr(std::process::Stdio::null())
         .status()

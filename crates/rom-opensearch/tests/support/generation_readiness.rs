@@ -3,7 +3,8 @@ use serde_json::{Value, json};
 use std::{fs, time::Duration};
 
 pub(crate) async fn wait(physical: &str) {
-    // A restarted retained fixture must finish recovery before the next test creates an index.
+    // All active fixture indices must finish recovery before the next test creates an index.
+    // Explicitly exclude archived closed indices; this server includes them without this option.
     let cluster = physical == "*";
     let deadline = Duration::from_secs(if cluster { 90 } else { 45 });
     let root = "/root/ROM-extras/.superpowers/opensearch-fixture";
@@ -15,7 +16,7 @@ pub(crate) async fn wait(physical: &str) {
         loop {
             match client
                 .get(format!(
-                    "https://127.0.0.1:55460/_cluster/health/{physical}?level=indices&wait_for_status=green&timeout=1s"
+                    "https://127.0.0.1:55460/_cluster/health/{physical}?level=indices&expand_wildcards=open&wait_for_status=green&timeout=1s"
                 ))
                 .send()
                 .await

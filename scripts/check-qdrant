@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+# Current increment qualifies prepared native writes, not the complete Qdrant adapter.
+export ROM_EXTRAS_PYTHON="${ROM_EXTRAS_PYTHON:-python3}"
+if ! command -v "$ROM_EXTRAS_PYTHON" >/dev/null; then
+    echo 'Python 3 is required for the controlled native Qdrant wire fixture.' >&2
+    exit 2
+fi
+cargo test --locked -p rom-qdrant --features service-fixture -- --nocapture
+cargo clippy --locked -p rom-qdrant --all-targets --all-features -- -D warnings

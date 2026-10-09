@@ -12,7 +12,7 @@ import urllib.error
 import urllib.request
 import uuid
 
-from qdrant_fixture import call, condition, context, keys, opener, point, revision, root, upsert
+from qdrant_fixture import call, condition, context, fixture_container, keys, opener, point, revision, root, upsert
 
 
 class FaultProxy:
@@ -162,7 +162,7 @@ def run():
         print(f'PASS indexed={indexed}: delayed request after client timeout cannot replace newer live/tombstone; actual response drop reconciled; stale replay rejected')
 
     subprocess.run(['timeout', '--kill-after=2s', '30s', 'docker', 'restart', '--time', '10',
-                    'rom-extras-qdrant-20261008'], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                    fixture_container()], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     deadline = time.monotonic() + 15
     while True:
         try:
