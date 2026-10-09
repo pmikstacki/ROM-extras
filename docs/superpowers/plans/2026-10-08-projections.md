@@ -221,3 +221,27 @@ The required check-opensearch gate is wired into check-all without absent-servic
 The write increment passed delayed writes, actual service restart, hostile transport bounds, independent consumers, source review and a full frozen verifier.
 The verifier used one harness thread; prior parallel failures and unresolved native setup rejection remain recorded.
 Task3 remains in progress: typed bounded search candidates are unfinished. Current query authorization and durable generation switching remain Tasks5/6.
+
+
+## Typed search execution contract
+
+Reuse the accepted profile, key limits and public Runtime. Keep write APIs unchanged.
+Root owns all changes; no parallel edits are assigned.
+
+Core search_query.rs defines TextMode, bounded TextQuery, SearchScope, privately constructed ApprovedTextQuery and validated SearchCandidate.
+Query limits are 1..=64 results, result_limit..=256 candidates and 4096 UTF-8 text bytes. Reject empty text, NUL and invalid fields.
+Types containing query text or keys use sanitized Debug. No raw provider DSL is admitted.
+search_contract.rs defines asynchronous trusted SearchPolicy, SearchTarget and fixed SearchFailure.
+search.rs defines Search<T,P>, fixed Runtime/Actor/kind/provider/policy ownership and execute(TextQuery).
+Authorize before dispatch, after candidate receipt and before publication. Reject candidate overrun, foreign kinds and duplicate keys.
+Read each candidate through public Runtime::read_projected. Drop missing/denied/tombstone/stale candidates and candidates without the queried field.
+Return only current ProjectedView values, at most the requested limit. Never return scores, backend values, counts or vectors.
+This does not establish an atomic multi-row authorization snapshot or continuous revocation fence.
+
+Write native SQLite/redb tests before implementation: denied zero calls, current hydration/stale filtering, paused-query policy/row/field revocation, overrun/foreign/duplicate candidates and bounded output.
+Use a controlled candidate target to qualify core orchestration; classify it separately from native backend acceptance.
+Then implement OpenSearch SearchTarget in a named search module, using only an ApprovedTextQuery bound to its profile and physical generation.
+Use typed match with AND/OR modes, live/kind/profile filters, metadata-only source selection and finite candidate size.
+Reject partial/timed-out shard responses and malformed candidate metadata. Keep one total provider deadline and existing transport bounds.
+Qualify native doc-value filters before changing the accepted mapping. Keep write durability separate from explicit test refresh.
+Complete native paused-response/current-policy tests, independent consumers, archives, review, fresh audits and frozen full verification before integration.

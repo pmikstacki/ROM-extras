@@ -1,0 +1,50 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.94s
+     Running tests/search.rs (target/debug/deps/search-58cec89b64ceef2f)
+
+running 19 tests
+test query_and_candidate_admission_is_bounded_and_debug_is_sanitized ... ok
+test redb_current_hydration ... FAILED
+test redb_row_revocation ... ok
+test redb_candidate_overrun ... ok
+test redb_query_revocation ... ok
+test redb_duplicate_candidate ... ok
+test redb_bounded_output ... ok
+test redb_denied_zero_calls ... ok
+test redb_field_revocation ... ok
+test redb_foreign_kind ... ok
+test sqlite_denied_zero_calls ... ok
+test sqlite_duplicate_candidate ... ok
+test sqlite_current_hydration ... FAILED
+test sqlite_field_revocation ... ok
+test sqlite_candidate_overrun ... ok
+test sqlite_bounded_output ... ok
+test sqlite_foreign_kind ... ok
+test sqlite_query_revocation ... ok
+test sqlite_row_revocation ... ok
+
+failures:
+
+---- redb_current_hydration stdout ----
+
+thread 'redb_current_hydration' (585825) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:218:13:
+assertion `left == right` failed
+  left: 2
+ right: 1
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- sqlite_current_hydration stdout ----
+
+thread 'sqlite_current_hydration' (585834) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:218:13:
+assertion `left == right` failed
+  left: 2
+ right: 1
+
+
+failures:
+    redb_current_hydration
+    sqlite_current_hydration
+
+test result: FAILED. 17 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.40s
+
+error: test failed, to rerun pass `-p rom-projection-core --test search`

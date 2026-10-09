@@ -25,6 +25,10 @@ postgres-conformance = ["dep:postgres", "dep:tokio"]
 mssql-conformance = ["dep:tiberius", "dep:tokio", "dep:tokio-util"]
 
 [[test]]
+name = "projection_search"
+required-features = ["projection-checkpoints"]
+
+[[test]]
 name = "secrets_host"
 required-features = ["secrets-host"]
 

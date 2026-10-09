@@ -7,13 +7,7 @@ use std::collections::BTreeMap;
 #[path = "metadata_tests.rs"]
 mod tests;
 
-macro_rules! sanitized_debug {
-    ($($type:ty),+ $(,)?) => {$(impl std::fmt::Debug for $type {
-        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-            f.write_str(stringify!($type))
-        }
-    })+};
-}
+use crate::diagnostics::sanitized_debug;
 
 /// Immutable deployment, provider and mapping/model identity.
 #[derive(Clone, PartialEq, Eq)]

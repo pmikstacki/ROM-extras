@@ -1,0 +1,142 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.79s
+     Running tests/search.rs (target/debug/deps/search-58cec89b64ceef2f)
+
+running 19 tests
+test query_and_candidate_admission_is_bounded_and_debug_is_sanitized ... ok
+test redb_bounded_output ... FAILED
+test redb_current_hydration ... FAILED
+test redb_duplicate_candidate ... FAILED
+test redb_query_revocation ... FAILED
+test redb_foreign_kind ... FAILED
+test redb_row_revocation ... FAILED
+test redb_field_revocation ... FAILED
+test redb_denied_zero_calls ... FAILED
+test redb_candidate_overrun ... FAILED
+test sqlite_field_revocation ... FAILED
+test sqlite_current_hydration ... FAILED
+test sqlite_denied_zero_calls ... FAILED
+test sqlite_bounded_output ... FAILED
+test sqlite_duplicate_candidate ... FAILED
+test sqlite_candidate_overrun ... FAILED
+test sqlite_foreign_kind ... FAILED
+test sqlite_query_revocation ... FAILED
+test sqlite_row_revocation ... FAILED
+
+failures:
+
+---- redb_bounded_output stdout ----
+
+thread 'redb_bounded_output' (583566) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:81:33:
+called `Result::unwrap()` on an `Err` value: Core(Unsupported)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- redb_current_hydration stdout ----
+
+thread 'redb_current_hydration' (583568) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:81:33:
+called `Result::unwrap()` on an `Err` value: Core(Unsupported)
+
+---- redb_duplicate_candidate stdout ----
+
+thread 'redb_duplicate_candidate' (583570) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:80:18:
+assertion failed: matches!(result, Err(SearchFailure::Target(TargetFailure::Rejected)))
+
+---- redb_query_revocation stdout ----
+
+thread 'redb_query_revocation' (583573) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:71:49:
+assertion failed: pending.as_mut().poll(cx).is_pending()
+
+---- redb_foreign_kind stdout ----
+
+thread 'redb_foreign_kind' (583572) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:80:18:
+assertion failed: matches!(result, Err(SearchFailure::Target(TargetFailure::Rejected)))
+
+---- redb_row_revocation stdout ----
+
+thread 'redb_row_revocation' (583574) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:71:49:
+assertion failed: pending.as_mut().poll(cx).is_pending()
+
+---- redb_field_revocation stdout ----
+
+thread 'redb_field_revocation' (583571) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:71:49:
+assertion failed: pending.as_mut().poll(cx).is_pending()
+
+---- redb_denied_zero_calls stdout ----
+
+thread 'redb_denied_zero_calls' (583569) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:78:18:
+assertion failed: matches!(result, Err(SearchFailure::Denied))
+
+---- redb_candidate_overrun stdout ----
+
+thread 'redb_candidate_overrun' (583567) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:80:18:
+assertion failed: matches!(result, Err(SearchFailure::Target(TargetFailure::Rejected)))
+
+---- sqlite_field_revocation stdout ----
+
+thread 'sqlite_field_revocation' (583580) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:71:49:
+assertion failed: pending.as_mut().poll(cx).is_pending()
+
+---- sqlite_current_hydration stdout ----
+
+thread 'sqlite_current_hydration' (583577) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:81:33:
+called `Result::unwrap()` on an `Err` value: Core(Unsupported)
+
+---- sqlite_denied_zero_calls stdout ----
+
+thread 'sqlite_denied_zero_calls' (583578) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:78:18:
+assertion failed: matches!(result, Err(SearchFailure::Denied))
+
+---- sqlite_bounded_output stdout ----
+
+thread 'sqlite_bounded_output' (583575) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:81:33:
+called `Result::unwrap()` on an `Err` value: Core(Unsupported)
+
+---- sqlite_duplicate_candidate stdout ----
+
+thread 'sqlite_duplicate_candidate' (583579) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:80:18:
+assertion failed: matches!(result, Err(SearchFailure::Target(TargetFailure::Rejected)))
+
+---- sqlite_candidate_overrun stdout ----
+
+thread 'sqlite_candidate_overrun' (583576) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:80:18:
+assertion failed: matches!(result, Err(SearchFailure::Target(TargetFailure::Rejected)))
+
+---- sqlite_foreign_kind stdout ----
+
+thread 'sqlite_foreign_kind' (583581) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:80:18:
+assertion failed: matches!(result, Err(SearchFailure::Target(TargetFailure::Rejected)))
+
+---- sqlite_query_revocation stdout ----
+
+thread 'sqlite_query_revocation' (583647) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:71:49:
+assertion failed: pending.as_mut().poll(cx).is_pending()
+
+---- sqlite_row_revocation stdout ----
+
+thread 'sqlite_row_revocation' (583648) panicked at crates/rom-projection-core/tests/search_fixture/native_case.rs:71:49:
+assertion failed: pending.as_mut().poll(cx).is_pending()
+
+
+failures:
+    redb_bounded_output
+    redb_candidate_overrun
+    redb_current_hydration
+    redb_denied_zero_calls
+    redb_duplicate_candidate
+    redb_field_revocation
+    redb_foreign_kind
+    redb_query_revocation
+    redb_row_revocation
+    sqlite_bounded_output
+    sqlite_candidate_overrun
+    sqlite_current_hydration
+    sqlite_denied_zero_calls
+    sqlite_duplicate_candidate
+    sqlite_field_revocation
+    sqlite_foreign_kind
+    sqlite_query_revocation
+    sqlite_row_revocation
+
+test result: FAILED. 1 passed; 18 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.46s
+
+error: test failed, to rerun pass `-p rom-projection-core --test search`

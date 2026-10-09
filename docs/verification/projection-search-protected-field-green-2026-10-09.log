@@ -1,0 +1,31 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.93s
+     Running tests/search.rs (target/debug/deps/search-58cec89b64ceef2f)
+
+running 23 tests
+test query_and_candidate_admission_is_bounded_and_debug_is_sanitized ... ok
+test redb_candidate_overrun ... ok
+test redb_foreign_kind ... ok
+test redb_query_revocation ... ok
+test redb_protected_field_zero_calls ... ok
+test redb_bounded_output ... ok
+test redb_duplicate_candidate ... ok
+test redb_row_revocation ... ok
+test redb_denied_zero_calls ... ok
+test redb_field_revocation ... ok
+test redb_current_hydration ... ok
+test redb_closed_source ... ok
+test sqlite_bounded_output ... ok
+test sqlite_denied_zero_calls ... ok
+test sqlite_candidate_overrun ... ok
+test sqlite_closed_source ... ok
+test sqlite_current_hydration ... ok
+test sqlite_duplicate_candidate ... ok
+test sqlite_query_revocation ... ok
+test sqlite_field_revocation ... ok
+test sqlite_foreign_kind ... ok
+test sqlite_protected_field_zero_calls ... ok
+test sqlite_row_revocation ... ok
+
+test result: ok. 23 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.68s
+

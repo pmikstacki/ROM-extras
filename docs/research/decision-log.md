@@ -845,3 +845,17 @@ Sources: [Rust test execution](https://doc.rust-lang.org/rustc/tests/index.html)
 The serial full verifier exited zero with all 236 runtime hashes unchanged. Twenty adapter cases and independent consumers passed.
 The [write qualification record](../verification/opensearch-rust-write-2026-10-09.md) preserves earlier failures, source review and fresh dependency inventories.
 Typed search, Qdrant Rust transport, current query authorization and durable generation switching remain incomplete.
+
+
+## 2026-10-09: typed search and current public hydration
+
+Choose a core-owned approval token over a public unauthenticated candidate API or raw backend DSL.
+An asynchronous trusted host SearchPolicy approves fixed kind, field and mode before provider I/O and again before publication.
+Public Runtime::read_projected supplies current authorized values; backend candidates supply only original keys and revisions.
+Reject candidates lacking the current visible query field, even if other Resource fields remain readable.
+Bound one candidate request rather than unbounded search pagination. Short results are permitted when candidates are stale or denied.
+Support explicit all-terms/any-terms match modes. Query text has a conservative 4096-byte application bound, not a vendor maximum.
+No Debug formatter exposes query text or candidate keys. Current hydration is not an atomic global authorization snapshot.
+
+Sources inspected 2026-10-09: [public pinned ROM projection](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom/src/projection.rs), [OpenSearch match semantics](https://docs.opensearch.org/latest/query-dsl/full-text/match/), [finite search and partial-result controls](https://docs.opensearch.org/latest/api-reference/search-apis/search/), [keyword doc values](https://docs.opensearch.org/latest/mappings/supported-field-types/keyword/).
+Native keyword-filter behavior still requires qualification; do not change the accepted write mapping based only on inference.

@@ -1,0 +1,27 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+error[E0432]: unresolved imports `rom_projection_core::ApprovedTextQuery`, `rom_projection_core::Search`, `rom_projection_core::SearchCandidate`, `rom_projection_core::SearchFailure`, `rom_projection_core::SearchPolicy`, `rom_projection_core::SearchScope`, `rom_projection_core::SearchTarget`, `rom_projection_core::TextMode`, `rom_projection_core::TextQuery`
+ --> crates/rom-projection-core/tests/search_fixture/native_case.rs:3:27
+  |
+3 | ...::{ApprovedTextQuery, ProjectionProfile, Search, SearchCandidate, SearchFailure, SearchPolicy, SearchScope, SearchTarget, TargetFailure, TextMode, TextQuery};
+  |       ^^^^^^^^^^^^^^^^^                     ^^^^^^  ^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^  ^^^^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^^^^                 ^^^^^^^^  ^^^^^^^^^ no `TextQuery` in the root
+  |       |                                     |       |                |              |             |            |                            |
+  |       |                                     |       |                |              |             |            |                            no `TextMode` in the root
+  |       |                                     |       |                |              |             |            no `SearchTarget` in the root
+  |       |                                     |       |                |              |             no `SearchScope` in the root
+  |       |                                     |       |                |              no `SearchPolicy` in the root
+  |       |                                     |       |                no `SearchFailure` in the root
+  |       |                                     |       no `SearchCandidate` in the root
+  |       |                                     no `Search` in the root
+  |       no `ApprovedTextQuery` in the root
+
+error[E0432]: unresolved imports `rom_projection_core::SearchCandidate`, `rom_projection_core::TextMode`, `rom_projection_core::TextQuery`
+  --> crates/rom-projection-core/tests/search.rs:24:31
+   |
+24 |     use rom_projection_core::{SearchCandidate, TextMode, TextQuery};
+   |                               ^^^^^^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^^ no `TextQuery` in the root
+   |                               |                |
+   |                               |                no `TextMode` in the root
+   |                               no `SearchCandidate` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rom-projection-core` (test "search") due to 2 previous errors

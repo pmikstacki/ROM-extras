@@ -2,6 +2,7 @@
 mod cancellation;
 mod checkpoint;
 mod codec;
+mod diagnostics;
 mod error;
 mod limits;
 mod metadata;
@@ -43,3 +44,10 @@ pub use lifecycle::{StorageLifecycle, StorageStartup};
 
 mod runtime_history;
 pub use runtime_history::{HostVectors, NoVectors, RuntimeHistory, VectorInput};
+
+mod search;
+mod search_contract;
+mod search_query;
+pub use search::Search;
+pub use search_contract::{SearchFailure, SearchPolicy, SearchTarget};
+pub use search_query::{ApprovedTextQuery, SearchCandidate, SearchScope, TextMode, TextQuery};

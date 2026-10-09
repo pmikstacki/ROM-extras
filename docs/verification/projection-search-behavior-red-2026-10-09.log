@@ -1,0 +1,217 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+warning: unused import: `ApprovedTextQuery`
+ --> crates/rom-projection-core/src/search.rs:2:13
+  |
+2 | use crate::{ApprovedTextQuery, ProjectionProfile, Result, SearchFailure, SearchPolicy, SearchTarget, TextQuery, limits};
+  |             ^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: missing documentation for an enum
+ --> crates/rom-projection-core/src/search_query.rs:5:1
+  |
+5 | pub enum TextMode { AllTerms, AnyTerms }
+  | ^^^^^^^^^^^^^^^^^
+  |
+  = note: requested on the command line with `-D missing-docs`
+
+error: missing documentation for a variant
+ --> crates/rom-projection-core/src/search_query.rs:5:21
+  |
+5 | pub enum TextMode { AllTerms, AnyTerms }
+  |                     ^^^^^^^^
+
+error: missing documentation for a variant
+ --> crates/rom-projection-core/src/search_query.rs:5:31
+  |
+5 | pub enum TextMode { AllTerms, AnyTerms }
+  |                               ^^^^^^^^
+
+error: missing documentation for a struct
+ --> crates/rom-projection-core/src/search_query.rs:6:1
+  |
+6 | pub struct TextQuery { field: String, text: String, mode: TextMode, limit: usize, budget: usize }
+  | ^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for an associated function
+ --> crates/rom-projection-core/src/search_query.rs:8:5
+  |
+8 |     pub fn new(field: &str, text: &str, mode: TextMode, result_limit: usize, candidate_budget: usize) -> Result<Self> {
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_query.rs:14:5
+   |
+14 |     pub fn field(&self) -> &str { &self.field }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_query.rs:15:5
+   |
+15 |     pub fn text(&self) -> &str { &self.text }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_query.rs:16:5
+   |
+16 |     pub fn mode(&self) -> TextMode { self.mode }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_query.rs:17:5
+   |
+17 |     pub fn result_limit(&self) -> usize { self.limit }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_query.rs:18:5
+   |
+18 |     pub fn candidate_budget(&self) -> usize { self.budget }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_query.rs:23:5
+   |
+23 |     pub fn kind(&self) -> &str { &self.kind }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_query.rs:24:5
+   |
+24 |     pub fn field(&self) -> &str { self.query.field() }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_query.rs:25:5
+   |
+25 |     pub fn mode(&self) -> TextMode { self.query.mode() }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_query.rs:26:5
+   |
+26 |     pub fn profile(&self) -> &ProjectionProfile { &self.profile }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_query.rs:27:5
+   |
+27 |     pub fn physical_target(&self) -> &str { &self.physical }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_query.rs:32:5
+   |
+32 |     pub fn scope(&self) -> &SearchScope { &self.scope }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_query.rs:33:5
+   |
+33 |     pub fn query(&self) -> &TextQuery { &self.scope.query }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_query.rs:34:5
+   |
+34 |     pub fn profile(&self) -> &ProjectionProfile { self.scope.profile() }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_query.rs:35:5
+   |
+35 |     pub fn physical_target(&self) -> &str { self.scope.physical_target() }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for an associated function
+  --> crates/rom-projection-core/src/search_query.rs:40:5
+   |
+40 |     pub fn new(key: Key, revision: u64) -> Result<Self> {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_query.rs:45:5
+   |
+45 |     pub fn key(&self) -> &Key { &self.key }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_query.rs:46:5
+   |
+46 |     pub fn revision(&self) -> u64 { self.revision }
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+ --> crates/rom-projection-core/src/search_contract.rs:7:5
+  |
+7 |     fn authorize(&mut self, actor: &Actor, scope: &SearchScope) -> impl Future<Output = bool> + Send;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_contract.rs:11:5
+   |
+11 |     fn profile(&self) -> &ProjectionProfile;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_contract.rs:12:5
+   |
+12 |     fn physical_target(&self) -> &str;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search_contract.rs:13:5
+   |
+13 |     fn candidates(&mut self, query: &ApprovedTextQuery) -> impl Future<Output = std::result::Result<Vec<SearchCandidate>, TargetFailure>> + Send;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for an enum
+  --> crates/rom-projection-core/src/search_contract.rs:16:1
+   |
+16 | pub enum SearchFailure { Core(Error), Denied, Target(TargetFailure), SourceUnavailable }
+   | ^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a variant
+  --> crates/rom-projection-core/src/search_contract.rs:16:26
+   |
+16 | pub enum SearchFailure { Core(Error), Denied, Target(TargetFailure), SourceUnavailable }
+   |                          ^^^^
+
+error: missing documentation for a variant
+  --> crates/rom-projection-core/src/search_contract.rs:16:39
+   |
+16 | pub enum SearchFailure { Core(Error), Denied, Target(TargetFailure), SourceUnavailable }
+   |                                       ^^^^^^
+
+error: missing documentation for a variant
+  --> crates/rom-projection-core/src/search_contract.rs:16:47
+   |
+16 | pub enum SearchFailure { Core(Error), Denied, Target(TargetFailure), SourceUnavailable }
+   |                                               ^^^^^^
+
+error: missing documentation for a variant
+  --> crates/rom-projection-core/src/search_contract.rs:16:70
+   |
+16 | pub enum SearchFailure { Core(Error), Denied, Target(TargetFailure), SourceUnavailable }
+   |                                                                      ^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a struct
+ --> crates/rom-projection-core/src/search.rs:4:1
+  |
+4 | pub struct Search<T: SearchTarget, P: SearchPolicy> { pub(crate) runtime: Runtime, pub(crate) actor: Actor, pub(crate) kind: String, ...
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for an associated function
+ --> crates/rom-projection-core/src/search.rs:6:5
+  |
+6 |     pub fn new(runtime: Runtime, actor: Actor, kind: &str, target: T, policy: P) -> Result<Self> {
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: missing documentation for a method
+  --> crates/rom-projection-core/src/search.rs:12:5
+   |
+12 |     pub async fn execute(&mut self, _query: TextQuery) -> std::result::Result<Vec<ProjectedView>, SearchFailure> {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: `rom-projection-core` (lib) generated 1 warning
+error: could not compile `rom-projection-core` (lib) due to 34 previous errors; 1 warning emitted

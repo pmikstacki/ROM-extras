@@ -6,7 +6,7 @@ process.stdout.write(preparePackagedConsumer({
   isolated: true,
   packages: ["rom-sql-core", "rom-projection-core", "rom-opensearch"],
   source: "tests/packaged-projections/main.rs",
-  supportSources: ["tests/packaged-projections/checkpoint_case.rs", "tests/packaged-projections/worker_case.rs", "crates/rom-projection-core/tests/native_history_fixture/native_history_case.rs", "crates/rom-opensearch/tests/support/public_case.rs", "crates/rom-opensearch/tests/support/native_fixture.rs", "crates/rom-opensearch/tests/support/approved_document.rs"],
+  supportSources: ["crates/rom-projection-core/tests/search_fixture/native_case.rs", "tests/packaged-projections/checkpoint_case.rs", "tests/packaged-projections/worker_case.rs", "crates/rom-projection-core/tests/native_history_fixture/native_history_case.rs", "crates/rom-opensearch/tests/support/public_case.rs", "crates/rom-opensearch/tests/support/native_fixture.rs", "crates/rom-opensearch/tests/support/approved_document.rs"],
   extraDependencies: `rom = ${rom}
 rom-sqlite = ${rom}
 rom-redb = ${rom}

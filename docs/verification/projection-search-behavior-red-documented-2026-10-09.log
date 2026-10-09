@@ -1,0 +1,45 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+error[E0308]: mismatched types
+   --> crates/rom-projection-core/tests/search_fixture/native_case.rs:13:17
+    |
+ 13 | ...  .policy(move |a, access, d| a.authority == "search-fixture" && (a.subject == "writer" || (a.subject == "reader" && matches!(access, Access::Read) && d.readable && row.load(Ordering::SeqCst))))
+    |       ------ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected fn pointer, found closure
+    |       |
+    |       arguments to this method are incorrect
+    |
+    = note: expected fn pointer `for<'a, 'b> fn(&'a Actor, Access, &'b Doc) -> bool`
+                  found closure `{closure@crates/rom-projection-core/tests/search_fixture/native_case.rs:13:17: 13:36}`
+note: closures can only be coerced to `fn` types if they do not capture any variables
+   --> crates/rom-projection-core/tests/search_fixture/native_case.rs:13:172
+    |
+ 13 | ... && matches!(access, Access::Read) && d.readable && row.load(Ordering::SeqCst))))
+    |                                                        ^^^ `row` captured here
+note: method defined here
+   --> /root/.cargo/git/checkouts/rom-93d40b828d518890/d7ef529/crates/rom/src/resource/definition.rs:145:12
+    |
+145 |     pub fn policy(mut self, policy: Policy<R>) -> Self {
+    |            ^^^^^^
+
+error[E0308]: mismatched types
+   --> crates/rom-projection-core/tests/search_fixture/native_case.rs:14:23
+    |
+ 14 |         .field_policy(move |a, _, f, _| a.subject == "writer" || f == "note" || (f == "title" && field.load(Ordering::SeqCst))))
+    |          ------------ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected fn pointer, found closure
+    |          |
+    |          arguments to this method are incorrect
+    |
+    = note: expected fn pointer `for<'a, 'b, 'c> fn(&'a Actor, Access, &'b str, &'c Doc) -> bool`
+                  found closure `{closure@crates/rom-projection-core/tests/search_fixture/native_case.rs:14:23: 14:40}`
+note: closures can only be coerced to `fn` types if they do not capture any variables
+   --> crates/rom-projection-core/tests/search_fixture/native_case.rs:14:98
+    |
+ 14 |         .field_policy(move |a, _, f, _| a.subject == "writer" || f == "note" || (f == "title" && field.load(Ordering::SeqCst))))
+    |                                                                                                  ^^^^^ `field` captured here
+note: method defined here
+   --> /root/.cargo/git/checkouts/rom-93d40b828d518890/d7ef529/crates/rom/src/resource/definition.rs:176:12
+    |
+176 |     pub fn field_policy(mut self, policy: FieldPolicy<R>) -> Self {
+    |            ^^^^^^^^^^^^
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `rom-projection-core` (test "search") due to 2 previous errors

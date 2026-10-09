@@ -27,8 +27,8 @@ projection_package_root=$(dirname -- "$package_consumer")
 projection_manifest="$projection_package_root/rom-projection-core-0.1.0-dev/Cargo.toml"
 projection_core_patch="patch.crates-io.rom-sql-core.path=\"$projection_package_root/rom-sql-core-0.1.0-dev\""
 cargo test --manifest-path "$projection_manifest" --offline \
-    --target-dir target/projection-packaged-consumer --test native_history \
+    --target-dir target/projection-packaged-consumer --test native_history --test search \
     --config "$projection_core_patch" "${public_rom_patches[@]}"
 cargo test --manifest-path "$projection_manifest" --offline --locked \
-    --target-dir target/projection-packaged-consumer --test native_history \
+    --target-dir target/projection-packaged-consumer --test native_history --test search \
     --config "$projection_core_patch" "${public_rom_patches[@]}"
