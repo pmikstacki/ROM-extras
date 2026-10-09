@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_PYTHON:?Explicit Python3 executable required}"
+"$ROM_EXTRAS_PYTHON" scripts/test-qdrant-fixture-transport.py
+cargo test --locked -p rom-qdrant
+cargo clippy --locked -p rom-qdrant --all-targets --all-features -- -D warnings
+RUSTDOCFLAGS='-D warnings' cargo doc --locked -p rom-qdrant --no-deps
+cargo fmt --manifest-path tests/qdrant-target-consumer/Cargo.toml -- --check
+cargo clippy --manifest-path tests/qdrant-target-consumer/Cargo.toml --locked --offline --target-dir target/qdrant-target-consumer --all-targets -- -D warnings
+cargo build --manifest-path tests/qdrant-target-consumer/Cargo.toml --locked --offline --target-dir target/qdrant-target-consumer
+"$ROM_EXTRAS_PYTHON" scripts/check-qdrant-target-consumer.py target/qdrant-target-consumer/debug/qdrant-target-consumer
+public_rom_patches=()
+for package in rom rom-backup rom-sqlite rom-redb; do
+    public_rom_patches+=(--config "patch.crates-io.$package.git=\"https://github.com/pmikstacki/ROM\"" --config "patch.crates-io.$package.rev=\"d7ef529040eec60dc869034c2d33130219db85fe\"")
+done
+cargo package --locked --allow-dirty --no-verify -p rom-sql-core -p rom-projection-core -p rom-projection-http -p rom-qdrant \
+    --config 'patch.crates-io.rom-sql-core.path="crates/rom-sql-core"' \
+    --config 'patch.crates-io.rom-projection-core.path="crates/rom-projection-core"' \
+    --config 'patch.crates-io.rom-projection-http.path="crates/rom-projection-http"' "${public_rom_patches[@]}"
+consumer=$(node scripts/prepare-qdrant-target-package.mjs)
+cargo clippy --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/qdrant-target-packaged-consumer --all-targets -- -D warnings
+cargo build --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/qdrant-target-packaged-consumer
+"$ROM_EXTRAS_PYTHON" scripts/check-qdrant-target-consumer.py target/qdrant-target-packaged-consumer/debug/rom-qdrant-target-packaged-consumer

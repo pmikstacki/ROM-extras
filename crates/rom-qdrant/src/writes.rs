@@ -62,7 +62,7 @@ impl PreparedWrite {
         &self.body
     }
 }
-fn hex(bytes: &[u8]) -> String {
+pub(crate) fn hex(bytes: &[u8]) -> String {
     bytes.iter().map(|byte| format!("{byte:02x}")).collect()
 }
 fn point_id(kind: &str, id: &str) -> String {

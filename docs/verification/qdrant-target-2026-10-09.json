@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-09",
+  "baseline": "bda0614fcb13c41bbf14dc6669fd1165a5b8cf0c",
+  "public_rom": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "scope": "Standalone host-owned concrete generation; exclusive administrative ownership and no name reuse/restoration",
+  "pure_tests": 8,
+  "native_metrics": [
+    "Dot",
+    "Euclid",
+    "Manhattan"
+  ],
+  "native_dimensions": 3,
+  "recovery": "Actual forwarded completed response loss on second point; SQLite/redb child exit70; native persistent server restart; GET-only pre-replay proof; separate process replay; second checkpoint reopen and both key digests",
+  "authored_responses": [
+    "429",
+    "oversized response",
+    "redirect",
+    "timeout",
+    "future cancellation"
+  ],
+  "affected_check": {
+    "command": "./scripts/check-qdrant-target",
+    "exit_code": 0,
+    "log": ".superpowers/qdrant-target-port55471-affected-2026-10-09.log"
+  },
+  "source_review": {
+    "log": ".superpowers/qdrant-target-final-review-2026-10-09.md",
+    "important_findings": 3,
+    "fixed": 3,
+    "deferred_minors": 0
+  },
+  "missing_point_regression": {
+    "red": ".superpowers/qdrant-target-review-replay-red-2026-10-09.log",
+    "green": ".superpowers/qdrant-target-review-replay-green-2026-10-09.log"
+  },
+  "redirect_regression": {
+    "red": ".superpowers/qdrant-target-review-redirect-red-2026-10-09.log",
+    "green": ".superpowers/qdrant-target-review-redirect-green-2026-10-09.log"
+  },
+  "partial_page_regression": {
+    "red": ".superpowers/qdrant-target-review-partial-red-2026-10-09.log",
+    "green": ".superpowers/qdrant-target-reviewed-affected-2026-10-09.log"
+  },
+  "full_local_verifier": {
+    "status": "passed",
+    "command": "./scripts/check-all",
+    "exit_code": 0,
+    "log": ".superpowers/qdrant-target-full-verifier-port55471-2026-10-09.log",
+    "frozen_files_unchanged": 1252,
+    "source_manifest": ".superpowers/qdrant-target-source-snapshot-port55471-2026-10-09.json",
+    "source_manifest_sha256": "9d6a1ec1dab521d685ddd32e1837e6d83da8421bce271c52ca544ee092e6e1f4",
+    "failed_attempt_preserved": {
+      "exit_code": 1,
+      "log": ".superpowers/qdrant-target-full-verifier-2026-10-09.log",
+      "reason": "Owned Qdrant fixture occupied maps-ui reserved loopback port 55467",
+      "frozen_files_unchanged": 1252
+    }
+  },
+  "remaining": [
+    "Authorized vector queries",
+    "Cosine representation",
+    "Distributed qualification",
+    "Rebuild/cutover",
+    "Release acceptance",
+    "REST cannot fence recreation with copied metadata"
+  ],
+  "native_fixture": {
+    "container": "rom-extras-qdrant-target-native-port55471-20261009",
+    "port": 55471,
+    "archived_container": "rom-extras-qdrant-target-native-20261009",
+    "archived_port": 55467,
+    "id": "8d7d5c898e5f9ce5261d0e236440868d7cfa110a66041b2cd09d38bdbeb136da",
+    "image": "e37a07939a01ae09875d5cd58cd05a5e7c393151fce5e0a524c083835570e8e7",
+    "state": "running"
+  },
+  "normalized_archives": {
+    "version": "0.1.0-dev",
+    "hashes": {
+      "rom-sql-core": "f5c5c3e8ce7b16bbf83b8fa11f53eafb5d88de7b6262029cf4176a9fe2f1df7c",
+      "rom-projection-core": "41a3b3bc5cf9393631dcdd02c0accb71c443a7ede342cb1ce29a95a34e405aa3",
+      "rom-projection-http": "67afd4d184c7270efee0f112e003d687606073e2ad36ca68eb72b76a80ce4c47",
+      "rom-qdrant": "8afcbfeddc1e4bf83e0c1005ab714110207ccaec23effcbe7537c5a60f71cb76"
+    },
+    "consumer": "/tmp/qdrant-target-packaged-wqa6sM/consumer"
+  },
+  "audit": {
+    "exit_code": 0,
+    "packages": 192,
+    "vulnerabilities": 0,
+    "warnings": 0,
+    "new_registry_versions": 0,
+    "rustsec_revision": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+    "log": ".superpowers/qdrant-target-consumer-audit-2026-10-09.log"
+  },
+  "post_verifier_changes": [
+    "Verification result record",
+    "Plan completion checkboxes and result ledger",
+    "Guide links to verification record"
+  ],
+  "maps_ui_after_port_fix": {
+    "command": "./scripts/check-map-ui",
+    "exit_code": 0,
+    "browser_tests": 5,
+    "log": ".superpowers/qdrant-target-port55471-maps-ui-2026-10-09.log"
+  },
+  "repeated_native_evidence": [
+    "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-xermmg4z",
+    "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-rbzm7qbh"
+  ]
+}

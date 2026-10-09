@@ -16,6 +16,7 @@ cd -- "$(dirname -- "$0")/.."
 ./scripts/check-openbao
 ./scripts/check-projection-http
 ./scripts/check-qdrant
+./scripts/check-qdrant-target
 ./scripts/check-opensearch
 ./scripts/check-projection-probes
 ./scripts/check-map-core

@@ -288,3 +288,14 @@ Native Nginx1.29.8 checks TLS, bearer authentication, validators and restart.
 SQLite/redb consumers exit after committed unknown outcomes, reopen and replay while the source remains stopped.
 Direct and normalized archive consumers execute these checks. Full maintenance qualification remains pending.
 See [configuration, limits and recovery constraints](import.md).
+
+## Fixed-generation Qdrant writes
+
+The [Qdrant target](qdrant-target.md) implements real native writes and exact stored payload/vector observations.
+Dot, Euclid and Manhattan retain the approved float32 representation in the tested standalone profile.
+Cosine is explicitly unsupported pending a normalization contract.
+Native collection-scoped `prw` JWTs permit points and deny collection/configuration extras.
+SQLite/redb process crashes after actual response loss retain pending intent; separate processes recover after native server restart.
+Direct and normalized archive consumers execute the same native cases.
+Qdrant REST exposes no immutable collection UUID. The host must exclude name reuse and copied-marker restoration.
+Authorized vector search, distributed qualification, rebuild/cutover and final acceptance remain incomplete.

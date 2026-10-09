@@ -2645,11 +2645,13 @@ dependencies = [
 name = "rom-qdrant"
 version = "0.1.0-dev"
 dependencies = [
+ "reqwest",
  "rom",
  "rom-projection-core",
  "rom-projection-http",
  "serde_json",
  "sha2",
+ "tokio",
 ]
 
 [[package]]
