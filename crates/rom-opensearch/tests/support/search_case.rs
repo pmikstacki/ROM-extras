@@ -32,6 +32,14 @@ impl SearchPolicy for Policy {
             && self.0.load(Ordering::SeqCst)
     }
 }
+/// Reject an actual held reply after this test index mapping changes.
+pub fn run_mapping_drift(redb: bool) {
+    run_case(redb, 6);
+}
+/// Retain a real successful native reply beyond the total provider deadline.
+pub fn run_timeout(redb: bool) {
+    run_case(redb, 5);
+}
 pub fn run(redb: bool) {
     run_case(redb, 0);
 }
@@ -199,19 +207,61 @@ fn run_case(redb: bool, case: usize) {
             )
             .unwrap();
             let query = TextQuery::new("title", "wind rise", TextMode::AnyTerms, 8, 8).unwrap();
+            let started = std::time::Instant::now();
             let pending = held_search.execute(query);
+            if case == 5 {
+                let (result, ()) = tokio::join!(pending, proxy.held());
+                assert!(matches!(
+                    result,
+                    Err(SearchFailure::Target(
+                        rom_projection_core::TargetFailure::Unknown
+                    ))
+                ));
+                assert!(started.elapsed() >= Duration::from_millis(4500));
+                assert!(started.elapsed() < Duration::from_secs(7));
+                assert_eq!(
+                    proxy.request_count(),
+                    3,
+                    "mapping, settings, and one actual search; no retry or final inspection"
+                );
+                for id in ["a/雪", "b", "stale", "tomb"] {
+                    assert_eq!(
+                        runtime
+                            .read_projected(&writer, Doc::KIND, id)
+                            .await
+                            .unwrap()
+                            .revision,
+                        1
+                    );
+                }
+                runtime.shutdown().await.unwrap();
+                return;
+            }
             let revoke = async {
                 proxy.held().await;
                 match case {
                     1 => query_grant.store(false, Ordering::SeqCst),
                     2 => row_grant.store(false, Ordering::SeqCst),
                     3 => field_grant.store(false, Ordering::SeqCst),
+                    6 => native_fixture::change_mapping(&physical).await,
                     _ => unreachable!(),
                 }
                 proxy.release();
             };
             let (result, ()) = tokio::join!(pending, revoke);
-            if case == 1 {
+            if case == 6 {
+                assert!(matches!(
+                    result,
+                    Err(SearchFailure::Target(
+                        rom_projection_core::TargetFailure::Rejected
+                    ))
+                ));
+                assert_eq!(
+                    proxy.request_count(),
+                    4,
+                    "final mapping inspection rejects before settings or hydration"
+                );
+            } else if case == 1 {
                 assert!(matches!(result, Err(SearchFailure::Denied)));
             } else {
                 assert!(result.unwrap().is_empty());

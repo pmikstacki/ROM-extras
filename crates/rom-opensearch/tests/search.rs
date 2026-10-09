@@ -46,3 +46,21 @@ fn sqlite_native_protected_query_zero_requests() {
 fn redb_native_protected_query_zero_requests() {
     search_case::run_denied(true);
 }
+
+#[test]
+fn sqlite_native_held_search_deadline() {
+    search_case::run_timeout(false);
+}
+#[test]
+fn redb_native_held_search_deadline() {
+    search_case::run_timeout(true);
+}
+
+#[test]
+fn sqlite_native_mapping_drift_rejects_held_candidates() {
+    search_case::run_mapping_drift(false);
+}
+#[test]
+fn redb_native_mapping_drift_rejects_held_candidates() {
+    search_case::run_mapping_drift(true);
+}

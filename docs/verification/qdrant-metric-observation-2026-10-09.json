@@ -1,0 +1,245 @@
+{
+  "scope": "actual single-node Qdrant1.19.2; synthetic host vectors; no Rust adapter qualification",
+  "metrics": {
+    "Dot": {
+      "collection": "rom_extras_metric_3a4a32dcac4146069ee950b62f1673d2",
+      "observations": [
+        {
+          "label": "non_unit",
+          "incoming_f32": [
+            3,
+            4,
+            0
+          ],
+          "stored": [
+            3,
+            4,
+            0
+          ]
+        },
+        {
+          "label": "zero",
+          "incoming_f32": [
+            0,
+            0,
+            0
+          ],
+          "stored": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "label": "large_finite",
+          "incoming_f32": [
+            3.0000000054977558e+38,
+            0,
+            0
+          ],
+          "stored": [
+            3e+38,
+            0,
+            0
+          ]
+        },
+        {
+          "label": "small_finite",
+          "incoming_f32": [
+            9.999999350456404e-39,
+            0,
+            0
+          ],
+          "stored": [
+            1e-38,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "Cosine": {
+      "collection": "rom_extras_metric_4169b689d0044ffd88a27c90c975c976",
+      "observations": [
+        {
+          "label": "non_unit",
+          "incoming_f32": [
+            3,
+            4,
+            0
+          ],
+          "stored": [
+            0.6,
+            0.8,
+            0
+          ]
+        },
+        {
+          "label": "zero",
+          "incoming_f32": [
+            0,
+            0,
+            0
+          ],
+          "stored": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "label": "large_finite",
+          "incoming_f32": [
+            3.0000000054977558e+38,
+            0,
+            0
+          ],
+          "stored": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "label": "small_finite",
+          "incoming_f32": [
+            9.999999350456404e-39,
+            0,
+            0
+          ],
+          "stored": [
+            1e-38,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "Euclid": {
+      "collection": "rom_extras_metric_4f56f0f6b8e4494b9a5ddafa665f8b56",
+      "observations": [
+        {
+          "label": "non_unit",
+          "incoming_f32": [
+            3,
+            4,
+            0
+          ],
+          "stored": [
+            3,
+            4,
+            0
+          ]
+        },
+        {
+          "label": "zero",
+          "incoming_f32": [
+            0,
+            0,
+            0
+          ],
+          "stored": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "label": "large_finite",
+          "incoming_f32": [
+            3.0000000054977558e+38,
+            0,
+            0
+          ],
+          "stored": [
+            3e+38,
+            0,
+            0
+          ]
+        },
+        {
+          "label": "small_finite",
+          "incoming_f32": [
+            9.999999350456404e-39,
+            0,
+            0
+          ],
+          "stored": [
+            1e-38,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "Manhattan": {
+      "collection": "rom_extras_metric_126db0022c3947d19317127da9064a0f",
+      "observations": [
+        {
+          "label": "non_unit",
+          "incoming_f32": [
+            3,
+            4,
+            0
+          ],
+          "stored": [
+            3,
+            4,
+            0
+          ]
+        },
+        {
+          "label": "zero",
+          "incoming_f32": [
+            0,
+            0,
+            0
+          ],
+          "stored": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "label": "large_finite",
+          "incoming_f32": [
+            3.0000000054977558e+38,
+            0,
+            0
+          ],
+          "stored": [
+            3e+38,
+            0,
+            0
+          ]
+        },
+        {
+          "label": "small_finite",
+          "incoming_f32": [
+            9.999999350456404e-39,
+            0,
+            0
+          ],
+          "stored": [
+            1e-38,
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "date": "2026-10-09",
+  "service_version": "1.19.2",
+  "compiler_scope": "Python native protocol experiment; no Rust compilation",
+  "command": "PYTHONDONTWRITEBYTECODE=1 /nix/store/b8n5rllwv18y2izb3dzipnzrk4ic5w53-python3-3.12.8-env/bin/python3 .superpowers/qdrant-metric-observation-2026-10-09.py",
+  "sources": {
+    ".superpowers/qdrant-metric-observation-2026-10-09.py": "fb2977daf64899a1652d04a76e40a211b5f9625d935df2459a3450b1d8633c81",
+    "tests/projection-probes/qdrant_fixture.py": "b1d7c36843ff929061685de426a998449d0af4c6dcf9a8cb3950cbf29245b0fd",
+    "tests/projection-probes/probe_transport.py": "11b025b297be4b4e22da10d311436b18a66055a1a2e267757412555e8b0997d8"
+  },
+  "exit_code": 0,
+  "collections_preserved": true,
+  "complete_adapter": false
+}

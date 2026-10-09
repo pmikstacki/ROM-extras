@@ -14,6 +14,8 @@ fn main() {
     for redb in [false, true] {
         search_case::run(redb);
         search_case::run_denied(redb);
+        search_case::run_timeout(redb);
+        search_case::run_mapping_drift(redb);
         for case in 1..=3 {
             search_case::run_revocation(redb, case);
         }

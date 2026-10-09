@@ -900,3 +900,27 @@ The first readiness probe exposed HTTP 408 for an unmet one-second wait. OpenSea
 
 The corrected restart→recovery sequence passed both native stores. Its first redb readiness observation had zero active primaries and one unassigned shard; the final observation had one active primary and no pending shards after 16,339 ms. The full verifier then detected archive-only Rust module resolution: a bare child module in a relocated source file searches a child directory. The fixture now names the copied sibling file explicitly; archive acceptance remains required.
 The sibling `path` attribute follows the [Rust Reference module-source rules](https://doc.rust-lang.org/reference/items/modules.html#the-path-attribute): an explicit non-inline module path is relative to the containing source directory. This keeps native and relocated consumer fixtures aligned.
+
+### Held native search: total deadline and mapping drift
+
+Inspection date: 2026-10-09. The [Search API](https://docs.opensearch.org/latest/api-reference/search-apis/search/) defines shard timeout and partial-result behavior. [Tokio timeout](https://docs.rs/tokio/1.53.1/tokio/time/fn.timeout.html) bounds the complete asynchronous provider operation. Tests retain a real successful native response without releasing it and require `Unknown` at the configured five-second total deadline. Exact request counts distinguish one retrieval from retries or final inspection.
+
+The [Update Mappings API](https://docs.opensearch.org/latest/api-reference/index-apis/put-mapping/) permits adding a field to an existing index without recreating it. A separate case adds an unindexed field to its newly created, PID-scoped test index while a real search reply is held. The actual bytes are then released. Final mapping inspection must reject those candidates. Historical indexes and stored documents remain intact. This qualifies mapping drift, not UUID replacement, alias switching or a continuous generation fence.
+
+The tests share one verified administrative fixture client with the existing read-only readiness helper. Production writer credentials and transport are unchanged. Actual SQLite/redb focused pairs pass; independent consumers, archives and full acceptance remain required.
+
+### Qdrant REST acceptance follow-up
+
+Inspection date: 2026-10-09. Rechecked the executed version's [conditional-update tests](https://github.com/qdrant/qdrant/blob/v1.19.2/tests/openapi/test_conditional_update.py) and [REST schema](https://github.com/qdrant/qdrant/blob/v1.19.2/lib/api/src/rest/schema.rs), plus official [upsert](https://api.qdrant.tech/api-reference/points/upsert-points) and [retrieve](https://api.qdrant.tech/api-reference/points/get-points) APIs.
+
+The planned Rust target must inspect actual retrieved identity, revision and deterministic content after completed conditional writes. HTTP success alone cannot prove replacement. Keep the accepted u32-half revision predicate, same-ID tombstones and host-provided finite named vectors. These sources guide implementation; current Python probes do not establish a Rust adapter, public Resource integration or an embedding-model guarantee. Shared HTTP boundaries and fixed-dimension query contracts still require detailed design and actual-service tests.
+
+### Qdrant metric normalization must be explicit
+
+Inspection date: 2026-10-09. Official [collection documentation](https://qdrant.tech/documentation/manage-data/collections/) states that Cosine upload normalizes vectors. The pinned [metric implementation](https://github.com/qdrant/qdrant/blob/v1.19.2/lib/segment/src/spaces/simple.rs) distinguishes preprocessing by metric. Therefore raw host-vector byte equality is not a valid universal native reconciliation rule.
+
+Before implementing vector reconciliation, define and qualify the native representation for each supported metric. Preserve the core's deterministic original content identity. Do not silently switch to Dot merely to avoid Cosine acceptance work, and do not mistake a normalized stored vector for the original sidecar. Existing unit-vector probes do not establish arbitrary-vector normalization, zero-vector, extreme finite-value or cross-metric behavior. This is an implementation requirement, not an accepted Rust metric implementation.
+
+A verified-TLS actual Qdrant1.19.2 experiment then created four fresh persistent collections, one per metric, using named float32 vectors. Each accepted four points: non-unit, zero, large finite and small finite. Read-only retrieval established actual stored values. Cosine changed `[3,4,0]` to `[0.6,0.8,0]` and changed the tested `[3e38,0,0]` float32 input to zeros. Dot, Euclid and Manhattan retained the tested float32 representations. These are observed cases, not a universal numeric guarantee. Keep the exact private script, result and source report under `.superpowers/qdrant-metric-observation-2026-10-09.*`; no previous collection or index was removed.
+
+Consequently the Rust adapter needs an explicit, tested numeric contract for original host-side identity and native stored vectors. Silent clipping, truncation or interpreting stored zeros as the original large vector is not acceptable. Metric-specific preparation/reconciliation remains required before claiming support.

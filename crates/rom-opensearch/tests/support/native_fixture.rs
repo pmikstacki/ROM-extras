@@ -1,4 +1,6 @@
 //! Shared real-service fixture construction; no transport simulation.
+#[path = "fixture_admin.rs"]
+mod fixture_admin;
 #[path = "generation_readiness.rs"]
 mod generation_readiness;
 
@@ -83,4 +85,22 @@ pub(crate) fn target_at(
     )
     .unwrap();
     OpenSearch::new(tls, profile, physical, fields).unwrap()
+}
+
+/// Change only this newly-created test index's schema; retain all historical data and indexes.
+#[allow(dead_code)]
+pub(crate) async fn change_mapping(physical: &str) {
+    assert!(physical.starts_with(&format!("rom_extras_rust_{}_", std::process::id())));
+    let response = fixture_admin::client()
+        .put(format!("https://127.0.0.1:55460/{physical}/_mapping"))
+        .header("content-type", "application/json")
+        .body(r#"{"properties":{"fixture_added":{"type":"keyword","index":false}}}"#)
+        .send()
+        .await
+        .unwrap();
+    assert!(
+        response.status().is_success(),
+        "native schema mutation HTTP {}",
+        response.status()
+    );
 }
