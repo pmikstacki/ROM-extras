@@ -194,6 +194,23 @@ The host must serialize its response decision with session changes. The callback
 
 The check covers actual SQLite/redb Runtime reads and an authored HTTPS MapTiler-shaped fixture. It also covers revocation, missing capability, cancellation and private-field omission. It does not qualify the actual MapTiler service.
 
-The rom-ui preparation remains private. Its browser tests use exported authorized fixture snapshots. Live host HTTP sessions and browser authority updates remain incomplete.
+The rom-ui preparation remains private. Five controlled Chromium scenarios passed with the public live-host example and the published rom-ui alpha.7 archive. Public frontend packaging and an integrated portable runner remain pending.
 
 The Rust host increment passed the full local verifier. See [the verification record](verification/maps-host-2026-10-09.json).
+
+## Live HTTP host example
+
+The [live host example](../examples/maps-live-host/README.md) exposes approved points, exact Resource selection and optional geocoding through HTTP.
+The application supplies its session resolver, selected Resource keys, current authority check and provider configuration.
+Reads and geocoding check authority before and after I/O. Selection callbacks receive the session and exact Resource key.
+Revocation after selection dispatch returns an unknown outcome. The host must serialize selection with its session store.
+
+POST routes require the configured browser origin and limit JSON bodies to 16 KiB.
+Read and geocoding operations have a five-second budget. Responses use `Cache-Control: no-store` and fixed error categories.
+Suggestions retain provenance and attribution. They do not become Resource IDs or writes.
+
+`./scripts/check-map-live-host` checks actual local HTTP with Runtime SQLite and controlled HTTPS geocoding.
+It covers session refusal, stale generations, body limits, current authorized reads and accepted/rejected/unknown selection outcomes.
+The local demo uses synthetic authentication. These checks do not qualify production sessions or the actual MapTiler service.
+
+The live-host increment passed the full local verifier on unchanged source. See [the scoped verification record](verification/maps-live-host-2026-10-09.json).

@@ -1,0 +1,98 @@
+{
+  "scope": "Public live HTTP map host; controlled protocols and synthetic sessions, not production authentication or actual MapTiler qualification",
+  "baseline": "7349e0f58edc350ef66702c851b3f2a0625fe3ec",
+  "compiler": {
+    "rust": "1.99.0",
+    "commit": "b940084d7eb6a299eb4bfeb8e34901bc051e7ac4",
+    "host": "x86_64-unknown-linux-gnu"
+  },
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "session": 97225,
+    "exit": 0,
+    "log": ".superpowers/maps-live-host-public-full-verifier-isolated-2026-10-09.log",
+    "source_snapshot": ".superpowers/maps-live-host-public-source-snapshot-2026-10-09.json",
+    "snapshot_sha256": "10f7510eeae571471e259af82d0a921661dc108f2203c2c47db6a54ac3529ebd",
+    "files_verified_unchanged_before_documentation": 1050
+  },
+  "affected_checks": {
+    "command": "./scripts/check-map-live-host",
+    "exit": 0,
+    "log": ".superpowers/maps-live-host-public-affected-2026-10-09.log",
+    "scope": [
+      "Actual loopback HTTP and public Runtime SQLite authorized reads",
+      "Exact Resource IDs, private-field omission and no-store responses",
+      "Host-resolved sessions and generation revocation",
+      "Exact POST origin and16KiB body limits",
+      "Accepted/rejected/unknown selection, including revocation after dispatch",
+      "Optional typed geocoding through controlled MapTiler-shaped HTTPS",
+      "Browser DTO excludes backend key and does not assign Resource IDs to suggestions",
+      "Formatting and Clippy all targets"
+    ]
+  },
+  "source_review": {
+    "reviewer": "/root/maps_http_increment_review",
+    "scope": "Source only; no execution",
+    "actionable_findings": [],
+    "fixed_regression": "Selection callback revocation after dispatch returns unknown instead of a confirmed refusal"
+  },
+  "advisories": {
+    "exit": 0,
+    "log": ".superpowers/maps-live-host-public-advisories-2026-10-09.log"
+  },
+  "declared_dependency_metadata": {
+    "record": ".superpowers/maps-live-host-public-metadata-2026-10-09.json",
+    "packages": 196,
+    "missing_license": 0,
+    "declared_msrv_above_1_99": 0,
+    "scope": "Metadata and current compiler; not alternate compiler qualification"
+  },
+  "browser_preparation": {
+    "scope": "Private frontend glue using public host binary and official released rom-ui archive; not integrated frontend acceptance",
+    "archive_sha256": "840e1d256b4186406486ec34fe66e75587ac9e10c58d4178f8c9c52e92118164",
+    "release": "https://github.com/pmikstacki/rom-ui/releases/tag/v0.1.0-alpha.7",
+    "command": "Controlled private runner: pnpm exec playwright test",
+    "exit": 0,
+    "scenarios": 5,
+    "real_protocol_cases": 3,
+    "intercepted_browser_failure_cases": 2,
+    "log": ".superpowers/maps-ui-public-host-release-browser-2026-10-09.log"
+  },
+  "qualification_recovery": {
+    "initial_full_exit": 101,
+    "initial_log": ".superpowers/maps-live-host-public-full-verifier-2026-10-09.log",
+    "diagnostic_exit": 101,
+    "diagnostic_log": ".superpowers/maps-live-host-kafka-tls-diagnostic-2026-10-09.log",
+    "isolated_native_tls_exit": 0,
+    "isolated_log": ".superpowers/maps-live-host-kafka-tls-isolated-2026-10-09.log",
+    "archive_container": "rom-extras-kafka-tls-20261008-archive-live-host-20261009",
+    "archived_volume": "rom-extras-kafka-tls-20261008",
+    "new_volume": "rom-extras-kafka-tls-live-host-qualification-20261009",
+    "same_image_security_limits": true,
+    "interpretation": "Historical post-restart recovery exceeded the bounded readiness during severe host contention. First publication failure not conclusively isolated. Source and test deadlines unchanged.",
+    "record": ".superpowers/maps-live-host-qualification-recovery-2026-10-09.json"
+  },
+  "remaining": [
+    "Public pnpm frontend packaging and portable integrated runner",
+    "Production host authentication/session integration",
+    "MapTiler styles/tiles and actual account-backed service qualification",
+    "Full SQL Storage integration and remaining ROM-extras families"
+  ],
+  "historical_evidence": "All original logs, prototypes, archives and fixture data retained",
+  "executed_source_sha256": {
+    "examples/maps-live-host/Cargo.lock": "c07922713f128d1f5a0c544f97214a314eb74bfd22d9f6921c959b48c6d3215b",
+    "examples/maps-live-host/Cargo.toml": "d85c1a8a24caaa757f30c87ae4dd450a6c1ede665e3fa43731ca9999f9bb6fb2",
+    "examples/maps-live-host/examples/demo.rs": "a155cd4a270d76a4df58fcf7ae0caddc74f9076b6bd7426206ce81f464dc8571",
+    "examples/maps-live-host/src/cache.rs": "931d4a27b16ae389ee027631d0b9a92e85ebc80cfc5588d13be809019c305638",
+    "examples/maps-live-host/src/geocoding.rs": "77b0e26238ce131af0bc406ce7eb85e062b147a12b9e315d3380bf3f9f469125",
+    "examples/maps-live-host/src/host.rs": "89e40cd66fe33e4b4ed7e3d8bfd287aee8788cc9a45bf45e66f42d4074681fa0",
+    "examples/maps-live-host/src/lib.rs": "577738040d39e37a4561187a8c87f07380fd6b5464a069a570c7b72ddcaca67c",
+    "examples/maps-live-host/src/origin.rs": "a3e552f89427d2ef436576e041130e89c3a99c4a294cd49f05f95c853d84da95",
+    "examples/maps-live-host/src/selection.rs": "3aa8354cbc9c94d4f5d3886eac99cae895d25e6593d6d7393dc49ed256e73c68",
+    "examples/maps-live-host/tests/geocoding.rs": "ed80774574e9ef33cdc121c20a3c28afe24d4bd81aa36a82817dab05fa359dea",
+    "examples/maps-live-host/tests/native_geocode.rs": "0fd3b1efb91ca00430957210339ee25db7c8b5e8c2bbcefff7a2937019d26da5",
+    "examples/maps-live-host/tests/native_http.rs": "56e6f07f0e726ed4e2ac0ccd6803bbacc30da1fcf090e5f8727294f3557b9f43",
+    "examples/maps-live-host/tests/selection.rs": "359284af6cd6d5a942892ea6ff472b03fdffa9da5957dd2355076500e90e78ef",
+    "examples/maps-live-host/tests/session.rs": "c9899beb04257f9bd411be6c73e67d34227963b770e063013c8a2730750ff34c"
+  }
+}

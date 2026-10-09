@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+: "${ROM_EXTRAS_MAP_FIXTURE_TLS:?controlled TLS directory required; check-map-adapters creates it}"
+cargo fmt --manifest-path examples/maps-live-host/Cargo.toml -- --check
+cargo test --manifest-path examples/maps-live-host/Cargo.toml --locked --offline --target-dir target/maps-live-host
+cargo clippy --manifest-path examples/maps-live-host/Cargo.toml --locked --offline --target-dir target/maps-live-host --all-targets -- -D warnings
+node scripts/check-map-adapter-consumer.mjs livehost

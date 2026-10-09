@@ -50,7 +50,8 @@ Configured raster/vector TileJSON and MapLibre styles have controlled HTTPS and 
 A local Nginx fixture qualifies metadata delivery before and after restart; tile content and rendering remain unqualified.
 MapTiler search/reverse has controlled HTTPS and independent-consumer tests; native-service qualification and styles/tiles remain pending.
 Browser URLs reject query credentials by default; an explicit host grant can admit one browser-intended token.
-The ROM/UI integration example remains in progress.
+The [live HTTP host example](examples/maps-live-host/README.md) checks current authorized reads, exact Resource selection and controlled HTTPS geocoding.
+Public frontend packaging and production session integration remain pending.
 
 ### Roadmap
 
