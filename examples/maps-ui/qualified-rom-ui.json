@@ -1,0 +1,9 @@
+{
+  "version": "0.1.0-alpha.7",
+  "archive": "rom-ui-0.1.0-alpha.7.tgz",
+  "sha256": "840e1d256b4186406486ec34fe66e75587ac9e10c58d4178f8c9c52e92118164",
+  "source_commit": "5c863c1414d022547dfbf27e0c18f61b6142e517",
+  "scope": "Map components used by the prepared example; not full rom-ui or actual service qualification",
+  "release_url": "https://github.com/pmikstacki/rom-ui/releases/tag/v0.1.0-alpha.7",
+  "archive_url": "https://github.com/pmikstacki/rom-ui/releases/download/v0.1.0-alpha.7/rom-ui-0.1.0-alpha.7.tgz"
+}

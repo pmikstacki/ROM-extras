@@ -33,7 +33,8 @@ cargo run --manifest-path examples/maps-live-host/Cargo.toml --example demo -- \
 
 The demo uses synthetic credentials and a synthetic session resolver. It is not production authentication. Its fixture controls create, revoke and recover sessions. The session cookie is HttpOnly and SameSite=Strict. The local HTTP cookie does not have the Secure flag. Do not deploy these controls or credentials.
 
-The provider fixture must be started explicitly. No donated public server or demo service is a default backend. The frontend preparation remains private pending public packaging and portable runner integration.
+The provider fixture must be started explicitly. No donated public server or demo service is a default backend.
+The [pnpm frontend example](../maps-ui/README.md) includes installation and controlled browser-runner instructions.
 
 ## Verification scope
 

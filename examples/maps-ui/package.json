@@ -1,0 +1,22 @@
+{
+  "name": "rom-extras-maps-ui-example",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.30.0",
+  "scripts": {
+    "check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "dependencies": {
+    "maplibre-gl": "6.7.0",
+    "rom-ui": "file:./rom-ui-0.1.0-alpha.7.tgz",
+    "svelte": "5.57.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@sveltejs/vite-plugin-svelte": "7.3.1",
+    "@types/node": "22.20.5",
+    "svelte-check": "4.7.6",
+    "typescript": "6.0.3",
+    "vite": "8.3.2"
+  }
+}

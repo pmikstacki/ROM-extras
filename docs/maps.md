@@ -194,7 +194,8 @@ The host must serialize its response decision with session changes. The callback
 
 The check covers actual SQLite/redb Runtime reads and an authored HTTPS MapTiler-shaped fixture. It also covers revocation, missing capability, cancellation and private-field omission. It does not qualify the actual MapTiler service.
 
-The rom-ui preparation remains private. Five controlled Chromium scenarios passed with the public live-host example and the published rom-ui alpha.7 archive. Public frontend packaging and an integrated portable runner remain pending.
+The [pnpm frontend example](../examples/maps-ui/README.md) uses the published rom-ui alpha.7 archive.
+Its public runner starts controlled HTTPS and the public Rust live-host demo. Synthetic sessions do not qualify production authentication.
 
 The Rust host increment passed the full local verifier. See [the verification record](verification/maps-host-2026-10-09.json).
 
@@ -214,3 +215,21 @@ It covers session refusal, stale generations, body limits, current authorized re
 The local demo uses synthetic authentication. These checks do not qualify production sessions or the actual MapTiler service.
 
 The live-host increment passed the full local verifier on unchanged source. See [the scoped verification record](verification/maps-live-host-2026-10-09.json).
+
+## Frontend consumer and controlled runner
+
+`examples/maps-ui` consumes `rom-ui/maps` without introducing Svelte or MapLibre into Rust core.
+The archive SHA-256, frozen pnpm lockfile and separate package-preparation check establish the selected artifact.
+The browser receives only approved point fields and separate geocoding suggestions. It does not receive backend credentials.
+The host resolves sessions and owns authorization, Resource scope, selection and writes.
+
+`./scripts/check-map-ui` requires the explicit qualified UI archive and an installed Chromium executable.
+The gate prepares controlled TLS, builds the public Rust host and runs type checks, unit tests and Chromium scenarios.
+Three browser scenarios use actual local host HTTP and authored provider HTTPS. Two intercept responses to exercise empty results and failed controls.
+The tests also check no automatic geolocation, no external browser request and no credential in browser request bodies.
+
+The runner uses five-second readiness and ninety-second browser budgets. It stops only owned process groups and retains fixture databases.
+Process tests verify actual descendant listener cleanup, startup failure, readiness bounds and deadlines.
+The current runner scope is Linux. Production authentication, actual MapTiler service access and arbitrary style/tile rendering remain unqualified.
+
+The frontend increment passed the full local verifier on unchanged source. See [the scoped verification record](verification/maps-ui-2026-10-09.json).

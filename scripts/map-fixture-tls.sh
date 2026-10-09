@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Sourced by controlled map gates; preserve every created certificate fixture.
+rom_map_fixture_tls() {
+    local rom_fixture_cert
+    if [[ -z "${ROM_EXTRAS_MAP_FIXTURE_TLS:-}" ]]; then
+        mkdir -p "$PWD/.superpowers/map-http-fixture"
+        export ROM_EXTRAS_MAP_FIXTURE_TLS="$(mktemp -d "$PWD/.superpowers/map-http-fixture/tls-XXXXXXXX")"
+            openssl req -x509 -newkey rsa:2048 -nodes -days 3 \
+                -keyout "$ROM_EXTRAS_MAP_FIXTURE_TLS/ca.key" \
+                -out "$ROM_EXTRAS_MAP_FIXTURE_TLS/ca.pem" \
+                -subj '/CN=ROM controlled map fixture CA' \
+                -addext 'basicConstraints=critical,CA:TRUE' >/dev/null 2>&1
+            openssl req -new -newkey rsa:2048 -nodes \
+                -keyout "$ROM_EXTRAS_MAP_FIXTURE_TLS/node.key" \
+                -out "$ROM_EXTRAS_MAP_FIXTURE_TLS/node.csr" \
+                -subj '/CN=127.0.0.1' >/dev/null 2>&1
+            printf '%s\n' 'subjectAltName=IP:127.0.0.1' 'basicConstraints=critical,CA:FALSE' 'extendedKeyUsage=serverAuth' > "$ROM_EXTRAS_MAP_FIXTURE_TLS/node.ext"
+            openssl x509 -req -days 3 \
+                -in "$ROM_EXTRAS_MAP_FIXTURE_TLS/node.csr" \
+                -CA "$ROM_EXTRAS_MAP_FIXTURE_TLS/ca.pem" \
+                -CAkey "$ROM_EXTRAS_MAP_FIXTURE_TLS/ca.key" -CAcreateserial \
+                -extfile "$ROM_EXTRAS_MAP_FIXTURE_TLS/node.ext" \
+                -out "$ROM_EXTRAS_MAP_FIXTURE_TLS/node.pem" >/dev/null 2>&1
+            chmod 600 "$ROM_EXTRAS_MAP_FIXTURE_TLS/ca.key" "$ROM_EXTRAS_MAP_FIXTURE_TLS/node.key"
+    fi
+    for rom_fixture_cert in ca.pem node.pem; do
+        openssl x509 -in "$ROM_EXTRAS_MAP_FIXTURE_TLS/$rom_fixture_cert" -noout -checkend 60 >/dev/null
+    done
+    openssl verify -CAfile "$ROM_EXTRAS_MAP_FIXTURE_TLS/ca.pem" "$ROM_EXTRAS_MAP_FIXTURE_TLS/node.pem" >/dev/null
+    [[ -f "$ROM_EXTRAS_MAP_FIXTURE_TLS/node.key" ]]
+}

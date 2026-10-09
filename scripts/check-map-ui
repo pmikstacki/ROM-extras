@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_MAP_UI_ARCHIVE:?Explicit qualified public rom-ui archive required}"
+source ./scripts/map-fixture-tls.sh
+rom_map_fixture_tls
+node --check scripts/check-map-ui-browser.mjs
+node --test tests/map-ui-runner/processes.test.mjs tests/map-ui-runner/package.test.mjs
+node examples/maps-ui/prepare-package.mjs "$ROM_EXTRAS_MAP_UI_ARCHIVE"
+(
+    cd examples/maps-ui
+    corepack pnpm install --frozen-lockfile
+    corepack pnpm run check
+    node --experimental-strip-types --test host-points.test.ts host-selection.test.ts
+    corepack pnpm exec vite build
+)
+cargo build --manifest-path examples/maps-live-host/Cargo.toml --example demo --locked --offline --target-dir target/maps-live-host
+node scripts/check-map-ui-browser.mjs

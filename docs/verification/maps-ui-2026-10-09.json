@@ -1,0 +1,140 @@
+{
+  "scope": "Public pnpm ROM/map UI consumer and controlled Linux runner; not production authentication, whole rom-ui or actual MapTiler acceptance",
+  "baseline": "a3f383da0284015fdb587ff7f7d0c2287a5190c8",
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "session": 37665,
+    "exit": 0,
+    "log": ".superpowers/maps-ui-public-full-verifier-2026-10-09.log",
+    "source_snapshot": ".superpowers/maps-ui-public-source-snapshot-2026-10-09.json",
+    "snapshot_sha256": "f2e4feda0ebb6295353779646951b40c34d40091f4f4e7d8aa145adddf6f8d31",
+    "files_verified_unchanged_before_final_documentation": 1078,
+    "map_ui_gate_included": true
+  },
+  "affected_checks": {
+    "session": 2940,
+    "exit": 0,
+    "commands": [
+      "./scripts/check-map-ui",
+      "./scripts/check-map-adapters"
+    ],
+    "ui_log": ".superpowers/maps-ui-public-network-affected-2026-10-09.log",
+    "adapter_log": ".superpowers/maps-ui-tls-shared-adapters-2026-10-09.log"
+  },
+  "frontend": {
+    "archive": {
+      "version": "0.1.0-alpha.7",
+      "archive": "rom-ui-0.1.0-alpha.7.tgz",
+      "sha256": "840e1d256b4186406486ec34fe66e75587ac9e10c58d4178f8c9c52e92118164",
+      "source_commit": "5c863c1414d022547dfbf27e0c18f61b6142e517",
+      "scope": "Map components used by the prepared example; not full rom-ui or actual service qualification",
+      "release_url": "https://github.com/pmikstacki/rom-ui/releases/tag/v0.1.0-alpha.7",
+      "archive_url": "https://github.com/pmikstacki/rom-ui/releases/download/v0.1.0-alpha.7/rom-ui-0.1.0-alpha.7.tgz"
+    },
+    "node": "22.16.0",
+    "pnpm": "10.30.0",
+    "playwright": "1.63.0",
+    "chromium": "138.0.7204.49",
+    "svelte_check": "0 errors and0 warnings",
+    "contract_unit_tests": 6,
+    "browser_scenarios": 5,
+    "actual_controlled_protocol_scenarios": 3,
+    "intercepted_browser_response_scenarios": 2,
+    "browser_checks": [
+      "Exact authorized Runtime SQLite Resource read and selection",
+      "Provider geocoding through controlled HTTPS",
+      "Required approved fixture attribution",
+      "Backend credential omitted from DOM and browser request bodies",
+      "Session cookie unavailable to document.cookie",
+      "No automatic geolocation or external browser HTTP request",
+      "Unknown outcome blocks selection until explicit host recovery",
+      "Delayed session reply cannot restore revoked authority",
+      "Empty response clears previous suggestion",
+      "Refused controls show safe feedback and keep local access cleared"
+    ],
+    "bundle_warning": "JavaScript bundle exceeds500KiB; warning retained"
+  },
+  "runner": {
+    "readiness_seconds": 5,
+    "browser_seconds": 90,
+    "platform": "Linux; Windows unsupported",
+    "process_and_archive_tests": 6,
+    "scope": [
+      "Actual child listener closes with owned process group",
+      "Readiness and process deadlines",
+      "Missing executable error",
+      "Oversized readiness refusal",
+      "Corrupt archive despite matching version label",
+      "Oversized archive bounded refusal"
+    ],
+    "owned_ports_after_checks": "No listener on55467 or55468",
+    "data_retained": ".superpowers/maps-ui-browser-fixtures",
+    "tls": "Shared existing certificate validation and preserved fixture generation; projection transport unchanged"
+  },
+  "regression": {
+    "red_log": ".superpowers/map-ui-runner-descendant-red-2026-10-09.log",
+    "red_exit": 1,
+    "red_result": "Actual descendant listener survived termination of its parent",
+    "green_log": ".superpowers/map-ui-runner-process-green-2026-10-09.log",
+    "green_exit": 0
+  },
+  "source_review": {
+    "reviewer": "/root/maps_http_increment_review",
+    "scope": "Source only; no execution",
+    "actionable_findings": []
+  },
+  "dependency_review": {
+    "audit_command": "pnpm audit --json",
+    "audit_exit": 0,
+    "advisories": 0,
+    "audit_record": ".superpowers/maps-ui-public-advisories-2026-10-09.json",
+    "license_command": "pnpm licenses list --json",
+    "license_exit": 0,
+    "license_groups": {
+      "MIT": 68,
+      "Apache-2.0": 9,
+      "ISC": 12,
+      "BSD-2-Clause": 2,
+      "BSD-3-Clause": 4,
+      "(MIT OR Apache-2.0)": 1,
+      "MPL-2.0": 2,
+      "0BSD": 1
+    },
+    "license_record": ".superpowers/maps-ui-public-licenses-2026-10-09.json",
+    "license_scope": "Declared metadata; archive notices preserved, not legal certification"
+  },
+  "remaining": [
+    "Production application session/authentication and notification of external authority changes",
+    "MapTiler styles/tiles and actual account-backed service qualification",
+    "Arbitrary map styles and renderer/tile-data qualification",
+    "SQL Storage completion and remaining ROM-extras family acceptance"
+  ],
+  "historical_evidence": "All private prototypes, previous archives, failed logs and fixture databases retained",
+  "executed_source_sha256": {
+    "examples/maps-ui/.gitignore": "d1f833593a443c5b36ac17968c897088141de1afd533df92d6ef79e532aee8ee",
+    "examples/maps-ui/ApprovedResourceMap.svelte": "ed664d84d0fadad60ec4625bae72bd398920368907277a6f3de50a9d3316df16",
+    "examples/maps-ui/LiveApp.svelte": "41fd20c3241faeafdd87ffae5ce3bff96f09ab429fb6d095e28cfee0c0897615",
+    "examples/maps-ui/browser-tests/live.spec.ts": "4586377b800eb329320ab122837373c5e4be4d09e5d00f56a29f677e19ec758f",
+    "examples/maps-ui/host-points.test.ts": "96276d5b13093ffcdde8fd38b9d68d7d463e6798c1da22c07dc5d828454eb907",
+    "examples/maps-ui/host-points.ts": "bedf6586c25b3e00eacebeeb0bd022e4fd76ee9fd5a873afbb2522c63ae35993",
+    "examples/maps-ui/host-selection.test.ts": "9d13f082426ec74cda3796d04d9ed7f0ede88f6b26a4c791ce22996b57dd10e8",
+    "examples/maps-ui/host-selection.ts": "5a2628182afa2239fb825bb181c39cc492937afa8fbea638154ebafb06ae9b4a",
+    "examples/maps-ui/index.html": "2581507833ca014fda837b8588556bd7f7eda5fb3fa38dc63742f4cc5e9fbbda",
+    "examples/maps-ui/main.ts": "b110dbcf01358a5b26d6b78c2ef8b8f7f39618162652adacb546a1b3d142c1db",
+    "examples/maps-ui/package.json": "a3b5cede42a65a9c5b5c78eaf64d505c529e1ad745f6bc235cd0d2e3cd782ab8",
+    "examples/maps-ui/playwright.config.ts": "b7133c50a6ea0bca2b577207c7c1439f4f0cc8bb2630064cc381d052f4a41a83",
+    "examples/maps-ui/pnpm-lock.yaml": "9ef2caf81878ff1c5ee495911d149b38d59428bf78bf421cc03441417210feb7",
+    "examples/maps-ui/prepare-package.mjs": "40965accd962c207741a9a718be0a5d96ab1881dfb55565eacbe8d3ede304083",
+    "examples/maps-ui/qualified-rom-ui.json": "9afad86d1424397ae2c8fed95ac70b6e60060de1a9e1f0f53b20ab99f622f047",
+    "examples/maps-ui/tsconfig.json": "c2e97625e485d72c2028ef03c42693cd984ab2f19da5aa57dc8e11d7a706dd40",
+    "examples/maps-ui/vite-env.d.ts": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5",
+    "examples/maps-ui/vite.config.ts": "1b7e031303af081b3e3026f789e4ece3e5e0868d8d3c9eec6333d489206c30f3",
+    "scripts/check-map-ui": "f150d10e70201f058cd15d41099fd7b5524e0c3294a9654d5cff7e9d1f50f81c",
+    "scripts/check-map-ui-browser.mjs": "e3508c7c3efa504baadda438d1f24e7d917862c41b6fee5abbc7b7b9689db24d",
+    "scripts/map-fixture-processes.mjs": "33972147886316f8eedfdf46b0d3a8344806957d63c363f3c87869f2b8c997a5",
+    "scripts/map-fixture-tls.sh": "26794db48de822620a5b8a7fa89783dfa283a8fc52a33218a0f833a5bb348e82",
+    "tests/map-ui-runner/package.test.mjs": "15aee13d45849489aabe3d7cbf09b4bad7ef5f2f52f871c81e90cead9cfb3d15",
+    "tests/map-ui-runner/process-parent.mjs": "98647de7e0853e758f2c45cc24241d3368e75f7edcd18fc775a9ca1a2c6eb63c",
+    "tests/map-ui-runner/processes.test.mjs": "a48e6638721f357491a2183fe975de013a5cbcc1feb0cbaed8137cb3f2d2d183"
+  }
+}

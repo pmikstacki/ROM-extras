@@ -23,3 +23,5 @@ cd -- "$(dirname -- "$0")/.."
 ./scripts/check-map-adapters
 
 ./scripts/check-map-package
+
+./scripts/check-map-ui

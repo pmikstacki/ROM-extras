@@ -51,7 +51,8 @@ A local Nginx fixture qualifies metadata delivery before and after restart; tile
 MapTiler search/reverse has controlled HTTPS and independent-consumer tests; native-service qualification and styles/tiles remain pending.
 Browser URLs reject query credentials by default; an explicit host grant can admit one browser-intended token.
 The [live HTTP host example](examples/maps-live-host/README.md) checks current authorized reads, exact Resource selection and controlled HTTPS geocoding.
-Public frontend packaging and production session integration remain pending.
+The [pnpm frontend example](examples/maps-ui/README.md) uses the public rom-ui/maps package and controlled local host.
+Production session integration and actual provider-service qualification remain pending.
 
 ### Roadmap
 
@@ -72,5 +73,6 @@ Run:
 ```
 
 The full actual-backend verifier is `./scripts/check-all`. It requires the configured services and Python 3 for projection probes.
+Its map UI gate requires pnpm, Chromium and `ROM_EXTRAS_MAP_UI_ARCHIVE` pointing to the [qualified public UI archive](examples/maps-ui/README.md).
 
 GitHub hosts source code. GitHub Actions is disabled.
