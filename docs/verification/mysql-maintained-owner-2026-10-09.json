@@ -1,0 +1,147 @@
+{
+  "date": "2026-10-09",
+  "baseline": "5f5c19d9e6365a52fe944a6e0fc82638c8fd206d",
+  "public_rom": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "scope": "One maintained MySQL/MariaDB ownership driver over shared SQL core; not full ROM Storage",
+  "native": {
+    "profiles": [
+      "MySQL8.4.11",
+      "MariaDB11.8.9"
+    ],
+    "sdk": "mysql_async0.37.1 minimal-rust/native-tls-tls",
+    "fixture": "Explicit literal loopback55452/55453; exact pinned retained containers/images/persistent volumes; no application privilege changes",
+    "groups": "Eight ownership families with suppressed and byte-paced native COMMIT responses, plus admission and protocol-negative boundaries",
+    "affected_log": ".superpowers/mysql-maintained-affected-attempt3-2026-10-09.log",
+    "affected_exit": 0,
+    "affected_runs": [
+      "/root/ROM-extras/.superpowers/mysql-owner-runs/run-53idcuo8",
+      "/root/ROM-extras/.superpowers/mysql-owner-runs/run-oe9itke0"
+    ],
+    "affected_archive": "/tmp/mysql-owner-packaged-HRWcOg/archives.json",
+    "actual_commit_loss": "Native value17 observed before Unknown, actual server11-byte acknowledgement suppressed or7 bytes delivered at250ms intervals; client peer closes before adapter destruction/relay cleanup",
+    "retirement": "Worker drops unpooled Conn outside active Tokio context and shuts down private runtime; peer-close assertions cover uncertainty, connect blackhole and async-handoff Drop",
+    "metadata": "Known-valid reset before each independent malformed field; exact store identity, short/oversized/zero tokens, integer types, exhaustion, missing/duplicate rows, nontransactional engine rejection and matched no-op UPDATE"
+  },
+  "red_logs": [
+    ".superpowers/mysql-maintained-owner-red-2026-10-09.log",
+    ".superpowers/mysql-retired-peer-red-2026-10-09.log"
+  ],
+  "preserved_failures": [
+    "Initial native invocation omitted mandatory explicit profile; refused",
+    "Native PROCESS diagnostic initially used application credential; refused; observer uses separate private root fixture credential",
+    "Immediate read after COMMIT barrier raced actual commit; bounded independent polling now requires committed value before Unknown",
+    "Native diagnostic snapshot polling5ms did not refresh reliably;150ms polling observes exact control waiter",
+    "First full verifier Clippy rejected unused pacing helper in private MSSQL module; legacy arm delegates to one shared delivery barrier, no warning suppression"
+  ],
+  "shared_regressions": [
+    {
+      "log": ".superpowers/mysql-shared-mssql-affected-2026-10-09.log",
+      "exit": 0,
+      "scope": "Native eleven families and same-volume SIGKILL, source/archive"
+    },
+    {
+      "log": ".superpowers/mysql-shared-postgres-affected-2026-10-09.log",
+      "exit": 0,
+      "scope": "Native eight families and same-volume SIGKILL, source/archive"
+    }
+  ],
+  "dependencies": {
+    "new_root_registry_packages": 24,
+    "removed_prior_identities": 0,
+    "changed_prior_checksums": 0,
+    "inventory": ".superpowers/mysql-maintained-dependencies-2026-10-09.json",
+    "consumer_integrity": ".superpowers/mysql-maintained-consumer-integrity-2026-10-09.json",
+    "source_integrity": "All24 newly adopted root archives/extracted bytes and all152 independent consumer registry archives/extracted bytes verified; license expressions present and declared Rust versions<=1.99",
+    "audits": [
+      {
+        "graph": "root",
+        "log": ".superpowers/mysql-maintained-root-audit-2026-10-09.json",
+        "sha256": "8e834ca98d0e04d795146911375c0f9c0015718e6b873c4f92b9b36a6720e739",
+        "vulnerabilities": 0,
+        "warnings": 0,
+        "lockfile": {
+          "dependency-count": 461
+        },
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+          "last-updated": "2026-10-09T10:12:02+02:00"
+        }
+      },
+      {
+        "graph": "consumer",
+        "log": ".superpowers/mysql-maintained-consumer-audit-2026-10-09.json",
+        "sha256": "d1da714fad1e5c9a4d3a107c01154d2a6e3960306bff54264cce3749e63fc3d6",
+        "vulnerabilities": 0,
+        "warnings": 0,
+        "lockfile": {
+          "dependency-count": 155
+        },
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+          "last-updated": "2026-10-09T10:12:02+02:00"
+        }
+      },
+      {
+        "graph": "archive",
+        "log": ".superpowers/mysql-maintained-archive-audit-2026-10-09.json",
+        "sha256": "d1da714fad1e5c9a4d3a107c01154d2a6e3960306bff54264cce3749e63fc3d6",
+        "vulnerabilities": 0,
+        "warnings": 0,
+        "lockfile": {
+          "dependency-count": 155
+        },
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+          "last-updated": "2026-10-09T10:12:02+02:00"
+        }
+      }
+    ],
+    "normalized_archive_graph_equals_independent_source_graph": true
+  },
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "status": "passed",
+    "exit": 0,
+    "log": ".superpowers/mysql-maintained-full-verifier-attempt2-2026-10-09.log",
+    "log_sha256": "575b657b0bb4fd68d5a6fbe8c3b35aed773472b429b5a92054f782f4ae187b5b",
+    "source_snapshot": ".superpowers/mysql-maintained-source-snapshot-attempt2-2026-10-09.json",
+    "source_snapshot_sha256": "96923d28579795dc661b5f0820e94cbaaac6f31b387dca0d7d44e80bb118640c",
+    "unchanged_source_files": 1344,
+    "source_membership_unchanged": true,
+    "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)",
+    "lockfiles": {
+      "Cargo.lock": "d00970b138327383b466eb4212ca3312f0586cda6e553cbea22bda716a69731f",
+      "tests/mysql-owner-consumer/Cargo.lock": "ceb200b13d29c6e44c40232da3739093d68091aaa56200939cc71d72466ce949"
+    },
+    "native_mysql_mariadb_runs": [
+      "/root/ROM-extras/.superpowers/mysql-owner-runs/run-0z3nw9tn",
+      "/root/ROM-extras/.superpowers/mysql-owner-runs/run-awfvxuc5"
+    ],
+    "native_archive": "/tmp/mysql-owner-packaged-BrMzbt/archives.json",
+    "preserved_prior_failure": ".superpowers/mysql-maintained-full-verifier-attempt1-2026-10-09.log",
+    "evidence_only_updates_after_verification": [
+      "docs/verification/mysql-maintained-owner-2026-10-09.json",
+      "docs/superpowers/plans/2026-10-09-mysql-mariadb-maintained-owner.md",
+      "docs/mysql-ownership.md"
+    ]
+  },
+  "research": "docs/research/mysql-maintained-owner-2026-10-09.md",
+  "review": {
+    "source_only": ".superpowers/mysql-maintained-final-review-2026-10-09.md",
+    "substantive_findings": [],
+    "shared_helper_fix_after_review": "Observed Clippy RED; one DRY barrier retains arm(bool), verified through affected three providers and full suite",
+    "deferred_minor": "Dribble case lacks a separate explicit elapsed upper-bound assertion; whole timeout source, real partial delivery and peer-close observations exist"
+  },
+  "not_qualified": [
+    "Full ROM SQL Storage and incremental Work",
+    "Production TLS/certificate profiles",
+    "Maintained native MySQL/MariaDB restart/crash recovery",
+    "Native deadlock-victim profile",
+    "Uncertain ownership-acquisition acknowledgement",
+    "Malicious infile injection and additional packet/result faults",
+    "Distributed behavior and power loss"
+  ]
+}

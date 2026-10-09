@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_MYSQL_DSN:?Explicit retained native MySQL fixture required; no skip}"
+: "${ROM_EXTRAS_MARIADB_DSN:?Explicit retained native MariaDB fixture required; no skip}"
+: "${ROM_EXTRAS_PYTHON:?Explicit Python3 executable required for owned deadlines}"
+cargo test --locked -p rom-mysql -p rom-sql-core
+cargo clippy --locked -p rom-mysql --all-targets -- -D warnings
+RUSTDOCFLAGS='-D warnings' cargo doc --locked -p rom-mysql --no-deps
+cargo fmt --manifest-path tests/mysql-owner-consumer/Cargo.toml -- --check
+cargo clippy --manifest-path tests/mysql-owner-consumer/Cargo.toml --locked --offline --target-dir target/mysql-owner-consumer --all-targets -- -D warnings
+cargo build --manifest-path tests/mysql-owner-consumer/Cargo.toml --locked --offline --target-dir target/mysql-owner-consumer
+"$ROM_EXTRAS_PYTHON" scripts/check-mysql-owner-consumer.py target/mysql-owner-consumer/debug/mysql-owner-consumer
+node --check scripts/prepare-mysql-owner-package.mjs
+cargo package --locked --allow-dirty --no-verify -p rom-sql-core -p rom-mysql --config 'patch.crates-io.rom-sql-core.path="crates/rom-sql-core"'
+consumer=$(node scripts/prepare-mysql-owner-package.mjs)
+cargo clippy --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/mysql-owner-packaged-consumer --all-targets -- -D warnings
+cargo build --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/mysql-owner-packaged-consumer
+"$ROM_EXTRAS_PYTHON" scripts/check-mysql-owner-consumer.py target/mysql-owner-packaged-consumer/debug/rom-mysql-owner-packaged-consumer

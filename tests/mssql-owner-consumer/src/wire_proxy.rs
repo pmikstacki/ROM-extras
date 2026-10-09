@@ -22,6 +22,7 @@ pub struct Counts {
 }
 struct Arm {
     suppress: bool,
+    dribble: bool,
     ack: SyncSender<()>,
 }
 pub struct Relay {
@@ -31,9 +32,9 @@ pub struct Relay {
     worker: Option<JoinHandle<Counts>>,
 }
 impl Relay {
-    /// Shared qualification relay for the two fixed retained native fixtures only.
+    /// Shared qualification relay for the fixed retained native fixtures only.
     pub fn new(backend_port: u16) -> Self {
-        assert!(matches!(backend_port, 55439 | 55440));
+        assert!(matches!(backend_port, 55439 | 55440 | 55452 | 55453));
         let listener = TcpListener::bind("127.0.0.1:0").unwrap();
         let port = listener.local_addr().unwrap().port();
         listener.set_nonblocking(true).unwrap();
@@ -51,8 +52,20 @@ impl Relay {
     // One pump owns BOTH directions: acknowledgement follows any prior write_all.
     // No response delivery can race this barrier; the next caller operation is COMMIT.
     pub fn arm(&self, suppress: bool) {
+        self.arm_delivery(suppress, false);
+    }
+    /// Arm one delivery barrier. Pacing sends real native bytes at one byte per250ms.
+    /// Suppression and pacing are mutually exclusive; no synthetic response is created.
+    pub fn arm_delivery(&self, suppress: bool, dribble: bool) {
+        assert!(!(suppress && dribble));
         let (ack, ready) = mpsc::sync_channel(1);
-        self.commands.send(Arm { suppress, ack }).unwrap();
+        self.commands
+            .send(Arm {
+                suppress,
+                dribble,
+                ack,
+            })
+            .unwrap();
         ready
             .recv_timeout(Duration::from_secs(2))
             .expect("delivery barrier");
@@ -121,11 +134,16 @@ fn pump(
     let mut buffer = [0_u8; 16 * 1024];
     let mut total = 0_usize;
     let mut armed = None;
+    let mut dribble = false;
+    let mut pending = std::collections::VecDeque::new();
+    let mut next_delivery = Instant::now();
     while !stop.load(Ordering::SeqCst) {
         assert!(Instant::now() < deadline, "relay lifetime deadline");
         if let Ok(arm) = commands.try_recv() {
             assert!(armed.is_none(), "one arm per connection");
             armed = Some(arm.suppress);
+            dribble = arm.dribble;
+            next_delivery = Instant::now() + Duration::from_millis(250);
             arm.ack.send(()).unwrap();
         }
         let Some(n) = read(&mut client, &mut buffer) else {
@@ -140,6 +158,15 @@ fn pump(
                 counts.requests_after_arm += n;
             }
         }
+        if !pending.is_empty() {
+            if Instant::now() >= next_delivery {
+                let byte = pending.pop_front().unwrap();
+                client.write_all(&[byte]).expect("paced native response");
+                counts.delivered_after_arm += 1;
+                next_delivery = Instant::now() + Duration::from_millis(250);
+            }
+            continue;
+        }
         let Some(n) = read(&mut server, &mut buffer) else {
             break;
         };
@@ -150,6 +177,10 @@ fn pump(
                 counts.responses_after_arm += n;
                 if suppress {
                     counts.suppressed += n;
+                    continue;
+                }
+                if dribble {
+                    pending.extend(&buffer[..n]);
                     continue;
                 }
                 counts.delivered_after_arm += n;

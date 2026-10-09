@@ -369,3 +369,12 @@ Old guards are rejected; the retained current guard writes42, releases and recla
 Direct and normalized archive consumers execute the same profile without reconstructing guards or retrying writes.
 This does not qualify OS/storage power loss, in-flight server interruption, uncertain owner acquisition, TLS or full Storage.
 See [scope and verification](verification/postgres-native-recovery-2026-10-09.json).
+
+## Maintained MySQL and MariaDB ownership mapping
+
+rom-mysql implements the shared ownership port with one worker-owned protocol implementation and explicit vendor profiles.
+MySQL8.4.11 and MariaDB11.8.9 passed separately through direct and normalized archive consumers.
+Native evidence covers transitions, competing claims, exact observed control locks, stale clients, rollback, malformed state and bounded native I/O.
+Actual COMMIT response suppression and byte pacing confirm committed writes before Unknown and peer closure before fixture cleanup.
+Full Storage, production TLS, maintained restart/deadlock and malicious infile qualifications remain pending.
+See [the maintained guide](mysql-ownership.md).

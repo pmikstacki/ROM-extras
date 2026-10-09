@@ -23,6 +23,8 @@ The [shared ownership foundation](docs/sql-ownership.md) has retained native Pos
 The maintained [PostgreSQL adapter](docs/postgres-ownership.md) adds bounded native transactions, actual response loss and transport retirement through direct and packaged consumers.
 The maintained [SQL Server adapter](docs/mssql-ownership.md) verifies native ownership, stale connections, native deadlock rollback, actual COMMIT response loss and same-volume SIGKILL recovery through direct and packaged consumers.
 
+The maintained [MySQL/MariaDB adapter](docs/mysql-ownership.md) shares one driver with separately qualified ownership, rollback and actual COMMIT response-loss profiles.
+
 ### Integrations
 
 | Extension | Implemented and verified | Remaining work |

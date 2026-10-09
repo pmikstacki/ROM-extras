@@ -1,0 +1,13 @@
+[package]
+name="mysql-owner-consumer"
+version="0.0.0"
+edition="2024"
+rust-version="1.99"
+license="MIT"
+publish=false
+[workspace]
+[dependencies]
+rom-mysql={path="../../crates/rom-mysql",version="=0.1.0-dev"}
+rom-sql-core={path="../../crates/rom-sql-core",version="=0.1.0-dev"}
+mysql={version="=28.0.3",default-features=false,features=["minimal-rust","native-tls"]}
+tokio={version="=1.53.1",features=["rt","net","time"]}
