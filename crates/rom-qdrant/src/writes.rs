@@ -65,7 +65,7 @@ impl PreparedWrite {
 pub(crate) fn hex(bytes: &[u8]) -> String {
     bytes.iter().map(|byte| format!("{byte:02x}")).collect()
 }
-fn point_id(kind: &str, id: &str) -> String {
+pub(crate) fn point_id(kind: &str, id: &str) -> String {
     let mut hash = Sha256::new();
     hash.update(b"ROM-extras/qdrant-key/v1");
     for part in [kind, id] {

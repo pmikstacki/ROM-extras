@@ -67,18 +67,39 @@ impl Host {
         Self::mapping_definition()
     }
     pub(crate) fn target(&self, i: usize) -> Qdrant {
+        self.target_credential(i, "writer")
+    }
+    pub(crate) fn reader(&self, i: usize) -> Qdrant {
+        self.target_credential(i, "reader")
+    }
+    fn target_credential(&self, i: usize, credential: &str) -> Qdrant {
         let row = &self.config["generations"][i];
         Qdrant::new(
             TlsConfig::api_key(
                 self.config["endpoint"].as_str().unwrap(),
                 fs::read(self.config["ca"].as_str().unwrap()).unwrap(),
-                row["writer"].as_str().unwrap().as_bytes().to_vec(),
+                row[credential].as_str().unwrap().as_bytes().to_vec(),
                 Duration::from_secs(5),
             )
             .unwrap(),
             self.generation(i),
         )
         .unwrap()
+    }
+    pub(crate) async fn control(&self, method: Method, path: &str, body: Value) -> Value {
+        let response = self
+            .admin
+            .request(
+                method,
+                format!("{}{}", self.config["endpoint"].as_str().unwrap(), path),
+            )
+            .header("Content-Type", "application/json")
+            .body(serde_json::to_vec(&body).unwrap())
+            .send()
+            .await
+            .unwrap();
+        assert!(response.status().is_success());
+        serde_json::from_slice(&response.bytes().await.unwrap()).unwrap()
     }
     pub fn definitions(&self) -> Value {
         json!(
@@ -108,7 +129,7 @@ impl Host {
             )
             .unwrap()
     }
-    async fn admin_call(&self, method: Method, path: &str, body: Value) -> Value {
+    pub(crate) async fn admin_call(&self, method: Method, path: &str, body: Value) -> Value {
         let response = self
             .admin
             .request(

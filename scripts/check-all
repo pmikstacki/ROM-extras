@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd -- "$(dirname -- "$0")/.."
+source scripts/lib/qdrant-qualification-env.sh
 ./scripts/check
 ./scripts/check-projection-package
 ./scripts/check-postgres

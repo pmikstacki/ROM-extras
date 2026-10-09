@@ -42,7 +42,7 @@ The [shared ownership foundation](docs/sql-ownership.md) adds native PostgreSQL 
 | --- | --- | --- |
 | Shared core | [Durable checkpoints](docs/projection-checkpoints.md), bounded workers, public SQLite/redb history and [authorized search](docs/verification/projection-search-core-2026-10-09.md). | Generation switching and full projection-family acceptance. |
 | [OpenSearch](crates/rom-opensearch/README.md) | [Native writes](docs/verification/opensearch-rust-write-2026-10-09.md) and [typed search with current authorization](docs/verification/opensearch-native-search-2026-10-09.md). | Generation switching and final provider acceptance. |
-| [Qdrant](docs/qdrant-target.md) | Fixed-generation Rust target, exact native vector/payload readback, scoped JWT and SQLite/redb process recovery after response loss and server restart. | Authorized vector queries, Cosine, distributed profiles and generation switching; copied-marker recreation cannot be fenced through REST. |
+| [Qdrant](docs/qdrant-target.md) | Fixed-generation writes and [authorized vector queries](docs/vector-search.md), exact native readback, scoped JWT and SQLite/redb recovery. | Cosine, distributed profiles and generation switching; copied-marker recreation cannot be fenced through REST. |
 
 ### Maps
 

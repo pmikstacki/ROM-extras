@@ -13,3 +13,7 @@ pub use page::PreparedPage;
 pub use rom_projection_http::TlsConfig;
 #[cfg(test)]
 mod reconcile_tests;
+mod search;
+mod search_response;
+#[cfg(test)]
+mod search_response_tests;

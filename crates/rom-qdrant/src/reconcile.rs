@@ -132,7 +132,7 @@ impl Qdrant {
             .await
             .map_err(|_| TargetFailure::Unknown)?
     }
-    async fn inspect_generation(&self) -> NativeResult<()> {
+    pub(crate) async fn inspect_generation(&self) -> NativeResult<()> {
         let (_, value) = self
             .http
             .request(

@@ -298,4 +298,13 @@ Native collection-scoped `prw` JWTs permit points and deny collection/configurat
 SQLite/redb process crashes after actual response loss retain pending intent; separate processes recover after native server restart.
 Direct and normalized archive consumers execute the same native cases.
 Qdrant REST exposes no immutable collection UUID. The host must exclude name reuse and copied-marker restoration.
-Authorized vector search, distributed qualification, rebuild/cutover and final acceptance remain incomplete.
+Authorized dense vector search is described below. Distributed qualification, rebuild/cutover and final acceptance remain incomplete.
+
+## Authorized dense vector queries
+
+The [vector search contract](vector-search.md) adds bounded host-approved queries without changing the text search API.
+Qdrant supplies real native Dot, Euclid and Manhattan candidates, with checked original keys and ROM revisions.
+Current public SQLite/redb reads filter denied, stale, deleted and hidden embedding inputs before disclosure.
+The independent native/archive consumer uses collection-scoped read-only JWTs and actual held query responses for authority changes.
+Authored 429, redirect, body-limit, malformed, timeout and cancellation cases remain separate from native ranking evidence.
+Cosine, distributed profiles, approximate recall, other dimensions and generation switching remain unqualified.

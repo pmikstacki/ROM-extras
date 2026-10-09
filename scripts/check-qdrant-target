@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd -- "$(dirname -- "$0")/.."
+source scripts/lib/qdrant-qualification-env.sh
 : "${ROM_EXTRAS_PYTHON:?Explicit Python3 executable required}"
 "$ROM_EXTRAS_PYTHON" scripts/test-qdrant-fixture-transport.py
+"$ROM_EXTRAS_PYTHON" scripts/test-qdrant-required-gate.py
 cargo test --locked -p rom-qdrant
 cargo clippy --locked -p rom-qdrant --all-targets --all-features -- -D warnings
 RUSTDOCFLAGS='-D warnings' cargo doc --locked -p rom-qdrant --no-deps

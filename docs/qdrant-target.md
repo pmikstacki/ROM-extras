@@ -97,7 +97,8 @@ A separate loss probe removes a newly created fixture point and proves refusal b
 Another checkpoint reopen verifies both original-key digests and completed cursors.
 Two loopback receivers verify that fixture clients reject redirects without contacting the destination.
 
-Vector queries with current authorization, Cosine representation, distributed consistency, rebuild/cutover and release acceptance remain incomplete.
+[Authorized dense vector queries](vector-search.md) now use the same fixed target with current ROM hydration.
+Cosine representation, distributed consistency, rebuild/cutover and release acceptance remain incomplete.
 The server's copied-marker identity limitation remains an operational exclusion, not a qualified immutable fence.
 
 The [verification record](verification/qdrant-target-2026-10-09.json) records the successful complete verifier and archive hashes.

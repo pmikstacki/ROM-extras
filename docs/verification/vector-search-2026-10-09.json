@@ -1,0 +1,143 @@
+{
+  "date": "2026-10-09",
+  "baseline": "5c4e28539b9db9ebba445409814e12914c3dff4c",
+  "public_rom": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "scope": "Fixed standalone dense vector query; three tested dimensions and Dot/Euclid/Manhattan; current public Runtime hydration",
+  "core": {
+    "controlled_candidate_cases": 34,
+    "public_input_tests": 1,
+    "existing_text_cases": 23,
+    "affected_suite_exit": 0,
+    "log": ".superpowers/vector-core-affected-2026-10-09.log"
+  },
+  "native": {
+    "version": "1.19.2",
+    "metrics": [
+      "Dot",
+      "Euclid",
+      "Manhattan"
+    ],
+    "dimensions": 3,
+    "source_stores": [
+      "SQLite",
+      "redb"
+    ],
+    "credentials": "Native collection-scoped r for queries, prw for indexing; r writes denied",
+    "actual_cases": [
+      "Distinguishable metric ranking",
+      "Empty candidates",
+      "Exact original Unicode/slash keys",
+      "Result bound",
+      "Native exclusion",
+      "Native wrong-live/kind/profile point filtering",
+      "Current stale/deleted/denied omission",
+      "Actual held response query/row/field authority revocation",
+      "Actual held response generation drift",
+      "Native malformed revision halves/original-key corruption"
+    ],
+    "fixture": "rom-extras-qdrant-target-native-port55471-20261009",
+    "log": ".superpowers/vector-native-green-2026-10-09.log",
+    "reviewed_direct_and_archive_logs": [
+      "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-tz6z9u5d",
+      "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-79ujf0ot"
+    ],
+    "full_verifier_direct_and_archive_logs": [
+      "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-987dl25o",
+      "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-znvddv7l"
+    ]
+  },
+  "authored_protocol_cases": [
+    "429",
+    "Response >1MiB",
+    "Redirect",
+    "Malformed JSON",
+    "Timeout",
+    "Future cancellation",
+    "No automatic retry"
+  ],
+  "source_review": {
+    "file": ".superpowers/vector-search-final-review-2026-10-09.md",
+    "important_findings": 2,
+    "fixed": 2,
+    "deferred_minors": 0
+  },
+  "review_regressions": {
+    "required_gate": {
+      "red": ".superpowers/vector-gate-review-red-2026-10-09.log",
+      "green": ".superpowers/vector-gate-review-green-2026-10-09.log"
+    },
+    "native_filters": {
+      "red": ".superpowers/vector-filter-review-red-2026-10-09.log",
+      "green": ".superpowers/vector-reviewed-affected-2026-10-09.log"
+    }
+  },
+  "affected_check": {
+    "command": "./scripts/check-qdrant-target",
+    "status": "passed",
+    "log": ".superpowers/vector-reviewed-affected-2026-10-09.log",
+    "exit_code": 0
+  },
+  "full_local_verifier": {
+    "command": "./scripts/check-all",
+    "status": "passed",
+    "exit_code": 0,
+    "log": ".superpowers/vector-full-verifier-2026-10-09.log",
+    "frozen_files_unchanged": 1270,
+    "source_manifest": ".superpowers/vector-source-snapshot-2026-10-09.json",
+    "source_manifest_sha256": "f4aa7c9453a4527f69abd5f7bf4c95c2e83131425314bb20ee187dc53cb58a26",
+    "compiler": [
+      "rustc 1.99.0 (b940084d7 2026-09-28)",
+      "binary: rustc",
+      "commit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4",
+      "commit-date: 2026-09-28",
+      "host: x86_64-unknown-linux-gnu",
+      "release: 1.99.0",
+      "LLVM version: 23.1.1"
+    ],
+    "cargo_lock_sha256": "73751c9c13b75472af8debdb29f9d0df1915a896bb9c3b2fdb4e7ac984350b5c"
+  },
+  "audit": {
+    "packages": 192,
+    "vulnerabilities": 0,
+    "warnings": {},
+    "new_registry_versions": 0,
+    "log": ".superpowers/vector-consumer-audit-2026-10-09.json"
+  },
+  "remaining": [
+    "Cosine normalization",
+    "Other dimensions",
+    "Distributed qualification",
+    "Approximate recall",
+    "Rebuild/cutover",
+    "Global hydration snapshot",
+    "Release acceptance",
+    "REST copied-marker recreation cannot be fenced"
+  ],
+  "post_verifier_changes": [
+    "Verification result record",
+    "Plan completion checkboxes and result ledger",
+    "Guide link to measured verification record"
+  ],
+  "normalized_archives": {
+    "version": "0.1.0-dev",
+    "hashes": {
+      "rom-sql-core": "469d04776dfa8f4077c5101a5788c5a7bf496cb9d67d5856dec76d68380c78d3",
+      "rom-projection-core": "80561f738ddd052378a6260721635d383ec29520fc1ed34cad817521acb09602",
+      "rom-projection-http": "a8913890d154491597c0b9204fe0018648632e8b363817e5de86cd2c3aa061d3",
+      "rom-qdrant": "b2249bef1966d51f9ef6af37c5abc4cfcf36d55c6b7919eae4c78f5257ed63f4"
+    },
+    "consumer": "/tmp/qdrant-target-packaged-gbWA2e/consumer"
+  },
+  "full_verifier_normalized_archives": {
+    "version": "0.1.0-dev",
+    "hashes": {
+      "rom-sql-core": "469d04776dfa8f4077c5101a5788c5a7bf496cb9d67d5856dec76d68380c78d3",
+      "rom-projection-core": "80561f738ddd052378a6260721635d383ec29520fc1ed34cad817521acb09602",
+      "rom-projection-http": "a8913890d154491597c0b9204fe0018648632e8b363817e5de86cd2c3aa061d3",
+      "rom-qdrant": "b2249bef1966d51f9ef6af37c5abc4cfcf36d55c6b7919eae4c78f5257ed63f4"
+    },
+    "consumer": "/tmp/qdrant-target-packaged-1LfsOH/consumer"
+  },
+  "pure_parser_tests": 3,
+  "maps_ui_browser_tests": 5
+}
