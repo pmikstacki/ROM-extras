@@ -1,6 +1,6 @@
 [workspace]
-members = ["crates/rom-configured-maps", "crates/rom-osrm", "crates/rom-map-http", "crates/rom-nominatim", "crates/rom-map-core", "crates/rom-projection-http", "crates/rom-qdrant", "crates/rom-opensearch", "crates/rom-projection-core", "crates/rom-openbao", "crates/rom-kms", "crates/rom-secrets", "crates/rom-azure-blob", "crates/rom-sql-core", "crates/rom-oidc-presets", "crates/rom-delivery-core", "crates/rom-webhook", "crates/rom-nats", "crates/rom-rabbitmq", "crates/rom-kafka"]
-exclude = ["tests/configured-map-consumer", "tests/osrm-public-consumer", "tests/public-consumer", "tests/map-public-consumer", "tests/map-adapter-consumer"]
+members = ["crates/rom-maptiler", "crates/rom-configured-maps", "crates/rom-osrm", "crates/rom-map-http", "crates/rom-nominatim", "crates/rom-map-core", "crates/rom-projection-http", "crates/rom-qdrant", "crates/rom-opensearch", "crates/rom-projection-core", "crates/rom-openbao", "crates/rom-kms", "crates/rom-secrets", "crates/rom-azure-blob", "crates/rom-sql-core", "crates/rom-oidc-presets", "crates/rom-delivery-core", "crates/rom-webhook", "crates/rom-nats", "crates/rom-rabbitmq", "crates/rom-kafka"]
+exclude = ["tests/maptiler-public-consumer", "tests/configured-map-consumer", "tests/osrm-public-consumer", "tests/public-consumer", "tests/map-public-consumer", "tests/map-adapter-consumer"]
 resolver = "3"
 
 [workspace.package]

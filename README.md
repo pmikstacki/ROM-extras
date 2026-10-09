@@ -48,7 +48,9 @@ Nominatim search/reverse has controlled HTTPS and public-consumer tests; native-
 OSRM routing passed qualification on an authored driving graph before and after restart.
 Configured raster/vector TileJSON and MapLibre styles have controlled HTTPS and independent-consumer tests.
 A local Nginx fixture qualifies metadata delivery before and after restart; tile content and rendering remain unqualified.
-MapTiler, browser approval and the UI example remain in progress.
+MapTiler search/reverse has controlled HTTPS and independent-consumer tests; native-service qualification and styles/tiles remain pending.
+Browser URLs reject query credentials by default; an explicit host grant can admit one browser-intended token.
+The ROM/UI integration example remains in progress.
 
 ### Roadmap
 

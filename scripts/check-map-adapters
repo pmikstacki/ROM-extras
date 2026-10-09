@@ -27,8 +27,8 @@ for rom_fixture_cert in ca.pem node.pem; do
 done
 openssl verify -CAfile "$ROM_EXTRAS_MAP_FIXTURE_TLS/ca.pem" "$ROM_EXTRAS_MAP_FIXTURE_TLS/node.pem" >/dev/null
 [[ -f "$ROM_EXTRAS_MAP_FIXTURE_TLS/node.key" ]]
-cargo test --locked -p rom-map-http -p rom-nominatim -p rom-osrm -p rom-configured-maps --features controlled-fixture
-cargo clippy --locked -p rom-map-http -p rom-nominatim -p rom-osrm -p rom-configured-maps --all-targets --features controlled-fixture -- -D warnings
+cargo test --locked -p rom-map-http -p rom-nominatim -p rom-osrm -p rom-configured-maps -p rom-maptiler --features controlled-fixture
+cargo clippy --locked -p rom-map-http -p rom-nominatim -p rom-osrm -p rom-configured-maps -p rom-maptiler --all-targets --features controlled-fixture -- -D warnings
 cargo fmt --manifest-path tests/map-adapter-consumer/Cargo.toml -- --check
 cargo build --manifest-path tests/map-adapter-consumer/Cargo.toml --locked --offline --target-dir target/map-adapter-consumer
 node scripts/check-map-adapter-consumer.mjs
@@ -46,3 +46,8 @@ if [[ -n "${ROM_EXTRAS_MAP_METADATA_ENDPOINT:-}${ROM_EXTRAS_MAP_METADATA_CA:-}" 
     : "${ROM_EXTRAS_MAP_METADATA_CA:?explicit controlled metadata CA required}"
     target/configured-map-consumer/debug/rom-configured-map-consumer "$ROM_EXTRAS_MAP_METADATA_ENDPOINT" "$ROM_EXTRAS_MAP_METADATA_CA"
 fi
+
+cargo fmt --manifest-path tests/maptiler-public-consumer/Cargo.toml -- --check
+cargo build --manifest-path tests/maptiler-public-consumer/Cargo.toml --locked --offline --target-dir target/maptiler-public-consumer
+node scripts/check-map-adapter-consumer.mjs maptiler
+cargo clippy --manifest-path tests/maptiler-public-consumer/Cargo.toml --locked --offline --target-dir target/maptiler-public-consumer --all-targets -- -D warnings

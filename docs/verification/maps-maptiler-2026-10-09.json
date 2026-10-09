@@ -1,0 +1,47 @@
+{
+  "scope": "MapTiler geocoding and explicit browser public-token grants; not full map-provider acceptance",
+  "baseline": "74ac182bd7924688289a682fa83c75ce654f7113",
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "exit": 0,
+    "log": ".superpowers/maptiler-browser-grant-fresh-opensearch-full-verifier-2026-10-09.log",
+    "source_snapshot": ".superpowers/maptiler-browser-grant-source-snapshot-2026-10-09.json",
+    "snapshot_sha256": "915dea3bcabe6dd654e95e593b79a7bb728ac94b320e0508be9f2f234d02efc7",
+    "files_verified_unchanged": 1020
+  },
+  "affected_checks": {
+    "exit": 0,
+    "maptiler_tests": 11,
+    "core_tests": 40,
+    "scope": "Controlled authored HTTPS fixtures, validation, cancellation, limits, safe errors, exact attribution and independent public API consumer"
+  },
+  "package_consumer": {
+    "archives": 6,
+    "runtime_scope": "Configured map APIs only; other map adapter dependencies compile"
+  },
+  "source_review": {
+    "actionable_findings": [],
+    "record": ".superpowers/maptiler-promoted-review-advisories-2026-10-09.json"
+  },
+  "advisories": {
+    "root_exit": 0,
+    "consumer_exit": 0
+  },
+  "fixture_recovery": {
+    "initial_full_exit": 101,
+    "reason": "OpenSearch cluster readiness deadline after accumulated historical shards",
+    "archive_preserved": "rom-extras-opensearch-qualification-20261009-archive-maptiler",
+    "fresh_fixture": "rom-extras-opensearch-qualification-20261009",
+    "configuration_and_limits": "Unchanged",
+    "fresh_package_qualification_exit": 0,
+    "record": ".superpowers/maptiler-opensearch-recovery-evidence-2026-10-09.json"
+  },
+  "remaining": [
+    "Actual MapTiler service and account qualification",
+    "MapTiler styles and tiles",
+    "Complete running ROM/rom-ui host integration",
+    "Full SQL Storage integration",
+    "Full ROM-extras family acceptance"
+  ],
+  "deployment": "Nominatim server installation cancelled by user; no deployment required"
+}

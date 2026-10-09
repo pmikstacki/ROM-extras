@@ -1,0 +1,13 @@
+[workspace]
+[package]
+name = "rom-maptiler-independent-consumer"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.99"
+license = "MIT"
+[dependencies]
+rom-map-core = { path = "../../crates/rom-map-core" }
+rom-maptiler = { path = "../../crates/rom-maptiler" }
+tokio = { version = "=1.53.1", features = ["rt", "macros"] }
+
+rom = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", version = "=0.0.3" }

@@ -41,7 +41,7 @@ It is not a complete renderer schema validator. The host must also enforce brows
 | Host configuration | Self-hosted TileJSON and MapLibre styles/tiles | Implemented; native static HTTPS metadata qualified; rendering and tile contents pending |
 | Nominatim | Search and reverse lookup | Implemented; native qualification pending |
 | OSRM | Route GeoJSON with explicit prepared profile | Implemented; authored driving graph and restart qualified; regional datasets and other modes pending |
-| MapTiler | Styles/tiles and search/reverse | Implementation pending |
+| MapTiler | Search/reverse | Controlled HTTPS and independent-consumer tests; native service and styles/tiles pending |
 
 Hosts must explicitly configure endpoints and authorize browser disclosure.
 Backend credentials remain server-side. Browser-intended tokens require a separate explicit host contract.
@@ -56,7 +56,7 @@ Provider contracts determine rate, retries, cache retention and data attribution
 ## Remaining integration
 
 Nominatim search and reverse adapters now have controlled HTTPS protocol tests and an independent public consumer.
-Native-service qualification, other adapters, explicit browser-token grants and packaged map consumers remain incomplete.
+Native-service qualification and full family acceptance remain incomplete. Packaged map consumers check extracted crate compatibility.
 The active rom-ui gallery worktree declares rom-ui/maps in version 0.1.0-alpha.6.
 The older rom-ui checkout remains at alpha.3 without that export.
 The export and ResourceMap source were inspected; ROM-extras has not yet executed an installed frontend integration example.
@@ -134,8 +134,10 @@ See the [official OSRM HTTP API](https://project-osrm.org/docs/v5.24.0/api/) for
 The document name is a single ASCII filename of at most 256 bytes. Configure nested paths in the backend endpoint.
 
 Pass private backend configuration through `rom_map_http::Config`. Pass browser origins through a separate `BrowserPolicy`.
-Server query keys remain in the transport configuration. Query-bearing browser URLs are rejected under the current strict profile.
-No browser-public token grant is implemented yet.
+Server query keys remain in the transport configuration. Query-bearing browser URLs are rejected by default.
+`BrowserPolicy::with_public_query_token` explicitly approves one exact token and query field for an already approved service origin.
+The host must verify that the token is intended for browsers and configure provider-side application-origin restrictions.
+The adapter cannot verify those account settings. Backend keys never create this grant.
 
 Styles require explicit attribution and pre-approved TileJSON bindings keyed by exact native style source identifier.
 The adapter does not fetch nested manifests. The host must bind each manifest to its selected source and enforce browser redirect policy.
@@ -152,3 +154,30 @@ This qualifies metadata delivery, source resolution, 429 and rejection of redire
 
 Run `./scripts/check-map-package` to check normalized archives outside the workspace.
 The configured-source increment passed the full local verifier on frozen source. See [the scoped verification record](verification/maps-configured-2026-10-09.json).
+
+
+## MapTiler geocoding preparation
+
+`rom-maptiler` implements separate search and reverse capabilities through `rom-map-http`.
+Configure an explicit HTTPS base endpoint, identifying user agent, provenance label, dispatch interval and reviewed attribution profile.
+Supply the server key through `Config::with_server_key`. This does not grant a browser token.
+Configure a private CA only when the host approves that trust root.
+Construction makes no network request.
+
+Forward search sends the native path, explicit limit and `autocomplete=false`.
+A bounded query sends bbox values in west/south/east/north order.
+Wrapped boxes are unsupported. Numeric coordinate pairs and semicolon batches are rejected by the text capability.
+Reverse sends explicit longitude/latitude and limit one.
+Neither operation requests IP proximity or geolocation.
+
+Native IDs remain exact provenance. They do not become ROM Resource keys.
+Accuracy remains unknown; relevance is not positional accuracy.
+The host binds exact native attribution to reviewed plain text with `AttributionProfile`.
+Unknown attribution is rejected. The host is responsible for equivalence and required credits.
+The adapter adds no cache, automatic retry, browser grant or Resource write.
+
+Controlled HTTPS tests cover empty results, coordinates, bbox, limits, 429, redirects, deadlines and cancellation.
+The independent consumer is `tests/maptiler-public-consumer`.
+These tests qualify authored protocol fixtures, not the actual MapTiler service or account permissions.
+MapTiler styles/tiles and complete browser integration remain pending.
+The combined increment passed the full local verifier. See [the verification record](verification/maps-maptiler-2026-10-09.json).

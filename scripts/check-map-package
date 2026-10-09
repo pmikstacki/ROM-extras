@@ -2,7 +2,7 @@
 set -euo pipefail
 cd -- "$(dirname -- "$0")/.."
 node --check scripts/prepare-map-package.mjs
-map_packages=(rom-map-core rom-map-http rom-nominatim rom-osrm rom-configured-maps)
+map_packages=(rom-map-core rom-map-http rom-nominatim rom-osrm rom-configured-maps rom-maptiler)
 map_package_args=()
 for map_package in "${map_packages[@]}"; do
     map_package_args+=(-p "$map_package" --config "patch.crates-io.$map_package.path=\"crates/$map_package\"")
