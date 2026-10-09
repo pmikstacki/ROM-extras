@@ -43,15 +43,7 @@ impl PreparedDelivery {
         delivery: Delivery<P>,
         limit: PayloadLimit,
     ) -> Result<Self, DeliveryError> {
-        if delivery.id.is_empty()
-            || delivery.id.len() > 2048
-            || !delivery
-                .id
-                .bytes()
-                .all(|b| b.is_ascii_alphanumeric() || matches!(b, b'-' | b'_'))
-        {
-            return Err(DeliveryError::InvalidIdentity);
-        }
+        crate::validate_delivery_identity(&delivery.id)?;
         let mut output = BoundedBody {
             bytes: Vec::new(),
             limit: limit.bytes(),

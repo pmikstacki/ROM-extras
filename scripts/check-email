@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_PYTHON:?An explicit Python 3 executable is required for independent RFC message parsing}"
+cargo test --locked -p rom-email-core -p rom-delivery-core
+cargo clippy --locked -p rom-email-core -p rom-delivery-core --all-targets -- -D warnings
+cargo fmt --manifest-path tests/email-public-consumer/Cargo.toml -- --check
+cargo clippy --manifest-path tests/email-public-consumer/Cargo.toml --locked --offline --target-dir target/email-public-consumer --all-targets -- -D warnings
+mkdir -p .superpowers/email-consumer-runs
+output=$(mktemp .superpowers/email-consumer-runs/message-XXXXXX.json)
+cargo run --manifest-path tests/email-public-consumer/Cargo.toml --locked --offline --target-dir target/email-public-consumer > "$output"
+"$ROM_EXTRAS_PYTHON" tests/email-public-consumer/inspect_message.py "$output"

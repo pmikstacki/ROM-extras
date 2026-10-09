@@ -19,6 +19,8 @@
 //! ```
 
 mod error;
+mod identity;
+pub use identity::validate_delivery_identity;
 mod limits;
 mod message;
 mod signature;

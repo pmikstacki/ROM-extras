@@ -57,6 +57,8 @@ Production session integration and actual provider-service qualification remain 
 
 ### Roadmap
 
+[Pure email preparation](docs/email-core.md) has boundary, independent RFC/MIME consumer and full-verifier checks.
+SMTP transport and Runtime/native delivery qualification remain pending.
 OpenTelemetry, additional notification connectors, and backup, migration and provenance-preserving import tools remain in scope.
 
 - [Complete goal and decision policy](docs/goal.md)

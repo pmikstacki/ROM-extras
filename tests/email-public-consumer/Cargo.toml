@@ -1,0 +1,11 @@
+[package]
+name = "email-public-consumer"
+version = "0.0.0"
+edition = "2024"
+
+[workspace]
+
+[dependencies]
+rom = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false }
+rom-email-core = { path = "../../crates/rom-email-core" }
+serde_json = "=1.0.151"

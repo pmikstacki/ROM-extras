@@ -1,0 +1,186 @@
+{
+  "scope": "Pure RFC/MIME email preparation and public codec/recipient policy; no SMTP transport or DATA acceptance",
+  "baseline": "04c04e613990987a34afb034c27a0198d8e55445",
+  "public_rom": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "session": 98664,
+    "exit": 0,
+    "log": ".superpowers/email-full-verifier-2026-10-09.log",
+    "source_snapshot": ".superpowers/email-source-snapshot-2026-10-09.json",
+    "snapshot_sha256": "d859354d686441170a78f05d6f50d70a00a5e71dd5c0889404fb368c6065d21d",
+    "files_verified_unchanged_before_final_record": 1114,
+    "source_changes": [],
+    "compiler": "rustc 1.99.0 (b940084d7 2026-09-28), x86_64-unknown-linux-gnu"
+  },
+  "affected_checks": {
+    "session": 20795,
+    "exit": 0,
+    "command": "./scripts/check-email; root and independent-consumer cargo-audit",
+    "log": ".superpowers/email-affected-mime-corrected-2026-10-09.log",
+    "additional_checks": {
+      "docs_exit": 0,
+      "docs_log": ".superpowers/email-docs-2026-10-09.log",
+      "no_default_features_exit": 0,
+      "no_default_features_log": ".superpowers/email-no-default-2026-10-09.log"
+    }
+  },
+  "contracts": {
+    "new_preparation_tests": 6,
+    "subject_utf8_bytes": [
+      1,
+      512
+    ],
+    "text_utf8_bytes": [
+      0,
+      262144
+    ],
+    "creation_unix_seconds": [
+      0,
+      4102444800
+    ],
+    "exact_approved_recipients": [
+      1,
+      1024
+    ],
+    "wire_byte_limit": [
+      1,
+      1048576
+    ],
+    "mailbox": "ASCII, <=254 bytes, local part <=64 bytes, lettre validation",
+    "body": "Plain UTF-8 text; tab/LF/CRLF admitted, other controls and bare CR refused",
+    "delivery_identity": "Existing shared validation, 1..2048 ASCII letters/digits/hyphens/underscores",
+    "retry": "Same immutable payload and host profile produce unchanged RFC bytes, exact envelope, Date and digest Message-ID",
+    "codec": "Missing/extra/wrong-type/invalid restored fields refused",
+    "diagnostics": "Debug/errors omit personal fields and delivery identity",
+    "deduplication": "SMTP has no portable Message-ID deduplication guarantee"
+  },
+  "independent_consumer": {
+    "rust": "tests/email-public-consumer/src/main.rs",
+    "rfc_parser": "tests/email-public-consumer/inspect_message.py",
+    "proof": [
+      "Public Channel intent and Input restoration",
+      "Python stdlib decoding of actual RFC/MIME bytes",
+      "Exact Unicode subject/text, from/to, Date, SHA-256 identity",
+      "Explicit MIME-Version 1.0 and absence of Bcc/Cc"
+    ],
+    "log": ".superpowers/email-affected-mime-corrected-2026-10-09.log",
+    "package_archive": "Pending"
+  },
+  "regressions": [
+    {
+      "red_log": ".superpowers/email-preparation-red-2026-10-09.log",
+      "exit": 101,
+      "reason": "Expected missing EmailError/EmailNotification/EmailProfile API"
+    },
+    {
+      "preliminary_log": ".superpowers/email-preparation-green-2026-10-09.log",
+      "exit": 101,
+      "reason": "Test crate documentation omitted; missing-docs lint blocked execution",
+      "corrected_log": ".superpowers/email-preparation-green-corrected-2026-10-09.log",
+      "corrected_exit": 0
+    },
+    {
+      "red_log": ".superpowers/email-mime-version-red-2026-10-09.log",
+      "exit": 101,
+      "reason": "Confirmed source-review MIME-Version omission",
+      "fix": "Typed MIME_VERSION_1_0 header; Rust and independent parser assert it",
+      "green_log": ".superpowers/email-affected-mime-corrected-2026-10-09.log",
+      "green_exit": 0
+    }
+  ],
+  "source_review": {
+    "reviewer": "/root/maps_http_increment_review",
+    "scope": "Source only; no execution",
+    "initial_findings": [
+      "P2 MIME-Version missing from plain body builder"
+    ],
+    "final_actionable_findings": []
+  },
+  "dependencies": {
+    "lettre": "0.11.23, builder only; no SMTP/sendmail/file/TLS/pool/hostname/tracing transport features",
+    "root_audit": ".superpowers/email-root-audit-final-2026-10-09.json",
+    "consumer_audit": ".superpowers/email-consumer-audit-2026-10-09.json",
+    "reported_vulnerabilities": 0,
+    "reported_warnings": 0,
+    "new_registry_packages": [
+      {
+        "name": "lettre",
+        "version": "0.11.23",
+        "license": "MIT",
+        "declared_msrv": "1.85"
+      },
+      {
+        "name": "email-encoding",
+        "version": "0.4.2",
+        "license": "MIT OR Apache-2.0",
+        "declared_msrv": "1.85"
+      },
+      {
+        "name": "email_address",
+        "version": "0.2.9",
+        "license": "MIT",
+        "declared_msrv": null
+      },
+      {
+        "name": "httpdate",
+        "version": "1.0.3",
+        "license": "MIT OR Apache-2.0",
+        "declared_msrv": "1.56"
+      },
+      {
+        "name": "mime",
+        "version": "0.3.17",
+        "license": "MIT OR Apache-2.0",
+        "declared_msrv": null
+      },
+      {
+        "name": "quoted_printable",
+        "version": "0.5.2",
+        "license": "0BSD",
+        "declared_msrv": null
+      }
+    ],
+    "existing_root_selections": "Preserved; incidental Windows dependency reselection reverted, then --locked check passed",
+    "features_log": ".superpowers/email-features-2026-10-09.log",
+    "metadata": ".superpowers/email-root-metadata-2026-10-09.json"
+  },
+  "documentation": "Only docs and evidence changed after frozen-source verification",
+  "research": "docs/research/notification-smtp-2026-10-09.md",
+  "warnings": "Existing package/patch, Node experimental/color and frontend bundle-size warnings retained in full log",
+  "remaining": [
+    "SMTP transport and bounded malicious reply stream",
+    "Native Mailpit DATA acceptance, lost acknowledgment and persistence/restart",
+    "Public Runtime authorization/recovery on SQLite and redb",
+    "Packaged email/SMTP consumer",
+    "Production relay deliverability, bounces, DKIM/SPF/DMARC",
+    "Other ROM-extras families"
+  ],
+  "executed_source_sha256": {
+    "Cargo.lock": "86143e9ff08246d7e2d042ffb1383ef6ac2eef671821d7dd0beff1a1687682a7",
+    "Cargo.toml": "ed6954d0d620b9e0edfe2fc0ea27c7926efa740b317618b4e660771b1bb5638c",
+    "crates/rom-delivery-core/Cargo.toml": "9eeb960043716e81d2872dd93beb1ca13a1e843de4a8fa818c4bd6cae3120021",
+    "crates/rom-delivery-core/src/error.rs": "3876d5ed3db088d3c5332a4732ab6dfb16ff844a88114918aaf20eff26f5ce4b",
+    "crates/rom-delivery-core/src/identity.rs": "2803a962fad2171640e7592a5b309f98c1fd4e7b5bea3aeb39a2bce22ee2c153",
+    "crates/rom-delivery-core/src/lib.rs": "504a87431a86d2a5d5d76e42b0d3d3b258fb29ff59d14de91ae46b480f45d0d6",
+    "crates/rom-delivery-core/src/limits.rs": "68cbfd6b8f62f8cd554f8fc57eedbad3cf63470c87b7dd487e93d5569238c900",
+    "crates/rom-delivery-core/src/message.rs": "978131e4e7a66f854e7a56a778c8e1326eedf2a312aab2c699f6d70b3cf5a475",
+    "crates/rom-delivery-core/src/signature.rs": "b26f956d5f725f6328a964e83434f2612dc62cfdded8b24c3a9e448635ab8527",
+    "crates/rom-delivery-core/tests/preparation.rs": "db0f5562ad9db047d65be12a4377532a2f104d17aa3b9331a87971122b1c89d7",
+    "crates/rom-delivery-core/tests/signing.rs": "9d7364ad759654c36f0b35718de76967c06954e27caddf10218add3f17c060d8",
+    "crates/rom-email-core/Cargo.toml": "d7d756bed84e4c074d44bda73354e6d34ccc5406e3b063ba5ef4113823ee5f2c",
+    "crates/rom-email-core/src/address.rs": "6123c05bbe3274e1f876bdbdf465fa25c6474f13b9838eebdb162a05d9aafabe",
+    "crates/rom-email-core/src/error.rs": "9be62fd067ff2bf40e8f1a0494a7b9793ea8caf6cfee022da3d5571916324074",
+    "crates/rom-email-core/src/lib.rs": "c87658e658ab2daeb6d1b9e6927fa3e0f42edfd59fdb4ad12781dfeac57612fb",
+    "crates/rom-email-core/src/payload.rs": "b8a4cf9f74c8e37024cc8413e92bc51c8fb3be1218b35669cc5c8cd32ecfd1b3",
+    "crates/rom-email-core/src/prepared.rs": "c61999d8ab66bbc15918a36b66b784a1db2185cd867d10b026810f1597f84208",
+    "crates/rom-email-core/src/profile.rs": "83be2fdadb8af8f7413e534466f427027d7345100d03a9a6d3a256815fd57da1",
+    "crates/rom-email-core/tests/preparation.rs": "ba2ef81524a7dde34faca3e2a661c04978313df4fed4bd14867f16a2f2031e78",
+    "scripts/check-all": "85af3655612375e499093ac6762b9e24fa3aa2a133ea252975fa4296a967778a",
+    "scripts/check-email": "e08b97a6d4846861b43144437c493571dd9c120bebbd1b40b9221711158c7eb5",
+    "tests/email-public-consumer/Cargo.lock": "2718b066b0815f1711449bc5114226633661f70f30be10fb15b4b80ecb0dd093",
+    "tests/email-public-consumer/Cargo.toml": "4ad486fd88c8e3b65d966f9d3df57ade9ffca4155b7d77d2687432560c591b9d",
+    "tests/email-public-consumer/inspect_message.py": "eda8b1d251551663337ab48b2b537c767a93bc8e0d953a9e58b3b37334d53560",
+    "tests/email-public-consumer/src/main.rs": "4bfa1d7f5a502656c8bdf2f70a2f7f69ea02d052a1cf62ee0c109b6229274b81"
+  }
+}

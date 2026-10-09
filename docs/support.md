@@ -262,3 +262,12 @@ MapTiler style/raster/vector metadata passed controlled HTTPS and independent-co
 The public Rust host and pnpm rom-ui/maps example passed controlled HTTP and browser checks.
 Package checks and the full local verifier passed. Production sessions, account permissions and complete map-service qualification remain incomplete.
 See [map configuration and exact limits](maps.md) and [MapTiler metadata evidence](verification/maps-maptiler-metadata-2026-10-09.json).
+
+## Notification preparation — 2026-10-09
+
+`rom-email-core` prepares bounded plain-text RFC messages through public ROM Delivery/Input contracts.
+Exact host recipient policy, restored-input validation, deterministic retry bytes and safe diagnostics passed six boundary tests.
+An independent public Rust consumer and Python RFC/MIME parser checked actual message bytes.
+The full local verifier passed on unchanged source. No network transport is implemented by this core.
+SMTP DATA acceptance, bounded transport, Runtime recovery and production deliverability remain unqualified.
+See [configuration and limits](email-core.md) and [preparation evidence](verification/email-preparation-2026-10-09.json).

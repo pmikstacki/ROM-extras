@@ -1,0 +1,40 @@
+{
+  "scope": "Owned Mailpit fixture preparation and native TLS/AUTH; not Rust SMTP DATA submission or production delivery",
+  "setup": ".superpowers/mailpit-native-qualification-20261009/setup.json",
+  "probe": ".superpowers/mailpit-native-qualification-20261009/tls-auth-probe.json",
+  "initial_preparation": {
+    "session": 55030,
+    "exit": 1,
+    "log": ".superpowers/mailpit-native-preparation-2026-10-09.log",
+    "failure": "Published loopback TLS readiness timeout on internal bridge",
+    "retained_container_data_and_logs": true
+  },
+  "direct_bridge_readiness": {
+    "exit": 0,
+    "log": ".superpowers/mailpit-native-readiness-direct-2026-10-09.log",
+    "strict_tls_name": "mailpit.fixture.test",
+    "tls_verification_not_disabled": true,
+    "internal_network_unchanged": true
+  },
+  "native_tls_auth_probe": {
+    "exit": 0,
+    "log": ".superpowers/mailpit-native-tls-auth-probe-2026-10-09.log",
+    "messages_submitted": 0
+  },
+  "version_observation": {
+    "log": ".superpowers/mailpit-version-2026-10-09.log",
+    "version": "1.31.4",
+    "compiler": "go1.27.1",
+    "warning": "version subcommand attempted its own update lookup; internal network blocked it; main server version checks disabled"
+  },
+  "preliminary_cli": "/mailpit --version rejected; actual subcommand is version. No test executed by rejected invocation.",
+  "image": "994d4a5e14891cd6b1eed69441b1b45a730bf3354fc37b9a61853c417bcadf87",
+  "ca_sha256": "5ca25e013c2a69b8559b71a338d878cbc091739b45adc11c01ef80f0b9fc2f96",
+  "pending": [
+    "Rust transport",
+    "Bounded reply stream",
+    "Native DATA acknowledgment/loss",
+    "Runtime integration and restart",
+    "Independent packaged consumer"
+  ]
+}
