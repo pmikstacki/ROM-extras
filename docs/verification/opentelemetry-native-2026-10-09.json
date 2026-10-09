@@ -1,0 +1,720 @@
+{
+  "captured_at_utc": "2026-10-09T15:03:16.491916+00:00",
+  "baseline": "1fd1e4a706ba038c65229813e420d01942111e12",
+  "scope": "Optional finite host traces and explicit local OTLP host export; actual Collector TLS/auth, exact native metrics/spans and actual SQLite/redb host observations; controlled HTTP/SDK queue and owned harness interruption evidence kept separate; committed diagnostic bridge not implemented",
+  "public_rom_revision": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1",
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "exit_code": 0,
+    "log": ".superpowers/opentelemetry-native-full-verifier-2026-10-09.log",
+    "log_sha256": "f9243b05394b9ed22326b09f189d9cb886eb51dca4b874132286dc22570aa6e2",
+    "snapshot": ".superpowers/opentelemetry-native-source-snapshot-2026-10-09.json",
+    "snapshot_sha256": "0ff118c7a4bf35f4f0200844f72b3a295cd05ad5e291cc0c26c7a6c5081514f7",
+    "frozen_files": 1170,
+    "unchanged_during_run": 1170
+  },
+  "post_full_changes": {
+    "files": [
+      "README.md",
+      "docs/opentelemetry.md",
+      "docs/research/opentelemetry-2026-10-09.md",
+      "scripts/check-opentelemetry-native.py"
+    ],
+    "scope": "Stronger native boundary test replaces malformed padding with valid protobuf accepted at 65536 and rejected at 65537; guide/research/README updates. Production Rust, process helper, consumers, gates/manifests/locks remain frozen. Subsequent plan and verification record update evidence only.",
+    "affected_command": "./scripts/check-opentelemetry-native",
+    "exit_code": 0,
+    "log": ".superpowers/opentelemetry-native-valid-body-final-2026-10-09.log",
+    "log_sha256": "7330b28948e7783a90f274c3338fa14c283f827b037fb516030b98b2787cd427"
+  },
+  "sdk_checks": {
+    "metric_collection_tests": 4,
+    "trace_scope_tests": 3,
+    "bounded_queue_tests": 1,
+    "scope": "Actual SDK local capture, not native receipt proof",
+    "finite_names_attributes": true,
+    "explicit_parent_no_ambient_context_baggage": true,
+    "completed_once_or_abandoned": true,
+    "queued_trace_loss_does_not_rewrite_65_metric_observations": true
+  },
+  "harness_checks": {
+    "actual_owned_process_tests": 5,
+    "log": ".superpowers/opentelemetry-process-cleanup-complete-2026-10-09.log",
+    "actual_collector_sigterm_red": {
+      "signal": "SIGTERM",
+      "interrupted_owned_collector_stopped": true,
+      "owner_exit_code": -15,
+      "collector_restored": false,
+      "log": "/root/ROM-extras/.superpowers/opentelemetry-interruption-actual-red.log"
+    },
+    "actual_collector_sigterm_green": {
+      "signal": "SIGTERM",
+      "interrupted_owned_collector_stopped": true,
+      "owner_exit_code": -2,
+      "collector_restored": true,
+      "log": "/root/ROM-extras/.superpowers/opentelemetry-interruption-actual-threaded-green.log"
+    },
+    "worker_signal_red_log": ".superpowers/opentelemetry-threaded-interruption-red-2026-10-09.log",
+    "worker_signal_green_log": ".superpowers/opentelemetry-threaded-interruption-green-2026-10-09.log"
+  },
+  "native_records_from_full_gate": [
+    {
+      "scope": "Actual Collector TLS/auth and OTLP metrics/traces for public SQLite/redb host observations; separate controlled HTTP fault cases, no committed diagnostic bridge",
+      "fixture": {
+        "container": "rom-extras-collector-native-20261009",
+        "container_id": "03c7a56c0cece96cade1b9be484981763e43b6c25ab2aa31b7fb6a764287876e",
+        "image_id": "b90b3ed4cab89c4e196d0c58234b71a862165e77631871fc9b5b1b6f2aad3163",
+        "digest": "sha256:340885ab6f46822374f00c58c067396b53b8d612559842e8821585567579d9e3",
+        "endpoint": "https://10.246.72.2:4318",
+        "native_version": "0.162.0"
+      },
+      "actual_binary_version": "otelcol-contrib version 0.162.0",
+      "configuration_sha256": "5e78c3eb2f4505694dec9210fc74781aa02dcde773cb253a8ae9156ff962d674",
+      "run": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/dcc44be05f3242b38180c72a60ebae66",
+      "native_metric_count": 18,
+      "native_span_count": 14,
+      "cases": [
+        {
+          "case": "env_guard",
+          "seconds": 0.214,
+          "exit_code": 101,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/dcc44be05f3242b38180c72a60ebae66/env_guard.log"
+        },
+        {
+          "case": "happy",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/dcc44be05f3242b38180c72a60ebae66/happy.log"
+        },
+        {
+          "case": "missing_auth",
+          "seconds": 0.314,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/dcc44be05f3242b38180c72a60ebae66/missing_auth.log"
+        },
+        {
+          "case": "wrong_auth",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/dcc44be05f3242b38180c72a60ebae66/wrong_auth.log"
+        },
+        {
+          "case": "untrusted_ca",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/dcc44be05f3242b38180c72a60ebae66/untrusted_ca.log"
+        },
+        {
+          "case": "wrong_identity",
+          "seconds": 0.565,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/dcc44be05f3242b38180c72a60ebae66/wrong_identity.log"
+        },
+        {
+          "case": "refused",
+          "seconds": 3.219,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/dcc44be05f3242b38180c72a60ebae66/refused.log"
+        },
+        {
+          "case": "collector_stopped",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/dcc44be05f3242b38180c72a60ebae66/collector_stopped.log"
+        },
+        {
+          "case": "client_limit",
+          "seconds": 0.214,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/dcc44be05f3242b38180c72a60ebae66/client_limit.log",
+          "controlled_requests": 0
+        },
+        {
+          "case": "redirect",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/dcc44be05f3242b38180c72a60ebae66/redirect.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "rate_limited",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/dcc44be05f3242b38180c72a60ebae66/rate_limited.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "server_error",
+          "seconds": 0.214,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/dcc44be05f3242b38180c72a60ebae66/server_error.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "held",
+          "seconds": 6.225,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/dcc44be05f3242b38180c72a60ebae66/held.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "oversized_response",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/dcc44be05f3242b38180c72a60ebae66/oversized_response.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "partial_success",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/dcc44be05f3242b38180c72a60ebae66/partial_success.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "malformed_success",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/dcc44be05f3242b38180c72a60ebae66/malformed_success.log",
+          "controlled_requests": 3
+        }
+      ],
+      "native_protocol_statuses": {
+        "missing_auth": 401,
+        "wrong_auth": 401,
+        "oversized_body": 400
+      },
+      "controlled_success_is_not_acceptance": [
+        "partial_success",
+        "malformed_success"
+      ],
+      "sha256": {
+        "metrics": "352535c9b2186d27b8f0e2ca51ccbcf9e9cb016254ae3e31654a2a71acf50470",
+        "traces": "69cfdaff1cfb3d7e826143ab0c62c56867e15a2897a361be5d82d16152531c58"
+      }
+    },
+    {
+      "scope": "Actual Collector TLS/auth and OTLP metrics/traces for public SQLite/redb host observations; separate controlled HTTP fault cases, no committed diagnostic bridge",
+      "fixture": {
+        "container": "rom-extras-collector-native-20261009",
+        "container_id": "03c7a56c0cece96cade1b9be484981763e43b6c25ab2aa31b7fb6a764287876e",
+        "image_id": "b90b3ed4cab89c4e196d0c58234b71a862165e77631871fc9b5b1b6f2aad3163",
+        "digest": "sha256:340885ab6f46822374f00c58c067396b53b8d612559842e8821585567579d9e3",
+        "endpoint": "https://10.246.72.2:4318",
+        "native_version": "0.162.0"
+      },
+      "actual_binary_version": "otelcol-contrib version 0.162.0",
+      "configuration_sha256": "5e78c3eb2f4505694dec9210fc74781aa02dcde773cb253a8ae9156ff962d674",
+      "run": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/1e5d35e8f88644218eec7379f767289b",
+      "native_metric_count": 18,
+      "native_span_count": 14,
+      "cases": [
+        {
+          "case": "env_guard",
+          "seconds": 1.567,
+          "exit_code": 101,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/1e5d35e8f88644218eec7379f767289b/env_guard.log"
+        },
+        {
+          "case": "happy",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/1e5d35e8f88644218eec7379f767289b/happy.log"
+        },
+        {
+          "case": "missing_auth",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/1e5d35e8f88644218eec7379f767289b/missing_auth.log"
+        },
+        {
+          "case": "wrong_auth",
+          "seconds": 0.214,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/1e5d35e8f88644218eec7379f767289b/wrong_auth.log"
+        },
+        {
+          "case": "untrusted_ca",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/1e5d35e8f88644218eec7379f767289b/untrusted_ca.log"
+        },
+        {
+          "case": "wrong_identity",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/1e5d35e8f88644218eec7379f767289b/wrong_identity.log"
+        },
+        {
+          "case": "refused",
+          "seconds": 3.27,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/1e5d35e8f88644218eec7379f767289b/refused.log"
+        },
+        {
+          "case": "collector_stopped",
+          "seconds": 0.214,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/1e5d35e8f88644218eec7379f767289b/collector_stopped.log"
+        },
+        {
+          "case": "client_limit",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/1e5d35e8f88644218eec7379f767289b/client_limit.log",
+          "controlled_requests": 0
+        },
+        {
+          "case": "redirect",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/1e5d35e8f88644218eec7379f767289b/redirect.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "rate_limited",
+          "seconds": 0.214,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/1e5d35e8f88644218eec7379f767289b/rate_limited.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "server_error",
+          "seconds": 0.314,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/1e5d35e8f88644218eec7379f767289b/server_error.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "held",
+          "seconds": 6.275,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/1e5d35e8f88644218eec7379f767289b/held.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "oversized_response",
+          "seconds": 0.265,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/1e5d35e8f88644218eec7379f767289b/oversized_response.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "partial_success",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/1e5d35e8f88644218eec7379f767289b/partial_success.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "malformed_success",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/1e5d35e8f88644218eec7379f767289b/malformed_success.log",
+          "controlled_requests": 3
+        }
+      ],
+      "native_protocol_statuses": {
+        "missing_auth": 401,
+        "wrong_auth": 401,
+        "oversized_body": 400
+      },
+      "controlled_success_is_not_acceptance": [
+        "partial_success",
+        "malformed_success"
+      ],
+      "sha256": {
+        "metrics": "da3870070f868d375dcebabbc6059b8b3b008b35c3be4a17641ec88cca3da2b2",
+        "traces": "588224a450777eef5b6149ec01a69eeb0084dd81d04af77d50980b9611809584"
+      }
+    }
+  ],
+  "native_records_from_final_affected_gate": [
+    {
+      "scope": "Actual Collector TLS/auth and OTLP metrics/traces for public SQLite/redb host observations; separate controlled HTTP fault cases, no committed diagnostic bridge",
+      "fixture": {
+        "container": "rom-extras-collector-native-20261009",
+        "container_id": "03c7a56c0cece96cade1b9be484981763e43b6c25ab2aa31b7fb6a764287876e",
+        "image_id": "b90b3ed4cab89c4e196d0c58234b71a862165e77631871fc9b5b1b6f2aad3163",
+        "digest": "sha256:340885ab6f46822374f00c58c067396b53b8d612559842e8821585567579d9e3",
+        "endpoint": "https://10.246.72.2:4318",
+        "native_version": "0.162.0"
+      },
+      "actual_binary_version": "otelcol-contrib version 0.162.0",
+      "configuration_sha256": "5e78c3eb2f4505694dec9210fc74781aa02dcde773cb253a8ae9156ff962d674",
+      "run": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/67f9ee80a6a943cb9304372ebe7855e2",
+      "native_metric_count": 18,
+      "native_span_count": 14,
+      "cases": [
+        {
+          "case": "env_guard",
+          "seconds": 0.164,
+          "exit_code": 101,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/67f9ee80a6a943cb9304372ebe7855e2/env_guard.log"
+        },
+        {
+          "case": "happy",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/67f9ee80a6a943cb9304372ebe7855e2/happy.log"
+        },
+        {
+          "case": "missing_auth",
+          "seconds": 0.214,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/67f9ee80a6a943cb9304372ebe7855e2/missing_auth.log"
+        },
+        {
+          "case": "wrong_auth",
+          "seconds": 0.214,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/67f9ee80a6a943cb9304372ebe7855e2/wrong_auth.log"
+        },
+        {
+          "case": "untrusted_ca",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/67f9ee80a6a943cb9304372ebe7855e2/untrusted_ca.log"
+        },
+        {
+          "case": "wrong_identity",
+          "seconds": 0.214,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/67f9ee80a6a943cb9304372ebe7855e2/wrong_identity.log"
+        },
+        {
+          "case": "refused",
+          "seconds": 3.219,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/67f9ee80a6a943cb9304372ebe7855e2/refused.log"
+        },
+        {
+          "case": "collector_stopped",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/67f9ee80a6a943cb9304372ebe7855e2/collector_stopped.log"
+        },
+        {
+          "case": "client_limit",
+          "seconds": 0.214,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/67f9ee80a6a943cb9304372ebe7855e2/client_limit.log",
+          "controlled_requests": 0
+        },
+        {
+          "case": "redirect",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/67f9ee80a6a943cb9304372ebe7855e2/redirect.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "rate_limited",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/67f9ee80a6a943cb9304372ebe7855e2/rate_limited.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "server_error",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/67f9ee80a6a943cb9304372ebe7855e2/server_error.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "held",
+          "seconds": 6.224,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/67f9ee80a6a943cb9304372ebe7855e2/held.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "oversized_response",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/67f9ee80a6a943cb9304372ebe7855e2/oversized_response.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "partial_success",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/67f9ee80a6a943cb9304372ebe7855e2/partial_success.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "malformed_success",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/67f9ee80a6a943cb9304372ebe7855e2/malformed_success.log",
+          "controlled_requests": 3
+        }
+      ],
+      "native_protocol_statuses": {
+        "missing_auth": 401,
+        "wrong_auth": 401,
+        "accepted_valid_body_65536": 200,
+        "oversized_valid_body_65537": 400
+      },
+      "controlled_success_is_not_acceptance": [
+        "partial_success",
+        "malformed_success"
+      ],
+      "sha256": {
+        "metrics": "bc375517b5b6923c5a69269e07d2d1cc638d85c25bd63e5bf1ef630143cb7cb8",
+        "traces": "30c4cc98637c9534a7e80c8fb7dabe84e0fff26799c72979a5b3d9d2aae9e232"
+      }
+    },
+    {
+      "scope": "Actual Collector TLS/auth and OTLP metrics/traces for public SQLite/redb host observations; separate controlled HTTP fault cases, no committed diagnostic bridge",
+      "fixture": {
+        "container": "rom-extras-collector-native-20261009",
+        "container_id": "03c7a56c0cece96cade1b9be484981763e43b6c25ab2aa31b7fb6a764287876e",
+        "image_id": "b90b3ed4cab89c4e196d0c58234b71a862165e77631871fc9b5b1b6f2aad3163",
+        "digest": "sha256:340885ab6f46822374f00c58c067396b53b8d612559842e8821585567579d9e3",
+        "endpoint": "https://10.246.72.2:4318",
+        "native_version": "0.162.0"
+      },
+      "actual_binary_version": "otelcol-contrib version 0.162.0",
+      "configuration_sha256": "5e78c3eb2f4505694dec9210fc74781aa02dcde773cb253a8ae9156ff962d674",
+      "run": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/0110aa3135c1487ca463b3e46887579a",
+      "native_metric_count": 18,
+      "native_span_count": 14,
+      "cases": [
+        {
+          "case": "env_guard",
+          "seconds": 1.066,
+          "exit_code": 101,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/0110aa3135c1487ca463b3e46887579a/env_guard.log"
+        },
+        {
+          "case": "happy",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/0110aa3135c1487ca463b3e46887579a/happy.log"
+        },
+        {
+          "case": "missing_auth",
+          "seconds": 0.214,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/0110aa3135c1487ca463b3e46887579a/missing_auth.log"
+        },
+        {
+          "case": "wrong_auth",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/0110aa3135c1487ca463b3e46887579a/wrong_auth.log"
+        },
+        {
+          "case": "untrusted_ca",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/0110aa3135c1487ca463b3e46887579a/untrusted_ca.log"
+        },
+        {
+          "case": "wrong_identity",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/0110aa3135c1487ca463b3e46887579a/wrong_identity.log"
+        },
+        {
+          "case": "refused",
+          "seconds": 3.219,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/0110aa3135c1487ca463b3e46887579a/refused.log"
+        },
+        {
+          "case": "collector_stopped",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/0110aa3135c1487ca463b3e46887579a/collector_stopped.log"
+        },
+        {
+          "case": "client_limit",
+          "seconds": 0.214,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/0110aa3135c1487ca463b3e46887579a/client_limit.log",
+          "controlled_requests": 0
+        },
+        {
+          "case": "redirect",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/0110aa3135c1487ca463b3e46887579a/redirect.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "rate_limited",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/0110aa3135c1487ca463b3e46887579a/rate_limited.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "server_error",
+          "seconds": 0.264,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/0110aa3135c1487ca463b3e46887579a/server_error.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "held",
+          "seconds": 6.225,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/0110aa3135c1487ca463b3e46887579a/held.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "oversized_response",
+          "seconds": 0.565,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/0110aa3135c1487ca463b3e46887579a/oversized_response.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "partial_success",
+          "seconds": 0.415,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/0110aa3135c1487ca463b3e46887579a/partial_success.log",
+          "controlled_requests": 3
+        },
+        {
+          "case": "malformed_success",
+          "seconds": 0.415,
+          "exit_code": 0,
+          "log": "/root/ROM-extras/.superpowers/opentelemetry-native-runs/0110aa3135c1487ca463b3e46887579a/malformed_success.log",
+          "controlled_requests": 3
+        }
+      ],
+      "native_protocol_statuses": {
+        "missing_auth": 401,
+        "wrong_auth": 401,
+        "accepted_valid_body_65536": 200,
+        "oversized_valid_body_65537": 400
+      },
+      "controlled_success_is_not_acceptance": [
+        "partial_success",
+        "malformed_success"
+      ],
+      "sha256": {
+        "metrics": "fa41a4202003eeb8ee31e7e82049c22316e2d8122a446d8b248c4a23d706c22d",
+        "traces": "e3926dd4616f7d13b0578ebaafc39620b93d46066a1b3c4ef089aa58e5ac199f"
+      }
+    }
+  ],
+  "dependency_review": {
+    "new_registry_packages": [
+      {
+        "name": "anyhow",
+        "version": "1.0.104",
+        "license": "MIT OR Apache-2.0",
+        "rust_version": "1.68"
+      },
+      {
+        "name": "itertools",
+        "version": "0.14.0",
+        "license": "MIT OR Apache-2.0",
+        "rust_version": "1.63.0"
+      },
+      {
+        "name": "opentelemetry-http",
+        "version": "0.33.0",
+        "license": "Apache-2.0",
+        "rust_version": "1.75.0"
+      },
+      {
+        "name": "opentelemetry-otlp",
+        "version": "0.33.0",
+        "license": "Apache-2.0",
+        "rust_version": "1.75.0"
+      },
+      {
+        "name": "opentelemetry-proto",
+        "version": "0.33.0",
+        "license": "Apache-2.0",
+        "rust_version": "1.75.0"
+      },
+      {
+        "name": "prost",
+        "version": "0.14.4",
+        "license": "Apache-2.0",
+        "rust_version": "1.85"
+      },
+      {
+        "name": "prost-derive",
+        "version": "0.14.4",
+        "license": "Apache-2.0",
+        "rust_version": "1.85"
+      }
+    ],
+    "explicit_features": {
+      "opentelemetry": [
+        "futures",
+        "futures-core",
+        "futures-sink",
+        "metrics",
+        "pin-project-lite",
+        "thiserror",
+        "trace"
+      ],
+      "opentelemetry-http": [
+        "reqwest",
+        "reqwest-blocking",
+        "reqwest-rustls"
+      ],
+      "opentelemetry-native-consumer": [],
+      "opentelemetry-otlp": [
+        "http",
+        "http-proto",
+        "httpdate",
+        "metrics",
+        "opentelemetry-http",
+        "prost",
+        "reqwest",
+        "reqwest-blocking-client",
+        "reqwest-rustls",
+        "trace"
+      ],
+      "opentelemetry-proto": [
+        "gen-tonic-messages",
+        "metrics",
+        "prost",
+        "trace"
+      ],
+      "opentelemetry_sdk": [
+        "metrics",
+        "percent-encoding",
+        "rand",
+        "trace"
+      ]
+    },
+    "max_graph_msrv": [
+      [
+        1,
+        99
+      ],
+      "rom-sqlite"
+    ],
+    "advisory_commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de"
+  },
+  "native_consumer_audit": {
+    "vulnerabilities": 0,
+    "warnings": 0,
+    "advisory_commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+    "log": ".superpowers/opentelemetry-native-audit-2026-10-09.json"
+  },
+  "review": {
+    "kind": "independent source-only review",
+    "confirmed_findings": 1,
+    "fixed": "P2 interrupted detached group / skipped Collector restore; actual RED/GREEN and five owned-process tests"
+  },
+  "preservation": "All historical received records, Runtime databases, private fixture configuration, process logs, failed RED attempts and archived fixtures retained",
+  "remaining": [
+    "published DiagnosticReader bridge",
+    "actual action/physical commit/unknown commit/receipt replay/Work retry/recovery diagnostic correlation",
+    "host-local diagnostic loss/sequence accounting",
+    "complete OpenTelemetry family acceptance",
+    "production telemetry backend durability and exactly-once guarantees are not implied by local receive/export"
+  ]
+}

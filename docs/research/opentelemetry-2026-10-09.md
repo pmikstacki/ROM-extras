@@ -250,3 +250,58 @@ Metadata records confirm the standalone API and SDK each resolve only `metrics`.
 All newly introduced registry packages have an MIT or Apache license alternative; the selected policy uses those alternatives.
 Tagged direct API/SDK MSRV is 1.75; the workspace still requires Rust 1.99.
 Native Collector operation has not been tested by this local metrics increment.
+
+## Follow-up: receiver status and response bounds
+
+Collector v0.162.0 defines HTTP server configuration in `config/confighttp/server.go`.
+The Go mapstructure tags confirm `max_request_body_size`, `include_metadata`, `read_timeout`, `read_header_timeout`, and `write_timeout`.
+Use these keys under `receivers.otlp.protocols.http`. Request limits are bytes; timeout values are duration strings.
+The authentication interceptor returns HTTP 401 before calling the downstream handler when authentication fails.
+The body-size interceptor wraps the request with Go `http.MaxBytesReader`.
+[Exact server implementation](https://raw.githubusercontent.com/open-telemetry/opentelemetry-collector/v0.162.0/config/confighttp/server.go).
+
+For an authenticated OTLP POST with valid content type, an oversized body produces HTTP 400 in this version.
+`readAndCloseBody` maps its read error to `http.StatusBadRequest`; do not assume HTTP 413.
+Malformed protobuf/JSON also produces 400, so inspect the test trigger and absence of exported telemetry.
+Unsupported media type produces 415; unsupported method produces 405.
+Do not assert which rejection wins when authentication and body-size errors are combined; test each separately.
+[OTLP HTTP handler](https://raw.githubusercontent.com/open-telemetry/opentelemetry-collector/v0.162.0/receiver/otlpreceiver/otlphttp.go).
+
+OpenTelemetry HTTP 0.33.0 implements a 4 MiB maximum response body for its supplied reqwest and hyper integrations.
+Blocking reqwest clamps initial capacity, reads at most 4 MiB plus one byte, and returns `ResponseBodyTooLarge` on overflow.
+This limits collected body content. It does not claim a strict total process-memory bound, bounded response headers, or allocator capacity.
+It also does not constrain arbitrary custom `HttpClient` implementations supplied by a host.
+The finite reqwest timeout remains necessary for a response body that stalls below the limit.
+[HTTP client body collection](https://raw.githubusercontent.com/open-telemetry/opentelemetry-rust/opentelemetry-0.33.0/opentelemetry-http/src/lib.rs).
+
+OTLP HTTP metrics and trace exporters parse successful response bodies for partial success.
+Rejected counts or nonempty server error messages produce internal warnings; the export still returns `Ok(())`.
+An undecodable successful response body produces an internal debug event and also returns success.
+With internal logging disabled, those events need not be observable through logs.
+Therefore, successful SDK flush does not prove full acceptance or a valid success response from an arbitrary server.
+[Metrics response handling](https://raw.githubusercontent.com/open-telemetry/opentelemetry-rust/opentelemetry-0.33.0/opentelemetry-otlp/src/exporter/http/metrics.rs),
+[trace response handling](https://raw.githubusercontent.com/open-telemetry/opentelemetry-rust/opentelemetry-0.33.0/opentelemetry-otlp/src/exporter/http/trace.rs).
+
+The proposed native fixture uses a controlled Collector and inspects actual exported values, counts, and traces.
+Its evidence qualifies that endpoint and configuration only. It does not qualify arbitrary collector responses or production backend durability.
+No additional services, builds, or requests to the native Collector were executed by this research follow-up.
+
+## SDK environment precedence
+
+The tagged HTTP exporter adds SDK environment headers after explicit host headers.
+Explicit endpoint/client construction alone does not establish environment isolation.
+The native fixture host rejects `OTEL_*`; its driver removes inherited overrides and tests the rejection guard separately.
+This is explicit host policy; `rom-opentelemetry` itself still reads no environment.
+[Tagged HTTP configuration](https://raw.githubusercontent.com/open-telemetry/opentelemetry-rust/opentelemetry-0.33.0/opentelemetry-otlp/src/exporter/http/mod.rs).
+
+The implemented trace scope keeps span status Unset and records a finite typed outcome.
+This avoids converting caller observation into a rollback or physical commit assertion.
+Parent context is explicit; the host remains responsible for approved identifiers and trace state.
+The SDK and Collector are host dependencies, not instrumentation package production dependencies.
+
+## Executed native body boundary
+
+A valid unknown length-delimited protobuf field produces exact 65536-byte and 65537-byte OTLP requests.
+The actual Collector accepts the first with 200 and rejects the second with 400.
+This establishes the configured boundary without using malformed protobuf as an oversized negative fixture.
+[Wire format](https://protobuf.dev/programming-guides/encoding/), [unknown fields](https://protobuf.dev/programming-guides/proto3/#unknowns).

@@ -25,7 +25,7 @@ Final family acceptance retains action/commit/Work/recovery correlation, dropped
 | Infer commit traces from public action success | Cannot distinguish replay, unknown commits or lossy diagnostics; insufficient for final acceptance. |
 
 `rom-opentelemetry` depends on the exact OpenTelemetry API 0.33.0 without default features.
-Metrics support is initial; explicit host traces follow in the next task.
+Metrics support is unconditional; explicit host traces use optional feature `trace`.
 SDK/exporter construction belongs to the host and independent fixtures.
 No environment-variable configuration, default exporter, automatic sampler, global provider registration or separate diagnostic ledger is created.
 The [research note](../../research/opentelemetry-2026-10-09.md) records primary sources, SDK timeout limitations and Collector selection.

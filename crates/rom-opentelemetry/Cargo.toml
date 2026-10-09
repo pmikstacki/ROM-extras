@@ -11,6 +11,10 @@ publish.workspace = true
 [lints]
 workspace = true
 
+[features]
+default = []
+trace = ["opentelemetry/trace"]
+
 [dependencies]
 rom = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false }
 opentelemetry = { version = "=0.33.0", default-features = false, features = ["metrics"] }

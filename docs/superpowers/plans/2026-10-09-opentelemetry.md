@@ -45,12 +45,12 @@ Interfaces: RuntimeMetrics::new(Meter), record_status(&Result<RuntimeStatus>), r
 Files: src/trace.rs; native Collector runner, TLS/auth fault cases, independent/package consumers and evidence/docs.
 Interfaces: explicit host tracer/parent context; finite operation scope completion/abandonment; no global attachment.
 
-- [ ] Test fixed span names, parent links, safe outcome attributes and abandoned observations without outcome fabrication.
-- [ ] Implement scopes with exactly one metrics/trace completion and no raw domain data.
-- [ ] Provision a preserved, isolated real Collector with TLS/auth, finite request and export limits and unique file exports.
-- [ ] Send real OTLP metrics/traces; inspect native JSON values/units/types/relationships and canary absence.
-- [ ] Exercise trusted/untrusted identity, auth, request limits, unavailable Collector, bounded buffers and shutdown.
-- [ ] Run independent and normalized archive consumers, affected checks and full local verifier before integration.
+- [x] Test fixed span names, parent links, safe outcome attributes and abandoned observations without outcome fabrication.
+- [x] Implement scopes with exactly one metrics/trace completion and no raw domain data.
+- [x] Provision a preserved, isolated real Collector with TLS/auth, finite request and export limits and unique file exports.
+- [x] Send real OTLP metrics/traces; inspect native JSON values/units/types/relationships and canary absence.
+- [x] Exercise trusted/untrusted identity, auth, request limits, unavailable Collector, bounded buffers and shutdown.
+- [x] Run independent and normalized archive consumers, affected checks and full local verifier before integration.
 
 ### Task 3: Published diagnostic reader and full family acceptance
 
@@ -77,3 +77,30 @@ Task 1 ruling: capture converts/asserts borrowed SDK data within export instead 
 This costs a fixture-specific capture implementation but avoids claiming feature isolation through a testing-enabled SDK.
 Source-only independent review found no actionable findings. Full verifier exited zero on 1157 unchanged frozen files.
 Evidence: `docs/verification/opentelemetry-metrics-2026-10-09.json`.
+
+## Task 2 execution evidence
+
+Trace API RED: `.superpowers/opentelemetry-traces-feature-red-2026-10-09.log`, missing HostTelemetry export.
+SDK GREEN: `.superpowers/opentelemetry-traces-sdk-green-2026-10-09.log`, three trace and four metric tests.
+Controlled queue: `.superpowers/opentelemetry-trace-queue-2026-10-09.log`, one bounded loss test.
+Native and normalized archive consumers each pass 16 native/controlled cases with 14 exact parent-linked spans.
+The native private Collector is 0.162.0; image digest and actual binary version are checked.
+Native dependency review selects MIT/Apache alternatives; advisory audit reports zero vulnerabilities and warnings.
+
+Task 2 ruling: use a shared observer fixture contract for actual Runtime scenarios across metrics-only and trace consumers.
+This avoids scenario duplication; the small GAT scope remains fixture code, not a public ROM extension requirement.
+The native helper selects its entry point and permits unused metrics-only code in that imported fixture module.
+
+Task 2 ruling: exporter success cannot establish full acceptance with SDK 0.33.
+Controlled partial-success and malformed-success responses return success without native receipt.
+Qualification instead inspects actual Collector JSON counts, types, attributes and relationships.
+
+Final review P2: interrupted harness could leave a detached consumer or skip owned Collector restoration.
+Actual stopped-Collector SIGTERM reproduced RED, then GREEN with restoration.
+Process helper tests reproduce group interruption and worker-thread signal delivery; the latter required deferred Python handlers.
+They also test timeout cleanup and surviving TERM-ignoring descendants after normal parent exit.
+No history is deleted. The interrupted failed logs and received records remain preserved.
+Full verifier exited zero on 1170 unchanged frozen files.
+A stronger valid-protobuf boundary test then passed the full native affected gate for public and packaged consumers.
+No production Rust, helper or consumer source changed after the full run.
+Evidence: `docs/verification/opentelemetry-native-2026-10-09.json`.

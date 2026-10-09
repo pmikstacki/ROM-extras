@@ -3,3 +3,6 @@
 /.superpowers/
 /.worktrees/
 .env
+
+# Local Python qualification bytecode; keep generated caches outside source artifacts.
+__pycache__/

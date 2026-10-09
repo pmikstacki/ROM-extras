@@ -7,3 +7,7 @@ pub use error::TelemetryError;
 pub use operation::Operation;
 pub use outcome::Outcome;
 pub use runtime::RuntimeMetrics;
+#[cfg(feature = "trace")]
+mod trace;
+#[cfg(feature = "trace")]
+pub use trace::{HostObservation, HostTelemetry};

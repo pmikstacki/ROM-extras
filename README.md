@@ -28,7 +28,7 @@ These are executor profiles. Full ROM Storage integration remains pending.
 | [NATS JetStream](docs/nats.md) | Acknowledgements, deduplication, Runtime recovery, TLS and reconnect. | Production topology and release acceptance. |
 | [RabbitMQ](docs/rabbitmq.md) | Mandatory confirms, persistence, redelivery, uncertainty handling and TLS. | Replicated failover and release acceptance. |
 | [SMTP notifications](docs/smtp.md) | Bounded authenticated TLS, native Mailpit persistence, duplicate risk and SQLite/redb Runtime recovery. | Production relay profiles, deliverability and release acceptance. |
-| [OpenTelemetry host metrics](docs/opentelemetry.md) | Fixed public status gauges and typed operation summaries; local SDK and independent SQLite/redb consumers. | Traces, native OTLP and the committed diagnostic reader bridge. |
+| [OpenTelemetry host metrics](docs/opentelemetry.md) | Fixed status/operation instruments, explicit host traces and native TLS/auth Collector consumers on SQLite/redb. | The committed diagnostic reader bridge and final family acceptance. |
 | [Kafka](docs/kafka.md) | Offsets, duplicates, Runtime recovery, TLS/SASL, restart and independent consumers. | Additional notification connectors and release acceptance. |
 | [Azure Blob](docs/azure-blob.md) | Public blob port and persistent Azurite conformance. | Cloud profiles and further lifecycle faults. |
 | [S3-compatible](docs/s3-compatible.md) | RustFS local public-port qualification; SeaweedFS strict burst failure retained. | Cloud profiles and further lifecycle faults. |
@@ -80,6 +80,7 @@ Run:
 
 The full actual-backend verifier is `./scripts/check-all`. It requires the configured services and Python 3 for projection probes.
 Its SMTP gate requires an explicitly selected owned persistent TLS Mailpit fixture; see [configuration](docs/smtp.md).
+Its native OpenTelemetry gate requires an owned TLS/auth Collector fixture; see [configuration](docs/opentelemetry.md).
 Its map UI gate requires pnpm, Chromium and `ROM_EXTRAS_MAP_UI_ARCHIVE` pointing to the [qualified public UI archive](examples/maps-ui/README.md).
 
 GitHub hosts source code. GitHub Actions is disabled.

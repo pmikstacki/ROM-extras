@@ -17,22 +17,51 @@ const CHANGE: Action<Counter, bool> = Action::new("change", |state, accepted| {
     state.count += 1;
     Ok(vec![])
 });
-async fn observed(
+pub trait Observer {
+    type Scope<'a>
+    where
+        Self: 'a;
+    fn start(&self) -> Self::Scope<'_>;
+    fn finish<'a>(scope: Self::Scope<'a>, outcome: Outcome)
+    where
+        Self: 'a;
+}
+struct MetricObserver<'a>(&'a RuntimeMetrics);
+impl Observer for MetricObserver<'_> {
+    type Scope<'a>
+        = (&'a RuntimeMetrics, Instant)
+    where
+        Self: 'a;
+    fn start(&self) -> Self::Scope<'_> {
+        (self.0, Instant::now())
+    }
+    fn finish<'a>((metrics, start): Self::Scope<'a>, outcome: Outcome)
+    where
+        Self: 'a,
+    {
+        metrics.record_operation(Operation::Action, outcome, start.elapsed());
+    }
+}
+async fn observed<O: Observer>(
     runtime: &Runtime,
     actor: &Actor,
     command: Command<Counter>,
-    metrics: &RuntimeMetrics,
+    observer: &O,
 ) -> Result<Snapshot<Counter>> {
-    let start = Instant::now();
+    let scope = observer.start();
     let result = runtime.execute(actor, command).await;
-    metrics.record_operation(
-        Operation::Action,
-        Outcome::from_result(&result),
-        start.elapsed(),
-    );
+    O::finish(scope, Outcome::from_result(&result));
     result
 }
 pub async fn qualify(path: &Path, redb: bool, metrics: &RuntimeMetrics) {
+    qualify_with(path, redb, metrics, &MetricObserver(metrics)).await;
+}
+pub async fn qualify_with<O: Observer>(
+    path: &Path,
+    redb: bool,
+    metrics: &RuntimeMetrics,
+    observer: &O,
+) {
     let storage: Arc<dyn Storage> = if redb {
         Arc::new(rom_redb::Redb::open(path).unwrap())
     } else {
@@ -61,7 +90,7 @@ pub async fn qualify(path: &Path, redb: bool, metrics: &RuntimeMetrics) {
             },
         )
         .idempotency("seed"),
-        metrics,
+        observer,
     )
     .await
     .unwrap();
@@ -72,7 +101,7 @@ pub async fn qualify(path: &Path, redb: bool, metrics: &RuntimeMetrics) {
         Command::action(CANARY, CHANGE, false)
             .at_revision(1)
             .idempotency("rejected"),
-        metrics,
+        observer,
     )
     .await;
     assert!(matches!(rejected, Err(Error::Invalid { .. })));
@@ -82,7 +111,7 @@ pub async fn qualify(path: &Path, redb: bool, metrics: &RuntimeMetrics) {
         Command::action(CANARY, CHANGE, true)
             .at_revision(1)
             .idempotency("change"),
-        metrics,
+        observer,
     )
     .await
     .unwrap();
@@ -94,7 +123,7 @@ pub async fn qualify(path: &Path, redb: bool, metrics: &RuntimeMetrics) {
         Command::action(CANARY, CHANGE, true)
             .at_revision(1)
             .idempotency("change"),
-        metrics,
+        observer,
     )
     .await
     .unwrap();
@@ -107,7 +136,7 @@ pub async fn qualify(path: &Path, redb: bool, metrics: &RuntimeMetrics) {
         Command::action(CANARY, CHANGE, true)
             .at_revision(2)
             .idempotency("denied"),
-        metrics,
+        observer,
     )
     .await;
     assert!(matches!(refused, Err(Error::Denied)));
