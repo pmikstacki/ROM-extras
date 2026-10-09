@@ -207,3 +207,17 @@ The embedding host creates and finally joins StorageLifecycle from a blocking co
 Tests cover real native ownership, overload, cancellation, dropped startup/shutdown futures, asynchronous progress, queued intent draining and slot reuse.
 Source review, independent public/archive consumers and the full verifier remain required before integration.
 Actual native history/authorization and Rust provider transports remain unfinished; Task 2 is not complete.
+
+## Task 2 native history and Task 3 write adapter checkpoint
+
+Native history increment 69ab0e4 consumes public authorized SQLite/redb feeds and selected bounded host-vector input.
+It passed fourteen actual native cases, independent public/archive consumers and the full verifier.
+Task2 final requirement audit remains separate; no checkbox is inferred from an increment.
+
+The Rust OpenSearch write increment implements pure bounded preparation and actual strict external-version writes.
+Native tests cover equal replay/conflict, stale tombstone fencing, signed overflow, exact unindexed u64 source, partial Bulk and dropped acknowledgement.
+Actual public SQLite/redb and checkpoint reopen cover Unknown followed by pending recovery against the real service.
+The required check-opensearch gate is wired into check-all without absent-service skips.
+The write increment passed delayed writes, actual service restart, hostile transport bounds, independent consumers, source review and a full frozen verifier.
+The verifier used one harness thread; prior parallel failures and unresolved native setup rejection remain recorded.
+Task3 remains in progress: typed bounded search candidates are unfinished. Current query authorization and durable generation switching remain Tasks5/6.

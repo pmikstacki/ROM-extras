@@ -1,0 +1,16 @@
+   Compiling rom-opensearch v0.1.0-dev (/root/ROM-extras/crates/rom-opensearch)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.80s
+     Running tests/service.rs (target/debug/deps/service-12c50ee9d699b5fb)
+
+running 8 tests
+test page_and_selected_text_bounds_reject_without_native_intent_or_network ... ok
+test signed_revision_overflow_rejected_before_dispatch ... ok
+test changed_approved_document_profile_fails_before_write ... ok
+test signed_maximum_and_exact_unindexed_json_round_trip ... ok
+test empty_indexed_fields_preserve_exact_selected_values ... ok
+test actual_external_replay_conflict_stale_and_tombstone ... ok
+test actual_response_loss_replay_inspects_native_committed_state ... ok
+test late_native_request_after_timeout_cannot_regress_live_or_tombstone ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 16.62s
+

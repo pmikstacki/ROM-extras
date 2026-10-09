@@ -1,0 +1,43 @@
+   Compiling rom-opensearch v0.1.0-dev (/root/ROM-extras/crates/rom-opensearch)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.63s
+     Running unittests src/lib.rs (target/debug/deps/rom_opensearch-1f75fce27605f5e1)
+
+running 1 test
+test partial_bulk::http200_partial_bulk_cannot_publish_complete_observations ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.29s
+
+     Running tests/boundaries.rs (target/debug/deps/boundaries-a9d0734b82b6a146)
+
+running 2 tests
+test profile_fingerprint_includes_model_mapping_provider_and_deployment ... ok
+test tls_origin_rejects_credential_paths_redirect_inputs_and_unbounded_material ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/runtime_recovery.rs (target/debug/deps/runtime_recovery-b375db02403644fc)
+
+running 2 tests
+test redb_native_recovery_after_actual_acknowledgement_loss ... ok
+test sqlite_native_recovery_after_actual_acknowledgement_loss ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.60s
+
+     Running tests/service.rs (target/debug/deps/service-12c50ee9d699b5fb)
+
+running 6 tests
+test page_and_selected_text_bounds_reject_without_native_intent_or_network ... ok
+test signed_revision_overflow_rejected_before_dispatch ... ok
+test signed_maximum_and_exact_unindexed_json_round_trip ... ok
+test changed_approved_document_profile_fails_before_write ... ok
+test actual_external_replay_conflict_stale_and_tombstone ... ok
+test actual_response_loss_replay_inspects_native_committed_state ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.70s
+
+   Doc-tests rom_opensearch
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,17 @@
+//! Bounded OpenSearch projection target with strict external revisions and persistent tombstones.
+mod adapter;
+mod config;
+mod mapping;
+mod transport;
+mod writes;
+pub use adapter::OpenSearch;
+pub use config::TlsConfig;
+pub use writes::PreparedPage;
+
+#[cfg(test)]
+extern crate self as rom_opensearch;
+#[cfg(all(test, feature = "service-fixture"))]
+#[path = "native_partial_tests.rs"]
+mod partial_bulk;
+#[cfg(all(test, feature = "service-fixture"))]
+mod transport_tests;

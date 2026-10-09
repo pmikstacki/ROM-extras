@@ -1,0 +1,9 @@
+   Compiling rom-opensearch v0.1.0-dev (/root/ROM-extras/crates/rom-opensearch)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.62s
+     Running tests/service.rs (target/debug/deps/service-12c50ee9d699b5fb)
+
+running 1 test
+test late_native_request_after_timeout_cannot_regress_live_or_tombstone ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 6 filtered out; finished in 14.78s
+

@@ -1,0 +1,55 @@
+   Compiling rom-opensearch v0.1.0-dev (/root/ROM-extras/crates/rom-opensearch)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.81s
+     Running unittests src/lib.rs (target/debug/deps/rom_opensearch-1f75fce27605f5e1)
+
+running 5 tests
+test transport_tests::wrong_trust_root_prevents_any_http_disclosure ... ok
+test transport_tests::operation_deadline_stops_a_server_that_never_responds ... ok
+test transport_tests::oversized_stream_declared_size_and_invalid_json_never_become_observations ... ok
+test transport_tests::redirects_never_reach_destination_and_are_not_retried ... ok
+test partial_bulk::http200_partial_bulk_cannot_publish_complete_observations ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.04s
+
+     Running tests/boundaries.rs (target/debug/deps/boundaries-a9d0734b82b6a146)
+
+running 2 tests
+test profile_fingerprint_includes_model_mapping_provider_and_deployment ... ok
+test tls_origin_rejects_credential_paths_redirect_inputs_and_unbounded_material ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/restart.rs (target/debug/deps/restart-62a3d4be6e0c57f1)
+
+running 1 test
+test restart_preserves_exact_live_and_tombstone_before_replay ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 17.73s
+
+     Running tests/runtime_recovery.rs (target/debug/deps/runtime_recovery-b375db02403644fc)
+
+running 2 tests
+test redb_native_recovery_after_actual_acknowledgement_loss ... FAILED
+test sqlite_native_recovery_after_actual_acknowledgement_loss ... FAILED
+
+failures:
+
+---- redb_native_recovery_after_actual_acknowledgement_loss stdout ----
+
+thread 'redb_native_recovery_after_actual_acknowledgement_loss' (433551) panicked at crates/rom-opensearch/tests/runtime_recovery.rs:61:45:
+called `Result::unwrap()` on an `Err` value: Unknown
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- sqlite_native_recovery_after_actual_acknowledgement_loss stdout ----
+
+thread 'sqlite_native_recovery_after_actual_acknowledgement_loss' (433552) panicked at crates/rom-opensearch/tests/runtime_recovery.rs:61:45:
+called `Result::unwrap()` on an `Err` value: Unknown
+
+
+failures:
+    redb_native_recovery_after_actual_acknowledgement_loss
+    sqlite_native_recovery_after_actual_acknowledgement_loss
+
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.14s
+
+error: test failed, to rerun pass `-p rom-opensearch --test runtime_recovery`

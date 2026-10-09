@@ -1,0 +1,19 @@
+   Compiling rom-opensearch v0.1.0-dev (/root/ROM-extras/crates/rom-opensearch)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.27s
+     Running tests/service.rs (target/debug/deps/service-12c50ee9d699b5fb)
+
+running 1 test
+
+thread 'empty_indexed_fields_preserve_exact_selected_values' (470124) panicked at crates/rom-opensearch/tests/service.rs:173:38:
+called `Result::unwrap()` on an `Err` value: Rejected
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test empty_indexed_fields_preserve_exact_selected_values ... FAILED
+
+failures:
+
+failures:
+    empty_indexed_fields_preserve_exact_selected_values
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 7 filtered out; finished in 0.26s
+
+error: test failed, to rerun pass `-p rom-opensearch --test service`

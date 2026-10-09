@@ -1,0 +1,9 @@
+   Compiling rom-opensearch v0.1.0-dev (/root/ROM-extras/crates/rom-opensearch)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.73s
+     Running tests/restart.rs (target/debug/deps/restart-62a3d4be6e0c57f1)
+
+running 1 test
+test restart_preserves_exact_live_and_tombstone_before_replay ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 15.29s
+

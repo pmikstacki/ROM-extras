@@ -9,6 +9,7 @@ license = "MIT"
 [workspace]
 
 [features]
+opensearch-conformance = ["dep:rom-opensearch", "dep:tokio", "dep:serde_json", "serde_json/arbitrary_precision", "serde_json/preserve_order"]
 projection-checkpoints = ["dep:rom-sqlite", "dep:rom-redb", "dep:tokio", "dep:serde_json", "serde_json/arbitrary_precision", "serde_json/preserve_order"]
 secrets-host = ["dep:tokio", "dep:rom-identity", "dep:rom-sqlite", "dep:rom-redb", "dep:serde_json"]
 oracle-conformance = ["dep:oracle", "dep:tokio"]
@@ -67,7 +68,12 @@ required-features = ["s3-conformance"]
 name = "oracle_executor"
 required-features = ["oracle-conformance"]
 
+[[test]]
+name = "opensearch"
+required-features = ["opensearch-conformance"]
+
 [dependencies]
+rom-opensearch = { path = "../../crates/rom-opensearch", optional = true }
 rom-projection-core = { path = "../../crates/rom-projection-core" }
 rom-identity = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", optional = true }
 serde_json = { version = "=1.0.151", optional = true }

@@ -748,3 +748,100 @@ The 55 additional package versions already exist in the root graph. No productio
 Declared licenses include MIT/Apache-2.0, Zlib, Unicode-3.0 and Unlicense alternatives; only the temporary consumer lacks package license metadata.
 Declared package Rust requirements remain within the tested 1.99 toolchain. Native source dependencies have no optional features enabled.
 Root and archive audits report no known vulnerabilities or warnings. The public consumer retains its unsuppressed paste maintenance warning.
+
+## 2026-10-09: native Rust OpenSearch write adapter (qualification in progress)
+
+Consume the accepted ProjectionTarget seam; do not replace durable worker or public native history orchestration.
+Use strict external versions, not external_gte. Equal-version conflicts require exact real-time stored-source equality.
+Retain same-ID tombstone documents; never physically delete the revision fence.
+Use SHA-256 IDs over framed original kind and ID, then verify the original key in stored source.
+Reject revisions above i64::MAX before intent or network dispatch.
+Keep complete approved selected values in an unindexed object; index only explicitly named string/null text fields.
+This avoids truncating unsigned JSON values through native long mappings.
+Require explicit strict mappings, actual mapping equality and request translog durability. Refresh visibility remains separate.
+Keep a fixed index UUID during adapter lifetime. Durable generation/UUID manifest recovery remains Task6 work.
+
+Sources inspected on 2026-10-09: [Bulk versions and item responses](https://docs.opensearch.org/latest/api-reference/document-apis/bulk/), [real-time stored source](https://docs.opensearch.org/latest/api-reference/document-apis/get-documents/), [explicit index creation](https://docs.opensearch.org/latest/api-reference/index-apis/create-index/), [object mapping and disabled indexing](https://docs.opensearch.org/latest/mappings/supported-field-types/object/), [native settings](https://docs.opensearch.org/latest/api-reference/index-apis/get-settings/), [reqwest 0.13.5 verified TLS and finite transport configuration](https://docs.rs/reqwest/0.13.5/reqwest/struct.ClientBuilder.html).
+
+The scoped fixture initially rejected mapping/settings reads. Preserve the failure and inspect native actions rather than widening to admin.
+Add only indices:admin/mappings/get and indices:monitor/settings/get to the existing rom_extras_* writer pattern.
+Tagged sources: [GetMappingsAction](https://github.com/opensearch-project/OpenSearch/blob/3.9.0/server/src/main/java/org/opensearch/action/admin/indices/mapping/get/GetMappingsAction.java), [GetSettingsAction](https://github.com/opensearch-project/OpenSearch/blob/3.9.0/server/src/main/java/org/opensearch/action/admin/indices/settings/get/GetSettingsAction.java).
+Original and changed fixture roles are retained privately. Client keys and credential material remain private.
+
+Use a test-only verified-mTLS relay to discard actual Bulk responses after the upstream response ends.
+Rust target observes Unknown; real SQLite/redb source and actual native checkpoint reopen recover the pending old interval.
+These cases do not establish service restart, delayed stale requests, bounded hostile responses, or independent archive compatibility.
+First missing API and compilation failures are not behavioral RED evidence. Initial native mapping/permission rejection is an executed behavior failure.
+The initial native Runtime test omitted its field policy; its Denied results are retained as fixture failures.
+Task3 and the full projections family remain incomplete pending the remaining real-service and package acceptance.
+
+### OpenSearch delayed request qualification
+
+Hold an actual bounded request at the verified TLS relay before upstream submission.
+Publish a private barrier after receiving the complete body; submit it seven seconds later, beyond the five-second client deadline.
+After the client observes Unknown, dispatch a newer live or tombstone representation directly.
+The late native Bulk response reports HTTP200 with item409; exact stored-source replay confirms the newer representation remains unchanged.
+Use temporary-file rename for barrier publication, so readers cannot observe incomplete status JSON.
+Sources: [strict external Bulk comparison](https://docs.opensearch.org/latest/api-reference/document-apis/bulk/), [Node verified HTTPS request](https://nodejs.org/api/https.html#httpsrequesturl-options-callback), [Node file rename](https://nodejs.org/api/fs.html#fsrenamesyncoldpath-newpath).
+The actual late-request test passed both representations. This does not establish backend restart or distributed durability.
+
+### Restart and independent OpenSearch consumers
+
+Inspect actual stored sources before replay after a persistent native server restart.
+A replay could recreate missing data; it is insufficient evidence that a restart preserved prior state.
+Add inspect_prepared as a bounded read-only operation over an already validated immutable request.
+Share stored-source validation with apply instead of duplicating key, revision, digest and complete selected-value comparisons.
+The actual restart case preserves live i64::MAX, original index UUID and persistent tombstone; a stale resurrection attempt still fails.
+Sources: [native stored-source GET](https://docs.opensearch.org/latest/api-reference/document-apis/get-documents/), [native index settings](https://docs.opensearch.org/latest/install-and-configure/configuring-opensearch/index-settings/).
+
+Add the same public-only conformance case to the independent consumer and the normalized three-archive consumer.
+The independent consumer enables serde_json arbitrary_precision and preserve_order; both cases passed actual native source equality.
+Reuse the immutable public ROM patches and extras archive paths; do not rewrite normalized manifests.
+Source: [Cargo package normalization](https://doc.rust-lang.org/cargo/commands/cargo-package.html).
+Missing inspect_prepared initially fails compilation; classify it separately from native behavior.
+Native restart, the complete 13-case adapter suite, public consumer and Clippy passed.
+The archive consumer run and Clippy passed; extracted core native-history tests passed twice, including locked replay.
+Hostile transport qualification, final source review, fresh graph audits and the full frozen verifier remain required before integration.
+
+
+### Transport review corrections and uncertain initialization
+
+Use one operation deadline for generation creation and subsequent metadata reads. Do not renew it between requests.
+The controlled TLS regression reproduced success after the configured deadline. The corrected case returns Unknown.
+The first fixture matched a raw path with a trailing query marker. Preserve that fixture failure separately from behavioral RED.
+Source: [Tokio timeout cancellation](https://docs.rs/tokio/1.53.1/tokio/time/fn.timeout.html).
+
+Own each fixture child before readiness. Bound the readiness read, then kill, wait and join on failure or drop.
+Silent, malformed, oversized and valid readiness cases confirm process cleanup.
+Controlled mTLS sockets qualify redirect rejection, response bounds, malformed responses, deadlines and untrusted roots.
+These sockets supplement actual OpenSearch tests; they do not replace native acceptance.
+
+The first hostile required gate failed during two generation creations with Unknown. Native settings reads confirmed both indexes existed.
+Reconcile uncertain test initialization through bounded read-only verification. Never repeat creation after Unknown.
+Keep the production deadline unchanged. The observed result does not establish the cause of native latency.
+Source: [OpenSearch index creation acknowledgement](https://docs.opensearch.org/latest/api-reference/index-apis/create-index/).
+
+The corrected required gate passed 19 adapter cases, one public case and both Clippy checks.
+The corrected normalized three-archive consumer passed, including 14 native history cases twice.
+Final review identified empty indexed fields as an admitted mapping boundary requiring native qualification.
+Full frozen verification and fresh dependency audits remain pending. Task3 remains incomplete.
+
+The empty indexed-field native regression failed during generation creation. Emit an explicit object type without empty properties for this case.
+Native creation, exact verification, write and read-only inspection now pass with all selected values stored but no text fields indexed.
+Source: [OpenSearch object mapping](https://docs.opensearch.org/latest/mappings/supported-field-types/object/).
+
+The first full verifier failed at one late-request test's generation setup with Rejected; seven other service cases passed.
+A scoped diagnostic creation succeeded. All eight service cases passed on reproduction after adding the index name to failure diagnostics.
+The cause remains unresolved. Preserve both results and rerun the full verifier with a new source fence.
+Do not convert the earlier failure into success evidence or retry rejected creation inside a test.
+
+Later full retries failed in unchanged NATS acknowledgement witnessing and core lifecycle test timeouts.
+The unchanged NATS case passed alone. All seventeen core unit cases passed with one harness thread.
+Use RUST_TEST_THREADS=1 for the next full qualification. Preserve internal test concurrency, existing deadlines and every required gate.
+Default parallelism uses available hardware concurrency. Serial harness execution reduces competing native fixture work.
+This execution choice does not establish the cause of each earlier failure or production capacity.
+Sources: [Rust test execution](https://doc.rust-lang.org/rustc/tests/index.html), [parallel test isolation](https://doc.rust-lang.org/book/ch11-02-running-tests.html).
+
+The serial full verifier exited zero with all 236 runtime hashes unchanged. Twenty adapter cases and independent consumers passed.
+The [write qualification record](../verification/opensearch-rust-write-2026-10-09.md) preserves earlier failures, source review and fresh dependency inventories.
+Typed search, Qdrant Rust transport, current query authorization and durable generation switching remain incomplete.

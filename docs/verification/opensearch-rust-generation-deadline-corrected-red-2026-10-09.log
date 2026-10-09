@@ -1,0 +1,21 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
+     Running unittests src/lib.rs (target/debug/deps/rom_opensearch-1f75fce27605f5e1)
+
+running 1 test
+test transport_tests::generation_inspection_has_one_total_deadline_across_successful_requests ... FAILED
+
+failures:
+
+---- transport_tests::generation_inspection_has_one_total_deadline_across_successful_requests stdout ----
+
+thread 'transport_tests::generation_inspection_has_one_total_deadline_across_successful_requests' (442652) panicked at crates/rom-opensearch/src/transport_tests.rs:152:5:
+assertion failed: matches!(target.verify_generation().await, Err(TargetFailure::Unknown))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    transport_tests::generation_inspection_has_one_total_deadline_across_successful_requests
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.49s
+
+error: test failed, to rerun pass `-p rom-opensearch --lib`

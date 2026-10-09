@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+node --check crates/rom-opensearch/tests/support/response_loss_proxy.mjs
+node --check crates/rom-opensearch/tests/support/hostile_https.mjs
+cargo test -p rom-opensearch --features service-fixture --locked
+cargo clippy -p rom-opensearch --features service-fixture --all-targets --locked -- -D warnings
+cargo test --manifest-path tests/public-consumer/Cargo.toml --features opensearch-conformance --test opensearch --locked
+cargo clippy --manifest-path tests/public-consumer/Cargo.toml --features opensearch-conformance --all-targets --locked -- -D warnings

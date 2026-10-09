@@ -13,7 +13,8 @@ Create and finally join the lifecycle host from a blocking embedding context. Na
 
 Pending-history reconstruction validates bounded authorized-batch metadata, clamps overrun and compares the complete immutable intent without checkpoint publication.
 Immutable selected-field documents derive canonical content identities and durable profiles, with bounded exact numeric admission and finite vectors.
-Actual public SQLite/redb feeds and native provider round-trips remain unqualified.
+RuntimeHistory uses public authorized SQLite/redb journals. Native tests cover restart, current row/field revocation and filtered cursor progress.
+Provider transport qualification is separate from the source contract.
 
 The core Worker composes durable preparation, target observation and exact pending-history recovery.
 Target adapters and history sources remain trusted seams; synthetic tests do not qualify native integration.

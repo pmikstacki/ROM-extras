@@ -2348,6 +2348,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "rom-opensearch"
+version = "0.1.0-dev"
+dependencies = [
+ "reqwest",
+ "rom",
+ "rom-projection-core",
+ "rom-redb",
+ "rom-sqlite",
+ "serde_json",
+ "sha2",
+ "tokio",
+ "url",
+ "zeroize",
+]
+
+[[package]]
 name = "rom-projection-core"
 version = "0.1.0-dev"
 dependencies = [

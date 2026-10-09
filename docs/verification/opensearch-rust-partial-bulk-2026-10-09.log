@@ -1,0 +1,17 @@
+   Compiling rom-opensearch v0.1.0-dev (/root/ROM-extras/crates/rom-opensearch)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.67s
+     Running unittests src/lib.rs (target/debug/deps/rom_opensearch-06fb2673be718f0b)
+
+running 1 test
+test partial_bulk::http200_partial_bulk_cannot_publish_complete_observations ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.26s
+
+     Running tests/service.rs (target/debug/deps/service-c847c5d7f198b2d5)
+
+running 2 tests
+test signed_revision_overflow_rejected_before_dispatch ... ok
+test actual_external_replay_conflict_stale_and_tombstone ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.30s
+

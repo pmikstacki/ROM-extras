@@ -1,0 +1,116 @@
+{
+  "inspection_date": "2026-10-09",
+  "baseline_commit": "69ab0e4ef3855a4d91f3620ff1743f1d62ce66ca",
+  "command": "RUST_TEST_THREADS=1 ./scripts/check-all",
+  "exit_code": 0,
+  "completed_utc": "2026-10-09T02:14:15.266Z",
+  "frozen_files": 236,
+  "source_unchanged": true,
+  "source_fence": "opensearch-rust-runtime-inputs-retry-2026-10-09.json",
+  "full_log": "opensearch-rust-full-verifier-serial-2026-10-09.log",
+  "compiler": "opensearch-rust-compiler-2026-10-09.log",
+  "adapter_cases": 20,
+  "controlled_transport_cases": 6,
+  "independent_public_cases": 1,
+  "normalized_archives": {
+    "rom-sql-core": "74cc4be6b7d12c55032bee3e13cf4c277fe7504ced77f58f763a1ec026763410",
+    "rom-projection-core": "29ae125d36c7cec8d6b7d03cd6a60d251afcf5c7114d2f01642c7b0f723586bf",
+    "rom-opensearch": "5b81572f2936bc1a6d4e961c02cbefb9752e6d262fa4b929a2c8606811d7fd52"
+  },
+  "archive_packages": 193,
+  "archive_added_packages": 98,
+  "added_archive_versions_already_root": true,
+  "registry_versions_and_checksums_unchanged": true,
+  "audits": {
+    "root_lock_packages": 365,
+    "public_lock_packages": 456,
+    "archive_lock_packages": 193,
+    "known_vulnerabilities": 0,
+    "public_warning": "RUSTSEC-2024-0436 paste maintenance warning retained"
+  },
+  "review": {
+    "source_only": true,
+    "reviewer_executed_tests": false,
+    "final_actionable_findings": 0,
+    "corrected_findings": [
+      "total generation deadline",
+      "bounded owned fixture startup",
+      "empty indexed-field native mapping"
+    ]
+  },
+  "service": {
+    "version": "OpenSearch 3.9.0",
+    "image": "docker.io/opensearchproject/opensearch@sha256:13487e0953520edf6cc866dfc672fd67a70ab122aa7d84d4a6c97106f84d3f84",
+    "local_image_id": "903c4fa852a67838269696e031077c6d726ca0a369f8b709a311083e514f1dad",
+    "cpu": 2,
+    "memory_bytes": 2147483648,
+    "heap_mib": 512,
+    "verified_mtls": true,
+    "shards": 1,
+    "replicas": 0,
+    "translog_durability": "request",
+    "scoped_additional_actions": [
+      "indices:admin/mappings/get",
+      "indices:monitor/settings/get"
+    ]
+  },
+  "failed_full_attempts": [
+    {
+      "session": 7803,
+      "exit_code": 101,
+      "reason": "one native generation setup Rejected; cause unresolved; unchanged behavior passed focused reproduction"
+    },
+    {
+      "session": 86947,
+      "exit_code": 101,
+      "reason": "existing NATS acknowledgement-drop witness deadline; unchanged focused case passed"
+    },
+    {
+      "session": 73243,
+      "exit_code": 101,
+      "reason": "three existing core lifecycle/storage-owner timeouts; all 17 unit cases passed with one harness thread"
+    }
+  ],
+  "scope_limits": [
+    "Fixed-generation writes and exact read-only reconciliation only; typed search candidates are unfinished.",
+    "Current query authorization and durable generation/alias switching remain unfinished.",
+    "Qdrant Rust transport remains unfinished; protocol probes are separate evidence.",
+    "Actual single-node fixture only; no multi-node durability or production capacity claim.",
+    "Prior intermittent native setup rejection and default-harness timeouts remain unexplained.",
+    "Full ROM-extras goal and Task3 remain active."
+  ],
+  "evidence_hashes": {
+    "opensearch-rust-review-corrected-gate-2026-10-09.log": "9b4427ad7b61418a95b7fe5574be6ea66b19e9e3b5cb8bf51e41db75fa89135b",
+    "opensearch-rust-corrected-package-2026-10-09.log": "b5ba4bb2813d8cab5d21a39570611bbc7e9279850772773e6eff46bddb48534d",
+    "opensearch-rust-empty-fields-red-2026-10-09.log": "4ee6859e408c78d915f058a10efd1a3aac90dcae61289ffcc1ca26bf95612e81",
+    "opensearch-rust-empty-fields-green-2026-10-09.log": "6e3b2507b71cc8ea1632a6d158e7baafcfebbe60423460c709b5e15f0eb9f07f",
+    "opensearch-rust-full-failure-reproduction-2026-10-09.log": "75cf7c7d4da648a30789814db65d426fb0e044fe9b69c4d2208bc3539929e8ad",
+    "opensearch-rust-full-failure-reproduction-corrected-2026-10-09.log": "b7fe56eed044ba86b4a8829400a0dae2c41b10af834f0212cbd6ddeb92532725",
+    "opensearch-rust-full-nats-reproduction-2026-10-09.log": "fff71329ee69ab797aac9fe4ea90277f4cc4ab3ef6700dbfcdb838f1a1f2df8a",
+    "opensearch-rust-core-serial-diagnostic-2026-10-09.log": "d239f9c500c17a0e5e77baf7b657292df599096a0531bbcc804b78c539f48509",
+    "opensearch-rust-full-verifier-2026-10-09.log": "bf009cec50c86c86cb47d94f50deecbc864371cd2a73f8c134eae11602f239ad",
+    "opensearch-rust-full-verifier-retry-2026-10-09.log": "df85cbf29b88817393f11bbe353e72543387744fa5f313033fa8366f61c19ffd",
+    "opensearch-rust-full-verifier-final-2026-10-09.log": "ba798023c94f8793668b113c5383ecb6eab83a590868f4dfcc4319135f875e84",
+    "opensearch-rust-full-verifier-serial-2026-10-09.log": "ccdda2ecd08ebf76de68f1ba3841ddbc5dcba4ccfa7cf2a5c257224b580950b3",
+    "opensearch-rust-generation-deadline-corrected-red-2026-10-09.log": "2ac345f22bb7fb1076449a443dd62b6b845ea22033ef517b446604f564766975",
+    "opensearch-rust-generation-deadline-green-2026-10-09.log": "57cdb0537cf362a76900ae4f88466a00623414d6ec69c15945b62a79a84ac8e6",
+    "opensearch-rust-fixture-ownership-green-2026-10-09.log": "e62a5c29eb4faa3343d4e5b9d3af44109880c32a008b39784c598f14acacef1f",
+    "opensearch-rust-hostile-required-gate-2026-10-09.log": "02d03569096ce20e82c38ae370837b88afa4d712b0e435226bf62b85f382721e",
+    "opensearch-rust-native-restart-2026-10-09.log": "2799fa5acc583a435631848a014e0b9446e20821c8574db04675a101fc652091",
+    "opensearch-rust-late-native-2026-10-09.log": "9d4652ea96da2cca33ca198e0626894ce4e41bbdfab3993e16e57d3b5aaadbaf",
+    "opensearch-rust-late-atomic-barrier-2026-10-09.log": "73d392171a8d119141872a7d850d45f5876277438a75ef3bc9a98daa5045b187",
+    "opensearch-rust-partial-bulk-2026-10-09.log": "b2b389b9c04edc1eff3e54d9cf9d4a7294b7fb2749b066b0441a6078e58cb521",
+    "opensearch-rust-response-loss-2026-10-09.log": "6325ccfce25ff61b8fcdc59e3fe9b28d581a7118d27d10e4523d7bef99fc1164",
+    "opensearch-rust-native-runtime-explicit-policy-2026-10-09.log": "ebc60ee71d725ca3517bf725fd7bd1ac3818ce8754126b2fd6c281ec7d4da93b",
+    "opensearch-rust-compiler-2026-10-09.log": "b569b0c98ea3133c7252b4b8ea6b39b7b353813df0dd5f5c412c355691424112",
+    "opensearch-rust-runtime-inputs-2026-10-09.json": "fb5e2def994005964750d2ad1d874ccfb177d462b5accc53d43845a1c1939a7c",
+    "opensearch-rust-runtime-inputs-retry-2026-10-09.json": "5627854f58512bd702045fd2d62c1b6f0101dbb11bbd359a31f938f85d6f7fec",
+    "opensearch-rust-root-audit-2026-10-09.json": "4ab38b1860984459000d313162b77e2fa2c4dea1a5cc899e7e5d15bb6f869461",
+    "opensearch-rust-public-audit-2026-10-09.json": "1b6dd0ec825dfa18b1ce205e1151d7db8389d90f5e9583c87b25a343912c79ce",
+    "opensearch-rust-archive-audit-2026-10-09.json": "c9604e8902c6473747d9c82d7b2e1a491dc113c46db9a43512ef5eef23a8c109",
+    "opensearch-rust-root-inventory-2026-10-09.json": "ccc424602ed9920713640fa8d395c7b967a5ff0ce61cf5779e5abcfda519f54d",
+    "opensearch-rust-public-inventory-2026-10-09.json": "d1da54be534397728b55f3895dd4d54a5d18bf130bb0af16b108ffd5029af148",
+    "opensearch-rust-archive-inventory-2026-10-09.json": "f1da497d8597c7690e67a885624bd8158505d8260327f26b417882530952392b",
+    "opensearch-rust-dependency-summary-2026-10-09.json": "b56ce7f0902a5e7c82cd583c6bf21541358f30bdcc1604757415df882dfdc26b"
+  }
+}

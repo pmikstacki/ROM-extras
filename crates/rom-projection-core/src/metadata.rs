@@ -24,6 +24,12 @@ pub struct ProjectionProfile {
     pub(crate) model: Option<String>,
 }
 impl ProjectionProfile {
+    /// Stable SHA-256 identity of the complete deployment, provider, mapping and model profile.
+    /// Providers use this identity in native generation metadata; it grants no export authority.
+    pub fn fingerprint(&self) -> [u8; 32] {
+        use sha2::{Digest, Sha256};
+        Sha256::digest(codec::profile(self)).into()
+    }
     /// Validate identity lengths without granting provider support or export authority.
     pub fn new(
         deployment: &str,

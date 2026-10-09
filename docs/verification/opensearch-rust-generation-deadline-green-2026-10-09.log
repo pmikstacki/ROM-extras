@@ -1,0 +1,13 @@
+   Compiling rom-opensearch v0.1.0-dev (/root/ROM-extras/crates/rom-opensearch)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.53s
+     Running unittests src/lib.rs (target/debug/deps/rom_opensearch-1f75fce27605f5e1)
+
+running 5 tests
+test transport_tests::wrong_trust_root_prevents_any_http_disclosure ... ok
+test transport_tests::oversized_stream_declared_size_and_invalid_json_never_become_observations ... ok
+test transport_tests::redirects_never_reach_destination_and_are_not_retried ... ok
+test transport_tests::operation_deadline_stops_a_server_that_never_responds ... ok
+test transport_tests::generation_inspection_has_one_total_deadline_across_successful_requests ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.67s
+
