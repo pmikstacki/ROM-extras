@@ -28,6 +28,7 @@ These are executor profiles. Full ROM Storage integration remains pending.
 | [NATS JetStream](docs/nats.md) | Acknowledgements, deduplication, Runtime recovery, TLS and reconnect. | Production topology and release acceptance. |
 | [RabbitMQ](docs/rabbitmq.md) | Mandatory confirms, persistence, redelivery, uncertainty handling and TLS. | Replicated failover and release acceptance. |
 | [SMTP notifications](docs/smtp.md) | Bounded authenticated TLS, native Mailpit persistence, duplicate risk and SQLite/redb Runtime recovery. | Production relay profiles, deliverability and release acceptance. |
+| [OpenTelemetry host metrics](docs/opentelemetry.md) | Fixed public status gauges and typed operation summaries; local SDK and independent SQLite/redb consumers. | Traces, native OTLP and the committed diagnostic reader bridge. |
 | [Kafka](docs/kafka.md) | Offsets, duplicates, Runtime recovery, TLS/SASL, restart and independent consumers. | Additional notification connectors and release acceptance. |
 | [Azure Blob](docs/azure-blob.md) | Public blob port and persistent Azurite conformance. | Cloud profiles and further lifecycle faults. |
 | [S3-compatible](docs/s3-compatible.md) | RustFS local public-port qualification; SeaweedFS strict burst failure retained. | Cloud profiles and further lifecycle faults. |
@@ -60,7 +61,8 @@ Production session integration and actual provider-service qualification remain 
 
 [Pure email preparation](docs/email-core.md) has boundary, independent RFC/MIME consumer and full-verifier checks.
 [SMTP submission](docs/smtp.md) has controlled protocol and native Mailpit checks; production deliverability remains unqualified.
-OpenTelemetry, additional notification connectors, and backup, migration and provenance-preserving import tools remain in scope.
+[OpenTelemetry host metrics](docs/opentelemetry.md) cover local status and operation observations; full diagnostic correlation remains pending.
+Additional notification connectors, backup, migration and provenance-preserving import tools remain in scope.
 
 - [Complete goal and decision policy](docs/goal.md)
 - [Implementation plan](docs/superpowers/plans/2026-10-08-rom-extras.md)

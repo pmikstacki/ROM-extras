@@ -1,0 +1,148 @@
+{
+  "captured_at_utc": "2026-10-09T14:18:27.028867+00:00",
+  "baseline": "2fc320893882698f6d0d0ec240a97cd3146027ea",
+  "scope": "Provisional fixed public RuntimeStatus gauges and finite typed host operation summaries; SDK collection and public/normalized Cargo archive consumers on actual SQLite/redb Runtime",
+  "public_rom_revision": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1",
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "exit_code": 0,
+    "log": ".superpowers/opentelemetry-full-verifier-2026-10-09.log",
+    "log_sha256": "008a925d94795feec418ff3ee8ac9bc3ea930e794d1a921570c68c5e0ef4d90d",
+    "source_snapshot": ".superpowers/opentelemetry-source-snapshot-2026-10-09.json",
+    "source_snapshot_sha256": "c689ae5d000fb5628a14426c41d82646c1668af5765848770fc00e6050dd1fd9",
+    "frozen_source_files": 1157,
+    "files_unchanged_during_run": 1157
+  },
+  "affected_gate": {
+    "command": "./scripts/check-opentelemetry-metrics",
+    "exit_code": 0,
+    "log": ".superpowers/opentelemetry-metrics-affected-2026-10-09.log"
+  },
+  "checks": {
+    "sdk_collection_tests": 4,
+    "actual_runtime_backends": [
+      "sqlite",
+      "redb"
+    ],
+    "consumers": [
+      "independent public path consumer",
+      "normalized Cargo archive consumer outside workspace"
+    ],
+    "actual_runtime_cases": [
+      "create",
+      "successful action",
+      "rejected mutation",
+      "denied authority",
+      "idempotency receipt replay with unchanged revision/count",
+      "stopped intake after shutdown"
+    ],
+    "synthetic_sdk_cases": [
+      "all intake resets and failed readiness",
+      "status error availability and retained last-known gauges",
+      "Unknown versus NotCommitted and six DeliveryOutcome classes",
+      "exact usize maximum unsigned gauge",
+      "finite durations and attributes",
+      "private error canary absence"
+    ],
+    "host_success_includes_replay_and_is_not_physical_commit_count": true,
+    "native_otlp_qualified": false
+  },
+  "dependency_review": {
+    "new_registry_packages": [
+      {
+        "name": "futures-executor",
+        "version": "0.3.34",
+        "license": "MIT OR Apache-2.0",
+        "rust_version": "1.71"
+      },
+      {
+        "name": "getrandom",
+        "version": "0.3.4",
+        "license": "MIT OR Apache-2.0",
+        "rust_version": "1.63"
+      },
+      {
+        "name": "opentelemetry",
+        "version": "0.33.0",
+        "license": "Apache-2.0",
+        "rust_version": "1.75.0"
+      },
+      {
+        "name": "opentelemetry_sdk",
+        "version": "0.33.0",
+        "license": "Apache-2.0",
+        "rust_version": "1.75.0"
+      },
+      {
+        "name": "r-efi",
+        "version": "5.3.0",
+        "license": "MIT OR Apache-2.0 OR LGPL-2.1-or-later",
+        "rust_version": "1.68"
+      },
+      {
+        "name": "rand",
+        "version": "0.9.5",
+        "license": "MIT OR Apache-2.0",
+        "rust_version": "1.63"
+      },
+      {
+        "name": "rand_chacha",
+        "version": "0.9.0",
+        "license": "MIT OR Apache-2.0",
+        "rust_version": "1.63"
+      },
+      {
+        "name": "rand_core",
+        "version": "0.9.5",
+        "license": "MIT OR Apache-2.0",
+        "rust_version": "1.63"
+      },
+      {
+        "name": "wasip2",
+        "version": "1.0.4+wasi-0.2.12",
+        "license": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT",
+        "rust_version": "1.87.0"
+      },
+      {
+        "name": "wit-bindgen",
+        "version": "0.57.1",
+        "license": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT",
+        "rust_version": "1.85.0"
+      }
+    ],
+    "isolated_otel_features": {
+      "opentelemetry": [
+        "metrics"
+      ],
+      "opentelemetry_sdk": [
+        "metrics"
+      ]
+    }
+  },
+  "audit": {
+    "workspace_vulnerabilities": 0,
+    "consumer_vulnerabilities": 0,
+    "workspace_warnings": 0,
+    "consumer_warnings": 0,
+    "advisory_commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+    "logs": [
+      ".superpowers/opentelemetry-workspace-audit-2026-10-09.json",
+      ".superpowers/opentelemetry-consumer-audit-2026-10-09.json"
+    ]
+  },
+  "review": {
+    "kind": "independent source-only review",
+    "actionable_findings": 0
+  },
+  "post_full_changes": {
+    "scope": "Verification record, guide link and plan completion state only; production sources, consumers, scripts and locks remain frozen"
+  },
+  "remaining": [
+    "host trace scopes",
+    "real Collector TLS/auth and OTLP limits/failure/queue/shutdown qualification",
+    "published DiagnosticReader bridge",
+    "actual commit/unknown/replay/Work retry correlation and dropped host-local sequence accounting",
+    "full OpenTelemetry family acceptance"
+  ]
+}

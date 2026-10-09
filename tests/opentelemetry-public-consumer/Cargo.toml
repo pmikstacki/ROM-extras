@@ -1,0 +1,17 @@
+[package]
+name = "opentelemetry-public-consumer"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.99"
+publish = false
+
+[workspace]
+
+[dependencies]
+rom = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false, features = ["derive"] }
+rom-sqlite = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+rom-redb = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+rom-opentelemetry = { path = "../../crates/rom-opentelemetry" }
+opentelemetry = { version = "=0.33.0", default-features = false, features = ["metrics"] }
+opentelemetry_sdk = { version = "=0.33.0", default-features = false, features = ["metrics"] }
+tokio = { version = "=1.53.1", features = ["rt"] }

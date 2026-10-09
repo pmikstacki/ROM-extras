@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+cargo test --locked -p rom-opentelemetry
+cargo clippy --locked -p rom-opentelemetry --all-targets -- -D warnings
+cargo fmt --manifest-path tests/opentelemetry-public-consumer/Cargo.toml -- --check
+cargo clippy --manifest-path tests/opentelemetry-public-consumer/Cargo.toml --locked --offline --target-dir target/opentelemetry-public-consumer --all-targets -- -D warnings
+run_root=$(mktemp -d "$PWD/.superpowers/opentelemetry-metrics-XXXXXX")
+ROM_EXTRAS_OTEL_METRICS_PATH="$run_root/direct" cargo run --manifest-path tests/opentelemetry-public-consumer/Cargo.toml --locked --offline --target-dir target/opentelemetry-public-consumer
+cargo package --allow-dirty --locked --no-verify -p rom-opentelemetry \
+    --config 'patch.crates-io.rom.git="https://github.com/pmikstacki/ROM"' \
+    --config 'patch.crates-io.rom.rev="d7ef529040eec60dc869034c2d33130219db85fe"'
+consumer=$(node scripts/prepare-opentelemetry-package.mjs)
+cargo clippy --manifest-path "$consumer/Cargo.toml" --offline --target-dir target/opentelemetry-packaged-consumer --all-targets -- -D warnings
+ROM_EXTRAS_OTEL_METRICS_PATH="$run_root/packaged" cargo run --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/opentelemetry-packaged-consumer

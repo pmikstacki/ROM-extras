@@ -1,0 +1,19 @@
+[package]
+name = "rom-opentelemetry"
+description = "Payload-free OpenTelemetry recording for public ROM host observations"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+rom = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false }
+opentelemetry = { version = "=0.33.0", default-features = false, features = ["metrics"] }
+
+[dev-dependencies]
+opentelemetry_sdk = { version = "=0.33.0", default-features = false, features = ["metrics", "testing"] }

@@ -29,3 +29,5 @@ cd -- "$(dirname -- "$0")/.."
 ./scripts/check-email
 
 ./scripts/check-smtp
+
+./scripts/check-opentelemetry-metrics
