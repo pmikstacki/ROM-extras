@@ -133,7 +133,8 @@
       "post_run_changes": [
         "Guide adds completed-verifier result and this verification-record link",
         "Implementation plan updates completed integration checkboxes",
-        "This verification record"
+        "This verification record",
+        "After staging, removed an extra EOF blank line in the new spec; staged diff check passed afterward. Documentation only; no production or verifier changes."
       ],
       "post_run_production_changes": false
     }

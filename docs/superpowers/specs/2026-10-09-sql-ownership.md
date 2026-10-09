@@ -59,4 +59,3 @@ Session advisory locks alone do not protect a pooled writer after takeover.
 Select the persisted-row protocol for this foundation; optional native session ownership can be composed later.
 See [PostgreSQL18 locks](https://www.postgresql.org/docs/18/explicit-locking.html),
 [transaction isolation](https://www.postgresql.org/docs/18/transaction-iso.html), and the accompanying source research.
-
