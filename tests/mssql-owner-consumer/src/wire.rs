@@ -24,7 +24,7 @@ fn committed_response_loss(suppress: bool) {
     )
     .unwrap();
     drop(direct);
-    let relay = Relay::new();
+    let relay = Relay::new(55440);
     let mut cfg = config();
     cfg.port(relay.port);
     let mut client = Connection::connect(
@@ -72,8 +72,14 @@ fn committed_response_loss(suppress: bool) {
             "actual native commit observed before caller timeout"
         );
     }
-    drop(client);
-    let counts = relay.finish();
+    let counts = if suppress {
+        let counts = relay.finish_after_client_close();
+        drop(client);
+        counts
+    } else {
+        drop(client);
+        relay.finish()
+    };
     assert!(counts.requests_after_arm > 0);
     assert!(counts.responses_after_arm > 0);
     if suppress {
@@ -117,7 +123,7 @@ fn precommit_disconnect() {
     )
     .unwrap();
     drop(direct);
-    let mut relay = Some(Relay::new());
+    let mut relay = Some(Relay::new(55440));
     let mut cfg = config();
     cfg.port(relay.as_ref().unwrap().port);
     let mut client = Connection::connect(

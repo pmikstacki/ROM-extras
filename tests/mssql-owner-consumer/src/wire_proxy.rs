@@ -14,6 +14,7 @@ const LIMIT: usize = 8 * 1024 * 1024;
 const TICK: Duration = Duration::from_millis(5);
 #[derive(Default, Debug)]
 pub struct Counts {
+    pub client_closed: bool,
     pub requests_after_arm: usize,
     pub responses_after_arm: usize,
     pub suppressed: usize,
@@ -30,14 +31,16 @@ pub struct Relay {
     worker: Option<JoinHandle<Counts>>,
 }
 impl Relay {
-    pub fn new() -> Self {
+    /// Shared qualification relay for the two fixed retained native fixtures only.
+    pub fn new(backend_port: u16) -> Self {
+        assert!(matches!(backend_port, 55439 | 55440));
         let listener = TcpListener::bind("127.0.0.1:0").unwrap();
         let port = listener.local_addr().unwrap().port();
         listener.set_nonblocking(true).unwrap();
         let (commands, receiver) = mpsc::channel();
         let stop = Arc::new(AtomicBool::new(false));
         let worker_stop = stop.clone();
-        let worker = thread::spawn(move || pump(listener, receiver, worker_stop));
+        let worker = thread::spawn(move || pump(listener, receiver, worker_stop, backend_port));
         Self {
             port,
             commands,
@@ -58,6 +61,23 @@ impl Relay {
         self.stop.store(true, Ordering::SeqCst);
         self.worker.take().unwrap().join().unwrap()
     }
+    /// Confirm native retirement closed the accepted peer before this helper closes any socket.
+    pub fn finish_after_client_close(mut self) -> Counts {
+        let deadline = Instant::now() + Duration::from_secs(1);
+        while !self.worker.as_ref().unwrap().is_finished() {
+            assert!(
+                Instant::now() < deadline,
+                "retired native peer remained open"
+            );
+            thread::sleep(TICK);
+        }
+        let counts = self.worker.take().unwrap().join().unwrap();
+        assert!(
+            counts.client_closed,
+            "server EOF cannot establish native peer retirement"
+        );
+        counts
+    }
 }
 impl Drop for Relay {
     fn drop(&mut self) {
@@ -67,7 +87,12 @@ impl Drop for Relay {
         }
     }
 }
-fn pump(listener: TcpListener, commands: Receiver<Arm>, stop: Arc<AtomicBool>) -> Counts {
+fn pump(
+    listener: TcpListener,
+    commands: Receiver<Arm>,
+    stop: Arc<AtomicBool>,
+    backend_port: u16,
+) -> Counts {
     let deadline = Instant::now() + Duration::from_secs(25);
     let mut counts = Counts::default();
     let mut client = loop {
@@ -84,7 +109,7 @@ fn pump(listener: TcpListener, commands: Receiver<Arm>, stop: Arc<AtomicBool>) -
             Err(_) => panic!("relay accept failed"),
         }
     };
-    let address: SocketAddr = "127.0.0.1:55440".parse().unwrap();
+    let address: SocketAddr = ([127, 0, 0, 1], backend_port).into();
     let mut server = TcpStream::connect_timeout(&address, Duration::from_secs(2)).unwrap();
     for stream in [&client, &server] {
         stream.set_nodelay(true).unwrap();
@@ -104,6 +129,7 @@ fn pump(listener: TcpListener, commands: Receiver<Arm>, stop: Arc<AtomicBool>) -
             arm.ack.send(()).unwrap();
         }
         let Some(n) = read(&mut client, &mut buffer) else {
+            counts.client_closed = true;
             break;
         };
         total = total.checked_add(n).unwrap();

@@ -1,0 +1,13 @@
+[package]
+name = "postgres-owner-consumer"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.99"
+publish = false
+license = "MIT"
+[workspace]
+[dependencies]
+rom-postgres = { path = "../../crates/rom-postgres" }
+rom-sql-core = { path = "../../crates/rom-sql-core" }
+postgres = "=0.19.14"
+tokio = { version = "=1.53.1", features = ["rt", "net", "time"] }

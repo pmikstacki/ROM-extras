@@ -82,6 +82,7 @@ It is not evidence of a dropped wire response or receipt replay.
 Reopened connections verify acknowledged state; this increment does not execute a PostgreSQL server restart.
 
 Five pure transaction tests supplement native tests. They do not replace native qualification.
+The maintained [PostgreSQL mapping](postgres-ownership.md) adds a separate native/public/archive qualification over this shared arbitration.
 The maintained [MSSQL ownership mapping](mssql-ownership.md) now has a separate native and packaged qualification.
 MySQL, MariaDB, CockroachDB and Oracle ownership mappings remain unimplemented and unqualified.
 Canonical Resource bundles, journal publication, incremental Work and full Storage conformance remain required.

@@ -1,0 +1,111 @@
+{
+  "date": "2026-10-09",
+  "baseline": "6aa11a68ad20bb3ec9ca70ec1feff76dfd9dab6f",
+  "public_rom": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "scope": "Maintained PostgreSQL ownership mapping over shared SQL core; not full ROM Storage",
+  "native": {
+    "version": "18.6",
+    "sdk": "tokio-postgres0.7.18",
+    "fixture": "Explicit plaintext literal loopback55439, fsync=on/synchronous_commit=on",
+    "groups": "Eight ownership groups plus protocol/admission and native statement-timeout boundaries",
+    "affected_log": ".superpowers/postgres-maintained-final-affected-2026-10-09.log",
+    "affected_exit": 0,
+    "affected_runs": [
+      "/root/ROM-extras/.superpowers/postgres-owner-runs/run-8jgm3hq7",
+      "/root/ROM-extras/.superpowers/postgres-owner-runs/run-75gqitag"
+    ],
+    "affected_archives": "/tmp/postgres-owner-packaged-3fTbIq/archives.json",
+    "actual_response_loss": "Unique committed value17 observed before Unknown; all post-arm responses suppressed; native peer closed before fixture cleanup; no automatic write retry",
+    "metadata": "Every malformed mutation resets to known valid state first; missing, duplicate, short/oversized, zero token, negative/exhausted generation and wrong identity/format"
+  },
+  "shared_regression": {
+    "mssql_log": ".superpowers/postgres-maintained-shared-mssql-reviewed-affected-2026-10-09.log",
+    "exit": 0,
+    "changes": "Shared config validation and opaque test relay; production MSSQL API paths/signatures unchanged"
+  },
+  "red_logs": [
+    ".superpowers/postgres-maintained-owner-red-2026-10-09.log",
+    ".superpowers/postgres-native-retired-peer-red-2026-10-09.log"
+  ],
+  "preserved_failures": [
+    "Consumer enum typo GenerationExhausted instead of public Exhausted",
+    "Fixture Config::port appended second port; adapter correctly rejected it",
+    "Public shared relay constructor Clippy new_without_default; explicit fixed endpoint now required",
+    "Root Clippy multiple_of/collapsible_if; fixed without weakening warnings"
+  ],
+  "dependencies": {
+    "new_root_registry_packages": 27,
+    "removed_prior_identities": 0,
+    "changed_prior_checksums": 0,
+    "inventory": ".superpowers/postgres-maintained-dependencies-2026-10-09.json",
+    "source_integrity": "All27 cached archive checksums and all extracted source bytes match registry archives",
+    "audits": [
+      {
+        "log": ".superpowers/postgres-maintained-root-audit-2026-10-09.json",
+        "vulnerabilities": 0,
+        "warnings": 0,
+        "lockfile": {
+          "dependency-count": 436
+        },
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+          "last-updated": "2026-10-09T10:12:02+02:00"
+        }
+      },
+      {
+        "log": ".superpowers/postgres-maintained-consumer-audit-2026-10-09.json",
+        "vulnerabilities": 0,
+        "warnings": 0,
+        "lockfile": {
+          "dependency-count": 87
+        },
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+          "last-updated": "2026-10-09T10:12:02+02:00"
+        }
+      }
+    ]
+  },
+  "research": "docs/research/postgres-maintained-owner-2026-10-09.md",
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "status": "passed",
+    "log": ".superpowers/postgres-maintained-full-verifier-2026-10-09.log",
+    "exit": 0,
+    "log_sha256": "9acbf40c88ae3814a23914c9f2c49b8f2821ce8aa1e4044e51bd8b811c3c0c48",
+    "source_snapshot": ".superpowers/postgres-maintained-source-snapshot-2026-10-09.json",
+    "source_snapshot_sha256": "d7ad6ae82c6d5c0296f977d4386341d421dfa6479122675786512e9cc5415433",
+    "unchanged_source_files": 1319,
+    "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)",
+    "source_membership_unchanged": true,
+    "evidence_only_updates_after_verification": [
+      "docs/verification/postgres-maintained-owner-2026-10-09.json",
+      "docs/postgres-ownership.md",
+      "docs/superpowers/plans/2026-10-09-postgres-maintained-owner.md"
+    ],
+    "lockfiles": {
+      "Cargo.lock": "0d2c718a5a28e9fc32e0d57a3afae02b58acd75159ad75b3583ec6921ba42dbf",
+      "tests/postgres-owner-consumer/Cargo.lock": "00b2182f542a7c0662e7a7cdc39d0fd767835d5537f95c27f52a7ac887af205c"
+    },
+    "postgres_native_runs": [
+      "/root/ROM-extras/.superpowers/postgres-owner-runs/run-qfqptp4t",
+      "/root/ROM-extras/.superpowers/postgres-owner-runs/run-txn0l0vg"
+    ],
+    "postgres_archives": "/tmp/postgres-owner-packaged-LPqaSk/archives.json"
+  },
+  "not_qualified": [
+    "Full ROM SQL Storage and incremental Work",
+    "Opaque StorageOwner native release integration",
+    "Production TLS/certificate profiles",
+    "Server restart or power loss",
+    "Deadlock victim profile",
+    "Uncertain owner-acquisition acknowledgement",
+    "Distributed behavior"
+  ],
+  "review": {
+    "source_only": ".superpowers/postgres-maintained-final-review-2026-10-09.md",
+    "findings": []
+  }
+}

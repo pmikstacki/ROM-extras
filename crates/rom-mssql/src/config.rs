@@ -1,4 +1,4 @@
-use rom_sql_core::OwnerError;
+use rom_sql_core::{ControlTableName, OperationDeadlines, OwnerError};
 use std::time::Duration;
 /// Explicit connect, whole-operation I/O and native lock deadlines.
 #[derive(Clone, Copy, Debug)]
@@ -11,21 +11,13 @@ impl Deadlines {
     /// Require positive deadlines at most 60 seconds; lock must be shorter than I/O.
     /// Lock granularity is milliseconds; sub-millisecond and fractional values are rejected.
     pub fn new(connect: Duration, io: Duration, lock: Duration) -> Result<Self, OwnerError> {
-        let max = Duration::from_secs(60);
-        if connect.is_zero()
-            || io.is_zero()
-            || connect > max
-            || io > max
-            || lock.is_zero()
-            || lock >= io
-            || lock > max
-            || !lock.as_nanos().is_multiple_of(1_000_000)
-        {
+        let bounds = OperationDeadlines::new(connect, io)?;
+        if lock.is_zero() || lock >= io || !lock.as_nanos().is_multiple_of(1_000_000) {
             return Err(OwnerError::Invalid);
         }
         Ok(Self {
-            connect,
-            io,
+            connect: bounds.connect(),
+            io: bounds.io(),
             lock_ms: i32::try_from(lock.as_millis()).map_err(|_| OwnerError::Invalid)?,
         })
     }
@@ -40,19 +32,9 @@ pub struct ControlTable {
 impl ControlTable {
     /// Admit ASCII SQL identifiers of 1..=63 bytes and an opaque exact 32-byte identity.
     pub fn new(schema: &str, table: &str, identity: [u8; 32]) -> Result<Self, OwnerError> {
-        for value in [schema, table] {
-            if value.is_empty()
-                || value.len() > 63
-                || !value
-                    .bytes()
-                    .all(|b| b.is_ascii_alphanumeric() || b == b'_')
-                || !value.as_bytes()[0].is_ascii_alphabetic() && value.as_bytes()[0] != b'_'
-            {
-                return Err(OwnerError::Invalid);
-            }
-        }
+        let name = ControlTableName::new(schema, table)?;
         Ok(Self {
-            qualified: format!("[{schema}].[{table}]"),
+            qualified: format!("[{}].[{}]", name.schema(), name.table()),
             identity,
         })
     }

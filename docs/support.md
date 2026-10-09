@@ -344,3 +344,18 @@ A transparent control returns success; closing the relay before COMMIT returns U
 Direct and normalized-archive consumers execute all three profiles.
 This closes one protected-write response-loss gate, without claiming uncertain owner acquisition, power loss or full Storage recovery.
 See [scope and current verification status](verification/mssql-commit-response-loss-2026-10-09.json).
+
+## Maintained PostgreSQL ownership mapping
+
+rom-postgres implements the shared native ownership port; it does not implement ROM Storage.
+PostgreSQL 18.6 direct and archive consumers verify arbitration, exact transitions, stale surviving connections and native lock ordering.
+Prepared prefixes roll back after native errors, statement cancellation, lock timeout, rejected limits and Drop.
+Caught errors prevent commit. Independent malformed-state cases reject without repair, including missing/duplicate control rows.
+A real COMMIT response-loss relay preserves requests, discards every later response and independently observes committed value17 before Unknown.
+The native client retires; relay-observed peer closure must precede fixture cleanup, with the adapter handle still alive.
+A source mutation that omitted driving abort completion failed this actual native test.
+Ordinary connect forces TLS Require; the explicit executed NoTls fixture is limited to literal loopback.
+Connect blackholes, failed authentication, endpoint denial and active-runtime boundaries are checked separately.
+Common identifier and connect/I/O validation now lives in rom-sql-core; MSSQL public paths and native guarantees remain unchanged.
+Production TLS, server-restart/crash profiles, owner-acquisition uncertainty, distributed behavior and full Storage remain open.
+See [the maintained PostgreSQL guide](postgres-ownership.md).
