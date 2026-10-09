@@ -4,6 +4,7 @@ use rom_map_core::{
 };
 use rom_maptiler::{AttributionProfile, Config, MapTiler};
 use std::time::Duration;
+mod maps;
 #[tokio::main(flavor = "current_thread")]
 async fn main() {
     let args: Vec<_> = std::env::args().skip(1).collect();
@@ -73,5 +74,6 @@ async fn main() {
             .results()
             .is_empty()
     );
+    maps::run(&args[0], &args[1]).await;
     println!("Independent public API consumer: controlled HTTPS forward/reverse passed");
 }

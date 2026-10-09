@@ -1,0 +1,161 @@
+{
+  "scope": "MapTiler style/raster/vector metadata over authored HTTPS; not actual MapTiler account, map content or renderer qualification",
+  "baseline": "17a900791a37c9efb1c5f8de601f8b304654f1b4",
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "session": 30862,
+    "exit": 0,
+    "log": ".superpowers/maptiler-metadata-full-verifier-2026-10-09.log",
+    "source_snapshot": ".superpowers/maptiler-metadata-source-snapshot-2026-10-09.json",
+    "snapshot_sha256": "3b5f6ff95742ad6d79faff9408e5517c9811eef5e1463af768994e3d1089e6c7",
+    "files_verified_unchanged_before_final_record": 1095,
+    "source_changes": []
+  },
+  "affected_checks": {
+    "session": 77596,
+    "exit": 0,
+    "commands": [
+      "./scripts/check-map-core",
+      "./scripts/check-map-adapters",
+      "./scripts/check-map-package"
+    ],
+    "logs": [
+      ".superpowers/maptiler-metadata-core-final-2026-10-09.log",
+      ".superpowers/maptiler-metadata-adapters-final-2026-10-09.log",
+      ".superpowers/maptiler-metadata-package-final-2026-10-09.log"
+    ]
+  },
+  "contract": {
+    "adapters": [
+      "MapTilerStyle",
+      "MapTilerRaster",
+      "MapTilerVector"
+    ],
+    "api": "Additive; existing geocoding paths unchanged; VectorSource::into_source transfers admitted metadata",
+    "raster_logical_pixels": 256,
+    "tilejson_versions": [
+      "2.0.0",
+      "2.1.0",
+      "2.2.0",
+      "3.0.0"
+    ],
+    "zoom_defaults": {
+      "2.0.0": 22,
+      "2.1.0": 22,
+      "2.2.0": 30,
+      "3.0.0": 30
+    },
+    "host_controls": [
+      "Explicit HTTPS endpoint and attribution profile",
+      "Explicit separate browser-token origin grant",
+      "Declaration that account/endpoint agreement permits backend metadata processing",
+      "Exact referenced source bindings for restricted MapLibre-v8 styles"
+    ],
+    "transport": "Shared one-operation admission, host dispatch interval, 1MiB response cap, request-context timeout/cancellation; no retry, redirects, cache, nested fetch, browser activation or geolocation"
+  },
+  "tests": {
+    "core_contracts": 44,
+    "new_maptiler_admission_and_config_tests": 8,
+    "independent_consumer": "tests/maptiler-public-consumer/src/maps.rs",
+    "controlled_protocol": [
+      "Three capabilities and exact native paths",
+      "Credits, zoom defaults, bounds and exact layer identifiers",
+      "No server credential in descriptors or safe errors",
+      "No cache or retry; explicit 429 Retry-After",
+      "Redirect and oversized response rejection",
+      "Timeout, in-flight and pre-dispatch cancellation",
+      "Shared admission across capabilities",
+      "Existing forward/reverse geocoding remains passing"
+    ],
+    "protocol_log": ".superpowers/maptiler-metadata-protocol-green-corrected-2026-10-09.log"
+  },
+  "regressions": [
+    {
+      "red_log": ".superpowers/maptiler-metadata-red-2026-10-09.log",
+      "red_exit": 101,
+      "reason": "Missing new decoder/grant/version APIs"
+    },
+    {
+      "red_log": ".superpowers/maptiler-metadata-config-red-2026-10-09.log",
+      "red_exit": 101,
+      "reason": "Missing new service/capability APIs"
+    },
+    {
+      "red_log": ".superpowers/maptiler-metadata-public-consumer-red-2026-10-09.log",
+      "red_exit": 101,
+      "reason": "Missing public owned-vector-source transfer"
+    },
+    {
+      "red_log": ".superpowers/maptiler-metadata-protocol-red-2026-10-09.log",
+      "red_exit": 101,
+      "reason": "Fixture rejected unsupported maps paths before protocol fixture implementation"
+    },
+    {
+      "red_log": ".superpowers/maptiler-metadata-protocol-green-2026-10-09.log",
+      "red_exit": 101,
+      "reason": "Native malformed bounds leaked InvalidBounds instead of InvalidResponse; decoder normalization corrected",
+      "green_log": ".superpowers/maptiler-metadata-protocol-green-corrected-2026-10-09.log",
+      "green_exit": 0
+    },
+    {
+      "red_log": ".superpowers/maptiler-metadata-encoded-key-red-2026-10-09.log",
+      "red_exit": 101,
+      "reason": "Source review found percent-encoded private-key disclosure in resource paths",
+      "green_log": ".superpowers/maptiler-metadata-encoded-key-green-2026-10-09.log",
+      "green_exit": 0,
+      "fix": "Reject raw and nested percent-encoded private keys in native paths and final descriptor strings/object keys; at most eight decoding passes"
+    }
+  ],
+  "source_review": {
+    "reviewer": "/root/maps_http_increment_review",
+    "scope": "Source only; no execution",
+    "initial_findings": [
+      "P1 percent-encoded server-key disclosure"
+    ],
+    "final_actionable_findings": []
+  },
+  "dependencies": "Existing pinned url 2.5.8, zeroize 1.9.1 and percent-encoding 2.3.2 reused; four affected lockfiles updated without package-version upgrades",
+  "frontend_regression": {
+    "browser_scenarios": 5,
+    "actual_controlled_protocol_scenarios": 3,
+    "intercepted_response_scenarios": 2,
+    "fixture_database": ".superpowers/maps-ui-browser-fixtures/run-cBdYkG/demo.sqlite"
+  },
+  "documentation": "Only documentation and this evidence record changed after unchanged-source verification",
+  "warnings": "Existing package metadata/unused patches, Node color/experimental and frontend bundle-size warnings retained",
+  "research": "docs/superpowers/plans/2026-10-09-maptiler-metadata.md",
+  "remaining": [
+    "Actual MapTiler account permissions, returned native versions and catalog compatibility",
+    "Tile contents, font/sprite resources and rendering",
+    "Native Nominatim qualification; production installation remains canceled",
+    "Production session integration",
+    "Full ROM-extras family acceptance"
+  ],
+  "executed_source_sha256": {
+    "crates/rom-map-core/src/sources/typed.rs": "69abce346a9e20205d20123a479a60db97f33eb1b0ef2441a5a2e334d395fb91",
+    "crates/rom-maptiler/Cargo.toml": "3d9232e8514cff13a72fbe59d7eea032d8f919cf1450ebe58a4679e548b15a57",
+    "crates/rom-maptiler/src/adapter.rs": "e4f02eb3e382cb1791ace492913bbcb69ab4ab5e4c8c2fa462b811e8619ba262",
+    "crates/rom-maptiler/src/browser_grant.rs": "709def28096606fc27da4027be65b6a52d280c5499658d2f8097a0c3638a60cf",
+    "crates/rom-maptiler/src/decoding.rs": "1d028816de768436a189911951b5497b19eef3724c8fb08db61d467409e0f355",
+    "crates/rom-maptiler/src/geocoding.rs": "985098b6fc798448af1e36808cc2c2a23ab08cb9ba1fbaacb7e8839b02cfacaf",
+    "crates/rom-maptiler/src/lib.rs": "2cf956f1d24b5df6f2d52b7aac2a732aa3ca0542671f4c23ecf9bfa4c734a64e",
+    "crates/rom-maptiler/src/map_metadata.rs": "c2e4d9bb01996fb083e07d75e80484407b69f6e049f460a31131b281146897df",
+    "crates/rom-maptiler/src/maps_service.rs": "a9fc956b12bcc0b3029b8ec443e99f38fef1a9704f4e774ade67875907dceb92",
+    "crates/rom-maptiler/src/maps_style.rs": "569b5de47f49fafcbef480c2ffdb1a1b58568479fdce4e98982ee6d226f154b3",
+    "crates/rom-maptiler/src/maps_tiles.rs": "a285de35448328b8ecfaf581620cf1ece178a14e86886df9acb8914c105126d2",
+    "crates/rom-maptiler/src/metadata_sources.rs": "5e9fc634a9019518e5da8f17c68915f5426cbf42429b191c8e759eb941ea6269",
+    "crates/rom-maptiler/src/metadata_version.rs": "9f27e211e6e81bb216485968c7a21179772c26eb0b8f433c8dbe04c9842a24ce",
+    "crates/rom-maptiler/tests/admission.rs": "bb0b05d33b7c4f5057e95f808f20e8371a4c08c75b24ed07da6e8b09168063b8",
+    "crates/rom-maptiler/tests/config.rs": "bd3d92fe07b8d53c00702f55c9c758c882cf29aa6599cfca435e44562a50a3c5",
+    "crates/rom-maptiler/tests/decoding.rs": "eed6e9da50ce5a97904f915118cef0770184ab1c06cf7b3c99efc552e8727a26",
+    "crates/rom-maptiler/tests/maps_admission.rs": "e1815de1ac5029372601fd88bf23c2c663ccae17547cce7fac650da847bf1bf5",
+    "crates/rom-maptiler/tests/maps_config.rs": "462c351c10ac4d0fa2cd43a87564a19a59605652faf8c397d84cce94f7c5f922",
+    "crates/rom-maptiler/tests/maps_receiver.mjs": "8bdd06b9bcdbc0ce339ab8e9140d44f140c8f818952dfe326ef3adc29d4b975f",
+    "crates/rom-maptiler/tests/protocol.rs": "fd2d66b3c158f9adc428a7e5dc8c8f3e2e3e5839dc5fae257034a959e6c7092a",
+    "crates/rom-maptiler/tests/receiver.mjs": "24d00bd397b9fefbf47a6ede3f997cbc600df1532856164ce2e3d96a676ff40b",
+    "tests/maptiler-public-consumer/Cargo.lock": "d2c23d99017fee4e3d83461a2ea30475f96aafe1af09681c6a3a6d107a5cee3a",
+    "tests/maptiler-public-consumer/Cargo.toml": "69df061e70ae2ccad06227aa91913893486776c3c63f34d0f52adec0979cc213",
+    "tests/maptiler-public-consumer/src/main.rs": "6fbf493b0b4fd58a9610e291fcf430aff61b1d85b8f240160f153144d60f5d08",
+    "tests/maptiler-public-consumer/src/maps.rs": "ba0163d30d9065e9a11e5eb6e5f9bdda558ca00131342d905ec4446588116ef7"
+  }
+}

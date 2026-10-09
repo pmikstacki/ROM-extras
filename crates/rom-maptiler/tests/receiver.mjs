@@ -2,11 +2,13 @@
 import https from 'node:https';
 import fs from 'node:fs';
 import path from 'node:path';
+import {mapRequest} from './maps_receiver.mjs';
 const tls = process.env.ROM_EXTRAS_MAP_FIXTURE_TLS;
 const feature = {type:'Feature',id:'municipality.00001',place_name:'Fixture',geometry:{type:'Point',coordinates:[21,52]}};
 const collection = features => JSON.stringify({type:'FeatureCollection',attribution:'fixture credit',features});
 const server = https.createServer({key:fs.readFileSync(path.join(tls,'node.key')),cert:fs.readFileSync(path.join(tls,'node.pem'))}, (req,res) => {
  const url = new URL(req.url,'https://fixture.invalid');
+ if(mapRequest(req,res,url))return;
  const query = decodeURIComponent(url.pathname.slice('/operator/geocoding/'.length)).replace(/\.json$/,'');
  if(req.method!=='GET'||!url.pathname.startsWith('/operator/geocoding/')||url.searchParams.get('key')!=='synthetic-secret'||url.searchParams.get('limit')!=='1'||url.searchParams.has('proximity')) {res.writeHead(400);res.end();return;}
  res.setHeader('content-type','application/json');

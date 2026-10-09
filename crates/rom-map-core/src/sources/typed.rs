@@ -19,6 +19,10 @@ impl RasterSource {
 /// Approved vector metadata with original layer identifiers.
 pub struct VectorSource(TileSource);
 impl VectorSource {
+    /// Transfer approved metadata into an explicitly owned style binding without re-decoding it.
+    pub fn into_source(self) -> TileSource {
+        self.0
+    }
     /// Require the host-admitted vector kind.
     pub fn new(source: TileSource) -> Result<Self> {
         if !matches!(source.kind(), TileKind::Vector) {

@@ -9,6 +9,9 @@ publish = false
 rom-map-core = { path = "../rom-map-core", version = "=0.1.0-dev" }
 rom-map-http = { path = "../rom-map-http", version = "=0.1.0-dev" }
 serde_json = "=1.0.151"
+url = "=2.5.8"
+percent-encoding = "=2.3.2"
+zeroize = { version = "=1.9.1", default-features = false, features = ["alloc"] }
 [lints.rust]
 unsafe_code = "forbid"
 unused_must_use = "deny"

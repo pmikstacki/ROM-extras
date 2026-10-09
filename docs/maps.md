@@ -46,7 +46,7 @@ It is not a complete renderer schema validator. The host must also enforce brows
 | Host configuration | Self-hosted TileJSON and MapLibre styles/tiles | Implemented; native static HTTPS metadata qualified; rendering and tile contents pending |
 | Nominatim | Search and reverse lookup | Implemented; native qualification pending |
 | OSRM | Route GeoJSON with explicit prepared profile | Implemented; authored driving graph and restart qualified; regional datasets and other modes pending |
-| MapTiler | Search/reverse | Controlled HTTPS and independent-consumer tests; native service and styles/tiles pending |
+| MapTiler | Search/reverse; style/raster/vector metadata | Controlled HTTPS, independent-consumer and full-verifier checks passed; actual service and rendering pending |
 
 Hosts must explicitly configure endpoints and authorize browser disclosure.
 Backend credentials remain server-side. Browser-intended tokens require a separate explicit host contract.
@@ -182,8 +182,47 @@ The adapter adds no cache, automatic retry, browser grant or Resource write.
 Controlled HTTPS tests cover empty results, coordinates, bbox, limits, 429, redirects, deadlines and cancellation.
 The independent consumer is `tests/maptiler-public-consumer`.
 These tests qualify authored protocol fixtures, not the actual MapTiler service or account permissions.
-MapTiler styles/tiles and complete browser integration remain pending.
+MapTiler map metadata is described below. Actual service and map rendering remain pending.
 The combined increment passed the full local verifier. See [the verification record](verification/maps-maptiler-2026-10-09.json).
+
+## MapTiler map metadata
+
+`MapTilerStyle`, `MapTilerRaster` and `MapTilerVector` implement independent metadata capabilities.
+They share `Arc<MapTilerMaps>` for aggregate single-operation admission and the host-selected dispatch interval.
+The raster adapter selects the Maps API's explicit 256-pixel variant. The vector adapter selects a separate Tiles API tileset ID.
+Literal service IDs are restricted to 1–128 ASCII letters, digits, hyphens and underscores. They are not normalized or treated as ROM keys.
+
+`MapsConfig` uses an explicit HTTPS backend and a separate `MapMetadata` decoder.
+`MapMetadata` combines a zeroized server-only key, reviewed `AttributionProfile` and explicit `MapBrowserGrant`.
+The grant approves a browser-intended token for selected service origins. The host must configure application-origin restrictions in its account.
+The server key cannot supply or be contained in the browser token.
+
+The host must call `MapsConfig::with_backend_metadata_permission` only when its endpoint/account agreement permits backend metadata processing.
+This declaration cannot establish provider-side permission. MapTiler's standard terms require an appropriate agreement for a customer proxy.
+No server cache, tile proxy, bulk download or redistribution is implemented.
+
+Only known tile, source, glyph and sprite URL fields undergo credential replacement.
+Query-bearing native URLs require exactly one `key` pair matching the private server key.
+Approved URLs retain their supported path placeholders and receive only the explicitly granted public token.
+Other queries, credentials, fragments and unapproved origins are rejected. Literal and nested percent-encoded server-key disclosure is rejected.
+Inspection is bounded to eight decoding passes; malformed UTF-8 and excessive nesting are rejected.
+
+The host explicitly selects `TileJsonVersion`. Versions 2.0/2.1 retain a maximum zoom default and limit of 22; versions 2.2/3.0 use 30.
+Normalization admits the strict supported metadata subset through the shared core. It does not weaken the core's TileJSON 3.0.0 validator.
+Raster size is explicit. Original vector layer identifiers and approved plain-text credits remain attached to the descriptor.
+Unknown native credit is rejected. Arbitrary attribution HTML is not stripped or rendered.
+
+Styles retain the core's restricted MapLibre-v8 profile. The host must bind referenced manifests by exact native source ID.
+`VectorSource::into_source` transfers already approved metadata into an owned style binding without re-decoding it.
+No nested manifest, browser request, geolocation, session operation or Resource write starts automatically.
+
+The independent consumer in `tests/maptiler-public-consumer/src/maps.rs` exercises actual authored HTTPS.
+It checks three capabilities, native endpoint paths, defaults, credits, bounds, limits, 429, redirects, deadlines, cancellation and shared admission.
+Repeated explicit reads demonstrate no adapter cache. The first 429 is returned without retry.
+These fixtures do not establish actual account permissions, catalog compatibility, tile data, sprite/font content or rendering.
+The implementation plan is [MapTiler metadata adapters](superpowers/plans/2026-10-09-maptiler-metadata.md).
+The affected checks and full local verifier passed on unchanged source before integration.
+See [the scoped verification record](verification/maps-maptiler-metadata-2026-10-09.json).
 
 ## Host read and suggestion example
 

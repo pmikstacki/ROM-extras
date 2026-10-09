@@ -48,7 +48,8 @@ Nominatim search/reverse has controlled HTTPS and public-consumer tests; native-
 OSRM routing passed qualification on an authored driving graph before and after restart.
 Configured raster/vector TileJSON and MapLibre styles have controlled HTTPS and independent-consumer tests.
 A local Nginx fixture qualifies metadata delivery before and after restart; tile content and rendering remain unqualified.
-MapTiler search/reverse has controlled HTTPS and independent-consumer tests; native-service qualification and styles/tiles remain pending.
+MapTiler search/reverse and style/raster/vector metadata have controlled HTTPS and independent-consumer tests.
+The metadata adapters require explicit browser-token grants and permission for backend metadata processing; actual account qualification remains pending.
 Browser URLs reject query credentials by default; an explicit host grant can admit one browser-intended token.
 The [live HTTP host example](examples/maps-live-host/README.md) checks current authorized reads, exact Resource selection and controlled HTTPS geocoding.
 The [pnpm frontend example](examples/maps-ui/README.md) uses the public rom-ui/maps package and controlled local host.

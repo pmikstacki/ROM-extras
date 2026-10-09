@@ -9,6 +9,15 @@ pub struct AttributionProfile {
     plain: Attribution,
 }
 impl AttributionProfile {
+    pub(crate) fn approve(&self, native: Option<&Value>) -> Result<Attribution> {
+        if native.and_then(Value::as_str) != Some(self.native.as_str()) {
+            return Err(Error::InvalidResponse);
+        }
+        self.credit()
+    }
+    pub(crate) fn credit(&self) -> Result<Attribution> {
+        Attribution::new(self.plain.text(), self.plain.link())
+    }
     /// Bind reviewed provider markup to plain text; arbitrary native HTML is never rendered or stripped.
     pub fn new(native: &str, plain: Attribution) -> Result<Self> {
         if native.len() > 8192 {

@@ -254,7 +254,11 @@ Separate Vault/AWS/Azure profiles, production custody, replicated durability and
 ## Map-provider scope amendment — 2026-10-09
 
 Generic map capabilities and host-configured/Nominatim/OSRM/MapTiler adapters are now part of the full goal.
-The local typed core has 36 contract tests and an independent public consumer.
-Nominatim search/reverse and map HTTP have controlled HTTPS tests; native-service qualification remains incomplete.
-Browser descriptor approval, other service adapters, packaged consumers and rom-ui/maps examples remain incomplete.
-See [map configuration and exact limits](maps.md). No map provider support is advertised from core-only tests.
+The typed core has 44 contract tests and an independent public consumer.
+Nominatim and MapTiler geocoding have controlled HTTPS tests; their actual services remain unqualified.
+OSRM routing passed native qualification on an authored driving graph before and after restart.
+Configured metadata passed native Nginx delivery checks. Tile contents and rendering remain unqualified.
+MapTiler style/raster/vector metadata passed controlled HTTPS and independent-consumer checks, including browser grants and private-key disclosure rejection.
+The public Rust host and pnpm rom-ui/maps example passed controlled HTTP and browser checks.
+Package checks and the full local verifier passed. Production sessions, account permissions and complete map-service qualification remain incomplete.
+See [map configuration and exact limits](maps.md) and [MapTiler metadata evidence](verification/maps-maptiler-metadata-2026-10-09.json).
