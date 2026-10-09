@@ -43,16 +43,16 @@ Interfaces: EmailNotification::new(to,subject,text,created_unix_seconds), EmailP
 Files: create crates/rom-smtp and controlled SMTP protocol consumers; add scripts/check-smtp.
 Interfaces: consumes PreparedEmail and host endpoint/TLS/auth configuration; produces DeliveryOutcome with documented uncertainty.
 
-- [ ] Add failing controlled protocol tests for acknowledgment, explicit rejection, loss, deadlines and cancellation.
-- [ ] Implement one-attempt TLS submission, bounded admission and safe errors; no internal retry.
-- [ ] Test private credentials and certificates never enter diagnostics or payloads.
+- [x] Add failing controlled protocol tests for acknowledgment, explicit rejection, loss, deadlines and cancellation.
+- [x] Implement one-attempt TLS submission, bounded admission and safe errors; no internal retry.
+- [x] Test private credentials and certificates never enter diagnostics or payloads.
 
 ### Task 3: Native and Runtime acceptance
 
 Files: owned Mailpit fixture runner, public consumers, SQLite/redb Runtime tests, verification records and docs.
 
-- [ ] Provision isolated authenticated TLS Mailpit with persistent database and no external forwarding.
-- [ ] Observe native acceptance, authentication/TLS rejection, restart and intentional duplicate submissions.
-- [ ] Suppress final DATA acknowledgment after storage; verify Unknown and public Runtime recovery on both stores.
-- [ ] Check authorization revocation before external submission and independent/package consumers.
-- [ ] Run affected checks and frozen full verifier; publish only the qualified scope.
+- [x] Provision isolated authenticated TLS Mailpit with persistent database and no external forwarding.
+- [x] Observe native acceptance, authentication/TLS rejection, restart and intentional duplicate submissions.
+- [x] Suppress final DATA acknowledgment after storage; verify Unknown and public Runtime recovery on both stores.
+- [x] Check authorization revocation before external submission and independent/package consumers.
+- [x] Run affected checks and frozen full verifier; publish only the qualified scope.

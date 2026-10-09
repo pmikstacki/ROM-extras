@@ -269,5 +269,6 @@ See [map configuration and exact limits](maps.md) and [MapTiler metadata evidenc
 Exact host recipient policy, restored-input validation, deterministic retry bytes and safe diagnostics passed six boundary tests.
 An independent public Rust consumer and Python RFC/MIME parser checked actual message bytes.
 The full local verifier passed on unchanged source. No network transport is implemented by this core.
-SMTP DATA acceptance, bounded transport, Runtime recovery and production deliverability remain unqualified.
+The separate `rom-smtp` increment checks bounded authenticated TLS submission, native Mailpit acceptance and SQLite/redb Runtime recovery.
+Production relay profiles and deliverability remain unqualified. See [SMTP configuration and evidence scope](smtp.md).
 See [configuration and limits](email-core.md) and [preparation evidence](verification/email-preparation-2026-10-09.json).

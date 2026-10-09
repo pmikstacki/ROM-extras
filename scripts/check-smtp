@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_PYTHON:?An explicit Python 3 executable is required}"
+: "${ROM_EXTRAS_SMTP_NATIVE_FIXTURE:?Select an owned persistent TLS Mailpit fixture explicitly}"
+: "${ROM_EXTRAS_SMTP_NATIVE_CONTAINER:?Select the owned Mailpit container explicitly}"
+cargo test --locked -p rom-smtp -p rom-email-core
+cargo clippy --locked -p rom-smtp --all-targets --all-features -- -D warnings
+node --check tests/smtp-public-consumer/ack-proxy.mjs
+node scripts/check-smtp-protocol.mjs
+cargo fmt --manifest-path tests/smtp-public-consumer/Cargo.toml -- --check
+cargo clippy --manifest-path tests/smtp-public-consumer/Cargo.toml --locked --offline --target-dir target/smtp-public-consumer --all-targets -- -D warnings
+"$ROM_EXTRAS_PYTHON" scripts/check-smtp-native.py
+cargo package --allow-dirty --locked --no-verify -p rom-delivery-core -p rom-email-core -p rom-smtp \
+    --config 'patch.crates-io.rom-delivery-core.path="crates/rom-delivery-core"' \
+    --config 'patch.crates-io.rom-email-core.path="crates/rom-email-core"' \
+    --config 'patch.crates-io.rom.git="https://github.com/pmikstacki/ROM"' \
+    --config 'patch.crates-io.rom.rev="d7ef529040eec60dc869034c2d33130219db85fe"'
+smtp_consumer=$(node scripts/prepare-smtp-package.mjs)
+cargo clippy --manifest-path "$smtp_consumer/Cargo.toml" --offline --target-dir target/smtp-packaged-consumer --all-targets -- -D warnings
+ROM_EXTRAS_SMTP_PACKAGED_MANIFEST="$smtp_consumer/Cargo.toml" "$ROM_EXTRAS_PYTHON" scripts/check-smtp-native.py

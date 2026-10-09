@@ -27,3 +27,5 @@ cd -- "$(dirname -- "$0")/.."
 ./scripts/check-map-ui
 
 ./scripts/check-email
+
+./scripts/check-smtp

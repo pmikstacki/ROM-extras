@@ -1452,14 +1452,22 @@ version = "0.11.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f2c646bd5cc763b1087b15493e29a64be6147ba8f19342004fa52048ee596eae"
 dependencies = [
+ "async-trait",
+ "base64 0.23.1",
  "email-encoding",
  "email_address",
  "fastrand",
+ "futures-io",
+ "futures-util",
  "httpdate",
  "idna",
  "mime",
  "nom 8.0.0",
+ "percent-encoding",
  "quoted_printable",
+ "socket2",
+ "tokio",
+ "url",
 ]
 
 [[package]]
@@ -2557,6 +2565,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "rom-smtp"
+version = "0.1.0-dev"
+dependencies = [
+ "lettre",
+ "rom",
+ "rom-email-core",
+ "rustls",
+ "serde_json",
+ "tokio",
+ "tokio-rustls",
+ "tokio-util",
+ "webpki-roots 1.0.9",
+ "zeroize",
+]
+
+[[package]]
 name = "rom-sql-core"
 version = "0.1.0-dev"
 
@@ -2642,6 +2666,7 @@ checksum = "0d41d731c7d2f962d1ccc364cec258de3c0e93b38c2fb3ba97ac74513048d634"
 dependencies = [
  "aws-lc-rs",
  "once_cell",
+ "ring",
  "rustls-pki-types",
  "rustls-webpki",
  "subtle",
@@ -3230,6 +3255,7 @@ dependencies = [
  "bytes",
  "futures-core",
  "futures-sink",
+ "futures-util",
  "libc",
  "pin-project-lite",
  "tokio",

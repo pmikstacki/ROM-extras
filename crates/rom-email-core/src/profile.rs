@@ -57,6 +57,22 @@ impl EmailProfile {
         &self,
         delivery: Delivery<EmailNotification>,
     ) -> Result<PreparedEmail, EmailError> {
+        self.prepare_mode(delivery, false)
+    }
+    /// Prepare SMTP-safe Base64 content with the same policy, identity and byte limits.
+    /// DATA framing can add physical line endings without changing decoded text.
+    /// The existing `prepare` encoding profile is unchanged.
+    pub fn prepare_smtp(
+        &self,
+        delivery: Delivery<EmailNotification>,
+    ) -> Result<PreparedEmail, EmailError> {
+        self.prepare_mode(delivery, true)
+    }
+    fn prepare_mode(
+        &self,
+        delivery: Delivery<EmailNotification>,
+        smtp: bool,
+    ) -> Result<PreparedEmail, EmailError> {
         rom_delivery_core::validate_delivery_identity(&delivery.id)
             .map_err(|_| EmailError::InvalidIdentity)?;
         let p = delivery.payload;
@@ -72,14 +88,20 @@ impl EmailProfile {
         let date = SystemTime::UNIX_EPOCH
             .checked_add(Duration::from_secs(p.created_unix_seconds))
             .ok_or(EmailError::InvalidPayload)?;
-        let message = Message::builder()
+        let builder = Message::builder()
             .from(Mailbox::new(None, self.sender_address.clone()))
             .to(Mailbox::new(None, to))
             .subject(p.subject)
             .date(date)
             .message_id(Some(id.clone()))
             .header(lettre::message::header::MIME_VERSION_1_0)
-            .header(ContentType::TEXT_PLAIN)
+            .header(ContentType::TEXT_PLAIN);
+        let builder = if smtp {
+            builder.header(lettre::message::header::ContentTransferEncoding::Base64)
+        } else {
+            builder
+        };
+        let message = builder
             .body(p.text)
             .map_err(|_| EmailError::InvalidPayload)?;
         let body = message.formatted();

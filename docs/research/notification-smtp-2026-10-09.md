@@ -161,3 +161,41 @@ Do not delete or reset historical evidence.
 Source review does not prove the proposed crate compiles, dependency policy passes, or live TLS/auth behavior works.
 No Mailpit instance, proxy, or SMTP endpoint was contacted in this task.
 No production SMTP provider, deliverability, bounce processing, DKIM/SPF/DMARC, multi-recipient behavior, or exactly-once guarantee is qualified.
+
+## Transport read bounds
+
+The selected connection seam is public `AsyncSmtpConnection::connect_with_transport`.
+Lettre checks reply size after `read_line`; an unterminated line can allocate before those checks.
+The adapter must bound decrypted reads before the parser, and use a whole-attempt timeout.
+It will establish verified implicit TLS on a literal host-approved SocketAddr, then provide an opaque bounded stream.
+Lettre marks an externally supplied stream as TCP; the adapter owns TLS proof and never performs a downgrade or upgrade.
+Enable only SMTP/Tokio features for its protocol client. Never enable tracing of AUTH or message bytes.
+[Tagged reader](https://raw.githubusercontent.com/lettre/lettre/v0.11.23/src/transport/smtp/client/async_connection.rs),
+[tagged public stream](https://raw.githubusercontent.com/lettre/lettre/v0.11.23/src/transport/smtp/client/async_net.rs).
+
+A total decrypted reply budget of 1024–65536 bytes limits parser allocation before a missing newline.
+Host supplies a 1ms–60s total attempt budget and 0–86400s dispatch interval. One shared transport admits one attempt.
+Require greeting 220, AUTH 235 and final DATA 250; a different positive completion does not prove message acceptance.
+Do not wait for QUIT after accepted DATA. A QUIT failure must not erase established acceptance.
+These are selected adapter limits, not universal SMTP service capacities. Native and hostile-peer tests must qualify them.
+
+## Implemented transport decisions
+
+Native DATA capture showed that transport framing appends CRLF to an unencoded text part.
+The additive `prepare_smtp` method uses Base64 to preserve logical text and final empty lines.
+The original preparation method remains stable.
+Encoding rules follow [RFC 2045](https://www.rfc-editor.org/rfc/rfc2045.html).
+
+The adapter uses explicit public MAIL, RCPT, DATA and message commands instead of the library's `send` helper.
+It checks `354` before sending content and `250` after content, as required by [RFC 5321](https://www.rfc-editor.org/rfc/rfc5321.html).
+The bounded stream refuses cleanup QUIT locally and closes locally when the enclosing attempt drops it.
+This prevents EHLO initialization cleanup waits from masking known rejections.
+The selected PLAIN mechanism does not support challenges; unexpected `334` remains Unknown without message submission.
+Tagged [lettre connection source](https://raw.githubusercontent.com/lettre/lettre/v0.11.23/src/transport/smtp/client/async_connection.rs) exposes those cleanup waits.
+Independent failing regressions confirmed the behavior before the correction.
+
+The later implementation has actual native evidence, separate from the initial research-only statements above.
+See [SMTP qualification and limitations](../smtp.md).
+
+The Node protocol fixture disables Nagle batching for short replies without changing attempt budgets.
+See [Node socket.setNoDelay](https://nodejs.org/api/net.html#socketsetnodelaynodelay).

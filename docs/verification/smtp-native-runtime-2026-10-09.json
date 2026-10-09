@@ -1,0 +1,164 @@
+{
+  "captured_at_utc": "2026-10-09T13:37:55.188321+00:00",
+  "scope": "Bounded implicit-TLS SMTP notification submission; native Mailpit acceptance and persistence, duplicate risk, post-storage final acknowledgment loss, public SQLite/redb Runtime recovery and authority denial; independent and normalized Cargo archive consumers",
+  "baseline": "7702e9453c0fa7d698edc7487e90ba81fdde2111",
+  "public_rom_revision": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1",
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "exit_code": 0,
+    "log": ".superpowers/smtp-full-verifier-2026-10-09.log",
+    "log_sha256": "8e08de9cbe298ba86f849219abd32efb2956688cbbef0f56881cf297c02c2f69",
+    "source_snapshot": ".superpowers/smtp-source-snapshot-2026-10-09.json",
+    "source_snapshot_sha256": "24fe1e6939baaa1e0b8eea23b1bacd42574f07d6ce1203418bc2801a2beb1aa8",
+    "frozen_source_files": 1138,
+    "files_unchanged_during_run": 1138
+  },
+  "post_full_changes": {
+    "files": [
+      "docs/email-core.md",
+      "docs/superpowers/plans/2026-10-09-notification-smtp.md",
+      "tests/smtp-public-consumer/src/main.rs"
+    ],
+    "scope": "Consumer success text now identifies its phase and only excludes internet delivery; documentation clarifies standalone builder feature isolation and marks completed verification. Production adapter/core source, manifests and lockfiles stayed unchanged.",
+    "affected_command": "./scripts/check-smtp",
+    "exit_code": 0,
+    "log": ".superpowers/smtp-final-consumer-diagnostics-check-2026-10-09.log"
+  },
+  "checks": {
+    "authored_tls_protocol_tests": 8,
+    "safe_configuration_tests": 2,
+    "email_preparation_tests": 7,
+    "independent_rfc_mime_parser": true,
+    "public_and_packaged_native_runtime_backends": [
+      "sqlite",
+      "redb"
+    ],
+    "no_native_mail_for_source_or_service_authority_denial": true,
+    "same_identity_duplicates_retained": true
+  },
+  "native_runs_from_full_gate": [
+    {
+      "scope": "Independent public Rust SMTP consumer, native Mailpit DATA/TLS/AUTH, persistence/restart and explicit duplicate risk, native post-storage acknowledgment loss, SQLite/redb public Runtime recovery and authority checks; no internet delivery",
+      "run_id": "8a11e81775024480931b31e231b25851",
+      "consumer_manifest": "tests/smtp-public-consumer/Cargo.toml",
+      "before_count": 42,
+      "final_count": 48,
+      "runtime_backends": [
+        "sqlite",
+        "redb"
+      ],
+      "native_post_storage_acknowledgments_suppressed": 2,
+      "denied_notifications_submitted": 0,
+      "same_Message_ID_duplicate_count": 2,
+      "original_native_message_survived_restart": true,
+      "native_image": "994d4a5e14891cd6b1eed69441b1b45a730bf3354fc37b9a61853c417bcadf87",
+      "native_tag": "v1.31.4",
+      "log_directory": "/root/ROM-extras/.superpowers/smtp-native-consumer-runs/8a11e81775024480931b31e231b25851",
+      "outcome": "passed"
+    },
+    {
+      "scope": "Independent public Rust SMTP consumer, native Mailpit DATA/TLS/AUTH, persistence/restart and explicit duplicate risk, native post-storage acknowledgment loss, SQLite/redb public Runtime recovery and authority checks; no internet delivery",
+      "run_id": "99ef7966736843eaad2b2d9e01b76c46",
+      "consumer_manifest": "/tmp/smtp-packaged-qLgDm0/consumer/Cargo.toml",
+      "before_count": 48,
+      "final_count": 54,
+      "runtime_backends": [
+        "sqlite",
+        "redb"
+      ],
+      "native_post_storage_acknowledgments_suppressed": 2,
+      "denied_notifications_submitted": 0,
+      "same_Message_ID_duplicate_count": 2,
+      "original_native_message_survived_restart": true,
+      "native_image": "994d4a5e14891cd6b1eed69441b1b45a730bf3354fc37b9a61853c417bcadf87",
+      "native_tag": "v1.31.4",
+      "log_directory": "/root/ROM-extras/.superpowers/smtp-native-consumer-runs/99ef7966736843eaad2b2d9e01b76c46",
+      "outcome": "passed"
+    }
+  ],
+  "native_runs_after_consumer_text_clarification": [
+    {
+      "scope": "Independent public Rust SMTP consumer, native Mailpit DATA/TLS/AUTH, persistence/restart and explicit duplicate risk, native post-storage acknowledgment loss, SQLite/redb public Runtime recovery and authority checks; no internet delivery",
+      "run_id": "7bc51f6d839a41149bd4841a3de1dfb8",
+      "consumer_manifest": "tests/smtp-public-consumer/Cargo.toml",
+      "before_count": 54,
+      "final_count": 60,
+      "runtime_backends": [
+        "sqlite",
+        "redb"
+      ],
+      "native_post_storage_acknowledgments_suppressed": 2,
+      "denied_notifications_submitted": 0,
+      "same_Message_ID_duplicate_count": 2,
+      "original_native_message_survived_restart": true,
+      "native_image": "994d4a5e14891cd6b1eed69441b1b45a730bf3354fc37b9a61853c417bcadf87",
+      "native_tag": "v1.31.4",
+      "log_directory": "/root/ROM-extras/.superpowers/smtp-native-consumer-runs/7bc51f6d839a41149bd4841a3de1dfb8",
+      "outcome": "passed"
+    },
+    {
+      "scope": "Independent public Rust SMTP consumer, native Mailpit DATA/TLS/AUTH, persistence/restart and explicit duplicate risk, native post-storage acknowledgment loss, SQLite/redb public Runtime recovery and authority checks; no internet delivery",
+      "run_id": "d017caa90a034dc6ab56f73028ac3435",
+      "consumer_manifest": "/tmp/smtp-packaged-zzlSdX/consumer/Cargo.toml",
+      "before_count": 60,
+      "final_count": 66,
+      "runtime_backends": [
+        "sqlite",
+        "redb"
+      ],
+      "native_post_storage_acknowledgments_suppressed": 2,
+      "denied_notifications_submitted": 0,
+      "same_Message_ID_duplicate_count": 2,
+      "original_native_message_survived_restart": true,
+      "native_image": "994d4a5e14891cd6b1eed69441b1b45a730bf3354fc37b9a61853c417bcadf87",
+      "native_tag": "v1.31.4",
+      "log_directory": "/root/ROM-extras/.superpowers/smtp-native-consumer-runs/d017caa90a034dc6ab56f73028ac3435",
+      "outcome": "passed"
+    }
+  ],
+  "final_archive_hashes": {
+    "rom-delivery-core": "9670158c31bfed6eb49ff3db37b7b6f1ecf9e91599153cb77a3d7da92a66a63a",
+    "rom-email-core": "9910aea40b994174371979a34a59bc17704bf07d68e30fb655c617930e8990de",
+    "rom-smtp": "3a74f6847eafadc06a533d0107415d13d65de404c949544a90b21dd21b9fa341"
+  },
+  "dependencies": {
+    "new_registry_versions": [],
+    "removed_registry_versions": [],
+    "lettre": "0.11.23",
+    "lettre_license": "MIT",
+    "lettre_declared_msrv": "1.85",
+    "resolved_workspace_features": [
+      "builder",
+      "smtp-transport",
+      "tokio1"
+    ],
+    "independent_pure_email_features": [
+      "builder"
+    ],
+    "audit_advisory_commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+    "workspace_and_independent_consumer_vulnerabilities": 0,
+    "workspace_and_independent_consumer_warnings": 0,
+    "audit_logs": [
+      ".superpowers/smtp-workspace-audit-refreshed-2026-10-09.json",
+      ".superpowers/smtp-consumer-audit-refreshed-2026-10-09.json"
+    ]
+  },
+  "regressions": {
+    "explicit_rejection_and_invalid_data_readiness": ".superpowers/smtp-command-stage-independent-red-2026-10-09.log",
+    "ehlo_rejection_and_initial_challenge_expectation": ".superpowers/smtp-initialization-independent-red-2026-10-09.log",
+    "challenge_scope_correction": "PLAIN rejects challenges before a follow-up; unexpected 334 is Unknown without DATA, not a known 535 rejection.",
+    "native_initial_mime_framing_failure": ".superpowers/smtp-native-consumer-runs/ea0c307b84ae40bdbb698ffafe074f50",
+    "native_initial_stale_address_after_restart_failure": ".superpowers/smtp-native-consumer-runs/e52c6d7af39843e48be010655f8fb1e2",
+    "all_failed_logs_and_native_messages_retained": true
+  },
+  "review": "Source-only independent review; confirmed MAIL/DATA and EHLO cleanup issues fixed, PLAIN challenge overstatement corrected, bounded owned process-group cleanup adopted. No residual actionable findings in reviewed transport and runners.",
+  "limitations": [
+    "Relay acceptance is not inbox delivery.",
+    "No portable SMTP idempotency or Message-ID deduplication; Unknown retries can duplicate effects.",
+    "No production relay account, internet deliverability, bounce, SPF/DKIM/DMARC, STARTTLS, alternate auth, TLS rotation or revocation qualification.",
+    "Host configures destinations, recipients, credentials, rate/retry policy, authorization and sessions.",
+    "All native fixtures, Runtime stores, private keys, raw messages and historical failures remain preserved.",
+    "The complete ROM-extras goal remains active."
+  ]
+}

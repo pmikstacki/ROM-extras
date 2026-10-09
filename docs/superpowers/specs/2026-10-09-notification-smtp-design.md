@@ -41,3 +41,24 @@ Preserve all historical databases, logs and failed attempts. Production SMTP acc
 See [official-source research](../../research/notification-smtp-2026-10-09.md).
 Lettre 0.11.23 is MIT and declares Rust 1.85. The workspace remains Rust 1.99.
 Enable only lettre `builder` in the core. Resolve and inspect transitive dependencies before adopting the transport features.
+
+## Transport limits and seam
+
+Use the public lettre connection over an adapter-owned, verified implicit TLS stream with a pre-parser decrypted-read budget.
+Endpoint is a literal host-approved SocketAddr, TLS identity and EHLO DNS name. No DNS lookup or alternate endpoint occurs.
+Reply budget is 1024–65536 bytes per attempt. Whole attempt timeout is 1ms–60s. Dispatch interval is 0–86400s.
+One shared transport admits one attempt; local overload and rate rejection occur before external I/O.
+Credentials are bounded to 1–1024 UTF-8 bytes each without controls; storage is zeroized, Debug is opaque.
+Authentication copies inside the protocol client are not guaranteed to be zeroized. No SMTP tracing is enabled.
+No plaintext production transport is provided. A selected private DER root replaces public roots without disabling certificate or hostname validation.
+Require 220 greeting, 235 AUTH and 250 DATA acknowledgment. Other positive DATA codes produce Unknown.
+Cancellation before dispatch is Retryable; cancellation or timeout after dispatch is Unknown. Dropping the future closes the owned stream.
+Explicit protocol rejection is Retryable for 4xx and Permanent for 5xx. Do not infer absence of a past uncertain effect.
+
+## Qualified transport refinements
+
+Use additive Base64 `prepare_smtp` to preserve logical content through DATA framing.
+Keep `prepare` behavior stable. Require MAIL 250, RCPT 250/251 and DATA readiness 354 before content.
+Known rejection must survive local error cleanup; no QUIT or TLS close-notify wait may replace it with timeout uncertainty.
+The host runner explicitly refreshes its approved literal fixture address after native container restart.
+The adapter never discovers or rotates endpoints.

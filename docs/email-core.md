@@ -2,7 +2,7 @@
 
 `rom-email-core` prepares one plain-text message from public `Delivery<EmailNotification>` without SMTP transport or network I/O.
 It is the first implementation step for the [SMTP notification design](superpowers/specs/2026-10-09-notification-smtp-design.md).
-Actual SMTP delivery and native Mailpit qualification remain pending.
+The separate [SMTP adapter](smtp.md) handles authenticated TLS submission and native qualification.
 
 ## Host ownership
 
@@ -31,6 +31,9 @@ Safe errors and Debug omit those fields; explicit access to prepared bytes expos
 The immutable creation timestamp supplies Date. A SHA-256 digest of the exact delivery identity supplies Message-ID.
 Attempt number does not change bytes, envelope, Date or Message-ID.
 The message includes typed MIME-Version, UTF-8 plain-text content type and transfer encoding from lettre.
+`prepare_smtp` adds explicit Base64 text encoding for SMTP framing without changing `prepare`.
+Its encoded output must also fit the host wire limit.
+Logical text and terminal line breaks survive transport framing; LF is canonicalized to CRLF.
 SMTP does not require a receiver to deduplicate that Message-ID. Do not infer exactly-once delivery.
 This profile excludes display names, multiple recipients, SMTPUTF8, HTML and attachments.
 
@@ -64,7 +67,8 @@ Set `ROM_EXTRAS_PYTHON` to an explicit Python 3 executable for independent RFC/M
 Python checks decoded Unicode subject/text, MIME version, exact headers, date, digest identity and absence of Bcc/Cc.
 No message is submitted to a server by this gate. Preparation checks do not qualify SMTP acceptance, TLS or production deliverability.
 
-Lettre 0.11.23 has only its builder feature enabled. No SMTP, sendmail, file transport or network feature is selected.
+This core declares only lettre 0.11.23 builder support. Its independent consumer resolves no transport features.
+Workspace builds can unify SMTP features from the separate adapter; the core performs no network I/O.
 See [source research and dependency requirements](research/notification-smtp-2026-10-09.md).
 The affected checks and full local verifier passed on unchanged source before integration.
 See [the scoped verification record](verification/email-preparation-2026-10-09.json).

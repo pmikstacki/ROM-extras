@@ -165,3 +165,23 @@ fn diagnostics_do_not_disclose_personal_fields_or_delivery_identity() {
         assert!(matches!(p.prepare(d), Err(EmailError::InvalidIdentity)));
     }
 }
+
+#[test]
+fn smtp_preparation_uses_base64_without_changing_existing_rfc_preparation() {
+    let p = profile(1048576);
+    let original = p.prepare(delivery(1)).unwrap();
+    let smtp = p.prepare_smtp(delivery(1)).unwrap();
+    assert!(
+        String::from_utf8(smtp.body().to_vec())
+            .unwrap()
+            .contains("Content-Transfer-Encoding: base64\r\n")
+    );
+    assert_eq!(smtp.message_id(), original.message_id());
+    assert_eq!(smtp.body(), p.prepare_smtp(delivery(2)).unwrap().body());
+    let n = smtp.body().len();
+    assert!(matches!(
+        profile(n - 1).prepare_smtp(delivery(1)),
+        Err(EmailError::TooLarge)
+    ));
+    assert_eq!(p.prepare(delivery(2)).unwrap().body(), original.body());
+}
