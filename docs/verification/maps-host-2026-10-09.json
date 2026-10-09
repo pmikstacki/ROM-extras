@@ -1,0 +1,43 @@
+{
+  "scope": "Public Rust map host read/session/query example; not full live HTTP/frontend acceptance",
+  "baseline": "1ce39658209114ef632434a992e23e0693c48df8",
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "exit": 0,
+    "log": ".superpowers/maps-host-public-full-verifier-2026-10-09.log",
+    "source_snapshot": ".superpowers/maps-host-public-source-snapshot-2026-10-09.json",
+    "snapshot_sha256": "72aa106f98148b60b2f4a7f04fe2c1e9e0804fb5d8571502e4573dcb910fcda4",
+    "files_verified_unchanged": 1033
+  },
+  "affected_checks": {
+    "command": "./scripts/check-map-host",
+    "exit": 0,
+    "log": ".superpowers/maps-host-public-affected-2026-10-09.log",
+    "scope": [
+      "Actual public Runtime SQLite and redb reads",
+      "Exact Resource keys and field disclosure",
+      "Row denial and missing/deleted/invalid locations",
+      "Input bounds and cancellation",
+      "Host authority checks before/after read and geocode",
+      "Authored MapTiler-shaped controlled HTTPS",
+      "Private fields and backend key omitted from browser DTO"
+    ]
+  },
+  "source_review": {
+    "reviewer": "/root/maps_http_increment_review",
+    "actionable_findings": [],
+    "scope": "Source only; no execution"
+  },
+  "advisories": {
+    "exit": 0,
+    "log": ".superpowers/maps-host-public-advisories-2026-10-09.log"
+  },
+  "remaining": [
+    "Live HTTP host and frontend packaging/integration",
+    "Production host authentication and session implementation",
+    "MapTiler styles/tiles and actual service qualification",
+    "Full SQL Storage integration",
+    "Other ROM-extras family acceptance"
+  ],
+  "historical_evidence": "Private prototypes, snapshots, databases and logs retained"
+}

@@ -181,3 +181,19 @@ The independent consumer is `tests/maptiler-public-consumer`.
 These tests qualify authored protocol fixtures, not the actual MapTiler service or account permissions.
 MapTiler styles/tiles and complete browser integration remain pending.
 The combined increment passed the full local verifier. See [the verification record](verification/maps-maptiler-2026-10-09.json).
+
+## Host read and suggestion example
+
+The Rust host example is `examples/maps-host`. It uses only public ROM and map-provider interfaces.
+
+The host supplies its Actor, selected kind and exact Resource keys. `read_session_points` checks current host authority before and after the read. Runtime checks current row and field disclosure. The example returns only title and validated longitude/latitude. Hidden or invalid locations are omitted. The input limit is 200 keys.
+
+The host must serialize its response decision with session changes. The callback must read current host state. This helper does not implement authentication or a session store.
+
+`query_suggestions` uses an explicitly selected capability. It checks host authority before and after provider I/O. Native IDs remain provenance. Suggestions do not create Resource IDs or writes. Keep required attribution when rendering the result.
+
+The check covers actual SQLite/redb Runtime reads and an authored HTTPS MapTiler-shaped fixture. It also covers revocation, missing capability, cancellation and private-field omission. It does not qualify the actual MapTiler service.
+
+The rom-ui preparation remains private. Its browser tests use exported authorized fixture snapshots. Live host HTTP sessions and browser authority updates remain incomplete.
+
+The Rust host increment passed the full local verifier. See [the verification record](verification/maps-host-2026-10-09.json).

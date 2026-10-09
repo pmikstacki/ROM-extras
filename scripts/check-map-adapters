@@ -51,3 +51,5 @@ cargo fmt --manifest-path tests/maptiler-public-consumer/Cargo.toml -- --check
 cargo build --manifest-path tests/maptiler-public-consumer/Cargo.toml --locked --offline --target-dir target/maptiler-public-consumer
 node scripts/check-map-adapter-consumer.mjs maptiler
 cargo clippy --manifest-path tests/maptiler-public-consumer/Cargo.toml --locked --offline --target-dir target/maptiler-public-consumer --all-targets -- -D warnings
+
+./scripts/check-map-host

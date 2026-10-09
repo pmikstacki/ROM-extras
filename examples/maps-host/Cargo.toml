@@ -1,0 +1,14 @@
+[workspace]
+[package]
+name = "rom-maps-host-example"
+version = "0.0.0"
+edition = "2024"
+license = "MIT"
+[dependencies]
+rom = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", version = "=0.0.3" }
+rom-map-core = { path = "../../crates/rom-map-core" }
+[dev-dependencies]
+tokio = { version = "=1.53.1", features = ["rt", "macros"] }
+rom-sqlite = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+rom-redb = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+rom-maptiler = { path = "../../crates/rom-maptiler" }

@@ -3,6 +3,7 @@ import path from 'node:path';
 const profiles = {
  nominatim: ['crates/rom-nominatim/tests/receiver.mjs', 'target/map-adapter-consumer/debug/rom-map-adapter-consumer'],
  maptiler: ['crates/rom-maptiler/tests/receiver.mjs', 'target/maptiler-public-consumer/debug/rom-maptiler-independent-consumer'],
+ host: ['crates/rom-maptiler/tests/receiver.mjs', 'cargo'],
 };
 const profile = profiles[process.argv[2] ?? 'nominatim'];
 if (!profile || process.argv.length > 3) throw Error('Unknown controlled consumer profile');
@@ -15,7 +16,11 @@ fixture.on('error',()=>{clearTimeout(timer);process.exitCode=1;});
 fixture.stdout.once('data',data=>{
  const port=Number(String(data).trim());
  if(!Number.isInteger(port)||port<1||port>65535){fixture.kill();clearTimeout(timer);process.exitCode=1;return;}
- consumer=spawn(profile[1],[`https://127.0.0.1:${port}/operator/`,path.join(tls,'ca.pem')],{stdio:'inherit'});
+ const endpoint = `https://127.0.0.1:${port}/operator/`;
+ const ca = path.join(tls,'ca.pem');
+ const host = process.argv[2] === 'host';
+ const args = host ? ['test','--manifest-path','examples/maps-host/Cargo.toml','--locked','--offline','--target-dir','target/maps-host','--test','https','--','--ignored'] : [endpoint,ca];
+ consumer=spawn(profile[1],args,{stdio:'inherit',env:host?{...process.env,ROM_MAP_HOST_ENDPOINT:endpoint,ROM_MAP_HOST_CA:ca}:process.env});
  consumer.on('error',()=>{fixture.kill();clearTimeout(timer);process.exitCode=1;});
  consumer.on('exit',code=>{fixture.kill();clearTimeout(timer);process.exitCode=code??1;});
 });
