@@ -1,0 +1,158 @@
+{
+  "date": "2026-10-09",
+  "baseline": "85713b50e5e089259c458dc481739fdb12e5e208",
+  "public_rom": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "scope": "Maintained PostgreSQL acknowledged native ownership after actual same-volume process death; not full ROM Storage",
+  "native": {
+    "version": "18.6",
+    "endpoint": "Explicit plaintext literal loopback55439",
+    "durability": "Permanent control/data; fsync/full_page_writes/synchronous_commit ON including actual protected write session",
+    "guards": "Actual acknowledged generation1/2 guards retained in consumer memory; all clients closed without release",
+    "observations": "Same cluster system_identifier; changed postmaster start; exact generation2/value17; Busy claim and stale write/release denial; current write42; release/reclaim generation3 and fresh exact read",
+    "counterexample": "UNLOGGED sentinel value17 before crash; zero rows after recovery",
+    "affected_log": ".superpowers/postgres-native-recovery-affected-attempt2-2026-10-09.log",
+    "affected_log_sha256": "574db3f5092d45a0b4f6e78a59c3f0b68b8a914d7403586d6c1489a0d0ca091b",
+    "affected_exit": 0,
+    "affected_runs": [
+      "/root/ROM-extras/.superpowers/postgres-owner-runs/run-n2b3gp8x",
+      "/root/ROM-extras/.superpowers/postgres-owner-runs/run-vew3ngov"
+    ],
+    "affected_archives": "/tmp/postgres-owner-packaged-xr3QZv/archives.json",
+    "restart_observations": [
+      {
+        "id": "4b8e4f950e2f312868eccffc4918225b4a0bf082172b713c3cd33c81b2d14843",
+        "image": "cc72d79b4ea60df4943193bbeac2a0c84f4b6bd8c536680f6d4b14a94b272d41",
+        "same_volume": true,
+        "exit_code": 137,
+        "oom_killed": false,
+        "startup_observations": {
+          "interrupted_shutdown": true,
+          "wal_redo_started": true,
+          "wal_redo_finished": true,
+          "native_ready": true
+        }
+      },
+      {
+        "id": "4b8e4f950e2f312868eccffc4918225b4a0bf082172b713c3cd33c81b2d14843",
+        "image": "cc72d79b4ea60df4943193bbeac2a0c84f4b6bd8c536680f6d4b14a94b272d41",
+        "same_volume": true,
+        "exit_code": 137,
+        "oom_killed": false,
+        "startup_observations": {
+          "interrupted_shutdown": true,
+          "wal_redo_started": true,
+          "wal_redo_finished": true,
+          "native_ready": true
+        }
+      }
+    ]
+  },
+  "negative_evidence": [
+    {
+      "log": ".superpowers/postgres-recovery-noop-red-j0pucwef/native.log",
+      "expected_failure": "native postmaster did not restart"
+    },
+    {
+      "log": ".superpowers/postgres-recovery-unlogged-red-lpgbi8ci/native.log",
+      "source_mutation": "Temporarily omit timestamp comparison, then restore exact source",
+      "expected_failure": "UNLOGGED sentinel survived; crash recovery unproven"
+    }
+  ],
+  "review": {
+    "source_only": ".superpowers/postgres-native-recovery-final-review-2026-10-09.md",
+    "findings": []
+  },
+  "dependencies": "No production API, source or lockfile changes",
+  "research": "docs/research/postgres-native-recovery-2026-10-09.md",
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "status": "passed",
+    "log": ".superpowers/postgres-native-recovery-full-verifier-attempt4-2026-10-09.log",
+    "exit": 0,
+    "log_sha256": "06dbef9a62436fdf2d90cb39aa278c1d18eaba55fd59d777e05007f0cb1245b6",
+    "source_snapshot": ".superpowers/postgres-native-recovery-source-snapshot-attempt4-2026-10-09.json",
+    "source_snapshot_sha256": "7875ca7182eecb8602b62fbb6e540c8cee12324257afa0eef0bc8a8010bfb6a2",
+    "unchanged_source_files": 1324,
+    "source_membership_unchanged": true,
+    "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)",
+    "lockfiles": {
+      "Cargo.lock": "0d2c718a5a28e9fc32e0d57a3afae02b58acd75159ad75b3583ec6921ba42dbf",
+      "tests/postgres-owner-consumer/Cargo.lock": "00b2182f542a7c0662e7a7cdc39d0fd767835d5537f95c27f52a7ac887af205c"
+    },
+    "postgres_native_runs": [
+      "/root/ROM-extras/.superpowers/postgres-owner-runs/run-og87bdxy",
+      "/root/ROM-extras/.superpowers/postgres-owner-runs/run-1gixg_6h"
+    ],
+    "postgres_archives": [
+      "/tmp/postgres-owner-packaged-P9Km2H"
+    ],
+    "post_verifier_edits": "Evidence only: this record, PostgreSQL guide result summary and plan status"
+  },
+  "not_qualified": [
+    "OS/storage power loss or hardware flush correctness",
+    "During-COMMIT server interruption",
+    "Uncertain owner-acquisition acknowledgement",
+    "Native deadlock victim profile",
+    "Production TLS/certificate profiles",
+    "Distributed behavior",
+    "Full ROM Storage/incremental Work and StorageOwner lifecycle integration"
+  ],
+  "preserved_full_failure": {
+    "log": ".superpowers/postgres-native-recovery-full-verifier-2026-10-09.log",
+    "exit": 101,
+    "log_sha256": "f6b7caffe3361b150312cc22b324cc6f729c5012a8274b2b063dced0ad9d0562",
+    "source_snapshot": ".superpowers/postgres-native-recovery-source-snapshot-2026-10-09.json",
+    "source_snapshot_sha256": "b2c03a73f32bb841b7b49f1bb471a09a3165d8aee278ecab0ddb732db4809fa2",
+    "unchanged_source_files": 1324,
+    "cause": "Original OpenBao limited runtime fixture token expired after24h; independent administrative lookup rejected it as badtoken. Administrative token/policy and retained material unchanged.",
+    "fixture_repair": ".superpowers/postgres-recovery-openbao-token-rotation-2026-10-09.json",
+    "affected_restored": ".superpowers/postgres-recovery-openbao-token-restored-2026-10-09.log",
+    "affected_exit": 0,
+    "production_sources_changed": false
+  },
+  "preserved_startup_failure": {
+    "log": ".superpowers/postgres-native-recovery-full-verifier-attempt2-2026-10-09.log",
+    "exit": 1,
+    "log_sha256": "9ade9ce4c942d39df5eaa8a86ff5a8289e2aeab06ad6776aa8cc1fd621544423",
+    "source_snapshot": ".superpowers/postgres-native-recovery-source-snapshot-attempt2-2026-10-09.json",
+    "source_snapshot_sha256": "eff3c1a00fff4e12ea2436e2ef2e03b6737e91620d42698e34e606050d1e3496",
+    "cause": "Introductory interrupted-state header absent from selected bounded log window; required automatic crash recovery, redo start/done and readiness all present; native state consumer passed.",
+    "native_run": ".superpowers/postgres-owner-runs/run-i_wktc41",
+    "private_window": ".superpowers/postgres-recovery-startup-missing-private-2026-10-09.log",
+    "fix": "Require explicit automatic crash-recovery message instead of introductory header; unchanged redo, UNLOGGED and native state requirements"
+  },
+  "prior_affected": {
+    "affected_log": ".superpowers/postgres-native-recovery-affected-2026-10-09.log",
+    "affected_log_sha256": "b67f130167177b160d988390e51280c81480988a1653e77b25ddc9fc515d455b",
+    "affected_exit": 0,
+    "affected_runs": [
+      "/root/ROM-extras/.superpowers/postgres-owner-runs/run-q7u_27_p",
+      "/root/ROM-extras/.superpowers/postgres-owner-runs/run-7twq0ye0"
+    ],
+    "affected_archives": "/tmp/postgres-owner-packaged-STKlnY/archives.json"
+  },
+  "preserved_kafka_failure": {
+    "log": ".superpowers/postgres-native-recovery-full-verifier-attempt3-2026-10-09.log",
+    "exit": 101,
+    "log_sha256": "d0baaf51aa58c4340f9e8839e85f0c2609b852966d630a327031308fa62ba6f4",
+    "source_snapshot": ".superpowers/postgres-native-recovery-source-snapshot-attempt3-2026-10-09.json",
+    "source_snapshot_sha256": "05b89b5ee07cf87742e6eb6213cfd429a1b05a4764337772fa8804be27137153",
+    "unchanged_source_files": 1324,
+    "cause": "Retained Kafka fixture loaded388 native logs then failed LogCleaner startup with Java heap space; heap256MiB, container768MiB; exited1 without OOMKilled.",
+    "archive_and_isolation": ".superpowers/kafka-recovery-isolated-20261009/identity.json",
+    "original_containers_and_data_preserved": true,
+    "isolated_start_failures_preserved": [
+      ".superpowers/kafka-recovery-isolated-20261009/startup-failed-full-private.log",
+      ".superpowers/postgres-recovery-kafka-isolated-affected-attempt2-2026-10-09.log"
+    ],
+    "isolation_correction": "Retain original network alias, hostname and fixture labels; same pinned image; fresh persistent data volume; max heap1GiB/container2GiB.",
+    "affected_restored": ".superpowers/postgres-recovery-kafka-isolated-affected-attempt3-2026-10-09.log",
+    "affected_exit": 0,
+    "production_sources_changed": false,
+    "official_sources": [
+      "https://kafka.apache.org/42/operations/hardware-and-os/",
+      "https://kafka.apache.org/42/configuration/broker-configs/",
+      "https://docs.docker.com/reference/cli/docker/network/connect/"
+    ]
+  }
+}

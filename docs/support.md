@@ -357,5 +357,15 @@ A source mutation that omitted driving abort completion failed this actual nativ
 Ordinary connect forces TLS Require; the explicit executed NoTls fixture is limited to literal loopback.
 Connect blackholes, failed authentication, endpoint denial and active-runtime boundaries are checked separately.
 Common identifier and connect/I/O validation now lives in rom-sql-core; MSSQL public paths and native guarantees remain unchanged.
-Production TLS, server-restart/crash profiles, owner-acquisition uncertainty, distributed behavior and full Storage remain open.
+The initial mapping qualification left production TLS, server-restart/crash profiles, owner-acquisition uncertainty, distributed behavior and full Storage open.
 See [the maintained PostgreSQL guide](postgres-ownership.md).
+
+## PostgreSQL native recovery increment
+
+Maintained rom-postgres now has a required same-container, same-image and same-volume PostgreSQL18.6 SIGKILL profile.
+Acknowledged guards remain in memory with all clients closed; exact generation2/value17 survive native WAL recovery.
+An UNLOGGED sentinel must disappear. No-op restart signals fail independent native timestamp and sentinel checks.
+Old guards are rejected; the retained current guard writes42, releases and reclaims generation3, observed through a fresh connection.
+Direct and normalized archive consumers execute the same profile without reconstructing guards or retrying writes.
+This does not qualify OS/storage power loss, in-flight server interruption, uncertain owner acquisition, TLS or full Storage.
+See [scope and verification](verification/postgres-native-recovery-2026-10-09.json).

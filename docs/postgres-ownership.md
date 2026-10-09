@@ -101,10 +101,34 @@ This does not claim parsed success tokens, lost owner-acquisition acknowledgemen
 A controlled startup blackhole confirms the connect deadline; it is not a real successful database service.
 TLS Require with NoTls, incorrect native authentication, multiple endpoints and remote plaintext admission are rejected.
 Active-runtime construction fails and async handoff Drop is exercised.
-Production certificate chains, same-volume server restart, power loss, deadlock victims and distributed profiles remain unqualified.
+The initial qualification left production certificate chains, same-volume server restart, power loss, deadlock victims and distributed profiles open.
 The existing [historical SQL-core consumer](sql-ownership.md) and its synthetic acknowledgement evidence remain preserved.
 See [primary-source decisions](research/postgres-maintained-owner-2026-10-09.md) and [verification status](verification/postgres-maintained-owner-2026-10-09.json).
 
 The affected PostgreSQL and MSSQL gates passed for local sources and normalized Cargo archives.
 The full local verifier passed on 2026-10-09. All 1319 frozen source files retained identical membership and SHA-256 hashes.
 Only this result summary, the verification record and plan status changed after the verifier.
+
+## Native process-crash recovery
+
+The independent consumer retains acknowledged generation1 and generation2 guards in memory across an actual PostgreSQL18.6 container SIGKILL.
+All native clients close before interruption. The runner verifies the exact container, image, loopback binding and persistent data volume.
+It requires exit137 without OOM, then starts the same instance. It does not delete or replace data.
+
+The native cluster system identifier remains unchanged; the postmaster start time changes.
+A separate UNLOGGED sentinel disappears, while the permanent control row retains exact generation2 and committed value17.
+The old guard cannot write or release. The current guard writes42; release and reclaim advance ownership to generation3.
+A new connection must observe exact generation3 and value42. Inspection cannot mint a new acknowledged ownership value.
+
+Readiness retries apply only to explicit fixture connections. Owner transitions and writes are never retried automatically.
+The native write session checks fsync, full_page_writes and synchronous_commit ON.
+Selected startup messages must indicate interrupted shutdown, WAL redo and readiness. Only finite observations are retained.
+Both source and normalized archive consumers run the profile. Two native no-op mutations fail on independent restart witnesses.
+
+This profile qualifies acknowledged ownership recovery after server process death. It does not qualify OS or storage power loss.
+Production TLS, native deadlock victims, during-COMMIT server interruption, uncertain owner acquisition and full ROM Storage remain open.
+See [official-source decisions](research/postgres-native-recovery-2026-10-09.md) and [execution evidence](verification/postgres-native-recovery-2026-10-09.json).
+
+The final full local verifier passed on 2026-10-09 after the documented fixture repairs and startup-witness correction.
+All 1324 frozen source files retained identical membership and SHA-256 hashes. Only evidence summaries and plan status changed afterward.
+Earlier failures, fixture token rotation and the preserved Kafka archive remain documented in the execution record.
