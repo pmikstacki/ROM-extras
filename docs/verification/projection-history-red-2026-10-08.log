@@ -1,0 +1,74 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.33s
+     Running tests/history.rs (target/debug/deps/history-7e98704c43d8d03f)
+
+running 7 tests
+test changed_disclosure_and_changed_mapping_require_rebuild ... FAILED
+test cancellation_preserves_cursor_and_accepts_a_later_uncancelled_attempt ... FAILED
+test filtered_empty_history_advances_only_after_inspected_coverage ... FAILED
+test malformed_overrun_is_rejected_before_any_mapping_and_poisoned ... FAILED
+test mapper_cannot_substitute_original_identity_or_tombstone ... FAILED
+test stalled_generation_change_and_work_exhaustion_fail_closed ... FAILED
+test replay_overrun_maps_only_old_interval_and_returns_exact_old_intent ... FAILED
+
+failures:
+
+---- changed_disclosure_and_changed_mapping_require_rebuild stdout ----
+
+thread 'changed_disclosure_and_changed_mapping_require_rebuild' (4176923) panicked at crates/rom-projection-core/tests/history.rs:49:63:
+called `Result::unwrap()` on an `Err` value: Unsupported
+
+---- cancellation_preserves_cursor_and_accepts_a_later_uncancelled_attempt stdout ----
+
+thread 'cancellation_preserves_cursor_and_accepts_a_later_uncancelled_attempt' (4176922) panicked at crates/rom-projection-core/tests/history.rs:72:5:
+assertion `left == right` failed
+  left: Err(Unsupported)
+ right: Err(Cancelled)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- filtered_empty_history_advances_only_after_inspected_coverage stdout ----
+
+thread 'filtered_empty_history_advances_only_after_inspected_coverage' (4176924) panicked at crates/rom-projection-core/tests/history.rs:39:63:
+called `Result::unwrap()` on an `Err` value: Unsupported
+
+---- malformed_overrun_is_rejected_before_any_mapping_and_poisoned stdout ----
+
+thread 'malformed_overrun_is_rejected_before_any_mapping_and_poisoned' (4176925) panicked at crates/rom-projection-core/tests/history.rs:61:5:
+assertion `left == right` failed
+  left: Err(Unsupported)
+ right: Err(HistoryGap)
+
+---- mapper_cannot_substitute_original_identity_or_tombstone stdout ----
+
+thread 'mapper_cannot_substitute_original_identity_or_tombstone' (4176926) panicked at crates/rom-projection-core/tests/history.rs:80:5:
+assertion `left == right` failed
+  left: Err(Unsupported)
+ right: Err(RebuildRequired)
+
+---- stalled_generation_change_and_work_exhaustion_fail_closed stdout ----
+
+thread 'stalled_generation_change_and_work_exhaustion_fail_closed' (4176928) panicked at crates/rom-projection-core/tests/history.rs:91:9:
+assertion `left == right` failed
+  left: Err(Unsupported)
+ right: Err(HistoryGap)
+
+---- replay_overrun_maps_only_old_interval_and_returns_exact_old_intent stdout ----
+
+thread 'replay_overrun_maps_only_old_interval_and_returns_exact_old_intent' (4176927) panicked at crates/rom-projection-core/tests/history.rs:24:5:
+assertion `left == right` failed
+  left: JournalCursor { generation: "journal-a", kind: "document", position: 5 }
+ right: JournalCursor { generation: "journal-a", kind: "document", position: 0 }
+
+
+failures:
+    cancellation_preserves_cursor_and_accepts_a_later_uncancelled_attempt
+    changed_disclosure_and_changed_mapping_require_rebuild
+    filtered_empty_history_advances_only_after_inspected_coverage
+    malformed_overrun_is_rejected_before_any_mapping_and_poisoned
+    mapper_cannot_substitute_original_identity_or_tombstone
+    replay_overrun_maps_only_old_interval_and_returns_exact_old_intent
+    stalled_generation_change_and_work_exhaustion_fail_closed
+
+test result: FAILED. 0 passed; 7 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p rom-projection-core --test history`

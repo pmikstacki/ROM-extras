@@ -1,7 +1,7 @@
-use rom::{JournalCursor, Key};
+use rom::{JournalBatch, JournalCursor, JournalView, Key, ProjectedView};
 use rom_projection_core::{
     Cancellation, Checkpoint, CheckpointStore, CommitStatus, Error, OperationMetadata, PageIntent,
-    ProjectionProfile, RemoteObservation, StorageWorker, TransactionId,
+    PendingHistory, ProjectionProfile, RemoteObservation, StorageWorker, TransactionId,
 };
 use std::os::unix::fs::DirBuilderExt;
 
@@ -74,6 +74,39 @@ pub fn run() {
         0
     );
     let observed = RemoteObservation::new(&profile, "consumer-target", operation.clone()).unwrap();
+    let mut history =
+        PendingHistory::new(store.load().unwrap().pending_page().unwrap().clone()).unwrap();
+    history
+        .push(
+            &JournalBatch {
+                events: vec![JournalView {
+                    position: 3,
+                    view: ProjectedView {
+                        key: operation.key().clone(),
+                        revision: 7,
+                        value: Some(Default::default()),
+                    },
+                }],
+                cursor: JournalCursor {
+                    position: 5,
+                    ..page.next_cursor().clone()
+                },
+            },
+            &Cancellation::new(),
+            |_| Ok(operation.clone()),
+        )
+        .unwrap();
+    assert_eq!(history.finish().unwrap(), page);
+    assert_eq!(
+        store
+            .load()
+            .unwrap()
+            .checkpoint()
+            .cursor("document")
+            .unwrap()
+            .position,
+        0
+    );
     let reconciled = page.reconcile(&profile, vec![observed]).unwrap();
     let completed = store.complete_page(&page, &reconciled).unwrap();
     drop(store);

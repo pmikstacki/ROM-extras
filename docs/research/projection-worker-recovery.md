@@ -29,7 +29,7 @@ Reconstruct the collapsed operation metadata using the same mapping and exact ol
 Compare the full resulting `PageIntent` before any replay or completion. Do not compare only its last cursor or operation count.
 Return `HistoryGap` for lost continuity. Return `RebuildRequired` for changed disclosure, content, profile, or unreproducible mapping.
 A newer observed provider revision is divergence, not an exact acknowledgement.
-These categories require implementation and native tests; this document does not add them to the compiled API.
+`RebuildRequired` is now a compiled metadata-reconstruction classification. Native history and provider tests remain required.
 
 ## Storage-thread lifecycle
 
@@ -59,3 +59,12 @@ Source inspection of this existing component is separate from web contract resea
 The typed storage owner now reuses the executor and overrides detach-on-drop with shutdown/join.
 Native file tests and normalized archive consumers qualify this limited execution layer.
 The bounded asynchronous host lifecycle bridge, page orchestration and retained-history reconstruction are still required.
+
+## Pending-history metadata checkpoint
+
+The bounded incremental component now implements the interval comparison seam described above.
+It checks all returned positions before endpoint clamping and keeps at most 64 original-key metadata records.
+Its fixed admission budget is 64 batches, 4096 returned views and 4096 inspected global positions, including overrun.
+Mapper failure or unwind makes the reconstruction terminal; pre-admission cancellation preserves state for a fresh token.
+Tests use synthetic authorized-batch shapes and actual native pending files. They do not execute authorization or native journal fetches.
+Actual public SQLite/redb feed qualification and immutable approved document encoding remain required before full provider orchestration acceptance.

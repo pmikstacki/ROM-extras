@@ -89,3 +89,21 @@ The normalized archive consumer extracts both crates and exercises an asynchrono
 Page orchestration, actual provider writes, retained authorized-history reconstruction, and the host's asynchronous lifecycle bridge remain required.
 
 The [storage-owner verification record](verification/projection-storage-worker-full-verifier-2026-10-08.json) preserves the failed fixture stop and successful full retry with exact source identity.
+
+## Pending authorized-history reconstruction
+
+`PendingHistory` starts from a persisted intent's original expected cursor. Fetch each batch through public `Runtime::journal` with the export actor.
+Pass the authorized batch and immutable mapping to `push`. The component retains metadata, not projected values.
+It validates the entire batch before selecting events within the original endpoint, including historical tombstones.
+The mapper cannot substitute keys, positions, revisions or tombstone status. Digest determinism and export authorization remain host responsibilities.
+Repeated keys collapse across batches, with nondecreasing revisions and identical content at equal revisions.
+`finish` requires inspected coverage and complete reconstructed intent equality. Changed disclosure or mapping returns `RebuildRequired`.
+This adds an error variant to the unreleased crate. Update exhaustive `Error` matches to handle `RebuildRequired`.
+Changed generation, invalid ordering or insufficient coverage returns `HistoryGap`. A cursor alone cannot prove unchanged disclosure.
+Limits are 64 fetches, 4096 returned views, 4096 global inspected positions and 64 distinct retained keys.
+The inspected-position budget includes final overrun, unrelated kinds and denied events. Larger spans return `TooLarge` without publication.
+A pre-cancelled push preserves the component for a fresh token. Other failures make the reconstruction terminal.
+A mapper unwind leaves a terminal `RebuildRequired` state if the host catches the panic. Panics are not caught internally.
+This component performs no checkpoint write or network dispatch. A successful finish is not a provider acknowledgement.
+Synthetic public-shaped batches and actual pending files test the core seam. Actual SQLite/redb feed integration remains unqualified.
+Approved documents, full page orchestration, actual providers and the bounded asynchronous host lifecycle bridge remain required.

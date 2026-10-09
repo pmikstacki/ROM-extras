@@ -1,0 +1,21 @@
+   Packaging rom-sql-core v0.1.0-dev (/root/ROM-extras/crates/rom-sql-core)
+warning: patch `rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)` was not used in the crate graph
+warning: patch `rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)` was not used in the crate graph
+help: Check that the patched package version and available features are compatible
+      with the dependency requirements. If the patch has a different version from
+      what is locked in the Cargo.lock file, run `cargo update` to use the new
+      version. This may also occur with an optional dependency that is not enabled.
+    Packaged 9 files, 22.5KiB (6.1KiB compressed)
+   Packaging rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Updating crates.io index
+    Packaged 27 files, 127.6KiB (28.4KiB compressed)
+   Compiling rom-sql-core v0.1.0-dev (/root/ROM-extras/.superpowers/projection-packaged-0UGmrE/rom-sql-core-0.1.0-dev)
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/.superpowers/projection-packaged-0UGmrE/rom-projection-core-0.1.0-dev)
+   Compiling rom-projection-packaged-consumer v0.0.0 (/root/ROM-extras/.superpowers/projection-packaged-0UGmrE/consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.07s
+     Running `target/projection-packaged-consumer/debug/rom-projection-packaged-consumer`
+packaged projection checkpoint close/reopen: passed
+    Checking rom-sql-core v0.1.0-dev (/root/ROM-extras/.superpowers/projection-packaged-0UGmrE/rom-sql-core-0.1.0-dev)
+    Checking rom-projection-core v0.1.0-dev (/root/ROM-extras/.superpowers/projection-packaged-0UGmrE/rom-projection-core-0.1.0-dev)
+    Checking rom-projection-packaged-consumer v0.0.0 (/root/ROM-extras/.superpowers/projection-packaged-0UGmrE/consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.31s

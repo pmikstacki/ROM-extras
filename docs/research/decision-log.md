@@ -589,3 +589,28 @@ The revised full verifier passed with all 195 frozen runtime hashes unchanged, i
 The [storage-owner execution record](../verification/projection-storage-worker-full-verifier-2026-10-08.json) preserves both attempts, normalized archives, source fences and audit results.
 Independent source review found no actionable storage-owner issues; it executed no tests.
 All audited graphs contain zero known vulnerabilities at inspection time; the public consumer retains its unsuppressed informational paste warning.
+
+## 2026-10-08: bounded pending-history reconstruction
+
+Sources: [pinned authorized journal](https://raw.githubusercontent.com/pmikstacki/ROM/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom/src/journal.rs), [historical disclosure and tombstones](https://raw.githubusercontent.com/pmikstacki/ROM/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom/src/projection.rs), [global inspected positions and retention](https://raw.githubusercontent.com/pmikstacki/ROM/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom/src/storage_state.rs).
+
+Use a bounded incremental reconstruction component before full worker dispatch. Accept only authorized public journal batches through the trusted host seam.
+Validate the complete batch's kind, generation, cursor and event ordering before clamping to the immutable pending endpoint.
+Map only events inside that interval; reject mapper changes to original key, position, revision or tombstone status.
+Collapse repeated keys across batches, preserving revision monotonicity and equal-revision content identity. Compare the complete reconstructed intent.
+Use fixed limits of 64 fetches, 4096 returned views and 4096 global inspected positions, including final overrun.
+The global position span measures inspected facts, including unrelated kinds and denied events. It is deliberately more conservative than returned-view count.
+Reject exhausted bounds without local publication. These recovery admission limits do not change the durable checkpoint format or profile encoding.
+Use a terminal failed state after a rejected batch; do not reuse a partially mapped interval or rerun a stateful mapper after failure.
+Pre-cancellation preserves reconstruction state. Cancellation during inspection makes reconstruction terminal, without publishing partial metadata or inferring rollback.
+The pending durable intent stays unchanged.
+Alternatives: current reads lose historical tombstones; matching only cursors misses changed disclosure; unlimited replay gives no finite work bound.
+This component retains metadata only. It cannot establish mapping determinism, authorization, remote persistence or native feed qualification by itself.
+Actual public SQLite/redb integration, immutable approved documents and full page-worker orchestration remain required.
+
+The [history execution record](../verification/projection-history-full-verifier-2026-10-09.json) identifies the actual source and remaining acceptance requirements.
+Eleven history cases and 36 existing focused cases passed, with one compile-fail doctest. Initial seven-case RED and mapper-unwind RED remain preserved.
+The full verifier passed with all 197 frozen runtime hashes unchanged. Public and extracted-archive consumers exercised exact interval reconstruction.
+Source review found no actionable runtime issue; the cancellation prose clarification was applied. The reviewer executed no tests.
+Fresh audits reported no known vulnerabilities. The independent public consumer retains its informational unmaintained paste advisory.
+This accepts the metadata component, not the full worker or native history/provider integration.

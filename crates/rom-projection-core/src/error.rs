@@ -12,6 +12,8 @@ pub enum Error {
     Conflict,
     /// Journal continuity cannot be established.
     HistoryGap,
+    /// Retained authorized content cannot reproduce the immutable intent.
+    RebuildRequired,
     /// Another cooperating owner holds the file.
     Busy,
     /// Unqualified format, platform, or capability.
@@ -42,6 +44,7 @@ impl std::fmt::Display for Error {
                 Self::TooLarge => "too large",
                 Self::Conflict => "conflict",
                 Self::HistoryGap => "history gap",
+                Self::RebuildRequired => "rebuild required",
                 Self::Busy => "busy",
                 Self::Unsupported => "unsupported",
                 Self::Corrupt => "corrupt",

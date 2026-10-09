@@ -23,3 +23,6 @@ mod test_support;
 
 mod storage_worker;
 pub use storage_worker::{StorageFailure, StorageResponse, StorageWorker};
+
+mod history;
+pub use history::PendingHistory;

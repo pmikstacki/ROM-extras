@@ -1,0 +1,27 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.38s
+     Running tests/history.rs (target/debug/deps/history-7e98704c43d8d03f)
+
+running 1 test
+test mapper_panic_cannot_leave_a_reusable_partial_reconstruction ... FAILED
+
+failures:
+
+---- mapper_panic_cannot_leave_a_reusable_partial_reconstruction stdout ----
+
+thread 'mapper_panic_cannot_leave_a_reusable_partial_reconstruction' (4179836) panicked at crates/rom-projection-core/tests/history.rs:201:51:
+controlled mapper unwind
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'mapper_panic_cannot_leave_a_reusable_partial_reconstruction' (4179836) panicked at crates/rom-projection-core/tests/history.rs:204:5:
+assertion `left == right` failed
+  left: Ok(())
+ right: Err(RebuildRequired)
+
+
+failures:
+    mapper_panic_cannot_leave_a_reusable_partial_reconstruction
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 10 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p rom-projection-core --test history`

@@ -175,3 +175,10 @@ It reuses the existing executor with fixed private captures. A dropped response 
 Actual files cover durable intent, atomic publication, queue overload, dropped response, job panic, and ownership after join.
 Initialization and destruction still require the host's bounded blocking context. The asynchronous host lifecycle bridge is not yet implemented.
 The storage thread is not the full page worker; history reconstruction, immutable approved documents and actual provider orchestration remain pending.
+
+## Task 2 pending-history metadata increment
+
+`PendingHistory` reconstructs the immutable old interval from bounded public-shaped authorized journal batches and host mapping metadata.
+It validates overrun, preserves historical tombstones, collapses repeated keys and requires full intent equality before returning.
+It retains no projected values and performs no checkpoint writes. Actual files verify that failed reconstruction preserves pending intent and old cursor.
+This component is not actual SQLite/redb feed qualification or the full worker. Approved document mapping, dispatch orchestration and host lifecycle remain pending.

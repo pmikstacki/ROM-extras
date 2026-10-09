@@ -1,0 +1,65 @@
+{
+  "inspection_date": "2026-10-09",
+  "baseline_commit": "5ed319615de545bec9b6e8040fa33207ba232cda",
+  "command": "./scripts/check-all",
+  "exit_code": 0,
+  "completed_utc": "2026-10-09T00:07:10.359Z",
+  "frozen_files": 197,
+  "unchanged": true,
+  "runtime_source_fence": "projection-history-runtime-freeze-2026-10-09.json",
+  "full_log": "projection-history-full-verifier-2026-10-09.log",
+  "compiler": "projection-history-compiler-2026-10-09.log",
+  "focused": {
+    "command": "cargo test -p rom-projection-core",
+    "passed_cases": 47,
+    "history_cases": 11,
+    "compile_fail_doctests": 1,
+    "ignored_child_entry": 1,
+    "child_process_entry_executed_by_parent_tests": true
+  },
+  "red_evidence": [
+    {
+      "log": "projection-history-red-2026-10-08.log",
+      "exit_code": 101,
+      "intended_failures": 7
+    },
+    {
+      "log": "projection-history-unwind-red-2026-10-09.log",
+      "exit_code": 101,
+      "intended_failures": 1
+    }
+  ],
+  "source_review": {
+    "runtime_findings": 0,
+    "prose_clarification": "Pre-cancellation preserves reuse; mid-call cancellation makes reconstruction terminal",
+    "reviewer_executed_tests": false
+  },
+  "archives": {
+    "target/package/rom-sql-core-0.1.0-dev.crate": "e7812bb4fe6a6ba4474388415c0fa9a20a2e1a67ca1463de7b1ca1b994dd69ab",
+    "target/package/rom-projection-core-0.1.0-dev.crate": "3c91b124c594a57f08d42ede4793a228fd6ec0bc0833f2fc2ffa8c2e180fa4a8"
+  },
+  "archive_consumer": ".superpowers/projection-packaged-y4erSD/consumer",
+  "archive_package_count": 37,
+  "dependencies": {
+    "root_and_public_consumer_locks": "Byte-identical to baseline",
+    "archive_lock": "Byte-identical to independently audited focused package graph",
+    "known_vulnerabilities": 0,
+    "root_and_archive_warnings": 0,
+    "public_consumer_informational_warning": "RUSTSEC-2024-0436: paste 1.0.15 unmaintained, unsuppressed"
+  },
+  "bounds": {
+    "fetches": 64,
+    "returned_views": 4096,
+    "global_inspected_positions_including_overrun": 4096,
+    "retained_distinct_keys": 64
+  },
+  "limits": [
+    "Metadata reconstruction only: synthetic public-shaped batches plus actual pending checkpoint files",
+    "No native SQLite/redb feed or authorization qualification",
+    "Mapping determinism and export authority remain host responsibilities; no projected values retained",
+    "No checkpoint publication or provider acknowledgement from successful reconstruction",
+    "Full worker orchestration, approved documents, bounded async lifecycle bridge and Rust providers remain required",
+    "Native protocol probes do not establish Rust adapter acceptance"
+  ],
+  "full_goal": "Active and incomplete"
+}
