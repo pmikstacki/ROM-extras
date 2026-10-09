@@ -10,7 +10,8 @@ The typed storage worker owns one native thread, bounds its command queue, and j
 Asynchronous responses do not cancel admitted operations when dropped. Startup and shutdown require a blocking host context.
 
 Pending-history reconstruction validates bounded authorized-batch metadata, clamps overrun and compares the complete immutable intent without checkpoint publication.
-Actual public SQLite/redb feeds and deterministic approved documents remain unqualified.
+Immutable selected-field documents derive canonical content identities and durable profiles, with bounded exact numeric admission and finite vectors.
+Actual public SQLite/redb feeds and native provider round-trips remain unqualified.
 
 This crate does not yet implement page/provider orchestration, OpenSearch/Qdrant transport, ROM export policy, authorized queries, or generation switching.
 Actual filesystem tests and controlled native I/O faults do not establish arbitrary hardware or distributed durability.

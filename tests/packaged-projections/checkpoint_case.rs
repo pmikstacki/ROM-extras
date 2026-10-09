@@ -13,6 +13,65 @@ impl Drop for Directory {
 }
 
 pub fn run() {
+    let mapping = rom_projection_core::DocumentMapping::new(
+        ProjectionProfile::new("consumer", "qdrant", "mapping", None).unwrap(),
+        vec!["a".into()],
+        None,
+    )
+    .unwrap();
+    for input in [
+        "18446744073709551616",
+        "18446744073709551617",
+        "0.100000000000000000000000000000001",
+        "1e-999",
+    ] {
+        let value = serde_json::from_str(input).unwrap();
+        let event = JournalView {
+            position: 1,
+            view: ProjectedView {
+                key: Key {
+                    kind: "document".into(),
+                    id: "numeric-case".into(),
+                },
+                revision: 1,
+                value: Some([("a".into(), value)].into_iter().collect()),
+            },
+        };
+        assert!(matches!(
+            mapping.document(&event, None),
+            Err(Error::Invalid)
+        ));
+    }
+    let make_event = |value| JournalView {
+        position: 1,
+        view: ProjectedView {
+            key: Key {
+                kind: "document".into(),
+                id: "accepted-numeric".into(),
+            },
+            revision: 1,
+            value: Some(serde_json::from_str(value).unwrap()),
+        },
+    };
+    let a = mapping
+        .document(
+            &make_event(r#"{"a":{"z":0.1,"b":18446744073709551615}}"#),
+            None,
+        )
+        .unwrap();
+    let b = mapping
+        .document(
+            &make_event(r#"{"a":{"b":18446744073709551615,"z":0.1}}"#),
+            None,
+        )
+        .unwrap();
+    assert_eq!(a.metadata().digest(), b.metadata().digest());
+    assert_eq!(a.fields().unwrap()["a"]["b"].as_u64(), Some(u64::MAX));
+    let huge = format!("{{\"a\":{}}}", "1".repeat(1000));
+    assert!(matches!(
+        mapping.document(&make_event(&huge), None),
+        Err(Error::TooLarge)
+    ));
     let directory = Directory(std::env::temp_dir().join(format!(
         "rom-extras-consumer-checkpoint-{}",
         std::process::id()

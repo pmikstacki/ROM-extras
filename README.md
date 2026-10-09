@@ -15,7 +15,7 @@ The delivery core prepares bounded JSON and Standard Webhooks signatures.
 The [S3 profiles](docs/s3-compatible.md) retain SeaweedFS’s failed strict burst evidence and add passing RustFS local public-port qualification.
 The [secrets/KMS family](docs/secrets-kms.md) adds host contracts, OpenBao acceptance cases and reference-only native host preparation.
 [Native OpenSearch and Qdrant probes](docs/projection-probes.md) qualify revision fences and restart behavior; ROM projection adapters remain unimplemented.
-[Projection checkpoints](docs/projection-checkpoints.md) implement durable local intent/recovery transactions, a bounded storage owner and pending-history metadata reconstruction; native feed qualification, page orchestration and provider integration remain incomplete.
+[Projection checkpoints](docs/projection-checkpoints.md) implement durable local intent/recovery transactions, a bounded storage owner, pending-history reconstruction and immutable approved documents; native feed qualification, page orchestration and provider integration remain incomplete.
 See [the complete goal](docs/goal.md), [the implementation plan](docs/superpowers/plans/2026-10-08-rom-extras.md), and [support status](docs/support.md).
 
 ## Verify locally

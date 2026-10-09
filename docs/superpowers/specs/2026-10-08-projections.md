@@ -109,3 +109,12 @@ Persist same-ID tombstones with `rom_live=false` and an empty named-vector map.
 The [exploratory probe](../../verification/qdrant-fence-probe-2026-10-08.json) confirms these representations on the actual server, including u64::MAX.
 HTTP completion can represent a rejected-condition no-op. Reconcile stored identity, revision, and deterministic content before local publication.
 Actual delayed-request, lost-acknowledgement, tombstone-restart, and ROM integration cases remain acceptance requirements.
+
+## Approved-document admission clarification
+
+The approved selected JSON values use a 16 KiB canonical encoding budget. Vectors are separate sidecars, bounded to 4096 finite f32 values.
+The 1 MiB complete encoded request/response bound still includes all metadata, values and vector wire overhead.
+A valid mapping configuration can produce a page that exceeds that transport bound; reject it before dispatch rather than truncate.
+Derive the durable mapping identity from the complete immutable selector, dimension and original deployment/provider/mapping/model profile.
+Use that derived profile for checkpoints and providers. A changed selector or dimension requires a new generation.
+This core mapping does not establish backend numeric compatibility, fixed generation metric, export grants or native feed qualification.

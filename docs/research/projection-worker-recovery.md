@@ -67,4 +67,5 @@ It checks all returned positions before endpoint clamping and keeps at most 64 o
 Its fixed admission budget is 64 batches, 4096 returned views and 4096 inspected global positions, including overrun.
 Mapper failure or unwind makes the reconstruction terminal; pre-admission cancellation preserves state for a fresh token.
 Tests use synthetic authorized-batch shapes and actual native pending files. They do not execute authorization or native journal fetches.
-Actual public SQLite/redb feed qualification and immutable approved document encoding remain required before full provider orchestration acceptance.
+Immutable approved document encoding now has core and independent-consumer acceptance.
+Actual public SQLite/redb feed qualification and provider round-trips remain required before full orchestration acceptance.

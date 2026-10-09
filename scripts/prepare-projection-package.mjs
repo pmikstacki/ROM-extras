@@ -7,6 +7,7 @@ process.stdout.write(preparePackagedConsumer({
   source: "tests/packaged-projections/main.rs",
   supportSources: ["tests/packaged-projections/checkpoint_case.rs"],
   extraDependencies: `rom = ${rom}
-tokio = { version = "=1.53.1", default-features = false, features = ["rt"] }`,
+tokio = { version = "=1.53.1", default-features = false, features = ["rt"] }
+serde_json = { version = "=1.0.151", features = ["arbitrary_precision", "preserve_order"] }`,
   extraPatches: `rom = ${rom}\nrom-backup = ${rom}`,
 }) + "\n");

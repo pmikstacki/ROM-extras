@@ -614,3 +614,45 @@ The full verifier passed with all 197 frozen runtime hashes unchanged. Public an
 Source review found no actionable runtime issue; the cancellation prose clarification was applied. The reviewer executed no tests.
 Fresh audits reported no known vulnerabilities. The independent public consumer retains its informational unmaintained paste advisory.
 This accepts the metadata component, not the full worker or native history/provider integration.
+
+## 2026-10-09: approved document mapping and content identity
+
+Sources: [JCS number and string constraints](https://www.rfc-editor.org/rfc/rfc8785), [public JSON value representation](https://docs.rs/serde_json/1.0.150/serde_json/enum.Value.html), [Rust floating-point bit conversion](https://doc.rust-lang.org/std/primitive.f32.html#method.to_bits), [Qdrant payload](https://qdrant.tech/documentation/manage-data/payload/).
+
+Select a versioned binary content identity, not a JCS compliance claim. JCS's IEEE-754 restriction cannot preserve every ROM u64 value.
+Keep nonnegative integers as u64, negative integers as i64 and finite floats as normalized-zero IEEE-754 bits with separate tags.
+Sort object keys by UTF-8 bytes at every level; retain array order and exact Unicode without normalization.
+Bind profile, immutable sorted field selection, fixed vector dimension, original key, revision, tombstone, selected values and finite vector bits.
+Exclude journal position from the content digest so identical equal-revision content at another event position retains its identity.
+The first mapping selects named top-level fields from an already authorized historical view; it cannot add unprojected values.
+Missing selected fields stay absent. Null, false, zero, empty strings, arrays and objects stay distinct.
+Use at most 64 selected fields,128 bytes per selected name,4096 value nodes,32 recursive levels and16KiB canonical selected-value bytes.
+Treat the vector as a separate Qdrant-style sidecar with1..4096 finite f32 dimensions, at most16KiB binary values.
+This clarifies document versus vector admission; it does not relax the 1 MiB complete encoded request/response bound required of future providers.
+Full wire-size, backend numeric support and generation metric checks remain provider/worker requirements. Some64-operation pages will exceed wire bounds and must be rejected.
+Tombstones contain neither selected values nor vectors. Live vector mappings require an exact dimension and profile model identity.
+Immutable private fields and sanitized Debug prevent mutation or diagnostic disclosure. Constructing a document does not grant export authority.
+Alternatives include hashing arbitrary serialized JSON or trusting host-supplied digests; neither defines a stable exact-value contract across map features.
+Native backend round-trips and public SQLite/redb authorization tests remain required; core construction alone does not qualify providers.
+
+Derive the durable mapping identifier from the original profile and complete selector/dimension configuration with SHA-256 and a separate mapping domain.
+Use `DocumentMapping::profile()` for checkpoint creation/opening and provider configuration. Reusing the unbound input profile is not the document contract.
+A changed selector therefore fails native checkpoint profile admission, even when the host reuses its human mapping version label.
+A targeted test observed the old same-profile behavior fail before this correction. This prevents an in-place mapping change without altering checkpoint format.
+
+Source follow-up: [serde_json 1.0.151 Number implementation](https://raw.githubusercontent.com/serde-rs/json/v1.0.151/src/number.rs) matches the actually locked version.
+The initial documentation lookup used 1.0.150; no dependency downgrade is selected. Tests and package consumers use existing 1.0.151.
+Source review found arbitrary-precision integers could silently fall through to rounded f64 identities.
+An independent arbitrary_precision consumer reproduced the intended failure; the initial missing native pkg-config environment failure is also retained.
+Reject unsupported integers and noncanonical/non-roundtripping arbitrary-precision floats; never retain more precise numbers under a rounded digest.
+Bound numeric formatting to 64 bytes before feature-dependent numeric conversion, without allocating a raw-number string.
+Independent consumers enable arbitrary_precision and preserve_order; standard-feature workspace tests remain separate.
+No new production dependency is added to projection core. Fresh archive graph audits must cover the additional test feature dependencies.
+
+The [document execution record](../verification/projection-documents-full-verifier-2026-10-09.json) identifies both standard and feature-enabled consumer acceptance.
+The full verifier passed with200 frozen runtime files unchanged,55 focused cases and one compile-fail doctest.
+Source review's arbitrary-precision P2 was resolved through an observed independent-consumer failure and successful correction. Final source review found no remaining actionable precision issue.
+Root lock bytes and public registry versions/checksums are unchanged. The public consumer adds only the serde_json dependency edge to existing indexmap.
+The40-package archive graph includes the additional feature dependencies; licenses are MIT/Apache-2.0 and their highest MSRV is1.85.
+Fresh audits report no known vulnerabilities; the public consumer retains its unsuppressed informational paste warning.
+This accepts immutable core construction and independent consumers, not native feed authorization, provider round-trips or the full worker.

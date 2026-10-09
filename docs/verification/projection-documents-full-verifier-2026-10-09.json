@@ -1,0 +1,92 @@
+{
+  "inspection_date": "2026-10-09",
+  "baseline_commit": "9cd484594de75523add0c2b09afe7ac05064e73e",
+  "command": "./scripts/check-all",
+  "exit_code": 0,
+  "completed_utc": "2026-10-09T00:22:09.400Z",
+  "frozen_files": 200,
+  "unchanged": true,
+  "source_fence": "projection-documents-runtime-freeze-2026-10-09.json",
+  "full_log": "projection-documents-full-verifier-2026-10-09.log",
+  "compiler": "projection-documents-compiler-2026-10-09.log",
+  "focused_cases": 55,
+  "new_document_cases": 8,
+  "compile_fail_doctests": 1,
+  "ignored_child_entry": 1,
+  "child_entry_executed_by_parent_tests": true,
+  "red": [
+    {
+      "log": "projection-documents-red-2026-10-09.log",
+      "intended_failures": 6,
+      "exit_code": 101
+    },
+    {
+      "log": "projection-documents-profile-red-2026-10-09.log",
+      "intended_failures": 1,
+      "exit_code": 101
+    },
+    {
+      "log": "projection-documents-precision-red-2026-10-09.log",
+      "classification": "missing native pkg-config environment, no behavioral evidence",
+      "exit_code": 101
+    },
+    {
+      "log": "projection-documents-precision-red-native-2026-10-09.log",
+      "intended_failures": 1,
+      "exit_code": 101
+    }
+  ],
+  "review": {
+    "initial_findings": 1,
+    "severity": "P2",
+    "finding": "arbitrary_precision integers could fall through to rounded f64 identity",
+    "resolution": "Bound numeric formatting before conversion; require exact canonical supported numeric representation; independent arbitrary_precision/preserve_order consumers",
+    "final_findings": 0,
+    "reviewer_ran_tests": false
+  },
+  "archives": {
+    "target/package/rom-sql-core-0.1.0-dev.crate": "8a7918dfc128f21ccf233c5154dad81ec46d7463ad71822da85ffb3d3ac5c456",
+    "target/package/rom-projection-core-0.1.0-dev.crate": "9ae3c4c18a189a8e00784b66f951ed57e70bc1ae3763111095233c2910d0a00f"
+  },
+  "archive_consumer": ".superpowers/projection-packaged-vQ85UY/consumer",
+  "archive_packages": 40,
+  "audits": {
+    "known_vulnerabilities": 0,
+    "root_and_archive_warnings": 0,
+    "public_consumer_warning": "RUSTSEC-2024-0436 paste 1.0.15 unmaintained, unsuppressed",
+    "root_lock": "Byte-identical to baseline",
+    "public_registry_versions_checksums": "Unchanged; serde_json dependency edge to existing indexmap added",
+    "archive_added_feature_packages": [
+      "indexmap2.14.2",
+      "hashbrown0.17.1",
+      "equivalent1.0.2"
+    ],
+    "features": [
+      "serde_json1.0.151 arbitrary_precision",
+      "serde_json1.0.151 preserve_order"
+    ],
+    "licenses": "MIT OR Apache-2.0",
+    "maximum_added_feature_msrv": "1.85"
+  },
+  "bounds": {
+    "selected_fields": 64,
+    "selected_field_name_utf8_bytes": 128,
+    "selected_value_canonical_bytes": 16384,
+    "value_nodes": 4096,
+    "value_depth": 32,
+    "numeric_text_bytes_before_conversion": 64,
+    "vector_dimension_min": 1,
+    "vector_dimension_max": 4096,
+    "vector_binary_bytes_max": 16384
+  },
+  "limits": [
+    "Core construction only; no export authority granted",
+    "Synthetic authorized historical shapes, not actual SQLite/redb authorization qualification",
+    "Native checkpoint profile and pending-intent tests do not establish provider round-trips",
+    "16KiB selected canonical values and separately bounded vector do not prove1MiB wire compliance",
+    "Backend numeric compatibility, generation metric, full page orchestration and async lifecycle bridge remain required",
+    "Binary identity is not a JCS implementation",
+    "No new production dependency in projection core"
+  ],
+  "full_goal": "Active and incomplete"
+}

@@ -1,0 +1,24 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.27s
+     Running tests/documents.rs (target/debug/deps/documents-2660dfeb6db4991a)
+
+running 1 test
+test changed_selector_is_a_different_durable_profile_not_an_in_place_mapping ... FAILED
+
+failures:
+
+---- changed_selector_is_a_different_durable_profile_not_an_in_place_mapping stdout ----
+
+thread 'changed_selector_is_a_different_durable_profile_not_an_in_place_mapping' (24264) panicked at crates/rom-projection-core/tests/documents.rs:152:5:
+assertion `left != right` failed
+  left: ProjectionProfile
+ right: ProjectionProfile
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    changed_selector_is_a_different_durable_profile_not_an_in_place_mapping
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p rom-projection-core --test documents`

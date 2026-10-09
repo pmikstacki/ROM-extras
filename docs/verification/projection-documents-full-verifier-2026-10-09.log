@@ -1,0 +1,1126 @@
+rustc 1.99.0 (b940084d7 2026-09-28)
+binary: rustc
+commit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4
+commit-date: 2026-09-28
+host: x86_64-unknown-linux-gnu
+release: 1.99.0
+LLVM version: 23.1.1
+    Checking rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.55s
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.17s
+     Running unittests src/lib.rs (target/debug/deps/rom_azure_blob-b9525102e9c1c723)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/configuration.rs (target/debug/deps/configuration-1838c1ca2306b1cb)
+
+running 3 tests
+test unsafe_endpoints_are_refused_with_valid_credentials ... ok
+test malformed_credentials_and_unbounded_limits_are_rejected ... ok
+test valid_cloud_and_emulator_configuration_construct_clients ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+
+     Running tests/interruption.rs (target/debug/deps/interruption-16b5e12b947ba120)
+
+running 2 tests
+test etag_change_between_metadata_and_body_is_refused ... ok
+test busy_admission_refuses_extra_request_and_unacknowledged_write_is_unknown ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.54s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_delivery_core-3696fbf994d495ab)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/preparation.rs (target/debug/deps/preparation-34f1d2e906183573)
+
+running 5 tests
+test retry_keeps_identity_and_payload_but_exposes_the_runtime_attempt ... ok
+test scalar_payloads_keep_null_false_zero_and_empty_distinct ... ok
+test prepared_debug_output_does_not_disclose_payload_values ... ok
+test encoded_byte_limit_includes_json_quotes_escaping_and_utf8 ... ok
+test invalid_identity_rejects_before_payload_encoding ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/signing.rs (target/debug/deps/signing-2193150e5009482e)
+
+running 2 tests
+test signature_matches_independent_node_crypto_vector ... ok
+test rotation_signs_with_current_and_previous_keys_without_changing_the_message ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_kafka-554bc47033f0c56d)
+
+running 4 tests
+test config_tests::transactional_configuration_is_refused_without_reinterpreting_it ... ok
+test config_tests::minimum_deadline_remains_finite_and_native_socket_timeout_is_valid ... ok
+test config_tests::native_aliases_cannot_weaken_acknowledgement_or_retry_bounds ... ok
+test delivery::tests::real_native_queue_full_refuses_before_enqueue_without_retiring ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.20s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_kms-1efccfc548568baa)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/contracts.rs (target/debug/deps/contracts-e3d851cd28c026c3)
+
+running 2 tests
+test context_and_aad_have_distinct_bounded_inputs ... ok
+test stored_envelopes_require_identity_version_and_bounded_ciphertext ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_nats-1c8f33075241e8cc)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_oidc_presets-5c519787b5d1ea19)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/configuration.rs (target/debug/deps/configuration-48d27316d426e22d)
+
+running 6 tests
+test unicode_whitespace_and_controls_are_rejected_before_url_parsing ... ok
+test invalid_issuer_forms_are_rejected ... ok
+test entra_binds_one_concrete_tenant ... ok
+test configuration_delegates_names_and_does_not_fetch_keys ... ok
+test exact_issuer_preserves_the_original_binding ... ok
+test keycloak_keeps_the_deployment_context_path ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/verification.rs (target/debug/deps/verification-aa92aca4f1f8e721)
+
+running 3 tests
+test rotation_replaces_keys_without_changing_the_issuer_or_profile ... ok
+test every_preset_preserves_rom_human_evidence_and_expiry ... ok
+test binding_expiry_and_signature_failures_cannot_create_evidence ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.15s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_openbao-e9b5e88f98007225)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/configuration.rs (target/debug/deps/configuration-6bf2508e63c8f97a)
+
+running 2 tests
+test endpoint_cannot_redirect_credential_authority_or_embed_private_data ... ok
+test locations_reject_path_injection_and_duplicate_aliases ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/service.rs (target/debug/deps/service-b3e279da4da9e03c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_projection_core-3c8865c1f7a94d52)
+
+running 11 tests
+test metadata::tests::sequence_exhaustion_is_rejected_before_preparing_an_unfinishable_page ... ok
+test preflight::cancellation_tests::bounded_copy_cancels_after_one_chunk_without_changing_source ... ok
+test storage_worker::tests::owner_drop_waits_for_active_work_and_releases_native_ownership ... ok
+test storage_worker::tests::unexpected_job_panic_loses_response_without_claiming_rollback ... ok
+test storage_worker::tests::full_queue_rejects_without_execution_and_join_drains_the_accepted_intent ... ok
+test preflight::cancellation_tests::scan_cancels_at_256_records_before_later_corruption_is_examined ... ok
+test checkpoint::faults::error_before_native_write_reconciles_absent_after_handle_retirement ... ok
+test checkpoint::faults::error_after_actual_native_sync_reconciles_applied_after_handle_retirement ... ok
+test checkpoint::faults::unwinding_commit_panic_retires_handle_and_reconciles_the_durable_intent ... ok
+test checkpoint::faults::completion_write_error_recovers_atomically_absent_keys_and_unadvanced_cursor ... ok
+test checkpoint::faults::completion_sync_error_recovers_atomically_applied_keys_cursor_and_receipt ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.43s
+
+     Running tests/boundaries.rs (target/debug/deps/boundaries-651cedb4367f4565)
+
+running 4 tests
+test invalid_identity_and_zero_revision_are_rejected_before_store_access ... ok
+test page_rejects_equal_revision_content_conflict_before_collapsing_keys ... ok
+test remote_observation_rejects_oversized_target_before_owned_copy ... ok
+test page_rejects_generation_gap_backward_progress_and_excess_work ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cancellation.rs (target/debug/deps/cancellation-5607d51e94654915)
+
+running 2 tests
+test pre_cancelled_reopen_does_not_retire_a_usable_engine_or_release_ownership ... ok
+test cancelled_open_preserves_bytes_and_releases_admission ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+
+     Running tests/checkpoint_recovery.rs (target/debug/deps/checkpoint_recovery-163b6e27f3742558)
+
+running 7 tests
+test partial_or_conflicting_remote_observations_cannot_advance_cursor ... ok
+test fresh_store_is_private_and_durable_after_full_close ... ok
+test accepted_intent_survives_reopen_without_acknowledging_its_cursor ... ok
+test filtered_page_advances_without_inventing_key_state ... ok
+test durable_key_state_rejects_stale_and_conflicting_equal_revision_after_reopen ... ok
+test complete_page_publishes_all_keys_and_cursor_together ... ok
+test original_keys_with_ambiguous_separator_concatenation_remain_distinct ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s
+
+     Running tests/documents.rs (target/debug/deps/documents-52528020cd6a0313)
+
+running 8 tests
+test duplicate_fields_and_model_dimension_mismatch_are_rejected ... ok
+test only_selected_authorized_fields_are_retained_and_position_is_not_content ... ok
+test configuration_and_array_order_change_content_but_object_order_does_not ... ok
+test tombstones_clear_fields_and_vectors_and_vector_profile_is_exact ... ok
+test absent_null_false_zero_empty_and_integer_precision_remain_distinct ... ok
+test oversize_and_deep_selected_values_are_rejected_but_unselected_values_are_not_copied ... ok
+test largest_vector_and_canonical_zero_are_supported_with_finite_bounds ... ok
+test changed_selector_is_a_different_durable_profile_not_an_in_place_mapping ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+
+     Running tests/history.rs (target/debug/deps/history-6dc6919b12c9057b)
+
+running 11 tests
+test cancellation_preserves_cursor_and_accepts_a_later_uncancelled_attempt ... ok
+test changed_disclosure_and_changed_mapping_require_rebuild ... ok
+test fetch_budget_is_finite_and_empty_noop_requires_no_fetch ... ok
+test filtered_empty_history_advances_only_after_inspected_coverage ... ok
+test mapper_cannot_substitute_original_identity_or_tombstone ... ok
+test malformed_overrun_is_rejected_before_any_mapping_and_poisoned ... ok
+test mapper_panic_cannot_leave_a_reusable_partial_reconstruction ... ok
+test replay_overrun_maps_only_old_interval_and_returns_exact_old_intent ... ok
+test revision_regression_and_equal_revision_mismatch_across_batches_fail ... ok
+test stalled_generation_change_and_work_exhaustion_fail_closed ... ok
+test reconstruction_does_not_publish_or_replace_the_actual_durable_pending_intent ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+     Running tests/process_recovery.rs (target/debug/deps/process_recovery-392f06db154cb916)
+
+running 10 tests
+test child_process ... ignored, invoked in a bounded child process by the parent cases
+test hard_link_deployment_is_rejected_before_engine_open ... ok
+test oversized_state_record_is_rejected_without_source_changes ... ok
+test ownership_rejects_a_second_process_and_supported_path_alias ... ok
+test future_format_rejection_preserves_original_bytes ... ok
+test missing_application_marker_is_not_initialized_as_a_fresh_store ... ok
+test retained_receipt_cannot_hide_a_changed_completed_cursor ... ok
+test retained_receipt_cannot_hide_a_missing_acknowledged_key ... ok
+test rejected_future_dirty_source_is_not_repaired_or_rewritten ... ok
+test acknowledged_intent_recovers_after_process_exit_without_engine_drop ... ok
+
+test result: ok. 9 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.28s
+
+     Running tests/storage_worker.rs (target/debug/deps/storage_worker-ca7748fed7354490)
+
+running 3 tests
+test cancelled_initialization_returns_the_checkpoint_category ... ok
+test accepted_intent_survives_dropped_response_and_join_releases_ownership ... ok
+test typed_commands_publish_and_shutdown_precedes_another_owner ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_rabbitmq-a69951e83bee65f6)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_secrets-37a8ceb2b9366ac7)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/contracts.rs (target/debug/deps/contracts-264c2fdae352a87d)
+
+running 2 tests
+test references_cannot_select_urls_paths_or_ambiguous_names ... ok
+test positive_version_and_nonempty_bounded_credentials_are_required ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_sql_core-3b3abcab3f618c41)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/executor.rs (target/debug/deps/executor-d25b2c9f4e290f13)
+
+running 13 tests
+test invalid_capacity_rejects_before_connection_initialization ... ok
+test dropping_last_handle_allows_admitted_work_to_finish ... ok
+test full_queue_rejects_before_running_the_operation ... ok
+test recursive_use_rejects_instead_of_deadlocking_the_connection ... ok
+test panicking_operation_has_unknown_outcome_and_retires_connection ... ok
+test initialization_errors_and_panics_are_reported_before_admission ... ok
+test close_stops_admission_but_drains_accepted_operations ... ok
+test terminal_responses_are_consumed_once_even_after_failure ... ok
+test waiting_deadline_preserves_ticket_and_does_not_cancel_admitted_work ... ok
+test discarding_a_ticket_does_not_discard_an_admitted_operation ... ok
+test connection_is_created_and_used_on_its_worker_even_when_not_send ... ok
+test shutdown_joins_connection_destruction_and_reports_destructor_panics ... ok
+test cloned_handles_serialize_connection_operations ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_webhook-92aec7b11bf0cedd)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/https.rs (target/debug/deps/https-95de43741d319ec9)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/policy.rs (target/debug/deps/policy-ac433fc2d590412d)
+
+running 2 tests
+test refuses_unbounded_or_inconsistent_transport_limits ... ok
+test refuses_non_public_resolutions_and_ambiguous_urls ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/runtime.rs (target/debug/deps/runtime-776e877f3ca487d7)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_azure_blob
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_delivery_core
+
+running 1 test
+test crates/rom-delivery-core/src/lib.rs - (line 7) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.22s; merged doctests compilation took 0.22s
+   Doc-tests rom_kafka
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_kms
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+   Doc-tests rom_nats
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_oidc_presets
+
+running 1 test
+test crates/rom-oidc-presets/src/lib.rs - (line 6) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.32s; merged doctests compilation took 0.31s
+   Doc-tests rom_openbao
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_projection_core
+
+running 1 test
+test crates/rom-projection-core/src/metadata.rs - metadata::ReconciledPage (line 273) - compile fail ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rom_rabbitmq
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_secrets
+
+running 2 tests
+test crates/rom-secrets/src/material.rs - material::SecretBytes (line 8) - compile fail ... ok
+test crates/rom-secrets/src/material.rs - material::SecretBytes (line 13) - compile fail ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests rom_sql_core
+
+running 1 test
+test crates/rom-sql-core/src/lib.rs - (line 7) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.27s; merged doctests compilation took 0.26s
+   Doc-tests rom_webhook
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/rom_webhook-ea45fc455bcf889a)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/https.rs (target/debug/deps/https-03edca90e99b0a5b)
+
+running 2 tests
+test common::directory::tests::simultaneous_receivers_with_equal_clock_stamps_have_private_databases ... ok
+(node:43233) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+test delivers_signed_exact_bytes_and_preserves_uncertainty ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.55s
+
+     Running tests/policy.rs (target/debug/deps/policy-2cc1dc3a1f69ac2d)
+
+running 2 tests
+test refuses_unbounded_or_inconsistent_transport_limits ... ok
+test refuses_non_public_resolutions_and_ambiguous_urls ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/runtime.rs (target/debug/deps/runtime-baad6e5ce1c53eba)
+
+running 4 tests
+test common::directory::tests::simultaneous_receivers_with_equal_clock_stamps_have_private_databases ... ok
+(node:43266) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:43267) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:43287) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:43311) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:43325) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:43340) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+test source_disclosure_revocation_stops_pending_payload_before_transport ... ok
+test durable_intent_reopen_delivery_and_revocation ... ok
+(node:43371) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:43385) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+test lost_ack_retry_survives_receiver_restart_and_attempt_budget_is_finite ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.98s
+
+   Doc-tests rom_webhook
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.13s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.21s
+   Doc-tests rom_azure_blob
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_delivery_core
+
+running 1 test
+test crates/rom-delivery-core/src/lib.rs - (line 7) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.23s; merged doctests compilation took 0.23s
+   Doc-tests rom_kafka
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_kms
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_nats
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_oidc_presets
+
+running 1 test
+test crates/rom-oidc-presets/src/lib.rs - (line 6) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.21s; merged doctests compilation took 0.20s
+   Doc-tests rom_openbao
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_projection_core
+
+running 1 test
+test crates/rom-projection-core/src/metadata.rs - metadata::ReconciledPage (line 273) - compile fail ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+   Doc-tests rom_rabbitmq
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_secrets
+
+running 2 tests
+test crates/rom-secrets/src/material.rs - material::SecretBytes (line 8) - compile fail ... ok
+test crates/rom-secrets/src/material.rs - material::SecretBytes (line 13) - compile fail ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+   Doc-tests rom_sql_core
+
+running 1 test
+test crates/rom-sql-core/src/lib.rs - (line 7) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.25s; merged doctests compilation took 0.25s
+   Doc-tests rom_webhook
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+ Documenting rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.39s
+   Generated /root/ROM-extras/target/doc/rom_azure_blob/index.html and 11 other files
+    Checking rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.25s
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.04s
+   Compiling amq-protocol-tcp v10.6.3
+   Compiling jsonwebtoken v11.1.0
+   Compiling rdkafka v0.39.0
+   Compiling async-nats v0.50.0
+   Compiling object_store v0.14.2
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+   Compiling rom-openbao v0.1.0-dev (/root/ROM-extras/crates/rom-openbao)
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+   Compiling amq-protocol v10.6.3
+   Compiling rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+   Compiling lapin v4.12.0
+   Compiling rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+   Compiling rom-rabbitmq v0.1.0-dev (/root/ROM-extras/crates/rom-rabbitmq)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.09s
+     Running `tests/public-consumer/target/debug/rom-extras-public-consumer`
+Public custom field, connection execution, issuer preset, and bounded delivery verified.
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.71s
+     Running tests/projection_checkpoints.rs (tests/public-consumer/target/debug/deps/projection_checkpoints-9f14d99cb296db31)
+
+running 1 test
+test public_checkpoint_consumer_closes_reopens_and_reconciles_both_phases ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.15s
+
+    Checking serde_json v1.0.151
+    Checking rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking amq-protocol-types v10.6.3
+    Checking jsonwebtoken v11.1.0
+    Checking async-nats v0.50.0
+    Checking object_store v0.14.2
+    Checking rdkafka v0.39.0
+    Checking rom-openbao v0.1.0-dev (/root/ROM-extras/crates/rom-openbao)
+    Checking amq-protocol-uri v10.6.3
+    Checking amq-protocol-tcp v10.6.3
+    Checking amq-protocol v10.6.3
+    Checking rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+    Checking lapin v4.12.0
+    Checking rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+    Checking rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-blob v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+    Checking rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+    Checking rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+    Checking rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+    Checking rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Checking rom-rabbitmq v0.1.0-dev (/root/ROM-extras/crates/rom-rabbitmq)
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.67s
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.31s
+   Packaging rom-sql-core v0.1.0-dev (/root/ROM-extras/crates/rom-sql-core)
+warning: patch `rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)` was not used in the crate graph
+warning: patch `rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)` was not used in the crate graph
+help: Check that the patched package version and available features are compatible
+      with the dependency requirements. If the patch has a different version from
+      what is locked in the Cargo.lock file, run `cargo update` to use the new
+      version. This may also occur with an optional dependency that is not enabled.
+    Packaged 9 files, 22.5KiB (6.1KiB compressed)
+   Packaging rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Updating crates.io index
+    Packaged 30 files, 145.7KiB (32.5KiB compressed)
+   Compiling rom-sql-core v0.1.0-dev (/root/ROM-extras/.superpowers/projection-packaged-vQ85UY/rom-sql-core-0.1.0-dev)
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/.superpowers/projection-packaged-vQ85UY/rom-projection-core-0.1.0-dev)
+   Compiling rom-projection-packaged-consumer v0.0.0 (/root/ROM-extras/.superpowers/projection-packaged-vQ85UY/consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.14s
+     Running `target/projection-packaged-consumer/debug/rom-projection-packaged-consumer`
+packaged projection checkpoint close/reopen: passed
+    Checking rom-sql-core v0.1.0-dev (/root/ROM-extras/.superpowers/projection-packaged-vQ85UY/rom-sql-core-0.1.0-dev)
+    Checking rom-projection-core v0.1.0-dev (/root/ROM-extras/.superpowers/projection-packaged-vQ85UY/rom-projection-core-0.1.0-dev)
+    Checking rom-projection-packaged-consumer v0.0.0 (/root/ROM-extras/.superpowers/projection-packaged-vQ85UY/consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.33s
+   Compiling hyper-rustls v0.27.10
+   Compiling tcp-stream v0.34.14
+   Compiling rdkafka v0.39.0
+   Compiling rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+   Compiling reqwest v0.13.5
+   Compiling amq-protocol-tcp v10.6.3
+   Compiling rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+   Compiling amq-protocol v10.6.3
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+   Compiling lapin v4.12.0
+   Compiling object_store v0.14.2
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+   Compiling rom-openbao v0.1.0-dev (/root/ROM-extras/crates/rom-openbao)
+   Compiling rom-rabbitmq v0.1.0-dev (/root/ROM-extras/crates/rom-rabbitmq)
+   Compiling rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.04s
+     Running tests/postgres_executor.rs (tests/public-consumer/target/debug/deps/postgres_executor-ac2790b53db3b1c5)
+
+running 3 tests
+test postgres_client_runs_on_its_worker_inside_a_tokio_caller ... ok
+test waiting_deadline_does_not_cancel_the_real_database_commit ... ok
+test a_driver_job_panic_retires_its_connection_and_rolls_back_uncommitted_sql ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
+
+    Checking rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.43s
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.48s
+     Running tests/cockroach_executor.rs (tests/public-consumer/target/debug/deps/cockroach_executor-d3995cbd9182f1eb)
+
+running 7 tests
+test acknowledged_row_survives_restart_of_the_same_disk_store ... ok
+test byte_keys_preserve_case_unicode_and_zero_bytes ... ok
+test panicking_job_retires_connection_and_uncommitted_row_is_absent ... ok
+test duplicate_rejection_rolls_back_preceding_insert_and_fresh_transaction_works ... ok
+test stale_serializable_read_returns_40001_then_complete_transaction_rereads ... ok
+test waiting_deadline_does_not_cancel_database_commit ... ok
+test typed_worker_inside_tokio_uses_cockroach_serializable_session ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 7.23s
+
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.33s
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.54s
+     Running tests/oracle_executor.rs (tests/public-consumer/target/debug/deps/oracle_executor-ead7fefc2a19c93d)
+
+running 7 tests
+test a_driver_job_panic_retires_its_connection_and_rolls_back_uncommitted_sql ... ok
+test acknowledged_row_survives_restart_of_the_same_disk_store ... ok
+test bounded_admission_rejects_a_job_without_running_it ... ok
+test raw_identifiers_preserve_binary_identity_and_number_zero ... ok
+test unique_violation_keeps_prior_write_pending_until_full_rollback ... ok
+test oracle_client_runs_on_its_worker_inside_a_tokio_caller ... ok
+test waiting_deadline_does_not_cancel_the_real_database_commit ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 8.84s
+
+    Checking rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.63s
+   Compiling rustls v0.23.45
+   Compiling rdkafka v0.39.0
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+   Compiling rustls-platform-verifier v0.7.1
+   Compiling tokio-rustls v0.26.6
+   Compiling futures-rustls v0.26.0
+   Compiling rustls-connector v0.23.9
+   Compiling hyper-rustls v0.27.10
+   Compiling async-nats v0.50.0
+   Compiling tiberius v0.13.0
+   Compiling tcp-stream v0.34.14
+   Compiling reqwest v0.13.5
+   Compiling amq-protocol-tcp v10.6.3
+   Compiling amq-protocol v10.6.3
+   Compiling lapin v4.12.0
+   Compiling object_store v0.14.2
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+   Compiling rom-openbao v0.1.0-dev (/root/ROM-extras/crates/rom-openbao)
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+   Compiling rom-rabbitmq v0.1.0-dev (/root/ROM-extras/crates/rom-rabbitmq)
+   Compiling rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.10s
+     Running tests/mssql_executor.rs (tests/public-consumer/target/debug/deps/mssql_executor-5c67840172634f26)
+
+running 3 tests
+test async_tds_connection_runs_on_its_worker_inside_a_tokio_host ... ok
+test panic_retires_tds_connection_and_open_transaction_rolls_back ... ok
+test caller_timeout_does_not_cancel_a_later_sql_server_commit ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.18s
+
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.39s
+   Compiling openssl v0.10.81
+   Compiling native-tls v0.2.18
+   Compiling mysql v28.0.3
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.76s
+     Running tests/mysql_executor.rs (tests/public-consumer/target/debug/deps/mysql_executor-8a6ceaeb0940b3b2)
+
+running 5 tests
+test acknowledged_binary_identities_survive_labelled_server_restart ... ok
+test native_client_runs_on_executor_worker_and_checks_durable_profile ... Backend: 8.4.11
+ok
+test panic_retires_connection_and_uncommitted_rows_are_absent ... 
+thread 'rom-sql-connection' (51396) panicked at tests/mysql_executor.rs:145:13:
+synthetic panic before native commit
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+ok
+test statement_failure_requires_explicit_whole_operation_rollback ... ok
+test waiting_deadline_preserves_unknown_while_native_transaction_later_commits ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.40s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s
+     Running tests/mysql_executor.rs (tests/public-consumer/target/debug/deps/mysql_executor-8a6ceaeb0940b3b2)
+
+running 5 tests
+test acknowledged_binary_identities_survive_labelled_server_restart ... ok
+test native_client_runs_on_executor_worker_and_checks_durable_profile ... Backend: 11.8.9-MariaDB-ubu2404-log
+ok
+test panic_retires_connection_and_uncommitted_rows_are_absent ... 
+thread 'rom-sql-connection' (51724) panicked at tests/mysql_executor.rs:145:13:
+synthetic panic before native commit
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+ok
+test statement_failure_requires_explicit_whole_operation_rollback ... ok
+test waiting_deadline_preserves_unknown_while_native_transaction_later_commits ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.30s
+
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.35s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.16s
+     Running tests/broker.rs (target/debug/deps/broker-1a855445af656caa)
+
+running 1 test
+test acknowledges_exact_payload_and_deduplicates_after_broker_restart ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.99s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+     Running tests/ack_loss.rs (target/debug/deps/ack_loss-ef3e76a99f9dc87a)
+
+running 1 test
+test dropped_publish_ack_preserves_message_and_retry_identity ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.14s
+
+     Running tests/runtime.rs (target/debug/deps/runtime-b0f615078591f0ef)
+
+running 1 test
+test reopened_runtime_retries_committed_intent_and_rechecks_authority ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.77s
+
+     Running tests/tls.rs (target/debug/deps/tls-ece5b3646b8b39f3)
+
+running 1 test
+test tls_first_verifies_identity_and_reconnects_same_client_after_restart ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.20s
+
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.14s
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.72s
+     Running tests/nats_delivery.rs (tests/public-consumer/target/debug/deps/nats_delivery-16139d9a52453bd5)
+
+running 2 tests
+test public_adapter_gets_real_jetstream_acknowledgement ... ok
+test public_adapter_gets_ca_verified_tls_acknowledgement ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.30s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.15s
+     Running tests/broker.rs (target/debug/deps/broker-c55cecfc88f9b2d0)
+
+running 1 test
+test confirms_persistence_return_and_redelivery_after_restart ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 10.96s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s
+     Running tests/runtime.rs (target/debug/deps/runtime-256ca078a646ff0f)
+
+running 1 test
+test reopened_runtime_retries_committed_message_and_receiver_deduplicates_durably ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 6.10s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+     Running tests/tls.rs (target/debug/deps/tls-c7c259ec8174afd9)
+
+running 1 test
+test tls_verifies_ca_hostname_password_and_confirms_persistent_payload ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 7.56s
+
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.14s
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.97s
+     Running tests/rabbitmq_delivery.rs (tests/public-consumer/target/debug/deps/rabbitmq_delivery-451117eed637c907)
+
+running 2 tests
+test external_consumer_receives_confirmed_persistent_false_payload ... ok
+test external_consumer_receives_ca_verified_tls_confirmation ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.27s
+
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.28s
+TAP version 13
+# Subtest: flexible metadata rewrites only the broker port, with nullable rack and tags
+ok 1 - flexible metadata rewrites only the broker port, with nullable rack and tags
+  ---
+  duration_ms: 1.303369
+  type: 'test'
+  ...
+# Subtest: metadata refuses another endpoint and truncated fields
+ok 2 - metadata refuses another endpoint and truncated fields
+  ---
+  duration_ms: 0.262078
+  type: 'test'
+  ...
+# Subtest: drop witness requires successful Produce acknowledgement and real offset
+ok 3 - drop witness requires successful Produce acknowledgement and real offset
+  ---
+  duration_ms: 0.300311
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 41.485133
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s
+     Running tests/broker.rs (target/debug/deps/broker-b674d5bf6dc941d3)
+
+running 1 test
+test real_offsets_keys_duplicates_restart_and_cancelled_publication ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 16.01s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+     Running tests/ack_loss.rs (target/debug/deps/ack_loss-2c0bff3388f5d621)
+
+running 1 test
+test successful_broker_write_precedes_unknown_and_same_identity_retry ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 12.54s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
+     Running tests/runtime.rs (target/debug/deps/runtime-14a5789767362fe3)
+
+running 2 tests
+test native_unknown_attempt_budget_stops_durably_without_creating_topic ... ok
+test reopened_runtime_retries_same_identity_and_receiver_replays_durable_receipt ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 29.58s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.14s
+     Running tests/tls.rs (target/debug/deps/tls-c4910e585151b008)
+
+running 1 test
+test verified_sasl_tls_rejects_bad_peers_and_reconnects_after_restart ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 24.10s
+
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.15s
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.53s
+     Running tests/kafka_delivery.rs (tests/public-consumer/target/debug/deps/kafka_delivery-d91cb08f14ce0efa)
+
+running 2 tests
+test external_consumer_receives_acknowledged_false_json_with_stable_key ... ok
+test external_consumer_receives_verified_sasl_tls_publication ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.86s
+
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.26s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s
+     Running unittests src/lib.rs (target/debug/deps/rom_azure_blob-b5a9e0d4b6b50609)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/configuration.rs (target/debug/deps/configuration-d87ec740c65e4efc)
+
+running 3 tests
+test unsafe_endpoints_are_refused_with_valid_credentials ... ok
+test malformed_credentials_and_unbounded_limits_are_rejected ... ok
+test valid_cloud_and_emulator_configuration_construct_clients ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests/emulator.rs (target/debug/deps/emulator-20e1a7dc926d9cb4)
+
+running 3 tests
+test wrong_account_key_is_confirmed_denied ... ok
+test published_blob_contract_passes_against_azurite ... ok
+test false_payload_retains_metadata_and_bytes_after_emulator_restart ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.97s
+
+     Running tests/interruption.rs (target/debug/deps/interruption-6c7d726326c76d70)
+
+running 2 tests
+test etag_change_between_metadata_and_body_is_refused ... ok
+test busy_admission_refuses_extra_request_and_unacknowledged_write_is_unknown ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.53s
+
+     Running tests/lifecycle.rs (target/debug/deps/lifecycle-682ef4364eca1b33)
+
+running 2 tests
+test deleted_reservation_returns_real_unattached_object_without_implicit_cleanup ... ok
+test staged_content_authorization_and_detachment_survive_native_reopen ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.34s
+
+   Doc-tests rom_azure_blob
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.13s
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.49s
+     Running tests/azure_blob.rs (tests/public-consumer/target/debug/deps/azure_blob-8a09f3e4ce3999ea)
+
+running 1 test
+test public_consumer_preserves_false_and_create_only_contract ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.32s
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.58s
+     Running tests/s3_blob.rs (tests/public-consumer/target/debug/deps/s3_blob-339b7bd3397c7788)
+
+running 7 tests
+test blob_service_attachment_authorization_and_detachment_survive_native_reopen ... ok
+test eight_way_create_has_one_winner_and_seven_confirmed_conflicts ... ok
+test confirmed_denial_and_restart_retention_pass_on_configured_s3_fixture ... ok
+test blob_service_deleted_reservation_retains_real_unattached_object ... ok
+test lost_s3_success_response_recovers_pending_on_explicit_upload ... ok
+test published_port_passes_on_configured_s3_fixture ... ok
+test uncertain_concurrent_creates_reconcile_without_overwrite_or_cleanup ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.22s
+
+    Checking rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.65s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.13s
+     Running unittests src/lib.rs (target/debug/deps/rom_kms-048f2fa4b95684e8)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/contracts.rs (target/debug/deps/contracts-c4a72c015549fb1c)
+
+running 2 tests
+test context_and_aad_have_distinct_bounded_inputs ... ok
+test stored_envelopes_require_identity_version_and_bounded_ciphertext ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_openbao-19c491d372a5ffce)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/configuration.rs (target/debug/deps/configuration-212dafa60cd256de)
+
+running 2 tests
+test endpoint_cannot_redirect_credential_authority_or_embed_private_data ... ok
+test locations_reject_path_injection_and_duplicate_aliases ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/service.rs (target/debug/deps/service-e5e5175aa563b6a6)
+
+running 12 tests
+test actual_key_rotation_and_minimum_version_preserve_authenticated_outcomes ... ok
+test actual_kv_versions_and_denied_reference_do_not_fall_back ... ok
+test actual_transit_authenticates_context_and_aad_before_exposure ... ok
+test actual_transit_preserves_empty_and_maximum_owned_plaintext ... ok
+test expired_token_and_denied_key_do_not_use_previous_material ... ok
+test fixture_rejects_unknown_ca_and_unmatched_ip_identity ... ok
+test live_rotation_deleted_versions_and_revocation_never_return_cached_material ... ok
+test occupied_admission_rejects_without_queue_and_recovers_after_actual_read ... ok
+test paused_actual_service_exceeds_deadline_then_same_client_recovers ... ok
+test persistent_restart_preserves_versions_and_ciphertext_with_fresh_client ... ok
+test response_limit_applies_to_success_and_permission_error_bodies ... ok
+test update_only_token_cannot_create_a_missing_transit_key ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 6.13s
+
+     Running unittests src/lib.rs (target/debug/deps/rom_secrets-201273ab81444677)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/contracts.rs (target/debug/deps/contracts-7dd5cc6031d5abbc)
+
+running 2 tests
+test positive_version_and_nonempty_bounded_credentials_are_required ... ok
+test references_cannot_select_urls_paths_or_ambiguous_names ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_kms
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_openbao
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rom_secrets
+
+running 2 tests
+test crates/rom-secrets/src/material.rs - material::SecretBytes (line 13) - compile fail ... ok
+test crates/rom-secrets/src/material.rs - material::SecretBytes (line 8) - compile fail ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.13s
+   Compiling hyper-rustls v0.27.10
+   Compiling rdkafka-sys v4.10.0+2.12.1
+   Compiling rom-identity v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling reqwest v0.13.5
+   Compiling rdkafka v0.39.0
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+   Compiling object_store v0.14.2
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+   Compiling rom-openbao v0.1.0-dev (/root/ROM-extras/crates/rom-openbao)
+   Compiling rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.09s
+     Running tests/secrets_host.rs (tests/public-consumer/target/debug/deps/secrets_host-e5ea97ba3679e160)
+
+running 2 tests
+test provider_disable_after_actual_resolution_rejects_prepared_material ... ok
+test native_stores_journal_and_host_captures_keep_only_approved_reference ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.34s
+
+    Checking rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.39s
+   Packaging rom-secrets v0.1.0-dev (/root/ROM-extras/crates/rom-secrets)
+warning: patch `rom-kms v0.1.0-dev (/root/ROM-extras/crates/rom-kms)` was not used in the crate graph
+help: Check that the patched package version and available features are compatible
+      with the dependency requirements. If the patch has a different version from
+      what is locked in the Cargo.lock file, run `cargo update` to use the new
+      version. This may also occur with an optional dependency that is not enabled.
+    Updating crates.io index
+    Packaged 10 files, 8.5KiB (3.6KiB compressed)
+   Packaging rom-kms v0.1.0-dev (/root/ROM-extras/crates/rom-kms)
+    Updating crates.io index
+    Packaged 9 files, 7.5KiB (3.0KiB compressed)
+   Packaging rom-openbao v0.1.0-dev (/root/ROM-extras/crates/rom-openbao)
+    Updating crates.io index
+    Packaged 17 files, 82.1KiB (21.0KiB compressed)
+   Compiling rom-secrets v0.1.0-dev (/root/ROM-extras/.superpowers/secrets-packaged-48KrUG/rom-secrets-0.1.0-dev)
+   Compiling rom-kms v0.1.0-dev (/root/ROM-extras/.superpowers/secrets-packaged-48KrUG/rom-kms-0.1.0-dev)
+   Compiling rom-openbao v0.1.0-dev (/root/ROM-extras/.superpowers/secrets-packaged-48KrUG/rom-openbao-0.1.0-dev)
+   Compiling rom-secrets-packaged-consumer v0.0.0 (/root/ROM-extras/.superpowers/secrets-packaged-48KrUG/consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.06s
+     Running `target/secrets-packaged-consumer/debug/rom-secrets-packaged-consumer`
+Packaged KV and derived Transit smoke passed.
+    Checking rom-secrets v0.1.0-dev (/root/ROM-extras/.superpowers/secrets-packaged-48KrUG/rom-secrets-0.1.0-dev)
+    Checking rom-kms v0.1.0-dev (/root/ROM-extras/.superpowers/secrets-packaged-48KrUG/rom-kms-0.1.0-dev)
+    Checking rom-openbao v0.1.0-dev (/root/ROM-extras/.superpowers/secrets-packaged-48KrUG/rom-openbao-0.1.0-dev)
+    Checking rom-secrets-packaged-consumer v0.0.0 (/root/ROM-extras/.superpowers/secrets-packaged-48KrUG/consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.39s
+PASS all 301/302/303/307/308 redirects rejected; zero target calls; no private credential used
+PASS indexed=False exact-u64 stale/equal fencing, empty-vector tombstone, concurrent initial insert; physical-delete resurrection counterexample confirmed
+PASS indexed=True exact-u64 stale/equal fencing, empty-vector tombstone, concurrent initial insert; physical-delete resurrection counterexample confirmed
+PASS unauthorized/read-only writes rejected; verified HTTPS; service version 1.19.2
+PASS indexed=False: delayed request after client timeout cannot replace newer live/tombstone; actual response drop reconciled; stale replay rejected
+PASS indexed=True: delayed request after client timeout cannot replace newer live/tombstone; actual response drop reconciled; stale replay rejected
+PASS restart: indexed/unindexed tombstones including u64::MAX remain fenced; lost-response/newer state persists
+PASS verified mTLS writer/reader scopes; external version stale/equal fences; signed revision limit; persistent tombstone; HTTP200 Bulk partial failure inspected; live query excludes tombstone
+PASS persistent service restart: documents, i64::MAX and tombstone revision fence retained

@@ -107,3 +107,27 @@ A mapper unwind leaves a terminal `RebuildRequired` state if the host catches th
 This component performs no checkpoint write or network dispatch. A successful finish is not a provider acknowledgement.
 Synthetic public-shaped batches and actual pending files test the core seam. Actual SQLite/redb feed integration remains unqualified.
 Approved documents, full page orchestration, actual providers and the bounded asynchronous host lifecycle bridge remain required.
+
+## Immutable approved documents
+
+Create `DocumentMapping` with an input profile, unique selected top-level field names and optional fixed vector dimension.
+Use its derived `profile()` for checkpoint creation/opening and provider configuration. Selection or dimension changes produce a different durable mapping identity.
+`document` selects only fields already present in an authorized historical `JournalView`. It does not grant export authority.
+Missing fields remain absent; null, booleans, integers, floats, strings, arrays and objects retain separate content identities.
+A tombstone removes selected values and vectors. A live vector mapping requires the exact configured dimension and a profile model identifier.
+The document is immutable. Explicit getters expose approved values to the qualified transport; Debug exposes no values, keys or vectors.
+Approved selected values have a 16 KiB canonical limit, 4096 nodes and 32 recursive levels. Vectors have 1..4096 finite f32 values, with normalized zero.
+The complete encoded wire request/response still requires the separate1MiB provider gate. Canonical value size does not prove wire size.
+Numeric admission preserves u64/i64 exactly and accepts canonical finite f64 representations. Numeric formatting is bounded to 64 bytes before conversion.
+Arbitrary-precision values outside these domains, including non-roundtripping decimal floats, return `Invalid`; overlong numeric tokens return `TooLarge`.
+This is a binary digest format, not JCS. Provider numeric compatibility, metric/profile checks and real feed authorization remain required.
+
+The SHA-256 mapping domain is `ROM-extras/projection-mapping/v1`; the document domain is `ROM-extras/projection-document/v1`.
+Lengths and counts are u32 big-endian. A frame is length followed by exact bytes. Profile bytes use the checkpoint profile encoding.
+Mapping identity hashes framed input profile, selected-field count, framed sorted names and dimension (zero means absent). Its lowercase hex replaces mapping identity.
+Document identity hashes framed derived profile, the same selector/dimension configuration, framed kind/ID, u64 revision and one tombstone byte.
+It then hashes framed selected-value encoding, a vector-presence byte and finite f32 big-endian bits. Journal position is excluded.
+Selected-value encoding is an object: tag8,count, then sorted framed UTF-8 names and typed values. No Unicode normalization occurs.
+Value tags are0 null,1 false,2 true,3 u64,4 negative i64,5 finite f64 bits,6 framed UTF-8 string,7 array and8 object.
+Integer/float words are big-endian; float zero bits normalize to positive zero. Arrays encode count and ordered values; objects encode count and sorted entries.
+Tombstones encode an empty selected-value frame and no vector. The profile/configuration remains bound even when values are absent.

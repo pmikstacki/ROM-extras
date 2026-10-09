@@ -1,0 +1,33 @@
+   Packaging rom-sql-core v0.1.0-dev (/root/ROM-extras/crates/rom-sql-core)
+warning: patch `rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)` was not used in the crate graph
+warning: patch `rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)` was not used in the crate graph
+help: Check that the patched package version and available features are compatible
+      with the dependency requirements. If the patch has a different version from
+      what is locked in the Cargo.lock file, run `cargo update` to use the new
+      version. This may also occur with an optional dependency that is not enabled.
+    Packaged 9 files, 22.5KiB (6.1KiB compressed)
+   Packaging rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Updating crates.io index
+    Packaged 30 files, 145.4KiB (32.4KiB compressed)
+   Compiling equivalent v1.0.2
+   Compiling hashbrown v0.17.1
+   Compiling serde_json v1.0.151
+   Compiling rom-sql-core v0.1.0-dev (/root/ROM-extras/.superpowers/projection-packaged-n74DOT/rom-sql-core-0.1.0-dev)
+   Compiling indexmap v2.14.2
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/.superpowers/projection-packaged-n74DOT/rom-projection-core-0.1.0-dev)
+   Compiling rom-projection-packaged-consumer v0.0.0 (/root/ROM-extras/.superpowers/projection-packaged-n74DOT/consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.00s
+     Running `target/projection-packaged-consumer/debug/rom-projection-packaged-consumer`
+packaged projection checkpoint close/reopen: passed
+    Checking hashbrown v0.17.1
+    Checking equivalent v1.0.2
+    Checking rom-sql-core v0.1.0-dev (/root/ROM-extras/.superpowers/projection-packaged-n74DOT/rom-sql-core-0.1.0-dev)
+    Checking indexmap v2.14.2
+    Checking serde_json v1.0.151
+    Checking rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+    Checking rom-projection-core v0.1.0-dev (/root/ROM-extras/.superpowers/projection-packaged-n74DOT/rom-projection-core-0.1.0-dev)
+    Checking rom-projection-packaged-consumer v0.0.0 (/root/ROM-extras/.superpowers/projection-packaged-n74DOT/consumer)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.36s

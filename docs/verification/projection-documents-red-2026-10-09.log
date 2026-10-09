@@ -1,0 +1,57 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.22s
+     Running tests/documents.rs (target/debug/deps/documents-2660dfeb6db4991a)
+
+running 6 tests
+test duplicate_fields_and_model_dimension_mismatch_are_rejected ... FAILED
+test configuration_and_array_order_change_content_but_object_order_does_not ... FAILED
+test absent_null_false_zero_empty_and_integer_precision_remain_distinct ... FAILED
+test only_selected_authorized_fields_are_retained_and_position_is_not_content ... FAILED
+test tombstones_clear_fields_and_vectors_and_vector_profile_is_exact ... FAILED
+test oversize_and_deep_selected_values_are_rejected_but_unselected_values_are_not_copied ... FAILED
+
+failures:
+
+---- duplicate_fields_and_model_dimension_mismatch_are_rejected stdout ----
+
+thread 'duplicate_fields_and_model_dimension_mismatch_are_rejected' (20564) panicked at crates/rom-projection-core/tests/documents.rs:55:5:
+assertion failed: matches!(DocumentMapping::new(support::profile(),vec!["a".into(),"a".into()],None),Err(Error::Conflict))
+
+---- configuration_and_array_order_change_content_but_object_order_does_not stdout ----
+
+thread 'configuration_and_array_order_change_content_but_object_order_does_not' (20563) panicked at crates/rom-projection-core/tests/documents.rs:28:95:
+called `Result::unwrap()` on an `Err` value: Unsupported
+
+---- absent_null_false_zero_empty_and_integer_precision_remain_distinct stdout ----
+
+thread 'absent_null_false_zero_empty_and_integer_precision_remain_distinct' (20562) panicked at crates/rom-projection-core/tests/documents.rs:23:66:
+called `Result::unwrap()` on an `Err` value: Unsupported
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- only_selected_authorized_fields_are_retained_and_position_is_not_content stdout ----
+
+thread 'only_selected_authorized_fields_are_retained_and_position_is_not_content' (20565) panicked at crates/rom-projection-core/tests/documents.rs:15:31:
+called `Result::unwrap()` on an `Err` value: Unsupported
+
+---- tombstones_clear_fields_and_vectors_and_vector_profile_is_exact stdout ----
+
+thread 'tombstones_clear_fields_and_vectors_and_vector_profile_is_exact' (20567) panicked at crates/rom-projection-core/tests/documents.rs:40:5:
+assertion failed: matches!(m.document(&e,None),Err(Error::Invalid))
+
+---- oversize_and_deep_selected_values_are_rejected_but_unselected_values_are_not_copied stdout ----
+
+thread 'oversize_and_deep_selected_values_are_rejected_but_unselected_values_are_not_copied' (20566) panicked at crates/rom-projection-core/tests/documents.rs:49:5:
+assertion failed: matches!(m.document(&e,None),Err(Error::TooLarge))
+
+
+failures:
+    absent_null_false_zero_empty_and_integer_precision_remain_distinct
+    configuration_and_array_order_change_content_but_object_order_does_not
+    duplicate_fields_and_model_dimension_mismatch_are_rejected
+    only_selected_authorized_fields_are_retained_and_position_is_not_content
+    oversize_and_deep_selected_values_are_rejected_but_unselected_values_are_not_copied
+    tombstones_clear_fields_and_vectors_and_vector_profile_is_exact
+
+test result: FAILED. 0 passed; 6 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p rom-projection-core --test documents`

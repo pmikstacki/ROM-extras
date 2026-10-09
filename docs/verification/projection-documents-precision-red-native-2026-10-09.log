@@ -1,0 +1,58 @@
+   Compiling serde_json v1.0.151
+   Compiling aws-lc-sys v0.45.0
+   Compiling openssl-sys v0.9.117
+   Compiling rdkafka-sys v4.10.0+2.12.1
+   Compiling rom v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling amq-protocol-types v10.6.3
+   Compiling amq-protocol-uri v10.6.3
+   Compiling rom-delivery-core v0.1.0-dev (/root/ROM-extras/crates/rom-delivery-core)
+   Compiling rom-backup v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-blob v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+   Compiling aws-lc-rs v1.18.1
+   Compiling rustls v0.23.45
+   Compiling rustls-webpki v0.103.15
+   Compiling jsonwebtoken v11.1.0
+   Compiling rom-auth v0.0.3 (https://github.com/pmikstacki/ROM?rev=d7ef529040eec60dc869034c2d33130219db85fe#d7ef5290)
+   Compiling rom-oidc-presets v0.1.0-dev (/root/ROM-extras/crates/rom-oidc-presets)
+   Compiling rustls-platform-verifier v0.7.1
+   Compiling tokio-rustls v0.26.6
+   Compiling futures-rustls v0.26.0
+   Compiling rustls-connector v0.23.9
+   Compiling hyper-rustls v0.27.10
+   Compiling async-nats v0.50.0
+   Compiling tcp-stream v0.34.14
+   Compiling reqwest v0.13.5
+   Compiling amq-protocol-tcp v10.6.3
+   Compiling amq-protocol v10.6.3
+   Compiling lapin v4.12.0
+   Compiling object_store v0.14.2
+   Compiling rom-openbao v0.1.0-dev (/root/ROM-extras/crates/rom-openbao)
+   Compiling rom-webhook v0.1.0-dev (/root/ROM-extras/crates/rom-webhook)
+   Compiling rdkafka v0.39.0
+   Compiling rom-kafka v0.1.0-dev (/root/ROM-extras/crates/rom-kafka)
+   Compiling rom-nats v0.1.0-dev (/root/ROM-extras/crates/rom-nats)
+   Compiling rom-rabbitmq v0.1.0-dev (/root/ROM-extras/crates/rom-rabbitmq)
+   Compiling rom-azure-blob v0.1.0-dev (/root/ROM-extras/crates/rom-azure-blob)
+   Compiling rom-extras-public-consumer v0.0.0 (/root/ROM-extras/tests/public-consumer)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 16.34s
+     Running tests/projection_checkpoints.rs (tests/public-consumer/target/debug/deps/projection_checkpoints-9f14d99cb296db31)
+
+running 1 test
+test public_checkpoint_consumer_closes_reopens_and_reconciles_both_phases ... FAILED
+
+failures:
+
+---- public_checkpoint_consumer_closes_reopens_and_reconciles_both_phases stdout ----
+
+thread 'public_checkpoint_consumer_closes_reopens_and_reconciles_both_phases' (35667) panicked at tests/../../packaged-projections/checkpoint_case.rs:31:9:
+assertion failed: matches!(mapping.document(&event, None), Err(Error::Invalid))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    public_checkpoint_consumer_closes_reopens_and_reconciles_both_phases
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test projection_checkpoints`

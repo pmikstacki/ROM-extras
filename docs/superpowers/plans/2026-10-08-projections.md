@@ -182,3 +182,10 @@ The storage thread is not the full page worker; history reconstruction, immutabl
 It validates overrun, preserves historical tombstones, collapses repeated keys and requires full intent equality before returning.
 It retains no projected values and performs no checkpoint writes. Actual files verify that failed reconstruction preserves pending intent and old cursor.
 This component is not actual SQLite/redb feed qualification or the full worker. Approved document mapping, dispatch orchestration and host lifecycle remain pending.
+
+## Task2 approved-document increment
+
+Immutable selected-field mapping now derives exact content metadata and a durable profile bound to selector/dimension configuration.
+Actual checkpoint files reject changed mapping profiles; pending reconstruction rejects changed approved content without publication.
+Core construction and feature-independent consumers are distinct from native authorization and provider round-trip acceptance.
+Full page dispatch/recover orchestration and bounded asynchronous host lifecycle remain pending.

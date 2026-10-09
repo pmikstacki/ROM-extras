@@ -26,3 +26,7 @@ pub use storage_worker::{StorageFailure, StorageResponse, StorageWorker};
 
 mod history;
 pub use history::PendingHistory;
+
+mod document;
+pub use document::{ApprovedDocument, DocumentMapping};
+mod document_encoding;
