@@ -6,7 +6,8 @@ use crate::{
 use rom::JournalCursor;
 use std::collections::BTreeMap;
 /// Exclusive page coordinator over a trusted target, with one mutable operation at a time.
-/// Construction/error/drop and shutdown still require a blocking owner-lifecycle host context.
+/// Standalone storage construction/error/drop and shutdown require a blocking host context.
+/// Managed storage supports supervised drop and shutdown_async; the embedding host still joins its supervisor.
 /// Qualified targets must fence requests surviving cancellation; this type cannot supply that fence.
 pub struct Worker<T: ProjectionTarget> {
     storage: StorageWorker,
@@ -160,6 +161,11 @@ impl<T: ProjectionTarget> Worker<T> {
     /// Classify an exact retained native token after reopening; no automatic retry is performed.
     pub async fn reconcile(&self, token: TransactionId) -> WorkerResult<crate::CommitStatus> {
         Ok(self.storage.reconcile(token)?.receive().await?)
+    }
+    /// Await supervised shutdown; requires StorageLifecycle initialization.
+    /// Dropping the future preserves cleanup and its terminal result.
+    pub async fn shutdown_async(&self) -> WorkerResult<()> {
+        Ok(self.storage.shutdown_async().await?)
     }
     /// Close admission, drain and join native destruction from a bounded blocking host context.
     pub fn shutdown(&self) -> WorkerResult<()> {

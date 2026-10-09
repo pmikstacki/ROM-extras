@@ -1,0 +1,22 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.48s
+     Running unittests src/lib.rs (target/debug/deps/rom_projection_core-de499b40d9482b9a)
+
+running 1 test
+test lifecycle::tests::native_start_failure_releases_slot_before_waking_its_response ... FAILED
+
+failures:
+
+---- lifecycle::tests::native_start_failure_releases_slot_before_waking_its_response stdout ----
+
+thread 'lifecycle::tests::native_start_failure_releases_slot_before_waking_its_response' (174243) panicked at crates/rom-projection-core/src/lifecycle_start_tests.rs:115:5:
+failure response woke before lifecycle admission was released
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    lifecycle::tests::native_start_failure_releases_slot_before_waking_its_response
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 16 filtered out; finished in 0.03s
+
+error: test failed, to rerun pass `-p rom-projection-core --lib`

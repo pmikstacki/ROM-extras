@@ -37,3 +37,6 @@ pub use worker::Worker;
 pub use worker_contract::{
     ProjectionHistory, ProjectionTarget, TargetFailure, WorkerFailure, WorkerResult,
 };
+
+mod lifecycle;
+pub use lifecycle::{StorageLifecycle, StorageStartup};

@@ -2,7 +2,7 @@
 use rom::{JournalBatch, JournalCursor, JournalView, Key, ProjectedView};
 use rom_projection_core::{
     ApprovedDocument, Cancellation, Checkpoint, DocumentMapping, OperationMetadata,
-    ProjectionHistory, ProjectionProfile, ProjectionTarget, RemoteObservation, StorageWorker,
+    ProjectionHistory, ProjectionProfile, ProjectionTarget, RemoteObservation, StorageLifecycle,
     TargetFailure, Worker, WorkerFailure,
 };
 use std::os::unix::fs::DirBuilderExt;
@@ -99,7 +99,22 @@ pub fn run() {
         position: 0,
     };
     let initial = Checkpoint::new("consumer-target", vec![cursor.clone()]).unwrap();
-    let storage = StorageWorker::create(path.clone(), mapping.profile().clone(), initial).unwrap();
+    let host = StorageLifecycle::new().unwrap();
+    let runtime = tokio::runtime::Builder::new_current_thread()
+        .build()
+        .unwrap();
+    let storage = runtime
+        .block_on(
+            host.create(
+                path.clone(),
+                mapping.profile().clone(),
+                initial,
+                Cancellation::new(),
+            )
+            .unwrap()
+            .receive(),
+        )
+        .unwrap();
     let mut worker = Worker::new(
         storage,
         Target {
@@ -108,9 +123,6 @@ pub fn run() {
         },
     )
     .unwrap();
-    let runtime = tokio::runtime::Builder::new_current_thread()
-        .build()
-        .unwrap();
     let cancel = Cancellation::new();
     let next = JournalCursor {
         position: 3,
@@ -130,10 +142,15 @@ pub fn run() {
         runtime.block_on(worker.apply_page(next, Vec::new(), &cancel)),
         Err(WorkerFailure::RecoveryRequired)
     );
-    worker.shutdown().unwrap();
+    runtime.block_on(worker.shutdown_async()).unwrap();
     drop(worker);
-    let storage =
-        StorageWorker::open(path.clone(), mapping.profile().clone(), Cancellation::new()).unwrap();
+    let storage = runtime
+        .block_on(
+            host.open(path.clone(), mapping.profile().clone(), Cancellation::new())
+                .unwrap()
+                .receive(),
+        )
+        .unwrap();
     let mut worker = Worker::new(
         storage,
         Target {
@@ -155,7 +172,7 @@ pub fn run() {
         3
     );
     assert!(snapshot.pending_page().is_none());
-    worker.shutdown().unwrap();
+    runtime.block_on(worker.shutdown_async()).unwrap();
     drop(worker);
     let store =
         rom_projection_core::CheckpointStore::open(&path, history.mapping.profile()).unwrap();

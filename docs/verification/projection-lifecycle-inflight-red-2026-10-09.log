@@ -1,0 +1,14 @@
+   Compiling rom-projection-core v0.1.0-dev (/root/ROM-extras/crates/rom-projection-core)
+error[E0599]: no variant, associated function, or constant named `Test` found for enum `lifecycle::Request` in the current scope
+  --> crates/rom-projection-core/src/lifecycle_start_tests.rs:42:39
+   |
+42 |     let startup = host.admit(Request::Test(Box::new(move || {
+   |                                       ^^^^ variant, associated function, or constant not found in `lifecycle::Request`
+   |
+  ::: crates/rom-projection-core/src/lifecycle.rs:57:1
+   |
+57 | enum Request {
+   | ------------ variant, associated function, or constant `Test` not found for this enum
+
+For more information about this error, try `rustc --explain E0599`.
+error: could not compile `rom-projection-core` (lib test) due to 1 previous error

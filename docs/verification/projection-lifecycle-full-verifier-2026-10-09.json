@@ -1,0 +1,72 @@
+{
+  "inspection_date": "2026-10-09",
+  "baseline_commit": "2a4ab9740fd97a29d1619334762a53162bae2324",
+  "command": "./scripts/check-all",
+  "exit_code": 0,
+  "completed_utc": "2026-10-09T01:02:22.781Z",
+  "frozen_files": 209,
+  "unchanged": true,
+  "source_fence": "projection-lifecycle-source-freeze-2026-10-09.json",
+  "full_log": "projection-lifecycle-full-verifier-2026-10-09.log",
+  "compiler": "projection-lifecycle-compiler-2026-10-09.log",
+  "focused_cases": 79,
+  "new_lifecycle_cases": 12,
+  "public_lifecycle_cases": 6,
+  "controlled_native_unit_cases": 6,
+  "compile_fail_doctests": 1,
+  "ignored_child_entry": 1,
+  "child_entry_executed_by_parent_tests": true,
+  "red": [
+    {
+      "log": "projection-lifecycle-red-2026-10-09.log",
+      "classification": "missing public lifecycle API, expected compile failure; behavioral tests not yet executed",
+      "exit_code": 101
+    },
+    {
+      "log": "projection-lifecycle-inflight-red-2026-10-09.log",
+      "classification": "missing test-only controlled initializer seam; not behavioral evidence",
+      "exit_code": 101
+    },
+    {
+      "log": "projection-lifecycle-failure-order-red-2026-10-09.log",
+      "classification": "actual native Busy response woke before lifecycle slot release",
+      "intended_failures": 1,
+      "exit_code": 101
+    }
+  ],
+  "review": {
+    "source_only": true,
+    "reviewer_ran_tests": false,
+    "initial_findings": 0,
+    "final_findings": 0,
+    "root_regression": "failure response before slot release",
+    "resolution": "release slot and retain terminal cleanup result before waking failed startup response"
+  },
+  "archives": {
+    "target/package/rom-sql-core-0.1.0-dev.crate": "49f4fe75f9bf9e97177cd684ba4ff13bcd1041943d23db2bdbc0a7c333221a8f",
+    "target/package/rom-projection-core-0.1.0-dev.crate": "44546903721b781b5a694e0cc091d8b67e41fd111339218cbaa30188e7eb52f1"
+  },
+  "archive_consumer": ".superpowers/projection-packaged-l16POH/consumer",
+  "archive_packages": 40,
+  "audits": {
+    "known_vulnerabilities": 0,
+    "root_and_archive_warnings": 0,
+    "public_consumer_warning": "RUSTSEC-2024-0436 paste1.0.15 unmaintained, unsuppressed",
+    "root_lock": "Byte-identical to baseline",
+    "public_consumer_lock": "Byte-identical to baseline",
+    "archive_consumer_lock": "Byte-identical to prior worker archive graph",
+    "new_production_dependencies": 0,
+    "new_tokio_features": 0
+  },
+  "limits": [
+    "StorageLifecycle host creation, final shutdown and Drop require a blocking embedding context",
+    "One active owner slot per explicitly created host; not a global thread bound",
+    "No hard native I/O termination deadline",
+    "Managed shutdown waiting and owner Drop do not join native I/O on the async caller",
+    "Controlled accepted native startup cancellation leaves its created file intact; no rollback claim",
+    "Actual native SQLite/redb authorized ROM feeds remain required",
+    "Shared worker consumer uses synthetic target/history; no native Rust OpenSearch/Qdrant qualification",
+    "Historical native fixture state and evidence preserved"
+  ],
+  "full_goal": "Active and incomplete"
+}

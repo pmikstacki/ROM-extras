@@ -7,7 +7,9 @@ Restart admission uses read-only preflight and a validated private repair copy f
 Unknown commit outcomes retire the engine and retain a bounded transition token for reconciliation after reopening.
 
 The typed storage worker owns one native thread, bounds its command queue, and joins through checkpoint destruction.
-Asynchronous responses do not cancel admitted operations when dropped. Startup and shutdown require a blocking host context.
+Asynchronous responses do not cancel admitted operations when dropped. Standalone startup and shutdown require a blocking host context.
+StorageLifecycle supervises one managed owner, with async startup responses, nonblocking owner Drop and retained shutdown_async completion.
+Create and finally join the lifecycle host from a blocking embedding context. Native I/O has no hard termination deadline.
 
 Pending-history reconstruction validates bounded authorized-batch metadata, clamps overrun and compares the complete immutable intent without checkpoint publication.
 Immutable selected-field documents derive canonical content identities and durable profiles, with bounded exact numeric admission and finite vectors.

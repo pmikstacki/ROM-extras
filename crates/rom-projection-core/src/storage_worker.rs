@@ -36,11 +36,13 @@ impl<T> StorageResponse<T> {
     }
 }
 /// Non-cloneable owner of one thread and one queued command, excluding active work.
-/// Initialization, shutdown and drop block. Use a blocking host context for these operations.
+/// Standalone initialization, shutdown and drop block; use a blocking host context.
+/// StorageLifecycle-managed owners use supervised cleanup and shutdown_async instead.
 /// Awaiting command responses does not block. Dropping a response never cancels admitted work.
 pub struct StorageWorker {
     executor: rom_sql_core::Executor<CheckpointStore>,
     profile: ProjectionProfile,
+    lifecycle: Option<std::sync::Arc<crate::lifecycle::Lease>>,
 }
 impl StorageWorker {
     /// Create native storage on its owner thread. Initialization can block on local I/O.
@@ -74,12 +76,23 @@ impl StorageWorker {
                 rom_sql_core::ExecutorError::Initialization
             })
         }) {
-            Ok(executor) => Ok(Self { executor, profile }),
+            Ok(executor) => Ok(Self {
+                executor,
+                profile,
+                lifecycle: None,
+            }),
             Err(_) => Err(response
                 .try_recv()
                 .map(StorageFailure::Checkpoint)
                 .unwrap_or(StorageFailure::Unclassified)),
         }
+    }
+    pub(crate) fn manage(
+        &mut self,
+        lease: std::sync::Arc<crate::lifecycle::Lease>,
+    ) -> rom_sql_core::Executor<CheckpointStore> {
+        self.lifecycle = Some(lease);
+        self.executor.clone()
     }
     /// Profile used by successful native initialization, without additional native I/O.
     pub fn profile(&self) -> &ProjectionProfile {
@@ -144,15 +157,37 @@ impl StorageWorker {
     /// Stop admission, drain commands, and join through engine destruction.
     /// This blocks on admitted native I/O and has no hard shutdown deadline.
     pub fn shutdown(&self) -> std::result::Result<(), StorageFailure> {
+        if let Some(lease) = &self.lifecycle {
+            let _ = self.executor.close();
+            lease.close();
+            return lease.wait();
+        }
         self.executor.shutdown().map_err(admission_error)
+    }
+    /// Close and await supervised native destruction without blocking the async caller.
+    /// Requires initialization through StorageLifecycle; standalone owners return Invalid.
+    /// Dropping this future does not cancel cleanup or lose its retained terminal result.
+    pub async fn shutdown_async(&self) -> std::result::Result<(), StorageFailure> {
+        let lease = self
+            .lifecycle
+            .as_ref()
+            .ok_or(StorageFailure::Checkpoint(Error::Invalid))?;
+        let _ = self.executor.close();
+        lease.close();
+        lease.receive().await
     }
 }
 impl Drop for StorageWorker {
     fn drop(&mut self) {
-        let _ = self.executor.shutdown();
+        if let Some(lease) = &self.lifecycle {
+            let _ = self.executor.close();
+            lease.close();
+        } else {
+            let _ = self.executor.shutdown();
+        }
     }
 }
-fn admission_error(error: rom_sql_core::ExecutorError) -> StorageFailure {
+pub(crate) fn admission_error(error: rom_sql_core::ExecutorError) -> StorageFailure {
     match error {
         rom_sql_core::ExecutorError::Overloaded => StorageFailure::Overloaded,
         rom_sql_core::ExecutorError::Closed => StorageFailure::Closed,
@@ -163,3 +198,7 @@ fn admission_error(error: rom_sql_core::ExecutorError) -> StorageFailure {
 #[cfg(test)]
 #[path = "storage_worker_tests.rs"]
 mod tests;
+
+#[cfg(test)]
+#[path = "lifecycle_owner_tests.rs"]
+mod lifecycle_tests;

@@ -1,6 +1,6 @@
 # Projection checkpoints
 
-Status: checkpoint-store implementation; projection worker and provider adapters remain incomplete.
+Status: local checkpoints, core page orchestration and bounded lifecycle host implemented; native feed/provider qualification remains incomplete.
 
 `rom-projection-core` owns a separate redb 4.3.0 file and uses public ROM keys, cursors, and native ownership.
 It does not mutate private ROM tables. ROM remains authoritative for Resources and authorization.
@@ -148,3 +148,23 @@ Construction, error cleanup, destruction and shutdown require a blocking host co
 Actual SQLite/redb authorization/history and Rust OpenSearch/Qdrant transport acceptance remain required.
 
 The [worker verification record](verification/projection-worker-full-verifier-2026-10-09.json) records core composition and independent consumer evidence.
+
+## Asynchronous host lifecycle
+
+Create StorageLifecycle from a blocking embedding context. Retain the host until its managed owners finish.
+Admit create/open with bounded typed arguments. Await StorageStartup::receive to obtain a managed StorageWorker for Worker::new.
+One host admits one live owner, including startup and cleanup. A second start returns Overloaded.
+Paths cannot exceed 4096 encoded bytes. The bound applies per host, not across arbitrary independently created hosts.
+
+Await Worker::shutdown_async or StorageWorker::shutdown_async before reusing its native file.
+The supervisor closes admission, drains accepted commands and joins native destruction before retaining the terminal result.
+Dropping this future does not cancel cleanup. A later waiter can still receive the terminal result.
+Managed owner Drop requests supervised cleanup without waiting for native I/O. Dropped startup responses request the same cleanup.
+Cancellation cannot erase a file whose creation already completed. Native uncertainty does not establish rollback.
+
+Finally, call host.shutdown from a blocking embedding context. Host Drop also closes admission and joins its supervisor.
+Host shutdown revokes a live managed owner and waits for native cleanup. No hard native I/O termination deadline is qualified.
+Standalone StorageWorker behavior remains blocking. shutdown_async rejects standalone owners with Invalid.
+Native public history/authorization and Rust provider transports remain required.
+
+The [lifecycle verification record](verification/projection-lifecycle-full-verifier-2026-10-09.json) preserves controlled native tests and full-verifier results.

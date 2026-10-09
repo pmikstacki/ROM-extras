@@ -688,3 +688,31 @@ Independent public and normalized archive consumers passed synthetic-target rest
 Source review found one admission/recovery P2; the regression failed before correction and passed afterward. Final source review found no actionable issue.
 Both lockfiles are byte-identical to baseline. Fresh root, consumer and 40-package archive audits report no known vulnerabilities.
 The public consumer retains the unsuppressed paste informational warning. Task 2 and the full goal remain incomplete.
+
+## 2026-10-09: bounded asynchronous lifecycle bridge
+
+Sources: [Tokio1.53.1 blocking work](https://docs.rs/tokio/1.53.1/tokio/task/fn.spawn_blocking.html), [Rust retained thread join](https://doc.rust-lang.org/std/thread/struct.JoinHandle.html), [bounded channel](https://doc.rust-lang.org/std/sync/mpsc/fn.sync_channel.html), [retained watch result](https://docs.rs/tokio/1.53.1/tokio/sync/watch/struct.Sender.html#method.send_replace), [watch borrow/update](https://docs.rs/tokio/1.53.1/tokio/sync/watch/struct.Receiver.html#method.borrow_and_update).
+
+Use one persistent StorageLifecycle supervisor rather than spawning a new blocking task for every start or shutdown.
+A host admits one active owner, including initialization and cleanup. Another start returns Overloaded without waiting.
+Bound queued startup paths to 4096 encoded bytes. Captures are typed; arbitrary factory injection exists only in tests.
+The supervisor retains an executor owner clone through native destruction and join. Managed Drop closes admission and requests cleanup without joining native I/O.
+Dropping a startup response cancels cooperatively and requests cleanup; it does not roll back completed file creation.
+Shutdown futures await a retained terminal result. Use send_replace so a later subscriber observes completion after an earlier waiter disappeared.
+Keep watch borrows outside await. Release the host slot only after native shutdown/join completes.
+Host setup, final shutdown and Drop require a blocking embedding context. The host retains its supervisor JoinHandle instead of detaching.
+Do not claim a process-wide thread limit: the fixed one-owner bound applies to each explicitly created host.
+No hard native I/O deadline is supplied. Native feeds, authorization and Rust provider transports remain mandatory separate acceptance.
+No production dependency or Tokio feature is added; watch and oneshot use the already-enabled sync feature.
+
+An adversarial wake test found startup failure acknowledgement before slot release.
+Delay failed startup responses until native cleanup, slot release and retained terminal publication have completed.
+The actual Busy regression failed before correction. Successful startup must still publish its managed owner before waiting for close.
+
+The [lifecycle execution record](../verification/projection-lifecycle-full-verifier-2026-10-09.json) records the source and actual scope.
+The full verifier passed with 209 unchanged runtime files, 79 focused cases and one compile-fail doctest.
+Twelve lifecycle cases cover real files and controlled native startup/active-job phases.
+The actual Busy wake-order regression failed before correction and passed afterward. Other initial failures identify missing API/test seams, not behavioral evidence.
+Final source review found no actionable issue. Independent public and normalized archive consumers passed managed-worker restart recovery.
+Root, public-consumer and archive lockfiles are byte-identical to their prior graphs. Fresh audits report no known vulnerabilities.
+The public consumer retains the unsuppressed paste informational warning. Native feed/authorization and Rust provider transport acceptance remain required.

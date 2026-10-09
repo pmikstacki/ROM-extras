@@ -197,3 +197,13 @@ Core tests cover durable preparation, exact completion, unknown outcomes, cancel
 Admission and recovery share the 4096-position bound; recovery permits at most 64 actual fetches.
 Synthetic target/source acceptance does not complete native feed, authorization or provider qualification.
 The bounded asynchronous lifecycle bridge and full Task 2 acceptance remain required.
+
+## Task 2 asynchronous lifecycle bridge
+
+Files: src/lifecycle.rs, src/lifecycle_start_tests.rs, src/lifecycle_owner_tests.rs and tests/lifecycle.rs in rom-projection-core.
+StorageLifecycle owns a persistent supervisor and one active-owner slot. Public create/open return StorageStartup; receive asynchronously transfers a managed StorageWorker.
+Managed owner Drop requests cleanup. StorageWorker::shutdown_async and Worker::shutdown_async await retained terminal native destruction results.
+The embedding host creates and finally joins StorageLifecycle from a blocking context. Existing standalone APIs retain their blocking behavior.
+Tests cover real native ownership, overload, cancellation, dropped startup/shutdown futures, asynchronous progress, queued intent draining and slot reuse.
+Source review, independent public/archive consumers and the full verifier remain required before integration.
+Actual native history/authorization and Rust provider transports remain unfinished; Task 2 is not complete.
