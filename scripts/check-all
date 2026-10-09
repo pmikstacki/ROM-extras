@@ -8,6 +8,7 @@ source scripts/lib/qdrant-qualification-env.sh
 ./scripts/check-cockroach
 ./scripts/check-oracle
 ./scripts/check-mssql
+./scripts/check-mssql-owner
 ./scripts/check-mysql
 ./scripts/check-nats
 ./scripts/check-rabbitmq

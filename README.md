@@ -19,7 +19,8 @@ A shared bounded SQL executor has real transaction and restart tests for six dat
 - [Oracle](docs/oracle-fixture.md)
 
 These are executor profiles. Full ROM Storage integration remains pending.
-The [shared ownership foundation](docs/sql-ownership.md) adds native PostgreSQL fencing tests, including a surviving stale connection after takeover.
+The [shared ownership foundation](docs/sql-ownership.md) has native PostgreSQL fencing tests.
+The maintained [SQL Server adapter](docs/mssql-ownership.md) verifies native ownership, stale connections, rollback and bounded cleanup through direct and packaged consumers.
 
 ### Integrations
 

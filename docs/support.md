@@ -308,3 +308,16 @@ Current public SQLite/redb reads filter denied, stale, deleted and hidden embedd
 The independent native/archive consumer uses collection-scoped read-only JWTs and actual held query responses for authority changes.
 Authored 429, redirect, body-limit, malformed, timeout and cancellation cases remain separate from native ranking evidence.
 Cosine, distributed profiles, approximate recall, other dimensions and generation switching remain unqualified.
+
+## Maintained SQL Server ownership increment
+
+`rom-mssql` implements the shared native ownership port; it does not implement ROM Storage.
+Seven native groups execute on SQL Server2025 17.0.5005.3 through direct and normalized-archive independent consumers.
+Tests cover stale surviving connections, competing claims, exact transitions and control-query-specific native lock ordering.
+An unrelated actual waiter cannot satisfy the ordering barrier.
+Prepared writes roll back after native statement errors, Drop and a separate lock timeout.
+Caught statement errors cannot re-lock or commit the transaction. I/O timeout permanently retires the native client.
+The caller waiting deadline remains separate from native commit.
+Production certificate chains, deadlock victims, real lost COMMIT wire responses and owner-state restart remain unqualified.
+Full Storage, public StorageOwner lifetime integration and the remaining SQL ownership mappings remain open.
+See [configuration and evidence limits](mssql-ownership.md).

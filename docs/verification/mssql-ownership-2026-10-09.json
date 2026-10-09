@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-09",
+  "baseline": "a9aefe55ab1780fb04c3bf3c5369cac93403c26d",
+  "public_rom": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "scope": "Maintained SQL Server OwnerTransaction over shared rom-sql-core; not full ROM Storage",
+  "native": {
+    "version": "17.0.5005.3",
+    "sdk": "tiberius 0.13.0",
+    "sdk_vcs_dirty": true,
+    "native_groups": 7,
+    "profiles": "Fixed loopback encrypted TDS with host-explicit synthetic certificate trust; delayed_durability=0",
+    "actual_cases": [
+      "Competing idle claims",
+      "Surviving stale connection after first connection loss/takeover",
+      "Exact release/reclaim",
+      "Held native transaction ordering tied to unique locking query",
+      "Unrelated real waiter rejected by ordering oracle",
+      "Native statement-error prefix rollback",
+      "Caught compile-error cannot re-lock/commit",
+      "Native lock timeout with confirmed cleanup and later explicit use",
+      "Malformed short/oversized/zero binary state and exhausted generation",
+      "VARBINARY(32) and malformed MAX columns",
+      "Drop prepared-write rollback",
+      "I/O deadline retires native client; fresh native read",
+      "Caller deadline followed by admitted actual commit",
+      "Active Tokio call rejected; cross-context Drop safe"
+    ],
+    "direct_and_archive_exit": 0,
+    "logs": [
+      ".superpowers/mssql-owner-affected-2026-10-09.log",
+      ".superpowers/mssql-owner-reviewed-affected-2026-10-09.log"
+    ],
+    "reviewed_runs": [
+      ".superpowers/mssql-owner-runs/run-gf7q1l6a",
+      ".superpowers/mssql-owner-runs/run-mon979dh"
+    ],
+    "reviewed_archives": "/tmp/mssql-owner-packaged-ILNv9R/archives.json",
+    "full_verifier_runs": [
+      "/root/ROM-extras/.superpowers/mssql-owner-runs/run-n0hudv9p",
+      "/root/ROM-extras/.superpowers/mssql-owner-runs/run-c0t70tr9"
+    ],
+    "full_verifier_archives": "/tmp/mssql-owner-packaged-ubISUU/archives.json"
+  },
+  "tests": {
+    "configuration_unit_tests": 1,
+    "shared_core": "Existing core unit, integration and doctest suites passed; no arbitration duplicated",
+    "red_logs": [
+      ".superpowers/mssql-owner-red-2026-10-09.log",
+      ".superpowers/mssql-owner-poison-red-2026-10-09.log",
+      ".superpowers/mssql-owner-runtime-drop-red-2026-10-09.log",
+      ".superpowers/mssql-owner-waiter-review-red-2026-10-09.log"
+    ]
+  },
+  "review": {
+    "source_only": ".superpowers/mssql-owner-final-review-2026-10-09.md",
+    "finding": "P2 unrelated native waiter could satisfy broad ordering oracle",
+    "resolution": "Unique control locking query matched through native DMVs; old oracle failed negative actual waiter; direct/archive gate green",
+    "deferred_findings": []
+  },
+  "dependencies": {
+    "audit_log": ".superpowers/mssql-owner-consumer-audit-2026-10-09.json",
+    "audited_packages": 99,
+    "advisories": 0,
+    "warnings": 0,
+    "rustsec": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+    "new_registry_packages": 13,
+    "inventory": ".superpowers/mssql-owner-dependencies-2026-10-09.json",
+    "source_integrity": "All new cached archive SHA256 match locked checksums and every extracted source file; all previous versions preserved",
+    "redistribution_review": "Required before release"
+  },
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "log": ".superpowers/mssql-owner-full-verifier-2026-10-09.log",
+    "status": "passed",
+    "exit": 0,
+    "source_manifest": ".superpowers/mssql-owner-source-snapshot-2026-10-09.json",
+    "unchanged_source_files": 1289,
+    "source_manifest_sha256": "8398d9ccc9d2e356f277a434121b80ce90a7d7f10598aa9913eb7d0202830380",
+    "log_sha256": "36239ec0b5c7c0788ca83244e29e009cd5393958d6a066f0f3517bdb337b9d95",
+    "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)",
+    "prior_failed_attempts": [
+      {
+        "log": ".superpowers/mssql-owner-full-verifier-attempt1-2026-10-09.log",
+        "exit": 101,
+        "cause": "Historical OpenSearch restart recovery exceeded 90 seconds; 750 preserved indices; green after recovery",
+        "evidence": ".superpowers/mssql-owner-old-opensearch-health-2026-10-09.json"
+      },
+      {
+        "log": ".superpowers/mssql-owner-full-verifier-attempt2-2026-10-09.log",
+        "exit": 101,
+        "cause": "New native data required explicit SecurityAdmin initialization; fixture roles were not yet active"
+      }
+    ],
+    "opensearch_isolation": {
+      "identity": ".superpowers/opensearch-mssql-owner-isolated-20261009/identity.json",
+      "active": "rom-extras-opensearch-mssql-owner-20261009",
+      "archived": "rom-extras-opensearch-qualification-20261009",
+      "archive_preserved": true,
+      "security": "Existing pinned TLS/mTLS/security profile; SecurityAdmin bootstrap passed with hostname and CA checks; writer create200/reader create403",
+      "source_changes_for_isolation": false
+    }
+  },
+  "not_qualified": [
+    "Full SQL Storage, incremental Work and Resource bundles",
+    "Opaque ROM StorageOwner automatic native release",
+    "Deadlock victim recovery",
+    "Actual lost COMMIT wire response",
+    "Native ownership state after SQL Server restart",
+    "Production certificate trust chains",
+    "Distributed SQL Server profiles"
+  ]
+}

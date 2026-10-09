@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_MSSQL_PASSWORD:?Explicit native SQL Server fixture required; no skip}"
+: "${ROM_EXTRAS_PYTHON:?Explicit Python3 executable required for owned process deadlines}"
+cargo test --locked -p rom-mssql -p rom-sql-core
+cargo clippy --locked -p rom-mssql --all-targets -- -D warnings
+RUSTDOCFLAGS='-D warnings' cargo doc --locked -p rom-mssql --no-deps
+cargo fmt --manifest-path tests/mssql-owner-consumer/Cargo.toml -- --check
+cargo clippy --manifest-path tests/mssql-owner-consumer/Cargo.toml --locked --offline --target-dir target/mssql-owner-consumer --all-targets -- -D warnings
+cargo build --manifest-path tests/mssql-owner-consumer/Cargo.toml --locked --offline --target-dir target/mssql-owner-consumer
+"$ROM_EXTRAS_PYTHON" scripts/check-mssql-owner-consumer.py target/mssql-owner-consumer/debug/mssql-owner-consumer
+node --check scripts/prepare-mssql-owner-package.mjs
+cargo package --locked --allow-dirty --no-verify -p rom-sql-core -p rom-mssql \
+    --config 'patch.crates-io.rom-sql-core.path="crates/rom-sql-core"'
+consumer=$(node scripts/prepare-mssql-owner-package.mjs)
+cargo clippy --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/mssql-owner-packaged-consumer --all-targets -- -D warnings
+cargo build --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/mssql-owner-packaged-consumer
+"$ROM_EXTRAS_PYTHON" scripts/check-mssql-owner-consumer.py target/mssql-owner-packaged-consumer/debug/rom-mssql-owner-packaged-consumer
