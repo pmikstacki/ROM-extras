@@ -67,6 +67,9 @@ impl TileSource {
             }
         }
         let mut browser = json!({"type": match kind { TileKind::Raster=>"raster",TileKind::Vector=>"vector" },"tiles":tiles,"scheme":scheme,"minzoom":minzoom,"maxzoom":maxzoom,"credits":credits,"approvedOrigins":policy.origins()});
+        if let Some(size) = super::raster_size::prepare(native.get("tileSize"), kind)? {
+            browser["tileSize"] = json!(size.pixels());
+        }
         let bounds = if let Some(value) = native.get("bounds") {
             let a = value
                 .as_array()

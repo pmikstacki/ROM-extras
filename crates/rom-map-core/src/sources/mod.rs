@@ -1,4 +1,5 @@
 mod policy;
+mod raster_size;
 mod resolved_source;
 mod source_properties;
 mod style;
@@ -8,6 +9,7 @@ mod tilejson;
 mod validation;
 mod vector_layers;
 pub use policy::BrowserPolicy;
+pub use raster_size::RasterTileSize;
 pub use style::MapStyle;
 mod typed;
 pub use tilejson::{TileKind, TileSource};

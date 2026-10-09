@@ -55,6 +55,7 @@ pub(crate) fn prepare(
                     "bounds",
                     "attribution",
                     "vector_layers",
+                    "tileSize",
                 ],
             ));
             metadata["tilejson"] = json!("3.0.0");
@@ -91,14 +92,6 @@ pub(crate) fn prepare(
         object.remove("credits");
         object.remove("approvedOrigins");
         object.remove("center");
-        if let Some(tile_size) = native.get("tileSize") {
-            if !matches!(kind, TileKind::Raster)
-                || !matches!(tile_size.as_u64(), Some(128 | 256 | 512 | 1024))
-            {
-                return Err(Error::InvalidResponse);
-            }
-            object.insert("tileSize".into(), tile_size.clone());
-        }
         super::source_properties::preserve(native, &mut approved, kind)?;
         prepared.insert(id.clone(), approved);
     }

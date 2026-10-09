@@ -20,4 +20,6 @@ pub use context::{Cancellation, RequestContext};
 pub use routing::{Route, RouteQuery, TravelMode};
 mod sources;
 pub use capabilities::{RasterTiles, Styles, VectorTiles};
-pub use sources::{BrowserPolicy, MapStyle, RasterSource, TileKind, TileSource, VectorSource};
+pub use sources::{
+    BrowserPolicy, MapStyle, RasterSource, RasterTileSize, TileKind, TileSource, VectorSource,
+};

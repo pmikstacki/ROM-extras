@@ -1,0 +1,139 @@
+{
+  "scope": "Raster descriptor logical pixel sizes and documentation freshness; not native raster data, renderer or MapTiler account acceptance",
+  "baseline": "8a8c940768191fbdc99d7106760da2265503895f",
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "session": 25375,
+    "exit": 0,
+    "log": ".superpowers/maps-raster-size-full-verifier-isolated-2026-10-09.log",
+    "source_snapshot": ".superpowers/maps-raster-size-source-snapshot-2026-10-09.json",
+    "snapshot_sha256": "8ebb3329b6d52afb5d478532ac6338ae58fb358e8157f223a4b8b39923ba2389",
+    "files_verified_unchanged_before_final_record": 1082,
+    "source_changes": []
+  },
+  "affected_checks": {
+    "session": 75759,
+    "exit": 0,
+    "commands": [
+      "./scripts/check-map-core",
+      "./scripts/check-map-adapters",
+      "./scripts/check-map-package"
+    ],
+    "logs": [
+      ".superpowers/maps-raster-size-affected-2026-10-09.log",
+      ".superpowers/maps-raster-size-adapters-2026-10-09.log",
+      ".superpowers/maps-raster-size-package-2026-10-09.log"
+    ]
+  },
+  "contract": {
+    "supported_logical_pixels": [
+      128,
+      256,
+      512,
+      1024
+    ],
+    "absent_size": "Preserved without a new default",
+    "vector_size": "Rejected",
+    "style_binding": "Resolved size retained; validated explicit style override admitted",
+    "extension": "Host/adapter tileSize extension to the strict TileJSON3.0.0 admission profile",
+    "public_api": "Additive RasterTileSize; existing API paths unchanged",
+    "core_tests_passed": 44,
+    "new_regression_tests": 4,
+    "independent_consumer": "Custom RasterTiles implementation constructs a typed256-pixel descriptor and checks its approved JSON; invalid typed size refused"
+  },
+  "regression": {
+    "red_exit": 101,
+    "red_log": ".superpowers/maps-raster-size-red-2026-10-09.log",
+    "red_result": "All four regressions failed against prior code: missing size, malformed/vector size accepted, lost resolved size",
+    "green_exit": 0,
+    "green_log": ".superpowers/maps-raster-size-green-2026-10-09.log"
+  },
+  "full_failure_retained": {
+    "session": 55862,
+    "exit": 101,
+    "log": ".superpowers/maps-raster-size-full-verifier-2026-10-09.log",
+    "test": "public consumer redb_process_exit_after_native_acceptance",
+    "boundary": "Native cluster readiness after restart exceeded90 seconds",
+    "readiness_record": ".superpowers/opensearch-fixture/readiness-cluster-3788383-1791546192286746616.json",
+    "last_observation": {
+      "active_primary_shards": 296,
+      "initializing_shards": 4,
+      "unassigned_shards": 36
+    },
+    "scope": "Recovery of336 retained primaries; raster code and deadlines unchanged"
+  },
+  "fixture_isolation": {
+    "archive": "rom-extras-opensearch-qualification-20261009-archive-raster-size",
+    "retained_indices": 346,
+    "active": "rom-extras-opensearch-qualification-20261009",
+    "setup_record": ".superpowers/opensearch-raster-size-qualification-20261009/setup.json",
+    "security_initialization_exit": 0,
+    "same_image_memory_cpu_tls_security_config": true,
+    "old_data_retained": true,
+    "no_deleted_indices_or_raised_limits": true,
+    "narrow_rerun": {
+      "session": 59792,
+      "exit": 0,
+      "log": ".superpowers/maps-raster-size-isolated-opensearch-redb-executed-2026-10-09.log",
+      "duration_seconds": 15.0
+    },
+    "preliminary_invocation": {
+      "session": 26614,
+      "exit": 101,
+      "log": ".superpowers/maps-raster-size-isolated-opensearch-redb-2026-10-09.log",
+      "reason": "Required opensearch-conformance feature omitted; no test executed"
+    }
+  },
+  "source_review": {
+    "reviewer": "/root/maps_http_increment_review",
+    "scope": "Source only; no execution",
+    "actionable_findings": []
+  },
+  "frontend_regression": {
+    "browser_scenarios": 5,
+    "actual_controlled_protocol_scenarios": 3,
+    "intercepted_response_scenarios": 2,
+    "fixture_database": ".superpowers/maps-ui-browser-fixtures/run-pkd860/demo.sqlite",
+    "production_authentication": "Unqualified"
+  },
+  "warnings": "Existing package metadata/unused patches, Node experimental/color warnings and frontend bundle size warning retained in logs",
+  "research": "docs/research/map-raster-size-2026-10-09.md",
+  "remaining": [
+    "MapTiler style/raster/vector adapters and account-backed qualification",
+    "Native raster tile contents and rendering",
+    "Full ROM-extras family acceptance"
+  ],
+  "executed_source_sha256": {
+    "crates/rom-map-core/Cargo.toml": "37e8e43cd3019f0e2a36a5ca9a6173b69604f0ea4e4b0a4cdc72946dfbb8179d",
+    "crates/rom-map-core/src/capabilities.rs": "3d562ca292c193854f471c6498e65d996ffffcae6c1a0367996fc84d943bfcd5",
+    "crates/rom-map-core/src/context.rs": "5f8d26d1985fccd7c2574167f7f01fe8955aa7c21257d2adbcdf6ade169443ff",
+    "crates/rom-map-core/src/coordinates.rs": "6a99562d092de88dc4c89f2a48ed96b30125446c87d1a3e3542be1dab7a15999",
+    "crates/rom-map-core/src/error.rs": "130247c8d6f53a0aa701e82081c2a903d72c731b1aed8c386b821318e43d4604",
+    "crates/rom-map-core/src/geocoding.rs": "03a5e1e920acb3a0581e456c5bbcdedc61c8a49ea3fc6b4f052e782ce1ea42ac",
+    "crates/rom-map-core/src/lib.rs": "8f4e94ca523d45128e140847185cc1159cf2637000745c4df30b57fe2ed57867",
+    "crates/rom-map-core/src/resource.rs": "3603ac7a78f28a5df66a2c20e26b88f5a2eb012e27f2d07c829baee8f84e2dbf",
+    "crates/rom-map-core/src/routing.rs": "6c219cc6390a806412bfd065816261005e487743b090068e40e2dabb988b2825",
+    "crates/rom-map-core/src/sources/mod.rs": "6bc8acd3595f0496c11b1889fd676d57f44f75644c39d7e9a14ae4c14ee5641b",
+    "crates/rom-map-core/src/sources/policy.rs": "6f248415122c3258818f4008f4e77a9a6b6eeceb70a6b236d7b72c399f7be897",
+    "crates/rom-map-core/src/sources/raster_size.rs": "1c01cd19109a9fba2bc03d79669fc727fe8cca164a8f3b63159b02ef67bce4d9",
+    "crates/rom-map-core/src/sources/resolved_source.rs": "b5642e9f84697cf0c923cef8a935dfcc1069bc8fc8ca9c7385bb92b05f16a254",
+    "crates/rom-map-core/src/sources/source_properties.rs": "ebbc1bcbed6ed4914cc4b543a145201ebf8be489615d31d83f70590dd48104d4",
+    "crates/rom-map-core/src/sources/style.rs": "56d10b627de99fbd7430bc4d94bf601f53e604414c73cdb0b522e697ba69a230",
+    "crates/rom-map-core/src/sources/style_layers.rs": "153456395321a02df518bc4314c3effc7a68f6f1c70fc79b4fb01f81fb10514b",
+    "crates/rom-map-core/src/sources/style_sources.rs": "db9a4dfd785a159b7c17c44517afb240aee71ed8926df7c71df7024468aaea50",
+    "crates/rom-map-core/src/sources/tilejson.rs": "84ee7098c505c721a27740222fdcfb26998930932464bbbc2c0b2ab3dedcba19",
+    "crates/rom-map-core/src/sources/typed.rs": "15d8599684b8d4556ea0a88c6f29ae83304f2f2fe445b96411a80283818d6bad",
+    "crates/rom-map-core/src/sources/validation.rs": "fa75222c2e440a460b2b65202ed0764eab40203ca3ba6e2eb04d1b9168f61f12",
+    "crates/rom-map-core/src/sources/vector_layers.rs": "674c8043f9c10b4c235421ad69158f55f71d394435b177cce376042e88589d59",
+    "crates/rom-map-core/src/units.rs": "6e9054a9587f4cf73d0a11a0d3dae1387db5e8c5225cc4d757d89c50d666a10f",
+    "crates/rom-map-core/tests/browser_grant.rs": "3363277915d68d2c02f58186dcc3e222c8a9ba8cb9bb807791592b56d3d4bc07",
+    "crates/rom-map-core/tests/capabilities.rs": "985469e92894e398cca2ead04b26b1b338f9e1d84f9b86cc5e2f3c4afdd3a3f2",
+    "crates/rom-map-core/tests/geocoding.rs": "45371bfe6e8b1fe96a8e81547ec34831fefff765d8a6bdd8c451e5c9db2daa6a",
+    "crates/rom-map-core/tests/raster_size.rs": "005470a97829cadb4be77cdf624fc2b337cabfd481ac4a01e6eef10cd052e7b1",
+    "crates/rom-map-core/tests/source_boundaries.rs": "48d7af5e83af71929698574e5613677777e86568fbdd7a0e283f1cc927a0f400",
+    "crates/rom-map-core/tests/source_capabilities.rs": "eba9894a3f2209af8d6487b15f45e5f423e4929fbf97e67cc2d92f6e8572dbc9",
+    "crates/rom-map-core/tests/spatial.rs": "e7e233d7472310c91b94ddbac43954cdf42c4d4ee30f6a5655707572eb9071be",
+    "crates/rom-map-core/tests/style_boundaries.rs": "5cad8a88a4bed39c5b31ce2f374cd1451803b65f1bb0a01c96ab877a85a21cb6",
+    "tests/map-public-consumer/src/sources.rs": "673600998519d728d900f66556e8395a559af7aabec2598de1be512758f634eb"
+  }
+}

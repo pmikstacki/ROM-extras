@@ -17,7 +17,7 @@ Missing capabilities return Unsupported. No provider, external connection or geo
 RequestContext combines a finite total budget with monotonic asynchronous cancellation.
 The total budget must wrap admission/rate waits and network I/O in each adapter.
 
-Thirty-six local contract tests passed. An independent public consumer compiled and executed outside workspace feature unification.
+The initial core verification record contains thirty-six local contract tests. An independent public consumer compiled and executed outside workspace feature unification.
 That consumer implements a custom raster provider through the public API.
 These are core-contract checks, not actual geocoder/routing/tiles acceptance.
 Run the affected core checks with:
@@ -28,6 +28,11 @@ Run the affected core checks with:
 
 BrowserPolicy approves explicit HTTPS origins without backend credentials or automatic requests.
 TileSource validates bounded TileJSON 3.0.0 metadata, original vector-layer identifiers and plain-text credits.
+The optional host/adapter `tileSize` extension preserves 128, 256, 512 or 1024 logical raster pixels.
+`RasterTileSize` provides those explicit values. Invalid sizes and raster size hints on vector sources are rejected.
+Absent sizes remain absent. Resolved manifests retain their size; a validated style size can override it.
+This finite profile does not qualify raster contents or rendering. See [the source-based decision](research/map-raster-size-2026-10-09.md).
+The raster-size increment passed affected checks and the full verifier. See [the scoped record and retained failure](verification/maps-raster-size-2026-10-09.json).
 RasterSource and VectorSource reject metadata of the other source kind.
 MapStyle admits a restricted MapLibre version-8 profile with approved raster/vector sources, sprites and glyphs.
 Referenced TileJSON must be resolved explicitly before browser disclosure; native source overrides are validated and required credits are retained.
@@ -57,15 +62,13 @@ Provider contracts determine rate, retries, cache retention and data attribution
 
 Nominatim search and reverse adapters now have controlled HTTPS protocol tests and an independent public consumer.
 Native-service qualification and full family acceptance remain incomplete. Packaged map consumers check extracted crate compatibility.
-The active rom-ui gallery worktree declares rom-ui/maps in version 0.1.0-alpha.6.
-The older rom-ui checkout remains at alpha.3 without that export.
-The export and ResourceMap source were inspected; ROM-extras has not yet executed an installed frontend integration example.
-Use the current package with pnpm and retain presentation in rom-ui.
-The host will select providers, authorize ROM reads and disclose approved map data.
+The public pnpm example consumes the qualified rom-ui 0.1.0-alpha.7 archive and its rom-ui/maps export.
+Its Chromium scenarios execute the public Rust host with Runtime SQLite and controlled provider HTTPS.
+Presentation remains in rom-ui. The host selects providers, authorizes ROM reads and discloses approved map data.
 SQL and projection ports do not acquire map operations.
 
 The full local verifier must pass on a frozen combined source before integration.
-Current map changes remain a working increment; no map-service production support is claimed.
+Published increments retain scoped verifier records. No map-service production support is claimed.
 
 Current core and shared-transport evidence: [verification record](verification/maps-core-shared-http-2026-10-09.json).
 The record proves the previous core/projection increment passed its full verifier.

@@ -29,7 +29,14 @@ pub(crate) fn prepare(
         .as_object_mut()
         .ok_or(Error::InvalidResponse)?
         .remove("center");
-    for field in ["minzoom", "maxzoom", "bounds", "scheme", "attribution"] {
+    for field in [
+        "minzoom",
+        "maxzoom",
+        "bounds",
+        "scheme",
+        "attribution",
+        "tileSize",
+    ] {
         if let Some(value) = native.get(field) {
             metadata[field] = value.clone();
         }
