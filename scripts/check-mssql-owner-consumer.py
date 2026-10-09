@@ -67,4 +67,4 @@ with restart_log.open('x') as output:
         if state['status'] == 'exited':
             assert state['id'] == before['id'] and state['data_mount'] == before['data_mount']
             subprocess.run(['docker', 'start', before['id']], check=True, timeout=15, stdout=subprocess.DEVNULL, stderr=output)
-print('SQL Server ownership: eight native groups and same-volume SIGKILL recovery passed; evidence retained:', run)
+print('SQL Server ownership: eleven native groups and same-volume SIGKILL recovery passed; evidence retained:', run)

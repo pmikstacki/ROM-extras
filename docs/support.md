@@ -318,7 +318,7 @@ An unrelated actual waiter cannot satisfy the ordering barrier.
 Prepared writes roll back after native statement errors, Drop and a separate lock timeout.
 Caught statement errors cannot re-lock or commit the transaction. I/O timeout permanently retires the native client.
 The caller waiting deadline remains separate from native commit.
-Production certificate chains, deadlock victims, real lost COMMIT wire responses and owner-state restart remain unqualified.
+The initial qualification left production certificate chains, deadlock victims, lost COMMIT responses and owner-state restart open.
 Full Storage, public StorageOwner lifetime integration and the remaining SQL ownership mappings remain open.
 See [configuration and evidence limits](mssql-ownership.md).
 
@@ -333,3 +333,14 @@ Direct and normalized-archive consumers execute the same required profiles.
 Power loss, corruption, during-COMMIT interruption, real COMMIT response loss and further deadlock topologies remain unqualified.
 No production API, implicit retry or full Storage bridge was added.
 See [the native ownership guide](mssql-ownership.md).
+
+## SQL Server protected-write COMMIT response loss
+
+An opaque encrypted loopback relay suppresses every server byte after an acknowledged pre-COMMIT delivery barrier.
+A fresh committed locking read observes counter1 before the maintained caller receives Unknown.
+The native client retires; fresh inspection preserves exact ownership without automatic write replay.
+Explicit takeover then rejects the old guard and permits the successor's write.
+A transparent control returns success; closing the relay before COMMIT returns Unknown with rolled-back counter0.
+Direct and normalized-archive consumers execute all three profiles.
+This closes one protected-write response-loss gate, without claiming uncertain owner acquisition, power loss or full Storage recovery.
+See [scope and current verification status](verification/mssql-commit-response-loss-2026-10-09.json).

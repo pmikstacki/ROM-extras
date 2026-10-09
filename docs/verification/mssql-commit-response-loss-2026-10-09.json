@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-09",
+  "baseline": "66b92c7a27af80cd5c9a16f2fdcf7d661450d701",
+  "public_rom": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "scope": "Native protected-write COMMIT response loss; not full ROM Storage or owner acquisition uncertainty",
+  "native": {
+    "version": "17.0.5005.3",
+    "groups": 11,
+    "profile": "End-to-end encrypted fixed-loopback TDS; host explicit synthetic certificate trust; opaque test relay; no TLS termination",
+    "required_cases": [
+      "Transparent relay success with no suppressed bytes",
+      "Armed response suppression; independent committed counter1 before caller Unknown; retired connection; exact acknowledged owner; explicit takeover/stale guard denial",
+      "Before-COMMIT closed relay returns Unknown with rolled-back counter0"
+    ],
+    "affected_exit": 0,
+    "affected_log": ".superpowers/mssql-wire-affected-attempt2-2026-10-09.log",
+    "affected_runs": [
+      ".superpowers/mssql-owner-runs/run-63okzif_",
+      ".superpowers/mssql-owner-runs/run-kwnr21nr"
+    ],
+    "affected_archives": "/tmp/mssql-owner-packaged-O5BITh/archives.json",
+    "observed_ciphertext": {
+      "client_after_arm": 63,
+      "server_after_arm": 64,
+      "suppressed": 64,
+      "delivered_after_arm": 0
+    },
+    "full_verifier_runs": [
+      ".superpowers/mssql-owner-runs/run-o779f3i9",
+      ".superpowers/mssql-owner-runs/run-0azs31p8"
+    ],
+    "full_verifier_archives": "/tmp/mssql-owner-packaged-o3z0YW/archives.json"
+  },
+  "red_log": ".superpowers/mssql-wire-transparent-red-2026-10-09.log",
+  "initial_native_log": ".superpowers/mssql-wire-native-green-2026-10-09.log",
+  "prior_failed_gate": {
+    "log": ".superpowers/mssql-wire-affected-2026-10-09.log",
+    "exit": 101,
+    "cause": "Fixture import typo takeover rather than public takeover_owner; corrected without API change"
+  },
+  "research": "docs/research/mssql-commit-response-loss-2026-10-09.md",
+  "dependencies": "No production API, dependencies or lockfile changes",
+  "full_verifier": {
+    "status": "passed",
+    "command": "./scripts/check-all",
+    "log": ".superpowers/mssql-wire-full-verifier-2026-10-09.log",
+    "exit": 0,
+    "source_manifest": ".superpowers/mssql-wire-source-snapshot-2026-10-09.json",
+    "source_manifest_sha256": "291b0aaabe88b5ae7250705d6db04308da7bd916131f619b678b2d21843d38c4",
+    "unchanged_source_files": 1299,
+    "log_sha256": "1a078dda0ae0e1e8149a039450e202b85d53d73c63c40e56df228f5760b7bfb7",
+    "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)",
+    "post_verifier_edits": "Only this evidence record and the guide result sentence; executable sources unchanged"
+  },
+  "not_qualified": [
+    "Full ROM SQL Storage",
+    "Lost owner-acquisition acknowledgement",
+    "Power loss",
+    "During-COMMIT server crash",
+    "Graceful shutdown",
+    "Other deadlock topologies",
+    "Production certificate chains",
+    "Distributed profiles"
+  ],
+  "review": {
+    "source_only": ".superpowers/mssql-wire-final-review-2026-10-09.md",
+    "findings": []
+  },
+  "lockfiles": {
+    "Cargo.lock": "ebc564213205b5561f4a11b06f662409ad159e3abbcdad5179d70301ada7a002",
+    "tests/mssql-owner-consumer/Cargo.lock": "7a8862edc4b18952f51acf52385d75f9bcef7596c50e1db72873ffcca94c1552"
+  }
+}

@@ -20,7 +20,7 @@ A shared bounded SQL executor has real transaction and restart tests for six dat
 
 These are executor profiles. Full ROM Storage integration remains pending.
 The [shared ownership foundation](docs/sql-ownership.md) has native PostgreSQL fencing tests.
-The maintained [SQL Server adapter](docs/mssql-ownership.md) verifies native ownership, stale connections, native deadlock rollback and same-volume SIGKILL recovery through direct and packaged consumers.
+The maintained [SQL Server adapter](docs/mssql-ownership.md) verifies native ownership, stale connections, native deadlock rollback, actual COMMIT response loss and same-volume SIGKILL recovery through direct and packaged consumers.
 
 ### Integrations
 

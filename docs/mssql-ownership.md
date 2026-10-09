@@ -80,7 +80,7 @@ Configure the retained local SQL Server fixture and protected password, then run
 ```
 
 The gate requires native SQL Server and never skips missing credentials.
-Eight case groups and a separate SIGKILL recovery profile run through direct public imports and normalized `rom-mssql`/`rom-sql-core` Cargo archives.
+Eleven case groups and a separate SIGKILL recovery profile run through direct public imports and normalized `rom-mssql`/`rom-sql-core` Cargo archives.
 The native case process has a 40-second deadline. The restart profile has separate bounded preparation, Docker actions and recovery waits. Unique tables and process logs remain available as evidence.
 The fixture uses SQL Server 2025 17.0.5005.3, encrypted TDS and `delayed_durability=0`.
 
@@ -102,7 +102,7 @@ The consumer retains its acknowledged Ownership values in memory across the actu
 It verifies exact generation2 and data17, stale guard rejection, current-owner writes, release and generation3/data42 after reopen.
 Container, image and mounted-volume identity remain unchanged. Exit137 and noOOM are recorded.
 This does not qualify power loss, corruption, an interruption during COMMIT or a graceful shutdown profile.
-Actual lost COMMIT wire responses and additional deadlock topologies remain unqualified.
+Additional deadlock topologies remain unqualified.
 Earlier SQL executor restart evidence remains separate. Production trust chains, distributed profiles and full ROM Storage also remain open.
 See [official-source research](research/mssql-ownership-2026-10-09.md) and [the implementation plan](superpowers/plans/2026-10-09-mssql-ownership.md).
 
@@ -113,3 +113,21 @@ The [recovery research](research/mssql-owner-recovery-2026-10-09.md) explains na
 
 Recovery-profile affected checks and the full local verifier passed on 1,295 unchanged source files.
 See [the recovery verification record](verification/mssql-owner-recovery-2026-10-09.json) for native evidence and excluded profiles.
+
+## Native COMMIT response loss
+
+A test-only opaque loopback relay preserves encrypted native TDS end to end.
+After the prepared write response completes, an acknowledged delivery barrier suppresses every subsequent server byte.
+Client requests still reach SQL Server. The relay never logs payloads, terminates TLS or parses ciphertext as COMMIT.
+An independent committed locking read must observe counter1 before the caller receives Unknown.
+The uncertain connection is permanently retired; a fresh inspection verifies exact ownership and no automatic write replay.
+An explicit takeover rejects the old guard and permits the successor's write.
+The transparent negative control returns success. Closing the relay before COMMIT instead produces Unknown with rolled-back counter0.
+Thus neither Unknown alone nor suppressed ciphertext proves that a transaction committed.
+
+The relay admits one connection to the fixed native fixture, limits total traffic to 8MiB and uses a 25-second lifetime.
+Only sanitized byte counters are retained. This is a protected-write transaction profile, not owner-acquisition or full Storage recovery.
+See [primary-source research](research/mssql-commit-response-loss-2026-10-09.md) and [verification status](verification/mssql-commit-response-loss-2026-10-09.json).
+
+The COMMIT response-loss increment passed affected checks and the full local verifier on 1,299 unchanged source files.
+The separate verification record identifies native logs, archive consumers, source hashes and remaining gaps.

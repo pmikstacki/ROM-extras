@@ -4,7 +4,7 @@ import {preparePackagedConsumer} from './lib/package-consumer.mjs';
 const consumer=preparePackagedConsumer({
  prefix:'mssql-owner',isolated:true,packages:['rom-sql-core','rom-mssql'],
  source:'tests/mssql-owner-consumer/src/main.rs',
- supportSources:['tests/mssql-owner-consumer/src/fixture.rs','tests/mssql-owner-consumer/src/cases.rs','tests/mssql-owner-consumer/src/deadlock.rs','tests/mssql-owner-consumer/src/restart.rs'],
+ supportSources:['tests/mssql-owner-consumer/src/fixture.rs','tests/mssql-owner-consumer/src/cases.rs','tests/mssql-owner-consumer/src/deadlock.rs','tests/mssql-owner-consumer/src/restart.rs','tests/mssql-owner-consumer/src/wire.rs','tests/mssql-owner-consumer/src/wire_proxy.rs'],
  extraDependencies:`tiberius = { version = "=0.13.0", default-features = false, features = ["tds73", "rustls"] }
 tokio = { version = "=1.53.1", features = ["rt", "net", "time"] }
 tokio-util = { version = "=0.7.19", features = ["compat"] }`,
