@@ -321,3 +321,15 @@ The caller waiting deadline remains separate from native commit.
 Production certificate chains, deadlock victims, real lost COMMIT wire responses and owner-state restart remain unqualified.
 Full Storage, public StorageOwner lifetime integration and the remaining SQL ownership mappings remain open.
 See [configuration and evidence limits](mssql-ownership.md).
+
+## SQL Server native recovery qualification
+
+The maintained ownership adapter now has an actual two-session deadlock profile.
+Native Extended Events must identify1205, the observed victim and both exact C/S key-lock objects.
+The public finite outcome alone cannot qualify a deadlock. Staged writes roll back; explicit takeover rejects the old retry.
+A separate same-volume SIGKILL profile retains acknowledged ownership in the consumer's memory while native clients are closed.
+Exact state and data survive process death; old-owner use is denied and release/reclaim advances the generation.
+Direct and normalized-archive consumers execute the same required profiles.
+Power loss, corruption, during-COMMIT interruption, real COMMIT response loss and further deadlock topologies remain unqualified.
+No production API, implicit retry or full Storage bridge was added.
+See [the native ownership guide](mssql-ownership.md).

@@ -27,25 +27,43 @@ pub fn connect() -> Connection {
     )
     .unwrap()
 }
-pub fn sql(sql: &str) -> Vec<Vec<tiberius::Row>> {
-    let rt = Builder::new_current_thread().enable_all().build().unwrap();
-    rt.block_on(async {
-        tokio::time::timeout(WAIT, async {
-            let cfg = config();
-            let tcp = TcpStream::connect(cfg.get_addr()).await.unwrap();
-            tcp.set_nodelay(true).unwrap();
-            let mut client = Client::connect(cfg, tcp.compat_write()).await.unwrap();
-            client
-                .simple_query(sql)
-                .await
-                .unwrap()
-                .into_results()
-                .await
-                .unwrap()
+pub struct FixtureSession {
+    client: Client<tokio_util::compat::Compat<TcpStream>>,
+    rt: tokio::runtime::Runtime,
+}
+impl FixtureSession {
+    pub fn new() -> Self {
+        let rt = Builder::new_current_thread().enable_all().build().unwrap();
+        let client = rt.block_on(async {
+            tokio::time::timeout(WAIT, async {
+                let cfg = config();
+                let tcp = TcpStream::connect(cfg.get_addr()).await.unwrap();
+                tcp.set_nodelay(true).unwrap();
+                Client::connect(cfg, tcp.compat_write()).await.unwrap()
+            })
+            .await
+            .expect("fixture connect deadline")
+        });
+        Self { client, rt }
+    }
+    pub fn sql(&mut self, sql: &str) -> Vec<Vec<tiberius::Row>> {
+        self.rt.block_on(async {
+            tokio::time::timeout(Duration::from_secs(20), async {
+                self.client
+                    .simple_query(sql)
+                    .await
+                    .unwrap()
+                    .into_results()
+                    .await
+                    .unwrap()
+            })
+            .await
+            .expect("fixture native statement deadline")
         })
-        .await
-        .expect("fixture I/O deadline")
-    })
+    }
+}
+pub fn sql(sql: &str) -> Vec<Vec<tiberius::Row>> {
+    FixtureSession::new().sql(sql)
 }
 pub fn scalar(sql_text: &str) -> i64 {
     sql(sql_text)[0][0].get(0).unwrap()

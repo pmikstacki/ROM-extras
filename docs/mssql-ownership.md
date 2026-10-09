@@ -80,8 +80,8 @@ Configure the retained local SQL Server fixture and protected password, then run
 ```
 
 The gate requires native SQL Server and never skips missing credentials.
-Seven case groups run through direct public imports and normalized `rom-mssql`/`rom-sql-core` Cargo archives.
-Each owned consumer process has a 40-second deadline. Unique tables and process logs remain available as evidence.
+Eight case groups and a separate SIGKILL recovery profile run through direct public imports and normalized `rom-mssql`/`rom-sql-core` Cargo archives.
+The native case process has a 40-second deadline. The restart profile has separate bounded preparation, Docker actions and recovery waits. Unique tables and process logs remain available as evidence.
 The fixture uses SQL Server 2025 17.0.5005.3, encrypted TDS and `delayed_durability=0`.
 
 Cases cover competing claims, stale surviving connections, explicit release/reclaim and observed native lock ordering.
@@ -93,9 +93,23 @@ Drop rolls back prepared writes. I/O timeout retires the native client and a fre
 A caller waiting timeout permits an admitted native transaction to commit later.
 Active Tokio invocation and cross-context Drop are also exercised.
 
-Deadlock victim recovery, actual lost COMMIT wire responses and SQL Server restart remain unqualified in this ownership increment.
+A real two-session control/auxiliary lock cycle qualifies one deadlock victim profile.
+Extended Events must identify native1205, the observed driver session and both exact lock objects.
+The victim's prepared writes roll back; a host-authorized takeover then fences its explicit retry.
+
+The same-volume recovery profile kills the verified fixture with SIGKILL after acknowledged writes and closed connections.
+The consumer retains its acknowledged Ownership values in memory across the actual process death.
+It verifies exact generation2 and data17, stale guard rejection, current-owner writes, release and generation3/data42 after reopen.
+Container, image and mounted-volume identity remain unchanged. Exit137 and noOOM are recorded.
+This does not qualify power loss, corruption, an interruption during COMMIT or a graceful shutdown profile.
+Actual lost COMMIT wire responses and additional deadlock topologies remain unqualified.
 Earlier SQL executor restart evidence remains separate. Production trust chains, distributed profiles and full ROM Storage also remain open.
 See [official-source research](research/mssql-ownership-2026-10-09.md) and [the implementation plan](superpowers/plans/2026-10-09-mssql-ownership.md).
 
-Affected native and packaged checks passed. The full local verifier passed on 1,289 unchanged source files.
-See [the verification record](verification/mssql-ownership-2026-10-09.json) for logs, preserved failed attempts and isolated OpenSearch fixture evidence.
+The initial ownership increment passed the full verifier on 1,289 unchanged source files.
+See [the initial verification record](verification/mssql-ownership-2026-10-09.json) for logs, preserved failed attempts and isolated OpenSearch fixture evidence.
+
+The [recovery research](research/mssql-owner-recovery-2026-10-09.md) explains native event attribution and the exact restart profile.
+
+Recovery-profile affected checks and the full local verifier passed on 1,295 unchanged source files.
+See [the recovery verification record](verification/mssql-owner-recovery-2026-10-09.json) for native evidence and excluded profiles.

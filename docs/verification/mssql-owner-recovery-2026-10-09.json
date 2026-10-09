@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-09",
+  "baseline": "1f11301760b1578a3850df6dc4396f7c1418a430",
+  "public_rom": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "scope": "Native MSSQL ownership deadlock and post-acknowledgement SIGKILL recovery; not full ROM Storage",
+  "native": {
+    "version": "17.0.5005.3",
+    "groups": 8,
+    "recovery": "Acknowledged Ownership retained in consumer memory; clients closed before SIGKILL; same container, image and named data volume; exit137 without OOM",
+    "deadlock": "Native Extended Events error1205 and exact victim SPID; exact C/S keylock resources; negative foreign-victim/resource queries; prefix rollback, takeover and stale fencing",
+    "affected_log": ".superpowers/mssql-recovery-reviewed-source-affected-2026-10-09.log",
+    "affected_exit": 0,
+    "archives": "/tmp/mssql-owner-packaged-YFo1L6/archives.json",
+    "archive_run": ".superpowers/mssql-owner-runs/run-jq4tfwn5",
+    "full_verifier_runs": [
+      ".superpowers/mssql-owner-runs/run-snd9438q",
+      ".superpowers/mssql-owner-runs/run-dr_babgk"
+    ],
+    "full_verifier_archives": "/tmp/mssql-owner-packaged-IIuElC/archives.json",
+    "native_event_files": [
+      "Native event evidence retained: .superpowers/mssql-owner-native-events/xe_mssql_deadlock_2127097_1791576203761987239.xml",
+      "Native event evidence retained: .superpowers/mssql-owner-native-events/xe_mssql_deadlock_2129306_1791576221507677846.xml"
+    ]
+  },
+  "red_log": ".superpowers/mssql-restart-handshake-red-2026-10-09.log",
+  "review": {
+    "source_only": ".superpowers/mssql-recovery-final-review-2026-10-09.md",
+    "findings": []
+  },
+  "research": "docs/research/mssql-owner-recovery-2026-10-09.md",
+  "dependencies": "No dependency or lockfile changes from baseline",
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "status": "passed",
+    "log": ".superpowers/mssql-recovery-full-verifier-2026-10-09.log",
+    "exit": 0,
+    "source_manifest": ".superpowers/mssql-recovery-source-snapshot-2026-10-09.json",
+    "source_manifest_sha256": "62d5c58d9d2c32ed713fda475b22037d7f519da416bb233204e6d8c5efc62244",
+    "unchanged_source_files": 1295,
+    "log_sha256": "28be71fd441a70960424061daad99678bb12229c093f26af30e29464f51ff70d",
+    "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)",
+    "post_verifier_edits": "Only this evidence record, completed plan checkboxes and guide result sentence; no executable source changed"
+  },
+  "not_qualified": [
+    "Full ROM SQL Storage and incremental Work",
+    "Actual lost COMMIT wire response",
+    "Crash during COMMIT",
+    "Graceful shutdown",
+    "Power loss",
+    "Other deadlock topologies",
+    "Production certificate chains",
+    "Distributed SQL Server"
+  ]
+}
