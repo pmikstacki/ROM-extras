@@ -1,0 +1,130 @@
+{
+  "date": "2026-10-09",
+  "scope": "Regular-file and optional conditional HTTPS acquisition plus native sourced-action process recovery; full maintenance family remains incomplete",
+  "base_commit": "0140ee5c85337d6c0d3e315e74f3772352d85b6c",
+  "public_rom_commit": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1",
+  "workspace_lock_sha256": "441cfe31b90b1f4201e6e0cfbb4a14c98019e5a7ee6837d5b09cf037b8032665",
+  "consumer_lock_sha256": "535ee6e8bb5e12262268d2c10b5475a999bb83f0d7a8ee6c6bee0bc090cdb8ee",
+  "dependencies": {
+    "new_registry_packages": 0,
+    "optional_http": "reqwest0.13.5, tokio1.53.1, url2.5.8, zeroize1.9.1; existing workspace versions and licenses; default transport has no HTTP dependencies"
+  },
+  "audit": {
+    "database": {
+      "advisory-count": 1296,
+      "last-commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+      "last-updated": "2026-10-09T10:12:02+02:00"
+    },
+    "lockfile": {
+      "dependency-count": 394
+    },
+    "settings": {
+      "target_arch": [],
+      "target_os": [],
+      "severity": null,
+      "ignore": [],
+      "informational_warnings": [
+        "unmaintained",
+        "unsound",
+        "notice"
+      ]
+    },
+    "vulnerabilities": {
+      "found": false,
+      "count": 0,
+      "list": []
+    },
+    "warnings": {}
+  },
+  "evidence": [
+    {
+      "kind": "admission",
+      "tests": 5,
+      "result": "pass",
+      "red_log": ".superpowers/import-transport-admission-red-2026-10-09.log",
+      "review_regression_red": ".superpowers/import-terminal-path-red-2026-10-09.log",
+      "green_log": ".superpowers/import-transport-affected-green-2026-10-09.log"
+    },
+    {
+      "kind": "source-review",
+      "reviewer": "maps_http_increment_review",
+      "finding": "P2 terminal /. and /.. URL normalization could change the selected path",
+      "resolution": "Reject terminal dot segments before URL parsing; recorded assertion failure before fix and passing regression afterward; review itself source-only"
+    },
+    {
+      "kind": "affected-checks",
+      "commands": [
+        "./scripts/check-import",
+        "./scripts/check-import-transport"
+      ],
+      "exit_code": 0,
+      "logs": [
+        ".superpowers/import-core-after-transport-2026-10-09.log",
+        ".superpowers/import-transport-affected-green-2026-10-09.log"
+      ]
+    },
+    {
+      "kind": "controlled-authored-TLS",
+      "result": "pass",
+      "requests_per_consumer": 31,
+      "direct_transcript": ".superpowers/import-protocol-0TsoPH",
+      "archive_transcript": ".superpowers/import-protocol-H0KQh5",
+      "cases": "Exact bytes, strong validators, status handling, headers, declared/chunked/truncated body bounds, encoded response refusal, invalid JSON/UTF8, untrusted CA, proxy/redirect/retry refusal, timeout, cancellation, pacing and overload; not third-party service qualification"
+    },
+    {
+      "kind": "native-service-and-storage",
+      "result": "pass",
+      "fixture": {
+        "container": "rom-extras-import-native-20261009",
+        "container_id": "f170ed7a350afcd4a4da491f9e5b62d3f57962ec194342d4cdfd13f3aa4785ec",
+        "image_id": "812d47f806db497c53f9b47e76bdab38bcf5d724c69d3986df5ee4336c210559",
+        "network": "rom-extras-import-qualification-20261009",
+        "endpoint": "https://10.246.73.2:8443/input.json",
+        "nginx_version": "nginx version: nginx/1.29.8",
+        "setup_limitations": [
+          "Runtime refused uid/gid tmpfs options; used isolated mode1777 tmpfs instead",
+          "Initial long bearer key exceeded map hash bucket; initial private config retained and bucket128 selected",
+          "No external ports or forwarding"
+        ]
+      },
+      "direct": ".superpowers/import-native-runs/run-y5uop7p8/verification.json",
+      "archive": ".superpowers/import-native-runs/run-4k5xk5bc/verification.json",
+      "retry_epoch": 0,
+      "child_exit_codes": {
+        "pre_commit_not_committed": 70,
+        "post_commit_unknown": 71
+      },
+      "storage_cases": "SQLite/redb original host request persisted before submission; child exits before/after actual commit; separate process reopen; exact replay twice with Nginx stopped; unchanged value42, complete provenance, two rows/three receipts/three events/zero effects; control change refuses replay without undoing commit"
+    },
+    {
+      "kind": "full-local-verifier",
+      "command": "./scripts/check-all",
+      "exit_code": 0,
+      "log": ".superpowers/import-transport-full-verifier-2026-10-09.log",
+      "source_snapshot_sha256": "5f33cc1c49a647cde881dd15834565e6312781057a8594d838b2fe1d0ca00ae4",
+      "unchanged_source_files": 1211,
+      "unchanged_snapshot_files_including_local_build_artifacts": 2641,
+      "post_run_changes": [
+        ".gitignore excludes new consumer build target without deleting it",
+        "docs/import.md adds exact completed-verifier report",
+        "both implementation plans update completed verification state",
+        "this verification record"
+      ],
+      "post_run_production_changes": false
+    }
+  ],
+  "limitations": [
+    "Host approves endpoint and DNS; no private-address firewall",
+    "File admission bounds bytes but has no hard syscall deadline",
+    "HTTP header byte check follows parsing; not an allocation cap",
+    "Stream chunks can already allocate before aggregate check",
+    "Timeout/cancellation do not guarantee immediate resolver/OS task termination",
+    "ETag echo requirement is a conservative profile stricter than general HTTP",
+    "Digest is mandatory but not producer authentication",
+    "Host retains actor authority, activation, complete output attribution, cache policy and retry decisions",
+    "Private recovery fixture is not a generic controller or browser grant format",
+    "Nonzero retry epoch preservation tested only by pure admission, native uses epoch0",
+    "No multi-record orchestration, implicit deletion, transactional SQL archives, migrations or external blob manifests"
+  ]
+}

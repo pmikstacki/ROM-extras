@@ -1,5 +1,6 @@
 /target/
 /tests/public-consumer/target/
+/tests/import-transport-consumer/target/
 /.superpowers/
 /.worktrees/
 .env

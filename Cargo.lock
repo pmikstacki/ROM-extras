@@ -2465,6 +2465,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "rom-import-transport"
+version = "0.1.0-dev"
+dependencies = [
+ "reqwest",
+ "rom",
+ "rom-import",
+ "sha2",
+ "tokio",
+ "url",
+ "zeroize",
+]
+
+[[package]]
 name = "rom-kafka"
 version = "0.1.0-dev"
 dependencies = [

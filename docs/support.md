@@ -279,5 +279,9 @@ See [configuration and limits](email-core.md) and [preparation evidence](verific
 It retains original target, revision, idempotency, retry epoch, provenance and grant without renewing authority.
 Independent SQLite/redb consumers check action effects, durable attribution, denial, output coverage, replay and reopen.
 The normalized archive runs the same consumer. Native qualification uses epoch zero; pure admission checks nonzero preservation.
-File/HTTP transport, unknown acknowledgement, process restart and maintenance qualification remain pending.
+`rom-import-transport` adds regular-file admission and optional explicit HTTPS acquisition without automatic retry or redirects.
+Controlled TLS checks cover status, byte/header limits, cancellation, pacing and concurrent admission.
+Native Nginx1.29.8 checks TLS, bearer authentication, validators and restart.
+SQLite/redb consumers exit after committed unknown outcomes, reopen and replay while the source remains stopped.
+Direct and normalized archive consumers execute these checks. Full maintenance qualification remains pending.
 See [configuration, limits and recovery constraints](import.md).

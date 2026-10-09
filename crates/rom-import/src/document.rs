@@ -45,6 +45,9 @@ impl Limits {
             string_bytes,
         })
     }
+    pub(crate) fn max_bytes(self) -> usize {
+        self.bytes
+    }
     pub(crate) fn check_bytes(self, bytes: &[u8]) -> Result<(), Error> {
         if bytes.len() > self.bytes {
             Err(Error::TooLarge)

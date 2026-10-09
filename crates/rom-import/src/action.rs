@@ -81,6 +81,10 @@ impl ActionPlan {
             limits,
         })
     }
+    /// Maximum bytes admitted by this host-approved plan, before parsing.
+    pub fn max_document_bytes(&self) -> usize {
+        self.limits.max_bytes()
+    }
     /// Verify exact bounded bytes and prepare immutable ordinary action input.
     /// No fetch, mutation, automatic retry or actor selection occurs.
     pub fn prepare(&self, bytes: &[u8]) -> Result<PreparedAction, Error> {

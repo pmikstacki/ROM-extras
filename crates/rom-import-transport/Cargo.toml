@@ -1,0 +1,23 @@
+[package]
+name = "rom-import-transport"
+description = "Host-owned file and conditional HTTPS acquisition for sourced ROM actions"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+[lints]
+workspace = true
+[features]
+default = []
+http = ["dep:reqwest", "dep:tokio", "dep:url", "dep:zeroize"]
+[dependencies]
+rom-import = { path = "../rom-import", version = "=0.1.0-dev" }
+reqwest = { version = "=0.13.5", default-features = false, features = ["rustls"], optional = true }
+tokio = { version = "=1.53.1", features = ["sync", "time", "macros"], optional = true }
+url = { version = "=2.5.8", optional = true }
+zeroize = { version = "=1.9.1", default-features = false, features = ["alloc"], optional = true }
+[dev-dependencies]
+rom = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false }
+sha2 = "=0.10.9"

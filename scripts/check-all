@@ -35,3 +35,5 @@ cd -- "$(dirname -- "$0")/.."
 ./scripts/check-opentelemetry-native
 
 ./scripts/check-import
+
+./scripts/check-import-transport

@@ -37,10 +37,10 @@ Interfaces: Limits::new(bytes,depth,nodes,string_bytes); ActionPlan::trusted(Act
 
 ### Task 2: Import transport and recovery qualification
 
-- [ ] Research explicit file and HTTP endpoint ownership and limits.
-- [ ] Add bounded file and TLS HTTP readers without automatic retries or implicit deletion.
-- [ ] Qualify protocol failures, unknown acknowledgement and process restart retaining the original request.
-- [ ] Integrate only after affected and full local verification.
+- [x] Research explicit file and HTTP endpoint ownership and limits.
+- [x] Add bounded file and TLS HTTP readers without automatic retries or implicit deletion.
+- [x] Qualify protocol failures, unknown acknowledgement and process restart retaining the original request.
+- [x] Integrate only after affected and full local verification.
 
 ### Task 3: Maintenance family
 

@@ -87,11 +87,64 @@ A changed source control blocks replay without undoing the committed value.
 The same consumer runs against the normalized Cargo archive through `./scripts/check-import`.
 This qualification uses retry epoch zero; a pure boundary test checks nonzero identity preservation.
 
-File and HTTP transports, interrupted acknowledgement and process-restart recovery remain pending.
+## File and HTTPS acquisition
+
+`rom-import-transport` feeds the same approved `ActionPlan`. Its default build has no HTTP dependencies.
+The host opens and authorizes a regular file, then calls `prepare_file(&plan, file)`.
+The reader rewinds the handle and reads at most the configured document limit plus one byte.
+Metadata does not establish immutability. The mandatory expected digest detects changed input.
+Filesystem reads have no hard syscall deadline.
+
+Enable the `http` feature for `HttpSource`.
+Construct `HttpConfig::new(endpoint, agent, minimum_start_interval, concurrency)` with an explicit HTTPS endpoint.
+Query strings, userinfo, fragments and ambiguous paths are refused.
+Use `with_ca` to replace platform trust with an explicit private CA.
+Use `with_bearer` for a server-only credential. Debug output does not disclose it.
+The host must authorize the endpoint and its DNS resolution. This adapter is not a private-address firewall.
+
+Construct `RequestContext` with a 1ms–60s deadline and a watch receiver.
+Retain its sender. A true value or a closed channel cancels the operation.
+Call `source.fetch(&plan, optional_strong_etag, &context).await`.
+The deadline includes admission, start pacing, request, body reading and document preparation.
+Synchronous parsing and filesystem calls cannot be preempted by this context.
+
+Only HTTP200 with JSON and identity content encoding is accepted.
+The client disables proxy discovery, redirects, decompression and automatic retry.
+Each source admits 1–8 concurrent operations. Excess operations fail immediately.
+Start pacing is explicit and local to that source instance.
+HTTP429 returns an optional integer Retry-After hint of at most 3,600 seconds; it does not trigger retry.
+The host owns cache policy, backoff and any subsequent attempt.
+Conditional reads require a strong ETag and an identical single response ETag.
+This conservative profile is stricter than general HTTP semantics. The expected digest remains mandatory.
+
+The HTTP parser accepts at most 32 headers.
+Retained header names and values are checked against 8,192 bytes after parsing.
+This check is not a parser allocation limit.
+Declared and streamed body lengths are bounded before accumulation.
+An incoming chunk can already occupy library memory before that check.
+
+## Transport qualification
+
+Run `./scripts/check-import-transport` with the explicit owned fixture variables from the qualification environment.
+Its independent consumer also runs against normalized archives for both import crates.
+An authored TLS server checks protocol failures, limits, cancellation, pacing and concurrency.
+Those controlled protocol checks do not qualify a third-party service.
+
+A separate native Nginx1.29.8 fixture serves authenticated static JSON over TLS.
+The consumer checks validators, wrong authentication, missing content, digest mismatch and service restart.
+SQLite and redb fault hooks produce both pre-commit failure and a committed unknown outcome.
+The consumer exits in a child process after each outcome.
+Separate processes reopen both stores and replay the original request while Nginx remains stopped.
+They verify the retained value, provenance, receipts and event counts without fetching content again.
+The private recovery record is a qualification host example, not a generic recovery service or public grant format.
+
 Multi-record orchestration, implicit deletion, SQL archives, external object manifests and migrations are not implemented here.
 The full maintenance family remains incomplete.
 See [source research](research/backup-import-2026-10-09.md) and [implementation plan](superpowers/plans/2026-10-09-sourced-import.md).
 
-The full local verifier passed on 1,186 unchanged files.
+For the original pure-core increment, the full local verifier passed on 1,186 unchanged files.
 The subsequent target-conflict test passed through both direct and packaged consumers.
 See [the verification record](verification/import-core-2026-10-09.json) for the exact source snapshot and evidence limits.
+
+For file and HTTPS acquisition, affected checks and the full local verifier passed on 1,211 unchanged source files.
+See [the transport verification record](verification/import-transport-2026-10-09.json).

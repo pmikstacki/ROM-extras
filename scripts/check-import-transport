@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_PYTHON:?Explicit Python3 executable required}"
+: "${ROM_EXTRAS_IMPORT_NATIVE_FIXTURE:?Owned native import fixture required}"
+: "${ROM_EXTRAS_IMPORT_NATIVE_CONTAINER:?Owned native import container required}"
+source scripts/map-fixture-tls.sh
+rom_map_fixture_tls
+cargo test --locked -p rom-import -p rom-import-transport
+cargo test --locked -p rom-import-transport --features http
+cargo clippy --locked -p rom-import-transport --all-targets --features http -- -D warnings
+cargo check --locked -p rom-import-transport --no-default-features
+RUSTDOCFLAGS='-D warnings' cargo doc --locked -p rom-import-transport --features http --no-deps
+cargo fmt --manifest-path tests/import-transport-consumer/Cargo.toml -- --check
+cargo clippy --manifest-path tests/import-transport-consumer/Cargo.toml --locked --offline --target-dir target/import-transport-consumer --all-targets -- -D warnings
+cargo build --manifest-path tests/import-transport-consumer/Cargo.toml --locked --offline --target-dir target/import-transport-consumer
+node scripts/check-import-protocol.mjs target/import-transport-consumer/debug/import-transport-consumer
+"$ROM_EXTRAS_PYTHON" scripts/check-import-native.py target/import-transport-consumer/debug/import-transport-consumer
+cargo package --allow-dirty --locked --no-verify -p rom-import -p rom-import-transport \
+    --config 'patch.crates-io.rom.git="https://github.com/pmikstacki/ROM"' \
+    --config 'patch.crates-io.rom.rev="d7ef529040eec60dc869034c2d33130219db85fe"' \
+    --config 'patch.crates-io.rom-import.path="crates/rom-import"'
+consumer=$(node scripts/prepare-import-transport-package.mjs)
+cargo clippy --manifest-path "$consumer/Cargo.toml" --offline --target-dir target/import-transport-packaged-consumer --all-targets -- -D warnings
+cargo build --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/import-transport-packaged-consumer
+node scripts/check-import-protocol.mjs target/import-transport-packaged-consumer/debug/rom-import-transport-packaged-consumer
+"$ROM_EXTRAS_PYTHON" scripts/check-import-native.py target/import-transport-packaged-consumer/debug/rom-import-transport-packaged-consumer
