@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_POSTGRES_DSN:?Explicit native PostgreSQL fixture required; no skip}"
+: "${ROM_EXTRAS_PYTHON:?Explicit Python3 executable required for owned process deadlines}"
+cargo test --locked -p rom-sql-core
+cargo clippy --locked -p rom-sql-core --all-targets -- -D warnings
+RUSTDOCFLAGS='-D warnings' cargo doc --locked -p rom-sql-core --no-deps
+cargo fmt --manifest-path tests/sql-owner-consumer/Cargo.toml -- --check
+cargo clippy --manifest-path tests/sql-owner-consumer/Cargo.toml --locked --offline --target-dir target/sql-owner-consumer --all-targets -- -D warnings
+cargo build --manifest-path tests/sql-owner-consumer/Cargo.toml --locked --offline --target-dir target/sql-owner-consumer
+"$ROM_EXTRAS_PYTHON" scripts/check-sql-owner-consumer.py target/sql-owner-consumer/debug/sql-owner-consumer
+cargo package --locked --allow-dirty --no-verify -p rom-sql-core
+consumer=$(node scripts/prepare-sql-owner-package.mjs)
+cargo clippy --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/sql-owner-packaged-consumer --all-targets -- -D warnings
+cargo build --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/sql-owner-packaged-consumer
+"$ROM_EXTRAS_PYTHON" scripts/check-sql-owner-consumer.py target/sql-owner-packaged-consumer/debug/rom-sql-owner-packaged-consumer

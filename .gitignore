@@ -1,6 +1,7 @@
 /target/
 /tests/public-consumer/target/
 /tests/import-transport-consumer/target/
+/tests/sql-owner-consumer/target/
 /.superpowers/
 /.worktrees/
 .env

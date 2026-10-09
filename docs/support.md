@@ -10,6 +10,9 @@ A native Kafka SASL_SSL single-node profile verifies CA/name/password failures, 
 This does not complete the Kafka provider or the delivery family.
 
 The SQL connection executor is implemented and has no external dependencies. It does not implement ROM Storage yet.
+The [ownership foundation](sql-ownership.md) adds typed native fencing, verified on PostgreSQL through direct and packaged independent consumers.
+Five pure tests and eight native case groups cover transitions, stale surviving connections, row-lock order, rollback and bounded waits.
+Acknowledgement suppression follows actual SDK commit success; it is not a real wire-loss test or ROM receipt qualification.
 Its 13 tests cover bounded admission, connection affinity, timeout uncertainty, panic retirement, shutdown, and handle lifecycle.
 Three executor integration tests passed against PostgreSQL 18.6. These are not ROM Storage conformance tests.
 An acknowledged control row survived a server restart. See [the fixture](postgres-fixture.md) and [verification evidence](verification/executor-2026-10-08.md).
@@ -86,7 +89,7 @@ The Node 22.16 fixture SQLite API is experimental; this is not a production rece
 
 | Family | Implementation and remaining acceptance |
 | --- | --- |
-| Shared SQL | Connection executor verified; Storage protocol awaits public incremental Work APIs. |
+| Shared SQL | Connection executor and portable ownership transitions verified; native PostgreSQL fencing tested; Storage protocol awaits public incremental Work APIs. |
 | PostgreSQL | Three live executor tests and control-row restart evidence; full Storage provider remains pending. |
 | MSSQL | Three live executor tests, encryption, and restart control evidence; full Storage provider remains pending. |
 | MySQL, MariaDB | Five live executor tests each, binary identity and restart evidence; full Storage providers and verified TLS remain pending. |

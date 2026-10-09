@@ -2,6 +2,7 @@
 //!
 //! [`Executor`] confines one connection to a dedicated worker. It provides
 //! bounded admission and preserves uncertainty after a caller's waiting deadline.
+//! [`OwnerTransaction`] supports exact native ownership checks under a transaction lock.
 //! This crate does not yet implement ROM's Storage contract.
 //!
 //! ```
@@ -19,8 +20,14 @@
 
 mod error;
 mod executor;
+mod owner;
+mod owner_transaction;
 mod ticket;
 
 pub use error::ExecutorError;
 pub use executor::Executor;
+pub use owner::{OwnerError, OwnerState, OwnerToken, Ownership};
+pub use owner_transaction::{
+    OwnerTransaction, claim_owner, release_owner, takeover_owner, with_owner,
+};
 pub use ticket::Ticket;

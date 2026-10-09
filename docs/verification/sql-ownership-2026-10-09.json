@@ -1,0 +1,159 @@
+{
+  "date": "2026-10-09",
+  "scope": "Portable native ownership transaction foundation; native PostgreSQL qualification; no full ROM Storage implementation",
+  "base_commit": "5dd90554fb4b53f3f291ad045be8006cc1c59d9a",
+  "public_rom_commit": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1",
+  "workspace_lock_sha256": "441cfe31b90b1f4201e6e0cfbb4a14c98019e5a7ee6837d5b09cf037b8032665",
+  "consumer_lock_sha256": "64e7b0f888aa6e14f7847eb4f0b0bc2d2a741c28188ed29106b91eaf1ad1376e",
+  "dependencies": {
+    "core": "No dependencies",
+    "native_consumer": "postgres0.19.14, MIT OR Apache-2.0; locked tokio-util0.7.19 matches existing graph",
+    "new_registry_packages": 0,
+    "initial_resolution": "tokio-util0.7.20 was initially resolved; offline update selected existing0.7.19 before final affected checks and full verifier"
+  },
+  "audits": {
+    "workspace": {
+      "database": {
+        "advisory-count": 1296,
+        "last-commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+        "last-updated": "2026-10-09T10:12:02+02:00"
+      },
+      "lockfile": {
+        "dependency-count": 394
+      },
+      "settings": {
+        "target_arch": [],
+        "target_os": [],
+        "severity": null,
+        "ignore": [],
+        "informational_warnings": [
+          "unmaintained",
+          "unsound",
+          "notice"
+        ]
+      },
+      "vulnerabilities": {
+        "found": false,
+        "count": 0,
+        "list": []
+      },
+      "warnings": {}
+    },
+    "consumer": {
+      "database": {
+        "advisory-count": 1296,
+        "last-commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+        "last-updated": "2026-10-09T10:12:02+02:00"
+      },
+      "lockfile": {
+        "dependency-count": 86
+      },
+      "settings": {
+        "target_arch": [],
+        "target_os": [],
+        "severity": null,
+        "ignore": [],
+        "informational_warnings": [
+          "unmaintained",
+          "unsound",
+          "notice"
+        ]
+      },
+      "vulnerabilities": {
+        "found": false,
+        "count": 0,
+        "list": []
+      },
+      "warnings": {}
+    }
+  },
+  "evidence": [
+    {
+      "kind": "pure-core",
+      "tests": 5,
+      "result": "pass",
+      "red_log": ".superpowers/sql-ownership-admission-red-2026-10-09.log",
+      "red_reason": "Public ownership API absent before implementation",
+      "green_log": ".superpowers/sql-ownership-core-green-2026-10-09.log",
+      "existing_executor_tests": 13
+    },
+    {
+      "kind": "final-source-review",
+      "reviewer": "executor_review",
+      "result": "One P2 fixture finding fixed; no protocol findings",
+      "finding": "Unbounded Barrier waits forever when second connection setup fails",
+      "reproduction": "Actual owned child with injected second setup panic timed out after five seconds",
+      "red_log": ".superpowers/sql-owner-review-race-red-2026-10-09.log",
+      "green_log": ".superpowers/sql-owner-review-race-green-2026-10-09.log",
+      "resolution": "Bounded readiness/release/completion channels; native consumer process30s, failed-setup process5s; owned process-group cleanup; same probe rerun in direct and archive gates"
+    },
+    {
+      "kind": "affected-checks",
+      "command": "./scripts/check-sql-owner",
+      "exit_code": 0,
+      "log": ".superpowers/sql-owner-final-affected-green-2026-10-09.log",
+      "initial_failure": "Normalized consumer root name differed from copied lockfile; adjusted only root package identity, then locked archive gate passed"
+    },
+    {
+      "kind": "native-PostgreSQL",
+      "backend": "PostgreSQL18.6, logged tables, fsync=on, synchronous_commit=on; loopback NoTls qualification only",
+      "container": "rom-extras-postgres-20261008",
+      "container_id": "4b8e4f950e2f312868eccffc4918225b4a0bf082172b713c3cd33c81b2d14843",
+      "image_id": "cc72d79b4ea60df4943193bbeac2a0c84f4b6bd8c536680f6d4b14a94b272d41",
+      "case_groups": 8,
+      "cases": [
+        "Exact idle claim/release/reclaim; stale surviving second connection after acquisition connection closes and takeover commits",
+        "Two independent competing claims; exactly one acknowledged owner",
+        "Observed native pg_stat_activity Lock wait: old transaction commit precedes takeover, old ownership fails afterward",
+        "Statement error after staged write: complete native rollback",
+        "Actual native commit followed by simulated SDK acknowledgement suppression; unknown claim returns no usable ownership; fresh connection inspects committed state",
+        "Executor waiting timeout preserves later protected commit",
+        "Future format, wrong immutable store identity, absent table and generation exhaustion refuse writes",
+        "Native lock timeout rolls back, then explicit subsequent use succeeds"
+      ],
+      "direct_logs": ".superpowers/sql-owner-runs/run-ithyp4ja",
+      "archive_logs": ".superpowers/sql-owner-runs/run-bfoikb7q",
+      "failed_setup_probe": "Separate controlled setup failure, not a native service failure",
+      "archives": {
+        "version": "0.1.0-dev",
+        "hashes": {
+          "rom-sql-core": "db9ba2b7a918858f8d30f42e553b60491bc04eeeedeba9b12e6cc533f9598809"
+        },
+        "consumer": "/tmp/sql-owner-packaged-KhZ2I9/consumer"
+      }
+    },
+    {
+      "kind": "full-local-verifier",
+      "command": "./scripts/check-all",
+      "exit_code": 0,
+      "log": ".superpowers/sql-owner-full-verifier-2026-10-09.log",
+      "unchanged_files": 1227,
+      "source_snapshot_sha256": "dc6d949d225c8ce098e502e60100e99d71822b9c50de8bf15b82d18a67933046",
+      "post_run_changes": [
+        "Guide adds completed-verifier result and this verification-record link",
+        "Implementation plan updates completed integration checkboxes",
+        "This verification record"
+      ],
+      "post_run_production_changes": false
+    }
+  ],
+  "primary_sources": [
+    "https://www.postgresql.org/docs/18/explicit-locking.html",
+    "https://www.postgresql.org/docs/18/transaction-iso.html",
+    "https://docs.rs/tokio-util/0.7.19/tokio_util/",
+    "https://doc.rust-lang.org/std/sync/mpsc/struct.Receiver.html#method.recv_timeout",
+    "https://doc.rust-lang.org/std/sync/struct.Barrier.html#method.wait"
+  ],
+  "limitations": [
+    "Native ownership is not yet integrated with ROM StorageOwner lifetime",
+    "Public ROM incremental Work boundary remains absent; no private policy copied or complete Work ledger serialized",
+    "MSSQL/MySQL/MariaDB/CockroachDB/Oracle native ownership mappings remain unimplemented and unqualified",
+    "No canonical Resource bundle, receipt replay, journal publication or Work conformance",
+    "Unknown acknowledgement case suppresses result after actual SDK success; not a dropped wire response",
+    "Reopened connections were verified; no PostgreSQL server restart in this ownership increment",
+    "No production TLS, automatic takeover/lease expiry or automatic retry",
+    "Host supplies unpredictable incarnation tokens and explicit takeover authorization; fixture tokens are deterministic synthetic data",
+    "Generation maximum i64::MAX is native protocol-specific; ROM Resource revisions retain their full-u64 contract"
+  ]
+}

@@ -1,6 +1,6 @@
 [package]
 name = "rom-sql-core"
-description = "Shared bounded connection execution for ROM SQL adapters"
+description = "Shared bounded execution and native ownership arbitration for ROM SQL adapters"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
