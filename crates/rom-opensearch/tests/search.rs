@@ -1,5 +1,7 @@
 //! Actual native search candidates and authoritative public Resource hydration.
 #![cfg(feature = "service-fixture")]
+#[path = "support/fixture_process.rs"]
+mod fixture_process;
 #[path = "support/native_fixture.rs"]
 mod native_fixture;
 #[path = "support/search_case.rs"]

@@ -2,7 +2,7 @@
 #[path = "fixture_admin.rs"]
 mod fixture_admin;
 #[path = "generation_readiness.rs"]
-mod generation_readiness;
+pub(crate) mod generation_readiness;
 
 use rom_opensearch::{OpenSearch, TlsConfig};
 use rom_projection_core::{DocumentMapping, ProjectionProfile, ProjectionTarget};
@@ -40,6 +40,8 @@ pub(crate) fn fixture_with_fields(fields: Vec<String>) -> (OpenSearch, DocumentM
 }
 /// Resolve uncertain initialization by read-only inspection; never repeat creation after Unknown.
 pub(crate) async fn create_generation(target: &mut OpenSearch) {
+    // A preceding case can finish while other retained indices still recover after restart.
+    generation_readiness::wait("*").await;
     match target.create_generation().await {
         Ok(()) => {
             generation_readiness::wait(target.physical_target()).await;

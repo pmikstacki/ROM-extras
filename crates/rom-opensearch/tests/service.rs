@@ -2,6 +2,8 @@
 #![cfg(feature = "service-fixture")]
 #[path = "support/approved_document.rs"]
 mod approved_document;
+#[path = "support/fixture_process.rs"]
+mod fixture_process;
 #[path = "support/native_fixture.rs"]
 mod native_fixture;
 use approved_document::document;

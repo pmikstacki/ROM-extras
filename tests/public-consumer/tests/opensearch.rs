@@ -1,4 +1,6 @@
 //! Independent public API and native server acceptance outside workspace feature unification.
+#[path = "../../../crates/rom-opensearch/tests/support/fixture_process.rs"]
+mod fixture_process;
 #[path = "../../../crates/rom-opensearch/tests/support/native_fixture.rs"]
 mod native_fixture;
 #[path = "../../../crates/rom-opensearch/tests/support/public_case.rs"]
@@ -61,4 +63,29 @@ fn sqlite_native_mapping_drift_rejects_held_candidates() {
 #[test]
 fn redb_native_mapping_drift_rejects_held_candidates() {
     search_case::run_mapping_drift(true);
+}
+
+#[allow(dead_code)]
+#[path = "../../../crates/rom-opensearch/tests/support/loss_proxy.rs"]
+mod loss_proxy;
+#[path = "../../../crates/rom-opensearch/tests/support/process_crash_case.rs"]
+mod process_crash_case;
+#[test]
+#[ignore = "bounded parent invokes the actual process interruption"]
+fn crash_child() {
+    process_crash_case::child();
+}
+#[test]
+fn sqlite_process_exit_after_native_acceptance() {
+    process_crash_case::run(
+        false,
+        &["--ignored", "--exact", "crash_child", "--nocapture"],
+    );
+}
+#[test]
+fn redb_process_exit_after_native_acceptance() {
+    process_crash_case::run(
+        true,
+        &["--ignored", "--exact", "crash_child", "--nocapture"],
+    );
 }

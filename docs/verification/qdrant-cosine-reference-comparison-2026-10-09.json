@@ -1,0 +1,454 @@
+{
+  "date": "2026-10-09",
+  "scope": "GET-only native x86_64 fixture comparison of safe candidate arithmetic references. This is not a production Rust adapter or native ARM qualification.",
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1\n",
+  "source_inputs": [
+    {
+      "path": ".superpowers/qdrant-cosine-reference-2026-10-09.rs",
+      "sha256": "744e8855bc895172cc54c03a9cc22c2650b048392342607d50546908c5cc1766"
+    },
+    {
+      "path": ".superpowers/qdrant-cosine-reference-2026-10-09",
+      "sha256": "5a964a70b9eabaa1f9d997f78f24ee55c1067417e1304669f2f4274844fd0369"
+    },
+    {
+      "path": ".superpowers/qdrant-cosine-reference-comparison-2026-10-09.py",
+      "sha256": "ee7e8148711b902e3846640f292c4478b9257ad35a03ebb36b1a46db15c87181"
+    },
+    {
+      "path": "tests/projection-probes/qdrant_fixture.py",
+      "sha256": "b1d7c36843ff929061685de426a998449d0af4c6dcf9a8cb3950cbf29245b0fd"
+    },
+    {
+      "path": "tests/projection-probes/probe_transport.py",
+      "sha256": "11b025b297be4b4e22da10d311436b18a66055a1a2e267757412555e8b0997d8"
+    }
+  ],
+  "compile": {
+    "command": [
+      "rustc",
+      "--edition",
+      "2024",
+      "-D",
+      "warnings",
+      ".superpowers/qdrant-cosine-reference-2026-10-09.rs",
+      "-o",
+      ".superpowers/qdrant-cosine-reference-2026-10-09"
+    ],
+    "explicit_native_linker_path": "/nix/store/zx71vq7s1v840wqsrw2m2ckmxn413a2b-gcc-wrapper-13.3.0/bin",
+    "exit_code": 0,
+    "initial_environment_failure": "linker cc unavailable before explicit native-linker PATH"
+  },
+  "comparison": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 /nix/store/b8n5rllwv18y2izb3dzipnzrk4ic5w53-python3-3.12.8-env/bin/python3 .superpowers/qdrant-cosine-reference-comparison-2026-10-09.py",
+    "exit_code": 0,
+    "receipt": {
+      "scope": "GET-only existing synthetic Cosine points; safe Rust candidate arithmetic comparison, not ARM/native Rust provider qualification",
+      "native_version": {
+        "title": "qdrant - vector search engine",
+        "version": "1.19.2",
+        "commit": "016542aa5deb6c66380bb137badf73d54f742bde"
+      },
+      "observations": [
+        {
+          "collection": "rom_extras_numeric_512289c8aafd4d6b80d7ad35547e01ba",
+          "point_id": 1,
+          "dimension": 1,
+          "prepared_sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+          "stored_sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+          "exact_reference_matches": [
+            "scalar"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_512289c8aafd4d6b80d7ad35547e01ba",
+          "point_id": 2,
+          "dimension": 1,
+          "prepared_sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+          "stored_sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+          "exact_reference_matches": [
+            "scalar"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_512289c8aafd4d6b80d7ad35547e01ba",
+          "point_id": 3,
+          "dimension": 1,
+          "prepared_sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+          "stored_sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+          "exact_reference_matches": [
+            "scalar"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_512289c8aafd4d6b80d7ad35547e01ba",
+          "point_id": 4,
+          "dimension": 1,
+          "prepared_sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+          "stored_sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+          "exact_reference_matches": [
+            "scalar"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_512289c8aafd4d6b80d7ad35547e01ba",
+          "point_id": 5,
+          "dimension": 1,
+          "prepared_sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+          "stored_sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+          "exact_reference_matches": [
+            "scalar"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_855217668773427ba450ffcf2fd79779",
+          "point_id": 1,
+          "dimension": 16,
+          "prepared_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+          "stored_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_855217668773427ba450ffcf2fd79779",
+          "point_id": 2,
+          "dimension": 16,
+          "prepared_sha256": "00fcc31bee4ffbffe06b77eb17d568c39bf6f65cf7b153abed0300b120437c33",
+          "stored_sha256": "00fcc31bee4ffbffe06b77eb17d568c39bf6f65cf7b153abed0300b120437c33",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_855217668773427ba450ffcf2fd79779",
+          "point_id": 3,
+          "dimension": 16,
+          "prepared_sha256": "ae5140b4f95bf59256e1f82bc650f9391c3b06f5b7adf63bd92497a9c7c5bfc2",
+          "stored_sha256": "ae5140b4f95bf59256e1f82bc650f9391c3b06f5b7adf63bd92497a9c7c5bfc2",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_855217668773427ba450ffcf2fd79779",
+          "point_id": 4,
+          "dimension": 16,
+          "prepared_sha256": "ae5140b4f95bf59256e1f82bc650f9391c3b06f5b7adf63bd92497a9c7c5bfc2",
+          "stored_sha256": "ae5140b4f95bf59256e1f82bc650f9391c3b06f5b7adf63bd92497a9c7c5bfc2",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_855217668773427ba450ffcf2fd79779",
+          "point_id": 5,
+          "dimension": 16,
+          "prepared_sha256": "313bc52b9cc6be460b48c75c785203b699a3d6ec9369e7e329c49b56ae24d26f",
+          "stored_sha256": "313bc52b9cc6be460b48c75c785203b699a3d6ec9369e7e329c49b56ae24d26f",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_182525f4c5054e55943c3f9f6d99c9b6",
+          "point_id": 1,
+          "dimension": 32,
+          "prepared_sha256": "38723a2e5e8a17aa7950dc008209944e898f69a7bd10a23c839d341e935fd5ca",
+          "stored_sha256": "38723a2e5e8a17aa7950dc008209944e898f69a7bd10a23c839d341e935fd5ca",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "avx",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_182525f4c5054e55943c3f9f6d99c9b6",
+          "point_id": 2,
+          "dimension": 32,
+          "prepared_sha256": "9d85595ce8b7e0243bb7012d0a24ae21c38ffde0c0336392d70f7f2a1a77e78f",
+          "stored_sha256": "9d85595ce8b7e0243bb7012d0a24ae21c38ffde0c0336392d70f7f2a1a77e78f",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "avx",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_182525f4c5054e55943c3f9f6d99c9b6",
+          "point_id": 3,
+          "dimension": 32,
+          "prepared_sha256": "0a5ce74b495d9488ba5350788a133384808c351cfda6fecb5b45293b7c297ae9",
+          "stored_sha256": "0a5ce74b495d9488ba5350788a133384808c351cfda6fecb5b45293b7c297ae9",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "avx",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_182525f4c5054e55943c3f9f6d99c9b6",
+          "point_id": 4,
+          "dimension": 32,
+          "prepared_sha256": "0a5ce74b495d9488ba5350788a133384808c351cfda6fecb5b45293b7c297ae9",
+          "stored_sha256": "0a5ce74b495d9488ba5350788a133384808c351cfda6fecb5b45293b7c297ae9",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "avx",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_182525f4c5054e55943c3f9f6d99c9b6",
+          "point_id": 5,
+          "dimension": 32,
+          "prepared_sha256": "fa41e64a812b4f6ee42915a14f2026df5794b06ed221f8ca196f297007984a28",
+          "stored_sha256": "fa41e64a812b4f6ee42915a14f2026df5794b06ed221f8ca196f297007984a28",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "avx",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_56d21906884747b2869ec5a55412c67d",
+          "point_id": 1,
+          "dimension": 4096,
+          "prepared_sha256": "4fe7b59af6de3b665b67788cc2f99892ab827efae3a467342b3bb4e3bc8e5bfe",
+          "stored_sha256": "4fe7b59af6de3b665b67788cc2f99892ab827efae3a467342b3bb4e3bc8e5bfe",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "avx",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_56d21906884747b2869ec5a55412c67d",
+          "point_id": 2,
+          "dimension": 4096,
+          "prepared_sha256": "45ed345e70551d5b73ae9ecbbcfbcbab087eb1b6adbaf22ee9dbd56c4a45528c",
+          "stored_sha256": "45ed345e70551d5b73ae9ecbbcfbcbab087eb1b6adbaf22ee9dbd56c4a45528c",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "avx",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_56d21906884747b2869ec5a55412c67d",
+          "point_id": 3,
+          "dimension": 4096,
+          "prepared_sha256": "c95f463c94680d773e99dbf60c2e5ac0a73f8261b374b8ed003a03a4bcdcfaf2",
+          "stored_sha256": "c95f463c94680d773e99dbf60c2e5ac0a73f8261b374b8ed003a03a4bcdcfaf2",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "avx",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_56d21906884747b2869ec5a55412c67d",
+          "point_id": 4,
+          "dimension": 4096,
+          "prepared_sha256": "c95f463c94680d773e99dbf60c2e5ac0a73f8261b374b8ed003a03a4bcdcfaf2",
+          "stored_sha256": "c95f463c94680d773e99dbf60c2e5ac0a73f8261b374b8ed003a03a4bcdcfaf2",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "avx",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_numeric_56d21906884747b2869ec5a55412c67d",
+          "point_id": 5,
+          "dimension": 4096,
+          "prepared_sha256": "9dcf75cdac310e2e3c4ec598ca6d4bfd06fc0d7e3aa94b61dc0b9fa85c539c3d",
+          "stored_sha256": "9dcf75cdac310e2e3c4ec598ca6d4bfd06fc0d7e3aa94b61dc0b9fa85c539c3d",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "avx",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_rounding_cbb497e7e6744ae9b700234493b6a3c4",
+          "point_id": 1,
+          "dimension": 16,
+          "prepared_sha256": "8e433649888a13247b88f316837acda8a9282f3b213d31d96ba8ef880a8678b4",
+          "stored_sha256": "8e433649888a13247b88f316837acda8a9282f3b213d31d96ba8ef880a8678b4",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_rounding_cbb497e7e6744ae9b700234493b6a3c4",
+          "point_id": 2,
+          "dimension": 16,
+          "prepared_sha256": "9f09c9fba429fd768659269f7231a4ccb6b15a13713edcbb03ef103727b53080",
+          "stored_sha256": "9f09c9fba429fd768659269f7231a4ccb6b15a13713edcbb03ef103727b53080",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_rounding_cbb497e7e6744ae9b700234493b6a3c4",
+          "point_id": 3,
+          "dimension": 16,
+          "prepared_sha256": "7cecd05b13a0a74dcf14012a34140d44e19ebbf0cdbafd61927487c0f9d14b42",
+          "stored_sha256": "7cecd05b13a0a74dcf14012a34140d44e19ebbf0cdbafd61927487c0f9d14b42",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_rounding_cbb497e7e6744ae9b700234493b6a3c4",
+          "point_id": 4,
+          "dimension": 16,
+          "prepared_sha256": "e46353ef5628ccea852182a8b8c056fbe7167c6d3ed4d6809c423c6882343e06",
+          "stored_sha256": "e46353ef5628ccea852182a8b8c056fbe7167c6d3ed4d6809c423c6882343e06",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_rounding_b8e65363b8e747be8eaf1ce89fb8a569",
+          "point_id": 1,
+          "dimension": 32,
+          "prepared_sha256": "88dac9f3f525c60a579e7171d5e966732a0c07211503a2ef1ad5f0ddd7875185",
+          "stored_sha256": "88dac9f3f525c60a579e7171d5e966732a0c07211503a2ef1ad5f0ddd7875185",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "avx",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_rounding_b8e65363b8e747be8eaf1ce89fb8a569",
+          "point_id": 2,
+          "dimension": 32,
+          "prepared_sha256": "b08873b9b395f5da64e5ea9ede2034a9c80dd6a3416fa1ec7d9086e4af4e06f9",
+          "stored_sha256": "b08873b9b395f5da64e5ea9ede2034a9c80dd6a3416fa1ec7d9086e4af4e06f9",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "avx",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_rounding_b8e65363b8e747be8eaf1ce89fb8a569",
+          "point_id": 3,
+          "dimension": 32,
+          "prepared_sha256": "783ff66ba32b1467bd21f753c8c10c92d25d5f83ac866ca6f64c79d644a9b924",
+          "stored_sha256": "783ff66ba32b1467bd21f753c8c10c92d25d5f83ac866ca6f64c79d644a9b924",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "avx",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_rounding_b8e65363b8e747be8eaf1ce89fb8a569",
+          "point_id": 4,
+          "dimension": 32,
+          "prepared_sha256": "faf1986970694e903c26f2d990faf0bba483367a1bc1a368e4fb59f6301059b1",
+          "stored_sha256": "faf1986970694e903c26f2d990faf0bba483367a1bc1a368e4fb59f6301059b1",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "avx",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_rounding_15d1808665494221bcd315839cfb8d0f",
+          "point_id": 1,
+          "dimension": 4096,
+          "prepared_sha256": "24d1bdb976593bc823def17e48d3a3a8d394f67f56be2fe693aa8a277718753b",
+          "stored_sha256": "8b61f9b0d9d280ab6f1d46ae23505103b63052b56c98ef1ee831c27e3c9a3f87",
+          "exact_reference_matches": [
+            "avx"
+          ]
+        },
+        {
+          "collection": "rom_extras_rounding_15d1808665494221bcd315839cfb8d0f",
+          "point_id": 2,
+          "dimension": 4096,
+          "prepared_sha256": "053b2396318c6c91715499e39c6ae28dd62552abed1f0f3107a17b06e68ff8c2",
+          "stored_sha256": "73bc7bc7dfc9e966105798a31ed785ff026c8080d6f8c05e7d16565451855cbe",
+          "exact_reference_matches": [
+            "avx"
+          ]
+        },
+        {
+          "collection": "rom_extras_rounding_15d1808665494221bcd315839cfb8d0f",
+          "point_id": 3,
+          "dimension": 4096,
+          "prepared_sha256": "137fe6971165b62c610de17da5555a412bef2934f429f168835345d166658dc7",
+          "stored_sha256": "137fe6971165b62c610de17da5555a412bef2934f429f168835345d166658dc7",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "avx",
+            "neon"
+          ]
+        },
+        {
+          "collection": "rom_extras_rounding_15d1808665494221bcd315839cfb8d0f",
+          "point_id": 4,
+          "dimension": 4096,
+          "prepared_sha256": "03fd3d2ce06a48a8086ad98f026f02097f73e2c40ddc691c3eedffd5e7c643dc",
+          "stored_sha256": "03fd3d2ce06a48a8086ad98f026f02097f73e2c40ddc691c3eedffd5e7c643dc",
+          "exact_reference_matches": [
+            "scalar",
+            "sse",
+            "avx",
+            "neon"
+          ]
+        }
+      ],
+      "all_exactly_matched": true
+    }
+  },
+  "primary_sources": [
+    "https://github.com/qdrant/qdrant/blob/v1.19.2/lib/segment/src/spaces/simple.rs",
+    "https://github.com/qdrant/qdrant/blob/v1.19.2/lib/segment/src/spaces/tools.rs",
+    "https://github.com/qdrant/qdrant/blob/v1.19.2/lib/segment/src/spaces/simple_avx.rs",
+    "https://github.com/qdrant/qdrant/blob/v1.19.2/lib/segment/src/spaces/simple_sse.rs",
+    "https://github.com/qdrant/qdrant/blob/v1.19.2/lib/segment/src/spaces/simple_neon.rs",
+    "https://arm-software.github.io/acle/neon_intrinsics/advsimd.html",
+    "https://doc.rust-lang.org/std/primitive.f32.html#method.mul_add"
+  ],
+  "backend_mutations": 0,
+  "whole_rom_extras_goal_complete": false
+}

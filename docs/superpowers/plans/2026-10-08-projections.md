@@ -66,12 +66,12 @@ The [checkpoint transaction contract](../specs/2026-10-08-projection-checkpoints
 Implement page transactions first. Reserved switch tags reject unsupported work until Task 6 format qualification.
 Accepted dirty-file recovery is required in Task 2; temporary fail-closed behavior is not its final acceptance.
 
-- [ ] Write boundary and recovery tests first: oversize input, overflow, zero revision, key collision, stale revision, equal-revision mismatch, filtered empty page, and interrupted checkpoint commit.
-- [ ] Run the tests and preserve their intended initial failure.
-- [ ] Implement validation, immutable approved document identity, durable operation intent, and atomic local checkpoint publication.
-- [ ] Test crash after acceptance before checkpoint, reopen, replay, and unknown outcome without cursor advancement.
-- [ ] Test exclusive writer admission across processes. A process mutex alone is insufficient.
-- [ ] Run format, denied-warning Clippy, tests, doctests, and docs before committing the deliverable.
+- [x] Write boundary and recovery tests first: oversize input, overflow, zero revision, key collision, stale revision, equal-revision mismatch, filtered empty page, and interrupted checkpoint commit.
+- [x] Run the tests and preserve their intended initial failure.
+- [x] Implement validation, immutable approved document identity, durable operation intent, and atomic local checkpoint publication.
+- [x] Test crash after acceptance before checkpoint, reopen, replay, and unknown outcome without cursor advancement.
+- [x] Test exclusive writer admission across processes. A process mutex alone is insufficient.
+- [x] Run format, denied-warning Clippy, tests, doctests, and docs before committing the deliverable.
 
 ### Task 3: OpenSearch adapter
 
@@ -79,11 +79,11 @@ Accepted dirty-file recovery is required in Task 2; temporary fail-closed behavi
 
 **Interfaces:** Implements the Task 2 fenced write seam; returns original keys and indexed revisions as bounded candidates.
 
-- [ ] Write real-service failing tests for partial Bulk errors, external-version conflict, signed revision overflow, and equal-revision content mismatch.
-- [ ] Implement verified bounded HTTP transport, explicit mappings, stable IDs, per-item acknowledgements, and persistent tombstone documents.
-- [ ] Qualify request durability separately from refresh visibility.
-- [ ] Inject acknowledgement loss and late stale writes. Verify newer and tombstoned state after backend and checkpoint restart.
-- [ ] Run provider and core checks and commit only with exact actual-service evidence.
+- [x] Write real-service failing tests for partial Bulk errors, external-version conflict, signed revision overflow, and equal-revision content mismatch.
+- [x] Implement verified bounded HTTP transport, explicit mappings, stable IDs, per-item acknowledgements, and persistent tombstone documents.
+- [x] Qualify request durability separately from refresh visibility.
+- [x] Inject acknowledgement loss and late stale writes. Verify newer and tombstoned state after backend and checkpoint restart.
+- [x] Run provider and core checks and commit only with exact actual-service evidence.
 
 ### Task 4: Qdrant adapter
 
@@ -257,3 +257,9 @@ Add complete-response protocol negatives. Keep these controlled parser checks se
 Next qualify actual delayed search responses with current query, row and field revocation; then hostile response/deadline and generation replacement cases.
 Reuse public search_case outside workspace and in normalized archives. Run fresh dependency audits and frozen full verifier before integration.
 The first two native cases and parser/Clippy checks are progress, not complete Task3 or whole-family acceptance.
+
+## Task 2 and Task 3 acceptance checkpoint — 2026-10-09
+
+The [process interruption verification](../../verification/opensearch-process-crash-2026-10-09.md) closes the remaining Task 2 and Task 3 recovery requirements.
+The full local verifier passed with 255 unchanged frozen runtime inputs. Independent source review found no remaining requirement gap.
+Earlier increment limitations above describe historical states. Task 4, both-provider search acceptance, generation switching, and the whole family remain incomplete.

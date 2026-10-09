@@ -1,6 +1,5 @@
 //! Owned verified relay with a bounded actual-response barrier.
-#[path = "fixture_process.rs"]
-mod fixture_process;
+use crate::fixture_process;
 use std::{fs, path::PathBuf, process::Command, time::Duration};
 pub(crate) struct SearchProxy {
     process: Option<fixture_process::FixtureProcess>,

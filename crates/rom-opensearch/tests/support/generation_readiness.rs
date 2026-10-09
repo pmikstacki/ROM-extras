@@ -2,7 +2,10 @@
 use serde_json::{Value, json};
 use std::{fs, time::Duration};
 
-pub(super) async fn wait(physical: &str) {
+pub(crate) async fn wait(physical: &str) {
+    // A restarted retained fixture must finish recovery before the next test creates an index.
+    let cluster = physical == "*";
+    let deadline = Duration::from_secs(if cluster { 90 } else { 45 });
     let root = "/root/ROM-extras/.superpowers/opensearch-fixture";
     let client = super::fixture_admin::client();
     let started = std::time::Instant::now();
@@ -29,7 +32,7 @@ pub(super) async fn wait(physical: &str) {
                         bytes.extend_from_slice(&chunk);
                     }
                     let body: Value = serde_json::from_slice(&bytes).unwrap();
-                    let index = &body["indices"][physical];
+                    let index = if cluster { &body } else { &body["indices"][physical] };
                     last = json!({"timed_out": body["timed_out"], "status": index["status"],
                         "active_primary_shards": index["active_primary_shards"],
                         "initializing_shards": index["initializing_shards"],
@@ -38,7 +41,11 @@ pub(super) async fn wait(physical: &str) {
                     first.get_or_insert_with(|| last.clone());
                     if last["timed_out"] == false
                         && last["status"] == "green"
-                        && last["active_primary_shards"] == 1
+                        && if cluster {
+                            last["active_primary_shards"].as_u64().is_some_and(|n| n > 0)
+                        } else {
+                            last["active_primary_shards"] == 1
+                        }
                         && last["initializing_shards"] == 0
                         && last["relocating_shards"] == 0
                         && last["unassigned_shards"] == 0
@@ -53,11 +60,23 @@ pub(super) async fn wait(physical: &str) {
             tokio::time::sleep(Duration::from_millis(100)).await;
         }
     };
-    let result = tokio::time::timeout(Duration::from_secs(45), inspection).await;
+    let result = tokio::time::timeout(deadline, inspection).await;
     let evidence = json!({"physical": physical, "elapsed_ms": started.elapsed().as_millis(),
         "first": first, "last": last, "ready": result.is_ok()});
+    let label = if cluster {
+        format!(
+            "cluster-{}-{}",
+            std::process::id(),
+            std::time::SystemTime::now()
+                .duration_since(std::time::UNIX_EPOCH)
+                .unwrap()
+                .as_nanos()
+        )
+    } else {
+        physical.to_owned()
+    };
     fs::write(
-        format!("{root}/readiness-{physical}.json"),
+        format!("{root}/readiness-{label}.json"),
         serde_json::to_vec(&evidence).unwrap(),
     )
     .unwrap();

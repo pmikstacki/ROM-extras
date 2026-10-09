@@ -1,5 +1,7 @@
 //! Actual public SQLite/redb journal, native OpenSearch acknowledgement loss and checkpoint reopen.
 #![cfg(feature = "service-fixture")]
+#[path = "support/fixture_process.rs"]
+mod fixture_process;
 #[path = "support/native_fixture.rs"]
 mod native_fixture;
 use rom::{Actor, Command, Resource, Runtime, Storage};

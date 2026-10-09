@@ -924,3 +924,51 @@ Before implementing vector reconciliation, define and qualify the native represe
 A verified-TLS actual Qdrant1.19.2 experiment then created four fresh persistent collections, one per metric, using named float32 vectors. Each accepted four points: non-unit, zero, large finite and small finite. Read-only retrieval established actual stored values. Cosine changed `[3,4,0]` to `[0.6,0.8,0]` and changed the tested `[3e38,0,0]` float32 input to zeros. Dot, Euclid and Manhattan retained the tested float32 representations. These are observed cases, not a universal numeric guarantee. Keep the exact private script, result and source report under `.superpowers/qdrant-metric-observation-2026-10-09.*`; no previous collection or index was removed.
 
 Consequently the Rust adapter needs an explicit, tested numeric contract for original host-side identity and native stored vectors. Silent clipping, truncation or interpreting stored zeros as the original large vector is not acceptable. Metric-specific preparation/reconciliation remains required before claiming support.
+
+### Native process interruption after remote acceptance
+
+Inspection date: 2026-10-09. [Rust process::exit](https://doc.rust-lang.org/std/process/fn.exit.html) does not run Rust destructors. Use a bounded child invocation with a dedicated exit code after actual remote-state inspection, without worker/runtime shutdown. The parent owns and joins the verified acknowledgement-loss relay.
+
+The child commits real public Resource mutations on SQLite or redb, persists a checkpoint intent, loses the actual Bulk response, and confirms the exact newer document and tombstone through GET-only inspection. The parent restarts only the owned persistent OpenSearch service, opens Resource and checkpoint files, and inspects native state before replay. It requires pending intent and the original cursor before recovery, then exact endpoint publication and cleared intent.
+
+[OpenSearch GET](https://docs.opensearch.org/latest/api-reference/document-apis/get-documents/) supports real-time retrieval. Public [ROM projection source](https://github.com/pmikstacki/ROM/blob/d7ef529040eec60dc869034c2d33130219db85fe/crates/rom/src/projection.rs) returns Denied for a current tombstone. Verify tombstones through authorized history and native inspection, while asserting denied current disclosure.
+
+Initial fixture negatives assumed four disclosed historical events (actual three) and current tombstone read success (contract requires Denied). Both remain preserved. Verify authoritative journal head and exact final native documents instead. No production behavior changes. This qualifies process exit without Rust cleanup, not power failure.
+
+Follow-up source review confirms that Task2 key-state lookup uses length-framed original kind/id bytes, not digest-derived keys. The [accepted codec source](https://github.com/pmikstacki/ROM-extras/blob/5da2a332686793ece46e109d8f554cf716463235/crates/rom-projection-core/src/codec.rs) and ambiguous-separator test establish that boundary. A forced hash collision is therefore not applicable to this core table. Qdrant digest-derived native IDs still require collision qualification.
+
+The combined recovery test now cleanly closes and opens the checkpoint once more after publication. It verifies the persisted cursor, absence of pending intent, and both original keys' revision, tombstone and digest state through public storage operations. Source-only review found no actionable issue. Independent native/archive execution and full acceptance remain separate requirements.
+
+### Retained native fixture recovery and shared relay process owner
+
+Inspection date: 2026-10-09. Archive run 39940 completed its native cases, then Clippy rejected duplicate inclusion of the process helper. [Clippy duplicate_mod](https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#duplicate_mod) identifies repeated module compilation. Each test binary now declares the helper once; both relay modules use that root declaration. Root and public-consumer Clippy passed.
+
+Archive run 56665 then failed the existing 45-second per-index readiness gate after a process-crash case restarted the persistent fixture. Retained evidence shows zero active primaries for the new index throughout that gate. Service logs show recovery of 465 retained indices and eventual GREEN at 04:06:54.802 UTC, approximately 65 seconds after node startup. No OOM or index deletion was observed.
+
+[OpenSearch Cluster Health](https://docs.opensearch.org/latest/api-reference/cluster-api/cluster-health/) distinguishes index health from cluster allocation state. After this scenario's owned restart, wait for all selected fixture indices to become GREEN before continuing. The test-only recovery budget is 90 seconds, based on the observed recovery interval. Existing per-index setup and production request deadlines remain unchanged. Retain first/last health observations for each restart wait. This fixture synchronization does not qualify a universal recovery-time or capacity guarantee.
+
+### Qdrant canonical numeric preparation remains a separate contract
+
+Inspection date: 2026-10-09. Pinned [metric dispatch](https://github.com/qdrant/qdrant/blob/v1.19.2/lib/segment/src/spaces/simple.rs), [normalization threshold](https://github.com/qdrant/qdrant/blob/v1.19.2/lib/segment/src/spaces/tools.rs), and [AVX arithmetic](https://github.com/qdrant/qdrant/blob/v1.19.2/lib/segment/src/spaces/simple_avx.rs) establish CPU-dependent floating-point accumulation. The [query API](https://api.qdrant.tech/api-reference/search/query-points) distinguishes named vectors, payload selection and result limits.
+
+Actual verified-HTTPS experiments wrote eighty points across four metrics and dimensions 1/16/32/4096, then retrieved and queried them. Candidate float64 host normalization initially produced exact float32 retrieval for all tested Cosine inputs. Twelve additional dominant-component inputs disproved that as a general bypass: two dimension4096 values were normalized again. Dot large-finite queries returned null scores in successful native responses. Original vectors were hashed separately from prepared values.
+
+Reject the unqualified assumption that host-normalized bytes always equal native stored bytes. Do not silently reduce the final profile to another metric or smaller dimensions. Resolve exact reconciliation and native overflow query semantics before Rust acceptance. The public numeric research record preserves hashes and observations. All nineteen new collections and previous service data remain intact. No production adapter or full-family completion follows from these experiments.
+
+### Generation setup must wait after any preceding fixture restart
+
+Full verifier4032 failed during redb generation setup, after both process-interruption cases and the preceding native restart case passed. The new index retained zero active primaries throughout its 45-second setup budget. The owned service recovered 504 retained indices. It started at 04:23:21.166 UTC and reached GREEN at 04:24:13.621 UTC.
+
+The preceding restart test had confirmed its own index, which did not establish completion of other index recovery. Apply the same researched Cluster Health preflight before every native test generation creation. Keep the existing 90-second aggregate recovery budget and 45-second exact-index setup budget. Preserve the failed full log and its original frozen source manifest. Re-run the actual restart followed by recovery sequence before another full verifier. Production transport and durability contracts remain unchanged.
+
+### README rendering and status navigation
+
+Inspection date: 2026-10-09. The user requested correction of the README's continuous rendered paragraph. [GitHub table documentation](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables) specifies table separation and Markdown structure. Replace the continuous status paragraph with database links, integration/projection tables and roadmap navigation. Preserve existing link destinations, command blocks and incomplete-provider qualifications.
+
+[GitHub's Markdown API](https://docs.github.com/en/rest/markdown/markdown#render-a-markdown-document) rendered the exact README in gfm mode. Both tables and all six navigation/verification sections appeared in returned HTML. Local link validation and the unchanged255-file runtime freeze passed. README-only commit279356fe995677bc4c51bb74b8af0e6cf3ac7219 was published; the remote default-branch README blob matches the local blob. This documentation publication does not qualify pending runtime changes.
+
+### Exact tagged Cosine arithmetic reference
+
+Inspection date: 2026-10-09. Tagged SSE/AVX/NEON sources, Arm intrinsic reduction documentation and Rust's fused-rounding guarantee establish explicit arithmetic sequences. A safe standalone Rust reference used typed float32 operations, without unsafe code. GET-only comparison matched all32 existing Cosine points, including the two4096-dimensional counterexamples, which matched AVX only.
+
+Select exact tagged arithmetic reconciliation as the next implementation method to qualify. Preserve original approved host-document identity; compare native normalized values against eligible complete-vector reference results. Do not replace this with approximate component tolerances, a universal host-normalization bypass, another metric or fewer dimensions. The comparison record is candidate protocol evidence, not production Rust adapter or native ARM acceptance. Raw-vector, CPU-boundary, conditional write/recovery and query cases remain required.
