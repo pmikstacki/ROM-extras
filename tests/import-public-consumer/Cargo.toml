@@ -1,0 +1,14 @@
+[package]
+name = "import-public-consumer"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.99"
+publish = false
+[workspace]
+[dependencies]
+rom = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false, features = ["derive"] }
+rom-sqlite = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+rom-redb = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+rom-import = { path = "../../crates/rom-import" }
+sha2 = "=0.10.9"
+tokio = { version = "=1.53.1", features = ["rt"] }

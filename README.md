@@ -62,7 +62,8 @@ Production session integration and actual provider-service qualification remain 
 [Pure email preparation](docs/email-core.md) has boundary, independent RFC/MIME consumer and full-verifier checks.
 [SMTP submission](docs/smtp.md) has controlled protocol and native Mailpit checks; production deliverability remains unqualified.
 [OpenTelemetry host metrics](docs/opentelemetry.md) cover local status and operation observations; full diagnostic correlation remains pending.
-Additional notification connectors, backup, migration and provenance-preserving import tools remain in scope.
+[Sourced action import](docs/import.md) has a bounded JSON core and public SQLite/redb consumers.
+File/HTTP import, additional notification connectors, backup and migration remain in scope.
 
 - [Complete goal and decision policy](docs/goal.md)
 - [Implementation plan](docs/superpowers/plans/2026-10-08-rom-extras.md)

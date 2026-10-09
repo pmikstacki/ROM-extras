@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+cargo test --locked -p rom-import
+cargo clippy --locked -p rom-import --all-targets -- -D warnings
+cargo fmt --manifest-path tests/import-public-consumer/Cargo.toml -- --check
+cargo clippy --manifest-path tests/import-public-consumer/Cargo.toml --locked --offline --target-dir target/import-public-consumer --all-targets -- -D warnings
+run_root=$(mktemp -d "$PWD/.superpowers/import-consumer-XXXXXX")
+ROM_EXTRAS_IMPORT_PATH="$run_root/direct" cargo run --manifest-path tests/import-public-consumer/Cargo.toml --locked --offline --target-dir target/import-public-consumer
+cargo package --allow-dirty --locked --no-verify -p rom-import \
+    --config 'patch.crates-io.rom.git="https://github.com/pmikstacki/ROM"' \
+    --config 'patch.crates-io.rom.rev="d7ef529040eec60dc869034c2d33130219db85fe"'
+consumer=$(node scripts/prepare-import-package.mjs)
+cargo clippy --manifest-path "$consumer/Cargo.toml" --offline --target-dir target/import-packaged-consumer --all-targets -- -D warnings
+ROM_EXTRAS_IMPORT_PATH="$run_root/packaged" cargo run --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/import-packaged-consumer

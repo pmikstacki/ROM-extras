@@ -272,3 +272,12 @@ The full local verifier passed on unchanged source. No network transport is impl
 The separate `rom-smtp` increment checks bounded authenticated TLS submission, native Mailpit acceptance and SQLite/redb Runtime recovery.
 Production relay profiles and deliverability remain unqualified. See [SMTP configuration and evidence scope](smtp.md).
 See [configuration and limits](email-core.md) and [preparation evidence](verification/email-preparation-2026-10-09.json).
+
+## Sourced action import — 2026-10-09
+
+`rom-import` binds host-approved exact JSON bytes to ordinary public sourced domain actions.
+It retains original target, revision, idempotency, retry epoch, provenance and grant without renewing authority.
+Independent SQLite/redb consumers check action effects, durable attribution, denial, output coverage, replay and reopen.
+The normalized archive runs the same consumer. Native qualification uses epoch zero; pure admission checks nonzero preservation.
+File/HTTP transport, unknown acknowledgement, process restart and maintenance qualification remain pending.
+See [configuration, limits and recovery constraints](import.md).

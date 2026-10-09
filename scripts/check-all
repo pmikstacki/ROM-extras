@@ -33,3 +33,5 @@ cd -- "$(dirname -- "$0")/.."
 ./scripts/check-opentelemetry-metrics
 
 ./scripts/check-opentelemetry-native
+
+./scripts/check-import

@@ -1,0 +1,14 @@
+[package]
+name = "rom-import"
+description = "Bounded host-approved sourced action requests for public ROM"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+[lints]
+workspace = true
+[dependencies]
+rom = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false }
+sha2 = "=0.10.9"

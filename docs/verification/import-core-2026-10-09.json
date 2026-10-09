@@ -1,0 +1,103 @@
+{
+  "date": "2026-10-09",
+  "scope": "Transport-free sourced action import core; maintenance Task9 remains incomplete",
+  "base_commit": "c3defb9912277fbab5523bca2ba1bf7a85b9d2b7",
+  "public_rom_commit": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1",
+  "workspace_lock_sha256": "a8535543825c5eb02ebf4726b021999069be74bfacb4e6d6a68b1f972fe198b6",
+  "consumer_lock_sha256": "89c598502acace0414eb65ee66acb357419342cd522eb71ab7c2b56207a4ccd2",
+  "dependencies": {
+    "new_registry_packages": 0,
+    "reused": "Published ROM 0.0.3 and sha2 0.10.9; sha2 MIT OR Apache-2.0; workspace MSRV1.99"
+  },
+  "audit": {
+    "database": {
+      "advisory-count": 1296,
+      "last-commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+      "last-updated": "2026-10-09T10:12:02+02:00"
+    },
+    "lockfile": {
+      "dependency-count": 393
+    },
+    "settings": {
+      "target_arch": [],
+      "target_os": [],
+      "severity": null,
+      "ignore": [],
+      "informational_warnings": [
+        "unmaintained",
+        "unsound",
+        "notice"
+      ]
+    },
+    "vulnerabilities": {
+      "found": false,
+      "count": 0,
+      "list": []
+    },
+    "warnings": {}
+  },
+  "evidence": [
+    {
+      "kind": "admission",
+      "command": "cargo test -p rom-import --locked",
+      "tests": 5,
+      "result": "pass",
+      "red_log": ".superpowers/import-admission-red-2026-10-09.log",
+      "red_reason": "Missing public API before implementation; initial green compile needed crate test documentation"
+    },
+    {
+      "kind": "source-review",
+      "reviewer": "maps_http_increment_review",
+      "result": "No actionable findings; source only, no builds or fixtures"
+    },
+    {
+      "kind": "native-storage-and-packaged-consumer",
+      "command": "./scripts/check-import",
+      "result": "pass",
+      "backends": [
+        "SQLite",
+        "redb"
+      ],
+      "log": ".superpowers/import-final-target-conflict-green-2026-10-09.log",
+      "cases": [
+        "ordinary scalar domain action",
+        "exact Resource ID",
+        "denied nonservice and unauthorized service actors",
+        "complete output attribution",
+        "incomplete output origins refused before commit",
+        "exact receipt replay",
+        "changed input fingerprint rejected",
+        "stale target revision refused",
+        "durable attribution after close/reopen",
+        "exact request replay after reopen",
+        "control change blocks replay without undoing commit"
+      ],
+      "retry_epoch": 0,
+      "package_consumer": "/tmp/import-packaged-j0Kf4D/consumer"
+    },
+    {
+      "kind": "full-local-verifier",
+      "command": "./scripts/check-all",
+      "result": "pass",
+      "exit_code": 0,
+      "log": ".superpowers/import-core-full-verifier-2026-10-09.log",
+      "source_snapshot_sha256": "158598a5ea93d367765a57b05480653dadbd21f6d86b9aa0493529a97af223d8",
+      "unchanged_files_during_execution": 1186,
+      "post_run_test_strengthening": [
+        "tests/import-public-consumer/src/main.rs"
+      ],
+      "post_run_changes": "Consumer helper now selects explicit expected target revision and idempotency; added stale target conflict. No production, manifest, lockfile or verifier-script changes. Re-executed direct and normalized-archive consumers."
+    }
+  ],
+  "limitations": [
+    "No file or HTTP transport",
+    "No interrupted acknowledgement or process restart qualification",
+    "Nonzero epoch preservation only pure admission test",
+    "Post-parse structural limits are not streaming allocation caps",
+    "SHA256 does not authenticate producer",
+    "Host attests complete output attribution; causality not verified",
+    "Expired or superseded grant can block replay after commit; rejection is not rollback evidence",
+    "No SQL archives, blob manifests or migrations"
+  ]
+}
