@@ -48,3 +48,5 @@ source scripts/lib/qdrant-qualification-env.sh
 ./scripts/check-sql-owner
 
 ./scripts/check-maintenance
+
+./scripts/check-blob-recovery

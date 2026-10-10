@@ -417,3 +417,12 @@ Stale guards fail; the retained current guard writes, releases and reclaims a ne
 The full local verifier passed; power loss, deadlocks, owner-acquisition uncertainty, production TLS and full Storage remain open.
 See [the verification record](verification/mysql-native-recovery-2026-10-10.json).
 See [the maintained guide](mysql-ownership.md).
+
+## Verified external blob recovery
+
+The [generic recovery tool](blob-recovery.md) implements bounded manifests with separate opaque publication keys and content SHA-256 digests.
+It verifies create-only transfers and explicit resume through existing public S3 and Azure ports.
+Its controlled host example restores SQLite/redb Resources with exact identifiers, revisions and authorization.
+Production inventory durability, cloud qualification and deployment cutover remain open. The complete ROM-extras goal remains active.
+Source and normalized archive consumers passed; the full local verifier passed on unchanged frozen files.
+See [the executed verification record](verification/blob-recovery-2026-10-10.json).

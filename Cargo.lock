@@ -2940,6 +2940,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "rom-blob-recovery"
+version = "0.1.0-dev"
+dependencies = [
+ "rom-blob",
+ "serde",
+ "serde_json",
+ "tokio",
+ "tokio-util",
+]
+
+[[package]]
 name = "rom-cockroach"
 version = "0.1.0-dev"
 dependencies = [

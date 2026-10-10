@@ -39,6 +39,7 @@ The maintained [Oracle foundation](docs/oracle-ownership.md) adds native ownersh
 | [Kafka](docs/kafka.md) | Offsets, duplicates, Runtime recovery, TLS/SASL, restart and independent consumers. | Additional notification connectors and release acceptance. |
 | [Azure Blob](docs/azure-blob.md) | Public blob port and persistent Azurite conformance. | Cloud profiles and further lifecycle faults. |
 | [S3-compatible](docs/s3-compatible.md) | RustFS local public-port qualification; SeaweedFS strict burst failure retained. | Cloud profiles and further lifecycle faults. |
+| [Blob recovery](docs/blob-recovery.md) | Bounded manifests, create-only copying, readback and host-owned SQLite/redb restore example. | Durable publication inventory, cloud profiles and deployment cutover. |
 | [OIDC presets](docs/oidc-presets.md) | Explicit issuers and signed synthetic-token verification. | Live provider login and discovery profiles. |
 | [Secrets and KMS](docs/secrets-kms.md) | Host contracts, OpenBao acceptance cases and reference-only native host preparation. | Further provider profiles and family acceptance. |
 

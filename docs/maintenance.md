@@ -97,3 +97,9 @@ The final source reviewer closed the live-write witness finding after correction
 The full local verifier passed; all 1424 frozen files remained unchanged during execution.
 See [the executed verification record](verification/maintenance-native-tools-2026-10-10.json).
 All external SQL profiles, external-object restore verification, post-publication failure qualification, legacy-format coverage and host cutover journeys remain required.
+
+## External objects
+
+The [blob recovery tool](blob-recovery.md) verifies a host-approved external inventory through public provider ports.
+Its controlled host example binds captured physical keys to SQLite/redb checkpoints and reads restored Resources through the destination provider.
+Production inventory durability, completeness across all Resource families and deployment cutover remain required.

@@ -1,0 +1,388 @@
+{
+  "date": "2026-10-10",
+  "scope": "Verified external blob recovery increment; complete ROM-extras goal remains active",
+  "baseline": "d4f840abcef020b8ac14c89b183626da77aa341a",
+  "public_rom_pin": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1\n",
+  "source_freeze": {
+    "files": 1451,
+    "unchanged_after_full": true,
+    "evidence": {
+      "path": ".superpowers/blob-recovery-source-freeze-2026-10-10.json",
+      "sha256": "9a081bff4cc1df95917d61e67db1d89cfa5d1c3876dcf81b6e2fba8f388d575c"
+    }
+  },
+  "full_verifier": {
+    "command": "CARGO_INCREMENTAL=0 ./scripts/check-all with explicit private qualification fixtures",
+    "exit": 0,
+    "evidence": {
+      "path": ".superpowers/blob-recovery-full-2026-10-10.log",
+      "sha256": "3b735a4b28c522b34846a9c2e291c3f148bd61e02d8a3322d23e7047f7963ce1"
+    },
+    "prior_attempts": [
+      {
+        "attempt": 1,
+        "exit": 101,
+        "evidence": {
+          "path": ".superpowers/blob-recovery-full-attempt1-2026-10-10.log",
+          "sha256": "4efd75fc59cf2d9296e562f771932799afb43248602cc04973d353b373272bac"
+        },
+        "cause": "OpenSearch create block from stale pre-archival disk measurements; later automatically released"
+      },
+      {
+        "attempt": 2,
+        "exit": 101,
+        "evidence": {
+          "path": ".superpowers/blob-recovery-full-attempt2-2026-10-10.log",
+          "sha256": "1ad460703c3b5de8ed0d3e24278067e76f4855316efdbc5aaca03c4e36a6cd4b"
+        },
+        "cause": "Historical OpenSearch primary-shard recovery exceeded setup deadline"
+      },
+      {
+        "attempt": 3,
+        "exit": 101,
+        "evidence": {
+          "path": ".superpowers/blob-recovery-full-attempt3-2026-10-10.log",
+          "sha256": "b53dc29c29fffe65bee586e2f17da7dc63e4c942fefb71fc821c3f6b6a9f169e"
+        },
+        "cause": "New fixture was ready but restart selector still named archived container; corrected explicit fixture variable"
+      },
+      {
+        "attempt": 4,
+        "exit": 101,
+        "evidence": {
+          "path": ".superpowers/blob-recovery-full-attempt4-2026-10-10.log",
+          "sha256": "29956583185da67b60506ffa46ccc6cef409f341b33be51b450cdb4ab144c0c6"
+        },
+        "cause": "Further compilation exhausted fixture disk reserve; automatic create-index protection rejected partial_bulk generation setup. Verified additional cache archives restored capacity; protection unchanged"
+      },
+      {
+        "attempt": 5,
+        "exit": 1,
+        "evidence": {
+          "path": ".superpowers/blob-recovery-full-attempt5-2026-10-10.log",
+          "sha256": "1eb322ea1d41367ea328e38742dd6f3c5ca092cca2eb0737223c38f2bd5d40b8"
+        },
+        "cause": "Historical Qdrant fixture held 123 retained collections and exceeded unchanged 15-second restart readiness. Archived original container/data and used fresh same-image TLS/scoped fixture without altering source or timeouts"
+      }
+    ]
+  },
+  "affected": {
+    "command": "./scripts/check-blob-recovery",
+    "exit": 0,
+    "evidence": {
+      "path": ".superpowers/blob-recovery-affected-attempt7-2026-10-10.log",
+      "sha256": "68bcf19c6eafe6f7c5c8b2b1b790a72ee4516cf88fe129a99199bfa9c640a800"
+    },
+    "final_public_api_tests": 16,
+    "control_flow_evidence": "In-memory fixtures; not native-service qualification",
+    "opaque_key_behavioral_red": {
+      "path": ".superpowers/blob-recovery-opaque-key-red-2026-10-10.log",
+      "sha256": "5846674b607d2bc024e146d36f12965300793d5c09fa26b6d4bcfefe7f29e213"
+    },
+    "initial_native_failure_retained": "Initial checkpoint consumer treated opaque ObjectKey as payload Digest; actual SourceRead Missing disproved assumption",
+    "other_retained_failures": [
+      "A scripted consumer edit produced a compile error",
+      "Native restart required bounded fixture readiness observations",
+      "Azure normalization required explicit ROM dependency versions and matching public-pin patches"
+    ]
+  },
+  "native_evidence": {
+    "s3_profile": "RustFS local dedicated persistent fixture; not AWS qualification",
+    "azure_profile": "Azurite protocol emulator; not Azure cloud qualification",
+    "scenarios": [
+      "Bidirectional Azure/S3 create-only copying and exact independent readback",
+      "Explicit equal destination resume",
+      "Actual successful S3 PUT response suppression, Unknown, independent committed read and explicit resume with exactly one total PUT",
+      "SQLite and redb actual BlobService upload, coherent backup, captured opaque key/content digest binding, external copy, native restore, exact Resource ID/revision/store alias and authorized read",
+      "Denied caller and fresh native database reopen",
+      "Fresh S3 clients verify retained content after same fixture restart"
+    ],
+    "runs": [
+      {
+        "directory": ".superpowers/blob-recovery-runs/run-ycHevUMK",
+        "protocol": {
+          "path": ".superpowers/blob-recovery-runs/run-ycHevUMK/protocol.log",
+          "sha256": "c00c3314dd12b1cb05cd19324c9b19f053125852b44d25a6faeabae109dfb413"
+        },
+        "native_databases": [
+          {
+            "engine": "sqlite",
+            "archive": {
+              "path": ".superpowers/blob-recovery-runs/run-ycHevUMK/sqlite-archive.rombk",
+              "sha256": "7d190ebf97fdab734ab93aeac763c0d93ef03fcfc3f43f43b6283342632a7581"
+            },
+            "private_manifest": {
+              "path": ".superpowers/blob-recovery-runs/run-ycHevUMK/sqlite-objects.json",
+              "sha256": "98c3d08203fc7043c98d019ca38cde9c2ab86a2ade2763b9135456234b716fec"
+            }
+          },
+          {
+            "engine": "redb",
+            "archive": {
+              "path": ".superpowers/blob-recovery-runs/run-ycHevUMK/redb-archive.rombk",
+              "sha256": "6d8afd6eb32c3b0d7045372eb8d5db5ca790fd1be410ca85a1ecf1c8ed538e09"
+            },
+            "private_manifest": {
+              "path": ".superpowers/blob-recovery-runs/run-ycHevUMK/redb-objects.json",
+              "sha256": "cf823c14fd5c84779fcd68a85dec41a40da20e38ca7616e85b28c855cf7f1afc"
+            }
+          }
+        ]
+      },
+      {
+        "directory": ".superpowers/blob-recovery-runs/run-WKhYWrr6",
+        "protocol": {
+          "path": ".superpowers/blob-recovery-runs/run-WKhYWrr6/protocol.log",
+          "sha256": "c00c3314dd12b1cb05cd19324c9b19f053125852b44d25a6faeabae109dfb413"
+        },
+        "native_databases": [
+          {
+            "engine": "sqlite",
+            "archive": {
+              "path": ".superpowers/blob-recovery-runs/run-WKhYWrr6/sqlite-archive.rombk",
+              "sha256": "06c2e09d9b62668b7f3f10bbfe84607bcd9003ff7f32e025dd63dfe87eb89277"
+            },
+            "private_manifest": {
+              "path": ".superpowers/blob-recovery-runs/run-WKhYWrr6/sqlite-objects.json",
+              "sha256": "492a28f368fe11261c73051eb2fcbb5cc48bc91b20d315fd3908475235b274b3"
+            }
+          },
+          {
+            "engine": "redb",
+            "archive": {
+              "path": ".superpowers/blob-recovery-runs/run-WKhYWrr6/redb-archive.rombk",
+              "sha256": "2e32a0040c1c060fb99c98916ed74559662e20595fef4cc45ce38a9e3150152a"
+            },
+            "private_manifest": {
+              "path": ".superpowers/blob-recovery-runs/run-WKhYWrr6/redb-objects.json",
+              "sha256": "b76d0fdccfabf7a22cc07150d4d75827b1e4e3beeb05049470671d2032d81487"
+            }
+          }
+        ]
+      }
+    ],
+    "fixture_identities": [
+      {
+        "name": "rom-extras-rustfs-20261008",
+        "id": "381183b95c1d4713f2657184bf74dcc277dee3c1508c3e78045c3947e9fd1476",
+        "image_id": "f6b22807f10db2aee80b8a9ed1e36bd12c2fba25ac2d98dc3b0332a23f1a5c4d",
+        "configured_image": "docker.io/rustfs/rustfs@sha256:7465b31993156ca5cc0eb4b3c59a01ff69651961be62bcfeb6ce569f22034a56",
+        "running": true,
+        "started_at": "2026-10-10T02:21:10.04941792Z",
+        "mounts": [
+          {
+            "Type": "bind",
+            "Name": null,
+            "Source": "/root/ROM-extras/.superpowers/rustfs-data",
+            "Destination": "/data"
+          },
+          {
+            "Type": "bind",
+            "Name": null,
+            "Source": "/root/ROM-extras/.superpowers/rustfs-logs",
+            "Destination": "/logs"
+          }
+        ]
+      },
+      {
+        "name": "rom-extras-seaweedfs-20261008",
+        "id": "f9103e8e0693fe2df63ac19a7470cad8e58e0e5cb0aed7c6d95ba715612599e4",
+        "image_id": "7b5ca1f11aa4c91593612d2d4a9e253ec9152a4bd13a19e551290a042a4c52f5",
+        "configured_image": "docker.io/chrislusf/seaweedfs@sha256:aba492e2a4e4c90bff795745e8e660affa1f09e7650f5981bd7bccd1a06cd931",
+        "running": true,
+        "started_at": "2026-10-08T19:33:51.68466343Z",
+        "mounts": [
+          {
+            "Type": "volume",
+            "Name": "rom-extras-seaweedfs-20261008",
+            "Source": "/var/lib/containers/storage/volumes/rom-extras-seaweedfs-20261008/_data",
+            "Destination": "/data"
+          }
+        ]
+      },
+      {
+        "name": "rom-extras-azurite-20261008",
+        "id": "ee8f02bafe6ec24099a3812683144fa0d3c96a063039966069063e84306f6ef0",
+        "image_id": "54a90e14c290fc83b9d740a1cda8114c96dd91eef2f2ad429fd553951582fcf1",
+        "configured_image": "mcr.microsoft.com/azure-storage/azurite@sha256:830430c1da1a2d537e08f3e6764dd1f5ae00cf0346bcaf625b968ec3f0971fd5",
+        "running": true,
+        "started_at": "2026-10-10T01:49:29.358381548Z",
+        "mounts": [
+          {
+            "Type": "volume",
+            "Name": "rom-extras-azurite-20261008",
+            "Source": "/var/lib/containers/storage/volumes/rom-extras-azurite-20261008/_data",
+            "Destination": "/data"
+          }
+        ]
+      }
+    ],
+    "seaweedfs_failed_contention_profile_preserved": true,
+    "seaweedfs_recovery_not_qualified_this_increment": true
+  },
+  "normalized_archives": {
+    "consumer": "/tmp/blob-recovery-packaged-VQBV47/consumer",
+    "registry_matches_audited_source": true,
+    "archives": {
+      "rom-blob-recovery": {
+        "path": "target/package/rom-blob-recovery-0.1.0-dev.crate",
+        "sha256": "ee5497469ee7912c31f4cb4cfa1a2f5c197b2bf46f7c23a5ef6361940b0beab2"
+      },
+      "rom-azure-blob": {
+        "path": "target/package/rom-azure-blob-0.1.0-dev.crate",
+        "sha256": "f89df381eea9585146a0b69b9936550b21a766e02fdb367289cd7a3974bd5df6"
+      },
+      "rom-extras-maintenance": {
+        "path": "target/package/rom-extras-maintenance-0.1.0-dev.crate",
+        "sha256": "15ccd75014ef7db0d67357216cf60be48a2b4ecb68ad2056c15d23e94b79e943"
+      }
+    },
+    "archive_registry_packages": 223
+  },
+  "dependencies": {
+    "root_registry_packages": 434,
+    "new_registry_packages": 0,
+    "removed_registry_packages": 0,
+    "changed_checksums": 0,
+    "consumer_registry_packages": 223,
+    "integrity": {
+      "path": ".superpowers/blob-recovery-dependencies-2026-10-10.json",
+      "sha256": "8fb3bce6667e61cac91bd7efee939d27c5d40cd28eff9d28fd2c5a709de71bb1"
+    },
+    "cached_archives_and_extracted_files_verified": true,
+    "licenses_and_declared_msrv_checked": true,
+    "audits": [
+      {
+        "scope": "root",
+        "evidence": {
+          "path": ".superpowers/blob-recovery-root-audit-2026-10-10.json",
+          "sha256": "43526bc558e292d09bf0d1878837f9d6e82256cfd80b4318a5e34b0d1e0f6fa2"
+        },
+        "vulnerabilities": 0,
+        "warning_categories": [
+          "unmaintained"
+        ]
+      },
+      {
+        "scope": "source",
+        "evidence": {
+          "path": ".superpowers/blob-recovery-source-audit-2026-10-10.json",
+          "sha256": "13fc6ca0c253a50fc2f5e58d8230fdb610b6ef99091bb3658011778d8aad060c"
+        },
+        "vulnerabilities": 0,
+        "warning_categories": []
+      },
+      {
+        "scope": "archive",
+        "evidence": {
+          "path": ".superpowers/blob-recovery-archive-audit-2026-10-10.json",
+          "sha256": "13fc6ca0c253a50fc2f5e58d8230fdb610b6ef99091bb3658011778d8aad060c"
+        },
+        "vulnerabilities": 0,
+        "warning_categories": []
+      }
+    ]
+  },
+  "review": {
+    "scope": "Source review; separate from execution",
+    "critical": 0,
+    "important": 0,
+    "minor_coverage_finding_closed": true,
+    "evidence": {
+      "path": ".superpowers/blob-recovery-final-review-2026-10-10.md",
+      "sha256": "0681a27c373c40df442aa0fd1f7dd584dbb04e40ddb9f1291b0075663fad7453"
+    }
+  },
+  "fixture_maintenance": {
+    "opensearch": {
+      "container": "rom-extras-opensearch-blob-recovery-20261010",
+      "configured_image": "docker.io/opensearchproject/opensearch@sha256:13487e0953520edf6cc866dfc672fd67a70ab122aa7d84d4a6c97106f84d3f84",
+      "archived_id": "e3ba83b44be46c1a43f6b6de3c05ca770235894434122bfbf61297eca30afe33",
+      "archived_container": "rom-extras-opensearch-mssql-owner-20261009",
+      "archived_data": "/root/ROM-extras/.superpowers/opensearch-mssql-owner-isolated-20261009/data",
+      "new_data": "/root/ROM-extras/.superpowers/opensearch-blob-recovery-isolated-20261010/data",
+      "memory_bytes": 2147483648,
+      "cpus": 2,
+      "loopback_port": 55460,
+      "tls_security_policy": "same existing TLS/mTLS certs, roles and users; new native data only",
+      "disk_watermarks": [
+        "8gb",
+        "6gb",
+        "5gb"
+      ],
+      "no_indices_deleted": true,
+      "id": "42f00b829bc7a93e090555184edec8d58917fb85b39259b093dabad90337c57a",
+      "initial_health": {
+        "status": "green",
+        "active_primary_shards": 2,
+        "unassigned_shards": 0
+      }
+    },
+    "qdrant": {
+      "container": "rom-extras-qdrant-target-native-port55471-20261009",
+      "id": "8cc4424975eeac119c8c08f9242bce7c369966073567db76c14e6689b0a1c2bc",
+      "image": "docker.io/qdrant/qdrant@sha256:0e8273b9130ca3b0dd9dcfaa8f55342066711f8aaeb2aa072e53344c42ecf57f",
+      "archived_container": "rom-extras-qdrant-target-native-port55471-20261009-archive-20261010",
+      "archived_id": "8d7d5c898e5f9ce5261d0e236440868d7cfa110a66041b2cd09d38bdbeb136da",
+      "archived_collections": 123,
+      "archived_storage": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/storage",
+      "fresh_storage": "/root/ROM-extras/.superpowers/qdrant-blob-recovery-isolated-20261010/storage",
+      "fresh_collections": 0,
+      "fresh_ready_seconds": 0.2026527620619163,
+      "memory_bytes": 536870912,
+      "cpus": 1,
+      "loopback_port": 55471,
+      "same_config_sha256": "67c3dc59d8419023de964f7d388929ea604420ebbbed46990272fd9ed7ce3fb2",
+      "tls_and_scope_unchanged": true,
+      "readiness_limit_unchanged_seconds": 15,
+      "no_collections_deleted": true,
+      "primary_source": "https://raw.githubusercontent.com/qdrant/qdrant/v1.19.2/config/config.yaml"
+    },
+    "historical_data_and_containers_retained": true,
+    "no_indices_deleted": true,
+    "timeout_and_adapter_security_unchanged": true,
+    "disk_flood_floor": "5gb",
+    "disk_threshold_protection_enabled": true,
+    "compiler_cache_archives": [
+      {
+        "path": ".superpowers/compiler-cache-archives-2026-10-10/mssql-inventory.json",
+        "sha256": "9226f4488805db969d900e7ad91d60517bd4c048b9505a5ecbe6c12fb54bffdb"
+      },
+      {
+        "path": ".superpowers/compiler-cache-archives-2026-10-10/root-debug-reconciled-inventory.json",
+        "sha256": "032d0f62b10e0dead2d01f9792bca980abe4dbd476a51d703ca58e0784cb78b0"
+      }
+    ],
+    "root_cache_current_files": 86009,
+    "root_cache_original_bytes": 11430933095,
+    "root_cache_base_plus_delta_bytes": 3921824291,
+    "initial_cache_equality_failure_stopped_before_removal": true,
+    "cache_verification_correction": "Tar hardlink entries were omitted by initial reader; subsequent checked archives preserve every selected file byte. No cache source mutation was established.",
+    "additional_cache_archival": {
+      "path": ".superpowers/blob-recovery-additional-cache-archives-2026-10-10.json",
+      "sha256": "96b9dc2e88b4feb42c9fc1fb4866fe1352cf8f23e2a7c2ecc849f6bd388b73d6"
+    },
+    "all_current_cache_files_verified_before_working_copy_retirement": true,
+    "archival_final_binary_unchanged": true,
+    "normal_verifier_builds_can_rebuild_generated_artifacts": true
+  },
+  "remaining": [
+    "Production durable publication inventory and full checkpoint completeness across Resource families",
+    "Version-pinned coherent provider snapshots",
+    "Persisted recovery progress and streaming/multipart restore",
+    "Cloud AWS/Azure qualification and additional provider fault profiles",
+    "Atomic cross-store restoration and host deployment cutover",
+    "Full SQL Storage still requires public incremental Work ports and native-release callback at current ROM pin"
+  ],
+  "post_verification_changes": {
+    "documentation_only": [
+      "docs/blob-recovery.md",
+      "docs/superpowers/plans/2026-10-10-blob-recovery.md",
+      "docs/support.md"
+    ],
+    "added_verification_record": "docs/verification/blob-recovery-2026-10-10.json",
+    "production_and_test_sources_unchanged": true,
+    "final_public_api_count_confirmed_by_full_gate": 16
+  }
+}
