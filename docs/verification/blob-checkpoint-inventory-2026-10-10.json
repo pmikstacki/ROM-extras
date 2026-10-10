@@ -1,0 +1,299 @@
+{
+  "date": "2026-10-10",
+  "scope": "Exact current Ready builtin Blob checkpoint inventories; complete ROM-extras goal remains active",
+  "baseline": "9809d5df398be7af115b9b5fb6f16d4d1a0f2026",
+  "public_rom_pin": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1\n",
+  "source_freeze": {
+    "files": 1479,
+    "unchanged_after_full": true,
+    "evidence": {
+      "path": ".superpowers/blob-checkpoint-source-freeze-2026-10-10.json",
+      "sha256": "6472779b615803e0dddab95c0a4e94fe33d81453ac6100bbe7a0fc4f4e344ed8"
+    }
+  },
+  "full_verifier": {
+    "command": "CARGO_INCREMENTAL=0 ./scripts/check-all with explicit dedicated private fixture configuration",
+    "exit": 0,
+    "evidence": {
+      "path": ".superpowers/blob-checkpoint-full-2026-10-10.log",
+      "sha256": "17100bd4ff48dfa2e449eaa3f35cd4b37aa631c0e7c5ecb9a616cac494de4330"
+    },
+    "prior_attempt": {
+      "exit": 143,
+      "reason": "Intentional termination while new malformed archive fixture still failed its authored snapshot consistency; corrected fixtures before restart, production archive validation unchanged",
+      "log": {
+        "path": ".superpowers/blob-checkpoint-full-attempt1-2026-10-10.log",
+        "sha256": "83c7f35a539937bd4b5d52e38e76a126e6283f6940031b22ac5c7063f2bd4004"
+      },
+      "freeze": {
+        "path": ".superpowers/blob-checkpoint-source-freeze-attempt1-2026-10-10.json",
+        "sha256": "94dd3a1999c7b66aec47e2ec16516f16ddf533963365da39fd40a3ed30d44117"
+      }
+    }
+  },
+  "affected_gate": {
+    "command": "./scripts/check-blob-checkpoint",
+    "exit": 0,
+    "evidence": {
+      "path": ".superpowers/blob-checkpoint-affected-attempt3-2026-10-10.log",
+      "sha256": "5a1dd87fb3f91286f962ecbb3785090f0c9b7db770c057bcd824fb197c23f746"
+    },
+    "note": "Before direct malformed archive-row regression was added; full verifier subsequently runs the final gate and all feature profiles"
+  },
+  "test_profiles": {
+    "no_native": {
+      "codec_and_disabled_backend_tests": 9,
+      "independent_core_registry_packages": 38
+    },
+    "sqlite": {
+      "codec_and_disabled_redb_tests": 8,
+      "native_archive_with_memory_objects_tests": 8
+    },
+    "redb": {
+      "codec_and_disabled_sqlite_tests": 8,
+      "native_archive_with_memory_objects_tests": 8
+    },
+    "existing_recovery_control_tests": 16,
+    "negative_scope": "In-memory provider failures and authored JSON/native archives are not real-service fault qualification"
+  },
+  "red_green": [
+    {
+      "scope": "missing public API",
+      "red": {
+        "path": ".superpowers/blob-checkpoint-missing-api-red-attempt2-2026-10-10.log",
+        "sha256": "44c36d411b4f37b51f684d74094ef7158c73dd6de0b46302f486b614cf990f3d"
+      }
+    },
+    {
+      "scope": "JSON limit before inspection/provider reads",
+      "red": {
+        "path": ".superpowers/blob-checkpoint-json-preflight-red-2026-10-10.log",
+        "sha256": "d6dafb0beaa222cedee1470df2d5e53f3dff7b90484eb5a759b465272bceedb4"
+      },
+      "green": {
+        "path": ".superpowers/blob-checkpoint-json-preflight-green-2026-10-10.log",
+        "sha256": "14aff05bcbd994fb3b8dc7509eb8485d2d198c236c09bb140f4f123061c05350"
+      }
+    },
+    {
+      "scope": "decoded distinct alias count 33 rejected,32 admitted",
+      "red": {
+        "path": ".superpowers/blob-checkpoint-alias-count-red-2026-10-10.log",
+        "sha256": "39fcccb11856b7516fa9d77099fd1e6e927fb4c69c5b51c47f362952d50631ae"
+      },
+      "green": {
+        "path": ".superpowers/blob-checkpoint-alias-count-green-2026-10-10.log",
+        "sha256": "ae0bf4ed73155db1a09c281fa2ffcc3e2b88aa24628094137e66c344de18cd9c"
+      }
+    }
+  ],
+  "native_protocol": {
+    "source": {
+      "retained_directory": ".superpowers/blob-checkpoint-runs/run-IJCJPuGm",
+      "logs": [
+        {
+          "path": ".superpowers/blob-checkpoint-runs/run-IJCJPuGm/protocol.log",
+          "sha256": "52fb2d79812b5962ff2215112728872d4a759b88726e7b4ce8e61873341a60c9"
+        },
+        {
+          "path": ".superpowers/blob-checkpoint-runs/run-IJCJPuGm/redb--reopen.log",
+          "sha256": "061ced708a8d2117721e9b2a56248255d8dfb92583aea7254d3b5edf25ce4bd2"
+        },
+        {
+          "path": ".superpowers/blob-checkpoint-runs/run-IJCJPuGm/redb--restore.log",
+          "sha256": "061ced708a8d2117721e9b2a56248255d8dfb92583aea7254d3b5edf25ce4bd2"
+        },
+        {
+          "path": ".superpowers/blob-checkpoint-runs/run-IJCJPuGm/sqlite--reopen.log",
+          "sha256": "061ced708a8d2117721e9b2a56248255d8dfb92583aea7254d3b5edf25ce4bd2"
+        },
+        {
+          "path": ".superpowers/blob-checkpoint-runs/run-IJCJPuGm/sqlite--restore.log",
+          "sha256": "061ced708a8d2117721e9b2a56248255d8dfb92583aea7254d3b5edf25ce4bd2"
+        }
+      ],
+      "engines": [
+        "SQLite",
+        "redb"
+      ],
+      "ready_rows_per_engine": 5,
+      "configured_aliases": 2,
+      "pending_per_engine": 1,
+      "detached_per_engine": 1,
+      "tombstones_per_engine": 1,
+      "other_rows_per_engine": 1
+    },
+    "normalized_archive": {
+      "retained_directory": ".superpowers/blob-checkpoint-runs/run-UvbvnUgf",
+      "logs": [
+        {
+          "path": ".superpowers/blob-checkpoint-runs/run-UvbvnUgf/protocol.log",
+          "sha256": "52fb2d79812b5962ff2215112728872d4a759b88726e7b4ce8e61873341a60c9"
+        },
+        {
+          "path": ".superpowers/blob-checkpoint-runs/run-UvbvnUgf/redb--reopen.log",
+          "sha256": "061ced708a8d2117721e9b2a56248255d8dfb92583aea7254d3b5edf25ce4bd2"
+        },
+        {
+          "path": ".superpowers/blob-checkpoint-runs/run-UvbvnUgf/redb--restore.log",
+          "sha256": "061ced708a8d2117721e9b2a56248255d8dfb92583aea7254d3b5edf25ce4bd2"
+        },
+        {
+          "path": ".superpowers/blob-checkpoint-runs/run-UvbvnUgf/sqlite--reopen.log",
+          "sha256": "061ced708a8d2117721e9b2a56248255d8dfb92583aea7254d3b5edf25ce4bd2"
+        },
+        {
+          "path": ".superpowers/blob-checkpoint-runs/run-UvbvnUgf/sqlite--restore.log",
+          "sha256": "061ced708a8d2117721e9b2a56248255d8dfb92583aea7254d3b5edf25ce4bd2"
+        }
+      ],
+      "engines": [
+        "SQLite",
+        "redb"
+      ],
+      "ready_rows_per_engine": 5,
+      "configured_aliases": 2,
+      "pending_per_engine": 1,
+      "detached_per_engine": 1,
+      "tombstones_per_engine": 1,
+      "other_rows_per_engine": 1
+    },
+    "actual_profiles": [
+      "local RustFS S3 profile",
+      "persistent Azurite Azure emulator"
+    ],
+    "exercised": [
+      "no create-time key journal",
+      "equal content under distinct owners and exact Unicode/slash Resource IDs",
+      "zero-byte object",
+      "separate aliases and both transfer directions",
+      "private Stage publication and existing destination refusal",
+      "fresh-process inventory read and native restore",
+      "fresh-process native reopen and exact Resource revision/upload revision/owner/store/content reads",
+      "unauthorized caller denied",
+      "inspection provider counters prove read-only collection"
+    ],
+    "not_qualified": [
+      "AWS S3",
+      "live Azure account",
+      "provider-wide coherent snapshot",
+      "post-link filesystem sync fault or power loss"
+    ]
+  },
+  "normalized_packages": {
+    "consumer": "/tmp/blob-checkpoint-packaged-0WKUSP/consumer",
+    "archives": {
+      "rom-blob-checkpoint": "d75e3776b21674e9e5d6654cb7f09583dd7a21dd8839a94f98a35b9c234b8ee6",
+      "rom-blob-recovery": "d4a7732933198dca804eb8e08ce1e667e3d6e7a65cb75be3153bc3b487db62a5",
+      "rom-azure-blob": "529b210bbfa3f8f436ee01731b6480513b4118e142df3fa865c00fade494db86",
+      "rom-extras-maintenance": "b2721a3c6737e80ddb2671951ae6df245a3ac3cd690eb2ff444e39e12df1bfd0"
+    },
+    "registry_equal_to_source": true,
+    "source_lock": {
+      "path": "tests/blob-checkpoint-public-consumer/Cargo.lock",
+      "sha256": "0a549694d49a09e51e7625fa525143d1c8879b15db304b1fe7a7ddf0078f9036"
+    },
+    "archive_lock": {
+      "path": "/tmp/blob-checkpoint-packaged-0WKUSP/consumer/Cargo.lock",
+      "sha256": "24cc74fbe71f79afa2d7b5c74b5503cd2d9f4f4b91f0df71e530b4a7f1b21589"
+    }
+  },
+  "dependencies": {
+    "root_registry_packages": 434,
+    "source_and_archive_registry_packages": 223,
+    "new_registry_packages": 0,
+    "removed_prior_registry_packages": 0,
+    "changed_prior_checksums": 0,
+    "archive_checksum_and_extracted_source_verification": {
+      "path": ".superpowers/blob-checkpoint-dependencies-2026-10-10.json",
+      "sha256": "f2246ac15f6b39c80818a2bfa06b3c6c6cbc729a65b57d41064fe9099456385f"
+    },
+    "audits": [
+      {
+        "graph": "root",
+        "known_vulnerabilities": 0,
+        "warnings": [
+          "unmaintained"
+        ],
+        "evidence": {
+          "path": ".superpowers/blob-checkpoint-root-audit-2026-10-10.json",
+          "sha256": "24a893ba7d5c6db6dc9d22003e3be0d976460cc91d4a60280e1f0eb70d7fac26"
+        }
+      },
+      {
+        "graph": "source",
+        "known_vulnerabilities": 0,
+        "warnings": [],
+        "evidence": {
+          "path": ".superpowers/blob-checkpoint-source-audit-2026-10-10.json",
+          "sha256": "8c33d5298c8d433e8cda1fafc41a5a63b9ff6989cccea732f40b542e061f7c9e"
+        }
+      },
+      {
+        "graph": "archive",
+        "known_vulnerabilities": 0,
+        "warnings": [],
+        "evidence": {
+          "path": ".superpowers/blob-checkpoint-archive-audit-2026-10-10.json",
+          "sha256": "8c33d5298c8d433e8cda1fafc41a5a63b9ff6989cccea732f40b542e061f7c9e"
+        }
+      },
+      {
+        "graph": "core",
+        "known_vulnerabilities": 0,
+        "warnings": [],
+        "evidence": {
+          "path": ".superpowers/blob-checkpoint-core-audit-2026-10-10.json",
+          "sha256": "c13cd4cceeb6fcdf05dd7609865ba62c1702d80a60770e7489042b54bbd5c2a6"
+        }
+      }
+    ],
+    "existing_warning": "The root retains the unsuppressed paste maintenance warning; independent graphs have no warnings"
+  },
+  "review": {
+    "critical": 0,
+    "important_remaining": 0,
+    "minor_remaining": 0,
+    "evidence": {
+      "path": ".superpowers/blob-checkpoint-final-review-2026-10-10.md",
+      "sha256": "8e7ebbd6c83e0c75f76b6cfad99e31e146d2d8e3f5ce39f55798d174a3fdcc29"
+    },
+    "closed": [
+      "distinct decoded aliases ceiling",
+      "non-Unix private-file refusal",
+      "focused malformed archive/zero upload-revision preparation tests",
+      "prior full evidence attribution and whole-future dropping caveats clarified after execution"
+    ],
+    "review_execution_scope": "Independent source review, not independent reviewer execution of compilers or native protocols"
+  },
+  "preservation": {
+    "cache_archive_inventory": {
+      "path": ".superpowers/blob-checkpoint-preserved-caches-2026-10-10.json",
+      "sha256": "a0128b2010d72bf493bfccc719a984cf91d40d853e748edfe00461f9e49a0d47"
+    },
+    "historical_data_prototypes_worktrees_logs_and_final_binaries_retained": true,
+    "active_fixture_identity": "Same isolated OpenSearch and Qdrant fixtures from prior blob recovery qualification; historical fixtures remain archived",
+    "opensearch_protections": {
+      "path": ".superpowers/blob-checkpoint-opensearch-preflight-2026-10-10.json",
+      "sha256": "9019b937bcdb5b6f58b94ffeb168a9c533be1720b1e89ae4e713ba23510b9849"
+    }
+  },
+  "remaining": [
+    "unsigned inventory requires host authorization and authenticated provenance",
+    "source archive/object immutability and suspended garbage collection remain host obligations",
+    "scope excludes historical,Pending,Detached,tombstoned,unattached and custom external objects",
+    "no online durable publication journal or streaming/multipart restore",
+    "no atomic cross-store deployment cutover",
+    "native synchronous I/O and cleanup lack a hard termination deadline",
+    "dropping the entire collection future gives no shutdown/completion proof",
+    "cloud and provider-wide snapshot profiles unqualified",
+    "complete SQL Storage and remaining ROM-extras family acceptance still open"
+  ],
+  "closing_changes": "Only documentation attribution/cancellation caveats, plan completion and this verification record changed after the full run; implementation remained frozen. Fmt and git diff checks rerun after closing.",
+  "closing_documentation_files": [
+    "docs/blob-checkpoint.md",
+    "docs/superpowers/plans/2026-10-10-blob-checkpoint-inventory.md",
+    "docs/support.md"
+  ]
+}

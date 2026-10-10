@@ -1,0 +1,25 @@
+[package]
+name = "blob-checkpoint-public-consumer"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.99"
+publish = false
+license = "MIT"
+[workspace]
+[features]
+default = ["s3-lifecycle"]
+s3-lifecycle = []
+[dependencies]
+rom-blob-checkpoint = { path = "../../crates/rom-blob-checkpoint", features = ["sqlite", "redb"] }
+rom-blob-recovery = { path = "../../crates/rom-blob-recovery" }
+rom-azure-blob = { path = "../../crates/rom-azure-blob" }
+rom-extras-maintenance = { path = "../../crates/rom-extras-maintenance", features = ["sqlite", "redb"] }
+rom = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false }
+rom-blob = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+rom-blob-object-store = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+rom-backup = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+rom-sqlite = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+rom-redb = { git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+futures-util = { version = "=0.3.34", default-features = false, features = ["std"] }
+tokio = { version = "=1.53.1", features = ["rt", "time", "macros"] }
+tokio-util = { version = "=0.7.19", features = ["rt"] }

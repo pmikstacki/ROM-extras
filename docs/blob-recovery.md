@@ -9,8 +9,8 @@ Each `Entry` contains an exact opaque `ObjectKey`, a separate SHA-256 content `D
 A physical ROM key identifies a publication. It is not necessarily the content digest.
 A `Manifest` binds entries to a host-selected checkpoint digest. SHA-256 does not authenticate the manifest or prove completeness.
 
-The host must preserve exact publication keys when objects are created.
-The public ROM pin does not expose a function to reconstruct every publication key from an archive.
+The host can preserve exact publication keys when objects are created.
+The [checkpoint inventory tool](blob-checkpoint.md) can observe exact keys through public reads of current Ready built-in Blob rows.
 Do not copy the private key algorithm. Do not replace physical keys with content digests.
 
 The host must authorize recovery, authenticate checkpoint provenance and prove inventory completeness.
@@ -66,7 +66,7 @@ It binds captured publication facts to Ready Blob rows in a coherent SQLite or r
 It copies Azure objects to S3, restores the native database and reads the same Resource ID through the destination BlobService.
 It also checks an unauthorized caller and reopens each restored native database.
 
-The example captures one approved publication in memory. A production host needs a durable publication inventory and broader checkpoint completeness rules.
+The example captures one approved publication in memory. The checkpoint inventory tool adds private durable inventories with an explicit current-row completeness scope.
 A successful run does not qualify recovery after losing that inventory or an automatic deployment cutover.
 
 Run the affected gate with explicit dedicated fixture configuration:

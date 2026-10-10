@@ -50,3 +50,5 @@ source scripts/lib/qdrant-qualification-env.sh
 ./scripts/check-maintenance
 
 ./scripts/check-blob-recovery
+
+./scripts/check-blob-checkpoint

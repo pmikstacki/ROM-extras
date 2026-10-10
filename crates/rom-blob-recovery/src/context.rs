@@ -13,7 +13,8 @@ impl Context {
     pub fn new(deadline: Instant, cancel: CancellationToken) -> Self {
         Self { deadline, cancel }
     }
-    pub(crate) fn check(&self) -> Result<(), Cause> {
+    /// Check cancellation and the absolute deadline without admitting provider work.
+    pub fn check(&self) -> Result<(), Cause> {
         if self.cancel.is_cancelled() {
             Err(Cause::Canceled)
         } else if Instant::now() >= self.deadline {
@@ -22,14 +23,24 @@ impl Context {
             Ok(())
         }
     }
-    pub(crate) async fn wait<T, F>(&self, future: F) -> Result<T, Cause>
+    /// Bound cooperative waiting for a public BlobStore or BlobService operation.
+    /// Dropping its future does not establish termination of accepted hidden work.
+    pub async fn wait<T, F>(&self, future: F) -> Result<T, Cause>
+    where
+        F: Future<Output = rom_blob::Result<T>>,
+    {
+        self.wait_result(future).await?.map_err(Cause::from)
+    }
+    /// Preserve a public provider/service result separately from caller timeout or cancellation.
+    /// Accepted supervised operations can continue after this waiter returns.
+    pub async fn wait_result<T, F>(&self, future: F) -> Result<rom_blob::Result<T>, Cause>
     where
         F: Future<Output = rom_blob::Result<T>>,
     {
         tokio::select! {biased;
          _=self.cancel.cancelled()=>Err(Cause::Canceled),
          _=tokio::time::sleep_until(self.deadline)=>Err(Cause::Timeout),
-         r=future=>r.map_err(Cause::from),
+         r=future=>Ok(r),
         }
     }
     pub(crate) async fn create<F>(&self, future: F) -> Result<(), rom_blob::Error>

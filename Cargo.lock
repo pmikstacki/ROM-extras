@@ -2940,6 +2940,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "rom-blob-checkpoint"
+version = "0.1.0-dev"
+dependencies = [
+ "futures-util",
+ "rom",
+ "rom-backup",
+ "rom-blob",
+ "rom-blob-recovery",
+ "rom-extras-maintenance",
+ "rom-redb",
+ "rom-sqlite",
+ "serde",
+ "serde_json",
+ "tokio",
+ "tokio-util",
+]
+
+[[package]]
 name = "rom-blob-recovery"
 version = "0.1.0-dev"
 dependencies = [

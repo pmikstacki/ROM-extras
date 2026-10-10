@@ -1,0 +1,8 @@
+[package]
+name = "blob-checkpoint-core-consumer"
+version = "0.0.0"
+edition = "2024"
+[workspace]
+[dependencies]
+rom-blob-checkpoint = { path = "../../crates/rom-blob-checkpoint", default-features = false }
+rom-extras-maintenance = { path = "../../crates/rom-extras-maintenance", default-features = false }

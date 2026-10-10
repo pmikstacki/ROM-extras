@@ -423,6 +423,10 @@ See [the maintained guide](mysql-ownership.md).
 The [generic recovery tool](blob-recovery.md) implements bounded manifests with separate opaque publication keys and content SHA-256 digests.
 It verifies create-only transfers and explicit resume through existing public S3 and Azure ports.
 Its controlled host example restores SQLite/redb Resources with exact identifiers, revisions and authorization.
-Production inventory durability, cloud qualification and deployment cutover remain open. The complete ROM-extras goal remains active.
-Source and normalized archive consumers passed; the full local verifier passed on unchanged frozen files.
+The [checkpoint inventory tool](blob-checkpoint.md) adds private durable inventories for current Ready built-in Blob rows.
+Historical/custom external resources, cloud qualification and deployment cutover remain open. The complete ROM-extras goal remains active.
+The previous blob recovery increment passed source and normalized archive consumers and its full verifier on unchanged frozen files.
 See [the executed verification record](verification/blob-recovery-2026-10-10.json).
+
+The checkpoint inventory increment also passed independent native source/archive consumers and the full verifier with all 1479 frozen files unchanged.
+See [the checkpoint verification record](verification/blob-checkpoint-inventory-2026-10-10.json).

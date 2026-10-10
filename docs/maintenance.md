@@ -102,4 +102,5 @@ All external SQL profiles, external-object restore verification, post-publicatio
 
 The [blob recovery tool](blob-recovery.md) verifies a host-approved external inventory through public provider ports.
 Its controlled host example binds captured physical keys to SQLite/redb checkpoints and reads restored Resources through the destination provider.
-Production inventory durability, completeness across all Resource families and deployment cutover remain required.
+The [checkpoint inventory tool](blob-checkpoint.md) persists exact current Ready built-in Blob bindings after isolated public-service reads.
+Completeness across all Resource families, cloud qualification and deployment cutover remain required.

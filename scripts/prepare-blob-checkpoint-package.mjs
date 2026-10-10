@@ -1,0 +1,13 @@
+import {preparePackagedConsumer} from './lib/package-consumer.mjs';
+import {readFileSync,writeFileSync} from 'node:fs';
+const source='tests/blob-checkpoint-public-consumer';
+const packages=['rom-blob-checkpoint','rom-blob-recovery','rom-azure-blob','rom-extras-maintenance'];
+const manifest=readFileSync(source+'/Cargo.toml','utf8');
+const extraDependencies=manifest.split('[dependencies]\n')[1].split('\n').filter(line=>!/^rom-(blob-checkpoint|blob-recovery|azure-blob|extras-maintenance) =/.test(line)).join('\n');
+const consumer=preparePackagedConsumer({prefix:'blob-checkpoint',isolated:true,packages,source:source+'/src/main.rs',supportSources:[source+'/src/tracked.rs',source+'/src/native.rs',source+'/src/fixtures.rs','tests/common/azure_fixture.rs','tests/public-consumer/tests/s3_fixture/profile.rs'],extraDependencies,extraPatches:['rom','rom-blob','rom-backup','rom-sqlite','rom-redb'].map(name=>`${name} = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }`).join('\n')});
+const cargo=consumer+'/Cargo.toml';
+writeFileSync(cargo,readFileSync(cargo,'utf8').replace('[dependencies]','[features]\ndefault = ["s3-lifecycle"]\ns3-lifecycle = []\n[dependencies]').replace('rom-blob-checkpoint = "=0.1.0-dev"','rom-blob-checkpoint = { version = "=0.1.0-dev", features = ["sqlite", "redb"] }').replace('rom-extras-maintenance = "=0.1.0-dev"','rom-extras-maintenance = { version = "=0.1.0-dev", features = ["sqlite", "redb"] }'));
+const fixtures=consumer+'/src/fixtures.rs';
+writeFileSync(fixtures,readFileSync(fixtures,'utf8').replace(/#\[path = "[^"\n]*\/([^/"\n]+)"\]/g,'#[path = "$1"]'));
+writeFileSync(consumer+'/Cargo.lock',readFileSync(source+'/Cargo.lock','utf8').replace('name = "blob-checkpoint-public-consumer"','name = "rom-blob-checkpoint-packaged-consumer"'));
+process.stdout.write(consumer+'\n');

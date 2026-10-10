@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+umask 077
+: "${ROM_EXTRAS_AZURE_ENDPOINT:?Explicit dedicated Azurite fixture required.}"
+: "${ROM_EXTRAS_S3_ENDPOINT:?Explicit dedicated S3 fixture required.}"
+command -v timeout >/dev/null
+export CARGO_INCREMENTAL=0
+cargo fmt --manifest-path tests/blob-checkpoint-core-consumer/Cargo.toml -- --check
+cargo run --locked --offline --manifest-path tests/blob-checkpoint-core-consumer/Cargo.toml --target-dir target/maintenance-core-consumer
+cargo fmt --manifest-path tests/blob-checkpoint-public-consumer/Cargo.toml -- --check
+for features in '' sqlite redb; do
+    args=()
+    if [[ -n "$features" ]]; then args=(--features "$features"); fi
+    cargo test --locked -p rom-blob-checkpoint --no-default-features "${args[@]}"
+done
+cargo test --locked -p rom-blob-recovery --no-default-features
+cargo clippy --locked -p rom-blob-checkpoint --all-features --all-targets -- -D warnings
+RUSTDOCFLAGS='-D warnings' cargo doc --locked -p rom-blob-checkpoint --all-features --no-deps
+manifest=tests/blob-checkpoint-public-consumer/Cargo.toml
+cargo clippy --locked --offline --manifest-path "$manifest" --target-dir target/blob-recovery-consumer --all-targets -- -D warnings
+cargo build --locked --offline --manifest-path "$manifest" --target-dir target/blob-recovery-consumer
+mkdir -p .superpowers/blob-checkpoint-runs
+run_consumer() {
+    export ROM_EXTRAS_BLOB_CHECKPOINT_RUN
+    ROM_EXTRAS_BLOB_CHECKPOINT_RUN=$(mktemp -d "$PWD/.superpowers/blob-checkpoint-runs/run-XXXXXXXX")
+    timeout 180 "$1" > "$ROM_EXTRAS_BLOB_CHECKPOINT_RUN/protocol.log" 2>&1
+    printf 'Blob checkpoint qualification passed; retained evidence: %s\n' "$ROM_EXTRAS_BLOB_CHECKPOINT_RUN"
+}
+run_consumer "$PWD/target/blob-recovery-consumer/debug/blob-checkpoint-public-consumer"
+for package in rom-blob-checkpoint rom-blob-recovery rom-azure-blob rom-extras-maintenance; do
+    case "$package" in
+        rom-blob-checkpoint) native_packages=(rom rom-blob rom-backup rom-sqlite rom-redb) ;;
+        rom-blob-recovery) native_packages=(rom-blob) ;;
+        rom-azure-blob) native_packages=(rom rom-blob rom-sqlite rom-redb rom-conformance) ;;
+        rom-extras-maintenance) native_packages=(rom rom-backup rom-sqlite rom-redb) ;;
+    esac
+    archive_args=()
+    for local_package in rom-blob-recovery rom-extras-maintenance; do
+        archive_args+=(--config "patch.crates-io.$local_package.path=\"crates/$local_package\"")
+    done
+    for native_package in "${native_packages[@]}"; do
+        archive_args+=(--config "patch.crates-io.$native_package.git=\"https://github.com/pmikstacki/ROM\"" --config "patch.crates-io.$native_package.rev=\"d7ef529040eec60dc869034c2d33130219db85fe\"")
+    done
+    cargo package --locked --allow-dirty --no-verify -p "$package" "${archive_args[@]}"
+done
+node --check scripts/prepare-blob-checkpoint-package.mjs
+consumer=$(node scripts/prepare-blob-checkpoint-package.mjs)
+cargo clippy --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/blob-recovery-packaged-consumer --all-targets -- -D warnings
+cargo build --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/blob-recovery-packaged-consumer
+run_consumer "$PWD/target/blob-recovery-packaged-consumer/debug/rom-blob-checkpoint-packaged-consumer"
