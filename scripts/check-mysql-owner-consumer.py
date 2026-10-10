@@ -6,6 +6,7 @@ import os
 import subprocess
 import sys
 import tempfile
+from lib.mysql_native_recovery import recover
 from lib.fixture_processes import install_interrupt_handlers, wait_owned
 install_interrupt_handlers()
 binary = str(Path(sys.argv[1]).resolve())
@@ -35,4 +36,16 @@ for profile, port in [('mysql', '55452'), ('mariadb', '55453')]:
         log.chmod(0o600)
         code = wait_owned([binary], timeout=40, env=env, stdout=output, stderr=output)
     assert code == 0, f'{profile} maintained qualification failed; retained {log}'
-    print(profile, 'maintained native qualification passed; retained', log)
+    def identity():
+        current = json.loads(subprocess.run(['docker', 'inspect', container], check=True, capture_output=True, timeout=5).stdout)[0]
+        assert (current['Id'], current['Image']) == expected[profile]
+        assert current['Name'].lstrip('/') == container
+        assert current['HostConfig']['PortBindings']['3306/tcp'] == [{'HostIp': '127.0.0.1', 'HostPort': port}]
+        current_mount = [m for m in current['Mounts'] if m['Destination'] == '/var/lib/mysql']
+        assert current_mount == mount
+        assert current['HostConfig']['RestartPolicy']['Name'] in ('no', '')
+        return {'id': current['Id'], 'image': current['Image'], 'data_mount': current_mount, 'started_at': current['State']['StartedAt'], 'pid': current['State']['Pid'], 'status': current['State']['Status'], 'exit_code': current['State']['ExitCode'], 'oom_killed': current['State']['OOMKilled']}
+    recover(binary, run / f'{profile}-noop', env, identity, container, noop=True)
+    recover(binary, run / f'{profile}-acknowledged', env, identity, container)
+    recover(binary, run / f'{profile}-incomplete', env, identity, container, incomplete=True)
+    print(profile, 'maintained qualification, no-op negative and both native recovery profiles passed; retained', run)

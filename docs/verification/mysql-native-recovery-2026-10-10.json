@@ -1,0 +1,453 @@
+{
+  "date": "2026-10-10",
+  "baseline": "0761313eb5a71907ad8f69780400117ce56b55e9",
+  "public_rom": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "scope": "Actual maintained MySQL/MariaDB ownership recovery across native process SIGKILL; not full ROM Storage or host/storage power loss",
+  "native_profiles": [
+    "MySQL8.4.11 literal loopback55452",
+    "MariaDB11.8.9 literal loopback55453"
+  ],
+  "affected": {
+    "command": "./scripts/check-mysql-owner",
+    "path": ".superpowers/mysql-native-recovery-affected-attempt1-2026-10-10.log",
+    "sha256": "3b320564c7f7988f09365cb6fe2e2e74910d60abfeac05a6658e055e5616667b",
+    "exit": 0,
+    "runs": [
+      ".superpowers/mysql-owner-runs/run-ri5pqm1h",
+      ".superpowers/mysql-owner-runs/run-7dfe78bl"
+    ],
+    "archive": "/tmp/mysql-owner-packaged-P7tHHZ/consumer"
+  },
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "path": ".superpowers/mysql-native-recovery-full-attempt2-2026-10-10.log",
+    "sha256": "edf36e3aff865716c79b17eceaacbdf10318733fc5a07a516657995e8c764322",
+    "exit": 0,
+    "source_identity": {
+      "path": ".superpowers/mysql-native-recovery-source-freeze-2026-10-10.json",
+      "sha256": "7785a6a49b247533a2a46001f19d185df1696a1efc3716fa5775d927795bff80",
+      "files": 1430,
+      "changed_during_execution": []
+    },
+    "native_runs": [
+      "/root/ROM-extras/.superpowers/mysql-owner-runs/run-pjwi3ocn",
+      "/root/ROM-extras/.superpowers/mysql-owner-runs/run-u1qaf39d"
+    ],
+    "archive": "/tmp/mysql-owner-packaged-AgngWe/consumer",
+    "archive_registry_graph_equals_audited_source": true
+  },
+  "native_evidence": [
+    {
+      "vendor": "mysql",
+      "mode": "noop",
+      "identity": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-pjwi3ocn/mysql-noop/identity.json",
+        "sha256": "9cae230bc477de7ede9d553c814dc16da44027cc84570fbb078d289b373a9ebb"
+      },
+      "native_log": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-pjwi3ocn/mysql-noop/native.log",
+        "sha256": "74904bce68cf2f9e3528d4ca5ee09a88e1112ea8b17b062acf01b3220c599404"
+      },
+      "observations": {
+        "container": "c21bf1c3c8a853430a1973d3e53c9671f7e35a8798207b4cb65b3083206a6696",
+        "image": "8d132912e9d3c985237567595ec2aeae04936044eb1f9336e8e4da2326238b84",
+        "volume": "rom-extras-mysql-20261008",
+        "started_before": "2026-10-10T01:46:25.652367987Z",
+        "started_after": "2026-10-10T01:46:25.652367987Z",
+        "exit": 101,
+        "native_killed_exit": null,
+        "native_oom_killed": null
+      }
+    },
+    {
+      "vendor": "mysql",
+      "mode": "acknowledged",
+      "identity": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-pjwi3ocn/mysql-acknowledged/identity.json",
+        "sha256": "f08c4628b59b17e67f79b829bc0eacf1b6d09f3ed9c6a3788199f756f8292a0e"
+      },
+      "native_log": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-pjwi3ocn/mysql-acknowledged/native.log",
+        "sha256": "c1d662a79bbb1f00a984fa44099e509a0648643d7480e7a738a61bc7f27a51ea"
+      },
+      "observations": {
+        "container": "c21bf1c3c8a853430a1973d3e53c9671f7e35a8798207b4cb65b3083206a6696",
+        "image": "8d132912e9d3c985237567595ec2aeae04936044eb1f9336e8e4da2326238b84",
+        "volume": "rom-extras-mysql-20261008",
+        "started_before": "2026-10-10T01:46:25.652367987Z",
+        "started_after": "2026-10-10T01:46:59.768538504Z",
+        "exit": 0,
+        "native_killed_exit": 137,
+        "native_oom_killed": false
+      }
+    },
+    {
+      "vendor": "mysql",
+      "mode": "incomplete",
+      "identity": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-pjwi3ocn/mysql-incomplete/identity.json",
+        "sha256": "7998151f74ea5b650213dee27bf577193478b5714adfc713a241fcd51832bccf"
+      },
+      "native_log": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-pjwi3ocn/mysql-incomplete/native.log",
+        "sha256": "728d477630f66cf8648f80eb987531fed4f90969b640cffbf0da1ce9d4f80d89"
+      },
+      "observations": {
+        "container": "c21bf1c3c8a853430a1973d3e53c9671f7e35a8798207b4cb65b3083206a6696",
+        "image": "8d132912e9d3c985237567595ec2aeae04936044eb1f9336e8e4da2326238b84",
+        "volume": "rom-extras-mysql-20261008",
+        "started_before": "2026-10-10T01:46:59.768538504Z",
+        "started_after": "2026-10-10T01:47:05.6856298Z",
+        "exit": 0,
+        "native_killed_exit": 137,
+        "native_oom_killed": false
+      }
+    },
+    {
+      "vendor": "mariadb",
+      "mode": "noop",
+      "identity": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-pjwi3ocn/mariadb-noop/identity.json",
+        "sha256": "0b86eeb1bcd747aa614e8b55d79caf14a9479a0976a953118e7126737ab4efc9"
+      },
+      "native_log": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-pjwi3ocn/mariadb-noop/native.log",
+        "sha256": "b5cc39c29ca65ad7f441641cfbc8f1fb71d0273551cd5fad113f0913cfacf69f"
+      },
+      "observations": {
+        "container": "607e2bb0d13bf7e8a0bc92c0f1465e1d240c6cabf9d2f7c79255573e87314e06",
+        "image": "53ef799caed285438d88678b529b4ff24406d4788f47ab8a74bb2212c707899a",
+        "volume": "rom-extras-mariadb-20261008",
+        "started_before": "2026-10-10T01:46:42.638331103Z",
+        "started_after": "2026-10-10T01:46:42.638331103Z",
+        "exit": 101,
+        "native_killed_exit": null,
+        "native_oom_killed": null
+      }
+    },
+    {
+      "vendor": "mariadb",
+      "mode": "acknowledged",
+      "identity": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-pjwi3ocn/mariadb-acknowledged/identity.json",
+        "sha256": "6ba807c6d52ff1846f6e0e61d6e25da07421dae33d1eafda775680696e23f8e4"
+      },
+      "native_log": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-pjwi3ocn/mariadb-acknowledged/native.log",
+        "sha256": "c2844027c427f4e8d4e98c3559248b00aa9f3caaf943bc469a32a760fd97e6e2"
+      },
+      "observations": {
+        "container": "607e2bb0d13bf7e8a0bc92c0f1465e1d240c6cabf9d2f7c79255573e87314e06",
+        "image": "53ef799caed285438d88678b529b4ff24406d4788f47ab8a74bb2212c707899a",
+        "volume": "rom-extras-mariadb-20261008",
+        "started_before": "2026-10-10T01:46:42.638331103Z",
+        "started_after": "2026-10-10T01:47:17.489573176Z",
+        "exit": 0,
+        "native_killed_exit": 137,
+        "native_oom_killed": false
+      }
+    },
+    {
+      "vendor": "mariadb",
+      "mode": "incomplete",
+      "identity": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-pjwi3ocn/mariadb-incomplete/identity.json",
+        "sha256": "0aa30b0ad540670fb2e5df4c5cfe8238f564fceeed43a41156e44a421afc2cac"
+      },
+      "native_log": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-pjwi3ocn/mariadb-incomplete/native.log",
+        "sha256": "728d477630f66cf8648f80eb987531fed4f90969b640cffbf0da1ce9d4f80d89"
+      },
+      "observations": {
+        "container": "607e2bb0d13bf7e8a0bc92c0f1465e1d240c6cabf9d2f7c79255573e87314e06",
+        "image": "53ef799caed285438d88678b529b4ff24406d4788f47ab8a74bb2212c707899a",
+        "volume": "rom-extras-mariadb-20261008",
+        "started_before": "2026-10-10T01:47:17.489573176Z",
+        "started_after": "2026-10-10T01:47:23.015817218Z",
+        "exit": 0,
+        "native_killed_exit": 137,
+        "native_oom_killed": false
+      }
+    },
+    {
+      "vendor": "mysql",
+      "mode": "noop",
+      "identity": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-u1qaf39d/mysql-noop/identity.json",
+        "sha256": "ce814a6b676a45ff4fbcc1004d6c327b0af0014abdac8c53401ad7cebfd11237"
+      },
+      "native_log": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-u1qaf39d/mysql-noop/native.log",
+        "sha256": "6ea6a7f5f2b66f91a486671426787e14d82023402faa62638e9ad9ac95531c2d"
+      },
+      "observations": {
+        "container": "c21bf1c3c8a853430a1973d3e53c9671f7e35a8798207b4cb65b3083206a6696",
+        "image": "8d132912e9d3c985237567595ec2aeae04936044eb1f9336e8e4da2326238b84",
+        "volume": "rom-extras-mysql-20261008",
+        "started_before": "2026-10-10T01:46:03.375801304Z",
+        "started_after": "2026-10-10T01:46:03.375801304Z",
+        "exit": 101,
+        "native_killed_exit": null,
+        "native_oom_killed": null
+      }
+    },
+    {
+      "vendor": "mysql",
+      "mode": "acknowledged",
+      "identity": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-u1qaf39d/mysql-acknowledged/identity.json",
+        "sha256": "e13cdee80eef2993177fc941970f9688788a50a472e65ca30329759a70c4eded"
+      },
+      "native_log": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-u1qaf39d/mysql-acknowledged/native.log",
+        "sha256": "396f0c2caf1ba5f5b83a90fe752865d55f7cd7be15b0ec3b179022f3b25957d4"
+      },
+      "observations": {
+        "container": "c21bf1c3c8a853430a1973d3e53c9671f7e35a8798207b4cb65b3083206a6696",
+        "image": "8d132912e9d3c985237567595ec2aeae04936044eb1f9336e8e4da2326238b84",
+        "volume": "rom-extras-mysql-20261008",
+        "started_before": "2026-10-10T01:46:03.375801304Z",
+        "started_after": "2026-10-10T01:46:19.447853281Z",
+        "exit": 0,
+        "native_killed_exit": 137,
+        "native_oom_killed": false
+      }
+    },
+    {
+      "vendor": "mysql",
+      "mode": "incomplete",
+      "identity": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-u1qaf39d/mysql-incomplete/identity.json",
+        "sha256": "76844be74ca4f8c0cd33f591e065e89e7ae891be5d2d30837a898d4518831191"
+      },
+      "native_log": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-u1qaf39d/mysql-incomplete/native.log",
+        "sha256": "728d477630f66cf8648f80eb987531fed4f90969b640cffbf0da1ce9d4f80d89"
+      },
+      "observations": {
+        "container": "c21bf1c3c8a853430a1973d3e53c9671f7e35a8798207b4cb65b3083206a6696",
+        "image": "8d132912e9d3c985237567595ec2aeae04936044eb1f9336e8e4da2326238b84",
+        "volume": "rom-extras-mysql-20261008",
+        "started_before": "2026-10-10T01:46:19.447853281Z",
+        "started_after": "2026-10-10T01:46:25.652367987Z",
+        "exit": 0,
+        "native_killed_exit": 137,
+        "native_oom_killed": false
+      }
+    },
+    {
+      "vendor": "mariadb",
+      "mode": "noop",
+      "identity": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-u1qaf39d/mariadb-noop/identity.json",
+        "sha256": "dd6ca92331b81f6d594cc1b52748a5a0eea31e1f12cd5e23bc6938461b7875df"
+      },
+      "native_log": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-u1qaf39d/mariadb-noop/native.log",
+        "sha256": "511a55c873b4698e9d3434c7bb0939b779f77c0d676d95f63f974e4232c2bbc4"
+      },
+      "observations": {
+        "container": "607e2bb0d13bf7e8a0bc92c0f1465e1d240c6cabf9d2f7c79255573e87314e06",
+        "image": "53ef799caed285438d88678b529b4ff24406d4788f47ab8a74bb2212c707899a",
+        "volume": "rom-extras-mariadb-20261008",
+        "started_before": "2026-10-10T01:46:05.804934222Z",
+        "started_after": "2026-10-10T01:46:05.804934222Z",
+        "exit": 101,
+        "native_killed_exit": null,
+        "native_oom_killed": null
+      }
+    },
+    {
+      "vendor": "mariadb",
+      "mode": "acknowledged",
+      "identity": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-u1qaf39d/mariadb-acknowledged/identity.json",
+        "sha256": "12f5b40cb6cd006c01ba244914bc453bd0aafe6473a6202112aa83e1bd570638"
+      },
+      "native_log": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-u1qaf39d/mariadb-acknowledged/native.log",
+        "sha256": "ef8e6a31cf1088e10d107dd9bfb97333d7c3513257779729671411242520e670"
+      },
+      "observations": {
+        "container": "607e2bb0d13bf7e8a0bc92c0f1465e1d240c6cabf9d2f7c79255573e87314e06",
+        "image": "53ef799caed285438d88678b529b4ff24406d4788f47ab8a74bb2212c707899a",
+        "volume": "rom-extras-mariadb-20261008",
+        "started_before": "2026-10-10T01:46:05.804934222Z",
+        "started_after": "2026-10-10T01:46:37.402262223Z",
+        "exit": 0,
+        "native_killed_exit": 137,
+        "native_oom_killed": false
+      }
+    },
+    {
+      "vendor": "mariadb",
+      "mode": "incomplete",
+      "identity": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-u1qaf39d/mariadb-incomplete/identity.json",
+        "sha256": "e39750268743553c3ce91725cb2e3dd34456c12c6aeec153c1ce5bbeca7e9f63"
+      },
+      "native_log": {
+        "path": "/root/ROM-extras/.superpowers/mysql-owner-runs/run-u1qaf39d/mariadb-incomplete/native.log",
+        "sha256": "728d477630f66cf8648f80eb987531fed4f90969b640cffbf0da1ce9d4f80d89"
+      },
+      "observations": {
+        "container": "607e2bb0d13bf7e8a0bc92c0f1465e1d240c6cabf9d2f7c79255573e87314e06",
+        "image": "53ef799caed285438d88678b529b4ff24406d4788f47ab8a74bb2212c707899a",
+        "volume": "rom-extras-mariadb-20261008",
+        "started_before": "2026-10-10T01:46:37.402262223Z",
+        "started_after": "2026-10-10T01:46:42.638331103Z",
+        "exit": 0,
+        "native_killed_exit": 137,
+        "native_oom_killed": false
+      }
+    }
+  ],
+  "preserved_completed_compiler_cache": {
+    "path": ".superpowers/compiler-cache-archives-2026-10-10/inventory.json",
+    "sha256": "03b875f3dd35ab68fa918fbcd2df16e0a0ae534d666a6982b647e0d5354a2782",
+    "verified_regular_files": 8374,
+    "original_bytes": 1103018678,
+    "compressed_bytes": 355097481,
+    "final_binary_unchanged": true,
+    "working_cache_rebuilt_empty": true,
+    "archived_every_byte": true,
+    "cost": "Later cache reconstruction can take longer; final artifacts/source/packages/logs untouched",
+    "source": "https://doc.rust-lang.org/cargo/reference/build-cache.html"
+  },
+  "full_verifier_failure": {
+    "exit": 101,
+    "path": ".superpowers/mysql-native-recovery-full-attempt1-2026-10-10.log",
+    "sha256": "0b201fbbf4e6bc9cceaba362db4321a813d28bf2e2ae3c8fc2f7f448844124df",
+    "cause": "Fixture OpenSearch automatic create-index block below previous10GiB high watermark; green694 primaries,9.83GB available",
+    "diagnostic": {
+      "path": ".superpowers/mysql-recovery-opensearch-diagnostic-2026-10-10.json",
+      "sha256": "2381161156c49775745f9dce2442358c0713ab3ff986ae83e7de3027f47164fb"
+    }
+  },
+  "fixture_capacity_ruling": {
+    "path": ".superpowers/mysql-recovery-opensearch-reserve-2026-10-10.json",
+    "sha256": "5e9e6e1a011efb737838d85666476f28ac6c45e74373ecd4a81d26b7106e67e5",
+    "choice": "Fixture-only low8/high6/flood5GiB with8GiB admission; threshold protection and5GiB flood floor retained",
+    "cost": "Smaller fixture free-space margin; not a production capacity profile",
+    "data_deleted": false,
+    "source": "https://docs.opensearch.org/latest/install-and-configure/configuring-opensearch/cluster-settings/"
+  },
+  "qualified": [
+    "Actual original generation1/generation2 guards retained in RAM while driver clients close without release",
+    "Same-container/image/volume process KILL; stopped137/noOOM; PID1 native executable and changed Docker start",
+    "Native durable flush=1, sync_binlog=1 when binary log enabled, force_recovery=0; changed native Uptime",
+    "Separate acknowledged-only profile and independently witnessed held/uncommitted99 probe during death",
+    "Exact generation2/data17; incomplete probe0; Busy claim; stale write/release refused",
+    "Current retained guard writes42, releases/reclaims generation3 observed through a fresh connection",
+    "No write/owner transition retry; fixture connection readiness alone retries explicitly",
+    "No-op lifecycle negative exits101 for intended native Uptime witness; source and normalized archives both required"
+  ],
+  "dependencies": {
+    "inventory": {
+      "path": ".superpowers/mysql-native-recovery-dependencies-2026-10-10.json",
+      "sha256": "48d049fa31ecb092f4bd2df86502644db6d6f08951f1c3f500824ba747b2bf9e"
+    },
+    "root_registry_packages": 434,
+    "new_registry_packages": 0,
+    "removed_registry_packages": 0,
+    "changed_checksums": 0,
+    "consumer_registry_packages": 152,
+    "source_archive_registry_identical": true,
+    "integrity": "All152 registry archives SHA256 and extracted regular files checked; manifest license/MSRV verified; actual Rust1.99 builds",
+    "audits": [
+      {
+        "graph": "root",
+        "path": ".superpowers/mysql-recovery-root-audit-2026-10-10.json",
+        "sha256": "0dfb0737630110678861982acfcca9eca01a44c1da343403207498381e50a34f",
+        "vulnerabilities": 0,
+        "warnings": {
+          "unmaintained": 1
+        },
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+          "last-updated": "2026-10-09T10:12:02+02:00"
+        },
+        "lockfile": {
+          "dependency-count": 475
+        }
+      },
+      {
+        "graph": "source",
+        "path": ".superpowers/mysql-recovery-source-audit-2026-10-10.json",
+        "sha256": "fbdfad8bb49687dd3be28bccd35c31364519dfb03bdfae8658ff881cc5c00f89",
+        "vulnerabilities": 0,
+        "warnings": {},
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": null,
+          "last-updated": null
+        },
+        "lockfile": {
+          "dependency-count": 155
+        }
+      },
+      {
+        "graph": "archive",
+        "path": ".superpowers/mysql-recovery-archive-audit-2026-10-10.json",
+        "sha256": "fbdfad8bb49687dd3be28bccd35c31364519dfb03bdfae8658ff881cc5c00f89",
+        "vulnerabilities": 0,
+        "warnings": {},
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": null,
+          "last-updated": null
+        },
+        "lockfile": {
+          "dependency-count": 155
+        }
+      }
+    ],
+    "maintenance_warning": {
+      "id": "RUSTSEC-2024-0436",
+      "package": "paste1.0.15",
+      "suppressed": false,
+      "source": "https://rustsec.org/advisories/RUSTSEC-2024-0436.html"
+    }
+  },
+  "review": {
+    "evidence": {
+      "path": ".superpowers/mysql-native-recovery-final-review-2026-10-10.md",
+      "sha256": "9bcec6074d4282bf5371b0bb289c6e99f2036ad47e187b0a3ca6384a6d213ede"
+    },
+    "mode": "One source-only final review",
+    "critical": 0,
+    "important": 0,
+    "minor_deferred": [
+      "Use validated immutable container ID for lifecycle instead of pinned validated name; concurrent external name replacement outside exclusive fixture profile",
+      "Assert native version literal independently; image identity pin and measured equality currently establish profile"
+    ]
+  },
+  "failures_retained": [
+    "Missing recovery module RED101",
+    "First protocol attempt failed default-user /proc/1/exe access before lifecycle; database-user readlink correction; no elevated container privileges",
+    "Expected no-op negative101 retained on both vendors/source/archive"
+  ],
+  "decisions": [
+    {
+      "choice": "SIGKILL and RAM guards, not graceful restart/newly reconstructed guards",
+      "basis": "Official native recovery and Docker signal documentation plus actual native observations",
+      "cost": "Exclusive retained fixtures briefly unavailable during controlled process-death tests"
+    },
+    {
+      "choice": "Separate closed-clients and held-native-transaction cases",
+      "basis": "Independent acknowledged persistence versus native incomplete rollback witnesses",
+      "cost": "Two real restarts per vendor/consumer"
+    }
+  ],
+  "remaining_acceptance": [
+    "Full public ROM SQL Storage/incremental Work/archive bridge",
+    "Host/storage powerloss, torn writes, corruption, replicated topology",
+    "Production TLS",
+    "Actual deadlock victim profiles",
+    "Uncertain owner acquisition acknowledgement",
+    "Malicious infile and additional packet/result fault qualification",
+    "Remaining ROM-extras families and complete release acceptance"
+  ],
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1\n"
+}

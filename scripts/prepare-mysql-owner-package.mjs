@@ -4,7 +4,7 @@ import {preparePackagedConsumer} from './lib/package-consumer.mjs';
 const consumer=preparePackagedConsumer({
  prefix:'mysql-owner',isolated:true,packages:['rom-sql-core','rom-mysql'],
  source:'tests/mysql-owner-consumer/src/main.rs',
- supportSources:['tests/mysql-owner-consumer/src/fixture.rs','tests/mysql-owner-consumer/src/cases.rs','tests/mysql-owner-consumer/src/admission.rs','tests/mssql-owner-consumer/src/wire_proxy.rs'],
+ supportSources:['tests/mysql-owner-consumer/src/fixture.rs','tests/mysql-owner-consumer/src/cases.rs','tests/mysql-owner-consumer/src/admission.rs','tests/mysql-owner-consumer/src/restart.rs','tests/mssql-owner-consumer/src/wire_proxy.rs'],
  extraDependencies:'mysql = {version="=28.0.3",default-features=false,features=["minimal-rust","native-tls"]}\ntokio = {version="=1.53.1",features=["rt","net","time"]}',
 });
 const source=readFileSync(join(consumer,'src/main.rs'),'utf8');

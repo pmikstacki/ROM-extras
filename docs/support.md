@@ -408,3 +408,12 @@ Source/archive consumers, actual CLI and the full local verifier passed the nati
 See [the verification record](verification/maintenance-native-tools-2026-10-10.json).
 External SQL maintenance, object recovery and host cutover remain incomplete.
 See [configuration, examples and limits](maintenance.md).
+
+## MySQL and MariaDB native process recovery
+
+Separate source/archive consumers retain acknowledged guards across same-container/image/volume SIGKILL on both vendors.
+Exact owner state survives; a separately witnessed uncommitted write rolls back. Native Uptime and lifecycle observations reject a no-op restart.
+Stale guards fail; the retained current guard writes, releases and reclaims a new generation, confirmed by a fresh connection.
+The full local verifier passed; power loss, deadlocks, owner-acquisition uncertainty, production TLS and full Storage remain open.
+See [the verification record](verification/mysql-native-recovery-2026-10-10.json).
+See [the maintained guide](mysql-ownership.md).

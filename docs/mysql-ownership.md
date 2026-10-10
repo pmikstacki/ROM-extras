@@ -89,3 +89,25 @@ Historical executor/restart evidence remains separate and unchanged.
 See [the source research](research/mysql-maintained-owner-2026-10-09.md) and [verification record](verification/mysql-maintained-owner-2026-10-09.json).
 
 The full local verifier passed on1344 unchanged maintained source files. The initial shared-helper Clippy failure and correction remain in evidence.
+
+## Native process recovery increment
+
+Both retained MySQL8.4.11 and MariaDB11.8.9 fixtures now pass direct and normalized archive recovery consumers.
+Each consumer retains the actual acknowledged generation2 guards in memory while the native process is killed.
+An acknowledged-only profile closes clients before SIGKILL. A separate incomplete profile keeps an independently witnessed uncommitted write open.
+The runner verifies exact container, image, data volume, process executable, exit137/noOOM and changed start time.
+Native Uptime must reset; a no-op restart signal fails this witness.
+After startup, exact generation2/data17 survive and the uncommitted probe remains0.
+Old guards fail, current guards write42, and release/reclaim advances to generation3, observed through a fresh connection.
+Writes and owner transitions are never retried. Fixture connection readiness polls alone are bounded and explicit.
+
+The source-only final review found no Critical/Important issue in this isolated fixture profile.
+Two Minor suggestions remain: use immutable container IDs for lifecycle commands, and independently assert exact native version literals.
+Current checks pin image/container identity and compare observed versions across recovery.
+The root and both consumer dependency audits found zero known vulnerabilities; the existing root paste warning remains unsuppressed.
+Source/archive152-package registry graphs match, with no added dependencies.
+The full local verifier passed on 1430 unchanged frozen source files.
+Its first attempt stopped at an OpenSearch fixture capacity block; the retained second attempt passed after a documented fixture-only change.
+See [the executed verification record](verification/mysql-native-recovery-2026-10-10.json).
+This profile does not prove OS/storage power loss, torn writes, production TLS, deadlock handling or full ROM Storage.
+See [primary research and limits](research/mysql-native-recovery-2026-10-10.md).
