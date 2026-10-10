@@ -15,6 +15,79 @@ use std::{
 const NOW: u64 = 1_800_000_000;
 const NONCE: &str = "host-retained-nonce";
 
+fn public_jwks(index: usize, kid: &str) -> Vec<u8> {
+    use base64::{Engine, engine::general_purpose::URL_SAFE_NO_PAD};
+    let mut child = Command::new("openssl")
+        .args(["rsa", "-modulus", "-noout"])
+        .stdin(Stdio::piped())
+        .stdout(Stdio::piped())
+        .stderr(Stdio::null())
+        .spawn()
+        .unwrap();
+    child
+        .stdin
+        .take()
+        .unwrap()
+        .write_all(&signing_keys()[index].private)
+        .unwrap();
+    let output = child.wait_with_output().unwrap();
+    assert!(output.status.success());
+    let text = std::str::from_utf8(&output.stdout)
+        .unwrap()
+        .trim()
+        .strip_prefix("Modulus=")
+        .unwrap();
+    let modulus: Vec<u8> = (0..text.len())
+        .step_by(2)
+        .map(|i| u8::from_str_radix(&text[i..i + 2], 16).unwrap())
+        .collect();
+    serde_json::to_vec(&json!({"keys":[{"kty":"RSA","alg":"RS256","use":"sig","kid":kid,"n":URL_SAFE_NO_PAD.encode(modulus),"e":"AQAB"}]})).unwrap()
+}
+
+#[test]
+fn public_jwks_snapshot_verifies_signatures_and_requires_explicit_rotation() {
+    let p = IssuerPreset::exact_https("https://issuer.fixture.test/realm").unwrap();
+    let old = token(p.issuer(), "original", 0, |_| {});
+    let mut original = p
+        .configure_jwks("employees", "rom-web", &public_jwks(0, "original"))
+        .unwrap();
+    let proof = original
+        .authenticate(&old, NONCE, OidcTokenBindings::default(), NOW)
+        .unwrap();
+    assert_eq!(proof.subject(), "person-17");
+    assert_eq!(proof.authority(), "employees");
+    // A fixed host approval remains fixed after ROM's cache interval. This is not native revocation.
+    assert!(
+        original
+            .authenticate(&old, NONCE, OidcTokenBindings::default(), NOW + 31)
+            .is_ok()
+    );
+    let mut replacement = p
+        .configure_jwks("employees", "rom-web", &public_jwks(1, "rotated"))
+        .unwrap();
+    assert_eq!(
+        replacement
+            .authenticate(&old, NONCE, OidcTokenBindings::default(), NOW)
+            .err(),
+        Some(AuthError::UnknownKey)
+    );
+    let mut replacement = p
+        .configure_jwks("employees", "rom-web", &public_jwks(1, "rotated"))
+        .unwrap();
+    let new = token(p.issuer(), "rotated", 1, |_| {});
+    assert!(
+        replacement
+            .authenticate(&new, NONCE, OidcTokenBindings::default(), NOW)
+            .is_ok()
+    );
+    assert_eq!(
+        replacement
+            .authenticate(&old, NONCE, OidcTokenBindings::default(), NOW + 5)
+            .err(),
+        Some(AuthError::UnknownKey)
+    );
+}
+
 struct SigningKey {
     private: Vec<u8>,
     public: Vec<u8>,

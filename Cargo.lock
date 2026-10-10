@@ -3164,8 +3164,10 @@ dependencies = [
 name = "rom-oidc-presets"
 version = "0.1.0-dev"
 dependencies = [
+ "base64 0.22.1",
  "jsonwebtoken",
  "rom-auth",
+ "serde",
  "serde_json",
  "url",
 ]

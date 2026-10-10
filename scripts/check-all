@@ -52,3 +52,5 @@ source scripts/lib/qdrant-qualification-env.sh
 ./scripts/check-blob-recovery
 
 ./scripts/check-blob-checkpoint
+
+./scripts/check-oidc-native

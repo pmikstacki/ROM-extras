@@ -8,6 +8,17 @@ pub struct IssuerPreset {
 }
 
 impl IssuerPreset {
+    /// Configure existing ROM verification with a bounded host-approved public JWKS snapshot.
+    /// No discovery, URL resolution, key acquisition or token verification occurs here.
+    /// Replace the snapshot and verifier explicitly when host-approved keys change.
+    pub fn configure_jwks(
+        &self,
+        authority: &str,
+        client_id: &str,
+        bytes: &[u8],
+    ) -> Result<OidcIdTokenAdapter<crate::JwksKeys>, AuthError> {
+        self.configure(authority, client_id, crate::jwks::parse(bytes)?)
+    }
     /// Retain an exact HTTPS issuer, including its path and trailing slash.
     ///
     /// Reject credentials, query, fragment, whitespace, controls, and backslashes.

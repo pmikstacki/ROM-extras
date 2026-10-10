@@ -12,3 +12,7 @@
 
 mod issuer;
 pub use issuer::IssuerPreset;
+mod jwks;
+pub use jwks::JwksKeys;
+mod jwk_wire;
+mod rsa_components;

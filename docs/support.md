@@ -38,7 +38,11 @@ The independent public consumer now imports the preset package.
 After this increment, cargo-audit 0.22.2 found no advisories or warnings in 102 workspace and 165 consumer packages.
 Both scans used RustSec commit `550efd3d587a29b2e2c2b21b17a440da4fede999` on 2026-10-08.
 Manifest license inventories contain no absent declarations. Native cryptographic dependency notices still require release redistribution review.
-No live provider login or discovery profile is supported yet. See [usage and limits](oidc-presets.md).
+The 2026-10-10 increment adds an immutable bounded public JWKS snapshot through the existing ROM verifier.
+Actual local Keycloak 26.8.0 code/S256-PKCE, key rotation and persistent restart passed on source and archive consumers.
+Public SQLite/redb consumers check explicit identity linking, expiry, current authorization and persisted credential exclusion.
+The host retains network discovery, acquisition approval, sessions and explicit snapshot replacement.
+This does not qualify production sessions or additional provider login profiles. See [usage and limits](oidc-presets.md).
 
 ## SQL Server execution increment
 
@@ -95,7 +99,7 @@ The Node 22.16 fixture SQLite API is experimental; this is not a production rece
 | MySQL, MariaDB | Five live executor tests each, binary identity and restart evidence; full Storage providers and verified TLS remain pending. |
 | CockroachDB | Native executor evidence and maintained SERIALIZABLE ownership on26.3.2; durable SELECT lock,40001 rollback, committed response loss and same-volume SIGKILL; distributed qualification and full Storage remain pending. |
 | Oracle | Native OCI executor and maintained ownership on23.26.3; strict RAW/NUMBER, full rollback, SELECT lock and graceful restart; absolute containment, real COMMIT loss, TCPS and full Storage remain pending. |
-| OIDC | Preset configuration and signed synthetic-token integration verified; live provider login remains pending. |
+| OIDC | Bounded JWKS and actual local Keycloak code/PKCE, rotation, restart and native authorization verified; production sessions and further profiles remain pending. |
 | OpenTelemetry | Public diagnostic interface publication and OTLP implementation remain pending. |
 | Webhooks | HTTPS/signing/destination policy and native Runtime recovery/authorization tests implemented; production receiver and release acceptance remain pending. |
 | NATS | Acknowledged JetStream publication, broker recovery/redelivery, and native Runtime retry/revocation verified; single-node TLS-first token/reconnect profile verified; production topology and release remain pending. |
