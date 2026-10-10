@@ -1,0 +1,13 @@
+[package]
+name = "oracle-owner-consumer"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.99"
+publish = false
+license = "MIT"
+[workspace]
+[dependencies]
+rom-oracle = { path = "../../crates/rom-oracle" }
+rom-sql-core = { path = "../../crates/rom-sql-core" }
+oracle = "=0.6.3"
+tokio = { version = "=1.53.1", features = ["rt"] }

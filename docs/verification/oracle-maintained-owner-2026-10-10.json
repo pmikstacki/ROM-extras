@@ -1,0 +1,186 @@
+{
+  "date": "2026-10-10",
+  "baseline": "03c662c55fa7c9ab98e8d722e9ba9cc593602ec8",
+  "public_rom": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "scope": "Maintained Oracle native ownership foundation; not full ROM Storage or production TCPS",
+  "native": {
+    "profile": "Oracle Free23.26.3.0.0; external OCI23.26.3.0.0; rust-oracle0.6.3; explicit literal loopback55458/FREEPDB1; application user ROM_EXTRAS",
+    "container_id": "ef3b4ccfe9485930aa300059b74af11e345990c11fb1e357b66e3f954ebc6f9e",
+    "image_id": "cdf2f86bedfa41904dfd7dbf27defe90d46a2fb8b34d85ad1c279f2bda839420",
+    "persistent_volume": "rom-extras-oracle-20261008",
+    "affected": {
+      "log": ".superpowers/oracle-maintained-affected-attempt3-2026-10-10.log",
+      "sha256": "3fb9388d70577f1fc77fecbc91e70d76f58098a4469735e99d80eb970dd18d31",
+      "exit": 0
+    },
+    "retained_affected_runs": [
+      "/root/ROM-extras/.superpowers/oracle-owner-runs/run-y77n9vur",
+      "/root/ROM-extras/.superpowers/oracle-owner-runs/run-w62b2k2p"
+    ],
+    "affected_archive": "/tmp/oracle-owner-packaged-4GEbNC/consumer",
+    "full_archive": "/tmp/oracle-owner-packaged-MPwuBf/consumer",
+    "retained_full_oracle_runs": [
+      "/root/ROM-extras/.superpowers/oracle-owner-runs/run-0nz0t5i7",
+      "/root/ROM-extras/.superpowers/oracle-owner-runs/run-_3ini7hh"
+    ],
+    "qualifications": [
+      "Exact claim/takeover/release/generation and stale surviving client fencing",
+      "Native SELECT-only control-row lock before protected writes; WAIT expiry, full rollback and fresh reuse",
+      "ORA-00001 prefix rollback, caught-error poison, Drop rollback and same-value affected-row result",
+      "Native DML-only admission rejects DDL/PLSQL/SELECT/COMMIT/ROLLBACK/RETURNING before execution",
+      "Bounded SQL/binds, nonfinite values, descriptor/runtime admission and redacted diagnostic canaries",
+      "Independent RAW/NUMBER malformations, original character identity/token/generation rejection, fractional/range checks, exact i64::MAX/exhaustion, duplicate/empty/missing state",
+      "Actual blocked-DML OCI3s roundtrip timeout; observed2.5..12s including cleanup, Unknown/permanent retirement, independent prefix rollback witness",
+      "Same-image/same-volume graceful stop, fresh native shutdown witness, same database identity/new startup and FREEPDB1 READ WRITE; RAM generation2 survives, stale1 denied, successor3 acknowledged"
+    ]
+  },
+  "regression": {
+    "log": ".superpowers/oracle-maintained-legacy-regression-2026-10-10.log",
+    "sha256": "60725f9c42aebc82119c8ea926fe8c4c82e2434ce4067a6d2189040e289000b9",
+    "exit": 0
+  },
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "log": ".superpowers/oracle-maintained-full-verifier-attempt1-2026-10-10.log",
+    "sha256": "7a6dfdeb6d63a50f00e677cf48f84bcbc6e1c0b26b1f045163b978c11d27cf66",
+    "exit": 0,
+    "source_identity": {
+      "snapshot": ".superpowers/oracle-maintained-source-snapshot-2026-10-10.json",
+      "snapshot_sha256": "e3d3028f1465129de375f6cc3982b38e42d841b0205c0cb218e82bad26b207a9",
+      "files": 1395,
+      "changed_during_full_verifier": [],
+      "baseline": "03c662c55fa7c9ab98e8d722e9ba9cc593602ec8"
+    }
+  },
+  "dependencies": {
+    "inventory": ".superpowers/oracle-maintained-dependencies-2026-10-10.json",
+    "inventory_sha256": "2bf82dad21a9529fc7d562e6ffb66d84467070defc0c6bb204f309951e632727",
+    "root_registry_packages": 434,
+    "new_root_registry_packages": 10,
+    "changed_prior_checksums": 0,
+    "removed_prior_registry_packages": 0,
+    "consumer_registry_packages": 21,
+    "integrity": "Every independent consumer registry archive SHA256 and extracted regular file verified; licenses and declared MSRV checked; exact graph compiles on Rust1.99",
+    "source_archive_registry_identical": true,
+    "final_affected_archive_equals_audited_archive": true,
+    "audits": [
+      {
+        "graph": "root",
+        "log": ".superpowers/oracle-maintained-root-audit-2026-10-10.json",
+        "sha256": "7a5b2070a852915abbcd2c97d0405414a3a05675138dae98ad8d92b41458d206",
+        "vulnerabilities": 0,
+        "warnings": 1,
+        "ignored_advisories": [],
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+          "last-updated": "2026-10-09T10:12:02+02:00"
+        },
+        "lockfile": {
+          "dependency-count": 474
+        }
+      },
+      {
+        "graph": "consumer",
+        "log": ".superpowers/oracle-maintained-consumer-audit-2026-10-10.json",
+        "sha256": "7f3d20c4397daed07f3e6b5e7096d2bf523b2140e038e5450f8371d9e3a4ba6a",
+        "vulnerabilities": 0,
+        "warnings": 1,
+        "ignored_advisories": [],
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": null,
+          "last-updated": null
+        },
+        "lockfile": {
+          "dependency-count": 24
+        }
+      },
+      {
+        "graph": "archive",
+        "log": ".superpowers/oracle-maintained-archive-audit-2026-10-10.json",
+        "sha256": "7f3d20c4397daed07f3e6b5e7096d2bf523b2140e038e5450f8371d9e3a4ba6a",
+        "vulnerabilities": 0,
+        "warnings": 1,
+        "ignored_advisories": [],
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": null,
+          "last-updated": null
+        },
+        "lockfile": {
+          "dependency-count": 24
+        }
+      }
+    ],
+    "maintenance_warning": {
+      "id": "RUSTSEC-2024-0436",
+      "package": "paste1.0.15",
+      "source": "https://rustsec.org/advisories/RUSTSEC-2024-0436.html",
+      "ruling": "Retain mandatory SDK compile-time dependency without suppression; track separately maintained SDK replacement before broader acceptance",
+      "native_oci_security_not_covered": true
+    }
+  },
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1",
+  "review": {
+    "note": ".superpowers/oracle-maintained-final-review-2026-10-10.md",
+    "sha256": "0d9e93bcb98c38f96096176b6ec615cd69d159f4ee470627c7574824d5b3e451",
+    "execution": "Source inspection only; parent executed native, archive and full verifier",
+    "remaining_critical_or_important": 0,
+    "deferred_minor": "Fresh Docker shutdown-log capture has finite time bound but no output-size cap; fixed controlled fixture; preserve fresh shutdown witness in future bounded capture"
+  },
+  "preserved_red": [
+    {
+      "log": ".superpowers/oracle-maintained-public-red-2026-10-10.log",
+      "sha256": "1fe6f79ad826b715c1ff70730e234e2547cb69324c9bd620d67201d3b88390cb",
+      "exit": 101
+    },
+    {
+      "log": ".superpowers/oracle-special-ip-red-2026-10-10.log",
+      "sha256": "b8f1cd00ff8125ca6aad93121835b29f5176f747d75c4ef352447df76ccfe787",
+      "exit": 101
+    },
+    {
+      "log": ".superpowers/oracle-maintained-character-types-native-attempt2-2026-10-10.log",
+      "sha256": "5c823089aa5e156796eaf6aa6a7d4f79a2a2f028d1b3398022e2388592ba35ed",
+      "exit": 101
+    }
+  ],
+  "not_qualified": [
+    "Full ROM SQL Storage/journal/incremental Work",
+    "Actual COMMIT wire-response loss and uncertain ownership-acquisition acknowledgement",
+    "Absolute operation/socket/cancellation containment and cumulative transaction deadlines",
+    "Abrupt SIGKILL or host power-loss recovery",
+    "Production TCPS trust/hostname negatives",
+    "Native OCI security/advisory and binary redistribution acceptance",
+    "Hostile native frame/allocation/LOB schema; concurrent administrative DDL",
+    "Complete nullable text/double/ROM field codec conformance"
+  ],
+  "rulings": [
+    {
+      "decision": "Use private OCI worker over shared SQL arbitration",
+      "reason": "Native session/timeout semantics differ from PGwire and Tiberius",
+      "cost_if_wrong": "In-process native close can block beyond observed roundtrip; no physical containment claim"
+    },
+    {
+      "decision": "Admit bounded owned typed binds instead of arbitrary SDK callbacks",
+      "reason": "Keep handles/payload admission inside worker",
+      "cost_if_wrong": "Additional value conversion; full codec qualification remains separate"
+    },
+    {
+      "decision": "Describe original NUMBER/RAW columns before CASE projection",
+      "reason": "Native character identity case raised932 and Unknown instead of Invalid; no malformed row admitted",
+      "cost_if_wrong": "Additional roundtrip; stable host-owned schema required"
+    },
+    {
+      "decision": "Retain unsuppressed informational paste warning",
+      "reason": "Mandatory pinned SDK dependency; upstream development still uses paste; no patched advisory version",
+      "cost_if_wrong": "Build-time maintenance burden remains; SDK fork would require new adoption/qualification"
+    },
+    {
+      "decision": "Preserve histories/worktrees/evidence after authorized publication",
+      "reason": "Explicit user preservation instruction",
+      "cost_if_wrong": "Additional disk use; deferred log-output cap remains visible"
+    }
+  ]
+}

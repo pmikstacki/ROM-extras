@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_ORACLE_USER:?Explicit controlled Oracle credential required}"
+: "${ROM_EXTRAS_ORACLE_PASSWORD:?Protected Oracle credential required}"
+: "${ROM_EXTRAS_ORACLE_CONNECT:?Explicit native loopback Oracle fixture required; no skip}"
+: "${ROM_EXTRAS_PYTHON:?Explicit Python3 executable required for owned fixture deadlines}"
+cargo test --locked -p rom-oracle -p rom-sql-core
+cargo clippy --locked -p rom-oracle --all-targets -- -D warnings
+RUSTDOCFLAGS='-D warnings' cargo doc --locked -p rom-oracle --no-deps
+cargo fmt --manifest-path tests/oracle-owner-consumer/Cargo.toml -- --check
+cargo clippy --manifest-path tests/oracle-owner-consumer/Cargo.toml --locked --offline --target-dir target/oracle-owner-consumer --all-targets -- -D warnings
+cargo build --manifest-path tests/oracle-owner-consumer/Cargo.toml --locked --offline --target-dir target/oracle-owner-consumer
+"$ROM_EXTRAS_PYTHON" scripts/check-oracle-owner-consumer.py target/oracle-owner-consumer/debug/oracle-owner-consumer
+node --check scripts/prepare-oracle-owner-package.mjs
+cargo package --locked --allow-dirty --no-verify -p rom-sql-core -p rom-oracle \
+    --config 'patch.crates-io.rom-sql-core.path="crates/rom-sql-core"'
+consumer=$(node scripts/prepare-oracle-owner-package.mjs)
+cargo clippy --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/oracle-owner-packaged-consumer --all-targets -- -D warnings
+cargo build --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/oracle-owner-packaged-consumer
+"$ROM_EXTRAS_PYTHON" scripts/check-oracle-owner-consumer.py target/oracle-owner-packaged-consumer/debug/rom-oracle-owner-packaged-consumer

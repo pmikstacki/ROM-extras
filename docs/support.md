@@ -94,7 +94,7 @@ The Node 22.16 fixture SQLite API is experimental; this is not a production rece
 | MSSQL | Three live executor tests, encryption, and restart control evidence; full Storage provider remains pending. |
 | MySQL, MariaDB | Five live executor tests each, binary identity and restart evidence; full Storage providers and verified TLS remain pending. |
 | CockroachDB | Native executor evidence and maintained SERIALIZABLE ownership on26.3.2; durable SELECT lock,40001 rollback, committed response loss and same-volume SIGKILL; distributed qualification and full Storage remain pending. |
-| Oracle | Seven real OCI executor cases on 23.26.3, including RAW identity, full rollback and orderly restart; full Storage remains pending. |
+| Oracle | Native OCI executor and maintained ownership on23.26.3; strict RAW/NUMBER, full rollback, SELECT lock and graceful restart; absolute containment, real COMMIT loss, TCPS and full Storage remain pending. |
 | OIDC | Preset configuration and signed synthetic-token integration verified; live provider login remains pending. |
 | OpenTelemetry | Public diagnostic interface publication and OTLP implementation remain pending. |
 | Webhooks | HTTPS/signing/destination policy and native Runtime recovery/authorization tests implemented; production receiver and release acceptance remain pending. |
@@ -387,3 +387,13 @@ Source and normalized archive consumers qualify exact transitions, stale clients
 Native developer-injected40003 tests uncertainty classification; it does not establish a distributed ambiguous commit.
 Distributed failure profiles, production TLS and full ROM Storage remain open.
 See [configuration and evidence limits](cockroach-ownership.md).
+
+## Maintained Oracle ownership foundation
+
+rom-oracle shares ownership arbitration and exact state validation through SQL core.
+A private OCI worker retains native handles and poisons transactions after caught failures.
+Source and archive qualification cover ownership, stale clients, prefix rollback, forbidden statement kinds, strict RAW/NUMBER, native timeout and graceful recovery.
+Original identity/token/generation character columns are rejected before CASE projection.
+Dependency audits retain one informational paste maintenance warning and report zero known Rust vulnerabilities.
+OCI timeout is per round trip; absolute operation/socket containment, COMMIT wire loss, abrupt recovery, production TCPS and full Storage remain required.
+See [configuration and evidence limits](oracle-ownership.md).

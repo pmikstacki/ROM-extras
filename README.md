@@ -25,6 +25,7 @@ The maintained [CockroachDB adapter](docs/cockroach-ownership.md) shares PGwire 
 The maintained [SQL Server adapter](docs/mssql-ownership.md) verifies native ownership, stale connections, native deadlock rollback, actual COMMIT response loss and same-volume SIGKILL recovery through direct and packaged consumers.
 
 The maintained [MySQL/MariaDB adapter](docs/mysql-ownership.md) shares one driver with separately qualified ownership, rollback and actual COMMIT response-loss profiles.
+The maintained [Oracle foundation](docs/oracle-ownership.md) adds native ownership, strict RAW/NUMBER validation and graceful recovery; absolute OCI containment and COMMIT wire-loss qualification remain open.
 
 ### Integrations
 
