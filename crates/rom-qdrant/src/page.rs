@@ -16,6 +16,7 @@ pub(crate) struct Entry {
     pub(crate) body: Vec<u8>,
     pub(crate) point: Value,
     pub(crate) metadata: OperationMetadata,
+    pub(crate) candidates: Option<Vec<Vec<f32>>>,
 }
 impl ProjectionTarget for Qdrant {
     type Request = PreparedPage;
@@ -42,7 +43,13 @@ impl ProjectionTarget for Qdrant {
             {
                 return Err(Error::Invalid);
             }
-            let write = PreparedWrite::new(doc)?;
+            let vector = if self.generation.distance == crate::Distance::Cosine {
+                doc.vector().map(crate::cosine::normalize).transpose()?
+            } else {
+                None
+            };
+            let candidates = vector.as_deref().map(crate::cosine::candidates);
+            let write = PreparedWrite::with_vector(doc, vector.as_deref().or(doc.vector()))?;
             let body = write.as_bytes().to_vec();
             if body.len() > WIRE_LIMIT - total {
                 return Err(Error::TooLarge);
@@ -58,6 +65,7 @@ impl ProjectionTarget for Qdrant {
                 body,
                 point,
                 metadata: doc.metadata().clone(),
+                candidates,
             });
         }
         Ok(PreparedPage {

@@ -85,7 +85,8 @@ All databases, collections and process logs remain retained.
 429, oversize, redirects, malformed JSON, timeout and cancellation use authored protocol responses, separately from native service evidence.
 The relay counts requests to prove no automatic query retry.
 Required gates reject diagnostic-only replay mode; direct loss-probe invocation remains available. Logs are checked for both read/write tokens and administrator credentials.
-Cosine normalization, other dimensions, distributed replication, approximate recall, rebuild/cutover and release acceptance remain unqualified.
+The [explicit Cosine profile](qdrant-cosine.md) uses the same public query/hydration contract with host-owned normalization.
+High-dimensional ranking, distributed replication, approximate recall, rebuild/cutover and release acceptance remain unqualified.
 REST cannot detect recreation with copied markers; exclusive host administration and no name reuse remain mandatory.
 
 The [verification record](verification/vector-search-2026-10-09.json) identifies the frozen sources, successful complete verifier and archive hashes.

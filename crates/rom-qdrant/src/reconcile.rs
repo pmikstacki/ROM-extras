@@ -43,6 +43,23 @@ pub(crate) fn same_point(expected: &Value, actual: &Value) -> NativeResult<()> {
     }
     Ok(())
 }
+pub(crate) fn same_point_candidates(
+    expected: &Value,
+    actual: &Value,
+    candidates: Option<&[Vec<f32>]>,
+) -> NativeResult<()> {
+    let Some(candidates) = candidates else {
+        return same_point(expected, actual);
+    };
+    let mut point = expected.clone();
+    for candidate in candidates {
+        point["vector"]["embedding"] = json!(candidate);
+        if same_point(&point, actual).is_ok() {
+            return Ok(());
+        }
+    }
+    Err(TargetFailure::Rejected)
+}
 impl Qdrant {
     pub(crate) async fn apply_page(
         &self,
@@ -113,7 +130,7 @@ impl Qdrant {
             if points.len() != 1 {
                 return Err(TargetFailure::Rejected);
             }
-            same_point(&entry.point, &points[0])?;
+            same_point_candidates(&entry.point, &points[0], entry.candidates.as_deref())?;
             observations.push(
                 RemoteObservation::new(
                     &self.generation.profile,
@@ -133,6 +150,15 @@ impl Qdrant {
             .map_err(|_| TargetFailure::Unknown)?
     }
     pub(crate) async fn inspect_generation(&self) -> NativeResult<()> {
+        if self.generation.distance == crate::Distance::Cosine {
+            let (_, version) = self
+                .http
+                .request(Method::GET, &[], &[], None, false)
+                .await?;
+            if version["version"].as_str() != Some("1.19.2") {
+                return Err(TargetFailure::Rejected);
+            }
+        }
         let (_, value) = self
             .http
             .request(

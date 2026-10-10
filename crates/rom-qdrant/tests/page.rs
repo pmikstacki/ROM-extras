@@ -103,3 +103,64 @@ fn page_bounds_total_wire_bytes_before_intent() {
         Err(Error::TooLarge)
     ));
 }
+
+#[test]
+fn cosine_preparation_rejects_zero_and_keeps_original_approved_vector() {
+    let mapping = mapping();
+    let target = Qdrant::new(
+        TlsConfig::api_key(
+            "https://127.0.0.1:1",
+            include_bytes!("support/admission-ca.pem").to_vec(),
+            b"host-token".to_vec(),
+            Duration::from_secs(1),
+        )
+        .unwrap(),
+        Generation::cosine_v1_19_2(mapping.profile().clone(), "cosine", "nonce", 3).unwrap(),
+    )
+    .unwrap();
+    for vector in [
+        vec![3., 4., -0.],
+        vec![f32::MAX, 0., 0.],
+        vec![f32::from_bits(1), 0., 0.],
+        vec![0., -0., 0.],
+    ] {
+        let document = mapping
+            .document(
+                &JournalView {
+                    position: 1,
+                    view: ProjectedView {
+                        key: Key {
+                            kind: "documents".into(),
+                            id: "ą / exact".into(),
+                        },
+                        revision: u64::MAX,
+                        value: Some(json!({"value":u64::MAX}).as_object().unwrap().clone()),
+                    },
+                },
+                Some(vector.clone()),
+            )
+            .unwrap();
+        let metadata = document.metadata().clone();
+        let approved_bits = document
+            .vector()
+            .unwrap()
+            .iter()
+            .map(|x| x.to_bits())
+            .collect::<Vec<_>>();
+        if vector.iter().all(|x| *x == 0.) {
+            assert!(matches!(target.prepare(&[&document]), Err(Error::Invalid)));
+        } else {
+            assert!(target.prepare(&[&document]).is_ok());
+        }
+        assert!(document.metadata() == &metadata);
+        assert_eq!(
+            document
+                .vector()
+                .unwrap()
+                .iter()
+                .map(|x| x.to_bits())
+                .collect::<Vec<_>>(),
+            approved_bits
+        );
+    }
+}

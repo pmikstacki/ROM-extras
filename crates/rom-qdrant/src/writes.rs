@@ -11,6 +11,9 @@ impl PreparedWrite {
     /// Prepare a single bounded whole-point replacement with strict revision and original-key fencing.
     /// Selected JSON is retained as a string to avoid native payload numeric coercion.
     pub fn new(document: &ApprovedDocument) -> Result<Self> {
+        Self::with_vector(document, document.vector())
+    }
+    pub(crate) fn with_vector(document: &ApprovedDocument, vector: Option<&[f32]>) -> Result<Self> {
         let metadata = document.metadata();
         let hi = metadata.revision() >> 32;
         let lo = metadata.revision() & 0xffff_ffff;
@@ -27,7 +30,7 @@ impl PreparedWrite {
             payload["rom_values"] =
                 json!(serde_json::to_string(fields).map_err(|_| Error::Invalid)?);
         }
-        let vector = match document.vector() {
+        let vector = match vector {
             Some(vector) => json!({"embedding":vector}),
             None if metadata.is_tombstone() => json!({}),
             None => return Err(Error::Invalid),

@@ -17,3 +17,7 @@ mod search;
 mod search_response;
 #[cfg(test)]
 mod search_response_tests;
+
+mod cosine;
+#[cfg(test)]
+mod cosine_tests;

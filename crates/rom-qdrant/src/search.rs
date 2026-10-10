@@ -38,6 +38,11 @@ impl VectorSearchTarget for Qdrant {
         {
             return Err(TargetFailure::Rejected);
         }
+        let vector = if self.generation.distance == Distance::Cosine {
+            crate::cosine::normalize(query.query().vector()).map_err(|_| TargetFailure::Rejected)?
+        } else {
+            query.query().vector().to_vec()
+        };
         let operation = async {
             self.inspect_generation().await?;
             let fingerprint = hex(&self.generation.profile.fingerprint());
@@ -50,7 +55,7 @@ impl VectorSearchTarget for Qdrant {
                 filter["must_not"] = json!([{"has_id":[point_id(&key.kind, &key.id)]}]);
             }
             let body = serde_json::to_vec(&json!({
-                "query":query.query().vector(), "using":"embedding", "filter":filter,
+                "query":vector, "using":"embedding", "filter":filter,
                 "params":{"exact":true}, "limit":query.query().candidate_budget(), "offset":0,
                 "with_vector":false,
                 "with_payload":["rom_kind","rom_id","rom_profile","rom_revision_hi","rom_revision_lo","rom_live"]

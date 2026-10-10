@@ -6,7 +6,7 @@ const consumer=preparePackagedConsumer({
  prefix:'qdrant-target',isolated:true,
  packages:['rom-sql-core','rom-projection-core','rom-projection-http','rom-qdrant'],
  source:'tests/qdrant-target-consumer/src/main.rs',
- supportSources:['tests/qdrant-target-consumer/src/native.rs','tests/qdrant-target-consumer/src/recovery.rs','tests/qdrant-target-consumer/src/vector.rs','crates/rom-projection-core/tests/search_fixture/search_permissions.rs'],
+ supportSources:['tests/qdrant-target-consumer/src/cosine.rs','tests/qdrant-target-consumer/src/native.rs','tests/qdrant-target-consumer/src/recovery.rs','tests/qdrant-target-consumer/src/vector.rs','crates/rom-projection-core/tests/search_fixture/search_permissions.rs'],
  extraPatches:`rom = ${rom}\nrom-backup = ${rom}\nrom-sqlite = ${rom}\nrom-redb = ${rom}`,
  extraDependencies:`rom = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
 rom-sqlite = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }

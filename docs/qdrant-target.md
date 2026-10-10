@@ -9,7 +9,8 @@ This increment adds `Generation`, `Distance`, `Qdrant` and an owned `PreparedPag
 Use an explicit HTTPS origin, CA certificate, collection-scoped `prw` JWT and operation deadline.
 Create a unique collection name and generation nonce. Never reuse the name.
 Build `Generation` from the exact `DocumentMapping::profile()`, dimensions and native distance metric.
-Admit Dot, Euclid or Manhattan. Cosine returns `Error::Unsupported` because upload normalization changes the approved vector.
+Admit Dot, Euclid or Manhattan through the general constructor.
+Select [the version-bound Cosine profile](qdrant-cosine.md) through its separate constructor; the general constructor still refuses Cosine.
 Dimensions are bounded to 1..=4096. Names and nonces admit ASCII letters, digits, hyphens and underscores within 128 bytes.
 
 `Generation::definition()` produces a pure administrator provisioning document.
@@ -98,7 +99,8 @@ Another checkpoint reopen verifies both original-key digests and completed curso
 Two loopback receivers verify that fixture clients reject redirects without contacting the destination.
 
 [Authorized dense vector queries](vector-search.md) now use the same fixed target with current ROM hydration.
-Cosine representation, distributed consistency, rebuild/cutover and release acceptance remain incomplete.
+The [Cosine representation profile](qdrant-cosine.md) adds explicit host preparation and exact tagged-native candidates.
+Distributed consistency, rebuild/cutover and release acceptance remain incomplete.
 The server's copied-marker identity limitation remains an operational exclusion, not a qualified immutable fence.
 
 The [verification record](verification/qdrant-target-2026-10-09.json) records the successful complete verifier and archive hashes.

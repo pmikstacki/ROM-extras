@@ -193,3 +193,49 @@ fn native_candidates_reject_exclusions_duplicates_excess_and_extra_values() {
         .is_err()
     );
 }
+
+#[test]
+fn cosine_candidates_accept_finite_descending_scores_and_empty_results() {
+    let query = VectorQuery::new(vec![3., 4., 0.], 3, 4).unwrap();
+    for points in [
+        vec![],
+        vec![
+            point("same", 1, 1.),
+            point("orthogonal", 1, 0.),
+            point("opposite", 1, -1.),
+        ],
+    ] {
+        assert!(
+            parse(
+                "documents",
+                &profile(),
+                &query,
+                Distance::Cosine,
+                &response(points)
+            )
+            .is_ok()
+        );
+    }
+    assert!(
+        parse(
+            "documents",
+            &profile(),
+            &query,
+            Distance::Cosine,
+            &response(vec![point("low", 1, 0.), point("high", 1, 1.)])
+        )
+        .is_err()
+    );
+    let mut invalid = point("invalid", 1, 0.);
+    invalid["score"] = json!(1e100);
+    assert!(
+        parse(
+            "documents",
+            &profile(),
+            &query,
+            Distance::Cosine,
+            &response(vec![invalid])
+        )
+        .is_err()
+    );
+}

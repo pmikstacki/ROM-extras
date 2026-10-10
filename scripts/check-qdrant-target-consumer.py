@@ -18,11 +18,17 @@ def encode(value):
 def token(name,access='prw'):
  data=encode({'alg':'HS256','typ':'JWT'})+b'.'+encode({'exp':int(time.time())+3600,'access':[{'collection':name,'access':access}]})
  return (data+b'.'+base64.urlsafe_b64encode(hmac.new(admin.encode(),data,hashlib.sha256).digest()).rstrip(b'=')).decode()
+cosine=os.environ.get('ROM_EXTRAS_QDRANT_COSINE_PROFILE')=='1'
 rows=[]
 for metric in ['dot','euclid','manhattan']:
  name='rom_extras_target_'+metric+'_'+uuid.uuid4().hex
  rows.append({'physical':name,'nonce':uuid.uuid4().hex,'writer':token(name),'reader':token(name,'r')})
-config={'endpoint':endpoint,'ca':str(root/'tls/ca.pem'),'admin':admin,'generations':rows}
+dimensional=[]
+if cosine:
+ for dimension in [1,3,15,16,17,31,32,33,4096]:
+  name='rom_extras_cosine_dim_'+str(dimension)+'_'+uuid.uuid4().hex
+  dimensional.append({'physical':name,'nonce':uuid.uuid4().hex,'writer':token(name),'dimensions':dimension})
+config={'endpoint':endpoint,'ca':str(root/'tls/ca.pem'),'admin':admin,'generations':rows,'cosine':cosine,'dimensional_generations':dimensional}
 config_path=run/'host.json';config_path.write_text(json.dumps(config));config_path.chmod(0o600)
 binary=str(Path(sys.argv[1]).resolve())
 # No secret data is printed by the definition command.
@@ -45,6 +51,10 @@ for row,definition in zip(rows,definitions):
 for row in rows:
  status,_=call('PUT','collections/'+row['physical']+'/points?wait=true',{'points':[]},row['reader'])
  assert status in [401,403],'Native read-only credential unexpectedly allowed writes'
+if cosine:
+ result=subprocess.run([binary,'--cosine-dimension-definitions',str(config_path)],capture_output=True,timeout=10,check=True)
+ for row,definition in zip(dimensional,json.loads(result.stdout)):
+  assert call('PUT','collections/'+row['physical'],definition,admin)[0]==200
 proxy=LossFixture(root,endpoint,admin)
 try:
  lossy={**config,'endpoint':proxy.endpoint}
@@ -57,6 +67,14 @@ try:
   assert code==0,f'Authored refusal {mode} failed; retained {run}'
  assert proxy.forwarded==0 and proxy.lost==0
  proxy.mode=None
+ if cosine:
+  proxy.mode='version'
+  for index,version in enumerate(['1.19.3',None,1192,{'version':'1.19.2'}]):
+   proxy.version_value=version
+   with (run/('authored-unsupported-version-'+str(index)+'.log')).open('x') as output:
+    code=wait_owned([binary,'--refusal',str(loss_path),'version'],timeout=10,stdout=output,stderr=output)
+   assert code==0 and proxy.forwarded==0 and proxy.version_other_calls==0,'Unsupported version dispatched a non-root request'
+  proxy.mode=None
  if os.environ.get('ROM_EXTRAS_QDRANT_TARGET_REPLAY_LOSS_PROBE')!='1':
   for backend in ['sqlite','redb']:
    database=run/('vector-'+backend);database.mkdir(mode=0o700)
@@ -99,8 +117,12 @@ with log.open('x') as output:
  log.chmod(0o600)
  code=wait_owned([binary,'--native',str(config_path)],timeout=60,stdout=output,stderr=output)
 assert code==0,f'Native consumer failed; retained log {log}'
-secrets=[admin,*[row[key] for row in rows for key in ['writer','reader']]]
+if cosine:
+ with (run/'native-dimensional.log').open('x') as output:
+  code=wait_owned([binary,'--cosine-dimensions',str(config_path)],timeout=90,stdout=output,stderr=output)
+ assert code==0,f'Native dimensional Cosine failed; retained {run}'
+secrets=[admin,*[row[key] for row in rows for key in ['writer','reader']],*[row['writer'] for row in dimensional]]
 for log in run.glob('*.log'):
  text=log.read_text()
  assert not any(secret in text for secret in secrets),'Credential appeared in an owned fixture log'
-print('Native Qdrant target and separately authored refusals passed; retained evidence:',run)
+print('Native Qdrant '+('Cosine profile' if cosine else 'target')+' and separately authored refusals passed; retained evidence:',run)

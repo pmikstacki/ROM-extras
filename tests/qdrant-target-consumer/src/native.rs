@@ -40,6 +40,15 @@ impl Host {
     }
     fn generation(&self, i: usize) -> Generation {
         let row = &self.config["generations"][i];
+        if self.is_cosine() {
+            return Generation::cosine_v1_19_2(
+                self.mapping.profile().clone(),
+                row["physical"].as_str().unwrap(),
+                row["nonce"].as_str().unwrap(),
+                3,
+            )
+            .unwrap();
+        }
         Generation::new(
             self.mapping.profile().clone(),
             row["physical"].as_str().unwrap(),
@@ -49,7 +58,35 @@ impl Host {
         )
         .unwrap()
     }
+    pub(crate) fn is_cosine(&self) -> bool {
+        self.config["cosine"].as_bool() == Some(true)
+    }
+    pub(crate) fn dimensional_generations(&self) -> Vec<Generation> {
+        self.config["dimensional_generations"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|row| {
+                Generation::cosine_v1_19_2(
+                    Self::mapping_for_dimensions(row["dimensions"].as_u64().unwrap() as usize)
+                        .profile()
+                        .clone(),
+                    row["physical"].as_str().unwrap(),
+                    row["nonce"].as_str().unwrap(),
+                    row["dimensions"].as_u64().unwrap() as usize,
+                )
+                .unwrap()
+            })
+            .collect()
+    }
+    pub(crate) fn dimensional_target(&self, i: usize) -> Qdrant {
+        let row = &self.config["dimensional_generations"][i];
+        self.configured_target(row, self.dimensional_generations().remove(i), "writer")
+    }
     fn mapping_definition() -> DocumentMapping {
+        Self::mapping_for_dimensions(3)
+    }
+    pub(crate) fn mapping_for_dimensions(dimensions: usize) -> DocumentMapping {
         DocumentMapping::new(
             ProjectionProfile::new(
                 "native-consumer",
@@ -59,7 +96,7 @@ impl Host {
             )
             .unwrap(),
             vec!["value".into()],
-            Some(3),
+            Some(dimensions),
         )
         .unwrap()
     }
@@ -74,6 +111,9 @@ impl Host {
     }
     fn target_credential(&self, i: usize, credential: &str) -> Qdrant {
         let row = &self.config["generations"][i];
+        self.configured_target(row, self.generation(i), credential)
+    }
+    fn configured_target(&self, row: &Value, generation: Generation, credential: &str) -> Qdrant {
         Qdrant::new(
             TlsConfig::api_key(
                 self.config["endpoint"].as_str().unwrap(),
@@ -82,7 +122,7 @@ impl Host {
                 Duration::from_secs(5),
             )
             .unwrap(),
-            self.generation(i),
+            generation,
         )
         .unwrap()
     }
@@ -150,7 +190,7 @@ impl Host {
         assert!(bytes.len() <= 1048576);
         serde_json::from_slice(&bytes).expect("native host invalid response")
     }
-    pub async fn refusal(&self, cancel: bool) {
+    pub async fn refusal(&self, cancel: bool, rejected: bool) {
         let mut target = self.target(0);
         let document = self.doc("refusal", 1, true, vec![3., 4., 0.]);
         let prepared = target.prepare(&[&document]).unwrap();
@@ -163,7 +203,11 @@ impl Host {
         } else {
             assert_eq!(
                 target.apply(prepared).await.err(),
-                Some(TargetFailure::Unknown)
+                Some(if rejected {
+                    TargetFailure::Rejected
+                } else {
+                    TargetFailure::Unknown
+                })
             );
         }
     }
@@ -184,6 +228,13 @@ impl Host {
             .enumerate()
             {
                 let doc = self.doc(&format!("original/{n}"), 1, true, vector);
+                if self.is_cosine() && n == 3 {
+                    assert!(matches!(
+                        target.prepare(&[&doc]),
+                        Err(rom_projection_core::Error::Invalid)
+                    ));
+                    continue;
+                }
                 let page = target.prepare(&[&doc]).unwrap();
                 assert_eq!(target.apply(page).await.unwrap().len(), 1);
                 assert_eq!(
@@ -257,7 +308,11 @@ impl Host {
                 "collections/{}/points?wait=true&ordering=strong",
                 target.physical_target()
             );
-            point["points"][0]["vector"]["embedding"] = json!([0.6, 0.8, 0.]);
+            point["points"][0]["vector"]["embedding"] = if self.is_cosine() {
+                json!([f32::from_bits(0.6_f32.to_bits() + 1), 0.8_f32, 0.])
+            } else {
+                json!([0.6, 0.8, 0.])
+            };
             self.admin_call(Method::PUT, &path, json!({"points":point["points"]}))
                 .await;
             assert_eq!(

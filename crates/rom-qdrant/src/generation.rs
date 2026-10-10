@@ -2,7 +2,7 @@
 use crate::writes::hex;
 use rom_projection_core::{Error, ProjectionProfile, Result};
 use serde_json::{Value, json};
-/// Native distance metric. Cosine is explicit but its normalization is not qualified.
+/// Native distance metric. Cosine requires its separately selected representation profile.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Distance {
     /// Inner product without upload normalization.
@@ -70,6 +70,18 @@ impl Generation {
             distance,
         })
     }
+    /// Select general nonzero finite Cosine preparation and exact Qdrant1.19.2 readback candidates.
+    /// Hosts must qualify the native build and floating-point environment; zero vectors are refused.
+    pub fn cosine_v1_19_2(
+        profile: ProjectionProfile,
+        physical: &str,
+        nonce: &str,
+        dimensions: usize,
+    ) -> Result<Self> {
+        let mut generation = Self::new(profile, physical, nonce, dimensions, Distance::Dot)?;
+        generation.distance = Distance::Cosine;
+        Ok(generation)
+    }
     /// Pure administrator provisioning document. Send it through a separate trusted host path.
     /// The writer cannot create collections. The host must exclude aliases and name reuse.
     pub fn definition(&self) -> Result<Vec<u8>> {
@@ -81,6 +93,6 @@ impl Generation {
     }
     pub(crate) fn marker(&self) -> Value {
         json!({"rom_extras_projection":{"format":1,"profile":hex(&self.profile.fingerprint()),
-            "generation":self.nonce,"normalization":"none"}})
+            "generation":self.nonce,"normalization":if self.distance==Distance::Cosine {"cosine-f64-qdrant-1.19.2-v1"} else {"none"}}})
     }
 }

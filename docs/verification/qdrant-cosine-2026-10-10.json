@@ -1,0 +1,417 @@
+{
+  "date": "2026-10-10",
+  "scope": "Explicit general finite nonzero Cosine representation on pinned Qdrant1.19.2; complete ROM-extras goal remains active",
+  "baseline": "f97d701fc96d23661be9552d986216b4f6468afe",
+  "public_rom_pin": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1\n",
+  "source_freeze": {
+    "files": 1510,
+    "unchanged_after_full": true,
+    "evidence": {
+      "path": ".superpowers/qdrant-cosine-source-freeze-2026-10-10.json",
+      "sha256": "5dffec44c634a165c04d921aa95775f90a943bbf5dc3484aae86bc30b2ff3e84"
+    }
+  },
+  "full_verifier": {
+    "command": "CARGO_INCREMENTAL=0 ./scripts/check-all with explicit owned private fixture configuration",
+    "exit": 0,
+    "evidence": {
+      "path": ".superpowers/qdrant-cosine-full-2026-10-10.log",
+      "sha256": "166807a60443195ad42c2b8b7ae5b68030bfe6905810db7c544372e5a115b464"
+    }
+  },
+  "affected_gate": {
+    "command": "./scripts/check-qdrant-target",
+    "exit": 0,
+    "evidence": {
+      "path": ".superpowers/qdrant-cosine-affected-attempt2-2026-10-10.log",
+      "sha256": "f9b6bf6fc885847595593c362f78c2c6e9b30abc4b15f8c4d18b59a015bb89ab"
+    },
+    "tests": {
+      "library": 14,
+      "generation": 2,
+      "page": 3,
+      "service_feature_separate_in_full": true
+    }
+  },
+  "red_green": [
+    {
+      "scope": "missing explicit constructor",
+      "red": {
+        "path": ".superpowers/qdrant-cosine-missing-api-red-2026-10-10.log",
+        "sha256": "66b33b2d83f5b3db3cf8b570ca8523f4f436b8b6f7eca70e1ea30c8dee15dda2"
+      },
+      "green": {
+        "path": ".superpowers/qdrant-cosine-unit-attempt1-2026-10-10.log",
+        "sha256": "003a542f66b4dce9dc885e65c5b8da0801a6ca504cfd388affd811c704589f4c"
+      }
+    },
+    {
+      "scope": "remaining native response Cosine refusal",
+      "red": {
+        "path": ".superpowers/qdrant-cosine-search-red-2026-10-10.log",
+        "sha256": "fb185c50dddab9a2af06a65940fbaffc4f0a33ae2b428cf35f381ea7ff7bd5ca"
+      },
+      "green": {
+        "path": ".superpowers/qdrant-cosine-unit-attempt2-2026-10-10.log",
+        "sha256": "cff011f46ab4b241759bf92ba7caa116448754d1dd67e4b815bd2a7126a0754f"
+      }
+    }
+  ],
+  "retained_failed_attempts": [
+    {
+      "scope": "source native query parser refusal",
+      "evidence": {
+        "path": ".superpowers/qdrant-cosine-native-attempt1-2026-10-10.log",
+        "sha256": "d3280d622659be17468a73cb18948eb09fe3b2cdbd6d5bc3ff17fca655d0bbcf"
+      }
+    },
+    {
+      "scope": "dimensional consumer double-derived mapping profile",
+      "evidence": {
+        "path": ".superpowers/qdrant-cosine-native-attempt2-2026-10-10.log",
+        "sha256": "57ab09eb4ab673b97c2d927269b371518155c664bc30cde3c95055292965b50a"
+      }
+    },
+    {
+      "scope": "test confused author negative zero with approved canonical zero",
+      "evidence": {
+        "path": ".superpowers/qdrant-cosine-affected-attempt1-2026-10-10.log",
+        "sha256": "9b727f9edfa4740778505b4d9ad242e067d2c17e13228090df8c82d6f9f0dd90"
+      }
+    }
+  ],
+  "native": {
+    "image": "docker.io/qdrant/qdrant@sha256:0e8273b9130ca3b0dd9dcfaa8f55342066711f8aaeb2aa072e53344c42ecf57f",
+    "architecture": "Linux x86_64",
+    "version": "1.19.2",
+    "published_endpoint": "https://127.0.0.1:55471",
+    "memory_limit_bytes": 536870912,
+    "cpu_limit": 1,
+    "dimensional_writes": [
+      1,
+      3,
+      15,
+      16,
+      17,
+      31,
+      32,
+      33,
+      4096
+    ],
+    "input_cases": [
+      "maximum finite",
+      "minimum subnormal",
+      "negative underflow to signed zero",
+      "mixed signs",
+      "dominant plus1e-3",
+      "dominant plus1e-4",
+      "core-canonicalized negative zero"
+    ],
+    "verified": [
+      "whole eligible tagged-reference exact float32 readback",
+      "original metadata via public PageIntent reconciliation",
+      "retries/stale revisions/conflicts/full-u64/tombstones/resurrection",
+      "one-bit native stored-vector corruption rejected",
+      "native collection-scoped lifecycle/index/other-collection and read-only write denial",
+      "finite descending Cosine ranking/current SQLite and redb hydration",
+      "exact Unicode/slash Resource IDs and excluded keys",
+      "zero query makes zero native requests",
+      "actual lost native write response, persisted service restart, inspect-before-replay and checkpoint recovery"
+    ],
+    "runs": [
+      {
+        "retained_directory": ".superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3",
+        "logs": [
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/authored-429.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/authored-cancel.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/authored-delay.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/authored-oversized.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/authored-redirect.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/authored-unsupported-version-0.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/authored-unsupported-version-1.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/authored-unsupported-version-2.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/authored-unsupported-version-3.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/native-dimensional.log",
+            "sha256": "8b45f7cfa9be616275922b00f8abb1d93d39052cfffe0c988c4d0e494f61ff5f"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/native.log",
+            "sha256": "422c6d277f6da4cde3141839842ea6fb1912be6d50c02ae59f1c370567ff60dd"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/redb-native-restart.log",
+            "sha256": "a91ae08088ae1af4f76256b9489e4a92a69284ad0faa1d7a26711f6a7d4d23a3"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/redb-replay.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/redb-write.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/sqlite-native-restart.log",
+            "sha256": "a91ae08088ae1af4f76256b9489e4a92a69284ad0faa1d7a26711f6a7d4d23a3"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/sqlite-replay.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/sqlite-write.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/vector-redb.log",
+            "sha256": "d18601e5e46fdaa6ef705ae0fa3be7c881471fa2a11d910de62c1a83be323973"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-mv0fk5n3/vector-sqlite.log",
+            "sha256": "9895dcba9f35ce78c868a0200f8b915492dd768e699216e15f759bd119de3882"
+          }
+        ],
+        "private_configs_not_published": true
+      },
+      {
+        "retained_directory": ".superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6",
+        "logs": [
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/authored-429.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/authored-cancel.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/authored-delay.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/authored-oversized.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/authored-redirect.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/authored-unsupported-version-0.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/authored-unsupported-version-1.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/authored-unsupported-version-2.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/authored-unsupported-version-3.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/native-dimensional.log",
+            "sha256": "8b45f7cfa9be616275922b00f8abb1d93d39052cfffe0c988c4d0e494f61ff5f"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/native.log",
+            "sha256": "422c6d277f6da4cde3141839842ea6fb1912be6d50c02ae59f1c370567ff60dd"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/redb-native-restart.log",
+            "sha256": "a91ae08088ae1af4f76256b9489e4a92a69284ad0faa1d7a26711f6a7d4d23a3"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/redb-replay.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/redb-write.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/sqlite-native-restart.log",
+            "sha256": "a91ae08088ae1af4f76256b9489e4a92a69284ad0faa1d7a26711f6a7d4d23a3"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/sqlite-replay.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/sqlite-write.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/vector-redb.log",
+            "sha256": "d18601e5e46fdaa6ef705ae0fa3be7c881471fa2a11d910de62c1a83be323973"
+          },
+          {
+            "path": "/root/ROM-extras/.superpowers/qdrant-target-native-port55471-20261009/run-4fr6s8p6/vector-sqlite.log",
+            "sha256": "9895dcba9f35ce78c868a0200f8b915492dd768e699216e15f759bd119de3882"
+          }
+        ],
+        "private_configs_not_published": true
+      }
+    ],
+    "authored_faults_separate": [
+      "unsupported/malformed version root-only refusal",
+      "429",
+      "oversized response",
+      "redirect",
+      "timeout",
+      "local future cancellation"
+    ],
+    "assumptions": [
+      "default IEEE rounding and gradual-underflow environment",
+      "tagged powi tails have no universal cross-build bit guarantee",
+      "version field is compatibility, not native build attestation"
+    ]
+  },
+  "normalized_packages": {
+    "consumer": "/tmp/qdrant-target-packaged-6fan4O/consumer",
+    "archives": {
+      "rom-sql-core": "e441d05209504dcd1430a2ce14162fb0561beecc0890f02d57ed0e45e86480bd",
+      "rom-projection-core": "4ffd96a0af3231650b839da67efccb4b0c88a9052f044e0bd18c2ce3d5064679",
+      "rom-projection-http": "1c7673bc893f497d385e2c224adb084fa88d49385358eb14d86787d5b9eef5e3",
+      "rom-qdrant": "96f7a242d090a0641e37db7eba44cb16939108d4555bd7b630d2402fa34fe1b9"
+    },
+    "archive_preparation_manifest": {
+      "path": "/tmp/qdrant-target-packaged-6fan4O/archives.json",
+      "sha256": "c968cfd1d7005b277b561411b373e9d719a18cc0dc9d83141d01dae4593ca62e"
+    },
+    "source_lock": {
+      "path": "tests/qdrant-target-consumer/Cargo.lock",
+      "sha256": "3c666df0de2242ba74da56e21551c23d55f7296fcf308ec46bff7d80e3589664"
+    },
+    "archive_lock": {
+      "path": "/tmp/qdrant-target-packaged-6fan4O/consumer/Cargo.lock",
+      "sha256": "53eb7300bf4f6a6d2ad8e24c8e2857b649c03ff20cf8edcbaad7787f4b7306a2"
+    },
+    "registry_graphs_equal": true,
+    "upstream_license_and_notice_retained": true,
+    "crate_license": "MIT AND Apache-2.0"
+  },
+  "dependencies": {
+    "root_registry_packages": 434,
+    "new_registry_packages": 0,
+    "source_archive_registry_packages": 182,
+    "registry_versions_checksums_unchanged": true,
+    "integrity": {
+      "path": ".superpowers/qdrant-cosine-dependencies-2026-10-10.json",
+      "sha256": "3696953274987c83b4ed630e51e7871f5734ce2d8e6cd770554fce19c1c84ea5"
+    },
+    "audits": [
+      {
+        "graph": "root",
+        "known_vulnerabilities": 0,
+        "warning_categories": [
+          "unmaintained"
+        ],
+        "evidence": {
+          "path": ".superpowers/qdrant-cosine-root-audit-2026-10-10.json",
+          "sha256": "24a893ba7d5c6db6dc9d22003e3be0d976460cc91d4a60280e1f0eb70d7fac26"
+        }
+      },
+      {
+        "graph": "source",
+        "known_vulnerabilities": 0,
+        "warning_categories": [],
+        "evidence": {
+          "path": ".superpowers/qdrant-cosine-source-audit-2026-10-10.json",
+          "sha256": "8b61f04065dda507e0f4c1baa71c7f9460d01490ab4f30a043064fb32f9c0e88"
+        }
+      },
+      {
+        "graph": "archive",
+        "known_vulnerabilities": 0,
+        "warning_categories": [],
+        "evidence": {
+          "path": ".superpowers/qdrant-cosine-archive-audit-2026-10-10.json",
+          "sha256": "8b61f04065dda507e0f4c1baa71c7f9460d01490ab4f30a043064fb32f9c0e88"
+        }
+      }
+    ],
+    "existing_warning": "Root retains unsuppressed paste unmaintained warning; independent graphs have no warnings"
+  },
+  "review": {
+    "critical": 0,
+    "important": 0,
+    "minor_deferred": 2,
+    "evidence": {
+      "path": ".superpowers/qdrant-cosine-final-review-2026-10-10.md",
+      "sha256": "48429784d6415f1296cfd260f21591341dec302b3cd5e794acbeebfc23dcc6eb"
+    },
+    "rulings": [
+      "Ruling: select general finite nonzero preparation instead of unit-only author admission \u2014 framework absorbs numerical work and accepts ordinary vectors. Cost if wrong: tagged reference/native qualification must reject unsupported representations rather than weaken readback.",
+      "Ruling: preserve constructor refusal and add explicit version-bound constructor \u2014 avoids changing existing generation semantics. Cost if wrong: applications must explicitly select the new profile.",
+      "Ruling: reject zero Cosine before dispatch \u2014 mathematical direction undefined; avoids claiming Qdrant's zero score is mathematical Cosine. Cost if wrong: hosts must handle zero embeddings explicitly.",
+      "Ruling: qualification is the pinned native image/default floating-point environment; safe references model eligible CPU paths without claiming arbitrary server builds or ARM execution. Cost if wrong: unknown build/environment cannot use native acceptance evidence.",
+      "Ruling: signed-zero preservation applies to approved input and provider-preparation output \u2014 core author admission already canonicalizes input zero, which must remain stable. Cost if wrong: claiming preservation of raw author -0 would contradict existing core contract.",
+      "Ruling: preserve inactive old temporary-package rlib/rmeta caches with byte-identical archives before retiring working copies \u2014 needed to retain native disk protection; source/native data/final executables untouched. Cost if wrong: a still-needed compiler library is regenerated by the verifier, while its previous bytes remain archived.",
+      "Ruling: perform review before full freeze and retain two Minor findings \u2014 no current source defect identified; full verifier remains publication gate. Cost if wrong: later source fixes require fresh affected/full verification; weaker future regression protection and ambiguous enum prose remain documented."
+    ],
+    "deferred": [
+      "Final: minor (deferred): add fixed fused-rounding and lower/small-length cutoff bit regressions; current arithmetic inspected against tagged source and native controlled cases passed, but regression completeness remains open.",
+      "Final: minor (deferred): Distance::Cosine variant documentation retains older refusal wording; constructor and maintained guide explain explicit profile selection."
+    ],
+    "review_execution_scope": "Read-only source/upstream/archive inspection, no reviewer build or native execution"
+  },
+  "preservation": {
+    "cache_inventory": {
+      "path": ".superpowers/qdrant-cosine-preserved-caches-2026-10-10.json",
+      "sha256": "fc234b09a9efb1d89c84d4d3135ae52035cc65c33fcfa39ce4df229972888ecc"
+    },
+    "historical_data_prototypes_worktrees_native_runs_and_final_executables_retained": true,
+    "obsolete_libraries_archived_and_byte_verified_before_retiring_working_copies": true,
+    "opensearch_protections": {
+      "path": ".superpowers/qdrant-cosine-opensearch-preflight-2026-10-10.json",
+      "sha256": "18e6ae9cd26cc4a53d1b6119ff7a597c46761650bf5c1bca905c81e2725ef8c7"
+    }
+  },
+  "secret_scan": {
+    "path": ".superpowers/qdrant-cosine-public-secret-scan-2026-10-10.json",
+    "sha256": "9ef91bd9793315ab95c51a4afa3d4f975863d88c803b2005f7712990d5175cb4"
+  },
+  "remaining": [
+    "fixed fused-rounding and lower/small-length cutoff bit regressions",
+    "Distance::Cosine enum prose clarification",
+    "actual ARM/NEON native execution",
+    "high-dimensional ranking",
+    "arbitrary compiler builds/versions/floating-point modes",
+    "distributed consistency, generation cutover and production topology",
+    "complete projection-family and remaining ROM-extras acceptance"
+  ],
+  "closing_changes": "Only plan progress and verification metadata added after successful full frozen verification; implementation unchanged"
+}

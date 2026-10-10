@@ -297,7 +297,7 @@ See [configuration, limits and recovery constraints](import.md).
 
 The [Qdrant target](qdrant-target.md) implements real native writes and exact stored payload/vector observations.
 Dot, Euclid and Manhattan retain the approved float32 representation in the tested standalone profile.
-Cosine is explicitly unsupported pending a normalization contract.
+The general constructor still refuses Cosine. [Explicit Cosine preparation](qdrant-cosine.md) uses a distinct version-bound generation.
 Native collection-scoped `prw` JWTs permit points and deny collection/configuration extras.
 SQLite/redb process crashes after actual response loss retain pending intent; separate processes recover after native server restart.
 Direct and normalized archive consumers execute the same native cases.
@@ -311,7 +311,8 @@ Qdrant supplies real native Dot, Euclid and Manhattan candidates, with checked o
 Current public SQLite/redb reads filter denied, stale, deleted and hidden embedding inputs before disclosure.
 The independent native/archive consumer uses collection-scoped read-only JWTs and actual held query responses for authority changes.
 Authored 429, redirect, body-limit, malformed, timeout and cancellation cases remain separate from native ranking evidence.
-Cosine, distributed profiles, approximate recall, other dimensions and generation switching remain unqualified.
+The Cosine gate adds three-dimensional queries and dimensional writes; high-dimensional ranking and actual ARM execution remain unqualified.
+Distributed profiles, approximate recall and generation switching remain unqualified.
 
 ## Maintained SQL Server ownership increment
 

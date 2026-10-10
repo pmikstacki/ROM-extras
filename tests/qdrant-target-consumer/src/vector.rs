@@ -25,7 +25,9 @@ struct Document {
     note: String,
     readable: bool,
 }
-struct Vectors;
+struct Vectors {
+    cosine: bool,
+}
 impl HostVectors for Vectors {
     fn model_id(&self) -> &str {
         "host-model-v1"
@@ -41,6 +43,7 @@ impl HostVectors for Vectors {
             .unwrap();
         Ok(match value {
             1 => vec![1., 0., 0.],
+            2 if self.cosine => vec![0., 3., 0.],
             2 => vec![3., 0., 0.],
             3 => vec![2., 3., 0.],
             _ => vec![value as f32, 0., 0.],
@@ -134,7 +137,9 @@ pub async fn run(host: Host, path: &Path, redb: bool) {
         actor("writer"),
         Document::KIND,
         host.mapping(),
-        Vectors,
+        Vectors {
+            cosine: host.is_cosine(),
+        },
     )
     .unwrap();
     let batch = history.fetch(&origin).await.unwrap();
@@ -151,7 +156,11 @@ pub async fn run(host: Host, path: &Path, redb: bool) {
             host.reader(0),
             Policy {
                 granted: Arc::new(AtomicBool::new(true)),
-                metric: VectorMetric::Dot,
+                metric: if host.is_cosine() {
+                    VectorMetric::Cosine
+                } else {
+                    VectorMetric::Dot
+                },
             },
             host.mapping(),
         )
@@ -227,16 +236,22 @@ pub async fn run(host: Host, path: &Path, redb: bool) {
             host.reader(metric),
             Policy {
                 granted: granted.clone(),
-                metric: [
-                    VectorMetric::Dot,
-                    VectorMetric::Euclid,
-                    VectorMetric::Manhattan,
-                ][metric],
+                metric: if host.is_cosine() {
+                    VectorMetric::Cosine
+                } else {
+                    [
+                        VectorMetric::Dot,
+                        VectorMetric::Euclid,
+                        VectorMetric::Manhattan,
+                    ][metric]
+                },
             },
             host.mapping(),
         )
         .unwrap();
-        let expected = if metric == 0 {
+        let expected = if host.is_cosine() {
+            vec![key("a"), key("c"), key("b")]
+        } else if metric == 0 {
             vec![key("b"), key("c"), key("a")]
         } else {
             vec![key("a"), key("b"), key("c")]
@@ -269,6 +284,23 @@ pub async fn run(host: Host, path: &Path, redb: bool) {
             .unwrap();
         assert_eq!(views.len(), 1);
         assert_eq!(views[0].key.id, expected[0]);
+        if host.is_cosine() {
+            let before =
+                host.control(Method::GET, "fixture/status", json!({})).await["native_requests"]
+                    .as_u64()
+                    .unwrap();
+            assert!(matches!(
+                search
+                    .execute(VectorQuery::new(vec![0., -0., 0.], 3, 64).unwrap())
+                    .await,
+                Err(SearchFailure::Target(TargetFailure::Rejected))
+            ));
+            assert_eq!(
+                host.control(Method::GET, "fixture/status", json!({})).await["native_requests"]
+                    .as_u64(),
+                Some(before)
+            );
+        }
         // Denial before dispatch must leave the actual relay query count unchanged.
         let before = host.control(Method::GET, "fixture/status", json!({})).await["queries"]
             .as_u64()

@@ -7,6 +7,8 @@ class LossFixture:
   context=ssl.create_default_context(cafile=str(root/'tls/ca.pem'))
   opener=client(context)
   self.armed=False;self.forwarded=0;self.lost=0;self.mode=None;self.authored=0;self.skip=0
+  self.version_value="1.19.3";self.version_other_calls=0
+  self.native_requests=0
   self.query_mode=None;self.queries=0;self.native_queries=0
   self.query_started=threading.Event();self.query_release=threading.Event();self.query_release.set()
   class Handler(http.server.BaseHTTPRequestHandler):
@@ -25,7 +27,11 @@ class LossFixture:
       if owner.query_mode=='hold': owner.query_release.clear()
      elif self.path=='/fixture/release' and self.command=='POST': owner.query_release.set()
      else: assert self.path=='/fixture/status' and self.command=='GET'
-     raw=json.dumps({'queries':owner.queries,'native_queries':owner.native_queries,'started':owner.query_started.is_set()}).encode()
+     raw=json.dumps({'native_requests':owner.native_requests,'queries':owner.queries,'native_queries':owner.native_queries,'started':owner.query_started.is_set()}).encode()
+     self.send_response(200);self.send_header('Content-Length',str(len(raw)));self.end_headers();self.wfile.write(raw);return
+    if owner.mode=='version':
+     if self.command!='GET' or self.path.split('?')[0]!='/': owner.version_other_calls+=1
+     raw=json.dumps({'version':owner.version_value}).encode()
      self.send_response(200);self.send_header('Content-Length',str(len(raw)));self.end_headers();self.wfile.write(raw);return
     query=self.command=='POST' and self.path.split('?')[0].endswith('/points/query')
     if query: owner.queries+=1
@@ -47,6 +53,7 @@ class LossFixture:
     length=int(self.headers.get('Content-Length','0'));assert 0<=length<=1048576
     body=self.rfile.read(length) if length else None
     request=urllib.request.Request(endpoint.rstrip('/')+self.path,data=body,headers={'api-key':self.headers['api-key'],'Content-Type':'application/json'},method=self.command)
+    owner.native_requests+=1
     with opener.open(request,timeout=5) as response:
      raw=response.read(1048577);assert len(raw)<=1048576;status=response.status
     if query:

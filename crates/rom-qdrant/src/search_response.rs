@@ -17,7 +17,7 @@ pub(crate) fn parse(
     let points = value["result"]["points"]
         .as_array()
         .ok_or(TargetFailure::Unknown)?;
-    if points.len() > query.candidate_budget() || metric == Distance::Cosine {
+    if points.len() > query.candidate_budget() {
         return Err(TargetFailure::Rejected);
     }
     let mut native_ids = BTreeSet::new();
@@ -74,7 +74,7 @@ pub(crate) fn parse(
             .filter(|s| s.is_finite() && (*s as f32).is_finite())
             .ok_or(TargetFailure::Rejected)?;
         match metric {
-            Distance::Dot => {
+            Distance::Dot | Distance::Cosine => {
                 if previous.is_some_and(|p| score > p) {
                     return Err(TargetFailure::Rejected);
                 }
@@ -84,7 +84,6 @@ pub(crate) fn parse(
                     return Err(TargetFailure::Rejected);
                 }
             }
-            Distance::Cosine => return Err(TargetFailure::Rejected),
         }
         previous = Some(score);
         candidates.push(candidate);
