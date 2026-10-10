@@ -397,3 +397,14 @@ Original identity/token/generation character columns are rejected before CASE pr
 Dependency audits retain one informational paste maintenance warning and report zero known Rust vulnerabilities.
 OCI timeout is per round trip; absolute operation/socket containment, COMMIT wire loss, abrupt recovery, production TCPS and full Storage remain required.
 See [configuration and evidence limits](oracle-ownership.md).
+
+## Native maintenance tools increment
+
+rom-extras-maintenance reuses published ROM archives and native SQLite/redb backup, fresh restore and typed migration.
+Reports and CLI output omit Resource values and protected metadata. Backup requires an existing native handle.
+Source trials cover actual Runtime mutations, receipt replay, tombstones, native reopen, cursor/Work fencing, provenance and live-backup coherence.
+Upstream test-support interruption is distinct from production publication-uncertainty qualification.
+Source/archive consumers, actual CLI and the full local verifier passed the native scenarios.
+See [the verification record](verification/maintenance-native-tools-2026-10-10.json).
+External SQL maintenance, object recovery and host cutover remain incomplete.
+See [configuration, examples and limits](maintenance.md).

@@ -46,3 +46,5 @@ source scripts/lib/qdrant-qualification-env.sh
 ./scripts/check-import-transport
 
 ./scripts/check-sql-owner
+
+./scripts/check-maintenance

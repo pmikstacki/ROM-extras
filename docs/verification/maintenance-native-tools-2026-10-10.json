@@ -1,0 +1,225 @@
+{
+  "date": "2026-10-10",
+  "baseline": "fd16e5b4581dc2659f8ca0d8e2d06aad51153120",
+  "public_rom": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "scope": "Working native SQLite/redb backup/inspection/restore/typed-migration facade and CLI; not complete SQL maintenance or whole goal acceptance",
+  "affected": {
+    "command": "./scripts/check-maintenance",
+    "path": ".superpowers/maintenance-native-affected-attempt4-2026-10-10.log",
+    "sha256": "618da299b2c73b6f509b911b0b4e04f5e1a5a8511c73b08011a9d56297baf4ed",
+    "exit": 0,
+    "source_run": ".superpowers/maintenance-runs/run-hfohrIVn",
+    "archive_run": ".superpowers/maintenance-runs/run-zVFRhDkz",
+    "archive": "/tmp/maintenance-packaged-iWWNlX/consumer"
+  },
+  "full_verifier": {
+    "command": "./scripts/check-all",
+    "path": ".superpowers/maintenance-native-full-attempt1-2026-10-10.log",
+    "sha256": "72dd915b8b2d81bc1ce0ae4703b3c7f702fd94435e2b3d9a0260b6db5c2da559",
+    "exit": 0,
+    "source_identity": {
+      "path": ".superpowers/maintenance-native-source-freeze-2026-10-10.json",
+      "sha256": "78c120684a787080a18a82afb02232de4132980e45566162d6982b1d78012bf1",
+      "files": 1424,
+      "changed_during_full_verifier": []
+    },
+    "native_runs": [
+      {
+        "directory": "/root/ROM-extras/.superpowers/maintenance-runs/run-rLwd3Ymx",
+        "protocol": {
+          "path": "/root/ROM-extras/.superpowers/maintenance-runs/run-rLwd3Ymx/protocol.log",
+          "sha256": "78b197ad734de8104297242bccc2c754f7e02528a52d807f21d713f4eac062e5"
+        }
+      },
+      {
+        "directory": "/root/ROM-extras/.superpowers/maintenance-runs/run-6Qm3CHm0",
+        "protocol": {
+          "path": "/root/ROM-extras/.superpowers/maintenance-runs/run-6Qm3CHm0/protocol.log",
+          "sha256": "78b197ad734de8104297242bccc2c754f7e02528a52d807f21d713f4eac062e5"
+        }
+      }
+    ],
+    "archive": "/tmp/maintenance-packaged-YPKCh5/consumer",
+    "archive_registry_graph_equals_audited_source": true
+  },
+  "qualification": {
+    "actual_native_runtime": [
+      "Both SQLite/redb: actual Resource create/action/tombstone",
+      "Coherent backup, full archive inspection and private0600 publication",
+      "Fresh restore, idempotent replay, row/revision preservation, old cursor fencing",
+      "Typed migration preview, source unchanged, actual converted values and reopen"
+    ],
+    "trusted_native_persistence_fixtures": [
+      "Protected provenance and exact Resource identity; original receipts/replay versions",
+      "Claimed Work restore fencing and explicit unfinished-work migration validator",
+      "Acknowledged write progress before1/snapshot1/after2 observed within backup caller interval; coherent collection/write transactions remain serialized"
+    ],
+    "actual_cli": [
+      "Source and extracted archive CLI inspect/fresh restore",
+      "Count-only output and safe fixed errors; repeated destination/limits/SQL alias/private paths/nonUTF8 negatives"
+    ],
+    "negative_archive": [
+      "Byte/record budgets, corrupt body, valid-envelope future format, wrong backend",
+      "Missing source/destination no unintended creation; permissions and symlink refusal",
+      "Converter rejection retains source bytes; owned source and overwrite refuse"
+    ],
+    "upstream_fault_fixture": "Explicit rom-backup/native test-support callback interrupts staged migration before publication; both sources unchanged, no destination; not production facade API or post-publication uncertainty proof",
+    "feature_variants": [
+      "No native core",
+      "sqlite only",
+      "redb only",
+      "sqlite+redb",
+      "Independent no-native source consumer; independent native source/archive consumer and packaged CLI"
+    ]
+  },
+  "dependencies": {
+    "inventory": {
+      "path": ".superpowers/maintenance-native-dependencies-2026-10-10.json",
+      "sha256": "6b1727fd5d1c1458f8bc322639b588536fe5dd6214a02e48915e418d51644fcb"
+    },
+    "root_registry_packages": 434,
+    "new_root_registry_packages": 0,
+    "changed_prior_checksums": 0,
+    "native_registry_packages": 85,
+    "core_registry_packages": 30,
+    "integrity": "85 registry archives and extracted regular files verified byte-for-byte; manifest license presence and declared MSRV checked; builds on Rust1.99",
+    "audits": [
+      {
+        "graph": "root",
+        "path": ".superpowers/maintenance-root-audit-2026-10-10.json",
+        "sha256": "0dfb0737630110678861982acfcca9eca01a44c1da343403207498381e50a34f",
+        "vulnerabilities": 0,
+        "warnings": {
+          "unmaintained": 1
+        },
+        "ignored_advisories": [],
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+          "last-updated": "2026-10-09T10:12:02+02:00"
+        },
+        "lockfile": {
+          "dependency-count": 475
+        }
+      },
+      {
+        "graph": "source",
+        "path": ".superpowers/maintenance-source-audit-2026-10-10.json",
+        "sha256": "8207949eccba40541c04833e9ee629fc16084e4525eba0e8378bbb0d972afdf7",
+        "vulnerabilities": 0,
+        "warnings": {},
+        "ignored_advisories": [],
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": null,
+          "last-updated": null
+        },
+        "lockfile": {
+          "dependency-count": 92
+        }
+      },
+      {
+        "graph": "core",
+        "path": ".superpowers/maintenance-core-audit-2026-10-10.json",
+        "sha256": "be2d6373dd7aa5839dc1c1272cb1e937cc1c5dec1df3eef04e6bdf103977836b",
+        "vulnerabilities": 0,
+        "warnings": {},
+        "ignored_advisories": [],
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": null,
+          "last-updated": null
+        },
+        "lockfile": {
+          "dependency-count": 35
+        }
+      },
+      {
+        "graph": "archive",
+        "path": ".superpowers/maintenance-archive-audit-2026-10-10.json",
+        "sha256": "8207949eccba40541c04833e9ee629fc16084e4525eba0e8378bbb0d972afdf7",
+        "vulnerabilities": 0,
+        "warnings": {},
+        "ignored_advisories": [],
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": null,
+          "last-updated": null
+        },
+        "lockfile": {
+          "dependency-count": 92
+        }
+      },
+      {
+        "graph": "archive-cli",
+        "path": ".superpowers/maintenance-archive-cli-audit-2026-10-10.json",
+        "sha256": "8790c06f6198d491c7b54bace99bfa8fa84e1b20a54af6ad054ff088bb1a525c",
+        "vulnerabilities": 0,
+        "warnings": {},
+        "ignored_advisories": [],
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": null,
+          "last-updated": null
+        },
+        "lockfile": {
+          "dependency-count": 91
+        }
+      }
+    ],
+    "maintenance_warning": {
+      "id": "RUSTSEC-2024-0436",
+      "package": "paste1.0.15",
+      "source": "https://rustsec.org/advisories/RUSTSEC-2024-0436.html",
+      "suppressed": false,
+      "scope": "Existing root Oracle SDK dependency; independent maintenance graphs have no warnings"
+    }
+  },
+  "review": {
+    "evidence": {
+      "path": ".superpowers/maintenance-native-final-review-2026-10-10.md",
+      "sha256": "af7e941851031714e260029c311543f779e9ba6fa346d5451b25c82c23df15e8"
+    },
+    "mode": "One source-only final review and bounded Important correction follow-up",
+    "critical": 0,
+    "important": 1,
+    "resolved_important": 1,
+    "ruling": "Continuous bounded writer requires acknowledged progress across backup invocation; no simultaneous collection/write claim"
+  },
+  "failures_retained": [
+    "Missing API RED",
+    "NonUTF8 CLI panic RED then fixed args_os",
+    "Normalized registry ROM unavailable: exact immutable public patches required",
+    "Future-header fixture initially failed checksum: resealed synthetic header tests Unsupported",
+    "Live-write witness corrected after source review; old finite-writer pass not overlap proof"
+  ],
+  "decisions": [
+    {
+      "choice": "Reuse existing public native archive/publishing/migration contracts",
+      "cost": "SQL maintenance remains unavailable until public SQL archive/export contract exists"
+    },
+    {
+      "choice": "Sealed already-owned native handles for backup; CLI inspect/restore only",
+      "cost": "Host supplies backup entry point and compiled migration plan"
+    },
+    {
+      "choice": "Pinned public Git patches for normalized archive",
+      "cost": "Matching ROM registry publication required before patch-free deployment"
+    }
+  ],
+  "limits": [
+    "Positive max128MiB and400000 aggregate records; not absolute heap/time/cancellation guarantee",
+    "Trusted local Linux parents and0600; no hardlink/live-path/networkFS admission",
+    "SHA256 corruption checking is not authenticity/encryption",
+    "Unknown publication retained and mapped exit3; no implicit retry/delete/overwrite",
+    "Host owns authorization, callback purity/bounding, deployment drain and cutover"
+  ],
+  "remaining_acceptance": [
+    "External SQL Storage and archive/export/restore integration",
+    "External blobs/provider-state inventories, recovery and digest verification",
+    "Actual post-publication uncertainty and fault qualification",
+    "Legacy-format compatibility and host cutover journeys",
+    "All other unfinished ROM-extras families and release acceptance"
+  ],
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1\n"
+}

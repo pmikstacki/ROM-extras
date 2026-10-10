@@ -3002,6 +3002,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "rom-extras-maintenance"
+version = "0.1.0-dev"
+dependencies = [
+ "rom",
+ "rom-backup",
+ "rom-redb",
+ "rom-sqlite",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "rom-import"
 version = "0.1.0-dev"
 dependencies = [

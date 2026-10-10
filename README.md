@@ -77,6 +77,8 @@ Additional notification connectors, backup and migration remain in scope.
 - [Implementation plan](docs/superpowers/plans/2026-10-08-rom-extras.md)
 - [Detailed support status](docs/support.md)
 
+The [native maintenance tools](docs/maintenance.md) reuse ROM backup/restore and typed migration; full SQL maintenance remains pending.
+
 ## Verify locally
 
 Use Rust 1.99, a native linker, CMake, Make, pkg-config, maintained OpenSSL development files, and Node.js.

@@ -1,0 +1,13 @@
+[package]
+name = "maintenance-public-consumer"
+version = "0.0.0"
+edition = "2024"
+[workspace]
+[dependencies]
+rom-extras-maintenance = { path = "../../crates/rom-extras-maintenance", features = ["sqlite", "redb"] }
+rom = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", default-features = false, features = ["derive"] }
+rom-backup = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe" }
+rom-sqlite = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", features = ["test-support"] }
+rom-redb = { version = "=0.0.3", git = "https://github.com/pmikstacki/ROM", rev = "d7ef529040eec60dc869034c2d33130219db85fe", features = ["test-support"] }
+tokio = { version = "=1.53.1", features = ["rt"] }
+sha2 = "=0.10.9"

@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+umask 077
+command -v timeout >/dev/null
+cargo fmt --manifest-path tests/maintenance-public-consumer/Cargo.toml -- --check
+cargo fmt --manifest-path tests/maintenance-core-consumer/Cargo.toml -- --check
+for features in '' sqlite redb sqlite,redb; do
+    if [[ -z "$features" ]]; then
+        cargo test --locked -p rom-extras-maintenance --no-default-features
+        cargo clippy --locked -p rom-extras-maintenance --no-default-features --all-targets -- -D warnings
+    else
+        cargo test --locked -p rom-extras-maintenance --no-default-features --features "$features"
+        cargo clippy --locked -p rom-extras-maintenance --no-default-features --features "$features" --all-targets -- -D warnings
+    fi
+done
+RUSTDOCFLAGS='-D warnings' cargo doc --locked -p rom-extras-maintenance --all-features --no-deps
+cargo run --manifest-path tests/maintenance-core-consumer/Cargo.toml --locked --offline --target-dir target/maintenance-core-consumer
+cargo clippy --manifest-path tests/maintenance-core-consumer/Cargo.toml --locked --offline --target-dir target/maintenance-core-consumer --all-targets -- -D warnings
+cargo build --locked -p rom-extras-maintenance --features sqlite,redb
+cargo clippy --manifest-path tests/maintenance-public-consumer/Cargo.toml --locked --offline --target-dir target/maintenance-public-consumer --all-targets -- -D warnings
+cargo build --manifest-path tests/maintenance-public-consumer/Cargo.toml --locked --offline --target-dir target/maintenance-public-consumer
+mkdir -p .superpowers/maintenance-runs
+run_consumer() {
+    export ROM_EXTRAS_MAINTENANCE_RUN
+    ROM_EXTRAS_MAINTENANCE_RUN=$(mktemp -d "$PWD/.superpowers/maintenance-runs/run-XXXXXXXX")
+    export ROM_EXTRAS_MAINTENANCE_BIN="$2"
+    timeout 120 "$1" > "$ROM_EXTRAS_MAINTENANCE_RUN/protocol.log" 2>&1
+    printf 'Native maintenance qualification passed; evidence retained: %s\n' "$ROM_EXTRAS_MAINTENANCE_RUN"
+}
+run_consumer "$PWD/target/maintenance-public-consumer/debug/maintenance-public-consumer" "$PWD/target/debug/rom-extras-maintenance"
+node --check scripts/prepare-maintenance-package.mjs
+maintenance_archive_args=()
+for package in rom rom-backup rom-sqlite rom-redb; do
+    maintenance_archive_args+=(--config "patch.crates-io.$package.git=\"https://github.com/pmikstacki/ROM\"" --config "patch.crates-io.$package.rev=\"d7ef529040eec60dc869034c2d33130219db85fe\"")
+done
+cargo package --locked --allow-dirty --no-verify -p rom-extras-maintenance "${maintenance_archive_args[@]}"
+consumer=$(node scripts/prepare-maintenance-package.mjs)
+cargo clippy --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/maintenance-packaged-consumer --all-targets -- -D warnings
+cargo build --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/maintenance-packaged-consumer
+cargo build --manifest-path "$consumer/../rom-extras-maintenance-0.1.0-dev/Cargo.toml" --locked --offline --features sqlite,redb --target-dir target/maintenance-packaged-cli "${maintenance_archive_args[@]}"
+run_consumer "$PWD/target/maintenance-packaged-consumer/debug/rom-maintenance-packaged-consumer" "$PWD/target/maintenance-packaged-cli/debug/rom-extras-maintenance"

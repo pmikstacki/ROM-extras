@@ -1,0 +1,10 @@
+import {preparePackagedConsumer} from './lib/package-consumer.mjs';
+import {readFileSync,writeFileSync} from 'node:fs';
+const pin='https://github.com/pmikstacki/ROM';
+const rev='d7ef529040eec60dc869034c2d33130219db85fe';
+const dependencies=['rom','rom-backup','rom-sqlite','rom-redb'].map(name=>`${name} = { version = "=0.0.3", git = "${pin}", rev = "${rev}"${name==='rom'?', default-features = false, features = ["derive"]':name==='rom-sqlite'||name==='rom-redb'?', features = ["test-support"]':''} }`).join('\n');
+const consumer=preparePackagedConsumer({prefix:'maintenance',isolated:true,packages:['rom-extras-maintenance'],source:'tests/maintenance-public-consumer/src/main.rs',supportSources:['tests/maintenance-public-consumer/src/model.rs','tests/maintenance-public-consumer/src/native.rs','tests/maintenance-public-consumer/src/extended.rs','tests/maintenance-public-consumer/src/cli.rs','tests/maintenance-public-consumer/src/interruption.rs'],extraDependencies:dependencies+'\ntokio = { version = "=1.53.1", features = ["rt"] }\nsha2 = "=0.10.9"',extraPatches:['rom','rom-backup','rom-sqlite','rom-redb'].map(name=>`${name} = { version = "=0.0.3", git = "${pin}", rev = "${rev}" }`).join('\n')});
+const manifest=consumer+'/Cargo.toml';
+writeFileSync(manifest,readFileSync(manifest,'utf8').replace('rom-extras-maintenance = "=0.1.0-dev"','rom-extras-maintenance = { version = "=0.1.0-dev", features = ["sqlite", "redb"] }'));
+writeFileSync(consumer+'/Cargo.lock',readFileSync('tests/maintenance-public-consumer/Cargo.lock','utf8').replace('name = "maintenance-public-consumer"','name = "rom-maintenance-packaged-consumer"'));
+process.stdout.write(consumer+'\n');
