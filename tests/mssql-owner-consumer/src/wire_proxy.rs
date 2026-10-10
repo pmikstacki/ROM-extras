@@ -34,7 +34,10 @@ pub struct Relay {
 impl Relay {
     /// Shared qualification relay for the fixed retained native fixtures only.
     pub fn new(backend_port: u16) -> Self {
-        assert!(matches!(backend_port, 55439 | 55440 | 55452 | 55453));
+        assert!(matches!(
+            backend_port,
+            55439 | 55440 | 55452 | 55453 | 55457
+        ));
         let listener = TcpListener::bind("127.0.0.1:0").unwrap();
         let port = listener.local_addr().unwrap().port();
         listener.set_nonblocking(true).unwrap();

@@ -1,5 +1,5 @@
 use crate::{Connection, ControlTable, Value};
-use rom_sql_core::{OwnerError, OwnerState, OwnerToken, OwnerTransaction};
+use rom_sql_core::{OwnerError, OwnerState, OwnerTransaction, validate_owner_row};
 /// Native transaction retaining its singleton lock until acknowledged completion.
 /// A caught error poisons the transaction. Drop attempts bounded rollback.
 pub struct Transaction<'a> {
@@ -73,21 +73,23 @@ impl<'a> Transaction<'a> {
         if integer(0)? != 1 {
             return Err(OwnerError::UnsupportedFormat);
         }
-        if !matches!(row.as_ref(1), Some(Value::Bytes(b)) if b.as_slice() == self.table.identity) {
-            return Err(OwnerError::Invalid);
-        }
-        let generation = u64::try_from(integer(2)?).map_err(|_| OwnerError::Invalid)?;
-        let token = match row.as_ref(4) {
-            Some(Value::NULL) => None,
-            Some(Value::Int(32) | Value::UInt(32)) => match row.as_ref(3) {
-                Some(Value::Bytes(b)) => Some(OwnerToken::new(
-                    b.as_slice().try_into().map_err(|_| OwnerError::Invalid)?,
-                )?),
-                _ => return Err(OwnerError::Invalid),
-            },
-            _ => return Err(OwnerError::Invalid),
+        let bytes = |index| match row.as_ref(index) {
+            Some(Value::Bytes(bytes)) => Ok(Some(bytes.as_slice())),
+            Some(Value::NULL) => Ok(None),
+            _ => Err(OwnerError::Invalid),
         };
-        let state = OwnerState::new(generation, token)?;
+        let length = match row.as_ref(4) {
+            Some(Value::NULL) => None,
+            _ => Some(integer(4)?),
+        };
+        let state = validate_owner_row(
+            1,
+            &self.table.identity,
+            bytes(1)?,
+            integer(2)?,
+            bytes(3)?,
+            length,
+        )?;
         // Target SELECT retains metadata lock through the transaction, before engine inspection.
         let params = vec![
             self.table.names.schema().into(),

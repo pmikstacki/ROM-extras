@@ -3,7 +3,7 @@ set -euo pipefail
 cd -- "$(dirname -- "$0")/.."
 : "${ROM_EXTRAS_POSTGRES_DSN:?Explicit native PostgreSQL fixture required; no skip}"
 : "${ROM_EXTRAS_PYTHON:?Explicit Python3 executable required for owned deadlines}"
-cargo test --locked -p rom-postgres -p rom-sql-core
+cargo test --locked -p rom-postgres -p rom-pgwire -p rom-sql-core
 cargo clippy --locked -p rom-postgres --all-targets -- -D warnings
 RUSTDOCFLAGS='-D warnings' cargo doc --locked -p rom-postgres --no-deps
 cargo fmt --manifest-path tests/postgres-owner-consumer/Cargo.toml -- --check
@@ -11,7 +11,7 @@ cargo clippy --manifest-path tests/postgres-owner-consumer/Cargo.toml --locked -
 cargo build --manifest-path tests/postgres-owner-consumer/Cargo.toml --locked --offline --target-dir target/postgres-owner-consumer
 "$ROM_EXTRAS_PYTHON" scripts/check-postgres-owner-consumer.py target/postgres-owner-consumer/debug/postgres-owner-consumer
 node --check scripts/prepare-postgres-owner-package.mjs
-cargo package --locked --allow-dirty --no-verify -p rom-sql-core -p rom-postgres --config 'patch.crates-io.rom-sql-core.path="crates/rom-sql-core"'
+cargo package --locked --allow-dirty --no-verify -p rom-sql-core -p rom-pgwire -p rom-postgres --config 'patch.crates-io.rom-sql-core.path="crates/rom-sql-core"' --config 'patch.crates-io.rom-pgwire.path="crates/rom-pgwire"'
 consumer=$(node scripts/prepare-postgres-owner-package.mjs)
 cargo clippy --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/postgres-owner-packaged-consumer --all-targets -- -D warnings
 cargo build --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/postgres-owner-packaged-consumer

@@ -1,6 +1,6 @@
 [package]
-name = "rom-postgres"
-description = "Bounded native PostgreSQL ownership over the shared ROM SQL core"
+name = "rom-cockroach"
+description = "Bounded CockroachDB ownership with explicit serializable durable locking"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true

@@ -7,6 +7,7 @@ source scripts/lib/qdrant-qualification-env.sh
 ./scripts/check-postgres
 ./scripts/check-postgres-owner
 ./scripts/check-cockroach
+./scripts/check-cockroach-owner
 ./scripts/check-oracle
 ./scripts/check-mssql
 ./scripts/check-mssql-owner

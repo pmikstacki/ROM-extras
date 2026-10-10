@@ -3,6 +3,7 @@ mod admission;
 mod cases;
 mod fixture;
 mod restart;
+mod transport;
 #[path = "../../mssql-owner-consumer/src/wire_proxy.rs"]
 pub mod wire_proxy;
 fn main() {
@@ -14,5 +15,6 @@ fn main() {
     assert!(args.is_empty(), "unsupported fixture arguments");
     cases::run();
     admission::run();
+    transport::run();
     println!("Maintained PostgreSQL ownership passed; full ROM Storage remains unsupported");
 }

@@ -21,6 +21,7 @@ A shared bounded SQL executor has real transaction and restart tests for six dat
 These are executor profiles. Full ROM Storage integration remains pending.
 The [shared ownership foundation](docs/sql-ownership.md) has retained native PostgreSQL fencing tests.
 The maintained [PostgreSQL adapter](docs/postgres-ownership.md) adds bounded native transactions, actual response loss and transport retirement through direct and packaged consumers.
+The maintained [CockroachDB adapter](docs/cockroach-ownership.md) shares PGwire while using SERIALIZABLE and verified durable-lock settings. Its local ownership, native rejection and crash profiles remain separate from distributed qualification.
 The maintained [SQL Server adapter](docs/mssql-ownership.md) verifies native ownership, stale connections, native deadlock rollback, actual COMMIT response loss and same-volume SIGKILL recovery through direct and packaged consumers.
 
 The maintained [MySQL/MariaDB adapter](docs/mysql-ownership.md) shares one driver with separately qualified ownership, rollback and actual COMMIT response-loss profiles.

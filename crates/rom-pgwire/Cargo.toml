@@ -1,6 +1,6 @@
 [package]
-name = "rom-postgres"
-description = "Bounded native PostgreSQL ownership over the shared ROM SQL core"
+name = "rom-pgwire"
+description = "Bounded native PGwire lifecycle for ROM database providers"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -10,7 +10,7 @@ publish.workspace = true
 [lints]
 workspace = true
 [dependencies]
-rom-pgwire = { path = "../rom-pgwire", version = "=0.1.0-dev" }
 rom-sql-core = { path = "../rom-sql-core", version = "=0.1.0-dev" }
 tokio-postgres = "=0.7.18"
 tokio = { version = "=1.53.1", features = ["rt", "net", "time"] }
+futures-core = "=0.3.34"

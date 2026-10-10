@@ -1,5 +1,5 @@
 use crate::{Connection, ControlTable};
-use rom_sql_core::{OwnerError, OwnerState, OwnerToken, OwnerTransaction};
+use rom_sql_core::{OwnerError, OwnerState, OwnerTransaction, validate_owner_row};
 /// One native transaction. All protected persistence retains its control-row lock.
 /// Drop attempts bounded complete rollback; uncertain cleanup retires the connection.
 pub struct Transaction<'a> {
@@ -74,33 +74,19 @@ impl OwnerTransaction for Transaction<'_> {
         if row.try_get::<i32, _>(0).map_err(|_| OwnerError::Invalid)? != Some(1) {
             return Err(OwnerError::UnsupportedFormat);
         }
-        if row
-            .try_get::<&[u8], _>(1)
-            .map_err(|_| OwnerError::Invalid)?
-            != Some(&self.table.identity[..])
-        {
-            return Err(OwnerError::Invalid);
-        }
-        let generation = u64::try_from(
+        let state = validate_owner_row(
+            1,
+            &self.table.identity,
+            row.try_get::<&[u8], _>(1)
+                .map_err(|_| OwnerError::Invalid)?,
             row.try_get::<i64, _>(2)
                 .map_err(|_| OwnerError::Invalid)?
                 .ok_or(OwnerError::Invalid)?,
-        )
-        .map_err(|_| OwnerError::Invalid)?;
-        // Cast the length to BIGINT for both bounded and MAX host column types.
-        let length = row.try_get::<i64, _>(4).map_err(|_| OwnerError::Invalid)?;
-        let token = match length {
-            None => None,
-            Some(32) => Some(OwnerToken::new(
-                row.try_get::<&[u8], _>(3)
-                    .map_err(|_| OwnerError::Invalid)?
-                    .ok_or(OwnerError::Invalid)?
-                    .try_into()
-                    .map_err(|_| OwnerError::Invalid)?,
-            )?),
-            _ => return Err(OwnerError::Invalid),
-        };
-        let state = OwnerState::new(generation, token)?;
+            row.try_get::<&[u8], _>(3)
+                .map_err(|_| OwnerError::Invalid)?,
+            // Cast length to BIGINT for both bounded and MAX host column types.
+            row.try_get::<i64, _>(4).map_err(|_| OwnerError::Invalid)?,
+        )?;
         self.locked = true;
         Ok(state)
     }

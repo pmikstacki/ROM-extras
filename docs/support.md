@@ -93,7 +93,7 @@ The Node 22.16 fixture SQLite API is experimental; this is not a production rece
 | PostgreSQL | Three live executor tests and control-row restart evidence; full Storage provider remains pending. |
 | MSSQL | Three live executor tests, encryption, and restart control evidence; full Storage provider remains pending. |
 | MySQL, MariaDB | Five live executor tests each, binary identity and restart evidence; full Storage providers and verified TLS remain pending. |
-| CockroachDB | Seven real executor cases on v26.3.2, including actual 40001 retry and graceful restart; full Storage remains pending. |
+| CockroachDB | Native executor evidence and maintained SERIALIZABLE ownership on26.3.2; durable SELECT lock,40001 rollback, committed response loss and same-volume SIGKILL; distributed qualification and full Storage remain pending. |
 | Oracle | Seven real OCI executor cases on 23.26.3, including RAW identity, full rollback and orderly restart; full Storage remains pending. |
 | OIDC | Preset configuration and signed synthetic-token integration verified; live provider login remains pending. |
 | OpenTelemetry | Public diagnostic interface publication and OTLP implementation remain pending. |
@@ -378,3 +378,12 @@ Native evidence covers transitions, competing claims, exact observed control loc
 Actual COMMIT response suppression and byte pacing confirm committed writes before Unknown and peer closure before fixture cleanup.
 Full Storage, production TLS, maintained restart/deadlock and malicious infile qualifications remain pending.
 See [the maintained guide](mysql-ownership.md).
+
+## Maintained CockroachDB ownership mapping
+
+rom-cockroach implements shared native ownership over rom-pgwire; PostgreSQL retains its separate READ COMMITTED profile.
+Admission verifies own-session durable-lock/operator settings and native timeouts before SERIALIZABLE use.
+Source and normalized archive consumers qualify exact transitions, stale clients, native rejection, bounded response loss and same-volume process crash.
+Native developer-injected40003 tests uncertainty classification; it does not establish a distributed ambiguous commit.
+Distributed failure profiles, production TLS and full ROM Storage remain open.
+See [configuration and evidence limits](cockroach-ownership.md).

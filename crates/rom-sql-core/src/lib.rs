@@ -22,6 +22,7 @@ mod error;
 mod executor;
 mod native_config;
 mod owner;
+mod owner_row;
 mod owner_transaction;
 mod ticket;
 
@@ -29,6 +30,7 @@ pub use error::ExecutorError;
 pub use executor::Executor;
 pub use native_config::{ControlTableName, OperationDeadlines};
 pub use owner::{OwnerError, OwnerState, OwnerToken, Ownership};
+pub use owner_row::validate_owner_row;
 pub use owner_transaction::{
     OwnerTransaction, claim_owner, release_owner, takeover_owner, with_owner,
 };

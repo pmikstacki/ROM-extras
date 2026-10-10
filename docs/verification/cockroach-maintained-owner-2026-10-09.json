@@ -1,0 +1,243 @@
+{
+  "date": "2026-10-09",
+  "baseline": "9b661a07d0892794f218838f16b9ce603baad8c1",
+  "public_rom": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "scope": "Maintained CockroachDB ownership over shared PGwire; common strict owner-row validation; not full ROM Storage",
+  "native": {
+    "profile": "CockroachDB CCL26.3.2, single retained node, explicit literal loopback55457",
+    "container_id": "5fc0e9cbdab3c6610365ded356ccec85027df2ad968fd2d2ed17f5e3735c3321",
+    "image_id": "d4c035b52cdc87fb2a7ac9b710b36661a6fea890fdb7f371c20de6b3ae696bbd",
+    "persistent_volume": "rom-extras-cockroach-20261008",
+    "cluster_id": "0494cc49-00ef-49e2-9a04-bde5f2fbb2d4",
+    "session": "SERIALIZABLE; effective durable locking/operator settings on; explicit millisecond statement/lock/idle bounds",
+    "sdk": "tokio-postgres0.7.18; Tokio1.53.1; exact existing root registry graph",
+    "affected": {
+      "log": ".superpowers/cockroach-maintained-affected-attempt3-2026-10-09.log",
+      "sha256": "d93a52404f9ebe38ae39d5f223afef6696c01b0b0ee038de3b90e21bb13d4743",
+      "exit": 0,
+      "retained_runs": [
+        "/root/ROM-extras/.superpowers/cockroach-owner-runs/run-fvdm4hss",
+        "/root/ROM-extras/.superpowers/cockroach-owner-runs/run-_z6bnsmn"
+      ]
+    },
+    "affected_archive": "/tmp/cockroach-owner-packaged-PYQtio/consumer",
+    "ownership": "Exact claim/takeover/release/generation, stale surviving client, caught failure rollback, malformed metadata and exhaustion",
+    "lock_witness": "Independent replicated granted and waiting Exclusive SELECT-only control-row locks before protected writes; durable-lock-disabled negative retained",
+    "actual_commit_loss": "Actual native COMMIT responses29 bytes suppressed or byte-paced; independently committed data17 before Unknown; I/O2s assertion1.8..3s and peer closure before cleanup",
+    "restart": "Same image/volume SIGKILL, native cluster/node identity retained, new node start; RAM generations1/2 survive; exact generation2/data17 persists, stale1 denied, fresh3 acknowledged",
+    "synthetic_native_diagnostics": "force_retry40001, force_error40003 and malformed SQLSTATE in explicit developer sessions; production never enables allow_unsafe_internals; not distributed ambiguity evidence"
+  },
+  "shared_regressions": [
+    {
+      "log": ".superpowers/cockroach-shared-pgwire-postgres-final-2026-10-09.log",
+      "sha256": "ef652ea8251373dee10c2ba1931ec91a89a0a2c8ea1db07386cf9626bb7c07b9",
+      "exit": 0,
+      "retained_runs": [
+        "/root/ROM-extras/.superpowers/postgres-owner-runs/run-vz2cb3wn",
+        "/root/ROM-extras/.superpowers/postgres-owner-runs/run-7bzmccf9"
+      ]
+    },
+    {
+      "log": ".superpowers/cockroach-shared-validator-mssql-2026-10-09.log",
+      "sha256": "f745ff73e348564a6fb2c426764762cde6f68efac7df3e125b332e5ee1df30f4",
+      "exit": 0,
+      "retained_runs": [
+        "/root/ROM-extras/.superpowers/mssql-owner-runs/run-cj_fgcxp",
+        "/root/ROM-extras/.superpowers/mssql-owner-runs/run-sg39uvfu"
+      ]
+    },
+    {
+      "log": ".superpowers/cockroach-shared-validator-mysql-2026-10-09.log",
+      "sha256": "6ea96bf892cca0aa4cb88056d4575a895364325ffbd6152b1aa108f996c79640",
+      "exit": 0,
+      "retained_runs": []
+    }
+  ],
+  "dependencies": {
+    "inventory": ".superpowers/cockroach-maintained-dependencies-2026-10-09.json",
+    "root_registry_packages": 424,
+    "new_root_registry_packages": 0,
+    "removed_prior_registry_packages": 0,
+    "changed_prior_checksums": 0,
+    "consumer_registry_packages": 84,
+    "integrity": "Every independent consumer registry archive SHA256 and extracted regular file verified; license and declared MSRV<=1.99 checked",
+    "source_archive_registry_identical": true,
+    "audits": [
+      {
+        "graph": "root",
+        "log": ".superpowers/cockroach-maintained-root-audit-2026-10-09.json",
+        "sha256": "adb9fe861ca6027b0ae99bd534188adb32f4fe8a0104a5627edd07d390a3251e",
+        "vulnerabilities": 0,
+        "warnings": 0,
+        "lockfile": {
+          "dependency-count": 463
+        },
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+          "last-updated": "2026-10-09T10:12:02+02:00"
+        }
+      },
+      {
+        "graph": "consumer",
+        "log": ".superpowers/cockroach-maintained-consumer-audit-2026-10-09.json",
+        "sha256": "2a4935adc7e82df78b06a28e305ecf192a257ebeb09b9ebb3718f16ba0a97a64",
+        "vulnerabilities": 0,
+        "warnings": 0,
+        "lockfile": {
+          "dependency-count": 88
+        },
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": null,
+          "last-updated": null
+        }
+      },
+      {
+        "graph": "archive",
+        "log": ".superpowers/cockroach-maintained-archive-audit-2026-10-09.json",
+        "sha256": "2a4935adc7e82df78b06a28e305ecf192a257ebeb09b9ebb3718f16ba0a97a64",
+        "vulnerabilities": 0,
+        "warnings": 0,
+        "lockfile": {
+          "dependency-count": 88
+        },
+        "database": {
+          "advisory-count": 1296,
+          "last-commit": null,
+          "last-updated": null
+        }
+      }
+    ],
+    "advisory_database_used": {
+      "advisory-count": 1296,
+      "last-commit": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+      "last-updated": "2026-10-09T10:12:02+02:00"
+    },
+    "consumer_archive_audit_mode": "--no-fetch using same local advisory database"
+  },
+  "full_verifier": {
+    "log": ".superpowers/cockroach-maintained-full-verifier-attempt2-2026-10-09.log",
+    "sha256": "1b22abb51b325edd783efb5d75b58656e4468e06a0ac86dbfd5ecbcc9b6c75f2",
+    "exit": 0,
+    "retained_runs": [
+      "/root/ROM-extras/.superpowers/postgres-owner-runs/run-deghxore",
+      "/root/ROM-extras/.superpowers/postgres-owner-runs/run-ou7p7qxs",
+      "/root/ROM-extras/.superpowers/cockroach-owner-runs/run-c_o8nnpk",
+      "/root/ROM-extras/.superpowers/cockroach-owner-runs/run-q_5hes6v",
+      "/root/ROM-extras/.superpowers/mssql-owner-runs/run-q1ukfhyt",
+      "/root/ROM-extras/.superpowers/mssql-owner-runs/run-11d3fszc",
+      "/root/ROM-extras/.superpowers/sql-owner-runs/run-hg0uuzoa",
+      "/root/ROM-extras/.superpowers/sql-owner-runs/run-8c7cetbu"
+    ],
+    "command": "./scripts/check-all",
+    "status": "passed",
+    "source_snapshot": ".superpowers/cockroach-maintained-source-snapshot-attempt2-2026-10-09.json",
+    "source_snapshot_sha256": "a35736eb89e19124652bc2d23ff14e0e235e871f18e0d0bef103cc70aac1a261",
+    "unchanged_source_files": 1372,
+    "source_membership_unchanged": true,
+    "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1\n",
+    "lockfiles": {
+      "Cargo.lock": "e13091a7b38ffb29df589799cf14aefba9a08fe56be7b518cf5f1ca63e95e7d9",
+      "tests/cockroach-owner-consumer/Cargo.lock": "3c0a4d70c9d76fe0e574b04dba0147e830e247bff3180276cf0279213fb317c5",
+      "tests/postgres-owner-consumer/Cargo.lock": "7b7b7d6885ee2efb1868945de7ea91ade5b3d59fbdb09b4ebbba91b1166be69f"
+    },
+    "evidence_only_updates_after_verification": [
+      "docs/verification/cockroach-maintained-owner-2026-10-09.json",
+      "docs/superpowers/plans/2026-10-09-cockroach-maintained-owner.md",
+      "docs/cockroach-ownership.md"
+    ],
+    "completed_utc": "2026-10-10T00:02:43.645754+00:00"
+  },
+  "red_logs": [
+    ".superpowers/cockroach-owner-row-red-2026-10-09.log",
+    ".superpowers/cockroach-pgwire-red-2026-10-09.log",
+    ".superpowers/cockroach-maintained-public-red-2026-10-09.log",
+    ".superpowers/cockroach-replicated-select-locks-red-2026-10-09.log",
+    ".superpowers/cockroach-40003-query-red-2026-10-09.log",
+    ".superpowers/cockroach-active-duplicate-red-2026-10-09.log",
+    ".superpowers/pgwire-rowset-red-2026-10-09.log",
+    ".superpowers/pgwire-code-safety-red-2026-10-09.log"
+  ],
+  "preserved_failures": [
+    "Initial incorrect native fixture port refused",
+    "First native retry diagnostic refused42501; unsafe setting enabled only in named test sessions",
+    "PostgreSQL affected attempt2 formatting rejection",
+    "Cockroach dribble assertion incorrectly required suppressed bytes; corrected to relay semantics",
+    "Active duplicate metadata required168 bytes rather than160",
+    "Initial dependency inventory incorrectly assumed all independent consumer packages were root subset"
+  ],
+  "review": {
+    "source_only": ".superpowers/cockroach-maintained-final-review-2026-10-09.md",
+    "important_fixed": "40003 query classification: native developer-injected RED Unavailable; GREEN Unknown and retired; common provider-owned classifier covers native operations",
+    "deferred_minor": "Provider-independent transaction/config state helpers remain duplicated across PostgreSQL/Cockroach; future poison/admission changes require parallel edits",
+    "archive_full_gate_signoff": "Reviewer declined unexecuted archive/full signoff; implementer executed affected archive and full verifier"
+  },
+  "research": "docs/research/cockroach-maintained-owner-2026-10-09.md",
+  "preserved_full_failure": {
+    "log": ".superpowers/cockroach-maintained-full-verifier-attempt1-2026-10-09.log",
+    "exit": 1,
+    "cause": "Qdrant restart native readiness exceeded15s in fixture retaining145 collections"
+  },
+  "fixture_repair": {
+    "diagnostic": ".superpowers/cockroach-full-qdrant-startup-diagnostic-2026-10-09.json",
+    "observed_return_to_ready_seconds": 14.673,
+    "isolation": ".superpowers/qdrant-cockroach-owner-isolated-20261009/fixture.json",
+    "historical_container_storage_credentials_preserved": true,
+    "affected": {
+      "log": ".superpowers/cockroach-qdrant-isolated-affected-2026-10-09.log",
+      "sha256": "4acbf3d123edfd16f007536445a838ccc6fad416faffa6f5576c062858c84e7a",
+      "exit": 0,
+      "retained_runs": []
+    },
+    "source_or_deadline_changes": false,
+    "primary_source": "https://github.com/qdrant/qdrant/blob/v1.19.2/lib/storage/src/content_manager/toc/mod.rs",
+    "source_inference": "Startup loads saved collections before TableOfContent returns; exact timing comes from local measurements"
+  },
+  "not_qualified": [
+    "Full ROM SQL Storage, journal publication and incremental Work",
+    "Production TLS/certificate profiles",
+    "Distributed ambiguous commit, quorum loss, lease transfers, range splits and multi-region behavior",
+    "Host power loss",
+    "Hostile oversized SDK wire-frame allocation",
+    "Uncertain ownership-acquisition acknowledgement",
+    "Cumulative transaction deadline"
+  ],
+  "rulings": [
+    {
+      "decision": "Share PGwire transport and pure owner validation; retain provider session policy",
+      "reason": "PostgreSQL and Cockroach have different isolation/durability settings",
+      "cost_if_wrong": "Changed transaction semantics or weakened native locking"
+    },
+    {
+      "decision": "Metadata budgets cover retained results, not one SDK frame allocation",
+      "reason": "SDK decodes a frame before adapter accounting",
+      "cost_if_wrong": "Unqualified hostile-frame allocation could exceed host memory"
+    },
+    {
+      "decision": "Enable unsafe native diagnostic functions only in named test sessions",
+      "reason": "Current server denies diagnostic retry functions by default",
+      "cost_if_wrong": "Tests could imply unnecessary production privileges"
+    },
+    {
+      "decision": "Require executed archive/full gates beyond source review",
+      "reason": "Reviewer did not execute normalized consumers or final verifier",
+      "cost_if_wrong": "Source review could be mistaken for native package qualification"
+    },
+    {
+      "decision": "Retain only valid five-character SQLSTATE grammar",
+      "reason": "SDK accepts arbitrary native error text as a code",
+      "cost_if_wrong": "Diagnostic leakage or incorrect retry classification"
+    },
+    {
+      "decision": "Use isolated Qdrant fixture while preserving historical145 collections",
+      "reason": "Historic fixture startup approached or exceeded15s readiness bound",
+      "cost_if_wrong": "Isolation could hide recovery issues; same-image/config native restart and full gates must pass"
+    },
+    {
+      "decision": "Preserve ignored workspace and test evidence after integration",
+      "reason": "Explicit user preservation requirement overrides skill cleanup",
+      "cost_if_wrong": "Additional disk use; historical proof remains available"
+    }
+  ]
+}

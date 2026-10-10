@@ -69,9 +69,8 @@ impl<'a> Transaction<'a> {
             row.try_get::<_, i64>(2).map_err(|_| OwnerError::Invalid)?,
             row.try_get::<_, Option<&[u8]>>(3)
                 .map_err(|_| OwnerError::Invalid)?,
-            row.try_get::<_, Option<i32>>(4)
-                .map_err(|_| OwnerError::Invalid)?
-                .map(i64::from),
+            row.try_get::<_, Option<i64>>(4)
+                .map_err(|_| OwnerError::Invalid)?,
         )
     }
 }

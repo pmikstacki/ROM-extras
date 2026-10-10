@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "$0")/.."
+: "${ROM_EXTRAS_COCKROACH_DSN:?Explicit controlled native CockroachDB fixture required; no skip}"
+: "${ROM_EXTRAS_POSTGRES_DSN:?Explicit PostgreSQL negative profile fixture required}"
+: "${ROM_EXTRAS_PYTHON:?Explicit Python3 executable required for owned deadlines}"
+cargo test --locked -p rom-cockroach -p rom-pgwire -p rom-sql-core
+cargo clippy --locked -p rom-cockroach -p rom-pgwire --all-targets -- -D warnings
+RUSTDOCFLAGS='-D warnings' cargo doc --locked -p rom-cockroach -p rom-pgwire --no-deps
+cargo fmt --manifest-path tests/cockroach-owner-consumer/Cargo.toml -- --check
+cargo clippy --manifest-path tests/cockroach-owner-consumer/Cargo.toml --locked --offline --target-dir target/cockroach-owner-consumer --all-targets -- -D warnings
+cargo build --manifest-path tests/cockroach-owner-consumer/Cargo.toml --locked --offline --target-dir target/cockroach-owner-consumer
+"$ROM_EXTRAS_PYTHON" scripts/check-cockroach-owner-consumer.py target/cockroach-owner-consumer/debug/cockroach-owner-consumer
+node --check scripts/prepare-cockroach-owner-package.mjs
+cargo package --locked --allow-dirty --no-verify -p rom-sql-core -p rom-pgwire -p rom-cockroach \
+    --config 'patch.crates-io.rom-sql-core.path="crates/rom-sql-core"' \
+    --config 'patch.crates-io.rom-pgwire.path="crates/rom-pgwire"'
+consumer=$(node scripts/prepare-cockroach-owner-package.mjs)
+cargo clippy --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/cockroach-owner-packaged-consumer --all-targets -- -D warnings
+cargo build --manifest-path "$consumer/Cargo.toml" --locked --offline --target-dir target/cockroach-owner-packaged-consumer
+"$ROM_EXTRAS_PYTHON" scripts/check-cockroach-owner-consumer.py target/cockroach-owner-packaged-consumer/debug/rom-cockroach-owner-packaged-consumer

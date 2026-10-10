@@ -2858,6 +2858,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "rom-cockroach"
+version = "0.1.0-dev"
+dependencies = [
+ "rom-pgwire",
+ "rom-sql-core",
+ "tokio",
+ "tokio-postgres",
+]
+
+[[package]]
 name = "rom-configured-maps"
 version = "0.1.0-dev"
 dependencies = [
@@ -3088,9 +3098,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "rom-pgwire"
+version = "0.1.0-dev"
+dependencies = [
+ "futures-core",
+ "rom-sql-core",
+ "tokio",
+ "tokio-postgres",
+]
+
+[[package]]
 name = "rom-postgres"
 version = "0.1.0-dev"
 dependencies = [
+ "rom-pgwire",
  "rom-sql-core",
  "tokio",
  "tokio-postgres",
