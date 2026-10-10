@@ -2,8 +2,8 @@ use crate::OpenBao;
 use crate::requests;
 use base64::{Engine, engine::general_purpose::STANDARD};
 use reqwest::Method;
-use rom_kms::{Binding, Envelope, KeyRef, Kms};
-use rom_secrets::{Error, SecretBytes};
+use rom_kms::{Binding, EncryptionVersion, Envelope, KeyRef, Kms};
+use rom_secrets::{Error, SecretBytes, SecretRef};
 use zeroize::Zeroizing;
 fn version(ciphertext: &str) -> Result<u64, Error> {
     let mut parts = ciphertext.splitn(3, ':');
@@ -21,6 +21,31 @@ fn version(ciphertext: &str) -> Result<u64, Error> {
     }
     Ok(version)
 }
+pub(crate) fn encrypted(
+    profile: &SecretRef,
+    key: &KeyRef,
+    selection: EncryptionVersion,
+    response: &mut serde_json::Value,
+) -> Result<Envelope, Error> {
+    let actual = response
+        .pointer("/data/key_version")
+        .and_then(serde_json::Value::as_u64)
+        .filter(|v| (1..=i32::MAX as u64).contains(v))
+        .ok_or(Error::Protocol)?;
+    let serde_json::Value::String(ciphertext) = response
+        .pointer_mut("/data/ciphertext")
+        .ok_or(Error::Protocol)?
+        .take()
+    else {
+        return Err(Error::Protocol);
+    };
+    if version(&ciphertext)? != actual
+        || matches!(selection,EncryptionVersion::Pinned(v) if v.get()!=actual)
+    {
+        return Err(Error::Protocol);
+    }
+    Envelope::new(profile.clone(), key.clone(), actual, ciphertext)
+}
 impl Kms for OpenBao {
     async fn encrypt(
         &self,
@@ -28,25 +53,41 @@ impl Kms for OpenBao {
         plaintext: &SecretBytes,
         binding: &Binding,
     ) -> Result<Envelope, Error> {
+        self.encrypt_at(key, plaintext, binding, EncryptionVersion::Latest)
+            .await
+    }
+    fn validate_encryption(&self, key: &KeyRef, selection: EncryptionVersion) -> Result<(), Error> {
+        if !self.keys.contains_key(key) {
+            return Err(Error::Invalid);
+        }
+        if matches!(selection,EncryptionVersion::Pinned(v) if v.get()>i32::MAX as u64) {
+            return Err(Error::Invalid);
+        }
+        Ok(())
+    }
+    async fn encrypt_at(
+        &self,
+        key: &KeyRef,
+        plaintext: &SecretBytes,
+        binding: &Binding,
+        selection: EncryptionVersion,
+    ) -> Result<Envelope, Error> {
+        self.validate_encryption(key, selection)?;
         let location = self.keys.get(key).ok_or(Error::Invalid)?;
         let _permit = self.transport.admit()?;
         let url = self
             .transport
             .url(&[&location.mount, "encrypt", &location.key])?;
-        let body = requests::encrypt(plaintext, binding)?;
+        let version = match selection {
+            EncryptionVersion::Latest => None,
+            EncryptionVersion::Pinned(v) => Some(v.get()),
+        };
+        let body = requests::encrypt(plaintext, binding, version)?;
         let mut response = self
             .transport
             .request(Method::POST, url, Some(body), Error::Rejected)
             .await?;
-        let serde_json::Value::String(ciphertext) = response
-            .pointer_mut("/data/ciphertext")
-            .ok_or(Error::Protocol)?
-            .take()
-        else {
-            return Err(Error::Protocol);
-        };
-        let version = version(&ciphertext)?;
-        Envelope::new(self.profile.clone(), key.clone(), version, ciphertext)
+        encrypted(&self.profile, key, selection, &mut response)
     }
     async fn decrypt(&self, envelope: &Envelope, binding: &Binding) -> Result<SecretBytes, Error> {
         if envelope.profile() != &self.profile

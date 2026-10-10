@@ -11,3 +11,6 @@ mod transport;
 pub use adapter::OpenBao;
 pub use configuration::{Config, Limits};
 pub use locations::{KeyLocation, SecretLocation};
+
+#[cfg(test)]
+mod transit_tests;

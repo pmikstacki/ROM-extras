@@ -11,3 +11,6 @@ publish.workspace = true
 workspace = true
 [dependencies]
 rom-secrets = { path = "../rom-secrets", version = "=0.1.0-dev" }
+tokio = { version = "=1.53.1", features = ["time", "sync"] }
+[dev-dependencies]
+tokio = { version = "=1.53.1", features = ["rt", "macros", "time", "sync"] }

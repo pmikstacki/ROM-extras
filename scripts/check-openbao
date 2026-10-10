@@ -6,6 +6,7 @@ cd -- "$(dirname -- "$0")/.."
 : "${ROM_EXTRAS_OPENBAO_TOKEN:?Set the limited runtime fixture token.}"
 : "${ROM_EXTRAS_OPENBAO_MARKERS:?Set the protected expected-material file.}"
 : "${ROM_EXTRAS_OPENBAO_ADMIN_FILE:?Set the private test-only provisioning file.}"
+: "${ROM_EXTRAS_KMS_MIGRATION_EVIDENCE:?Set the private retained migration evidence directory.}"
 cargo test -p rom-secrets -p rom-kms -p rom-openbao --locked \
     --features rom-openbao/service-fixture -- --test-threads=1
 cargo clippy -p rom-secrets -p rom-kms -p rom-openbao --locked \

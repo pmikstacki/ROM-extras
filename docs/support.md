@@ -106,7 +106,7 @@ The Node 22.16 fixture SQLite API is experimental; this is not a production rece
 | RabbitMQ | Mandatory publication, native Runtime, actual confirm loss, receiver receipts, TLS and explicit reconnect verified; replicated failover and release remain pending. |
 | Kafka, notifications | Kafka publication, actual acknowledgement loss, native Runtime/receipt recovery and TLS/SASL verified; additional notification connectors and release remain pending. |
 | S3-compatible, Azure Blob | Azure port and persistent Azurite conformance implemented; basic native BlobService lifecycle verified on Azure and both local S3 profiles; RustFS local public-port qualification passes; RustFS actual HTTP response loss and explicit recovery verified on SQLite/redb; cloud and further lifecycle faults remain pending. |
-| Secrets and KMS | Bounded family contract, provider implementation, and service verification remain pending. |
+| Secrets and KMS | Public contracts and OpenBao KV/Transit have native and packaged-consumer evidence. Authenticated versioned migration has native and archive evidence on the local OpenBao profile. Vault/AWS/Azure remain unqualified. |
 | OpenSearch and vectors | Projection contract, implementation, authorization checks, and real fixtures remain pending. |
 | Backup, migration, import | SQL archive contract and provenance-preserving tools remain pending. |
 | Release | Packaged-consumer checks, compatibility, redistribution review, and whole-goal acceptance remain pending. |
@@ -435,3 +435,6 @@ See [the executed verification record](verification/blob-recovery-2026-10-10.jso
 
 The checkpoint inventory increment also passed independent native source/archive consumers and the full verifier with all 1479 frozen files unchanged.
 See [the checkpoint verification record](verification/blob-checkpoint-inventory-2026-10-10.json).
+
+The [authenticated migration increment](kms-migration.md) adds explicit version selection and bounded decrypt/encrypt orchestration.
+It does not change host authorization or persistence ownership.

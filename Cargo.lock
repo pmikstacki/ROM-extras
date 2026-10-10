@@ -3080,6 +3080,7 @@ name = "rom-kms"
 version = "0.1.0-dev"
 dependencies = [
  "rom-secrets",
+ "tokio",
 ]
 
 [[package]]

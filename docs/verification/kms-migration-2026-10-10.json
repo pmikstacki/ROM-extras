@@ -1,0 +1,511 @@
+{
+  "date": "2026-10-10",
+  "baseline": "14beed901c5ef531f542250a808ff8dd0e6ca43a",
+  "scope": "Compatible explicit encryption selection and generic bounded authenticated envelope migration, locally qualified OpenBao2.7.1",
+  "whole_rom_extras_goal": "active/incomplete",
+  "public_rom_pin": "d7ef529040eec60dc869034c2d33130219db85fe",
+  "source_freeze": {
+    "files": 1520,
+    "unchanged_after_full": true,
+    "evidence": {
+      "path": ".superpowers/kms-migration-source-freeze-2026-10-10.json",
+      "sha256": "cd3a32b352a58ea745c93a262109899eeeaaa166d0a73f6bd7f90229fd1b740f"
+    }
+  },
+  "full": {
+    "command": "CARGO_INCREMENTAL=0 ./scripts/check-all with explicit protected owned fixtures",
+    "exit": 0,
+    "evidence": {
+      "path": ".superpowers/kms-migration-full-2026-10-10.log",
+      "sha256": "29d8bcf1f59493022aba88a2503d96c577011b5cabefc7e14eb494d8e19fb224"
+    }
+  },
+  "affected": {
+    "command": "./scripts/check-openbao",
+    "exit": 0,
+    "evidence": {
+      "path": ".superpowers/kms-migration-affected-attempt4-2026-10-10.log",
+      "sha256": "c435265ae7934d794f697b2a98a678730780631f371264530cbb0ce1246618b0"
+    },
+    "passing_cases": 30,
+    "breakdown": {
+      "kms_contract": 2,
+      "migration": 6,
+      "transit_parser": 1,
+      "configuration": 2,
+      "native_service": 13,
+      "secrets_contract": 2,
+      "compile_fail_doctests": 2,
+      "public_rom_host_consumer": 2
+    },
+    "archive_smoke_and_archived_service_target_compile_are_additional": true
+  },
+  "red_green": [
+    {
+      "scope": "new public capability API",
+      "red": {
+        "path": ".superpowers/kms-migration-missing-api-red-2026-10-10.log",
+        "sha256": "341b78a4127e8f331d5f098f0c1212d69d4725525a0f235f4b472b1a02ede536"
+      },
+      "green": {
+        "path": ".superpowers/kms-migration-generic-green-2026-10-10.log",
+        "sha256": "b0f27d45ad7516f7f0fd4abc6a2106664b6b969f2804f5b4814b57077e83077f"
+      }
+    },
+    {
+      "scope": "strict response-version parser",
+      "red": {
+        "path": ".superpowers/kms-migration-adapter-red-2026-10-10.log",
+        "sha256": "edd6a1393fbda428300501ba57596bccd9fd55d062ea5e90edc3d54c9dbd1eac"
+      },
+      "green": {
+        "path": ".superpowers/kms-migration-adapter-green-2026-10-10.log",
+        "sha256": "35e462e92d221d53f9caf9c96e0362eeb67ef3fcc2992ad792d2c2b8d6c58121"
+      }
+    },
+    {
+      "scope": "late synchronous provider error deadline",
+      "red": {
+        "path": ".superpowers/kms-migration-late-error-red-attempt1-2026-10-10.log",
+        "sha256": "e3a77730e76175094a5c6303a125266e732d6cc56400f31962dd17f6d666f14a"
+      },
+      "green": {
+        "path": ".superpowers/kms-migration-late-error-green-2026-10-10.log",
+        "sha256": "a6c24b9b0b9b530b0b425102f5ac0c4aeca1a39705bde59288fb28777b647b92"
+      }
+    },
+    {
+      "scope": "archive-owned service fixture",
+      "red": {
+        "path": ".superpowers/kms-migration-package-service-red-attempt2-2026-10-10.log",
+        "sha256": "6898502ed9c7b2a8e893c773b0cf8bb0bc93668597223cce8b366fe6a6720835"
+      },
+      "green": {
+        "path": ".superpowers/kms-migration-affected-attempt4-2026-10-10.log",
+        "sha256": "c435265ae7934d794f697b2a98a678730780631f371264530cbb0ce1246618b0"
+      }
+    }
+  ],
+  "retained_failed_or_inadequate_attempts": [
+    {
+      "scope": "unused shared administrative helper Clippy rejection",
+      "evidence": {
+        "path": ".superpowers/kms-migration-affected-attempt1-2026-10-10.log",
+        "sha256": "a70c38561a7e4ba5bb6a6562e660cb7102f116d7f036185da71b281b49d01346"
+      }
+    },
+    {
+      "scope": "late-error probe omitted intended mode; passed and is not RED evidence",
+      "evidence": {
+        "path": ".superpowers/kms-migration-late-error-red-2026-10-10.log",
+        "sha256": "e992b0882d7be4e950eb870ac4c7daf8b50d3fee538c00653878fb66ead3b447"
+      }
+    },
+    {
+      "scope": "archive probe enclosing-workspace refusal rather than intended missing-file diagnostic",
+      "evidence": {
+        "path": ".superpowers/kms-migration-package-service-red-2026-10-10.log",
+        "sha256": "f87ea20c4f6fa9bdc3137fe81d4726f633fb4a2c906ae2f64bf7668c6a54c361"
+      }
+    }
+  ],
+  "generic_authored_evidence": [
+    "unsupported/unapproved/Latest migration preflight before decrypt",
+    "existing latest implementation forwards without new required methods",
+    "unchanged original/exact binding and bytes",
+    "wrong replacement profile/key/version refused",
+    "failed source authentication never invokes encrypt",
+    "one permit spans decrypt/plaintext/encrypt",
+    "combined total deadline and late non-yielding success/error",
+    "future drop before dispatch and during either stage returns admission"
+  ],
+  "native": {
+    "image": "quay.io/openbao/openbao@sha256:a36ea8c27f0dcff5757664ad080425f96d3b6b2f33db3e76c4e2d3112fb17005",
+    "image_id": "8b664b4dd46db74a327e373f7b9581e39a1447b7d788b9b69f664896683c14d5",
+    "version": "2.7.1",
+    "memory_bytes": 536870912,
+    "nano_cpus": 1000000000,
+    "endpoint": "https://127.0.0.1:55459",
+    "protocol_scope": "derived nonexportable aes256-gcm96, verified TLS, persistent single-node Raft",
+    "actual_cases": [
+      "binary plaintext/nonemptyAAD sourcev1",
+      "same-key pinnedv2 after latestv3",
+      "second approved key pinnedv2",
+      "wrong context/AAD rejects source and replacement",
+      "source-only-token destination denial",
+      "missing/unapproved/denied key and future version",
+      "encryption and decryption version floors",
+      "revoked and expired tokens without fallback",
+      "actual paused-service outer timeout and future-drop admission recovery",
+      "original ciphertext retained; replacement reopened from retained host file after same-volume restart, explicit unseal and activehealth200"
+    ],
+    "runs": [
+      {
+        "directory": ".superpowers/kms-migration-native-20261010/case_1428862_1791611417362676316",
+        "verification": {
+          "path": ".superpowers/kms-migration-native-20261010/case_1428862_1791611417362676316/verification.json",
+          "sha256": "28c5a1be6b5d4b698ef478df1793c9fbbb42ffa3258875ef08e7e28789c5c585"
+        },
+        "results": {
+          "aad_preserved": true,
+          "cross_key": true,
+          "explicit_destination": 2,
+          "floors_denial_revocation_expiry": true,
+          "fresh_client_persistent_restart": true,
+          "latest": 3,
+          "native_version": "2.7.1",
+          "original_unchanged": true,
+          "total_timeout_and_drop": true
+        },
+        "private_host_configuration_not_published": true
+      },
+      {
+        "directory": ".superpowers/kms-migration-native-20261010/case_1432816_1791611467012820794",
+        "verification": {
+          "path": ".superpowers/kms-migration-native-20261010/case_1432816_1791611467012820794/verification.json",
+          "sha256": "28c5a1be6b5d4b698ef478df1793c9fbbb42ffa3258875ef08e7e28789c5c585"
+        },
+        "results": {
+          "aad_preserved": true,
+          "cross_key": true,
+          "explicit_destination": 2,
+          "floors_denial_revocation_expiry": true,
+          "fresh_client_persistent_restart": true,
+          "latest": 3,
+          "native_version": "2.7.1",
+          "original_unchanged": true,
+          "total_timeout_and_drop": true
+        },
+        "private_host_configuration_not_published": true
+      },
+      {
+        "directory": ".superpowers/kms-migration-native-20261010/case_1434673_1791611483710572530",
+        "verification": {
+          "path": ".superpowers/kms-migration-native-20261010/case_1434673_1791611483710572530/verification.json",
+          "sha256": "28c5a1be6b5d4b698ef478df1793c9fbbb42ffa3258875ef08e7e28789c5c585"
+        },
+        "results": {
+          "aad_preserved": true,
+          "cross_key": true,
+          "explicit_destination": 2,
+          "floors_denial_revocation_expiry": true,
+          "fresh_client_persistent_restart": true,
+          "latest": 3,
+          "native_version": "2.7.1",
+          "original_unchanged": true,
+          "total_timeout_and_drop": true
+        },
+        "private_host_configuration_not_published": true
+      },
+      {
+        "directory": ".superpowers/kms-migration-native-20261010/case_1436875_1791611507748789206",
+        "verification": {
+          "path": ".superpowers/kms-migration-native-20261010/case_1436875_1791611507748789206/verification.json",
+          "sha256": "28c5a1be6b5d4b698ef478df1793c9fbbb42ffa3258875ef08e7e28789c5c585"
+        },
+        "results": {
+          "aad_preserved": true,
+          "cross_key": true,
+          "explicit_destination": 2,
+          "floors_denial_revocation_expiry": true,
+          "fresh_client_persistent_restart": true,
+          "latest": 3,
+          "native_version": "2.7.1",
+          "original_unchanged": true,
+          "total_timeout_and_drop": true
+        },
+        "private_host_configuration_not_published": true
+      },
+      {
+        "directory": ".superpowers/kms-migration-native-20261010/case_1438648_1791611520862600183",
+        "verification": {
+          "path": ".superpowers/kms-migration-native-20261010/case_1438648_1791611520862600183/verification.json",
+          "sha256": "28c5a1be6b5d4b698ef478df1793c9fbbb42ffa3258875ef08e7e28789c5c585"
+        },
+        "results": {
+          "aad_preserved": true,
+          "cross_key": true,
+          "explicit_destination": 2,
+          "floors_denial_revocation_expiry": true,
+          "fresh_client_persistent_restart": true,
+          "latest": 3,
+          "native_version": "2.7.1",
+          "original_unchanged": true,
+          "total_timeout_and_drop": true
+        },
+        "private_host_configuration_not_published": true
+      },
+      {
+        "directory": ".superpowers/kms-migration-native-20261010/case_1445422_1791611603045953190",
+        "verification": {
+          "path": ".superpowers/kms-migration-native-20261010/case_1445422_1791611603045953190/verification.json",
+          "sha256": "28c5a1be6b5d4b698ef478df1793c9fbbb42ffa3258875ef08e7e28789c5c585"
+        },
+        "results": {
+          "aad_preserved": true,
+          "cross_key": true,
+          "explicit_destination": 2,
+          "floors_denial_revocation_expiry": true,
+          "fresh_client_persistent_restart": true,
+          "latest": 3,
+          "native_version": "2.7.1",
+          "original_unchanged": true,
+          "total_timeout_and_drop": true
+        },
+        "private_host_configuration_not_published": true
+      },
+      {
+        "directory": ".superpowers/kms-migration-native-20261010/case_1447418_1791611620823480891",
+        "verification": {
+          "path": ".superpowers/kms-migration-native-20261010/case_1447418_1791611620823480891/verification.json",
+          "sha256": "28c5a1be6b5d4b698ef478df1793c9fbbb42ffa3258875ef08e7e28789c5c585"
+        },
+        "results": {
+          "aad_preserved": true,
+          "cross_key": true,
+          "explicit_destination": 2,
+          "floors_denial_revocation_expiry": true,
+          "fresh_client_persistent_restart": true,
+          "latest": 3,
+          "native_version": "2.7.1",
+          "original_unchanged": true,
+          "total_timeout_and_drop": true
+        },
+        "private_host_configuration_not_published": true
+      },
+      {
+        "directory": ".superpowers/kms-migration-native-20261010/case_1450788_1791611662411928497",
+        "verification": {
+          "path": ".superpowers/kms-migration-native-20261010/case_1450788_1791611662411928497/verification.json",
+          "sha256": "28c5a1be6b5d4b698ef478df1793c9fbbb42ffa3258875ef08e7e28789c5c585"
+        },
+        "results": {
+          "aad_preserved": true,
+          "cross_key": true,
+          "explicit_destination": 2,
+          "floors_denial_revocation_expiry": true,
+          "fresh_client_persistent_restart": true,
+          "latest": 3,
+          "native_version": "2.7.1",
+          "original_unchanged": true,
+          "total_timeout_and_drop": true
+        },
+        "private_host_configuration_not_published": true
+      },
+      {
+        "directory": ".superpowers/kms-migration-native-20261010/case_1463390_1791611815931798086",
+        "verification": {
+          "path": ".superpowers/kms-migration-native-20261010/case_1463390_1791611815931798086/verification.json",
+          "sha256": "28c5a1be6b5d4b698ef478df1793c9fbbb42ffa3258875ef08e7e28789c5c585"
+        },
+        "results": {
+          "aad_preserved": true,
+          "cross_key": true,
+          "explicit_destination": 2,
+          "floors_denial_revocation_expiry": true,
+          "fresh_client_persistent_restart": true,
+          "latest": 3,
+          "native_version": "2.7.1",
+          "original_unchanged": true,
+          "total_timeout_and_drop": true
+        },
+        "private_host_configuration_not_published": true
+      },
+      {
+        "directory": ".superpowers/kms-migration-native-20261010/case_1465188_1791611831131059775",
+        "verification": {
+          "path": ".superpowers/kms-migration-native-20261010/case_1465188_1791611831131059775/verification.json",
+          "sha256": "28c5a1be6b5d4b698ef478df1793c9fbbb42ffa3258875ef08e7e28789c5c585"
+        },
+        "results": {
+          "aad_preserved": true,
+          "cross_key": true,
+          "explicit_destination": 2,
+          "floors_denial_revocation_expiry": true,
+          "fresh_client_persistent_restart": true,
+          "latest": 3,
+          "native_version": "2.7.1",
+          "original_unchanged": true,
+          "total_timeout_and_drop": true
+        },
+        "private_host_configuration_not_published": true
+      },
+      {
+        "directory": ".superpowers/kms-migration-native-20261010/case_1594451_1791612853837427305",
+        "verification": {
+          "path": ".superpowers/kms-migration-native-20261010/case_1594451_1791612853837427305/verification.json",
+          "sha256": "28c5a1be6b5d4b698ef478df1793c9fbbb42ffa3258875ef08e7e28789c5c585"
+        },
+        "results": {
+          "aad_preserved": true,
+          "cross_key": true,
+          "explicit_destination": 2,
+          "floors_denial_revocation_expiry": true,
+          "fresh_client_persistent_restart": true,
+          "latest": 3,
+          "native_version": "2.7.1",
+          "original_unchanged": true,
+          "total_timeout_and_drop": true
+        },
+        "private_host_configuration_not_published": true
+      },
+      {
+        "directory": ".superpowers/kms-migration-native-20261010/case_1596323_1791612871754386838",
+        "verification": {
+          "path": ".superpowers/kms-migration-native-20261010/case_1596323_1791612871754386838/verification.json",
+          "sha256": "28c5a1be6b5d4b698ef478df1793c9fbbb42ffa3258875ef08e7e28789c5c585"
+        },
+        "results": {
+          "aad_preserved": true,
+          "cross_key": true,
+          "explicit_destination": 2,
+          "floors_denial_revocation_expiry": true,
+          "fresh_client_persistent_restart": true,
+          "latest": 3,
+          "native_version": "2.7.1",
+          "original_unchanged": true,
+          "total_timeout_and_drop": true
+        },
+        "private_host_configuration_not_published": true
+      }
+    ],
+    "fixture_identity_evidence": {
+      "path": ".superpowers/kms-migration-native-image-2026-10-10.json",
+      "sha256": "373dff92c9370fd0e89eca5f9e7af6cdf57970882c813cb458fd4d856134b170"
+    },
+    "single_node_local_profile_only": true
+  },
+  "independent_consumers": {
+    "source": {
+      "path": ".superpowers/kms-migration-source-consumer-20261010",
+      "exit": 0,
+      "evidence": {
+        "path": ".superpowers/kms-migration-independent-source-2026-10-10.log",
+        "sha256": "4908c6120f1db1afc4bfc3b9050fe7120384bd0881db84ae8c2797e48418c2d8"
+      }
+    },
+    "archive": {
+      "path": "/tmp/secrets-packaged-OaTJe8/consumer",
+      "exit": 0,
+      "archives": {
+        "rom-secrets": "a57c793a71e828682ed77781ab012b99a17084d5d5d0ec91274fd7c11d9a879a",
+        "rom-kms": "8f1bb1ad74abc2616e44cbb43486a5b5e80d56ad71928f7accb24a495fb36fd2",
+        "rom-openbao": "1f79dcaeb8900f77d5b6eed411d1852bef01f4bb8915a05e29559a443971c4e5"
+      },
+      "archive_manifest": {
+        "path": "/tmp/secrets-packaged-OaTJe8/archives.json",
+        "sha256": "4f81108cb42be03aa658c4cd077d47311343ed86a5b06481db27c0f4d987f493"
+      },
+      "source_equals_extracted_crate_modules": true,
+      "archive_service_feature_test_target_compiled": true
+    },
+    "registry_graphs_identical": true,
+    "registry_packages": 157
+  },
+  "dependencies": {
+    "root_registry_packages": 434,
+    "new_packages_or_versions": 0,
+    "checksums_unchanged": true,
+    "source_archives_extracted_bytes_licenses_msrv_verified": 157,
+    "compiler": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1\n",
+    "evidence": {
+      "path": ".superpowers/kms-migration-dependencies-2026-10-10.json",
+      "sha256": "64c3314772b8afbedf111b7f94a4a6c835a3a3c1edeb2fad99b8563403f0629c"
+    },
+    "audits": [
+      {
+        "graph": "root",
+        "known_vulnerabilities": 0,
+        "warnings": [
+          "unmaintained"
+        ],
+        "evidence": {
+          "path": ".superpowers/kms-migration-root-audit-2026-10-10.json",
+          "sha256": "24a893ba7d5c6db6dc9d22003e3be0d976460cc91d4a60280e1f0eb70d7fac26"
+        }
+      },
+      {
+        "graph": "source",
+        "known_vulnerabilities": 0,
+        "warnings": [],
+        "evidence": {
+          "path": ".superpowers/kms-migration-source-audit-2026-10-10.json",
+          "sha256": "7dd04472423719e7d882050d87fb2e795b1464b4049661dcef4def17b976a596"
+        }
+      },
+      {
+        "graph": "archive",
+        "known_vulnerabilities": 0,
+        "warnings": [],
+        "evidence": {
+          "path": ".superpowers/kms-migration-archive-audit-2026-10-10.json",
+          "sha256": "7dd04472423719e7d882050d87fb2e795b1464b4049661dcef4def17b976a596"
+        }
+      }
+    ],
+    "unsuppressed_existing_warning": "root paste unmaintained; standalone source/archive have no warnings",
+    "rustsec_revision": "7eebec69c352c7191b1f13eb95dd510eeca5d1de",
+    "server_binary_not_assessed_by_cargo_audit": true
+  },
+  "review": {
+    "evidence": {
+      "path": ".superpowers/kms-migration-final-review-2026-10-10.md",
+      "sha256": "f161ed1ed8fce7b179b4d21160323e48bb42f3c24ae5515a43d9b46469b34d6f"
+    },
+    "critical": 0,
+    "important": 1,
+    "important_fixed": "external scenario missing from archive: archive-owned shared fixture plus explicit archive service compile RED/GREEN and family suite0",
+    "minor_deferred": 0,
+    "reviewer_scope": "source/upstream/archive/log inspection; no reviewer build/native execution",
+    "rulings": [
+      "Ruling: use authenticated decrypt+encrypt rather than native rewrap \u2014 tagged2.7.1 rewrap omits AAD. Cost if wrong: bounded plaintext exists inside adapter/provider copies; never claim server-side plaintext-free rewrap.",
+      "Ruling: optional default Kms selection methods keep latest implementations compatible \u2014 unsupported pinned selection refuses before decrypt. Cost if wrong: providers must implement honest local capability/destination validation.",
+      "Ruling: generic u64 pinned version with OpenBao portable i32::MAX cap \u2014 TypeInt is architecture-dependent. Cost if wrong: larger versions require separately qualified provider profile rather than truncation.",
+      "Ruling: one owned Migrator admission and absolute cooperative deadline \u2014 per-HTTP limits alone cannot bound retained plaintext. Cost if wrong: hosts must share one instance and providers must yield; no hard preemption or remote cancellation promise.",
+      "Final: Ruling: production/replicated custody is unqualified by this single-node fixture \u2014 native proof remains local. Cost if wrong: deployment topology needs independent recovery/custody evidence.",
+      "Final: Ruling: Vault/AWS/Azure remain separate unqualified profiles \u2014 OpenBao cannot qualify their authentication/algorithms. Cost if wrong: applications cannot infer cloud support.",
+      "Final: Ruling: cancellation/erasure claims cover owned local lifetime only \u2014 no remote rollback or universal memory erasure. Cost if wrong: remote effects and external plaintext copies require host handling.",
+      "Final: Ruling: host authorization and conditional persistence remain host-owned \u2014 migrator only returns ciphertext. Cost if wrong: a host can authorize incorrectly or overwrite a newer source.",
+      "Final: Ruling: custom Kms implementations must validate selection honestly \u2014 default methods refuse pinned selection before decrypt; custom dishonest behavior is not introspectable. Cost if wrong: invalid custom capability can acquire plaintext before failing.",
+      "Final: Ruling: cooperative provider execution requires active Tokio time driver \u2014 late outcomes reject, blocking CPU is not preempted. Cost if wrong: non-yielding providers can hold resources longer than deadline.",
+      "Final: Ruling: SQL and complete-extras acceptance remain open \u2014 absent public ownership/preparation boundaries are not supplied by migration. Cost if wrong: native owner tests could be mistaken for full Storage support.",
+      "Final: Ruling: review does not establish integrity/full success \u2014 root must execute both gates. Cost if wrong: publication without matching graph/runtime evidence would be unsupported.",
+      "Ruling: preserve inactive root compiler libraries with byte-identical verified archives before retiring working copies \u2014 restore disk reserve without native data/executable loss. Cost if wrong: needed libraries regenerate and consume reserve; old bytes remain archived."
+    ]
+  },
+  "limits": {
+    "portable_openbao_pinned_range": "1..=i32::MAX",
+    "plaintext_bytes": 4096,
+    "migration_deadline": "1ms..=60s, default5s, active Tokio time driver/cooperative scheduling",
+    "migration_admission": "1..=64, default4, one shared Migrator; no queue",
+    "http_response_bytes": 32768,
+    "no_automatic_retries_or_detached_tasks": true,
+    "local_owned_buffer_zeroization_only": "Source inspection of SecretBytes/Zeroizing lifetime; native tests do not establish universal memory erasure or remote cancellation"
+  },
+  "preservation": {
+    "evidence": {
+      "path": ".superpowers/kms-migration-preserved-caches-2026-10-10.json",
+      "sha256": "51042b3a7911424335668a66417369c00473e77dc918b26163772f319c012cbe"
+    },
+    "historical_services_data_source_worktrees_runs_final_executables_retained": true,
+    "inactive_compiler_library_and_incremental_bytes_archived_and_verified_before_retiring_working_copies": true,
+    "opensearch_preflight": {
+      "path": ".superpowers/kms-migration-opensearch-preflight-2026-10-10.json",
+      "sha256": "b2fc05ccb1e0d22f9c6a4d911b76729b793ea5ce22cf08f86114d8007d2f9897"
+    }
+  },
+  "secret_scan": {
+    "path": ".superpowers/kms-migration-public-secret-scan-2026-10-10.json",
+    "sha256": "e9aabcf379e281251734f97c78e5a0fd85bc5fd3a166821bbde55e7cda156be8"
+  },
+  "remaining": [
+    "host authorization and conditional replacement persistence belong to applications",
+    "no plaintext-free native rewrap for this AAD profile",
+    "no automatic retention-floor update, bulk migration or cross-service receipt/transaction",
+    "custom providers must implement capability honestly and yield cooperatively",
+    "Vault/AWS/Azure and replicated/production custody unqualified",
+    "SQL fullStorage public preparation/ownership boundaries absent",
+    "complete projection rebuild/cutover and whole-ROM-extras acceptance incomplete"
+  ],
+  "closing_changes": "After full frozen verification, only plan progress and this verification metadata change; implementation remains unchanged"
+}

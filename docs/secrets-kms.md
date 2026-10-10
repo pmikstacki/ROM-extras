@@ -77,3 +77,8 @@ The archive consumer performed actual KV and Transit operations and passed Clipp
 All three assessed dependency graphs have zero reported RustSec vulnerabilities.
 These Rust audits do not assess the separate OpenBao server binary.
 See [source hashes and execution evidence](verification/secrets-kms-host-package-full-verifier-2026-10-08.json) and [unchanged raw output](verification/secrets-kms-host-package-full-verifier-2026-10-08.log).
+
+## Authenticated envelope migration
+
+Use the [migration contract](kms-migration.md) to change an approved key alias or explicit encryption version with unchanged context/AAD.
+The host conditionally persists the returned ciphertext. Native rewrap does not preserve this profile's AAD.

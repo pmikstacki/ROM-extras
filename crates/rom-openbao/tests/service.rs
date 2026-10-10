@@ -517,3 +517,10 @@ async fn actual_key_rotation_and_minimum_version_preserve_authenticated_outcomes
         "minimum-version plaintext mismatch"
     );
 }
+
+#[path = "fixture/migration.rs"]
+mod migration;
+#[tokio::test]
+async fn actual_authenticated_envelope_migration_preserves_binding_versions_and_recovery() {
+    migration::run(config()).await;
+}

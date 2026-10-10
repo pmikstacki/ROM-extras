@@ -2,33 +2,33 @@
 use rom_kms::{Binding, KeyRef, Kms};
 use rom_openbao::{Config, KeyLocation, Limits, OpenBao, SecretLocation};
 use rom_secrets::{SecretBytes, SecretRef, SecretResolver, Version};
-#[tokio::main(flavor = "current_thread")]
-async fn main() {
+fn config() -> Config {
     let endpoint = std::env::var("ROM_EXTRAS_OPENBAO_ENDPOINT").unwrap();
     assert_eq!(endpoint, "https://127.0.0.1:55459");
-    let adapter = OpenBao::new(
-        Config {
-            endpoint,
-            token: SecretBytes::new(
-                std::env::var("ROM_EXTRAS_OPENBAO_TOKEN")
-                    .unwrap()
-                    .into_bytes(),
-            )
-            .unwrap(),
-            ca_pem: Some(std::fs::read(std::env::var("ROM_EXTRAS_OPENBAO_CA").unwrap()).unwrap()),
-            profile: SecretRef::new("packaged-openbao").unwrap(),
-            secrets: vec![(
-                SecretRef::new("oidc-client").unwrap(),
-                SecretLocation::new("secret", "rom-extras/client", "credential").unwrap(),
-            )],
-            keys: vec![(
-                KeyRef::new("application-key").unwrap(),
-                KeyLocation::new("transit", "rom-extras").unwrap(),
-            )],
-        },
-        Limits::default(),
-    )
-    .unwrap();
+    Config {
+        endpoint,
+        token: SecretBytes::new(
+            std::env::var("ROM_EXTRAS_OPENBAO_TOKEN")
+                .unwrap()
+                .into_bytes(),
+        )
+        .unwrap(),
+        ca_pem: Some(std::fs::read(std::env::var("ROM_EXTRAS_OPENBAO_CA").unwrap()).unwrap()),
+        profile: SecretRef::new("packaged-openbao").unwrap(),
+        secrets: vec![(
+            SecretRef::new("oidc-client").unwrap(),
+            SecretLocation::new("secret", "rom-extras/client", "credential").unwrap(),
+        )],
+        keys: vec![(
+            KeyRef::new("application-key").unwrap(),
+            KeyLocation::new("transit", "rom-extras").unwrap(),
+        )],
+    }
+}
+#[tokio::main(flavor = "current_thread")]
+async fn main() {
+    migration::run(config()).await;
+    let adapter = OpenBao::new(config(), Limits::default()).unwrap();
     let secret = adapter
         .resolve(&SecretRef::new("oidc-client").unwrap(), Version::Latest)
         .await
@@ -54,4 +54,15 @@ async fn main() {
         "packaged ciphertext mismatch"
     );
     println!("Packaged KV and derived Transit smoke passed.");
+}
+
+#[path = "../../crates/rom-openbao/tests/fixture/administration.rs"]
+mod administration;
+#[path = "../../crates/rom-openbao/tests/fixture/lifecycle.rs"]
+mod lifecycle;
+#[path = "../../crates/rom-openbao/tests/fixture/migration.rs"]
+mod migration;
+mod fixture {
+    pub(crate) use crate::administration::{Admin, unique};
+    pub(crate) use crate::lifecycle::{Paused, container};
 }
